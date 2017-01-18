@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<ScappleDocument ID="1D892630-734F-41DC-B330-B95028299944" Version="1.1">
+   <Notes>
+      <Note Width="69.8242" FontSize="12" ID="1" Position="93.0,141.5" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,4</FormatRange>
+         </Formatting>
+         <String>User
+
+First Name
+Last Name
+Nickname</String>
+      </Note>
+      <Note Width="238.772" FontSize="12" ID="2" Position="85.5,49.9" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,3</FormatRange>
+            <FormatRange Bold="Yes">4,35</FormatRange>
+         </Formatting>
+         <String>Dev
+Objects, attributes and Inheritance</String>
+      </Note>
+      <Note Width="233.32" FontSize="12" ID="3" Position="255.0,238.2" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,32</FormatRange>
+         </Formatting>
+         <String>Asset Production Stage (APStage)
+
+DependsOn Asset Stages</String>
+         <ConnectedNoteIDs>4</ConnectedNoteIDs>
+      </Note>
+      <Note Width="93.8965" FontSize="12" ID="4" Position="89.4,262.2" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,5</FormatRange>
+         </Formatting>
+         <String>Stage
+
+Name
+Short Name
+File types
+Export file type
+Softwares
+Assigned users</String>
+         <ConnectedNoteIDs>3, 5</ConnectedNoteIDs>
+         <PointsToNoteIDs>3, 5</PointsToNoteIDs>
+      </Note>
+      <Note Width="229.333" FontSize="12" ID="5" Position="255.8,336.6" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,31</FormatRange>
+         </Formatting>
+         <String>Shot Production Stage (SPStage)
+
+DependsOn Stages</String>
+         <ConnectedNoteIDs>4</ConnectedNoteIDs>
+      </Note>
+      <Note Width="75.4272" FontSize="12" ID="6" Position="93.0,414.2" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,7</FormatRange>
+         </Formatting>
+         <String>Project
+
+Name
+Short Name
+Stages
+Shots
+Assets</String>
+      </Note>
+      <Note Width="85.0586" FontSize="12" ID="8" Position="97.4,544.0" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,11</FormatRange>
+         </Formatting>
+         <String>StageStatus
+
+Status
+Stage
+Comment
+User</String>
+      </Note>
+      <Note Width="75.4272" FontSize="12" ID="9" Position="93.0,657.7" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,6</FormatRange>
+         </Formatting>
+         <String>Status
+id
+Name
+Short Name
+Color
+Description</String>
+      </Note>
+      <Note Width="116.455" FontSize="12" ID="11" Position="92.1,766.2" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,4</FormatRange>
+         </Formatting>
+         <String>Shot
+
+Name
+Containing project
+ShotStageStatuses
+duration</String>
+      </Note>
+      <Note Width="115.552" FontSize="12" ID="12" Position="93.0,874.5" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,5</FormatRange>
+         </Formatting>
+         <String>Asset
+
+Name
+Containing projects
+Containing shots
+Asset Stage
+AssetStageStatus
+Tags</String>
+      </Note>
+      <Note Width="105.737" FontSize="12" ID="13" Position="101.7,1014.5" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Software
+
+Name
+Import File Types
+Export File Types
+Native File Types</String>
+      </Note>
+   </Notes>
+   <BackgroundShapes>
+      <Shape Width="459.989" Faded="No" Height="1111.59" Sticky="No" ID="0" Position="73.4,34.2" Shadow="No">
+         <Appearance>
+            <Border Weight="1" Style="Rounded"/>
+         </Appearance>
+      </Shape>
+   </BackgroundShapes>
+   <NoteStyles>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Red Text" ID="8AFE01AC-E522-4D40-8202-8DF29D216106" AffectTextColor="Yes" AffectNoteBody="No" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <TextColor>1.0 0.0 0.0</TextColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Yellow Bubble" ID="A3AA0DC3-D722-40CC-90FB-DE63D11E1303" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.769436 0.762219 0.390143</BorderColor>
+         <FillColor>0.912963 0.894118 0.644541</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Pink Bubble" ID="760AD369-0500-4703-B0CD-0181415614B0" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.690303 0.407263 0.550912</BorderColor>
+         <FillColor>0.898329 0.817472 0.865339</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Brown Bubble" ID="6B28BE56-0BBD-488C-A656-B85C560CB20D" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.269490 0.164034 0.186694</BorderColor>
+         <FillColor>0.934157 0.888319 0.785290</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Green Bubble" ID="6B7834FC-BB2F-460D-B61D-5E167F52BCE8" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.399100 0.583322 0.354864</BorderColor>
+         <FillColor>0.808835 0.872419 0.801343</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Blue Bubble" ID="A686F2A8-655C-45AE-BCE6-E7ABB95F5F24" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.485893 0.568933 0.756207</BorderColor>
+         <FillColor>0.844068 0.869596 0.923064</FillColor>
+      </Style>
+      <Style AffectFontStyle="Yes" AffectAlignment="Yes" Name="Title Text" ID="C67C1F54-4AE3-4F99-B18E-9975C313E184" AffectTextColor="No" AffectNoteBody="No" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <IsBold>Yes</IsBold>
+         <FontSize>12.0</FontSize>
+      </Style>
+   </NoteStyles>
+   <UISettings>
+      <BackgroundColor>0.207843 0.207843 0.207843</BackgroundColor>
+      <DefaultFont>Helvetica</DefaultFont>
+      <DefaultTextColor>0.607843 0.607843 0.607843</DefaultTextColor>
+      <LeftToRight>Yes</LeftToRight>
+   </UISettings>
+   <PrintSettings VerticalPagination="Auto" HorizontalPagination="Clip" Orientation="Portrait" RightMargin="12.000000" BottomMargin="12.000000" HorizontallyCentered="Yes" ScaleFactor="1.000000" PagesAcross="1" PaperType="iso-a4" PagesDown="1" TopMargin="12.000000" Collates="Yes" PaperSize="-1.000000,-1.000000" LeftMargin="12.000000" VerticallyCentered="Yes"/>
+</ScappleDocument>

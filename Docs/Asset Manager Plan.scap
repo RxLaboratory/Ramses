@@ -1,0 +1,492 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<ScappleDocument ID="73E3DD13-2411-4E4E-A745-5439FF52F064" Version="1.1">
+   <Notes>
+      <Note Width="153.906" FontSize="12" ID="0" Position="280.5,550.9" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,6</FormatRange>
+         </Formatting>
+         <String>Assets
+
+Each asset can be assigned to several shots of one project
+
+Assets can be tagged and the list can be filtered by tags and containing projects
+
+Assets can be assigned file types
+
+Assets are assigned a production state, a comment and a user for each stage it is assigned</String>
+         <ConnectedNoteIDs>3, 60</ConnectedNoteIDs>
+         <PointsToNoteIDs>3</PointsToNoteIDs>
+      </Note>
+      <Note Width="235.938" FontSize="12" ID="1" Position="753.1,97.8" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Projects
+
+Projects can share assets
+
+Shots can be imported from other projects
+
+Assets can be imported from other projects</String>
+         <ConnectedNoteIDs>2</ConnectedNoteIDs>
+         <PointsToNoteIDs>2</PointsToNoteIDs>
+      </Note>
+      <Note Width="247.656" FontSize="12" ID="2" Position="747.2,295.4" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,5</FormatRange>
+         </Formatting>
+         <String>Shots
+
+Contains all stages (and therefore assets)
+
+Shots can be filtered by assets tags or stages states</String>
+         <ConnectedNoteIDs>1, 5, 60</ConnectedNoteIDs>
+      </Note>
+      <Note Width="178.125" FontSize="12" ID="3" Position="267.2,297.4" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,23</FormatRange>
+         </Formatting>
+         <String>Asset Production Stages
+
+Can depend on other Asset Production Stages
+
+Contains an asset list</String>
+         <ConnectedNoteIDs>0, 5</ConnectedNoteIDs>
+         <PointsToNoteIDs>5</PointsToNoteIDs>
+      </Note>
+      <Note Width="175" FontSize="12" ID="6" Position="273.4,1850.6" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,25</FormatRange>
+         </Formatting>
+         <String>Shots Production Pipeline</String>
+      </Note>
+      <Note Width="90.8691" FontSize="12" ID="7" Position="475.7,1899.0" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Stage S2
+
+i.e. Layout
+
+needs A1 &amp; A4</String>
+         <ConnectedNoteIDs>8, 11-13</ConnectedNoteIDs>
+         <PointsToNoteIDs>13</PointsToNoteIDs>
+      </Note>
+      <Note Width="182.812" FontSize="12" ID="10" Position="277.3,1643.5" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,26</FormatRange>
+         </Formatting>
+         <String>Assets Production Pipeline</String>
+      </Note>
+      <Note Width="64.6729" FontSize="12" ID="11" Position="324.2,1709.0" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Stage A1
+
+i.e. Props</String>
+         <ConnectedNoteIDs>7, 12</ConnectedNoteIDs>
+         <PointsToNoteIDs>7, 12</PointsToNoteIDs>
+      </Note>
+      <Note Width="126.465" FontSize="12" ID="9" Position="491.3,1649.0" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Stage A3
+
+i.e. Character Design</String>
+         <ConnectedNoteIDs>12</ConnectedNoteIDs>
+         <PointsToNoteIDs>12</PointsToNoteIDs>
+      </Note>
+      <Note Width="124.146" FontSize="12" ID="12" Position="665.5,1690.4" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Stage A4
+
+i.e. Rigging
+
+needs A3 - C Design</String>
+         <ConnectedNoteIDs>7, 9, 11</ConnectedNoteIDs>
+         <PointsToNoteIDs>7</PointsToNoteIDs>
+      </Note>
+      <Note Width="83.3862" FontSize="12" ID="13" Position="681.1,1896.5" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Stage S3
+
+i.e. Animation
+
+needs S1</String>
+         <ConnectedNoteIDs>7, 14</ConnectedNoteIDs>
+         <PointsToNoteIDs>14</PointsToNoteIDs>
+      </Note>
+      <Note Width="98.0591" FontSize="12" ID="14" Position="838.9,1896.5" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Stage S4
+
+i.e. Compositing
+
+needs S2</String>
+         <ConnectedNoteIDs>13</ConnectedNoteIDs>
+      </Note>
+      <Note Width="182.031" FontSize="12" ID="17" Position="241.3,1584.2" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,27</FormatRange>
+         </Formatting>
+         <String>Project Production Pipeline</String>
+      </Note>
+      <Note Width="179.688" FontSize="12" ID="5" Position="485.1,226.7" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,22</FormatRange>
+         </Formatting>
+         <String>Shot Production Stages
+
+Can depend on other Shot Production Stages or Asset Production Stages
+
+Assigned to all shots of a project (but have a “No” state)
+
+Assigned a production state, a comment and a user for each shot
+
+Shots can be assigned to several users (using variant names)</String>
+         <ConnectedNoteIDs>2-3</ConnectedNoteIDs>
+         <PointsToNoteIDs>2</PointsToNoteIDs>
+      </Note>
+      <Note Width="156.25" FontSize="12" ID="20" Position="386.7,68.1" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,6</FormatRange>
+         </Formatting>
+         <String>Stages
+
+Stages can be used by several projects
+
+Stages can be assigned file types and default types for assets</String>
+      </Note>
+      <Note Width="156.25" FontSize="12" ID="60" Position="705.3,554.1" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,5</FormatRange>
+         </Formatting>
+         <String>Users
+
+Can be assigned to several stages
+
+And then assigned to shots or assets</String>
+         <ConnectedNoteIDs>0, 2</ConnectedNoteIDs>
+         <PointsToNoteIDs>0, 2</PointsToNoteIDs>
+      </Note>
+      <Note Width="64.4043" FontSize="12" ID="8" Position="324.9,1914.6" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Stage S1
+
+i.e. BG</String>
+         <ConnectedNoteIDs>7</ConnectedNoteIDs>
+         <PointsToNoteIDs>7</PointsToNoteIDs>
+      </Note>
+      <Note Width="49.9146" FontSize="12" ID="30" Position="252.2,946.9" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,6</FormatRange>
+         </Formatting>
+         <String>Config</String>
+      </Note>
+      <Note Width="258.233" FontSize="12" ID="31" Position="513.8,1083.4" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,23</FormatRange>
+         </Formatting>
+         <String>Asset Production Stages
+
+Users can add or remove Stages
+
+Assign Users</String>
+         <ConnectedNoteIDs>33, 61, 118, 121-122, 141</ConnectedNoteIDs>
+         <PointsToNoteIDs>61</PointsToNoteIDs>
+      </Note>
+      <Note Width="258.233" FontSize="12" ID="32" Position="229.8,1083.6" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,22</FormatRange>
+         </Formatting>
+         <String>Shot Production Stages
+
+Users can add or remove Stages
+
+Assign Users</String>
+         <ConnectedNoteIDs>33, 61, 118, 121-122, 141</ConnectedNoteIDs>
+         <PointsToNoteIDs>61</PointsToNoteIDs>
+      </Note>
+      <Note Width="111.353" FontSize="12" ID="33" Position="234.4,982.6" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,5</FormatRange>
+         </Formatting>
+         <String>Users
+
+User management</String>
+         <ConnectedNoteIDs>31-32</ConnectedNoteIDs>
+         <PointsToNoteIDs>31-32</PointsToNoteIDs>
+      </Note>
+      <Note Width="330.803" FontSize="12" ID="61" Position="349.3,1191.6" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,8</FormatRange>
+         </Formatting>
+         <String>Projects
+
+Add/Remove projects
+
+Assign stages (or create if needed)
+Stages dependencies</String>
+         <ConnectedNoteIDs>31-32, 69-70</ConnectedNoteIDs>
+         <PointsToNoteIDs>69-70</PointsToNoteIDs>
+      </Note>
+      <Note Width="149.121" FontSize="12" ID="69" Position="332.0,1324.9" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,5</FormatRange>
+         </Formatting>
+         <String>Shots
+
+Create shots
+
+Assign users from stages
+
+Ability to load EDL, AAF, etc.</String>
+         <ConnectedNoteIDs>61, 70</ConnectedNoteIDs>
+         <PointsToNoteIDs>70</PointsToNoteIDs>
+      </Note>
+      <Note Width="149.121" FontSize="12" ID="70" Position="551.6,1332.9" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,6</FormatRange>
+         </Formatting>
+         <String>Assets
+
+Create assets
+
+Assign assets to shots
+
+Assign users from stages</String>
+         <ConnectedNoteIDs>61, 69</ConnectedNoteIDs>
+         <PointsToNoteIDs>69</PointsToNoteIDs>
+      </Note>
+      <Note Width="139.319" FontSize="12" ID="118" Position="384.6,985.3" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,6</FormatRange>
+         </Formatting>
+         <String>Status
+
+Status list/management</String>
+         <ConnectedNoteIDs>31-32</ConnectedNoteIDs>
+         <PointsToNoteIDs>31-32</PointsToNoteIDs>
+      </Note>
+      <Note Width="137.244" FontSize="12" ID="121" Position="554.4,988.0" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,10</FormatRange>
+         </Formatting>
+         <String>File Types
+
+Types list/management</String>
+         <ConnectedNoteIDs>31-32</ConnectedNoteIDs>
+         <PointsToNoteIDs>31-32</PointsToNoteIDs>
+      </Note>
+      <Note Width="99.7192" FontSize="12" ID="122" Position="717.1,988.0" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,9</FormatRange>
+         </Formatting>
+         <String>Softwares
+
+list/management</String>
+         <ConnectedNoteIDs>31-32</ConnectedNoteIDs>
+         <PointsToNoteIDs>31-32</PointsToNoteIDs>
+      </Note>
+      <Note Width="99.7192" FontSize="12" ID="141" Position="838.9,991.1" Shadow="Yes">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="2" Style="Square">0.305882 0.305882 0.305882</Border>
+         </Appearance>
+         <Formatting>
+            <FormatRange Bold="Yes">0,4</FormatRange>
+         </Formatting>
+         <String>Tags
+
+list/management</String>
+         <ConnectedNoteIDs>31-32</ConnectedNoteIDs>
+         <PointsToNoteIDs>31-32</PointsToNoteIDs>
+      </Note>
+   </Notes>
+   <BackgroundShapes>
+      <Shape Width="785.156" Faded="No" Height="472.656" Sticky="No" ID="18" Position="224.1,1564.7" Shadow="No">
+         <Appearance>
+            <Border Weight="2" Style="Rounded">0.368627 0.368627 0.368627</Border>
+         </Appearance>
+      </Shape>
+      <Shape Width="716.333" Faded="No" Height="152.344" Sticky="No" ID="15" Position="266.3,1632.5" Shadow="No">
+         <Appearance>
+            <Border Weight="2" Style="Rounded">0.368627 0.368627 0.368627</Border>
+         </Appearance>
+      </Shape>
+      <Shape Width="714.881" Faded="No" Height="183.594" Sticky="No" ID="16" Position="265.5,1830.3" Shadow="No">
+         <Appearance>
+            <Border Weight="2" Style="Rounded">0.368627 0.368627 0.368627</Border>
+         </Appearance>
+      </Shape>
+      <Shape Width="445.275" Faded="No" Height="458.425" Sticky="No" ID="21" Position="246.9,57.2" Shadow="No">
+         <Appearance>
+            <Border Weight="2" Style="Square">0.439216 0.439216 0.439216</Border>
+         </Appearance>
+      </Shape>
+      <Shape Width="750.65" Faded="No" Height="546.957" Sticky="No" ID="73" Position="219.7,933.5" Shadow="No">
+         <Appearance>
+            <Border Weight="1" Style="Rounded"/>
+         </Appearance>
+      </Shape>
+   </BackgroundShapes>
+   <NoteStyles>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Red Text" ID="8AFE01AC-E522-4D40-8202-8DF29D216106" AffectTextColor="Yes" AffectNoteBody="No" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <TextColor>1.0 0.0 0.0</TextColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Yellow Bubble" ID="A3AA0DC3-D722-40CC-90FB-DE63D11E1303" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.769436 0.762219 0.390143</BorderColor>
+         <FillColor>0.912963 0.894118 0.644541</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Pink Bubble" ID="760AD369-0500-4703-B0CD-0181415614B0" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.690303 0.407263 0.550912</BorderColor>
+         <FillColor>0.898329 0.817472 0.865339</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Brown Bubble" ID="6B28BE56-0BBD-488C-A656-B85C560CB20D" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.269490 0.164034 0.186694</BorderColor>
+         <FillColor>0.934157 0.888319 0.785290</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Green Bubble" ID="6B7834FC-BB2F-460D-B61D-5E167F52BCE8" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.399100 0.583322 0.354864</BorderColor>
+         <FillColor>0.808835 0.872419 0.801343</FillColor>
+      </Style>
+      <Style AffectFontStyle="No" AffectAlignment="No" Name="Blue Bubble" ID="A686F2A8-655C-45AE-BCE6-E7ABB95F5F24" AffectTextColor="No" AffectNoteBody="Yes" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.485893 0.568933 0.756207</BorderColor>
+         <FillColor>0.844068 0.869596 0.923064</FillColor>
+      </Style>
+      <Style AffectFontStyle="Yes" AffectAlignment="Yes" Name="Title Text" ID="C67C1F54-4AE3-4F99-B18E-9975C313E184" AffectTextColor="No" AffectNoteBody="No" AffectSticky="No" AffectSize="No" AffectFade="No">
+         <IsBold>Yes</IsBold>
+         <FontSize>12.0</FontSize>
+      </Style>
+   </NoteStyles>
+   <UISettings>
+      <BackgroundColor>0.207843 0.207843 0.207843</BackgroundColor>
+      <DefaultFont>Helvetica</DefaultFont>
+      <DefaultTextColor>0.607843 0.607843 0.607843</DefaultTextColor>
+      <LeftToRight>Yes</LeftToRight>
+   </UISettings>
+   <PrintSettings VerticalPagination="Auto" HorizontalPagination="Clip" Orientation="Portrait" RightMargin="12.000000" BottomMargin="12.000000" HorizontallyCentered="Yes" ScaleFactor="1.000000" PagesAcross="1" PaperType="iso-a4" PagesDown="1" TopMargin="12.000000" Collates="Yes" PaperSize="-1.000000,-1.000000" LeftMargin="12.000000" VerticallyCentered="Yes"/>
+</ScappleDocument>

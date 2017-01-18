@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/cogs.png</file>
+        <file>icons/user.png</file>
+        <file>icons/pencil_square.png</file>
+        <file>icons/bar_chart.png</file>
+        <file>icons/angle down.png</file>
+        <file>icons/angle up double.png</file>
+        <file alias="minimize">icons/angle down 2.png</file>
+        <file alias="maximize">icons/angle up double 2.png</file>
+        <file alias="close">icons/close 2.png</file>
+        <file alias="minimize2">icons/angle down double 2.png</file>
+        <file>icons/table.png</file>
+        <file>icons/tasks.png</file>
+        <file alias="login">icons/sign in.png</file>
+        <file alias="logout">icons/sign out.png</file>
+        <file>icons/sign in 1.png</file>
+        <file>icons/sign out 1.png</file>
+        <file>icons/cogs 1.png</file>
+    </qresource>
+</RCC>
