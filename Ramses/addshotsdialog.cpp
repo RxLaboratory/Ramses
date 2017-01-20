@@ -4,6 +4,8 @@ AddShotsDialog::AddShotsDialog(QWidget *parent) :
     QDialog(parent)
 {
     setupUi(this);
+    this->setWindowFlags(Qt::FramelessWindowHint);
+
 }
 
 QStringList AddShotsDialog::getShots()
