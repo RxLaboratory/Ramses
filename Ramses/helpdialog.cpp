@@ -15,6 +15,11 @@ HelpDialog::HelpDialog(QWidget *parent) :
     QPushButton *quitButton = new QPushButton(QIcon(":/icons/close"),"");
     connect(quitButton,SIGNAL(clicked()),this,SLOT(reject()));
     toolBar->addWidget(sW);
+    QPushButton *dockButton = new QPushButton("Dock");
+    dockButton->setCheckable(true);
+    dockButton->setChecked(true);
+    connect(dockButton,SIGNAL(clicked(bool)),this,SLOT(dockButton_clicked(bool)));
+    toolBar->addWidget(dockButton);
     toolBar->addWidget(quitButton);
 
     this->layout()->setMenuBar(toolBar);
@@ -23,7 +28,70 @@ HelpDialog::HelpDialog(QWidget *parent) :
 
     toolBarClicked = false;
     toolBar->installEventFilter(this);
+
+    showPage(0);
 }
+
+// ======== GENERAL
+
+void HelpDialog::showPage(int i)
+{
+    mainWidget->setCurrentIndex(i);
+
+    actionAbout->setChecked(false);
+    actionDebug->setChecked(false);
+    actionHelp->setChecked(false);
+
+    switch (i)
+    {
+    case 0:
+        actionHelp->setChecked(true);
+        break;
+    case 1:
+        actionDebug->setChecked(true);
+        break;
+    case 2:
+        actionAbout->setChecked(true);
+        break;
+    default:
+        break;
+    }
+}
+
+void HelpDialog::showDebug(QString m)
+{
+    QString message = "\n\n";
+    QDateTime currentTime = QDateTime::currentDateTime();
+    message += currentTime.toString("[yyyy-MM-dd HH:mm:ss] ");
+    message += m;
+    debugText->setPlainText(debugText->toPlainText() + message);
+}
+
+// ======== ACTIONS
+
+void HelpDialog::on_actionAbout_triggered()
+{
+    showPage(2);
+}
+
+void HelpDialog::on_actionDebug_triggered()
+{
+    showPage(1);
+}
+
+void HelpDialog::on_actionHelp_triggered()
+{
+    showPage(0);
+}
+
+// ========= BUTTONS
+
+void HelpDialog::dockButton_clicked(bool checked)
+{
+    emit dock(checked);
+}
+
+// ======== EVENTS
 
 void HelpDialog::hideEvent(QHideEvent *e)
 {
