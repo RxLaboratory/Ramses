@@ -4,8 +4,18 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-    qDebug() << "Let's start!";
+
     setupUi(this);
+
+    desktop = qApp->desktop();
+
+    //Help Dialog
+    helpDialog = new HelpDialog();
+    helpDialogDocked = true;
+    connect(helpDialog,SIGNAL(dock(bool)),this,SLOT(dockHelpDialog(bool)));
+    connect(helpDialog,SIGNAL(visibilityChanged(bool)),actionHelp,SLOT(setChecked(bool)));
+
+    showMessage("Let's start!");
 
     freezeSelectors = true;
 
@@ -72,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //========= INITIALIZE ==========
     //dbinterface
-    qDebug() << "Starting DBI";
+    showMessage("Starting DBI");
     dbi = new DBInterface(this);
     connect(dbi,SIGNAL(connected(bool, QString)),this,SLOT(connected(bool, QString)));
     connect(dbi,SIGNAL(connecting()),this,SLOT(connecting()));
@@ -105,12 +115,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(dbi,SIGNAL(assetAdded(bool,QString)),this,SLOT(assetAdded(bool,QString)));
 
     //========= LOAD SETTINGS ========
-    qDebug() << "Loading settings";
+    showMessage("Loading settings");
     settingsDB = QSqlDatabase::addDatabase("QSQLITE");
     settingsDB.setDatabaseName(resourcesFolder + "settings.s3db");
     settingsDB.setHostName("localhost");
     settingsDB.open();
-    qDebug() << "SettingsDB Opened";
+    showMessage("SettingsDB Opened");
     //settings
     QString q = "SELECT networkSettings.serverAddress, networkSettings.ssl, networkSettings.updateFrequency, networkSettings.timeout FROM networkSettings JOIN users ON users.id = networkSettings.userID WHERE users.username = 'Default';";
     QSqlQuery networkSettingsQuery(q,settingsDB);
@@ -127,16 +137,12 @@ MainWindow::MainWindow(QWidget *parent) :
     mainStack->setCurrentIndex(0);
     loginButton->setFocus();
 
-    //Help Dialog
-    helpDialog = new HelpDialog();
-    connect(helpDialog,SIGNAL(visibilityChanged(bool)),actionHelp,SLOT(setChecked(bool)));
-
     //detect inactivity
     connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
 
     freezeSelectors = false;
 
-    qDebug() << "Ready!";
+    showMessage("Ready!");
 }
 
 // ========= GENERAL METHODS ========
@@ -272,7 +278,7 @@ void MainWindow::connection()
 void MainWindow::showMessage(QString m, int i)
 {
     mainStatusBar->showMessage(m,i);
-    qDebug() << m;
+    helpDialog->showDebug(m);
 }
 
 void MainWindow::idle()
@@ -1009,7 +1015,6 @@ void MainWindow::on_batchAddShotButton_clicked()
     this->setEnabled(false);
     AddShotsDialog as;
     as.move(this->geometry().center().x()-as.geometry().width()/2,this->geometry().center().y()-as.geometry().height()/2);
-    as.setWindowFlags(Qt::FramelessWindowHint);
     if (as.exec())
     {
         QStringList shotNames = as.getShots();
@@ -1357,7 +1362,11 @@ void MainWindow::on_actionLogout_triggered(bool checked)
 
 void MainWindow::on_actionHelp_triggered(bool checked)
 {
-    if (checked) helpDialog->show();
+    if (checked)
+    {
+        dockHelpDialog(helpDialogDocked);
+        helpDialog->show();
+    }
     else helpDialog->hide();
 }
 
@@ -1374,6 +1383,28 @@ void MainWindow::maximizeButton_clicked()
     {
         maximizeButton->setIcon(QIcon(":/icons/minimize2"));
         this->showMaximized();
+    }
+
+    if (helpDialogDocked) dockHelpDialog(helpDialogDocked);
+}
+
+void MainWindow::dockHelpDialog(bool dock)
+{
+    helpDialogDocked = dock;
+    QPoint topRight = this->geometry().topRight();
+    QPoint topLeft = this->geometry().topLeft();
+    QRect geo = desktop->screenGeometry(this);
+    if (topRight.x() <= geo.topRight().x() - helpDialog->width())
+    {
+        helpDialog->move(topRight.x(),topRight.y());
+    }
+    else if (topLeft.x() >= geo.topLeft().x() + helpDialog->width())
+    {
+        helpDialog->move(topLeft.x() - helpDialog->width(),topLeft.y());
+    }
+    else
+    {
+        helpDialog->move(topRight.x() - helpDialog->width(),topRight.y() + mainToolBar->height());
     }
 }
 
@@ -1398,8 +1429,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     if (mouseEvent->buttons() & Qt::LeftButton && toolBarClicked)
     {
         if (this->isMaximized()) this->showNormal();
-      this->move(mouseEvent->globalPos() - dragPosition);
-      event->accept();
+        this->move(mouseEvent->globalPos() - dragPosition);
+        if (helpDialogDocked) dockHelpDialog(helpDialogDocked);
+        event->accept();
     }
     return true;
   }

@@ -14,6 +14,7 @@
 #include <QColorDialog>
 #include <QProgressBar>
 #include <QJsonArray>
+#include <QDesktopWidget>
 #include "idletimer.h"
 #include "dbinterface.h"
 #include "projectselectorwidget.h"
@@ -81,6 +82,9 @@ private:
     QPushButton *maximizeButton;
     //help panel
     HelpDialog *helpDialog;
+    bool helpDialogDocked;
+    //desktop
+    QDesktopWidget *desktop;
 public slots:
     // IDLE
     void idle();
@@ -162,6 +166,7 @@ private slots:
     // =======WINDOW BUTTONS
     void maximizeButton_clicked();
     void on_settingsLogoutButton_clicked();
+    void dockHelpDialog(bool dock);
     // =======DBI
     void connecting();
     void connected(bool available, QString err);
