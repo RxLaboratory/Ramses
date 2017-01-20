@@ -5,6 +5,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
 
+    //resources
+    resourcesFolder = "../../Ramses/Ramses/needed/";
+
     setupUi(this);
 
     desktop = qApp->desktop();
@@ -19,8 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     freezeSelectors = true;
 
-    //resources
-    resourcesFolder = "../";
+
     //test mode (auto login)
     usernameEdit->setText("Duduf");
     passwordEdit->setText("tp");
@@ -1384,8 +1386,6 @@ void MainWindow::maximizeButton_clicked()
         maximizeButton->setIcon(QIcon(":/icons/minimize2"));
         this->showMaximized();
     }
-
-    if (helpDialogDocked) dockHelpDialog(helpDialogDocked);
 }
 
 void MainWindow::dockHelpDialog(bool dock)
@@ -1394,7 +1394,12 @@ void MainWindow::dockHelpDialog(bool dock)
     QPoint topRight = this->geometry().topRight();
     QPoint topLeft = this->geometry().topLeft();
     QRect geo = desktop->screenGeometry(this);
-    if (topRight.x() <= geo.topRight().x() - helpDialog->width())
+    if (this->isMaximized())
+    {
+        helpDialog->move(topRight.x() - helpDialog->width(),topRight.y() + mainToolBar->height());
+        helpDialog->activateWindow();
+    }
+    else if (topRight.x() <= geo.topRight().x() - helpDialog->width())
     {
         helpDialog->move(topRight.x(),topRight.y());
     }
@@ -1430,7 +1435,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     {
         if (this->isMaximized()) this->showNormal();
         this->move(mouseEvent->globalPos() - dragPosition);
-        if (helpDialogDocked) dockHelpDialog(helpDialogDocked);
         event->accept();
     }
     return true;
@@ -1451,4 +1455,18 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
       // standard event processing
       return QObject::eventFilter(obj, event);
   }
+}
+
+bool MainWindow::event(QEvent *event)
+{
+    if (event->type() == QEvent::Resize || event->type() == QEvent::WindowStateChange || event->type() == QEvent::Move)
+    {
+        if (helpDialogDocked)
+        {
+            dockHelpDialog(true);
+        }
+        return true;
+    }
+
+    return QMainWindow::event(event);
 }

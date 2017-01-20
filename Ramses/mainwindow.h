@@ -177,6 +177,7 @@ private slots:
 protected:
     //events
     bool eventFilter(QObject *obj, QEvent *event);
+    bool event(QEvent *event);
 };
 
 #endif // MAINWINDOW_H
