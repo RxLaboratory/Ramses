@@ -164,6 +164,10 @@ p, li { white-space: pre-wrap; }
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/info.png</normaloff>:/icons/icons/info.png</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
@@ -171,6 +175,10 @@ p, li { white-space: pre-wrap; }
   <action name="actionDebug">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/bug.png</normaloff>:/icons/icons/bug.png</iconset>
    </property>
    <property name="text">
     <string>Debug Info</string>
@@ -180,11 +188,17 @@ p, li { white-space: pre-wrap; }
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/question.png</normaloff>:/icons/icons/question.png</iconset>
+   </property>
    <property name="text">
     <string>Help</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

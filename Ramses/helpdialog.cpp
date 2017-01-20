@@ -6,6 +6,7 @@ HelpDialog::HelpDialog(QWidget *parent) :
     setupUi(this);
 
     toolBar = new QToolBar(this);
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->addAction(actionHelp);
     toolBar->addAction(actionDebug);
     toolBar->addAction(actionAbout);
@@ -15,7 +16,8 @@ HelpDialog::HelpDialog(QWidget *parent) :
     QPushButton *quitButton = new QPushButton(QIcon(":/icons/close"),"");
     connect(quitButton,SIGNAL(clicked()),this,SLOT(reject()));
     toolBar->addWidget(sW);
-    QPushButton *dockButton = new QPushButton("Dock");
+    QPushButton *dockButton = new QPushButton();
+    dockButton->setIcon(QIcon(":/icons/link"));
     dockButton->setCheckable(true);
     dockButton->setChecked(true);
     connect(dockButton,SIGNAL(clicked(bool)),this,SLOT(dockButton_clicked(bool)));
