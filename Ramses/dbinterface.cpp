@@ -37,7 +37,7 @@ void DBInterface::setUpdateFreq(int freq)
 void DBInterface::connection(QString user,QString passHash)
 {
     //request url
-    QString requestString = "?&type=login";
+    QString requestString = "?type=login";
 
     QJsonObject obj;
     obj.insert("username",user);
@@ -52,12 +52,11 @@ void DBInterface::connection(QString user,QString passHash)
 void DBInterface::sendRequest(QString req,QJsonDocument content)
 {
     //request
+    message("Remote request === " + protocol + serverAddress + req);
     QUrl url(protocol + serverAddress + req);
     QNetworkRequest request;
     request.setUrl(QUrl(url));
-    qDebug() << "Remote request";
-    qDebug() << url;
-    request.setHeader(QNetworkRequest::UserAgentHeader, "Rainbox-Asset-Manager 0.0a");
+    request.setHeader(QNetworkRequest::UserAgentHeader, "Rainbox-Asset-Manager 0.1-Alpha");
     if (content.isEmpty())
     {
         reply = qnam.get(request);
