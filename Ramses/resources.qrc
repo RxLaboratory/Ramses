@@ -18,5 +18,8 @@
         <file>icons/sign out 1.png</file>
         <file>icons/cogs 1.png</file>
         <file>icons/question.png</file>
+        <file>icons/bug.png</file>
+        <file>icons/info.png</file>
+        <file alias="link">icons/link.png</file>
     </qresource>
 </RCC>
