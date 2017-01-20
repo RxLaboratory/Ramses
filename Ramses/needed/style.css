@@ -81,9 +81,6 @@ QPlainTextEdit:disabled {
 	color: #6d6d6d;
 }
 
-
-
-
 /* BUTTON */
 
 QPushButton {
@@ -208,7 +205,15 @@ QToolButton {
 	border-radius: 8px;
 	border-color:  #6d6d6d;
 	padding: 8px;
+	background-color: #6d6d6d;
+	margin:2px;
 }
+
+QToolBar QPushButton {
+	background-color: #535353;
+	color: #6d6d6d;
+}
+
 
 QToolButton:!enabled {
 	color: #434343;
@@ -218,16 +223,21 @@ QToolButton:checked {
 	background-color: #434343;
 }
 
-QToolButton:pressed:hover {
+QToolBar QPushButton:checked {
+	background-color: #9d9d9d;
+	color: #434343;
+}
+
+QToolButton:pressed:hover,  QToolBar QPushButton:pressed:hover {
 	background-color: #434343;
 }
 
-QToolButton:hover {
+QToolButton:hover,  QToolBar QPushButton:hover {
 	background-color: #e3e3e3;
 	color: #434343;
 }
 
-QToolButton:checked:hover {
+QToolButton:checked:hover, QToolBar QPushButton:checked:hover {
 	background-color: #434343;
 	color: #6d6d6d;
 }
