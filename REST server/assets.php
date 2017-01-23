@@ -83,6 +83,75 @@
 		}
 	}
 
+	if ($reply["type"] == "setAssetStatus")
+	{
+		$reply["accepted"] = true;
+		
+		$assetId = "";
+		$statusId = "";
+		
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			$statusId = $data->{'statusId'};
+			$assetId = $data->{'assetId'};
+		}
+		
+		if (strlen($statusId) > 0 AND strlen($assetId) > 0)
+		{
+			$q = "UPDATE assets SET statusId=" . $statusId . " WHERE id=" . $assetId . ";";
+			try
+			{
+				$rep = $bdd->query($q);
+				$rep->closeCursor();
+			
+				$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+				$reply["message"] = "Server issue: SQL Query failed updating asset (id:" . $assetId . "). | " . $q;
+				$reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values.";
+			$reply["success"] = false;
+		}
+	}
+	
+	if ($reply["type"] == "assignAsset")
+	{
+		$reply["accepted"] = true;
+		
+		$assetId = "";
+		$shotId = "";
+		
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			$assetId = $data->{'assetId'};
+			$shotId = $data->{'shotId'};
+		}
+		
+		$q = "INSERT INTO shotassets (shotId,assetId) VALUES (" . $shotId . "," . $assetId . ");";
+					
+		try
+		{
+			$rep = $bdd->query($q);
+			$rep->closeCursor();
+			$reply["message"] = "Asset assigned.";
+			$reply["success"] = true;
+		}
+		catch (Exception $e)
+		{
+		   $reply["message"] = "Server issue: SQL Query failed adding assigning asset | " . $q;
+		   $reply["success"] = false;
+		}
+		
+		
+	}
 	/*// ========= GET SHOTS ==========
 	if ($reply["type"] == "getShots")
 	{
