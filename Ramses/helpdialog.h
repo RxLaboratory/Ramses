@@ -17,6 +17,7 @@ public:
     explicit HelpDialog(QWidget *parent = 0);
 public slots:
     void showDebug(QString m);
+    void showHelp(int i);
 signals:
     void visibilityChanged(bool);
     void dock(bool);
@@ -29,6 +30,7 @@ private:
     bool toolBarClicked;
     QPoint dragPosition;
     QToolBar *toolBar;
+    QPushButton *dockButton;
     void showPage(int i);
 protected:
     void hideEvent(QHideEvent *e);

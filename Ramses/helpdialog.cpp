@@ -16,7 +16,7 @@ HelpDialog::HelpDialog(QWidget *parent) :
     QPushButton *quitButton = new QPushButton(QIcon(":/icons/close"),"");
     connect(quitButton,SIGNAL(clicked()),this,SLOT(reject()));
     toolBar->addWidget(sW);
-    QPushButton *dockButton = new QPushButton();
+    dockButton = new QPushButton();
     dockButton->setIcon(QIcon(":/icons/link"));
     dockButton->setCheckable(true);
     dockButton->setChecked(true);
@@ -31,6 +31,7 @@ HelpDialog::HelpDialog(QWidget *parent) :
     toolBarClicked = false;
     toolBar->installEventFilter(this);
 
+    showHelp(0);
     showPage(0);
 }
 
@@ -67,6 +68,13 @@ void HelpDialog::showDebug(QString m)
     message += currentTime.toString("[yyyy-MM-dd HH:mm:ss] ");
     message += m;
     debugText->setPlainText(debugText->toPlainText() + message);
+    debugText->moveCursor(QTextCursor::End);
+
+}
+
+void HelpDialog::showHelp(int i)
+{
+    helpTabs->setCurrentIndex(i);
 }
 
 // ======== ACTIONS
@@ -129,6 +137,8 @@ bool HelpDialog::eventFilter(QObject *obj, QEvent *event)
     {
         if (this->isMaximized()) this->showNormal();
       this->move(mouseEvent->globalPos() - dragPosition);
+        emit dock(false);
+        dockButton->setChecked(false);
       event->accept();
     }
     return true;
