@@ -1,11 +1,17 @@
 #include "ramasset.h"
 
-RAMAsset::RAMAsset(QString n, QString sn, RAMStage *s, RAMStatus *st, QObject *parent) : QObject(parent)
+RAMAsset::RAMAsset(int i,QString n, QString sn, RAMStage *s, RAMStatus *st, QObject *parent) : QObject(parent)
 {
     name = n;
+    id = i;
     status = st;
     stage = s;
     shortName = sn;
+}
+
+int RAMAsset::getId()
+{
+    return id;
 }
 
 RAMStatus* RAMAsset::getStatus()
@@ -26,4 +32,21 @@ RAMStage* RAMAsset::getStage()
 QString RAMAsset::getShortName()
 {
     return shortName;
+}
+
+void RAMAsset::setStatus(RAMStatus *s)
+{
+    status = s;
+    emit statusChanged(this);
+    emit statusChanged();
+}
+
+bool RAMAsset::operator==(RAMAsset a)
+{
+    return a.getId() == id;
+}
+
+bool RAMAsset::operator==(RAMAsset *a)
+{
+    return a->getId() == id;
 }
