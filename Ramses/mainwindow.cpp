@@ -115,6 +115,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(dbi,SIGNAL(shotRemoved(bool,QString)),this,SLOT(shotRemoved(bool,QString)));
     //connect DBI assets
     connect(dbi,SIGNAL(assetAdded(bool,QString)),this,SLOT(assetAdded(bool,QString)));
+    connect(dbi,SIGNAL(assetStatusUpdated(bool,QString)),this,SLOT(assetStatusUpdated(bool,QString)));
+    connect(dbi,SIGNAL(assetAssigned(bool,QString)),this,SLOT(assetAssigned(bool,QString)));
+
 
     //========= LOAD SETTINGS ========
     showMessage("Loading settings");
@@ -213,7 +216,14 @@ void MainWindow::logout()
     statusesList.clear();
     qDeleteAll(stagesList);
     stagesList.clear();
+    qDeleteAll(projectsList);
+    projectsList.clear();
+    qDeleteAll(shotsList);
+    shotsList.clear();
+    qDeleteAll(assetsList);
+    assetsList.clear();
 
+    helpDialog->showHelp(0);
     showPage(0);
 }
 
@@ -229,6 +239,9 @@ void MainWindow::showPage(int page)
 
     switch (page)
     {
+    case 0:
+        helpDialog->showHelp(0);
+        break;
     case 1:
         getShots();
         actionMain->setChecked(true);
@@ -244,6 +257,7 @@ void MainWindow::showPage(int page)
         break;
     case 5:
         actionSettings->setChecked(true);
+        helpDialog->showHelp(1);
         break;
     default:
         break;
@@ -279,6 +293,7 @@ void MainWindow::connection()
 
 void MainWindow::showMessage(QString m, int i)
 {
+    qDebug() << m;
     mainStatusBar->showMessage(m,i);
     helpDialog->showDebug(m);
 }
@@ -315,6 +330,8 @@ void MainWindow::connected(bool available, QString err)
         //disable network settings
         serverSettingsWidget->hide();
         settingsLogoutWidget->show();
+
+        actionLogout->setIcon(QIcon(":/icons/logout"));
 
         //load everything
         getStatuses();
@@ -856,7 +873,7 @@ void MainWindow::gotProjects(bool success,QString message,QJsonValue projects)
     }
 
     freezeSelectors = false;
-    selectorProjectChanged(0);
+    if (projectSelector->count() > 0) selectorProjectChanged(0);
 }
 
 //edit project
@@ -1066,6 +1083,8 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
     shotsAdminList->clear();
     qDeleteAll(shotsList);
     shotsList.clear();
+    qDeleteAll(assetsList);
+    assetsList.clear();
     mainTable->clearContents();
     mainTable->setRowCount(0);
     mainTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -1083,7 +1102,7 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
         QString shotComment = shot.value("comment").toString();
         int shotStageId = shot.value("stageId").toInt();
         int shotStatusId = shot.value("statusId").toInt();
-        int shotId = shot.value("id").toInt();
+        int shotId = shot.value("shotId").toInt();
 
         RAMShot *ramShot;
         //if shot is not already existing, create it
@@ -1141,7 +1160,24 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
             {
                 QString assetName = shot.value("assetName").toString();
                 QString assetShortName = shot.value("assetShortName").toString();
-                RAMAsset *shotAsset = new RAMAsset(assetName, assetShortName, shotStage, shotStatus);
+                int assetId = shot.value("assetId").toInt();
+                //check if asset is already created
+                bool assetFound = false;
+                RAMAsset *shotAsset;
+                foreach(RAMAsset *a,assetsList)
+                {
+                    if (a->getId() == assetId)
+                    {
+                        shotAsset = a;
+                        break;
+                    }
+                }
+                if (!assetFound)
+                {
+                    shotAsset = new RAMAsset(assetId, assetName, assetShortName, shotStage, shotStatus);
+                    connect(shotAsset,SIGNAL(statusChanged(RAMAsset *)),this,SLOT(updateAssetStatus(RAMAsset *)));
+                    assetsList << shotAsset;
+                }
                 ramShot->addAsset(shotAsset);
             }
         }
@@ -1200,7 +1236,7 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
             if (stage->getType() == "a")
             {
                 //create asset widget
-                AssetStatusWidget *assetWidget = new AssetStatusWidget(ramShot,stage,statusesList,dbi);
+                AssetStatusWidget *assetWidget = new AssetStatusWidget(ramShot,stage,statusesList,assetsList,dbi);
                 connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
 
                 foreach(RAMAsset *asset, shotAssets)
@@ -1284,7 +1320,7 @@ void MainWindow::shotRemoved(bool success,QString message)
 //Shot statuses
 void MainWindow::updateShotStatus(RAMStatus* status,RAMStage* stage,RAMShot* shot)
 {
-    qDebug()<< "update status " + shot->getName();
+    showMessage("Updateing status of the shot " + shot->getName() + " to " + stage->getShortName());
     dbi->setShotStatus(status->getId(),stage->getId(),shot->getId());
 }
 
@@ -1311,6 +1347,24 @@ void MainWindow::assetAdded(bool success,QString message)
     getShots();
 }
 
+//asset statuses
+void MainWindow::updateAssetStatus(RAMAsset *asset)
+{
+    showMessage("Updateing status of the asset " + asset->getName() + " to " + asset->getStatus()->getShortName());
+    dbi->setAssetStatus(asset->getStatus()->getId(),asset->getId());
+}
+
+void MainWindow::assetStatusUpdated(bool success,QString message)
+{
+    if (!success) connected(false,message);
+}
+
+void MainWindow::assetAssigned(bool success,QString message)
+{
+    setWaiting(false);
+    //refresh shots list
+    getShots();
+}
 
 // ========= ACTIONS ================
 
@@ -1350,15 +1404,19 @@ void MainWindow::on_actionLogout_triggered(bool checked)
     if (!checked)
     {
         logout();
-        actionLogout->setIcon(QIcon(":/icons/logout"));
+        actionLogout->setIcon(QIcon(":/icons/login"));
         mainStack->setCurrentIndex(0); //show login page
+        helpDialog->showHelp(0);
     }
     else
     {
         actionLogout->setChecked(false);
-        actionLogout->setIcon(QIcon(":/icons/login"));
         if (mainStack->currentIndex() == 0) login();
-        else mainStack->setCurrentIndex(0);
+        else
+        {
+            helpDialog->showHelp(0);
+            mainStack->setCurrentIndex(0);
+        }
     }
 }
 
@@ -1391,6 +1449,7 @@ void MainWindow::maximizeButton_clicked()
 void MainWindow::dockHelpDialog(bool dock)
 {
     helpDialogDocked = dock;
+    if (!helpDialogDocked) return;
     QPoint topRight = this->geometry().topRight();
     QPoint topLeft = this->geometry().topLeft();
     QRect geo = desktop->screenGeometry(this);

@@ -54,6 +54,8 @@ private:
     //admin - shots
     void getShots();
     QList<RAMShot*> shotsList;
+    //admin - assets
+    QList<RAMAsset*> assetsList;
     //login
     QString username;
     QString passHash;
@@ -155,6 +157,10 @@ private slots:
     void shotsAdminReset();
     //admin - assets
     void assetAdded(bool success,QString message);
+    void updateAssetStatus(RAMAsset *asset);
+    void assetStatusUpdated(bool success,QString message);
+    void assetAssigned(bool success,QString message);
+
     // =======ACTIONS
     void on_actionMain_triggered(bool checked);
     void on_actionStage_triggered(bool checked);
