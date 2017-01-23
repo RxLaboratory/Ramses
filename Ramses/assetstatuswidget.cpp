@@ -1,7 +1,7 @@
 #include "assetstatuswidget.h"
 #include <QtDebug>
 
-AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent) :
+AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, QList<RAMAsset *> aa, DBInterface *d, QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
@@ -9,29 +9,17 @@ AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *
     stage = st;
     dbi = d;
     statusesList = sl;
+    allAssets = aa;
 }
 
 void AssetStatusWidget::addAsset(RAMAsset *asset)
 {
     assets.append(asset);
+
     //add comboBox
-    QComboBox *assetBox = new QComboBox();
-    //add statuses
-    int index = -1;
-    foreach(RAMStatus *status,statusesList)
-    {
-        QString label = asset->getShortName() + " | " + status->getShortName();
-        assetBox->addItem(label,status->getId());
-        if(status->getId() == asset->getStatus()->getId())
-        {
-            index = assetBox->count()-1;
-            assetBox->setStyleSheet("background-color:" + status->getColor().name() + ";");
-        }
-    }
-    assetBox->setCurrentIndex(index);
+    AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,this);
     assetsWidget->layout()->addWidget(assetBox);
 }
-
 
 void AssetStatusWidget::on_addButton_clicked()
 {
@@ -48,7 +36,14 @@ void AssetStatusWidget::on_addButton_clicked()
         }
     }
 
-    AddAssetDialog ad(dbi,shot,stage,statusId);
+    qDebug() << allAssets;
+    foreach(RAMAsset *a,assets)
+    {
+        allAssets.removeAll(a);
+        qDebug() << a->getName();
+    }
+
+    AddAssetDialog ad(dbi,shot,stage,statusId,allAssets);
     //get button global coordinates
     QPoint thisCenter = this->parentWidget()->parentWidget()->mapToGlobal(this->parentWidget()->parentWidget()->geometry().center());
     QPoint newCenter(thisCenter.x()-ad.geometry().width()/2, thisCenter.y()-ad.geometry().height()/2);

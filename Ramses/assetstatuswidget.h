@@ -8,13 +8,14 @@
 #include "ramstatus.h"
 #include "addassetdialog.h"
 #include "dbinterface.h"
+#include "assetstatusbox.h"
 
 class AssetStatusWidget : public QWidget, private Ui::AssetStatusWidget
 {
     Q_OBJECT
 
 public:
-    explicit AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent = 0);
+    explicit AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, QList<RAMAsset *> aa, DBInterface *d, QWidget *parent = 0);
     void addAsset(RAMAsset *asset);
 
 private slots:
@@ -26,6 +27,7 @@ signals:
 private:
     QList<RAMAsset *> assets;
     QList<RAMStatus *> statusesList;
+    QList<RAMAsset *> allAssets;
     RAMShot *shot;
     RAMStage *stage;
     DBInterface *dbi;
