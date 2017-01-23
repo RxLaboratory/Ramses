@@ -13,6 +13,8 @@ DBInterface::DBInterface(QObject *parent) : QObject(parent)
 
     connect(&qnam, SIGNAL(finished(QNetworkReply *)), this,SLOT(dataReceived(QNetworkReply *)));
     connect(&qnam, SIGNAL(sslErrors(QNetworkReply *,QList<QSslError>)), this,SLOT(sslError(QNetworkReply *,QList<QSslError>)));
+
+    //TODO Check if server is available and if server version is higherr
 }
 
 //PARAMETERS
@@ -63,11 +65,19 @@ void DBInterface::sendRequest(QString req,QJsonDocument content)
     }
     else
     {
-        qDebug() << content;
         request.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");
+        if (req.indexOf("login") >= 0)
+        {
+            message("Remote request === Content: [hidden login informations]");
+        }
+        else
+        {
+            message("Remote request === Content: " + content.toJson());
+        }
         reply = qnam.post(request,content.toJson());
     }
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this,SLOT(networkError(QNetworkReply::NetworkError)));
+    message("Remote request === Sent!");
 }
 
 void DBInterface::dataReceived(QNetworkReply * rep)
@@ -125,6 +135,8 @@ void DBInterface::dataReceived(QNetworkReply * rep)
 
         //ASSET
         else if (repType == "addAsset") {  emit assetAdded(repSuccess,repMessage); return; }
+        else if (repType == "setAssetStatus") { emit assetStatusUpdated(repSuccess,repMessage); return; }
+        else if (repType == "assignAsset") { emit assetAssigned(repSuccess,repMessage); return; }
 
         if (repMessage != "") emit connected(false,repMessage);
         emit connected(false,"Unknown error from server.");
@@ -522,5 +534,29 @@ void DBInterface::addAsset(QString name, QString shortName, int stageId, int sta
     QJsonDocument json(obj);
 
     emit message("Submitting asset");
+    sendRequest(q,json);
+}
+
+void DBInterface::setAssetStatus(int statusId, int assetId)
+{
+    QString q = "?type=setAssetStatus";
+    QJsonObject obj;
+    obj.insert("statusId",statusId);
+    obj.insert("assetId",assetId);
+    QJsonDocument json(obj);
+
+    emit message("Updating asset status");
+    sendRequest(q,json);
+}
+
+void DBInterface::assignAsset(int assetId,int shotId)
+{
+    QString q = "?type=assignAsset";
+    QJsonObject obj;
+    obj.insert("assetId",assetId);
+    obj.insert("shotId",shotId);
+    QJsonDocument json(obj);
+
+    emit message("Assigning asset");
     sendRequest(q,json);
 }

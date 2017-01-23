@@ -48,6 +48,8 @@ public:
     void removeShots(QList<int> ids);
     //Asset
     void addAsset(QString name, QString shortName, int stageId, int statusId, int shotId = -1);
+    void setAssetStatus(int statusId, int assetId);
+    void assignAsset(int assetId,int shotId);
 signals:
     void connecting();
     void connected(bool,QString);
@@ -77,6 +79,9 @@ signals:
     void shotRemoved(bool,QString);
     //Asset
     void assetAdded(bool,QString);
+    void assetStatusUpdated(bool,QString);
+    void assetAssigned(bool,QString);
+
 public slots:
     void dataReceived(QNetworkReply *rep);
     void networkError(QNetworkReply::NetworkError err);
