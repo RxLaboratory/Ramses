@@ -1,6 +1,6 @@
 #include "addassetdialog.h"
 
-AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int sid, QWidget *parent) :
+AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int sid, QList<RAMAsset *> aa, QWidget *parent) :
     QDialog(parent)
 {
     setupUi(this);
@@ -8,11 +8,17 @@ AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int si
     shot = sh;
     stage = st;
     statusId = sid;
+    allAssets = aa;
+    foreach(RAMAsset *asset, allAssets)
+    {
+        assetList->addItem(asset->getShortName(),asset->getId());
+    }
 }
 
 void AddAssetDialog::on_addButton_clicked()
 {
-
+    dbi->assignAsset(assetList->currentData().toInt(),shot->getId());
+    this->accept();
 }
 
 void AddAssetDialog::on_createButton_clicked()

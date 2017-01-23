@@ -11,7 +11,7 @@ class AddAssetDialog : public QDialog, private Ui::AddAssetDialog
     Q_OBJECT
 
 public:
-    explicit AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int sid, QWidget *parent = 0);
+    explicit AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int sid,QList<RAMAsset*> aa, QWidget *parent = 0);
 
 private slots:
     void on_addButton_clicked();
@@ -23,6 +23,7 @@ private:
     RAMShot * shot;
     RAMStage *stage;
     int statusId;
+    QList<RAMAsset*> allAssets;
 };
 
 #endif // ADDASSETDIALOG_H
