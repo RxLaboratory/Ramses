@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     addassetdialog.cpp \
     addshotsdialog.cpp \
     helpdialog.cpp \
-    separatorwidget.cpp
+    separatorwidget.cpp \
+    assetstatusbox.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -51,7 +52,8 @@ HEADERS  += mainwindow.h \
     addassetdialog.h \
     addshotsdialog.h \
     helpdialog.h \
-    separatorwidget.h
+    separatorwidget.h \
+    assetstatusbox.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
@@ -60,7 +62,8 @@ FORMS    += mainwindow.ui \
     addassetdialog.ui \
     addshotsdialog.ui \
     helpdialog.ui \
-    separatorwidget.ui
+    separatorwidget.ui \
+    assetstatusbox.ui
 
 DISTFILES +=
 
