@@ -4,16 +4,18 @@
 #include <QObject>
 #include "ramstagestatus.h"
 #include "ramasset.h"
+#include "dbinterface.h"
 
 class RAMShot : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMShot(int i, QString n, double d = 0.0,int so = 0, QObject *parent = 0);
+    explicit RAMShot(DBInterface *db,int i, QString n, double d = 0.0,int so = 0, QObject *parent = 0);
     int getId();
     QString getName();
     double getDuration();
-    int getOrder();
+    int getShotOrder();
+    void setShotOrder(int o);
     void addStatus(RAMStageStatus *s);
     QList<RAMStageStatus *> getStatuses();
     void addAsset(RAMAsset *a);
@@ -32,6 +34,8 @@ private:
     int shotOrder;
     QList<RAMStageStatus *> statuses;
     QList<RAMAsset *> assets;
+    void sync();
+    DBInterface *dbi;
 };
 
 #endif // RAMSHOT_H

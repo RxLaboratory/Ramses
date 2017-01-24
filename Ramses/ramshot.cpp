@@ -1,12 +1,13 @@
 #include "ramshot.h"
 #include <QtDebug>
 
-RAMShot::RAMShot(int i, QString n, double d, int so, QObject *parent) : QObject(parent)
+RAMShot::RAMShot(DBInterface *db, int i, QString n, double d, int so, QObject *parent) : QObject(parent)
 {
     id = i;
     name = n;
     duration = d;
     shotOrder = so;
+    dbi = db;
 }
 
 int RAMShot::getId()
@@ -24,9 +25,15 @@ double RAMShot::getDuration()
     return duration;
 }
 
-int RAMShot::getOrder()
+int RAMShot::getShotOrder()
 {
     return shotOrder;
+}
+
+void RAMShot::setShotOrder(int o)
+{
+    shotOrder = o;
+    sync();
 }
 
 void RAMShot::addStatus(RAMStageStatus *s)
@@ -53,4 +60,9 @@ void RAMShot::addAsset(RAMAsset *a)
 QList<RAMAsset *> RAMShot::getAssets()
 {
     return assets;
+}
+
+void RAMShot::sync()
+{
+    dbi->updateShot(this->id,this->name,this->duration,this->shotOrder);
 }
