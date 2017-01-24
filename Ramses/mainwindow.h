@@ -180,6 +180,8 @@ private slots:
     void stopWaiting();
     void showMessage(QString m, int i = 0);
 
+    void on_moveShotUpButton_clicked();
+
 protected:
     //events
     bool eventFilter(QObject *obj, QEvent *event);

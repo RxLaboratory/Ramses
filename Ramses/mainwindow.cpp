@@ -1125,7 +1125,7 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
 
         if (!found)
         {
-            ramShot = new RAMShot(shotId,shotName,shotDuration,shotOrder);
+            ramShot = new RAMShot(dbi,shotId,shotName,shotDuration,shotOrder);
             connect(ramShot,SIGNAL(shotStatusUpdated(RAMStatus*,RAMStage*,RAMShot*)),this,SLOT(updateShotStatus(RAMStatus*,RAMStage*,RAMShot*)));
             shotsList << ramShot;
         }
@@ -1187,8 +1187,6 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
                 ramShot->addAsset(shotAsset);
             }
         }
-
-
     }
 
     //UPDATE UI
@@ -1291,7 +1289,7 @@ void MainWindow::on_shotApplyButton_clicked()
 
     int id = shotsList[currentRow]->getId();
 
-    dbi->updateShot(id,shotNameEdit->text(),shotDurationSpinBox->value());
+    dbi->updateShot(id,shotNameEdit->text(),shotDurationSpinBox->value(),shotsList[currentRow]->getShotOrder());
 }
 
 void MainWindow::shotUpdated(bool success,QString message)
@@ -1341,6 +1339,19 @@ void MainWindow::shotsAdminReset()
     shotNameEdit->setText("");
     shotDurationSpinBox->setValue(0.0);
     shotConfigWidget->setEnabled(false);
+}
+
+//Shot order
+void MainWindow::on_moveShotUpButton_clicked()
+{
+        //get shot
+    showMessage("Move shot before");
+        int index = shotsAdminList->currentRow();
+        if (index <= 0) return;
+        RAMShot *shot = shotsList[index];
+        RAMShot *prevShot = shotsList[index-1];
+        shot->setShotOrder(prevShot->getShotOrder()-1);
+    showMessage("Shot moved");
 }
 
 //ADMIN - ASSETS
@@ -1535,3 +1546,4 @@ bool MainWindow::event(QEvent *event)
 
     return QMainWindow::event(event);
 }
+
