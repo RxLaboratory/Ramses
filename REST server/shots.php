@@ -210,9 +210,10 @@
 		
 		if (strlen($name) > 0 AND strlen($duration) > 0 AND strlen($id) > 0)
 		{
+			$q = "UPDATE shots SET name='" . $name . "',duration=" . $duration . ",shotOrder=" . $shotOrder . " WHERE id=" . $id . ";";
 			try
 			{
-				$rep = $bdd->query("UPDATE shots SET name='" . $name . "',duration=" . $duration . ",shotOrder=" . $shotOrder . "WHERE id=" . $id . ";");
+				$rep = $bdd->query($q);
 				$rep->closeCursor();
 			
 				$reply["message"] = "Shot " . $name . " (" . $id . ") updated.";
@@ -220,7 +221,7 @@
 			}
 			catch (Exception $e)
 			{
-				$reply["message"] = "Server issue: SQL Query failed updating shot " . $name . ".";
+				$reply["message"] = "Server issue: SQL Query failed updating shot " . $name . ". | " . $q;
 				$reply["success"] = false;
 			}
 		}
