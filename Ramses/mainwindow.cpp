@@ -1,5 +1,8 @@
 #include "mainwindow.h"
-#include <QtDebug>
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -293,7 +296,9 @@ void MainWindow::connection()
 
 void MainWindow::showMessage(QString m, int i)
 {
-    qDebug() << m;
+    #ifdef QT_DEBUG
+        qDebug() << m;
+    #endif
     mainStatusBar->showMessage(m,i);
     helpDialog->showDebug(m);
 }
