@@ -43,7 +43,7 @@ public:
     //Shot
     void addShots(int projectId, int statusId, QStringList shots);
     void getShots(int projectId);
-    void updateShot(int id, QString name, double duration);
+    void updateShot(int id, QString name, double duration, int shotOrder);
     void setShotStatus(int statusId,int stageId,int shotId);
     void removeShots(QList<int> ids);
     //Asset

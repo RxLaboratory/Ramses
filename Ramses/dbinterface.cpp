@@ -479,13 +479,14 @@ void DBInterface::getShots(int projectId)
     sendRequest(q, json);
 }
 
-void DBInterface::updateShot(int id, QString name, double duration)
+void DBInterface::updateShot(int id, QString name, double duration, int shotOrder)
 {
     QString q = "?type=updateShot";
     QJsonObject obj;
     obj.insert("id",id);
     obj.insert("name",name);
     obj.insert("duration",duration);
+    obj.insert("shotOrder",shotOrder);
     QJsonDocument json(obj);
 
     emit message("Submitting shot");
