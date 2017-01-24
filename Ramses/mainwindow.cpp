@@ -1103,6 +1103,7 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
         int shotStageId = shot.value("stageId").toInt();
         int shotStatusId = shot.value("statusId").toInt();
         int shotId = shot.value("shotId").toInt();
+        int shotOrder = shot.value("shotOrder").toInt();
 
         RAMShot *ramShot;
         //if shot is not already existing, create it
@@ -1119,7 +1120,7 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
 
         if (!found)
         {
-            ramShot = new RAMShot(shotId,shotName,shotDuration);
+            ramShot = new RAMShot(shotId,shotName,shotDuration,shotOrder);
             connect(ramShot,SIGNAL(shotStatusUpdated(RAMStatus*,RAMStage*,RAMShot*)),this,SLOT(updateShotStatus(RAMStatus*,RAMStage*,RAMShot*)));
             shotsList << ramShot;
         }

@@ -1,11 +1,12 @@
 #include "ramshot.h"
 #include <QtDebug>
 
-RAMShot::RAMShot(int i, QString n, double d, QObject *parent) : QObject(parent)
+RAMShot::RAMShot(int i, QString n, double d, int so, QObject *parent) : QObject(parent)
 {
     id = i;
     name = n;
     duration = d;
+    shotOrder = so;
 }
 
 int RAMShot::getId()
@@ -21,6 +22,11 @@ QString RAMShot::getName()
 double RAMShot::getDuration()
 {
     return duration;
+}
+
+int RAMShot::getOrder()
+{
+    return shotOrder;
 }
 
 void RAMShot::addStatus(RAMStageStatus *s)

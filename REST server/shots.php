@@ -11,24 +11,26 @@
 		$names = Array();
 		$projectId = "";
 		$statusId = "";
+		$shotOrder = 0;
 		
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$names = $data->{'names'};
-			$projectId = $data->{'projectId'};
-			$statusId = $data->{'statusId'};
+			if (isset($data->{'names'})) $names = $data->{'names'};
+			if (isset($data->{'projectId'})) $projectId = $data->{'projectId'};
+			if (isset($data->{'statusId'})) $statusId = $data->{'statusId'};
+			if (isset($data->{'shotOrder'})) $shotOrder = $data->{'shotOrder'};
 		}
-				
+		
 		if (count($names) > 0 AND strlen($projectId) > 0 AND strlen($statusId) > 0)
 		{
 			//construct add shots query
-            $qShots = "INSERT INTO shots (name,projectId) VALUES ";
+            $qShots = "INSERT INTO shots (name,projectId,shotOrder) VALUES ";
             $first = true;
             foreach($names as $name)
 			{
 				if (!$first) $qShots = $qShots . ",";
-				$qShots = $qShots . "('" . $name . "'," . $projectId . ")";
+				$qShots = $qShots . "('" . $name . "'," . $projectId . "," . $shotOrder . ")";
 				$first = false;
 			}
             $qShots = $qShots . ";";
@@ -120,7 +122,7 @@
 			$projectId = $data->{'projectId'};
 		}
 		
-		$q = "SELECT shotstatuses.comment,shotstatuses.stageId,shotstatuses.statusId,shots.name as shotName,shots.duration,shots.id as shotId FROM shotstatuses JOIN shots ON shots.id = shotstatuses.shotId WHERE projectId=" . $projectId . " ORDER BY shots.name;";
+		$q = "SELECT shotstatuses.comment,shotstatuses.stageId,shotstatuses.statusId,shots.name as shotName,shots.duration,shots.id as shotId,shots.shotOrder FROM shotstatuses JOIN shots ON shots.id = shotstatuses.shotId WHERE projectId=" . $projectId . " ORDER BY shots.shotOrder,shots.name;";
 		
 		try
 		{
@@ -144,6 +146,7 @@
 				$s['comment'] = $shot['comment'];
 				$s['stageId'] = (int)$shot['stageId'];
 				$s['statusId'] = (int)$shot['statusId'];
+				$s['shotOrder'] = (int)$shot['shotOrder'];
 	
 				$shots[] = $s;
 			}
@@ -194,6 +197,7 @@
 		$name = "";
 		$duration = "";
 		$id = "";
+		$shotOrder = 0;
 		
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
@@ -201,13 +205,14 @@
 			$name = $data->{'name'};
 			$duration = $data->{'duration'};
 			$id = $data->{'id'};
+			$shotOrder = $data->{'shotOrder'};
 		}
 		
 		if (strlen($name) > 0 AND strlen($duration) > 0 AND strlen($id) > 0)
 		{
 			try
 			{
-				$rep = $bdd->query("UPDATE shots SET name='" . $name . "',duration=" . $duration . " WHERE id=" . $id . ";");
+				$rep = $bdd->query("UPDATE shots SET name='" . $name . "',duration=" . $duration . ",shotOrder=" . $shotOrder . "WHERE id=" . $id . ";");
 				$rep->closeCursor();
 			
 				$reply["message"] = "Shot " . $name . " (" . $id . ") updated.";
@@ -265,7 +270,6 @@
 		}
 	}
 
-	
 	// ========= REMOVE SHOT ==========
 	if ($reply["type"] == "removeShots")
 	{
