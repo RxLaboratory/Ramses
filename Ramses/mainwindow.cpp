@@ -116,11 +116,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(dbi,SIGNAL(shotUpdated(bool,QString)),this,SLOT(shotUpdated(bool,QString)));
     connect(dbi,SIGNAL(shotStatusUpdated(bool,QString)),this,SLOT(shotStatusUpdated(bool,QString)));
     connect(dbi,SIGNAL(shotRemoved(bool,QString)),this,SLOT(shotRemoved(bool,QString)));
+    connect(dbi,SIGNAL(shotsMovedUp(bool,QString)),this,SLOT(shotsMoved(bool,QString)));
+    connect(dbi,SIGNAL(shotsMovedDown(bool,QString)),this,SLOT(shotsMoved(bool,QString)));
     //connect DBI assets
     connect(dbi,SIGNAL(assetAdded(bool,QString)),this,SLOT(assetAdded(bool,QString)));
     connect(dbi,SIGNAL(assetStatusUpdated(bool,QString)),this,SLOT(assetStatusUpdated(bool,QString)));
-    connect(dbi,SIGNAL(assetAssigned(bool,QString)),this,SLOT(assetAssigned(bool,QString)));
-
 
     //========= LOAD SETTINGS ========
     showMessage("Loading settings");
@@ -1017,6 +1017,16 @@ void MainWindow::projectsAdminReset()
 void MainWindow::on_addShotButton_clicked()
 {
     setWaiting();
+    //get order (if a row is selected, or else insert after the last row)
+    int order = 0;
+    if (shotsAdminList->currentItem())
+    {
+        order = shotsList[shotsAdminList->currentRow()]->getShotOrder()+1;
+    }
+    else if (shotsAdminList->count() > 0)
+    {
+        order = shotsList[shotsAdminList->count()-1]->getShotOrder()+1;
+    }
     shotsAdminReset();
     //getProject
     int projectId = projectSelector->currentData().toInt();
@@ -1031,7 +1041,9 @@ void MainWindow::on_addShotButton_clicked()
         }
     }
     QStringList shotsName("000");
-    dbi->addShots(projectId,statusId,shotsName);
+
+
+    dbi->addShots(projectId,statusId,shotsName,order);
 }
 
 void MainWindow::on_batchAddShotButton_clicked()
@@ -1043,6 +1055,16 @@ void MainWindow::on_batchAddShotButton_clicked()
     {
         QStringList shotNames = as.getShots();
         setWaiting();
+        //get order (if a row is selected, or else insert after the last row)
+        int order = 0;
+        if (shotsAdminList->currentItem())
+        {
+            order = shotsList[shotsAdminList->currentRow()]->getShotOrder()+1;
+        }
+        else if (shotsAdminList->count() > 0)
+        {
+            order = shotsList[shotsAdminList->count()-1]->getShotOrder()+1;
+        }
         shotsAdminReset();
         //getProject
         int projectId = projectSelector->currentData().toInt();
@@ -1056,7 +1078,7 @@ void MainWindow::on_batchAddShotButton_clicked()
                 break;
             }
         }
-        dbi->addShots(projectId,statusId,shotNames);
+        dbi->addShots(projectId,statusId,shotNames,order);
     }
     this->setEnabled(true);
 }
@@ -1289,7 +1311,7 @@ void MainWindow::on_shotApplyButton_clicked()
 
     int id = shotsList[currentRow]->getId();
 
-    dbi->updateShot(id,shotNameEdit->text(),shotDurationSpinBox->value(),shotsList[currentRow]->getShotOrder());
+    dbi->updateShot(id,shotNameEdit->text(),shotDurationSpinBox->value());
 }
 
 void MainWindow::shotUpdated(bool success,QString message)
@@ -1344,14 +1366,50 @@ void MainWindow::shotsAdminReset()
 //Shot order
 void MainWindow::on_moveShotUpButton_clicked()
 {
-        //get shot
-    showMessage("Move shot before");
-        int index = shotsAdminList->currentRow();
-        if (index <= 0) return;
-        RAMShot *shot = shotsList[index];
-        RAMShot *prevShot = shotsList[index-1];
-        shot->setShotOrder(prevShot->getShotOrder()-1);
-    showMessage("Shot moved");
+    //get shots
+    QList<int> ids;
+    setWaiting();
+    foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
+    {
+        int currentRow = shotsAdminList->row(item);
+        if (currentRow > 0)
+        {
+            int id = shotsList[currentRow]->getId();
+            ids << id;
+        }
+    }
+
+
+    if (ids.count() > 0) dbi->moveShotsUp(ids);
+    else setWaiting(false);
+
+}
+
+void MainWindow::on_moveShotDownButton_clicked()
+{
+    //get shots
+    QList<int> ids;
+    setWaiting();
+    foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
+    {
+        int currentRow = shotsAdminList->row(item);
+        if (currentRow < shotsAdminList->count()-1)
+        {
+            int id = shotsList[shotsAdminList->row(item)]->getId();
+            ids << id;
+        }
+    }
+
+    if (ids.count() > 0) dbi->moveShotsDown(ids);
+    else setWaiting(false);
+}
+
+
+void MainWindow::shotsMoved(bool success,QString message)
+{
+    setWaiting(false);
+    if (!success) connected(false,message);
+    else getShots();
 }
 
 //ADMIN - ASSETS
@@ -1546,4 +1604,3 @@ bool MainWindow::event(QEvent *event)
 
     return QMainWindow::event(event);
 }
-

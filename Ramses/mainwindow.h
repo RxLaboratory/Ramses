@@ -152,9 +152,10 @@ private slots:
     void shotStatusUpdated(bool success,QString message);
     void on_shotApplyButton_clicked();
     void on_removeShotButton_clicked();
-    void shotRemoved(bool,QString);
+    void shotRemoved(bool success ,QString message);
     void updateShotStatus(RAMStatus*status, RAMStage*stage, RAMShot*shot);
     void shotsAdminReset();
+    void shotsMoved(bool success, QString message);
     //admin - assets
     void assetAdded(bool success,QString message);
     void updateAssetStatus(RAMAsset *asset);
@@ -181,6 +182,8 @@ private slots:
     void showMessage(QString m, int i = 0);
 
     void on_moveShotUpButton_clicked();
+
+    void on_moveShotDownButton_clicked();
 
 protected:
     //events
