@@ -24,83 +24,104 @@
 		
 		if (count($names) > 0 AND strlen($projectId) > 0 AND strlen($statusId) > 0)
 		{
-			//construct add shots query
-            $qShots = "INSERT INTO shots (name,projectId,shotOrder) VALUES ";
-            $first = true;
-            foreach($names as $name)
-			{
-				if (!$first) $qShots = $qShots . ",";
-				$qShots = $qShots . "('" . $name . "'," . $projectId . "," . $shotOrder . ")";
-				$first = false;
-			}
-            $qShots = $qShots . ";";
-
-            //add shots
+			//update order of shots after
+			$qOrder = "UPDATE shots SET shotOrder = shotOrder + " . count($names) . " WHERE shotOrder >= " . $shotOrder . " ;";
+			
 			try
 			{
 				//create shots
-				$rep = $bdd->query($qShots);
-				$rep->closeCursor();
+				$repOrder = $bdd->query($qOrder);
+				$repOrder->closeCursor();
 			}
 			catch (Exception $e)
 			{
-				$reply["message"] = "Server issue: SQL Query failed adding shots. | " + $qShots;
+				$reply["message"] = "Server issue: SQL Query failed moving shots. | " + $qOrder;
 				$reply["success"] = false;
 			}
 			
-			//create statuses if shots added
-			if (isset($rep))
+			if (isset($repOrder))
 			{
-				//get (shot) stages from project
+				//construct add shots query
+				$qShots = "INSERT INTO shots (name,projectId,shotOrder) VALUES ";
+				$first = true;
+				$order = (int)$shotOrder;
+				foreach($names as $name)
+				{
+					if (!$first) $qShots = $qShots . ",";
+					$qShots = $qShots . "('" . $name . "'," . $projectId . "," . $order . ")";
+					$order = $order + 1;
+					$first = false;
+				}
+				$qShots = $qShots . ";";
+
+				//add shots
 				try
 				{
-					$q = "SELECT stages.id FROM stages JOIN projectStage ON stages.id = projectStage.stageId WHERE projectStage.projectId = " . $projectId . " AND stages.type = 's';";
-					$repStages = $bdd->query($q);
+					//create shots
+					$rep = $bdd->query($qShots);
+					$rep->closeCursor();
 				}
 				catch (Exception $e)
 				{
-					$reply["message"] = "Server issue: SQL Query failed adding shots (stages retrieval failed) | " . $q;
+					$reply["message"] = "Server issue: SQL Query failed adding shots. | " + $qShots;
 					$reply["success"] = false;
 				}
 				
-				if (isset($repStages))
+				//create statuses if shots added
+				if (isset($rep))
 				{
-                    //construct query
-                    $qStatuses = "INSERT INTO shotstatuses (statusId,shotId,stageId) VALUES ";
-					
-                    //for each stage
-                    $first = true;
-					while ($stage = $repStages->fetch())
+					//get (shot) stages from project
+					try
 					{
-                        $stageId = $stage['id'];
-                        //for each shot
-                        foreach($names as $name)
-                        {
-							if (!$first) $qStatuses = $qStatuses . ",";
-                            $qStatuses = $qStatuses . "(" . $statusId . ",";
-                            $qStatuses = $qStatuses . "(SELECT id FROM shots WHERE name='" . $name . "' AND projectId=" . $projectId . "),";
-                            $qStatuses = $qStatuses .  $stageId . ")";
-							$first = false;
-                        }
-                       
+						$q = "SELECT stages.id FROM stages JOIN projectStage ON stages.id = projectStage.stageId WHERE projectStage.projectId = " . $projectId . " AND stages.type = 's';";
+						$repStages = $bdd->query($q);
 					}
-                    $qStatuses = $qStatuses . ";";
-					  
-                    try
-                    {
-                        //create status for this stage/shot
-                        $rep3 = $bdd->query($qStatuses);
-                        $rep3->closeCursor();
-                        $reply["message"] = "Shots added.";
-                        $reply["success"] = true;
-                    }
-                    catch (Exception $e)
-                    {
-                       $reply["message"] = "Server issue: SQL Query failed adding shots (statuses failed) | " . $qStatuses;
-					   $reply["success"] = false;
-                    }
+					catch (Exception $e)
+					{
+						$reply["message"] = "Server issue: SQL Query failed adding shots (stages retrieval failed) | " . $q;
+						$reply["success"] = false;
+					}
+					
+					if (isset($repStages))
+					{
+						//construct query
+						$qStatuses = "INSERT INTO shotstatuses (statusId,shotId,stageId) VALUES ";
+						
+						//for each stage
+						$first = true;
+						while ($stage = $repStages->fetch())
+						{
+							$stageId = $stage['id'];
+							//for each shot
+							foreach($names as $name)
+							{
+								if (!$first) $qStatuses = $qStatuses . ",";
+								$qStatuses = $qStatuses . "(" . $statusId . ",";
+								$qStatuses = $qStatuses . "(SELECT id FROM shots WHERE name='" . $name . "' AND projectId=" . $projectId . "),";
+								$qStatuses = $qStatuses .  $stageId . ")";
+								$first = false;
+							}
+						   
+						}
+						$qStatuses = $qStatuses . ";";
+						  
+						try
+						{
+							//create status for this stage/shot
+							$rep3 = $bdd->query($qStatuses);
+							$rep3->closeCursor();
+							$reply["message"] = "Shots added.";
+							$reply["success"] = true;
+						}
+						catch (Exception $e)
+						{
+						   $reply["message"] = "Server issue: SQL Query failed adding shots (statuses failed) | " . $qStatuses;
+						   $reply["success"] = false;
+						}
+					}
 				}
 			}
+			
 		}
 		else
 		{
@@ -197,7 +218,6 @@
 		$name = "";
 		$duration = "";
 		$id = "";
-		$shotOrder = 0;
 		
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
@@ -205,12 +225,11 @@
 			$name = $data->{'name'};
 			$duration = $data->{'duration'};
 			$id = $data->{'id'};
-			$shotOrder = $data->{'shotOrder'};
 		}
 		
 		if (strlen($name) > 0 AND strlen($duration) > 0 AND strlen($id) > 0)
 		{
-			$q = "UPDATE shots SET name='" . $name . "',duration=" . $duration . ",shotOrder=" . $shotOrder . " WHERE id=" . $id . ";";
+			$q = "UPDATE shots SET name='" . $name . "',duration=" . $duration . " WHERE id=" . $id . ";";
 			try
 			{
 				$rep = $bdd->query($q);
@@ -305,6 +324,119 @@
 			{
 				$reply["message"] = "Server issue: SQL Query failed deleting multiple shots | " . $q;
 				$reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+	}
+
+	// ========= MOVE SHOT UP =========
+	if ($reply["type"] == "moveShotsUp")
+	{
+		$reply["accepted"] = true;
+		
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			$ids = $data->{'ids'};
+		}
+		
+		if (isset($ids) AND count($ids) > 0)
+		{
+			$q = "";
+			
+			//make sure the shots are sorted
+			sort($ids);
+			
+			foreach($ids as $id)
+			{
+				//get this shot order and the order just before
+				$qOrders = "SELECT shotOrder,id FROM shots WHERE shotOrder <= (SELECT shotOrder FROM shots WHERE id=" . $id . ") ORDER BY shotOrder DESC;";
+				
+				try
+				{
+					$repOrder = $bdd->query($qOrders);
+					$orderCurrent = $repOrder->fetch();
+					$orderBefore = $repOrder->fetch();
+					$repOrder->closeCursor();
+					
+					
+					
+					$q = $q . "UPDATE shots SET shotOrder=" . $orderCurrent["shotOrder"] . " WHERE id=" . $orderBefore['id'] . ";\n";
+					$q = $q . "UPDATE shots SET shotOrder=" . $orderBefore["shotOrder"] . " WHERE id=" . $orderCurrent['id'] . ";\n";
+					
+					$rep = $bdd->query($q);
+					$rep->closeCursor();
+					
+					$reply["message"] = "Shot order successfully changed.";
+					$reply["success"] = true;
+				}
+				catch (Exception $e)
+				{
+					$reply["message"] = "Server issue: SQL Query failed retrieving shots orders. | " . $q;
+					$reply["success"] = false;
+					break;
+				}
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+	}
+	
+	// ========= MOVE SHOT DOWN =========
+	if ($reply["type"] == "moveShotsDown")
+	{
+		$reply["accepted"] = true;
+		
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			$ids = $data->{'ids'};
+		}
+		
+		if (isset($ids) AND count($ids) > 0)
+		{
+			$q = "";
+			
+			//make sure the shots are sorted
+			rsort($ids);
+			
+			foreach($ids as $id)
+			{
+				//get this shot order and the order just before
+				$qOrders = "SELECT shotOrder,id FROM shots WHERE shotOrder >= (SELECT shotOrder FROM shots WHERE id=" . $id . ") ORDER BY shotOrder ASC;";
+				
+				try
+				{
+					$repOrder = $bdd->query($qOrders);
+					$orderCurrent = $repOrder->fetch();
+					$orderAfter = $repOrder->fetch();
+					$repOrder->closeCursor();
+					
+					if (count($orderAfter) > 0 AND count($orderCurrent) > 0)
+					{
+						$q = $q . "UPDATE shots SET shotOrder=" . $orderCurrent["shotOrder"] . " WHERE id=" . $orderAfter['id'] . ";\n";
+						$q = $q . "UPDATE shots SET shotOrder=" . $orderAfter["shotOrder"] . " WHERE id=" . $orderCurrent['id'] . ";\n";
+						
+						$rep = $bdd->query($q);
+						$rep->closeCursor();
+					}
+					
+					$reply["message"] = "Shot order successfully changed.";
+					$reply["success"] = true;
+				}
+				catch (Exception $e)
+				{
+					$reply["message"] = "Server issue: SQL Query failed retrieving shots orders. | " . $q;
+					$reply["success"] = false;
+					break;
+				}
 			}
 		}
 		else
