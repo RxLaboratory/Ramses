@@ -15,7 +15,6 @@ public:
     QString getName();
     double getDuration();
     int getShotOrder();
-    void setShotOrder(int o);
     void addStatus(RAMStageStatus *s);
     QList<RAMStageStatus *> getStatuses();
     void addAsset(RAMAsset *a);
@@ -34,7 +33,6 @@ private:
     int shotOrder;
     QList<RAMStageStatus *> statuses;
     QList<RAMAsset *> assets;
-    void sync();
     DBInterface *dbi;
 };
 

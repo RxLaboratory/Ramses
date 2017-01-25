@@ -30,12 +30,6 @@ int RAMShot::getShotOrder()
     return shotOrder;
 }
 
-void RAMShot::setShotOrder(int o)
-{
-    shotOrder = o;
-    sync();
-}
-
 void RAMShot::addStatus(RAMStageStatus *s)
 {
     connect(s,SIGNAL(statusChanged(RAMStatus*,RAMStage*)),this,SLOT(updateShotStatus(RAMStatus*,RAMStage*)));
@@ -62,7 +56,3 @@ QList<RAMAsset *> RAMShot::getAssets()
     return assets;
 }
 
-void RAMShot::sync()
-{
-    dbi->updateShot(this->id,this->name,this->duration,this->shotOrder);
-}
