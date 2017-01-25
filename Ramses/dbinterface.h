@@ -41,11 +41,13 @@ public:
     void addProjectStage(int projectId, int stageId);
     void removeProjectStage(int projectId, int stageId);
     //Shot
-    void addShots(int projectId, int statusId, QStringList shots);
+    void addShots(int projectId, int statusId, QStringList shots, int order);
     void getShots(int projectId);
-    void updateShot(int id, QString name, double duration, int shotOrder);
+    void updateShot(int id, QString name, double duration);
     void setShotStatus(int statusId,int stageId,int shotId);
     void removeShots(QList<int> ids);
+    void moveShotsUp(QList<int> ids);
+    void moveShotsDown(QList<int> ids);
     //Asset
     void addAsset(QString name, QString shortName, int stageId, int statusId, int shotId = -1);
     void setAssetStatus(int statusId, int assetId);
@@ -77,6 +79,8 @@ signals:
     void shotUpdated(bool,QString);
     void shotStatusUpdated(bool,QString);
     void shotRemoved(bool,QString);
+    void shotsMovedUp(bool,QString);
+    void shotsMovedDown(bool,QString);
     //Asset
     void assetAdded(bool,QString);
     void assetStatusUpdated(bool,QString);

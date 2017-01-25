@@ -132,6 +132,8 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         else if (repType == "updateShot") { emit shotUpdated(repSuccess,repMessage); return; }
         else if (repType == "setShotStatus") { emit shotStatusUpdated(repSuccess,repMessage); return; }
         else if (repType == "removeShots") { emit shotRemoved(repSuccess,repMessage); return; }
+        else if (repType == "moveShotsUp") { emit shotsMovedUp(repSuccess,repMessage); return; }
+        else if (repType == "moveShotsDown") { emit shotsMovedDown(repSuccess,repMessage); return; }
 
         //ASSET
         else if (repType == "addAsset") {  emit assetAdded(repSuccess,repMessage); return; }
@@ -450,18 +452,19 @@ void DBInterface::removeProjectStage(int projectId, int stageId)
 }
 
 //SHOTS
-void DBInterface::addShots(int projectId, int statusId, QStringList shots)
+void DBInterface::addShots(int projectId, int statusId, QStringList shots, int order)
 {
     QString q = "?type=addShots";
     QJsonObject obj;
     QJsonArray jsonNames;
     foreach(QString name,shots)
     {
-        jsonNames.insert(0,name);
+        jsonNames.insert(jsonNames.count(),name);
     }
     obj.insert("names",jsonNames);
     obj.insert("projectId",projectId);
     obj.insert("statusId",statusId);
+    obj.insert("shotOrder",order);
     QJsonDocument json(obj);
 
     emit message("Submitting shots");
@@ -479,14 +482,13 @@ void DBInterface::getShots(int projectId)
     sendRequest(q, json);
 }
 
-void DBInterface::updateShot(int id, QString name, double duration, int shotOrder)
+void DBInterface::updateShot(int id, QString name, double duration)
 {
     QString q = "?type=updateShot";
     QJsonObject obj;
     obj.insert("id",id);
     obj.insert("name",name);
     obj.insert("duration",duration);
-    obj.insert("shotOrder",shotOrder);
     QJsonDocument json(obj);
 
     emit message("Submitting shot");
@@ -513,12 +515,44 @@ void DBInterface::removeShots(QList<int> ids)
     QJsonArray jsonIds;
     foreach(int id, ids)
     {
-        jsonIds.insert(0,id);
+        jsonIds.insert(jsonIds.count(),id);
     }
     obj.insert("ids",jsonIds);
     QJsonDocument json(obj);
 
     emit message("Removing shots");
+    sendRequest(q,json);
+}
+
+void DBInterface::moveShotsUp(QList<int> ids)
+{
+    QString q = "?type=moveShotsUp";
+    QJsonObject obj;
+    QJsonArray jsonIds;
+    foreach(int id, ids)
+    {
+        jsonIds.insert(jsonIds.count(),id);
+    }
+    obj.insert("ids",jsonIds);
+    QJsonDocument json(obj);
+
+    emit message("Moving shots up.");
+    sendRequest(q,json);
+}
+
+void DBInterface::moveShotsDown(QList<int> ids)
+{
+    QString q = "?type=moveShotsDown";
+    QJsonObject obj;
+    QJsonArray jsonIds;
+    foreach(int id, ids)
+    {
+        jsonIds.insert(jsonIds.count(),id);
+    }
+    obj.insert("ids",jsonIds);
+    QJsonDocument json(obj);
+
+    emit message("Moving shots down.");
     sendRequest(q,json);
 }
 
