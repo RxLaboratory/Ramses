@@ -21,7 +21,7 @@ public:
     QList<RAMAsset *> getAssets();
 
 signals:
-    void shotStatusUpdated(RAMStatus*,RAMStage*,RAMShot*);
+    void stageStatusUpdated(RAMStatus*,RAMStage*,RAMShot*);
 
 public slots:
     void updateShotStatus(RAMStatus* status,RAMStage* stage);

@@ -43,7 +43,7 @@ QList<RAMStageStatus *> RAMShot::getStatuses()
 
 void RAMShot::updateShotStatus(RAMStatus* status,RAMStage* stage)
 {
-    emit shotStatusUpdated(status,stage,this);
+    emit stageStatusUpdated(status,stage,this);
 }
 
 void RAMShot::addAsset(RAMAsset *a)
