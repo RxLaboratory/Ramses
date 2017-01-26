@@ -114,7 +114,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(dbi,SIGNAL(shotAdded(bool,QString)),this,SLOT(shotAdded(bool,QString)));
     connect(dbi,SIGNAL(gotShots(bool,QString,QJsonValue)),this,SLOT(gotShots(bool,QString,QJsonValue)));
     connect(dbi,SIGNAL(shotUpdated(bool,QString)),this,SLOT(shotUpdated(bool,QString)));
-    connect(dbi,SIGNAL(shotStatusUpdated(bool,QString)),this,SLOT(shotStatusUpdated(bool,QString)));
+    connect(dbi,SIGNAL(stageStatusUpdated(bool,QString)),this,SLOT(stageStatusUpdated(bool,QString)));
+    connect(dbi,SIGNAL(stageCommentUpdated(bool,QString)),this,SLOT(stageCommentUpdated(bool,QString)));
     connect(dbi,SIGNAL(shotRemoved(bool,QString)),this,SLOT(shotRemoved(bool,QString)));
     connect(dbi,SIGNAL(shotsMovedUp(bool,QString)),this,SLOT(shotsMoved(bool,QString)));
     connect(dbi,SIGNAL(shotsMovedDown(bool,QString)),this,SLOT(shotsMoved(bool,QString)));
@@ -1148,7 +1149,7 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
         if (!found)
         {
             ramShot = new RAMShot(dbi,shotId,shotName,shotDuration,shotOrder);
-            connect(ramShot,SIGNAL(shotStatusUpdated(RAMStatus*,RAMStage*,RAMShot*)),this,SLOT(updateShotStatus(RAMStatus*,RAMStage*,RAMShot*)));
+            connect(ramShot,SIGNAL(stageStatusUpdated(RAMStatus*,RAMStage*,RAMShot*)),this,SLOT(updateStageStatus(RAMStatus*,RAMStage*,RAMShot*)));
             shotsList << ramShot;
         }
 
@@ -1242,7 +1243,8 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
             if (!ramStatus->getStatus() && !ramStatus->getStage()) continue;
 
             //create widget
-            ShotStatusWidget *shotStatusWidget = new ShotStatusWidget(ramShot,ramStatus,statusesList);
+            ShotStatusWidget *shotStatusWidget = new ShotStatusWidget(dbi,ramShot,ramStatus,statusesList);
+            connect(shotStatusWidget,SIGNAL(dialogShown(bool)),this,SLOT(setDisabled(bool)));
 
             //find column and add widget into cell
             for (int i = 0 ; i < currentStages.count() ; i++)
@@ -1344,13 +1346,18 @@ void MainWindow::shotRemoved(bool success,QString message)
 }
 
 //Shot statuses
-void MainWindow::updateShotStatus(RAMStatus* status,RAMStage* stage,RAMShot* shot)
+void MainWindow::updateStageStatus(RAMStatus* status,RAMStage* stage,RAMShot* shot)
 {
     showMessage("Updateing status of the shot " + shot->getName() + " to " + stage->getShortName());
-    dbi->setShotStatus(status->getId(),stage->getId(),shot->getId());
+    dbi->setStageStatus(status->getId(),stage->getId(),shot->getId());
 }
 
-void MainWindow::shotStatusUpdated(bool success,QString message)
+void MainWindow::stageStatusUpdated(bool success,QString message)
+{
+    if (!success) connected(false,message);
+}
+
+void MainWindow::stageCommentUpdated(bool success,QString message)
 {
     if (!success) connected(false,message);
 }

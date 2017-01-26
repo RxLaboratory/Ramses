@@ -149,11 +149,12 @@ private slots:
     void gotShots(bool success, QString message, QJsonValue shots);
     void on_shotsAdminList_itemClicked(QListWidgetItem *item);
     void shotUpdated(bool success,QString message);
-    void shotStatusUpdated(bool success,QString message);
+    void stageStatusUpdated(bool success,QString message);
+    void stageCommentUpdated(bool success,QString message);
     void on_shotApplyButton_clicked();
     void on_removeShotButton_clicked();
     void shotRemoved(bool success ,QString message);
-    void updateShotStatus(RAMStatus*status, RAMStage*stage, RAMShot*shot);
+    void updateStageStatus(RAMStatus*status, RAMStage*stage, RAMShot*shot);
     void shotsAdminReset();
     void shotsMoved(bool success, QString message);
     //admin - assets
