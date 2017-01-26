@@ -57,9 +57,9 @@ QLineEdit:disabled {
 	color: #6d6d6d;
 }
 
-/* PLAIN TEXT EDIT */
+/* (PLAIN) TEXT EDIT */
 
-QPlainTextEdit, QTextBrowser {
+QPlainTextEdit, QTextBrowser, QTextEdit {
 	background-color: #6d6d6d;
 	color: #e3e3e3;
 	padding: 3px;
@@ -67,15 +67,15 @@ QPlainTextEdit, QTextBrowser {
 	border-radius: 8px;
 }
 
-QTextBrowser {
+QTextBrowser, QTextEdit {
 	border-color:#6d6d6d;
 }
 
-QPlainTextEdit:hover, QTextBrowser:hover {
+QPlainTextEdit:hover, QTextBrowser:hover, QTextEdit:hover {
 	background-color: #434343;
 }
 
-QPlainTextEdit:disabled {
+QPlainTextEdit:disabled, QTextEdit:disabled {
 	background-color: #434343;
 	border-color: #434343;
 	color: #6d6d6d;
