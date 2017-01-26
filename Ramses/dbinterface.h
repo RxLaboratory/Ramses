@@ -44,7 +44,8 @@ public:
     void addShots(int projectId, int statusId, QStringList shots, int order);
     void getShots(int projectId);
     void updateShot(int id, QString name, double duration);
-    void setShotStatus(int statusId,int stageId,int shotId);
+    void setStageStatus(int statusId,int stageId,int shotId);
+    void setStageComment(QString comment,int stageId,int shotId);
     void removeShots(QList<int> ids);
     void moveShotsUp(QList<int> ids);
     void moveShotsDown(QList<int> ids);
@@ -77,7 +78,8 @@ signals:
     void shotAdded(bool,QString);
     void gotShots(bool,QString,QJsonValue);
     void shotUpdated(bool,QString);
-    void shotStatusUpdated(bool,QString);
+    void stageStatusUpdated(bool,QString);
+    void stageCommentUpdated(bool,QString);
     void shotRemoved(bool,QString);
     void shotsMovedUp(bool,QString);
     void shotsMovedDown(bool,QString);

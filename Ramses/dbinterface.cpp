@@ -130,7 +130,8 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         else if (repType == "addShots") {  emit shotAdded(repSuccess,repMessage); return; }
         else if (repType == "getShots") { emit gotShots(repSuccess,repMessage,content); return; }
         else if (repType == "updateShot") { emit shotUpdated(repSuccess,repMessage); return; }
-        else if (repType == "setShotStatus") { emit shotStatusUpdated(repSuccess,repMessage); return; }
+        else if (repType == "setStageStatus") { emit stageStatusUpdated(repSuccess,repMessage); return; }
+        else if (repType == "setStageComment") { emit stageCommentUpdated(repSuccess,repMessage); return; }
         else if (repType == "removeShots") { emit shotRemoved(repSuccess,repMessage); return; }
         else if (repType == "moveShotsUp") { emit shotsMovedUp(repSuccess,repMessage); return; }
         else if (repType == "moveShotsDown") { emit shotsMovedDown(repSuccess,repMessage); return; }
@@ -495,9 +496,9 @@ void DBInterface::updateShot(int id, QString name, double duration)
     sendRequest(q,json);
 }
 
-void DBInterface::setShotStatus(int statusId,int stageId,int shotId)
+void DBInterface::setStageStatus(int statusId,int stageId,int shotId)
 {
-    QString q = "?type=setShotStatus";
+    QString q = "?type=setStageStatus";
     QJsonObject obj;
     obj.insert("statusId",statusId);
     obj.insert("stageId",stageId);
@@ -505,6 +506,19 @@ void DBInterface::setShotStatus(int statusId,int stageId,int shotId)
     QJsonDocument json(obj);
 
     emit message("Updating shot status");
+    sendRequest(q,json);
+}
+
+void DBInterface::setStageComment(QString comment,int stageId,int shotId)
+{
+    QString q = "?type=setStageComment";
+    QJsonObject obj;
+    obj.insert("comment",comment);
+    obj.insert("stageId",stageId);
+    obj.insert("shotId",shotId);
+    QJsonDocument json(obj);
+
+    emit message("Updating shot comment");
     sendRequest(q,json);
 }
 
