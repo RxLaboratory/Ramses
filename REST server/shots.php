@@ -251,7 +251,8 @@
 		}
 	}
 
-	if ($reply["type"] == "setShotStatus")
+	// ======== SET STAGE STATUS ======
+	if ($reply["type"] == "setStageStatus")
 	{
 		$reply["accepted"] = true;
 		
@@ -290,6 +291,44 @@
 		}
 	}
 
+	// ========= SET STAGE COMMENT ========
+	if ($reply["type"] == "setStageComment")
+	{
+		$reply["accepted"] = true;
+		
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			$shotId = $data->{'shotId'};
+			$stageId = $data->{'stageId'};
+			$comment = $data->{'comment'};
+		}
+		
+		if (isset($shotId) AND strlen($shotId) > 0 AND isset($stageId) AND strlen($comment) > 0 AND isset($comment))
+		{
+			$q = 'UPDATE shotstatuses SET comment= :comment WHERE shotId= :shotId AND stageId= :stageId;';
+			try
+			{
+				$rep = $bdd->prepare($q);
+				$rep->execute(array('comment' => $comment, 'shotId' => $shotId, 'stageId' => $stageId)); 
+				$rep->closeCursor();
+			
+				$reply["message"] = "Comment for the shot (id:" . $shotId . ") has been updated.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+				$reply["message"] = "Server issue: SQL Query failed updating shot (id:" . $shotId . ").";
+				$reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values.";
+			$reply["success"] = false;
+		}
+	}
+	
 	// ========= REMOVE SHOT ==========
 	if ($reply["type"] == "removeShots")
 	{
@@ -445,4 +484,6 @@
 			$reply["success"] = false;
 		}
 	}
+
+
 ?>
