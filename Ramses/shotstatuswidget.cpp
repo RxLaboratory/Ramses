@@ -1,7 +1,7 @@
 #include "shotstatuswidget.h"
 #include <QtDebug>
 
-ShotStatusWidget::ShotStatusWidget(RAMShot *sh, RAMStageStatus *ss, QList<RAMStatus *> sl, QWidget *parent) :
+ShotStatusWidget::ShotStatusWidget(DBInterface *db, RAMShot *sh, RAMStageStatus *ss, QList<RAMStatus *> sl, QWidget *parent) :
     QWidget(parent)
 {
     freezeDBI = true;
@@ -10,6 +10,7 @@ ShotStatusWidget::ShotStatusWidget(RAMShot *sh, RAMStageStatus *ss, QList<RAMSta
     shot = sh;
     stageStatus = ss;
     statusesList = sl;
+    dbi = db;
 
     connect(stageStatus,SIGNAL(statusChanged(RAMStatus*,RAMStage*)),this,SLOT(stageStatusChanged(RAMStatus*,RAMStage*)));
 
@@ -70,4 +71,15 @@ void ShotStatusWidget::stageStatusChanged(RAMStatus *newStatus, RAMStage *st)
     freezeDBI = false;
 }
 
-
+void ShotStatusWidget::on_detailsButton_clicked()
+{
+    ShotDetailsDialog sd;
+    sd.setComment(stageStatus->getComment());
+    emit dialogShown(true);
+    if (sd.exec())
+    {
+        stageStatus->setComment(sd.getComment());
+        dbi->setStageComment(sd.getComment(),stageStatus->getStage()->getId(),shot->getId());
+    }
+    emit dialogShown(false);
+}
