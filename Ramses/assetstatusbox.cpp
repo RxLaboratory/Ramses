@@ -68,4 +68,15 @@ void AssetStatusBox::assetStatusChanged()
     freezeDBI = false;
 }
 
-
+void AssetStatusBox::on_detailsButton_clicked()
+{
+    AssetDetailsDialog ad;
+    ad.setComment(asset->getComment());
+    emit dialogShown(true);
+    if (ad.exec())
+    {
+        asset->setComment(ad.getComment());
+        //dbi->setStageComment(sd.getComment(),stageStatus->getStage()->getId(),shot->getId());
+    }
+    emit dialogShown(false);
+}

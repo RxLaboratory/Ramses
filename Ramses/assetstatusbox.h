@@ -3,6 +3,7 @@
 
 #include "ui_assetstatusbox.h"
 #include "ramasset.h"
+#include "assetdetailsdialog.h"
 
 class AssetStatusBox : public QWidget, private Ui::AssetStatusBox
 {
@@ -15,7 +16,10 @@ private slots:
     void assetStatusChanged();
     void on_comboBox_currentIndexChanged(int index);
 
+    void on_detailsButton_clicked();
+
 signals:
+    void dialogShown(bool);
 
 private:
     RAMAsset *asset;
