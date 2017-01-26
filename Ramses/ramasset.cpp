@@ -14,6 +14,16 @@ int RAMAsset::getId()
     return id;
 }
 
+QString RAMAsset::getComment()
+{
+    return comment;
+}
+
+void RAMAsset::setComment(QString c)
+{
+    comment = c;
+}
+
 RAMStatus* RAMAsset::getStatus()
 {
     return status;

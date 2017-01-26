@@ -15,6 +15,8 @@ public:
     RAMStage* getStage();
     QString getShortName();
     int getId();
+    QString getComment();
+    void setComment(QString c);
     void setStatus(RAMStatus *s);
 
 signals:
@@ -27,6 +29,7 @@ private:
     QString name;
     QString shortName;
     int id;
+    QString comment;
     RAMStatus *status;
     RAMStage *stage;
 protected:
