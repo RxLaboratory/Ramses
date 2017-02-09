@@ -15,7 +15,6 @@ public:
 private slots:
     void assetStatusChanged();
     void on_comboBox_currentIndexChanged(int index);
-
     void on_detailsButton_clicked();
 
 signals:

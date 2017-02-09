@@ -1,4 +1,7 @@
 #include "assetstatusbox.h"
+#ifdef QT_DEBUG
+#include <QtDebug>
+#endif
 
 AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, QWidget *parent) :
     QWidget(parent)
@@ -21,7 +24,9 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, QWidget *pare
             index = comboBox->count()-1;
         }
     }
+
     comboBox->setCurrentIndex(-1);
+
     freezeUI = false;
 
     comboBox->setCurrentIndex(index);
