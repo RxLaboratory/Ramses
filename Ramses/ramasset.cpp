@@ -1,4 +1,7 @@
 #include "ramasset.h"
+#ifdef QT_DEBUG
+#include <QtDebug>
+#endif
 
 RAMAsset::RAMAsset(int i,QString n, QString sn, RAMStage *s, RAMStatus *st, QObject *parent) : QObject(parent)
 {
