@@ -13,11 +13,14 @@ AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int si
     {
         assetList->addItem(asset->getShortName(),asset->getId());
     }
+
+    connect(nameEdit,SIGNAL(returnPressed()),this,SLOT(on_createButton_clicked()));
 }
 
 void AddAssetDialog::on_addButton_clicked()
 {
-    dbi->assignAsset(assetList->currentData().toInt(),shot->getId());
+    if (assetList->currentIndex() < 0) return;
+    shot->addAsset(allAssets[assetList->currentIndex()]);
     this->accept();
 }
 

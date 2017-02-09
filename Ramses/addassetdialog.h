@@ -15,13 +15,12 @@ public:
 
 private slots:
     void on_addButton_clicked();
-
     void on_createButton_clicked();
 
 private:
     DBInterface *dbi;
     RAMShot * shot;
-    RAMStage *stage;
+    RAMStage * stage;
     int statusId;
     QList<RAMAsset*> allAssets;
 };
