@@ -15,13 +15,15 @@ public:
     QString getName();
     double getDuration();
     int getShotOrder();
-    void addStatus(RAMStageStatus *s);
+    void addStatus(RAMStageStatus *s, bool updateDB = true);
     QList<RAMStageStatus *> getStatuses();
-    void addAsset(RAMAsset *a);
+    void addAsset(RAMAsset *a,bool updateDB = true);
     QList<RAMAsset *> getAssets();
 
 signals:
     void stageStatusUpdated(RAMStatus*,RAMStage*,RAMShot*);
+    void assetAdded(RAMAsset*,RAMShot*);
+    void statusAdded(RAMStageStatus*,RAMShot*);
 
 public slots:
     void updateShotStatus(RAMStatus* status,RAMStage* stage);
@@ -34,6 +36,9 @@ private:
     QList<RAMStageStatus *> statuses;
     QList<RAMAsset *> assets;
     DBInterface *dbi;
+protected:
+    bool operator==(RAMShot s);
+    bool operator==(RAMShot *s);
 };
 
 #endif // RAMSHOT_H
