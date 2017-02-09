@@ -7,10 +7,10 @@
 	//configuration
 	include ("config.php");
 	
-	// server should keep session data for AT LEAST 
+	// server should keep session data for AT LEAST  sessionTimeout
 	ini_set('session.gc_maxlifetime', $sessionTimeout);
 
-	// each client should remember their session id for EXACTLY 11mn
+	// each client should remember their session id for EXACTLY sessionTimeout
 	session_set_cookie_params($sessionTimeout);
 	
 	session_start();
@@ -22,6 +22,11 @@
 		session_unset();
 		session_destroy();
 		session_start();
+	}
+	else
+	{
+		// either new or old, it should live at most for sessionTimeout
+		$_SESSION['discard_after'] = $now + $sessionTimeout;
 	}
 	
 	//result of the request
@@ -84,8 +89,7 @@
 		echo json_encode($reply);
 	}
 	
-	// either new or old, it should live at most for 11mn
-	$_SESSION['discard_after'] = $now + $sessionTimeout;
+	
 
 ?>
 
