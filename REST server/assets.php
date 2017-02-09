@@ -27,7 +27,7 @@
 		if (count($name) > 0 AND strlen($stageId) > 0 AND strlen($shortName) > 0)
 		{
 			//construct add asset query
-            $q = "INSERT INTO assets (name,shortName,stageId,statusId) VALUES ('" . $name . "','" . $shortName . "'," . $stageId . "," . $statusId . ");";	
+            $q = "INSERT INTO assets (name,shortName,stageId,statusId,comment) VALUES ('" . $name . "','" . $shortName . "'," . $stageId . "," . $statusId . ",'Comment');";	
 			try
 			{
 				//create asset
