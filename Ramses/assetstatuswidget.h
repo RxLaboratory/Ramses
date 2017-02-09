@@ -20,6 +20,8 @@ public:
 
 private slots:
     void on_addButton_clicked();
+    void setEditing(bool e);
+    void assetsListUpdated(QList<RAMAsset *> aa);
 
 signals:
     void editing(bool);

@@ -1,5 +1,7 @@
 #include "assetstatuswidget.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 
 AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, QList<RAMAsset *> aa, DBInterface *d, QWidget *parent) :
     QWidget(parent)
@@ -18,12 +20,15 @@ void AssetStatusWidget::addAsset(RAMAsset *asset)
 
     //add comboBox
     AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,this);
+    connect(assetBox,SIGNAL(dialogShown(bool)),this,SLOT(setEditing(bool)));
     assetsWidget->layout()->addWidget(assetBox);
+
+
 }
 
 void AssetStatusWidget::on_addButton_clicked()
 {
-    emit editing(true);
+    setEditing(true);
 
     //get STB status
     int statusId = 0;
@@ -36,11 +41,9 @@ void AssetStatusWidget::on_addButton_clicked()
         }
     }
 
-    qDebug() << allAssets;
     foreach(RAMAsset *a,assets)
     {
         allAssets.removeAll(a);
-        qDebug() << a->getName();
     }
 
     AddAssetDialog ad(dbi,shot,stage,statusId,allAssets);
@@ -51,5 +54,23 @@ void AssetStatusWidget::on_addButton_clicked()
     ad.setWindowFlags(Qt::FramelessWindowHint);
     ad.exec();
 
-    emit editing(false);
+    setEditing(false);
+}
+
+void AssetStatusWidget::setEditing(bool e)
+{
+    emit editing(e);
+}
+
+void AssetStatusWidget::assetsListUpdated(QList<RAMAsset *> aa)
+{
+    //keep only assets for current stage
+    allAssets.clear();
+    foreach(RAMAsset *asset, aa)
+    {
+        if (asset->getStage() == stage)
+        {
+            allAssets.append(asset);
+        }
+    }
 }
