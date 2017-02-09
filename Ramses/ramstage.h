@@ -22,6 +22,9 @@ private:
     QString stageName;
     QString stageShortName;
     QString stageType;
+protected:
+    bool operator==(RAMStage s);
+    bool operator==(RAMStage *s);
 };
 
 #endif // RAMSTAGE_H

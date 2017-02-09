@@ -28,3 +28,12 @@ QString RAMStage::getType()
     return stageType;
 }
 
+bool RAMStage::operator==(RAMStage s)
+{
+    return s.getId() == this->getId();
+}
+
+bool RAMStage::operator==(RAMStage *s)
+{
+    return s->getId() == this->getId();
+}
