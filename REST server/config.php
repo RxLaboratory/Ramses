@@ -18,6 +18,6 @@
 	
 	//SESSION
 	//timeout (seconds)
-	$sessionTimeout = 660;
+	$sessionTimeout = 1200;
 	
 ?>
