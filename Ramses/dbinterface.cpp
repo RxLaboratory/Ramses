@@ -472,6 +472,28 @@ void DBInterface::addShots(int projectId, int statusId, QStringList shots, int o
     sendRequest(q,json);
 }
 
+void DBInterface::addShots(int projectId, int statusId, QList<QStringList> shots, int order)
+{
+    QString q = "?type=addShots";
+    QJsonObject obj;
+    QJsonArray jsonShots;
+    foreach(QStringList shot,shots)
+    {
+        QJsonObject jsonShot;
+        jsonShot.insert("name",shot[0]);
+        jsonShot.insert("duration",shot[1]);
+        jsonShots.insert(jsonShots.count(),jsonShot);
+    }
+    obj.insert("shots",jsonShots);
+    obj.insert("projectId",projectId);
+    obj.insert("statusId",statusId);
+    obj.insert("shotOrder",order);
+    QJsonDocument json(obj);
+
+    emit message("Submitting shots");
+    sendRequest(q,json);
+}
+
 void DBInterface::getShots(int projectId)
 {
     QString q = "?type=getShots";

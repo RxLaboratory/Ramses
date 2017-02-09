@@ -42,6 +42,7 @@ public:
     void removeProjectStage(int projectId, int stageId);
     //Shot
     void addShots(int projectId, int statusId, QStringList shots, int order);
+    void addShots(int projectId, int statusId, QList<QStringList> shots, int order);
     void getShots(int projectId);
     void updateShot(int id, QString name, double duration);
     void setStageStatus(int statusId,int stageId,int shotId);
