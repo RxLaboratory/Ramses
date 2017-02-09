@@ -6,7 +6,7 @@
 
 QT       += core gui \
         sql \
-        network
+	network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     separatorwidget.cpp \
     assetstatusbox.cpp \
     shotdetailsdialog.cpp \
-    assetdetailsdialog.cpp
+    assetdetailsdialog.cpp \
+    xmlreader.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -57,7 +58,8 @@ HEADERS  += mainwindow.h \
     separatorwidget.h \
     assetstatusbox.h \
     shotdetailsdialog.h \
-    assetdetailsdialog.h
+    assetdetailsdialog.h \
+    xmlreader.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
