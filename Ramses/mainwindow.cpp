@@ -9,7 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     //resources
+#ifdef QT_DEBUG
     resourcesFolder = "../../Ramses/Ramses/needed/";
+#else
+    resourcesFolder = "";
+#endif
 
     setupUi(this);
 
@@ -146,6 +150,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mainStack->setCurrentIndex(0);
     loginButton->setFocus();
 
+
     //detect inactivity
     connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
 
@@ -226,6 +231,10 @@ void MainWindow::logout()
     shotsList.clear();
     qDeleteAll(assetsList);
     assetsList.clear();
+
+    mainTable->clear(); //TODO delete widgets before !!!! (idem in gotShots)
+    mainTable->setRowCount(0);
+    mainTable->setColumnCount(0);
 
     helpDialog->showHelp(0);
     showPage(0);
@@ -1047,6 +1056,173 @@ void MainWindow::on_addShotButton_clicked()
     dbi->addShots(projectId,statusId,shotsName,order);
 }
 
+void MainWindow::on_importShotsButton_clicked()
+{
+    this->setEnabled(false);
+    QString file = QFileDialog::getOpenFileName(this,"Please choose the editing file you want to import.","","All supported edits (*.edl *.xml);;EDL (*.edl);;Final Cut / XML (*.xml);;All Files (*.*)");
+    if (file == "")
+    {
+        this->setEnabled(true);
+        return;
+    }
+
+    if (file.toLower().endsWith(".edl")) importEDL(file);
+    else if (file.toLower().endsWith(".xml")) importXML(file);
+    else
+    {
+        //TODO open file to try to find what it is
+    }
+    this->setEnabled(true);
+}
+
+void MainWindow::importEDL(QString f)
+{
+    showMessage("Importing EDL " + f + " (not yet implemented)");
+}
+
+void MainWindow::importXML(QString f)
+{
+    setWaiting();
+    showMessage("Importing XML " + f);
+
+     //open file and load data
+    QFile *xmlFile = new QFile(f);
+    if (!xmlFile->open(QFile::ReadOnly | QFile::Text))
+    {
+        showMessage("XML File could not be opened.");
+        return;
+    }
+    QByteArray xmlData = xmlFile->readAll();
+    xmlFile->close();
+    delete xmlFile;
+
+    //create reader
+    XMLReader xml(xmlData);
+
+    //parse file to get needed informations
+    QList<QStringList> shotsFound;
+    QString timebase = "24";
+    while(!xml.atEnd())
+    {
+        if (xml.readNext() == QXmlStreamReader::StartElement)
+        {
+            //find sequence
+            if (xml.name().toString() == "sequence")
+            {
+                //find rate and media
+                while(xml.readNextStartElement())
+                {
+                    if (xml.name().toString() == "rate")
+                    {
+                        //find timebase
+                        while (xml.readNextStartElement())
+                        {
+                            if (xml.name() == "timebase") timebase = xml.readElementText();
+                            else xml.skipCurrentElement();
+                        }
+                    }
+                    else if (xml.name().toString() == "media")
+                    {
+                        showMessage("Media found");
+                        //find video and audio
+                        while (xml.readNextStartElement())
+                        {
+                            if (xml.name().toString() == "video" || xml.name() == "audio")
+                            {
+                                if (xml.name().toString() == "video") showMessage("Video found");
+                                if (xml.name().toString() == "video") showMessage("Audio found");
+                                //find track
+                                while (xml.readNextStartElement())
+                                {
+                                    if (xml.name() == "track")
+                                    {
+                                        showMessage("Track found");
+                                        //find clipitem
+                                        while (xml.readNextStartElement())
+                                        {
+                                            if (xml.name() == "clipitem")
+                                            {
+                                                //find name, start, end
+                                                QString name = "";
+                                                QString start = "0";
+                                                QString end = "0";
+                                                while (xml.readNextStartElement())
+                                                {
+                                                    if (xml.name().toString() == "name")
+                                                        name = xml.readElementText();
+                                                    else if (xml.name().toString() == "start")
+                                                        start = xml.readElementText();
+                                                    else if (xml.name().toString() == "end")
+                                                        end = xml.readElementText();
+                                                    else xml.skipCurrentElement();
+                                                }
+                                                QStringList details;
+                                                details << name << start << end;
+                                                shotsFound << details;
+                                            }
+                                            else xml.skipCurrentElement();//<track>
+                                        }
+                                    }
+                                    else xml.skipCurrentElement();//<video> OR <audio>
+                                }
+                            }
+                            else xml.skipCurrentElement();//<media>
+                        }
+                    }
+                    else xml.skipCurrentElement(); //<sequence>
+                }
+            }
+        }
+    }
+
+    if (xml.hasError())
+    {
+          showMessage("XML error");
+          showMessage(xml.errorString());
+    }
+
+    //Add shots
+
+    //get order (if a row is selected, or else insert after the last row)
+    int order = 0;
+    if (shotsAdminList->currentItem())
+    {
+        order = shotsList[shotsAdminList->currentRow()]->getShotOrder()+1;
+    }
+    else if (shotsAdminList->count() > 0)
+    {
+        order = shotsList[shotsAdminList->count()-1]->getShotOrder()+1;
+    }
+
+    shotsAdminReset();
+
+    //getProject
+    int projectId = projectSelector->currentData().toInt();
+    //get status
+    int statusId = 0;
+    foreach(RAMStatus *s,statusesList)
+    {
+        if (s->getShortName() == "STB")
+        {
+            statusId = s->getId();
+            break;
+        }
+    }
+
+    QList<QStringList> shotsReady;
+
+    foreach(QStringList s,shotsFound)
+    {
+        float duration = (s[2].toFloat() - s[1].toFloat()) / timebase.toFloat();
+        QString name = s[0];
+        QStringList currentShot;
+        currentShot << name << QString::number(duration);
+        shotsReady << currentShot;
+    }
+
+    dbi->addShots(projectId,statusId,shotsReady,order);
+}
+
 void MainWindow::on_batchAddShotButton_clicked()
 {
     this->setEnabled(false);
@@ -1115,8 +1291,6 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
     assetsList.clear();
     mainTable->clearContents();
     mainTable->setRowCount(0);
-    mainTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    mainTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     QJsonArray shotsJsonArray = shots.toArray();
 
@@ -1149,8 +1323,39 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
         if (!found)
         {
             ramShot = new RAMShot(dbi,shotId,shotName,shotDuration,shotOrder);
-            connect(ramShot,SIGNAL(stageStatusUpdated(RAMStatus*,RAMStage*,RAMShot*)),this,SLOT(updateStageStatus(RAMStatus*,RAMStage*,RAMShot*)));
             shotsList << ramShot;
+            //connections
+            connect(ramShot,SIGNAL(stageStatusUpdated(RAMStatus*,RAMStage*,RAMShot*)),this,SLOT(updateStageStatus(RAMStatus*,RAMStage*,RAMShot*)));
+            connect(ramShot,SIGNAL(assetAdded(RAMAsset*,RAMShot*)),this,SLOT(assetAssigned(RAMAsset*,RAMShot*)));
+            connect(ramShot,SIGNAL(statusAdded(RAMStageStatus*,RAMShot*)),this,SLOT(shotStatusAdded(RAMStageStatus*,RAMShot*)));
+
+            //Add to maintable
+
+            //create Table row
+            QTableWidgetItem *rowHeader = new QTableWidgetItem(shotName);
+            rowHeader->setToolTip(QString::number(shotDuration) + "s");
+            mainTable->setRowCount(mainTable->rowCount() + 1);
+            mainTable->setVerticalHeaderItem(mainTable->rowCount()-1,rowHeader);
+
+            //for each asset stage, add widgets
+            for(int i = 0 ; i < stagesList.count() ; i++)
+            {
+                RAMStage *stage = stagesList[i];
+                if (stage->getType() == "a")
+                {
+                    //create asset widget //TODO assetsList not complete, need to update it later / Maybe separate call for shots and call fot assets in DBI
+                    AssetStatusWidget *assetWidget = new AssetStatusWidget(ramShot,stage,statusesList,assetsList,dbi);
+                    connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
+                    connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
+                    //add widget to cell
+                    mainTable->setCellWidget(mainTable->rowCount()-1,i,assetWidget);
+                }
+
+            }
+
+            //Add to admin tab
+            shotsAdminList->addItem(ramShot->getName());
+
         }
 
         //find stage
@@ -1182,13 +1387,14 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
             {
                 //add status
                 RAMStageStatus *shotStageStatus = new RAMStageStatus(shotStatus,shotStage,shotComment);
-                ramShot->addStatus(shotStageStatus);
+                ramShot->addStatus(shotStageStatus,false);
             }
             //if asset production stage, add asset
             else if (shotStage->getType() == "a")
             {
                 QString assetName = shot.value("assetName").toString();
                 QString assetShortName = shot.value("assetShortName").toString();
+                QString assetComment = shot.value("comment").toString();
                 int assetId = shot.value("assetId").toInt();
                 //check if asset is already created
                 bool assetFound = false;
@@ -1198,98 +1404,24 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
                     if (a->getId() == assetId)
                     {
                         shotAsset = a;
+                        assetFound = true;
                         break;
                     }
                 }
                 if (!assetFound)
                 {
                     shotAsset = new RAMAsset(assetId, assetName, assetShortName, shotStage, shotStatus);
+                    shotAsset->setComment(assetComment);
                     connect(shotAsset,SIGNAL(statusChanged(RAMAsset *)),this,SLOT(updateAssetStatus(RAMAsset *)));
-                    assetsList << shotAsset;
+                    loadAsset(shotAsset);
                 }
-                ramShot->addAsset(shotAsset);
+                ramShot->addAsset(shotAsset,false);
             }
         }
     }
 
-    //UPDATE UI
-    int newRow = -1;
-
-    foreach(RAMShot *ramShot,shotsList)
-    {
-        QString shotName = ramShot->getName();
-        double shotDuration = ramShot->getDuration();
-        QList<RAMStageStatus *> shotStatuses = ramShot->getStatuses();
-        QList<RAMAsset *> shotAssets = ramShot->getAssets();
-
-        //create admin list item
-        QListWidgetItem *adminItem = new QListWidgetItem(shotName);
-        shotsAdminList->addItem(adminItem);
-        if (shotName == "000")
-        {
-            newRow = shotsAdminList->count()-1;
-        }
-
-        //create Table row
-        QTableWidgetItem *rowHeader = new QTableWidgetItem(shotName);
-        rowHeader->setToolTip(QString::number(shotDuration) + "s");
-        mainTable->setRowCount(mainTable->rowCount() + 1);
-        mainTable->setVerticalHeaderItem(mainTable->rowCount()-1,rowHeader);
-
-        //add shot stage statuses
-        foreach(RAMStageStatus * ramStatus,shotStatuses)
-        {
-            //stability fix (if shot was not correctly loaded, skip)
-            if (!ramStatus->getStatus() && !ramStatus->getStage()) continue;
-
-            //create widget
-            ShotStatusWidget *shotStatusWidget = new ShotStatusWidget(dbi,ramShot,ramStatus,statusesList);
-            connect(shotStatusWidget,SIGNAL(dialogShown(bool)),this,SLOT(setDisabled(bool)));
-
-            //find column and add widget into cell
-            for (int i = 0 ; i < currentStages.count() ; i++)
-            {
-                if (currentStages[i]->getId() == ramStatus->getStage()->getId())
-                {
-                    mainTable->setCellWidget(mainTable->rowCount()-1,i,shotStatusWidget);
-                    break;
-                }
-            }
-        }
-
-        //add assets
-        for (int i = 0 ; i < currentStages.count() ; i++)
-        {
-            RAMStage *stage = currentStages[i];
-            if (stage->getType() == "a")
-            {
-                //create asset widget
-                AssetStatusWidget *assetWidget = new AssetStatusWidget(ramShot,stage,statusesList,assetsList,dbi);
-                connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
-
-                foreach(RAMAsset *asset, shotAssets)
-                {
-                    if (asset->getStage()->getId() == stage->getId())
-                    {
-                        //add asset to widget
-                        assetWidget->addAsset(asset);
-                    }
-                }
-
-                //add widget to cell
-                mainTable->setCellWidget(mainTable->rowCount()-1,i,assetWidget);
-            }
-        }
-    }
-
-    mainTable->verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-    mainTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-
-    if (newRow > -1)
-    {
-        shotsAdminList->setCurrentRow(newRow);
-        on_shotsAdminList_itemClicked(shotsAdminList->item(newRow));
-    }
+    mainTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 //edit shot
@@ -1370,6 +1502,42 @@ void MainWindow::shotsAdminReset()
     shotConfigWidget->setEnabled(false);
 }
 
+void MainWindow::shotStatusAdded(RAMStageStatus *st,RAMShot *sh)
+{
+    //update UI
+    //find row
+    int row = -1;
+    for(int i = 0 ; i < shotsList.count() ; i++)
+    {
+        if (shotsList[i] == sh)
+        {
+            row = i;
+            break;
+        }
+    }
+
+    if (row < 0) return;
+
+    //find column
+    int col = -1;
+    for(int i = 0 ; i < stagesList.count() ; i++)
+    {
+        if (st->getStage() == stagesList[i])
+        {
+            col = i;
+            break;
+        }
+    }
+
+    if (col < 0) return;
+
+    ShotStatusWidget *shotStatusWidget = new ShotStatusWidget(dbi,sh,st,statusesList);
+    connect(shotStatusWidget,SIGNAL(dialogShown(bool)),this,SLOT(setDisabled(bool)));
+
+    mainTable->setCellWidget(row,col,shotStatusWidget);
+
+}
+
 //Shot order
 void MainWindow::on_moveShotUpButton_clicked()
 {
@@ -1411,7 +1579,6 @@ void MainWindow::on_moveShotDownButton_clicked()
     else setWaiting(false);
 }
 
-
 void MainWindow::shotsMoved(bool success,QString message)
 {
     setWaiting(false);
@@ -1446,6 +1613,50 @@ void MainWindow::assetAssigned(bool success,QString message)
     setWaiting(false);
     //refresh shots list
     getShots();
+}
+
+void MainWindow::assetAssigned(RAMAsset *a,RAMShot *s)
+{
+
+    //update UI
+    //find row
+    int row = -1;
+    for(int i = 0 ; i < shotsList.count() ; i++)
+    {
+        if (shotsList[i] == s)
+        {
+            row = i;
+            break;
+        }
+    }
+
+    if (row < 0) return;
+
+    //find column
+    int col = -1;
+    for(int i = 0 ; i < stagesList.count() ; i++)
+    {
+        if (a->getStage() == stagesList[i])
+        {
+            col = i;
+            break;
+        }
+    }
+
+    if (col < 0) return;
+
+
+    AssetStatusWidget* aw = (AssetStatusWidget*)mainTable->cellWidget(row,col);
+    aw->addAsset(a);
+
+    mainTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+}
+
+void MainWindow::loadAsset(RAMAsset *a)
+{
+    assetsList.append(a);
+    emit assetsListUpdated(assetsList);
 }
 
 // ========= ACTIONS ================
@@ -1611,3 +1822,4 @@ bool MainWindow::event(QEvent *event)
 
     return QMainWindow::event(event);
 }
+

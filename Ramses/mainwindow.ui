@@ -1403,6 +1403,13 @@ Under construction, sorry!</string>
                    </widget>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="importShotsButton">
+                    <property name="text">
+                     <string>Import...</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="batchAddShotButton">
                     <property name="text">
                      <string>Batch Add...</string>

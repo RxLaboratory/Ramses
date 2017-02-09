@@ -15,6 +15,8 @@
 #include <QProgressBar>
 #include <QJsonArray>
 #include <QDesktopWidget>
+#include <QFileDialog>
+#include <QXmlStreamReader>
 #include "idletimer.h"
 #include "dbinterface.h"
 #include "projectselectorwidget.h"
@@ -28,6 +30,7 @@
 #include "ramasset.h"
 #include "assetstatuswidget.h"
 #include "helpdialog.h"
+#include "xmlreader.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -42,6 +45,8 @@ private:
     void logout();
     void connection(); //DBI connection (both local and remote)
     void showPage(int page = 0);
+    void importEDL(QString f);
+    void importXML(QString f);
     //admin - status
     void getStatuses();
     QList<RAMStatus*> statusesList;
@@ -87,6 +92,8 @@ private:
     bool helpDialogDocked;
     //desktop
     QDesktopWidget *desktop;
+signals:
+    void assetsListUpdated(QList<RAMAsset *> a);
 public slots:
     // IDLE
     void idle();
@@ -157,11 +164,14 @@ private slots:
     void updateStageStatus(RAMStatus*status, RAMStage*stage, RAMShot*shot);
     void shotsAdminReset();
     void shotsMoved(bool success, QString message);
+    void shotStatusAdded(RAMStageStatus *st,RAMShot *sh);
     //admin - assets
     void assetAdded(bool success,QString message);
     void updateAssetStatus(RAMAsset *asset);
     void assetStatusUpdated(bool success,QString message);
     void assetAssigned(bool success,QString message);
+    void assetAssigned(RAMAsset *a,RAMShot *s);
+    void loadAsset(RAMAsset *a);
 
     // =======ACTIONS
     void on_actionMain_triggered(bool checked);
@@ -185,6 +195,8 @@ private slots:
     void on_moveShotUpButton_clicked();
 
     void on_moveShotDownButton_clicked();
+
+    void on_importShotsButton_clicked();
 
 protected:
     //events
