@@ -11,9 +11,15 @@ CREATE TABLE `assets` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `shortName` varchar(15) NOT NULL,
+  `latestUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `assetstatuses` (
+  `id` int(11) NOT NULL,
   `stageId` int(11) NOT NULL,
+  `assetId` int(11) NOT NULL,
   `statusId` int(11) DEFAULT NULL,
-  `comment` text,
+  `comment` text NOT NULL,
   `latestUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,7 +47,9 @@ CREATE TABLE `shots` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `projectId` int(11) NOT NULL,
-  `duration` float NOT NULL DEFAULT '0'
+  `duration` float NOT NULL DEFAULT '0',
+  `shotOrder` int(11) NOT NULL DEFAULT '0',
+  `latestUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `shotstatuses` (
@@ -78,8 +86,12 @@ CREATE TABLE `users` (
 
 ALTER TABLE `assets`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`shortName`,`name`),
-  ADD KEY `stageId` (`stageId`),
+  ADD UNIQUE KEY `name` (`shortName`,`name`);
+
+ALTER TABLE `assetstatuses`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `stage` (`stageId`,`assetId`),
+  ADD KEY `assetId` (`assetId`),
   ADD KEY `statusId` (`statusId`);
 
 ALTER TABLE `projects`
@@ -122,27 +134,30 @@ ALTER TABLE `users`
 
 
 ALTER TABLE `assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `assetstatuses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `projectstage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `shotassets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `shots`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=394;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `shotstatuses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=788;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `stages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `assets`
-  ADD CONSTRAINT `assets_ibfk_1` FOREIGN KEY (`stageId`) REFERENCES `stages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `assets_ibfk_2` FOREIGN KEY (`statusId`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `assetstatuses`
+  ADD CONSTRAINT `assetstatuses_ibfk_1` FOREIGN KEY (`stageId`) REFERENCES `stages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `assetstatuses_ibfk_2` FOREIGN KEY (`assetId`) REFERENCES `assets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `assetstatuses_ibfk_3` FOREIGN KEY (`statusId`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 ALTER TABLE `projectstage`
   ADD CONSTRAINT `projectstage_ibfk_1` FOREIGN KEY (`stageId`) REFERENCES `stages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
