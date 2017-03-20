@@ -205,70 +205,36 @@
 			$projectId = $data->{'projectId'};
 		}
 		
-		$q = "SELECT shotstatuses.comment,shotstatuses.stageId,shotstatuses.statusId,shots.name as shotName,shots.duration,shots.id as shotId,shots.shotOrder FROM shotstatuses JOIN shots ON shots.id = shotstatuses.shotId WHERE projectId=" . $projectId . " ORDER BY shots.shotOrder,shots.name;";
+		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,shots.shotOrder FROM shots WHERE projectId= :projectId ORDER BY shots.shotOrder,shots.name;";
 		
 		try
 		{
-			//get statuses (and shots)
-			$rep = $bdd->query($q);
-		}
-		catch (Exception $e)
-		{
-			$reply["message"] = "Server issue: SQL Query failed retrieving shots list. | " . $q;
-			$reply["success"] = false;
-		}
-		if (isset($rep))
-		{
+			//get shots
+			$rep = $bdd->prepare($q);
+			$rep->execute(array('projectId' => $projectId));
+			
 			$shots = Array();
+			
 			while ($shot = $rep->fetch())
 			{
 				$s = Array();
 				$s['shotName'] = $shot['shotName'];
 				$s['duration'] = (double)$shot['duration'];
 				$s['shotId'] = (int)$shot['shotId'];
-				$s['comment'] = $shot['comment'];
-				$s['stageId'] = (int)$shot['stageId'];
-				$s['statusId'] = (int)$shot['statusId'];
 				$s['shotOrder'] = (int)$shot['shotOrder'];
 	
 				$shots[] = $s;
 			}
 			$rep->closeCursor();
 			
-			//get assets
-			$q = "SELECT assets.id as assetId, assets.name as assetName,assets.shortName as assetShortName,assets.stageId,assets.statusId,assets.comment,shots.name as shotName,shots.duration,shots.id as shotId FROM assets JOIN shotassets ON shotassets.assetId = assets.id JOIN shots ON shotassets.shotId = shots.id WHERE shots.projectId=" . $projectId . ";";
-			try
-			{
-				$repAsset = $bdd->query($q);
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed retrieving assets list. | " . $q;
-				$reply["success"] = false;
-			}
-			
-			if (isset($repAsset))
-			{
-				while ($asset = $repAsset->fetch())
-				{
-					$a = Array();
-					$a['shotName'] = $asset['shotName'];
-					$a['duration'] = (double)$asset['duration'];
-					$a['shotId'] = (int)$asset['shotId'];
-					$a['assetId'] = (int)$asset['assetId'];
-					$a['assetName'] = $asset['assetName'];
-					$a['assetShortName'] = $asset['assetShortName'];
-					$a['stageId'] = (int)$asset['stageId'];
-					$a['statusId'] = (int)$asset['statusId'];
-					$a['comment'] = $asset['comment'];
-					$shots[] = $a;
-				}
-				$repAsset->closeCursor();
-			}
-			
 			$reply["content"] = $shots;
 			$reply["message"] = "Shots list retrieved ";
 			$reply["success"] = true;
+		}
+		catch (Exception $e)
+		{
+			$reply["message"] = "Server issue: SQL Query failed retrieving shots list. | " . $q;
+			$reply["success"] = false;
 		}
 	}
 	
