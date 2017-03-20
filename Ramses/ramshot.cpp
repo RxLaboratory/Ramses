@@ -30,6 +30,33 @@ int RAMShot::getShotOrder()
     return shotOrder;
 }
 
+void RAMShot::setName(QString n, bool updateDB)
+{
+    if (updateDB)
+    {
+        //TODO dbi
+    }
+    name = n;
+}
+
+void RAMShot::setDuration(double d, bool updateDB)
+{
+    if (updateDB)
+    {
+        //TODO dbi
+    }
+    duration = d;
+}
+
+void RAMShot::setShotOrder(int o, bool updateDB)
+{
+    if (updateDB)
+    {
+        //TODO dbi
+    }
+    shotOrder = o;
+}
+
 void RAMShot::addStatus(RAMStageStatus *s,bool updateDB)
 {
     if (updateDB)
@@ -74,4 +101,44 @@ bool RAMShot::operator==(RAMShot s)
 bool RAMShot::operator==(RAMShot *s)
 {
     return s->getId() == this->getId();
+}
+
+bool RAMShot::operator>(RAMShot *s)
+{
+    return this->getShotOrder() > s->getShotOrder();
+}
+
+bool RAMShot::operator>(RAMShot s)
+{
+    return this->getShotOrder() > s.getShotOrder();
+}
+
+bool RAMShot::operator<(RAMShot *s)
+{
+    return this->getShotOrder() < s->getShotOrder();
+}
+
+bool RAMShot::operator<(RAMShot s)
+{
+    return this->getShotOrder() < s.getShotOrder();
+}
+
+bool RAMShot::operator>=(RAMShot *s)
+{
+    return this->getShotOrder() >= s->getShotOrder();
+}
+
+bool RAMShot::operator>=(RAMShot s)
+{
+    return this->getShotOrder() >= s.getShotOrder();
+}
+
+bool RAMShot::operator<=(RAMShot *s)
+{
+    return this->getShotOrder() <= s->getShotOrder();
+}
+
+bool RAMShot::operator<=(RAMShot s)
+{
+    return this->getShotOrder() <= s.getShotOrder();
 }
