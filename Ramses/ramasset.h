@@ -9,10 +9,10 @@ class RAMAsset : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMAsset(int i, QString n, QString sn, RAMStage *s, RAMStatus *st, QObject *parent = 0);
+    explicit RAMAsset(int i, QString n, QString sn, QList<RAMStage *> s, RAMStatus *st, QObject *parent = 0);
     RAMStatus* getStatus();
     QString getName();
-    RAMStage* getStage();
+    QList<RAMStage*> getStages();
     QString getShortName();
     int getId();
     QString getComment();
@@ -31,7 +31,7 @@ private:
     int id;
     QString comment;
     RAMStatus *status;
-    RAMStage *stage;
+    QList<RAMStage *> stages;
 protected:
     bool operator==(RAMAsset a);
     bool operator==(RAMAsset *a);

@@ -68,7 +68,7 @@ void AssetStatusWidget::assetsListUpdated(QList<RAMAsset *> aa)
     allAssets.clear();
     foreach(RAMAsset *asset, aa)
     {
-        if (asset->getStage() == stage)
+        if (asset->getStages()[0] == stage) //TODO Check in all stages list
         {
             allAssets.append(asset);
         }

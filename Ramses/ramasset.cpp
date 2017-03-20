@@ -3,12 +3,12 @@
 #include <QtDebug>
 #endif
 
-RAMAsset::RAMAsset(int i,QString n, QString sn, RAMStage *s, RAMStatus *st, QObject *parent) : QObject(parent)
+RAMAsset::RAMAsset(int i, QString n, QString sn, QList<RAMStage *> s, RAMStatus *st, QObject *parent) : QObject(parent)
 {
     name = n;
     id = i;
     status = st;
-    stage = s;
+    stages = s;
     shortName = sn;
 }
 
@@ -37,9 +37,9 @@ QString RAMAsset::getName()
     return name;
 }
 
-RAMStage* RAMAsset::getStage()
+QList<RAMStage*> RAMAsset::getStages()
 {
-    return stage;
+    return stages;
 }
 
 QString RAMAsset::getShortName()
