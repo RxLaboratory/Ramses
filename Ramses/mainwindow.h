@@ -19,11 +19,11 @@
 #include <QXmlStreamReader>
 #include "idletimer.h"
 #include "dbinterface.h"
+#include "updater.h"
 #include "projectselectorwidget.h"
 #include "ramstatus.h"
 #include "ramstage.h"
 #include "ramproject.h"
-#include "ramshot.h"
 #include "addshotsdialog.h"
 #include "ramstagestatus.h"
 #include "shotstatuswidget.h"
@@ -57,8 +57,9 @@ private:
     void getProjects();
     QList<RAMProject*> projectsList;
     //admin - shots
-    void getShots();
-    QList<RAMShot*> shotsList;
+    //void getShots();
+    //QList<RAMShot*> shotsList;
+    QList<RAMShot*> *allShots;
     //admin - assets
     QList<RAMAsset*> assetsList;
     //login
@@ -67,7 +68,7 @@ private:
     RAMProject *currentProject;
     RAMStage *currentStage;
     QList<RAMStage *> currentStages;
-    QList<RAMShot *> currentShots;
+    //QList<RAMShot *> currentShots;
     //used to drag window grabing the toolbar
     QPoint dragPosition;
     bool toolBarClicked;
@@ -75,6 +76,8 @@ private:
     QSqlDatabase settingsDB;
     //database interface
     DBInterface *dbi;
+    //updater
+    Updater *updater;
     void setWaiting(bool w = true);
     //resources
     QString resourcesFolder;
@@ -153,7 +156,8 @@ private slots:
     void on_addShotButton_clicked();
     void on_batchAddShotButton_clicked();
     void shotAdded(bool success,QString message);
-    void gotShots(bool success, QString message, QJsonValue shots);
+    void shotAdded(RAMShot *shot);
+    //void gotShots(bool success, QString message, QJsonValue shots);
     void on_shotsAdminList_itemClicked(QListWidgetItem *item);
     void shotUpdated(bool success,QString message);
     void stageStatusUpdated(bool success,QString message);
@@ -165,6 +169,9 @@ private slots:
     void shotsAdminReset();
     void shotsMoved(bool success, QString message);
     void shotStatusAdded(RAMStageStatus *st,RAMShot *sh);
+    void on_moveShotUpButton_clicked();
+    void on_moveShotDownButton_clicked();
+    void on_importShotsButton_clicked();
     //admin - assets
     void assetAdded(bool success,QString message);
     void updateAssetStatus(RAMAsset *asset);
@@ -192,11 +199,7 @@ private slots:
     void stopWaiting();
     void showMessage(QString m, int i = 0);
 
-    void on_moveShotUpButton_clicked();
 
-    void on_moveShotDownButton_clicked();
-
-    void on_importShotsButton_clicked();
 
 protected:
     //events

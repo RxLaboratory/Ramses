@@ -147,6 +147,11 @@ MainWindow::MainWindow(QWidget *parent) :
     dbi->setSsl(networkSettingsQuery.value(1).toBool());
     dbi->setUpdateFreq(networkSettingsQuery.value(2).toInt());
 
+    //=========== UPDATER AND LISTS============
+    allShots = new QList<RAMShot*>();
+    updater = new Updater(dbi,allShots,this);
+    connect(updater,SIGNAL(newShot(RAMShot*)),this,SLOT(shotAdded(RAMShot*)));
+
     mainStack->setCurrentIndex(0);
     loginButton->setFocus();
 
@@ -227,12 +232,12 @@ void MainWindow::logout()
     stagesList.clear();
     qDeleteAll(projectsList);
     projectsList.clear();
-    qDeleteAll(shotsList);
-    shotsList.clear();
     qDeleteAll(assetsList);
     assetsList.clear();
+    qDeleteAll(*allShots);
+    allShots->clear();
 
-    mainTable->clear(); //TODO delete widgets before !!!! (idem in gotShots)
+    mainTable->clear();
     mainTable->setRowCount(0);
     mainTable->setColumnCount(0);
 
@@ -256,7 +261,7 @@ void MainWindow::showPage(int page)
         helpDialog->showHelp(0);
         break;
     case 1:
-        getShots();
+        updater->getShots(currentProject);
         actionMain->setChecked(true);
         break;
     case 2:
@@ -445,8 +450,12 @@ void MainWindow::selectorProjectChanged(int i)
         mainTable->setHorizontalHeaderItem(i,item);
     }
 
+#ifdef QT_DEBUG
+    qDebug() << "test " + currentProject->getName();
+#endif
+
     //load shots
-    getShots();
+    updater->getShots(currentProject);
 
 }
 
@@ -888,6 +897,11 @@ void MainWindow::gotProjects(bool success,QString message,QJsonValue projects)
     }
 
     freezeSelectors = false;
+
+#ifdef QT_DEBUG
+    qDebug() << "test ";
+#endif
+
     if (projectSelector->count() > 0) selectorProjectChanged(0);
 }
 
@@ -1023,7 +1037,6 @@ void MainWindow::projectsAdminReset()
 
 //ADMIN - SHOTS
 
-//add a new default shot "000"
 void MainWindow::on_addShotButton_clicked()
 {
     setWaiting();
@@ -1031,13 +1044,13 @@ void MainWindow::on_addShotButton_clicked()
     int order = 0;
     if (shotsAdminList->currentItem())
     {
-        order = shotsList[shotsAdminList->currentRow()]->getShotOrder()+1;
+        order = allShots->at(shotsAdminList->currentRow())->getShotOrder()+1;
     }
     else if (shotsAdminList->count() > 0)
     {
-        order = shotsList[shotsAdminList->count()-1]->getShotOrder()+1;
+        order = allShots->at(shotsAdminList->count()-1)->getShotOrder()+1;
     }
-    shotsAdminReset();
+
     //getProject
     int projectId = projectSelector->currentData().toInt();
     //get status
@@ -1051,7 +1064,6 @@ void MainWindow::on_addShotButton_clicked()
         }
     }
     QStringList shotsName("000");
-
 
     dbi->addShots(projectId,statusId,shotsName,order);
 }
@@ -1082,7 +1094,7 @@ void MainWindow::importEDL(QString f)
 
 void MainWindow::importXML(QString f)
 {
-    setWaiting();
+    /*setWaiting();
     showMessage("Importing XML " + f);
 
      //open file and load data
@@ -1220,12 +1232,12 @@ void MainWindow::importXML(QString f)
         shotsReady << currentShot;
     }
 
-    dbi->addShots(projectId,statusId,shotsReady,order);
+    dbi->addShots(projectId,statusId,shotsReady,order);*/
 }
 
 void MainWindow::on_batchAddShotButton_clicked()
 {
-    this->setEnabled(false);
+    /*this->setEnabled(false);
     AddShotsDialog as;
     as.move(this->geometry().center().x()-as.geometry().width()/2,this->geometry().center().y()-as.geometry().height()/2);
     if (as.exec())
@@ -1257,19 +1269,73 @@ void MainWindow::on_batchAddShotButton_clicked()
         }
         dbi->addShots(projectId,statusId,shotNames,order);
     }
-    this->setEnabled(true);
+    this->setEnabled(true);*/
 }
 
 void MainWindow::shotAdded(bool success,QString message)
 {
     setWaiting(false);
     //refresh shots list
-    getShots();
+    updater->getShots(currentProject);
 }
 
-//get all shots
-void MainWindow::getShots()
+void MainWindow::shotAdded(RAMShot *shot)
 {
+    QString name = shot->getName();
+    QString toolTip = "Duration: " + QString::number(shot->getDuration()) + "s";
+    int id = shot->getId();
+    int order = shot->getShotOrder();
+
+#ifdef QT_DEBUG
+    qDebug() << "Displaying shot " + name;
+    qDebug() << "Order " + QString::number(order);
+#endif
+
+    //add new line in table
+    QTableWidgetItem *rowHeader = new QTableWidgetItem(name);
+    rowHeader->setToolTip(toolTip);
+    rowHeader->setData(Qt::UserRole,id);
+    rowHeader->setData(Qt::UserRole+1,order);
+
+    //find line
+    int row=0;
+    if(mainTable->rowCount() > 0)
+    {
+        int testOrder = -1;
+        while (order > testOrder)
+        {
+            row++;
+            if (row == mainTable->rowCount()) break;
+            testOrder = mainTable->verticalHeaderItem(row)->data(Qt::UserRole+1).toInt();
+        }
+    }
+
+
+    mainTable->insertRow(row);
+    mainTable->setVerticalHeaderItem(row,rowHeader);
+    //add to admin list
+    shotsAdminList->insertItem(row,name);
+    //if shot name = 000, select it in admin list
+    if (name == "000")
+    {
+        shotsAdminList->setCurrentRow(row);
+    }
+
+    //and connect shot signals
+    //TODO CONNECT SHOT SIGNALS
+
+}
+
+//TODO shotRenamed, shotMoved, shotDurationChanged
+
+//get all shots
+/*void MainWindow::getShots()
+{
+    //TODO Replace by updater
+
+    //int projectId = projectSelector->currentData().toInt();
+
+
     setWaiting();
     //get previous selection
     shotsAdminReset();
@@ -1277,16 +1343,17 @@ void MainWindow::getShots()
     int projectId = projectSelector->currentData().toInt();
     dbi->getShots(projectId);
 }
+*/
 
-void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
+/*void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
 {
     setWaiting(false);
     if (!success) return;
 
+    showMessage("Loading shots...");
+
     //clear UI and stored list
     shotsAdminList->clear();
-    qDeleteAll(shotsList);
-    shotsList.clear();
     qDeleteAll(assetsList);
     assetsList.clear();
     mainTable->clearContents();
@@ -1343,7 +1410,7 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
                 RAMStage *stage = stagesList[i];
                 if (stage->getType() == "a")
                 {
-                    //create asset widget //TODO assetsList not complete, need to update it later / Maybe separate call for shots and call fot assets in DBI
+                    //create asset widget
                     AssetStatusWidget *assetWidget = new AssetStatusWidget(ramShot,stage,statusesList,assetsList,dbi);
                     connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
                     connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
@@ -1410,7 +1477,9 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
                 }
                 if (!assetFound)
                 {
-                    shotAsset = new RAMAsset(assetId, assetName, assetShortName, shotStage, shotStatus);
+                    QList<RAMStage*> stages;
+                    stages << shotStage;
+                    shotAsset = new RAMAsset(assetId, assetName, assetShortName, stages, shotStatus);
                     shotAsset->setComment(assetComment);
                     connect(shotAsset,SIGNAL(statusChanged(RAMAsset *)),this,SLOT(updateAssetStatus(RAMAsset *)));
                     loadAsset(shotAsset);
@@ -1423,42 +1492,53 @@ void MainWindow::gotShots(bool success,QString message,QJsonValue shots)
     mainTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
     mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
-
+*/
 //edit shot
 void MainWindow::on_shotsAdminList_itemClicked(QListWidgetItem *item)
 {
-    int currentRow = shotsAdminList->currentRow();
+     QString name = shotsAdminList->currentItem()->text();
+     double duration = 0;
 
-     RAMShot *s = shotsList[currentRow];
+     //TODO use row index as allshots index, when all shots will be sorted
 
-     shotNameEdit->setText(s->getName());
-     shotDurationSpinBox->setValue(s->getDuration());
+     //find it
+     for(int i =0;i<allShots->count();i++)
+     {
+         if (allShots->at(i)->getName() == name)
+         {
+             duration = allShots->at(i)->getDuration();
+             break;
+         }
+     }
+
+     shotNameEdit->setText(name);
+     shotDurationSpinBox->setValue(duration);
      shotConfigWidget->setEnabled(true);
 }
 
 void MainWindow::on_shotApplyButton_clicked()
 {
-    int currentRow = shotsAdminList->currentRow();
+    /*int currentRow = shotsAdminList->currentRow();
     if (currentRow < 0) return;
 
     setWaiting();
 
     int id = shotsList[currentRow]->getId();
 
-    dbi->updateShot(id,shotNameEdit->text(),shotDurationSpinBox->value());
+    dbi->updateShot(id,shotNameEdit->text(),shotDurationSpinBox->value());*/
 }
 
 void MainWindow::shotUpdated(bool success,QString message)
 {
     setWaiting(false);
     if (!success) return;
-    getShots();
+    updater->getShots(currentProject);
 }
 
 //remove shot
 void MainWindow::on_removeShotButton_clicked()
 {
-    setWaiting();
+    /*setWaiting();
 
     QList<int> shotIds;
     foreach(QListWidgetItem *i,shotsAdminList->selectedItems())
@@ -1467,14 +1547,14 @@ void MainWindow::on_removeShotButton_clicked()
         int id = shotsList[row]->getId();
         shotIds << id;
     }
-    dbi->removeShots(shotIds);
+    dbi->removeShots(shotIds);*/
 }
 
 void MainWindow::shotRemoved(bool success,QString message)
 {
     setWaiting(false);
     if (!success) return;
-    getShots();
+    updater->getShots(currentProject);
 }
 
 //Shot statuses
@@ -1503,7 +1583,7 @@ void MainWindow::shotsAdminReset()
 }
 
 void MainWindow::shotStatusAdded(RAMStageStatus *st,RAMShot *sh)
-{
+{/*
     //update UI
     //find row
     int row = -1;
@@ -1534,14 +1614,14 @@ void MainWindow::shotStatusAdded(RAMStageStatus *st,RAMShot *sh)
     ShotStatusWidget *shotStatusWidget = new ShotStatusWidget(dbi,sh,st,statusesList);
     connect(shotStatusWidget,SIGNAL(dialogShown(bool)),this,SLOT(setDisabled(bool)));
 
-    mainTable->setCellWidget(row,col,shotStatusWidget);
+    mainTable->setCellWidget(row,col,shotStatusWidget);*/
 
 }
 
 //Shot order
 void MainWindow::on_moveShotUpButton_clicked()
 {
-    //get shots
+   /* //get shots
     QList<int> ids;
     setWaiting();
     foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
@@ -1556,13 +1636,13 @@ void MainWindow::on_moveShotUpButton_clicked()
 
 
     if (ids.count() > 0) dbi->moveShotsUp(ids);
-    else setWaiting(false);
+    else setWaiting(false);*/
 
 }
 
 void MainWindow::on_moveShotDownButton_clicked()
 {
-    //get shots
+    /*//get shots
     QList<int> ids;
     setWaiting();
     foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
@@ -1576,14 +1656,14 @@ void MainWindow::on_moveShotDownButton_clicked()
     }
 
     if (ids.count() > 0) dbi->moveShotsDown(ids);
-    else setWaiting(false);
+    else setWaiting(false);*/
 }
 
 void MainWindow::shotsMoved(bool success,QString message)
 {
     setWaiting(false);
     if (!success) connected(false,message);
-    else getShots();
+    else updater->getShots(currentProject);
 }
 
 //ADMIN - ASSETS
@@ -1593,7 +1673,7 @@ void MainWindow::assetAdded(bool success,QString message)
 {
     setWaiting(false);
     //refresh shots list
-    getShots();
+    updater->getShots(currentProject);
 }
 
 //asset statuses
@@ -1612,12 +1692,11 @@ void MainWindow::assetAssigned(bool success,QString message)
 {
     setWaiting(false);
     //refresh shots list
-    getShots();
+    updater->getShots(currentProject);
 }
 
 void MainWindow::assetAssigned(RAMAsset *a,RAMShot *s)
-{
-
+{/*
     //update UI
     //find row
     int row = -1;
@@ -1636,7 +1715,7 @@ void MainWindow::assetAssigned(RAMAsset *a,RAMShot *s)
     int col = -1;
     for(int i = 0 ; i < stagesList.count() ; i++)
     {
-        if (a->getStage() == stagesList[i])
+        if (a->getStages()[0] == stagesList[i]) //TODO stages list
         {
             col = i;
             break;
@@ -1650,7 +1729,7 @@ void MainWindow::assetAssigned(RAMAsset *a,RAMShot *s)
     aw->addAsset(a);
 
     mainTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
-    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);*/
 }
 
 void MainWindow::loadAsset(RAMAsset *a)
