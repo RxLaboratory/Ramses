@@ -22,4 +22,7 @@
         <file>icons/info.png</file>
         <file alias="link">icons/link.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file alias="styles/default">needed/style.css</file>
+    </qresource>
 </RCC>

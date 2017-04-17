@@ -8,13 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
 
-    //resources
-#ifdef QT_DEBUG
-    resourcesFolder = "../../Ramses/Ramses/needed/";
-#else
-    resourcesFolder = "";
-#endif
-
     setupUi(this);
 
     desktop = qApp->desktop();
@@ -168,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::updateCSS()
 {
-    QFile cssFile(resourcesFolder + "style.css");
+    QFile cssFile(":/styles/default");
     cssFile.open(QFile::ReadOnly);
     QString css = QString(cssFile.readAll());
     cssFile.close();
