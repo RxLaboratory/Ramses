@@ -202,6 +202,7 @@ void MainWindow::login()
         connectionStatusLabel->setText("Please fill your password in.");
         return;
     }
+
     //hash password
     QString salt = "4JZFyVWhJLEM8nan";
     QString passToHash = salt + passwordEdit->text();
@@ -217,7 +218,8 @@ void MainWindow::login()
     setWaiting();
     this->repaint();
 
-    connection();
+    //test connexion
+    dbi->connection(username,passHash);
 }
 
 void MainWindow::logout()
@@ -315,12 +317,6 @@ void MainWindow::setWaiting(bool w)
 void MainWindow::stopWaiting()
 {
     setWaiting(false);
-}
-
-void MainWindow::connection()
-{
-    //test connexion
-    dbi->connection(username,passHash);
 }
 
 void MainWindow::showMessage(QString m, int i)

@@ -50,10 +50,19 @@ private:
      * Executed on construction only
      */
     void mapEvents();
+    /**
+     * @brief Updates the current stylesheet for the application
+     * (Just reloads it)
+     */
     void updateCSS();
-    void login(); // store log in infos (username and hashed password)
+    /**
+     * @brief Hashes the password and stores credentials in username and passHash
+     * Then initiates the connection to the DBI
+     * @param user  The username
+     * @param password  The password (clear text)
+     */
+    void login();
     void logout();
-    void connection(); //DBI connection (both local and remote)
     void showPage(int page = 0);
     void importEDL(QString f);
     void importXML(QString f);
