@@ -44,17 +44,22 @@ public:
     explicit MainWindow(QWidget *parent = 0);
 private:
 
-    //general methods
+    // ==================================================
+    //                       GENERAL
+    // ==================================================
+
     /**
      * @brief  Connects required signals and slots
      * Executed on construction only
      */
     void mapEvents();
+
     /**
      * @brief Updates the current stylesheet for the application
      * (Just reloads it)
      */
     void updateCSS();
+
     /**
      * @brief Hashes the password and stores credentials in username and passHash
      * Then initiates the connection to the DBI
@@ -62,18 +67,54 @@ private:
      * @param password  The password (clear text)
      */
     void login();
+
+    /**
+     * @brief Empties all lists
+     * Then displays the login page
+     */
     void logout();
+
+    /**
+     * @brief Changes the page displayed on the main widget
+     * Changes the page in the help window too
+     * 0- Login
+     * 1- Main
+     * 2- Stages
+     * 3- Statistics
+     * 4- Admin
+     * 5- Settings
+     * @param page  The index of the page to display
+     */
     void showPage(int page = 0);
+
+    /**
+     * @brief Sets/unsets the window in "waiting" mode
+     * Disables some widgets to prevent user interaction
+     * @param w true to enable waiting mode, false to disable
+     */
+    void setWaiting(bool w = true);
+
+    // IO
+    // TODO
     void importEDL(QString f);
     void importXML(QString f);
 
-    //admin - status
+    // ==================================================
+    //                      ADMIN
+    // ==================================================
+
+    // STATUSES
+
     void getStatuses();
     QList<RAMStatus*> statusesList;
-    //admin - stages
+
+    // STAGES
+
     void getStages();
     QList<RAMStage*> stagesList;
-    //admin - projects
+
+    // PROJECTS
+
     void getProjects();
     QList<RAMProject*> projectsList;
     //admin - shots
@@ -98,7 +139,7 @@ private:
     DBInterface *dbi;
     //updater
     Updater *updater;
-    void setWaiting(bool w = true);
+
     //resources
     QString resourcesFolder;
     //statusbar
@@ -117,23 +158,32 @@ private:
     bool helpDialogDocked;
     //desktop
     QDesktopWidget *desktop;
+
 signals:
     void assetsListUpdated(QList<RAMAsset *> a);
+
 public slots:
-    // IDLE
+    /**
+     * @brief Logs out when the application is idle
+     */
     void idle();
+
 private slots:
+
     // =======DEV AND DEBUG
     void on_updateCSSButton_clicked();
+
     // =======BUTTONS
-    //login
+
+    //login page
     void on_loginButton_clicked();
+    void on_serverSettingsButton_clicked();
     void on_usernameEdit_returnPressed();
     void on_passwordEdit_returnPressed();
+
     //selectors
     void selectorProjectChanged(int i);
     //settings
-    void on_serverSettingsButton_clicked();
     void on_serverAddressEdit_editingFinished();
     void on_sslCheckBox_clicked(bool checked);
     void on_updateFreqSpinBox_editingFinished();
@@ -141,6 +191,7 @@ private slots:
     //admin
     void on_adminWidget_currentChanged(int index);
     //admin - status
+    void on_addStatusButton_clicked();
     void on_statusColorButton_clicked();
     void statusAdded(bool success,QString message);
     void gotStatuses(bool success, QString message, QJsonValue statuses);
@@ -214,11 +265,33 @@ private slots:
     void maximizeButton_clicked();
     void on_settingsLogoutButton_clicked();
     void dockHelpDialog(bool dock);
+
     // =======DBI
+    /**
+     * @brief Called when the DBI is waiting for connexion
+     */
     void connecting();
+    /**
+     * @brief Called when the connexion is established or failed
+     * @param available True if the connexion is successful
+     * @param err   The error to be displayed if the connexion failed
+     */
     void connected(bool available, QString err);
-    void on_addStatusButton_clicked();
+
+    // ==================================================
+    //                      GENERAL
+    // ==================================================
+
+    /**
+     * @brief slot which calls setWaiting(false)
+     * Disables the waiting mode
+     */
     void stopWaiting();
+    /**
+     * @brief Shows a message in the status bar and help window
+     * @param m The message
+     * @param i Timeout for the status bar
+     */
     void showMessage(QString m, int i = 0);
 
 

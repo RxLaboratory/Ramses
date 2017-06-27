@@ -260,7 +260,6 @@ void MainWindow::logout()
     actionLogout->setText("Login");
     actionLogout->setChecked(false);
 
-
     //enable network settings
     serverSettingsWidget->show();
     settingsLogoutWidget->hide();
@@ -281,7 +280,6 @@ void MainWindow::logout()
     mainTable->setRowCount(0);
     mainTable->setColumnCount(0);
 
-    helpDialog->showHelp(0);
     showPage(0);
 }
 
@@ -395,8 +393,6 @@ void MainWindow::connected(bool available, QString err)
         //go to main page
         actionMain->setChecked(true);
         mainStack->setCurrentIndex(1); //show main page
-
-
     }
     else
     {
@@ -416,7 +412,8 @@ void MainWindow::connecting()
 
 // ========= BUTTONS ================
 
-//LOGIN
+//LOGIN PAGE
+
 void MainWindow::on_loginButton_clicked()
 {
     login();
