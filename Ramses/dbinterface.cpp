@@ -85,30 +85,26 @@ void DBInterface::dataReceived(QNetworkReply * rep)
     if (rep->error() == QNetworkReply::NoError)
     {
         QString repAll = rep->readAll();
+
         QJsonDocument repDoc = QJsonDocument::fromJson(repAll.toUtf8());
         QJsonObject repObj = repDoc.object();
+
+        if (repObj.isEmpty())
+        {
+            repObj.insert("message",repAll);
+            repObj.insert("accepted",false);
+        }
+
+        emit data(repObj);
+
         QString repType = repObj.value("type").toString();
-        bool repAccepted = repObj.value("accepted").toBool();
         QString repMessage = repObj.value("message").toString();
         bool repSuccess = repObj.value("success").toBool();
         QJsonValue content = repObj.value("content");
 
-        if (repMessage == "") repMessage = repAll;
-        emit message(repMessage);
-
-        if (!repAccepted)
-        {
-            if (repMessage == "") repMessage = "The server could not compute the request.";
-            emit connected(false,repMessage);
-            return;
-        }
-
-        //LOGIN
-        if (repType == "login") { emit connected(repSuccess,repMessage); return; }
 
         //STATUS
-        else if (repType == "addStatus") {  emit statusAdded(repSuccess,repMessage); return; }
-        else if (repType == "getStatuses") { emit gotStatuses(repSuccess,repMessage,content); return; }
+        if (repType == "getStatuses") { emit gotStatuses(repSuccess,repMessage,content); return; }
         else if (repType == "updateStatus") { emit statusUpdated(repSuccess,repMessage); return; }
         else if (repType == "removeStatus") { emit statusRemoved(repSuccess,repMessage); return; }
 
@@ -140,9 +136,6 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         else if (repType == "addAsset") {  emit assetAdded(repSuccess,repMessage); return; }
         else if (repType == "setAssetStatus") { emit assetStatusUpdated(repSuccess,repMessage); return; }
         else if (repType == "assignAsset") { emit assetAssigned(repSuccess,repMessage); return; }
-
-        if (repMessage != "") emit connected(false,repMessage);
-        emit connected(false,"Unknown error from server.");
     }
 
 }
@@ -291,7 +284,7 @@ void DBInterface::sslError(QNetworkReply *rep, QList<QSslError> errs)
 }
 
 //STATUS
-void DBInterface::addStatus(QString name,QString shortName,QString color,QString description)
+void DBInterface::addStatus(QString name,QString shortName,QString color,QString description,int id)
 {
     QString q = "?type=addStatus";
     QJsonObject obj;
@@ -299,10 +292,16 @@ void DBInterface::addStatus(QString name,QString shortName,QString color,QString
     obj.insert("shortName",shortName);
     obj.insert("color",color);
     obj.insert("description",description);
+    if (id >= 0) obj.insert("id",id);
     QJsonDocument json(obj);
 
     emit message("Submitting status");
     sendRequest(q,json);
+}
+
+void DBInterface::addStatus(RAMStatus *rs)
+{
+    addStatus(rs->getName(),rs->getShortName(),rs->getColor().name().replace("#",""),rs->getDescription(),rs->getId());
 }
 
 void DBInterface::getStatuses()

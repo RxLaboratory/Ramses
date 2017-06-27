@@ -171,6 +171,7 @@ public slots:
 private slots:
 
     // =======DEV AND DEBUG
+
     void on_updateCSSButton_clicked();
 
     // =======BUTTONS
@@ -191,9 +192,11 @@ private slots:
     //admin
     void on_adminWidget_currentChanged(int index);
     //admin - status
+    /**
+     * @brief Adds a new Status
+     */
     void on_addStatusButton_clicked();
     void on_statusColorButton_clicked();
-    void statusAdded(bool success,QString message);
     void gotStatuses(bool success, QString message, QJsonValue statuses);
     void on_statusAdminList_itemClicked(QListWidgetItem *i);
     void statusUpdated(bool success,QString message);
@@ -267,6 +270,7 @@ private slots:
     void dockHelpDialog(bool dock);
 
     // =======DBI
+
     /**
      * @brief Called when the DBI is waiting for connexion
      */
@@ -277,6 +281,12 @@ private slots:
      * @param err   The error to be displayed if the connexion failed
      */
     void connected(bool available, QString err);
+    /**
+     * @brief Called when data is received from the remote server of the DBI
+     * @param data  The Json data received
+     */
+    void dataReceived(QJsonObject data);
+
 
     // ==================================================
     //                      GENERAL

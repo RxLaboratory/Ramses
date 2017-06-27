@@ -169,6 +169,7 @@ void MainWindow::mapEvents()
     connect(dbi,SIGNAL(connected(bool, QString)),this,SLOT(connected(bool, QString)));
     connect(dbi,SIGNAL(connecting()),this,SLOT(connecting()));
     connect(dbi,SIGNAL(message(QString,int)),this,SLOT(showMessage(QString,int)));
+    connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
 
     //connect DBI status
     connect(dbi,SIGNAL(statusAdded(bool,QString)),this,SLOT(statusAdded(bool,QString)));
@@ -410,6 +411,47 @@ void MainWindow::connecting()
     connectionStatusLabel->setText("Connecting...");
 }
 
+void MainWindow::dataReceived(QJsonObject data)
+{
+    //extract data
+    QString message = data.value("message").toString();
+    QString type = data.value("type").toString();
+    bool accepted = data.value("accepted").toBool();
+    bool success = data.value("success").toBool();
+    QJsonValue content = data.value("content");
+
+    //show feedback
+    showMessage(message);
+
+    //if not accepted, set to offline
+    if (!accepted)
+    {
+        if (message == "") message = "The server could not compute the request.";
+        connected(false,message);
+        return;
+    }
+
+    //check type and compute
+
+    // LOGIN
+    if (type == "login")
+    {
+        connected(success,message);
+        return;
+    }
+
+    // STATUSES
+    else if (type == "addStatus")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+
+
+    // If the data was not handled, just display message
+    if (message != "") showMessage(message);
+}
+
 // ========= BUTTONS ================
 
 //LOGIN PAGE
@@ -491,6 +533,7 @@ void MainWindow::selectorProjectChanged(int i)
 }
 
 //SETTINGS
+
 void MainWindow::on_settingsLogoutButton_clicked()
 {
     logout();
@@ -533,6 +576,7 @@ void MainWindow::on_timeOutEdit_editingFinished()
 }
 
 //ADMIN GENERAL
+
 void MainWindow::on_adminWidget_currentChanged(int index)
 {
     statusesAdminReset();
@@ -542,6 +586,7 @@ void MainWindow::on_adminWidget_currentChanged(int index)
 }
 
 //ADMIN - STATUS
+
 void MainWindow::on_statusColorButton_clicked()
 {
     this->setEnabled(false);
@@ -562,16 +607,28 @@ void MainWindow::on_statusColorButton_clicked()
 void MainWindow::on_addStatusButton_clicked()
 {
     setWaiting();
-    statusesAdminReset();
-    dbi->addStatus();
-}
 
-void MainWindow::statusAdded(bool success,QString message)
-{
+    // Create a new Default Status
+    QString name = "New Status";
+    QString shortName = "New";
+    QColor color = "#6d6d6d";
+    QString description = "";
+    RAMStatus *rs = new RAMStatus(statusesList.count()+1,name,shortName,color,description);
+    statusesList << rs;
+
+    // Add the status to the DB
+    dbi->addStatus(rs);
+
+    // Create UI item
+    QListWidgetItem *item = new QListWidgetItem(shortName + " | " + name);
+    item->setBackgroundColor(color);
+    item->setToolTip(description);
+    statusAdminList->addItem(item);
+    // Select item
+    statusAdminList->setCurrentRow(statusAdminList->count()-1);
+    on_statusAdminList_itemClicked(statusAdminList->item(statusAdminList->count()-1));
+
     setWaiting(false);
-    if (!success) return;
-    //refresh status list
-    getStatuses();
 }
 
 //get all statuses
