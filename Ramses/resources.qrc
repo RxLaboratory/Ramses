@@ -24,5 +24,6 @@
     </qresource>
     <qresource prefix="/">
         <file alias="styles/default">needed/style.css</file>
+        <file alias="settings">needed/settings.s3db</file>
     </qresource>
 </RCC>

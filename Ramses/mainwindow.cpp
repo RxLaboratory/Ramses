@@ -87,7 +87,31 @@ MainWindow::MainWindow(QWidget *parent) :
 
     showMessage("Loading settings");
     settingsDB = QSqlDatabase::addDatabase("QSQLITE");
-    settingsDB.setDatabaseName(resourcesFolder + "settings.s3db");
+
+    //check if the file already exists, if not, extract it from resources
+    QString settingsPath = "";
+#ifdef Q_OS_MAC
+    settingsPath = QDir::homePath() + "/Ramses/settings.s3db";
+#else
+    settingsPath = "settings.s3db";
+#endif
+
+    QFile dbFile(settingsPath);
+
+    if (!dbFile.exists())
+    {
+        QFile dbResource(":/settings");
+        //on mac, we can not write inside the app, so create folder at home
+#ifdef Q_OS_MAC
+        QDir home = QDir::home();
+        home.mkdir("Ramses");
+#endif
+        //copy the default file from the resources
+        dbResource.copy(settingsPath);
+        QFile::setPermissions(settingsPath,QFileDevice::ReadUser | QFileDevice::WriteUser | QFileDevice::ReadGroup | QFileDevice::WriteGroup | QFileDevice::ReadOther | QFileDevice::WriteOther);
+    }
+
+    settingsDB.setDatabaseName(settingsPath);
     settingsDB.setHostName("localhost");
     if (settingsDB.open()) showMessage("Settings Opened");
     else showMessage("Settings could not be opened");
