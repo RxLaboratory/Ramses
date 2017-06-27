@@ -107,7 +107,7 @@ private:
     void newStatus(RAMStatus *rs);
     /**
      * @brief Called when the remote server has sent the list of statuses
-     * @param statuses The list
+     * @param statuses  The list
      */
     void gotStatuses(QJsonValue statuses);
     /**
@@ -127,9 +127,19 @@ private:
      */
     void newStage(RAMStage *rs);
     /**
+     * @brief Called when the remote server has sent the list of stages
+     * @param stages    The list
+     */
+    void gotStages(QJsonValue stages);
+    /**
      * @brief The current list of stages
      */
     QList<RAMStage*> stagesList;
+    /**
+     * @brief Resets the admin panel of the stages
+     */
+    void stagesAdminReset();
+
 
     // PROJECTS
 
@@ -223,11 +233,9 @@ private slots:
     void on_removeStatusButton_clicked();
     //admin - stages
     void on_addStageButton_clicked();
-    void gotStages(QJsonValue stages);
     void on_stagesAdminList_itemClicked(QListWidgetItem *item);
     void on_stageApplyButton_clicked();
     void on_removeStageButton_clicked();
-    void stagesAdminReset();
     //admin - projects
     void on_addProjectButton_clicked();
     void projectAdded(bool success,QString message);
