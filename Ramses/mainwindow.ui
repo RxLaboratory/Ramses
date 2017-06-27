@@ -76,7 +76,7 @@
     <item>
      <widget class="QStackedWidget" name="mainStack">
       <property name="currentIndex">
-       <number>5</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="loginPage">
        <layout class="QVBoxLayout" name="loginPageLayout">
@@ -173,7 +173,7 @@
               <string>Log in</string>
              </property>
              <property name="icon">
-              <iconset>
+              <iconset resource="resources.qrc">
                <normaloff>:/icons/icons/sign in 1.png</normaloff>:/icons/icons/sign in 1.png</iconset>
              </property>
             </widget>
@@ -230,7 +230,7 @@
               <string>Network Settings</string>
              </property>
              <property name="icon">
-              <iconset>
+              <iconset resource="resources.qrc">
                <normaloff>:/icons/icons/cogs 1.png</normaloff>:/icons/icons/cogs 1.png</iconset>
              </property>
             </widget>
@@ -330,7 +330,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap>:/icons/icons/cogs.png</pixmap>
+           <pixmap resource="resources.qrc">:/icons/icons/cogs.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -390,7 +390,7 @@ Under construction, sorry!</string>
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap>:/icons/icons/cogs.png</pixmap>
+           <pixmap resource="resources.qrc">:/icons/icons/cogs.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -455,7 +455,7 @@ Under construction, sorry!</string>
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>5</number>
+           <number>0</number>
           </property>
           <property name="usesScrollButtons">
            <bool>true</bool>
@@ -917,32 +917,11 @@ Under construction, sorry!</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="label_17">
-                 <property name="text">
-                  <string>Type</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
+               <item row="2" column="1">
                 <widget class="QPushButton" name="stageApplyButton">
                  <property name="text">
                   <string>Update</string>
                  </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QComboBox" name="stageTypeList">
-                 <item>
-                  <property name="text">
-                   <string>Shot production</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Asset Production</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
               </layout>
@@ -2100,7 +2079,7 @@ Under construction, sorry!</string>
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/table.png</normaloff>:/icons/icons/table.png</iconset>
    </property>
    <property name="text">
@@ -2115,7 +2094,7 @@ Under construction, sorry!</string>
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/tasks.png</normaloff>:/icons/icons/tasks.png</iconset>
    </property>
    <property name="text">
@@ -2130,7 +2109,7 @@ Under construction, sorry!</string>
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/bar_chart.png</normaloff>:/icons/icons/bar_chart.png</iconset>
    </property>
    <property name="text">
@@ -2145,7 +2124,7 @@ Under construction, sorry!</string>
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/pencil_square.png</normaloff>:/icons/icons/pencil_square.png</iconset>
    </property>
    <property name="text">
@@ -2157,7 +2136,7 @@ Under construction, sorry!</string>
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="resources.qrc">
      <normaloff>:/icons/login</normaloff>:/icons/login</iconset>
    </property>
    <property name="text">
@@ -2172,7 +2151,7 @@ Under construction, sorry!</string>
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/cogs.png</normaloff>:/icons/icons/cogs.png</iconset>
    </property>
    <property name="text">
@@ -2189,7 +2168,7 @@ Under construction, sorry!</string>
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/question.png</normaloff>:/icons/icons/question.png</iconset>
    </property>
    <property name="text">

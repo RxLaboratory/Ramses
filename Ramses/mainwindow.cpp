@@ -10,26 +10,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setupUi(this);
 
+    // Get the desktop (to manage windows locations)
     desktop = qApp->desktop();
 
-    //Help Dialog
+    // Help Dialog
     helpDialog = new HelpDialog();
     helpDialogDocked = true;
-    connect(helpDialog,SIGNAL(dock(bool)),this,SLOT(dockHelpDialog(bool)));
-    connect(helpDialog,SIGNAL(visibilityChanged(bool)),actionHelp,SLOT(setChecked(bool)));
 
+    // Feedback
     showMessage("Let's start!");
 
     freezeSelectors = true;
 
-
-    //test mode (auto login)
+#ifdef QT_DEBUG
+    // Test mode (auto login)
     usernameEdit->setText("Duduf");
     passwordEdit->setText("tp");
+#endif
 
-    //======== UI ============
+    //======== SETUP UI ============
 
-    //default stylesheet
+    //load stylesheet
     //QApplication::setStyle(QStyleFactory::create("Fusion"));
     updateCSS();
 
@@ -41,24 +42,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ProjectSelectorWidget *projectSelectorW = new ProjectSelectorWidget();
     mainToolBar->insertWidget(actionSettings,projectSelectorW);
     projectSelector = projectSelectorW->projectsBox();
-    //connect project selector project changed
-    connect(projectSelector,SIGNAL(currentIndexChanged(int)),this,SLOT(selectorProjectChanged(int)));
     stageSelector = projectSelectorW->stagesBox();
 
     //Add window buttons
     maximizeButton = new QPushButton(QIcon(":/icons/maximize"),"");
-    QPushButton *minimizeButton = new QPushButton(QIcon(":/icons/minimize"),"");
-    QPushButton *quitButton = new QPushButton(QIcon(":/icons/close"),"");
-    connect(maximizeButton,SIGNAL(clicked()),this,SLOT(maximizeButton_clicked()));
-    connect(minimizeButton,SIGNAL(clicked()),this,SLOT(showMinimized()));
-    connect(quitButton,SIGNAL(clicked()),qApp,SLOT(quit()));
+    minimizeButton = new QPushButton(QIcon(":/icons/minimize"),"");
+    quitButton = new QPushButton(QIcon(":/icons/close"),"");
     mainToolBar->addWidget(minimizeButton);
     mainToolBar->addWidget(maximizeButton);
     mainToolBar->addWidget(quitButton);
 
     //statusbar
     mainStatusStopButton = new QPushButton("X");
-    connect(mainStatusStopButton, SIGNAL(clicked()), this, SLOT(stopWaiting()));
 
     mainStatusProgress = new QProgressBar();
     mainStatusProgress->setTextVisible(false);
@@ -83,9 +78,70 @@ MainWindow::MainWindow(QWidget *parent) :
     serverWidget->hide();
 
     //========= INITIALIZE ==========
+
     //dbinterface
     showMessage("Starting DBI");
     dbi = new DBInterface(this);
+
+    //========= LOAD SETTINGS ========
+
+    showMessage("Loading settings");
+    settingsDB = QSqlDatabase::addDatabase("QSQLITE");
+    settingsDB.setDatabaseName(resourcesFolder + "settings.s3db");
+    settingsDB.setHostName("localhost");
+    if (settingsDB.open()) showMessage("Settings Opened");
+    else showMessage("Settings could not be opened");
+    //settings
+    QString q = "SELECT networkSettings.serverAddress, networkSettings.ssl, networkSettings.updateFrequency, networkSettings.timeout FROM networkSettings JOIN users ON users.id = networkSettings.userID WHERE users.username = 'Default';";
+    QSqlQuery networkSettingsQuery(q,settingsDB);
+    networkSettingsQuery.next();
+    serverAddressEdit->setText(networkSettingsQuery.value(0).toString());
+    sslCheckBox->setChecked(networkSettingsQuery.value(1).toBool());
+    updateFreqSpinBox->setValue(networkSettingsQuery.value(2).toInt());
+    timeOutEdit->setValue(networkSettingsQuery.value(3).toInt());
+    //dispatch settings
+    dbi->setServerAddress(networkSettingsQuery.value(0).toString());
+    dbi->setSsl(networkSettingsQuery.value(1).toBool());
+    dbi->setUpdateFreq(networkSettingsQuery.value(2).toInt());
+
+    //=========== UPDATER AND LISTS============
+    allShots = new QList<RAMShot*>();
+    updater = new Updater(dbi,allShots,this);
+
+    mainStack->setCurrentIndex(0);
+    loginButton->setFocus();
+
+    //detect inactivity
+    connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
+
+    //Connections
+    //mapEvents();
+
+    freezeSelectors = false;
+
+    showMessage("Ready!");
+}
+
+// ========= GENERAL METHODS ========
+
+void MainWindow::mapEvents()
+{
+    // helpDialog
+    connect(helpDialog,SIGNAL(dock(bool)),this,SLOT(dockHelpDialog(bool)));
+    connect(helpDialog,SIGNAL(visibilityChanged(bool)),actionHelp,SLOT(setChecked(bool)));
+
+    // project selector
+    connect(projectSelector,SIGNAL(currentIndexChanged(int)),this,SLOT(selectorProjectChanged(int)));
+
+    // window buttons
+    connect(maximizeButton,SIGNAL(clicked()),this,SLOT(maximizeButton_clicked()));
+    connect(minimizeButton,SIGNAL(clicked()),this,SLOT(showMinimized()));
+    connect(quitButton,SIGNAL(clicked()),qApp,SLOT(quit()));
+
+    // status bar
+    connect(mainStatusStopButton, SIGNAL(clicked()), this, SLOT(stopWaiting()));
+
+    // DBI GENERAL
     connect(dbi,SIGNAL(connected(bool, QString)),this,SLOT(connected(bool, QString)));
     connect(dbi,SIGNAL(connecting()),this,SLOT(connecting()));
     connect(dbi,SIGNAL(message(QString,int)),this,SLOT(showMessage(QString,int)));
@@ -120,44 +176,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(dbi,SIGNAL(assetAdded(bool,QString)),this,SLOT(assetAdded(bool,QString)));
     connect(dbi,SIGNAL(assetStatusUpdated(bool,QString)),this,SLOT(assetStatusUpdated(bool,QString)));
 
-    //========= LOAD SETTINGS ========
-    showMessage("Loading settings");
-    settingsDB = QSqlDatabase::addDatabase("QSQLITE");
-    settingsDB.setDatabaseName(resourcesFolder + "settings.s3db");
-    settingsDB.setHostName("localhost");
-    settingsDB.open();
-    showMessage("SettingsDB Opened");
-    //settings
-    QString q = "SELECT networkSettings.serverAddress, networkSettings.ssl, networkSettings.updateFrequency, networkSettings.timeout FROM networkSettings JOIN users ON users.id = networkSettings.userID WHERE users.username = 'Default';";
-    QSqlQuery networkSettingsQuery(q,settingsDB);
-    networkSettingsQuery.next();
-    serverAddressEdit->setText(networkSettingsQuery.value(0).toString());
-    sslCheckBox->setChecked(networkSettingsQuery.value(1).toBool());
-    updateFreqSpinBox->setValue(networkSettingsQuery.value(2).toInt());
-    timeOutEdit->setValue(networkSettingsQuery.value(3).toInt());
-    //dispatch settings
-    dbi->setServerAddress(networkSettingsQuery.value(0).toString());
-    dbi->setSsl(networkSettingsQuery.value(1).toBool());
-    dbi->setUpdateFreq(networkSettingsQuery.value(2).toInt());
-
-    //=========== UPDATER AND LISTS============
-    allShots = new QList<RAMShot*>();
-    updater = new Updater(dbi,allShots,this);
+    // Updater
     connect(updater,SIGNAL(newShot(RAMShot*)),this,SLOT(shotAdded(RAMShot*)));
-
-    mainStack->setCurrentIndex(0);
-    loginButton->setFocus();
-
-
-    //detect inactivity
-    connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
-
-    freezeSelectors = false;
-
-    showMessage("Ready!");
 }
-
-// ========= GENERAL METHODS ========
 
 void MainWindow::updateCSS()
 {
@@ -743,8 +764,6 @@ void MainWindow::on_stagesAdminList_itemClicked(QListWidgetItem *item)
 
      stageNameEdit->setText(s->getName());
      stageShortNameEdit->setText(s->getShortName()); 
-     if (s->getType() == "s") stageTypeList->setCurrentIndex(0);
-     else if (s->getType() == "a") stageTypeList->setCurrentIndex(1);
      stageConfigWidget->setEnabled(true);
 }
 
@@ -756,10 +775,7 @@ void MainWindow::on_stageApplyButton_clicked()
     setWaiting();
 
     int id = stagesList[currentRow]->getId();
-    QString t = "";
-    if (stageTypeList->currentIndex() == 0) t = "s";
-    else t = "a";
-    dbi->updateStage(id,stageNameEdit->text(),stageShortNameEdit->text(),t);
+    dbi->updateStage(id,stageNameEdit->text(),stageShortNameEdit->text());
     stagesAdminReset();
 }
 
@@ -795,7 +811,6 @@ void MainWindow::stagesAdminReset()
     stagesAdminList->setCurrentRow(-1);
     stageNameEdit->setText("");
     stageShortNameEdit->setText("");
-    stageTypeList->setCurrentIndex(0);
     stageConfigWidget->setEnabled(false);
 }
 

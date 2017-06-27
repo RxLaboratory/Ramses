@@ -31,7 +31,7 @@ public:
     //Stage
     void addStage(QString name = "New stage",QString shortName = "New",QString type = "s");
     void getStages();
-    void updateStage(int id, QString name, QString shortName, QString type);
+    void updateStage(int id, QString name, QString shortName);
     void removeStage(int id);
     //Project
     void addProject(QString name = "New project",QString shortName = "New");

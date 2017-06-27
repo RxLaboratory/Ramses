@@ -37,9 +37,19 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
     Q_OBJECT
 
 public:
+    /**
+     * @brief Constructor
+     * @param parent    Parent widget
+     */
     explicit MainWindow(QWidget *parent = 0);
 private:
+
     //general methods
+    /**
+     * @brief  Connects required signals and slots
+     * Executed on construction only
+     */
+    void mapEvents();
     void updateCSS();
     void login(); // store log in infos (username and hashed password)
     void logout();
@@ -47,6 +57,7 @@ private:
     void showPage(int page = 0);
     void importEDL(QString f);
     void importXML(QString f);
+
     //admin - status
     void getStatuses();
     QList<RAMStatus*> statusesList;
@@ -90,6 +101,8 @@ private:
     bool freezeSelectors;
     //window buttons
     QPushButton *maximizeButton;
+    QPushButton *minimizeButton;
+    QPushButton *quitButton;
     //help panel
     HelpDialog *helpDialog;
     bool helpDialogDocked;

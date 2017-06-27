@@ -359,14 +359,13 @@ void DBInterface::getStages()
     sendRequest(q);
 }
 
-void DBInterface::updateStage(int id, QString name, QString shortName, QString type)
+void DBInterface::updateStage(int id, QString name, QString shortName)
 {
     QString q = "?type=updateStage";
     QJsonObject obj;
     obj.insert("id",id);
     obj.insert("name",name);
     obj.insert("shortName",shortName);
-    obj.insert("type",type);
     QJsonDocument json(obj);
 
     emit message("Submitting stage");
