@@ -29,7 +29,7 @@ public:
     void updateStatus(int id, QString name, QString shortName, QString color, QString description);
     void removeStatus(int id);
     //Stage
-    void addStage(QString name = "New stage",QString shortName = "New",QString type = "s");
+    void addStage(QString name = "New stage", QString shortName = "New", int id = -1);
     void getStages();
     void updateStage(int id, QString name, QString shortName);
     void removeStage(int id);

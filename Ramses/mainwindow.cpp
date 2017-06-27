@@ -171,11 +171,6 @@ void MainWindow::mapEvents()
     connect(dbi,SIGNAL(message(QString,int)),this,SLOT(showMessage(QString,int)));
     connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
 
-    //connect DBI stages
-    connect(dbi,SIGNAL(stageAdded(bool,QString)),this,SLOT(stageAdded(bool,QString)));
-    connect(dbi,SIGNAL(gotStages(bool,QString,QJsonValue)),this,SLOT(gotStages(bool,QString,QJsonValue)));
-    connect(dbi,SIGNAL(stageUpdated(bool,QString)),this,SLOT(stageUpdated(bool,QString)));
-    connect(dbi,SIGNAL(stageRemoved(bool,QString)),this,SLOT(stageRemoved(bool,QString)));
     //connect DBI projects
     connect(dbi,SIGNAL(projectAdded(bool,QString)),this,SLOT(projectAdded(bool,QString)));
     connect(dbi,SIGNAL(gotProjects(bool,QString,QJsonValue)),this,SLOT(gotProjects(bool,QString,QJsonValue)));
@@ -266,6 +261,7 @@ void MainWindow::logout()
     statusAdminList->clear();
     qDeleteAll(stagesList);
     stagesList.clear();
+    stagesAdminList->clear();
     qDeleteAll(projectsList);
     projectsList.clear();
     qDeleteAll(assetsList);
@@ -384,7 +380,7 @@ void MainWindow::connected(bool available, QString err)
 
         //load everything
         dbi->getStatuses();
-        getStages();
+        dbi->getStages();
         getProjects();
 
         //go to main page
@@ -454,6 +450,29 @@ void MainWindow::dataReceived(QJsonObject data)
         return;
     }
     else if (type == "removeStatus")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+
+    // STAGES
+    else if (type == "addStage")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "getStages")
+    {
+        if (success) gotStages(content);
+        else showMessage("Warning: Stages list was not correctly updated from remote server.");
+        return;
+    }
+    else if (type == "updateStage")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "removeStage")
     {
         if (!success) connected(false,message);
         return;
@@ -598,7 +617,6 @@ void MainWindow::on_adminWidget_currentChanged(int index)
 
 //ADMIN - STATUS
 
-//add / get
 void MainWindow::on_addStatusButton_clicked()
 {
     // Create a new Default Status
@@ -695,7 +713,6 @@ void MainWindow::gotStatuses(QJsonValue statuses)
     setWaiting(false);
 }
 
-//edit / update
 void MainWindow::on_statusColorButton_clicked()
 {
     this->setEnabled(false);
@@ -757,7 +774,6 @@ void MainWindow::on_statusApplyButton_clicked()
     item->setToolTip(description);
 }
 
-//remove
 void MainWindow::on_removeStatusButton_clicked()
 {
     int currentRow = statusAdminList->currentRow();
@@ -790,72 +806,87 @@ void MainWindow::statusesAdminReset()
 
 //ADMIN - STAGES
 
-//add a new default stage
 void MainWindow::on_addStageButton_clicked()
 {
-    setWaiting();
-    stagesAdminReset();
-    dbi->addStage();
+    // Create a new default stage
+    QString name = "New Stage";
+    QString shortName = "New";
+
+    RAMStage *rs = new RAMStage(dbi,name,shortName,stagesList.count()+1,true);
+    newStage(rs);
+
+    //select item
+    stagesAdminList->setCurrentRow(stagesAdminList->count()-1);
+    on_stagesAdminList_itemClicked(stagesAdminList->item(stagesAdminList->count()-1));
 }
 
-void MainWindow::stageAdded(bool success,QString message)
+void MainWindow::newStage(RAMStage *rs)
 {
-    setWaiting(false);
-    if (!success) return;
-    //refresh stages list
-    getStages();
+    stagesList << rs;
+    // Create UI item
+    QListWidgetItem *item = new QListWidgetItem(rs->getShortName() + " | " + rs->getName());
+    stagesAdminList->addItem(item);
 }
 
-//get all stages
-void MainWindow::getStages()
+void MainWindow::gotStages(QJsonValue stages)
 {
-    setWaiting();
-    stagesAdminReset();
-    dbi->getStages();
-}
-
-void MainWindow::gotStages(bool success,QString message,QJsonValue stages)
-{
-    setWaiting(false);
-    if (!success) return;
-
-    //clear UI and stored list
-    stagesAdminList->clear();
-    qDeleteAll(stagesList);
-    stagesList.clear();
+    setWaiting(true);
 
     QJsonArray stagesArray = stages.toArray();
-    int newRow = -1;
-    foreach (QJsonValue sta, stagesArray)
+
+    // update statuses in the current list
+    for (int rsI = 0 ; rsI < stagesList.count() ; rsI++)
     {
-        //get values
-        QJsonObject stage = sta.toObject();
+        RAMStage *rs = stagesList[rsI];
+
+        //search for stage in new list
+        bool updated = false;
+        for(int i = 0 ; i < stagesArray.count();i++)
+        {
+            //new status
+            QJsonObject stage = stagesArray[i].toObject();
+            QString name = stage.value("name").toString();
+            QString shortName = stage.value("shortName").toString();
+            int id = stage.value("id").toInt();
+
+            if (rs->getId() == id)
+            {
+                //update
+                rs->setName(name);
+                rs->setShortName(shortName);
+                QListWidgetItem *item = stagesAdminList->item(rsI);
+                item->setText(shortName + " | " + name);
+                //remove from the new list
+                stagesArray.removeAt(i);
+                i--;
+            }
+        }
+        // if the stage is not in the new list, remove it
+        if (!updated)
+        {
+            stagesList.removeAt(rsI);
+            QListWidgetItem *item = stagesAdminList->takeItem(rsI);
+            delete item;
+            rsI--;
+        }
+    }
+
+    //add the remaining new stages
+    for (int i = 0 ; i < stagesArray.count() ; i++)
+    {
+        //new stage
+        QJsonObject stage = stagesArray[i].toObject();
         QString name = stage.value("name").toString();
         QString shortName = stage.value("shortName").toString();
-        QString type = stage.value("type").toString();
         int id = stage.value("id").toInt();
-        //create UI item
-        QListWidgetItem *item = new QListWidgetItem(shortName + " | " + name);
-        if (type == "s") item->setToolTip("Shots");
-        else if (type == "a") item->setToolTip("Assets");
 
-        stagesAdminList->addItem(item);
-        if (shortName == "New" && name == "New stage")
-        {
-            newRow = stagesAdminList->count()-1;
-        }
-        //add status to stored list
-        RAMStage *rs = new RAMStage(id,name,shortName,type);
-        stagesList << rs;
+        //add to UI
+        RAMStage *rs = new RAMStage(dbi,name,shortName,id,false);
+        newStage(rs);
     }
-    if (newRow > -1)
-    {
-        stagesAdminList->setCurrentRow(newRow);
-        on_stagesAdminList_itemClicked(stagesAdminList->item(newRow));
-    }
+    setWaiting(false);
 }
 
-//edit stage
 void MainWindow::on_stagesAdminList_itemClicked(QListWidgetItem *item)
 {
     int currentRow = stagesAdminList->currentRow();
@@ -872,38 +903,31 @@ void MainWindow::on_stageApplyButton_clicked()
     int currentRow = stagesAdminList->currentRow();
     if (currentRow < 0) return;
 
-    setWaiting();
+    RAMStage *s = stagesList[currentRow];
 
-    int id = stagesList[currentRow]->getId();
-    dbi->updateStage(id,stageNameEdit->text(),stageShortNameEdit->text());
-    stagesAdminReset();
+    QString name = stageNameEdit->text();
+    QString shortName = stageShortNameEdit->text();
+
+    s->setName(name);
+    s->setShortName(shortName);
+    s->update();
+
+    //update UI
+    QListWidgetItem *item = stagesAdminList->item(currentRow);
+    item->setText(shortName + " | " + name);
 }
 
-void MainWindow::stageUpdated(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getStages();
-}
-
-//remove stage
 void MainWindow::on_removeStageButton_clicked()
 {
     int currentRow = stagesAdminList->currentRow();
     if (currentRow < 0) return;
 
-    setWaiting();
+    stagesList[currentRow]->remove();
+    stagesList.removeAt(currentRow);
+    QListWidgetItem *item = stagesAdminList->takeItem(currentRow);
+    delete item;
 
-    int id = stagesList[currentRow]->getId();
-    dbi->removeStage(id);
     stagesAdminReset();
-}
-
-void MainWindow::stageRemoved(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getStages();
 }
 
 void MainWindow::stagesAdminReset()

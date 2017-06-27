@@ -17,13 +17,22 @@
 		{
 			$name = $data->{'name'};
 			$shortName = $data->{'shortName'};
+			$id = $data->{'id'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($type) == 1)
+		if (strlen($name) > 0 AND strlen($shortName) > 0)
 		{
+			if (strlen($id) > 0)
+			{
+				$qString = "INSERT INTO stages (name,shortName,id) VALUES ('" . $name . "','" . $shortName . "'," . $id . ");";
+			}
+			else
+			{
+				$qString = "INSERT INTO stages (name,shortName) VALUES ('" . $name . "','" . $shortName . "');";
+			}
 			try
 			{
-				$rep = $bdd->query("INSERT INTO stages (name,shortName) VALUES ('" . $name . "','" . $shortName . "');");
+				$rep = $bdd->query($qString);
 				$rep->closeCursor();
 
 				$reply["message"] = "Stage " . $shortName . " added.";
@@ -89,7 +98,7 @@
 			$id = $data->{'id'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($type) == 1 AND strlen($id) > 0)
+		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($id) > 0)
 		{
 			try
 			{

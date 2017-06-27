@@ -1,11 +1,15 @@
 #include "ramstage.h"
 
-RAMStage::RAMStage(int i,QString n,QString sN, QString t, QObject *parent) : QObject(parent)
+RAMStage::RAMStage(DBInterface *db, QString n, QString sN, int i, bool updateDb, QObject *parent) : QObject(parent)
 {
     stageId = i;
     stageName = n;
     stageShortName = sN;
-    stageType = t;
+    dbi = db;
+    if (updateDb)
+    {
+        dbi->addStage(stageName,stageShortName,stageId);
+    }
 }
 
 int RAMStage::getId()
@@ -23,9 +27,32 @@ QString RAMStage::getShortName()
     return stageShortName;
 }
 
-QString RAMStage::getType()
+void RAMStage::setId(int id, bool updateDb)
 {
-    return stageType;
+    stageId = id;
+    if (updateDb) update();
+}
+
+void RAMStage::setName(QString name, bool updateDb)
+{
+    stageName = name;
+    if (updateDb) update();
+}
+
+void RAMStage::setShortName(QString shortName, bool updateDb)
+{
+    stageShortName = shortName;
+    if (updateDb) update();
+}
+
+void RAMStage::update()
+{
+    dbi->updateStage(stageId,stageName,stageShortName);
+}
+
+void RAMStage::remove()
+{
+    dbi->removeStage(stageId);
 }
 
 bool RAMStage::operator==(RAMStage s)

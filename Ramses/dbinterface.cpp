@@ -102,14 +102,8 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         bool repSuccess = repObj.value("success").toBool();
         QJsonValue content = repObj.value("content");
 
-        //STAGE
-        if (repType == "addStage") {  emit stageAdded(repSuccess,repMessage); return; }
-        else if (repType == "getStages") { emit gotStages(repSuccess,repMessage,content); return; }
-        else if (repType == "updateStage") { emit stageUpdated(repSuccess,repMessage); return; }
-        else if (repType == "removeStage") { emit stageRemoved(repSuccess,repMessage); return; }
-
         //PROJECT
-        else if (repType == "addProject") {  emit projectAdded(repSuccess,repMessage); return; }
+        if (repType == "addProject") {  emit projectAdded(repSuccess,repMessage); return; }
         else if (repType == "getProjects") { emit gotProjects(repSuccess,repMessage,content); return; }
         else if (repType == "updateProject") { emit projectUpdated(repSuccess,repMessage); return; }
         else if (repType == "removeProject") { emit projectRemoved(repSuccess,repMessage); return; }
@@ -327,13 +321,13 @@ void DBInterface::removeStatus(int id)
 }
 
 //STAGES
-void DBInterface::addStage(QString name,QString shortName,QString type)
+void DBInterface::addStage(QString name, QString shortName, int id)
 {
     QString q = "?type=addStage";
     QJsonObject obj;
     obj.insert("name",name);
     obj.insert("shortName",shortName);
-    obj.insert("type",type);
+    if (id >= 0) obj.insert("id",id);
     QJsonDocument json(obj);
 
     emit message("Submitting stage");

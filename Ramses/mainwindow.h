@@ -94,22 +94,22 @@ private:
      */
     void setWaiting(bool w = true);
 
-    // IO
-    // TODO
-    void importEDL(QString f);
-    void importXML(QString f);
-
     // ==================================================
     //                      ADMIN
     // ==================================================
 
-    // STATUSES
+    // ----------------- STATUSES -----------------------
 
     /**
      * @brief Creates a new status and adds it to the list
      * @param rs    the status
      */
     void newStatus(RAMStatus *rs);
+    /**
+     * @brief Called when the remote server has sent the list of statuses
+     * @param statuses The list
+     */
+    void gotStatuses(QJsonValue statuses);
     /**
      * @brief the current list of statuses
      */
@@ -119,9 +119,16 @@ private:
      */
     void statusesAdminReset();
 
-    // STAGES
+    // ----------------- STAGES -----------------------
 
-    void getStages();
+    /**
+     * @brief Creates a new stage and adds it to the list
+     * @param rs the stage
+     */
+    void newStage(RAMStage *rs);
+    /**
+     * @brief The current list of stages
+     */
     QList<RAMStage*> stagesList;
 
     // PROJECTS
@@ -170,6 +177,12 @@ private:
     //desktop
     QDesktopWidget *desktop;
 
+    // IO
+    // TODO
+    void importEDL(QString f);
+    void importXML(QString f);
+
+
 signals:
     void assetsListUpdated(QList<RAMAsset *> a);
 
@@ -204,24 +217,16 @@ private slots:
     void on_adminWidget_currentChanged(int index);
     //admin - status
     void on_addStatusButton_clicked();
-    /**
-     * @brief Called when the remote server has sent the list of statuses
-     * @param statuses The list
-     */
-    void gotStatuses(QJsonValue statuses);
     void on_statusAdminList_itemClicked(QListWidgetItem *i);
     void on_statusColorButton_clicked();
     void on_statusApplyButton_clicked();
     void on_removeStatusButton_clicked();
     //admin - stages
     void on_addStageButton_clicked();
-    void stageAdded(bool success,QString message);
-    void gotStages(bool success, QString message, QJsonValue statuses);
+    void gotStages(QJsonValue stages);
     void on_stagesAdminList_itemClicked(QListWidgetItem *item);
-    void stageUpdated(bool success,QString message);
     void on_stageApplyButton_clicked();
     void on_removeStageButton_clicked();
-    void stageRemoved(bool,QString);
     void stagesAdminReset();
     //admin - projects
     void on_addProjectButton_clicked();

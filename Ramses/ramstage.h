@@ -2,16 +2,21 @@
 #define RAMSTAGE_H
 
 #include <QObject>
+#include "dbinterface.h"
 
 class RAMStage : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMStage(int i, QString n, QString sN, QString t, QObject *parent = 0);
+    explicit RAMStage(DBInterface *db, QString n, QString sN, int i, bool updateDb, QObject *parent = 0);
     int getId();
     QString getName();
     QString getShortName();
-    QString getType();
+    void setId(int id, bool updateDb = false);
+    void setName(QString name, bool updateDb = false);
+    void setShortName(QString shortName, bool updateDb = false);
+    void update();
+    void remove();
 
 signals:
 
@@ -21,7 +26,7 @@ private:
     int stageId;
     QString stageName;
     QString stageShortName;
-    QString stageType;
+    DBInterface *dbi;
 protected:
     bool operator==(RAMStage s);
     bool operator==(RAMStage *s);
