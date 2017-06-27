@@ -141,10 +141,18 @@ private:
     void stagesAdminReset();
 
 
-    // PROJECTS
+    // ----------------- PROJECTS -----------------------
 
-    void getProjects();
+    /**
+     * @brief Creates a new project and adds it to the list
+     * @param rp the stage
+     */
+    void newProject(RAMProject *rp);
+    void gotProjects(QJsonValue projects);
     QList<RAMProject*> projectsList;
+    RAMProject* getProject(int id);
+    void projectsAdminReset();
+
     //admin - shots
     //void getShots();
     //QList<RAMShot*> shotsList;
@@ -238,18 +246,11 @@ private slots:
     void on_removeStageButton_clicked();
     //admin - projects
     void on_addProjectButton_clicked();
-    void projectAdded(bool success,QString message);
-    void gotProjects(bool success, QString message, QJsonValue projects);
     void on_projectAdminList_itemClicked(QListWidgetItem *item);
-    void projectUpdated(bool success,QString message);
     void on_projectApplyButton_clicked();
     void on_removeProjectButton_clicked();
-    void projectRemoved(bool,QString);
     void on_projectAddStageButton_clicked();
-    void projectStageAdded(bool success,QString message);
     void on_removeStageProjectButton_clicked();
-    void projectStageRemoved(bool success,QString message);
-    void projectsAdminReset();
     //admin - shots
     void on_addShotButton_clicked();
     void on_batchAddShotButton_clicked();

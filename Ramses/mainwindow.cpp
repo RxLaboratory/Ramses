@@ -381,7 +381,7 @@ void MainWindow::connected(bool available, QString err)
         //load everything
         dbi->getStatuses();
         dbi->getStages();
-        getProjects();
+        dbi->getProjects();
 
         //go to main page
         actionMain->setChecked(true);
@@ -478,6 +478,39 @@ void MainWindow::dataReceived(QJsonObject data)
         return;
     }
 
+    // PROJECTS
+    else if (type == "addProject")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "getProjects")
+    {
+        if (success) gotProjects(content);
+        else showMessage("Warning: Projects list was not correctly updated from remote server.");
+        return;
+    }
+    else if (type == "updateProject")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "removeProject")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "addProjectStage")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "removeProjectStage")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+
     // If the data was not handled, just display message
     if (message != "") showMessage(message);
 }
@@ -521,7 +554,7 @@ void MainWindow::selectorProjectChanged(int i)
     stageSelector->clear();
     mainTable->clear();
 
-    if (i<0) return;
+    /*if (i<0) return;
 
     foreach(RAMProject *p,projectsList)
     {
@@ -558,7 +591,7 @@ void MainWindow::selectorProjectChanged(int i)
 #endif
 
     //load shots
-    updater->getShots(currentProject);
+    updater->getShots(currentProject);*/
 
 }
 
@@ -940,49 +973,116 @@ void MainWindow::stagesAdminReset()
 
 //ADMIN - PROJECTS
 
-//add a new default project
 void MainWindow::on_addProjectButton_clicked()
 {
-    setWaiting();
-    projectsAdminReset();
-    dbi->addProject();
+    // Create a new default project
+    QString name = "New Project";
+    QString shortName = "New";
+
+    // Find the biggest id
+    int id = 1;
+    foreach(RAMProject *rp,projectsList)
+    {
+        if (rp->getId() > id) id = rp->getId()+1;
+    }
+
+    RAMProject *rp = new RAMProject(dbi,id,name,shortName,true);
+    newProject(rp);
+
+    //select item
+    projectAdminList->setCurrentRow(projectAdminList->count()-1);
+    on_projectAdminList_itemClicked(projectAdminList->item(projectAdminList->count()-1));
 }
 
-void MainWindow::projectAdded(bool success,QString message)
+void MainWindow::newProject(RAMProject *rp)
 {
-    setWaiting(false);
-    if (!success) return;
-    //refresh projects list
-    getProjects();
+    projectsList << rp;
+    // Create UI item
+    QListWidgetItem *item = new QListWidgetItem(rp->getShortName() + " | " + rp->getName());
+    item->setData(Qt::UserRole,rp->getId());
+    projectAdminList->addItem(item);
+    // Add to selector
+    projectSelector->addItem(rp->getShortName(),rp->getId());
 }
 
-//get all projects
-void MainWindow::getProjects()
+RAMProject* MainWindow::getProject(int id)
 {
-    setWaiting();
-    //get previous selection
-    projectsAdminReset();
-    //restore selection
-    dbi->getProjects();
+    foreach(RAMProject *rp,projectsList)
+    {
+        if (rp->getId() == id) return rp;
+    }
 }
 
-void MainWindow::gotProjects(bool success,QString message,QJsonValue projects)
+void MainWindow::gotProjects(QJsonValue projects)
 {
-    setWaiting(false);
-    if (!success) return;
+    setWaiting(true);
+
+    QJsonArray projectsArray = projects.toArray();
 
     freezeSelectors = true;
 
-    //clear UI and stored list
-    projectAdminList->clear();
-    qDeleteAll(projectsList);
-    projectsList.clear();
-    projectSelector->clear();
-    stageSelector->clear();
+    // update projects in the current list
+    for (int rpI = 0 ; rpI < projectsList.count() ; rpI++)
+    {
+        RAMProject *rp = projectsList[rpI];
 
-    QJsonArray projectsArray = projects.toArray();
-    int newRow = -1;
-    foreach (QJsonValue pro, projectsArray)
+        //search for project in new list
+        bool updated = false;
+        for(int i = 0 ; i < projectsArray.count();i++)
+        {
+            //new project
+            QJsonObject project = projectsArray[i].toObject();
+            QString name = project.value("name").toString();
+            QString shortName = project.value("shortName").toString();
+            int id = project.value("id").toInt();
+
+            if (rp->getId() == id)
+            {
+                //update project
+                rp->setName(name);
+                rp->setShortName(shortName);
+                QListWidgetItem *item = projectAdminList->item(rpI);
+                item->setText(shortName + " | " + name);
+
+                //update stages list
+
+                //update shots list
+
+                //remove from the new list
+                projectsArray.removeAt(i);
+                i--;
+            }
+        }
+        // if the project is not in the new list, remove it
+        if (!updated)
+        {
+            projectsList.removeAt(rpI);
+            QListWidgetItem *item = projectAdminList->takeItem(rpI);
+            delete item;
+            rpI--;
+        }
+    }
+
+    //add the remaining new projects
+    for (int i = 0 ; i < projectsArray.count() ; i++)
+    {
+        //new project
+        QJsonObject project = projectsArray[i].toObject();
+        QString name = project.value("name").toString();
+        QString shortName = project.value("shortName").toString();
+        int id = project.value("id").toInt();
+
+        //add stages list
+
+        //add shots list
+
+        //add to UI
+        RAMProject *rp = new RAMProject(dbi,id,name,shortName,false);
+        newProject(rp);
+    }
+
+
+    /*foreach (QJsonValue pro, projectsArray)
     {
         //get values
         QJsonObject project = pro.toObject();
@@ -1021,23 +1121,16 @@ void MainWindow::gotProjects(bool success,QString message,QJsonValue projects)
 
         //add to main project list
         projectSelector->addItem(rp->getShortName(),rp->getId());
-    }
-    if (newRow > -1)
-    {
-        projectAdminList->setCurrentRow(newRow);
-        on_projectAdminList_itemClicked(projectAdminList->item(newRow));
-    }
+    }*/
+
 
     freezeSelectors = false;
 
-#ifdef QT_DEBUG
-    qDebug() << "test ";
-#endif
-
     if (projectSelector->count() > 0) selectorProjectChanged(0);
+
+    setWaiting(false);
 }
 
-//edit project
 void MainWindow::on_projectAdminList_itemClicked(QListWidgetItem *item)
 {
     int currentRow = projectAdminList->currentRow();
@@ -1047,7 +1140,7 @@ void MainWindow::on_projectAdminList_itemClicked(QListWidgetItem *item)
      projectNameEdit->setText(p->getName());
      projectShortNameEdit->setText(p->getShortName());
 
-     //populate stages combo box and list
+     /*//populate stages combo box and list
      projectStagesList->clear();
      projectStagesComboBox->clear();
      QList<RAMStage*> pStages = p->getStages();
@@ -1072,7 +1165,7 @@ void MainWindow::on_projectAdminList_itemClicked(QListWidgetItem *item)
          {
             projectStagesComboBox->addItem(s->getShortName(),s->getId());
          }
-     }
+     }*/
 
      projectConfigWidget->setEnabled(true);
 }
@@ -1082,57 +1175,48 @@ void MainWindow::on_projectApplyButton_clicked()
     int currentRow = projectAdminList->currentRow();
     if (currentRow < 0) return;
 
-    setWaiting();
+    RAMProject *rp = getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt());
 
-    int id = projectsList[currentRow]->getId();
+    QString name = projectNameEdit->text();
+    QString shortName = projectShortNameEdit->text();
 
-    dbi->updateProject(id,projectNameEdit->text(),projectShortNameEdit->text());
+    rp->setName(name);
+    rp->setShortName(shortName);
+    rp->update();
+
+    //update UI
+    QListWidgetItem *item = projectAdminList->item(currentRow);
+    item->setText(shortName + " | " + name);
+    projectSelector->setItemText(currentRow,shortName);
 }
 
-void MainWindow::projectUpdated(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getProjects();
-}
-
-//remove project
 void MainWindow::on_removeProjectButton_clicked()
 {
     int currentRow = projectAdminList->currentRow();
     if (currentRow < 0) return;
 
-    setWaiting();
+    RAMProject *rp = getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt());
 
-    int id = projectsList[currentRow]->getId();
-    dbi->removeProject(id);
-}
+    rp->remove();
+    projectsList.removeAll(rp);
+    QListWidgetItem *item = projectAdminList->takeItem(currentRow);
+    delete item;
+    projectSelector->removeItem(currentRow);
 
-void MainWindow::projectRemoved(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getProjects();
+    projectsAdminReset();
 }
 
 //project stages
 void MainWindow::on_projectAddStageButton_clicked()
 {
-    int sId = projectStagesComboBox->currentData().toInt();
+   /* int sId = projectStagesComboBox->currentData().toInt();
     int pId = projectsList[projectAdminList->currentRow()]->getId();
-    dbi->addProjectStage(pId,sId);
-}
-
-void MainWindow::projectStageAdded(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getProjects();
+    dbi->addProjectStage(pId,sId);*/
 }
 
 void MainWindow::on_removeStageProjectButton_clicked()
 {
-    //get stage ID
+    /*//get stage ID
     int sId = -1;
     if (projectStagesList->currentRow() < 0) return;
     foreach(RAMStage *s,stagesList)
@@ -1145,14 +1229,7 @@ void MainWindow::on_removeStageProjectButton_clicked()
     }
 
     int pId = projectsList[projectAdminList->currentRow()]->getId();
-    dbi->removeProjectStage(pId,sId);
-}
-
-void MainWindow::projectStageRemoved(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getProjects();
+    dbi->removeProjectStage(pId,sId);*/
 }
 
 void MainWindow::projectsAdminReset()

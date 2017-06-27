@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QList>
+#include "dbinterface.h"
 #include "ramstage.h"
 #include "ramshot.h"
 
@@ -10,16 +11,25 @@ class RAMProject : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMProject(int i, QString n, QString sN,QObject *parent = 0);
+    explicit RAMProject(DBInterface *db,int i, QString n, QString sN, bool updateDb, QObject *parent = 0);
+    //get
     int getId();
     QString getName();
     QString getShortName();
     QList<RAMStage *> getStages();
     QList<RAMShot *> getShots();
+    //set
+    void setName(QString name, bool updateDb = false);
+    void setShortName(QString shortName, bool updateDb = false);
+    void update();
+    //stages
     void addStage(RAMStage *s);
     void removeStage(RAMStage *s);
+    //shots
     void addShot(RAMShot *s);
     void removeShot(RAMShot *s);
+    //remove
+    void remove();
 
 signals:
 
@@ -31,6 +41,11 @@ private:
     QString projectShortName;
     QList<RAMStage *> projectStages;
     QList<RAMShot *> projectShots;
+    DBInterface *dbi;
+
+protected:
+    bool operator==(RAMProject s);
+    bool operator==(RAMProject *s);
 };
 
 #endif // RAMSTATUS_H

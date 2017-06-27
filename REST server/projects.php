@@ -25,11 +25,11 @@
 		{
 			if (strlen($id) > 0)
 			{
-				$qString = "INSERT INTO projects (name,shortName,id) VALUES ('" . $name . "','" . $shortName . "'," . $id . ");"
+				$qString = "INSERT INTO projects (name,shortName,id) VALUES ('" . $name . "','" . $shortName . "'," . $id . ");";
 			}
 			else
 			{
-				$qString = "INSERT INTO projects (name,shortName) VALUES ('" . $name . "','" . $shortName . "');"
+				$qString = "INSERT INTO projects (name,shortName) VALUES ('" . $name . "','" . $shortName . "');";
 			}
 			try
 			{

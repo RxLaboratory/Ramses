@@ -102,16 +102,8 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         bool repSuccess = repObj.value("success").toBool();
         QJsonValue content = repObj.value("content");
 
-        //PROJECT
-        if (repType == "addProject") {  emit projectAdded(repSuccess,repMessage); return; }
-        else if (repType == "getProjects") { emit gotProjects(repSuccess,repMessage,content); return; }
-        else if (repType == "updateProject") { emit projectUpdated(repSuccess,repMessage); return; }
-        else if (repType == "removeProject") { emit projectRemoved(repSuccess,repMessage); return; }
-        else if (repType == "addProjectStage") { emit projectStageAdded(repSuccess,repMessage); return; }
-        else if (repType == "removeProjectStage") { emit projectStageRemoved(repSuccess,repMessage); return; }
-
         //SHOT
-        else if (repType == "addShots") {  emit shotAdded(repSuccess,repMessage); return; }
+        if (repType == "addShots") {  emit shotAdded(repSuccess,repMessage); return; }
         else if (repType == "getShots") { emit gotShots(repSuccess,repMessage,content); return; }
         else if (repType == "updateShot") { emit shotUpdated(repSuccess,repMessage); return; }
         else if (repType == "setStageStatus") { emit stageStatusUpdated(repSuccess,repMessage); return; }

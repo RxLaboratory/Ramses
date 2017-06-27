@@ -68,11 +68,6 @@
           <height>0</height>
          </size>
         </property>
-        <item>
-         <property name="text">
-          <string>Project</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item>
@@ -83,11 +78,6 @@
           <height>0</height>
          </size>
         </property>
-        <item>
-         <property name="text">
-          <string>Stage</string>
-         </property>
-        </item>
        </widget>
       </item>
      </layout>
