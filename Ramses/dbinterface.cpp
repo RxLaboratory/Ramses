@@ -366,12 +366,13 @@ void DBInterface::removeStage(int id)
 }
 
 //PROJECTS
-void DBInterface::addProject(QString name,QString shortName)
+void DBInterface::addProject(QString name,QString shortName, int id)
 {
     QString q = "?type=addProject";
     QJsonObject obj;
     obj.insert("name",name);
     obj.insert("shortName",shortName);
+    if (id >= 0) obj.insert("id",id);
     QJsonDocument json(obj);
 
     emit message("Submitting project");

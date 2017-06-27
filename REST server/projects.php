@@ -3,29 +3,39 @@
 		Rainbox Asset Manager
 		Projects management
 	*/
-	
+
 	// ========= ADD PROJECT ==========
 	if ($reply["type"] == "addProject")
 	{
 		$reply["accepted"] = true;
-		
+
 		$name = "";
 		$shortName = "";
-		
+		$id = "";
+
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
 			$name = $data->{'name'};
 			$shortName = $data->{'shortName'};
+			$id = $data->{'id'};
 		}
-				
+
 		if (strlen($name) > 0 AND strlen($shortName) > 0)
 		{
+			if (strlen($id) > 0)
+			{
+				$qString = "INSERT INTO projects (name,shortName,id) VALUES ('" . $name . "','" . $shortName . "'," . $id . ");"
+			}
+			else
+			{
+				$qString = "INSERT INTO projects (name,shortName) VALUES ('" . $name . "','" . $shortName . "');"
+			}
 			try
 			{
-				$rep = $bdd->query("INSERT INTO projects (name,shortName) VALUES ('" . $name . "','" . $shortName . "');");
+				$rep = $bdd->query($qString);
 				$rep->closeCursor();
-			
+
 				$reply["message"] = "Project " . $shortName . " added.";
 				$reply["success"] = true;
 			}
@@ -41,12 +51,12 @@
 			$reply["success"] = false;
 		}
 	}
-	
+
 	// ========= GET PROJECTS ==========
 	if ($reply["type"] == "getProjects")
 	{
 		$reply["accepted"] = true;
-		
+
 		try
 		{
 			$rep = $bdd->query("SELECT name,shortName,id FROM projects ORDER BY shortName;");
@@ -68,7 +78,7 @@
 				$projects[] = $proj;
 			}
 			$rep->closeCursor();
-		
+
 			$reply["content"] = $projects;
 			$reply["message"] = "Projects list retrieved";
 			$reply["success"] = true;
@@ -79,16 +89,16 @@
 			$reply["success"] = false;
 		}
 	}
-	
+
 	// ========= UPDATE PROJECT ==========
 	if ($reply["type"] == "updateProject")
 	{
 		$reply["accepted"] = true;
-		
+
 		$name = "";
 		$shortName = "";
 		$id = "";
-		
+
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
@@ -96,14 +106,14 @@
 			$shortName = $data->{'shortName'};
 			$id = $data->{'id'};
 		}
-		
+
 		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($id) > 0)
 		{
 			try
 			{
 				$rep = $bdd->query("UPDATE projects SET name='" . $name . "',shortName='" . $shortName . "' WHERE id=" . $id . ";");
 				$rep->closeCursor();
-			
+
 				$reply["message"] = "Project " . $shortName . " (" . $id . ") updated.";
 				$reply["success"] = true;
 			}
@@ -118,7 +128,7 @@
 			$reply["message"] = "Invalid request, missing values";
 			$reply["success"] = false;
 		}
-		
+
 	}
 
 	// ========= REMOVE PROJECT ==========
@@ -126,7 +136,7 @@
 	{
 		$reply["accepted"] = true;
 		$id = "";
-		
+
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
@@ -138,7 +148,7 @@
 			{
 				$rep = $bdd->query("DELETE projects FROM projects WHERE id=" . $id . ";");
 				$rep->closeCursor();
-			
+
 				$reply["message"] = "Project " . $id . " removed.";
 				$reply["success"] = true;
 			}
@@ -159,10 +169,10 @@
 	if ($reply["type"] == "addProjectStage")
 	{
 		$reply["accepted"] = true;
-		
+
 		$stageId = "";
 		$projectId = "";
-		
+
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
@@ -176,7 +186,7 @@
 			{
 				$rep = $bdd->query("INSERT INTO projectstage (stageId,projectId) VALUES (" . $stageId . "," . $projectId . ");");
 				$rep->closeCursor();
-			
+
 				$reply["message"] = "Stage " . $stageId . " associated with project " . $projectId . ".";
 				$reply["success"] = true;
 			}
@@ -192,14 +202,14 @@
 			$reply["success"] = false;
 		}
 	}
-	
+
 	// ========= REMOVE STAGE FROM PROJECT ==========
 	if ($reply["type"] == "removeProjectStage")
 	{
 		$reply["accepted"] = true;
 		$stageId = "";
 		$projectId = "";
-		
+
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
@@ -212,7 +222,7 @@
 			{
 				$rep = $bdd->query("DELETE projectstage FROM projectstage WHERE stageId=" . $stageId . " AND projectId=" . $projectId . ";");
 				$rep->closeCursor();
-			
+
 				$reply["message"] = "Stage " . $stageId . " removed from project " . $projectId . ".";
 				$reply["success"] = true;
 			}
