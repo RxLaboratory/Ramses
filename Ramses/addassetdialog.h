@@ -5,6 +5,7 @@
 #include "dbinterface.h"
 #include "ramshot.h"
 #include "ramstage.h"
+#include "ramasset.h"
 
 class AddAssetDialog : public QDialog, private Ui::AddAssetDialog
 {

@@ -102,18 +102,8 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         bool repSuccess = repObj.value("success").toBool();
         QJsonValue content = repObj.value("content");
 
-        //SHOT
-        if (repType == "addShots") {  emit shotAdded(repSuccess,repMessage); return; }
-        else if (repType == "getShots") { emit gotShots(repSuccess,repMessage,content); return; }
-        else if (repType == "updateShot") { emit shotUpdated(repSuccess,repMessage); return; }
-        else if (repType == "setStageStatus") { emit stageStatusUpdated(repSuccess,repMessage); return; }
-        else if (repType == "setStageComment") { emit stageCommentUpdated(repSuccess,repMessage); return; }
-        else if (repType == "removeShots") { emit shotRemoved(repSuccess,repMessage); return; }
-        else if (repType == "moveShotsUp") { emit shotsMovedUp(repSuccess,repMessage); return; }
-        else if (repType == "moveShotsDown") { emit shotsMovedDown(repSuccess,repMessage); return; }
-
         //ASSET
-        else if (repType == "addAsset") {  emit assetAdded(repSuccess,repMessage); return; }
+        if (repType == "addAsset") {  emit assetAdded(repSuccess,repMessage); return; }
         else if (repType == "setAssetStatus") { emit assetStatusUpdated(repSuccess,repMessage); return; }
         else if (repType == "assignAsset") { emit assetAssigned(repSuccess,repMessage); return; }
     }
@@ -427,18 +417,18 @@ void DBInterface::removeProjectStage(int projectId, int stageId)
 }
 
 //SHOTS
-void DBInterface::addShots(int projectId, int statusId, QStringList shots, int order)
+void DBInterface::addShot(int projectId, int id, QString name, double duration, int order)
 {
     QString q = "?type=addShots";
     QJsonObject obj;
-    QJsonArray jsonNames;
-    foreach(QString name,shots)
-    {
-        jsonNames.insert(jsonNames.count(),name);
-    }
-    obj.insert("names",jsonNames);
+    QJsonArray jsonShots;
+    QJsonObject jsonShot;
+    jsonShot.insert("name",name);
+    jsonShot.insert("duration",duration);
+    jsonShot.insert("id",id);
+    jsonShots.insert(0,jsonShot);
+    obj.insert("shots",jsonShots);
     obj.insert("projectId",projectId);
-    obj.insert("statusId",statusId);
     obj.insert("shotOrder",order);
     QJsonDocument json(obj);
 
@@ -446,7 +436,7 @@ void DBInterface::addShots(int projectId, int statusId, QStringList shots, int o
     sendRequest(q,json);
 }
 
-void DBInterface::addShots(int projectId, int statusId, QList<QStringList> shots, int order)
+void DBInterface::addShots(int projectId, QList<QStringList> shots, int order)
 {
     QString q = "?type=addShots";
     QJsonObject obj;
@@ -456,11 +446,11 @@ void DBInterface::addShots(int projectId, int statusId, QList<QStringList> shots
         QJsonObject jsonShot;
         jsonShot.insert("name",shot[0]);
         jsonShot.insert("duration",shot[1]);
+        jsonShot.insert("id",shot[2]);
         jsonShots.insert(jsonShots.count(),jsonShot);
     }
     obj.insert("shots",jsonShots);
     obj.insert("projectId",projectId);
-    obj.insert("statusId",statusId);
     obj.insert("shotOrder",order);
     QJsonDocument json(obj);
 
@@ -489,32 +479,6 @@ void DBInterface::updateShot(int id, QString name, double duration)
     QJsonDocument json(obj);
 
     emit message("Submitting shot");
-    sendRequest(q,json);
-}
-
-void DBInterface::setStageStatus(int statusId,int stageId,int shotId)
-{
-    QString q = "?type=setStageStatus";
-    QJsonObject obj;
-    obj.insert("statusId",statusId);
-    obj.insert("stageId",stageId);
-    obj.insert("shotId",shotId);
-    QJsonDocument json(obj);
-
-    emit message("Updating shot status");
-    sendRequest(q,json);
-}
-
-void DBInterface::setStageComment(QString comment,int stageId,int shotId)
-{
-    QString q = "?type=setStageComment";
-    QJsonObject obj;
-    obj.insert("comment",comment);
-    obj.insert("stageId",stageId);
-    obj.insert("shotId",shotId);
-    QJsonDocument json(obj);
-
-    emit message("Updating shot comment");
     sendRequest(q,json);
 }
 

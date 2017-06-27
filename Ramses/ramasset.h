@@ -2,8 +2,8 @@
 #define RAMASSET_H
 
 #include <QObject>
-#include "ramstagestatus.h"
 #include "ramstage.h"
+#include "ramstatus.h"
 
 class RAMAsset : public QObject
 {

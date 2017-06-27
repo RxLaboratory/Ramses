@@ -1,13 +1,18 @@
 #include "ramshot.h"
 #include <QtDebug>
 
-RAMShot::RAMShot(DBInterface *db, int i, QString n, double d, int so, QObject *parent) : QObject(parent)
+RAMShot::RAMShot(DBInterface *db, int pid, int i, QString n, double d, int so, bool updateDb , QObject *parent) : QObject(parent)
 {
+    projectId = pid;
     id = i;
     name = n;
     duration = d;
     shotOrder = so;
     dbi = db;
+    if (updateDb)
+    {
+        dbi->addShot(projectId,id,name,duration,shotOrder);
+    }
 }
 
 int RAMShot::getId()
@@ -34,7 +39,7 @@ void RAMShot::setName(QString n, bool updateDB)
 {
     if (updateDB)
     {
-        //TODO dbi
+        update();
     }
     name = n;
 }
@@ -43,54 +48,19 @@ void RAMShot::setDuration(double d, bool updateDB)
 {
     if (updateDB)
     {
-        //TODO dbi
+        update();
     }
     duration = d;
 }
 
-void RAMShot::setShotOrder(int o, bool updateDB)
+void RAMShot::setShotOrder(int o)
 {
-    if (updateDB)
-    {
-        //TODO dbi
-    }
     shotOrder = o;
 }
 
-void RAMShot::addStatus(RAMStageStatus *s,bool updateDB)
+void RAMShot::update()
 {
-    if (updateDB)
-    {
-        //TODO dbi
-    }
-    connect(s,SIGNAL(statusChanged(RAMStatus*,RAMStage*)),this,SLOT(updateShotStatus(RAMStatus*,RAMStage*)));
-    statuses.append(s);
-    emit statusAdded(s,this);
-}
-
-QList<RAMStageStatus *> RAMShot::getStatuses()
-{
-    return statuses;
-}
-
-void RAMShot::updateShotStatus(RAMStatus* status,RAMStage* stage)
-{
-    emit stageStatusUpdated(status,stage,this);
-}
-
-void RAMShot::addAsset(RAMAsset *a, bool updateDB)
-{
-    if (updateDB)
-    {
-        dbi->assignAsset(a->getId(),id);
-    }
-    assets.append(a);
-    emit assetAdded(a,this);
-}
-
-QList<RAMAsset *> RAMShot::getAssets()
-{
-    return assets;
+    dbi->updateShot(id,name,duration);
 }
 
 bool RAMShot::operator==(RAMShot s)

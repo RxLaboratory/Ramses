@@ -19,7 +19,7 @@ void Updater::getShots(RAMProject *project)
 
 void Updater::gotShots(bool success,QString message,QJsonValue shots)
 {
-    if (!success) return;
+    /*if (!success) return;
 
 #ifdef QT_DEBUG
     qDebug() << "Updater: Got Shots";
@@ -66,7 +66,7 @@ void Updater::gotShots(bool success,QString message,QJsonValue shots)
 
 #ifdef QT_DEBUG
     qDebug() << "Updater: Shots List Updated";
-#endif
+#endif*/
 }
 
 

@@ -25,8 +25,6 @@
 #include "ramstage.h"
 #include "ramproject.h"
 #include "addshotsdialog.h"
-#include "ramstagestatus.h"
-#include "shotstatuswidget.h"
 #include "ramasset.h"
 #include "assetstatuswidget.h"
 #include "helpdialog.h"
@@ -174,10 +172,17 @@ private:
      */
     void projectsAdminReset();
 
-    //admin - shots
+    // ----------------- SHOTS -----------------------
+
+    /**
+     * @brief Creates a new shot and adds it to the list
+     * @param rs the shot
+     */
+    void newShot(RAMShot *rs);
+    void gotShots(QJsonValue shots);
     //void getShots();
     //QList<RAMShot*> shotsList;
-    QList<RAMShot*> *allShots;
+    QList<RAMShot*> allShots;
     //admin - assets
     QList<RAMAsset*> assetsList;
     //login
@@ -277,18 +282,13 @@ private slots:
     void on_batchAddShotButton_clicked();
     void shotAdded(bool success,QString message);
     void shotAdded(RAMShot *shot);
-    //void gotShots(bool success, QString message, QJsonValue shots);
     void on_shotsAdminList_itemClicked(QListWidgetItem *item);
     void shotUpdated(bool success,QString message);
-    void stageStatusUpdated(bool success,QString message);
-    void stageCommentUpdated(bool success,QString message);
     void on_shotApplyButton_clicked();
     void on_removeShotButton_clicked();
     void shotRemoved(bool success ,QString message);
-    void updateStageStatus(RAMStatus*status, RAMStage*stage, RAMShot*shot);
     void shotsAdminReset();
     void shotsMoved(bool success, QString message);
-    void shotStatusAdded(RAMStageStatus *st,RAMShot *sh);
     void on_moveShotUpButton_clicked();
     void on_moveShotDownButton_clicked();
     void on_importShotsButton_clicked();

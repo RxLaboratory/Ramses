@@ -20,7 +20,7 @@ AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int si
 void AddAssetDialog::on_addButton_clicked()
 {
     if (assetList->currentIndex() < 0) return;
-    shot->addAsset(allAssets[assetList->currentIndex()]);
+    //shot->addAsset(allAssets[assetList->currentIndex()]);
     this->accept();
 }
 

@@ -25,8 +25,6 @@ SOURCES += main.cpp\
     application.cpp \
     ramproject.cpp \
     ramshot.cpp \
-    ramstagestatus.cpp \
-    shotstatuswidget.cpp \
     assetstatuswidget.cpp \
     ramasset.cpp \
     addassetdialog.cpp \
@@ -49,8 +47,6 @@ HEADERS  += mainwindow.h \
     application.h \
     ramproject.h \
     ramshot.h \
-    ramstagestatus.h \
-    shotstatuswidget.h \
     assetstatuswidget.h \
     ramasset.h \
     addassetdialog.h \
@@ -65,7 +61,6 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
-    shotstatuswidget.ui \
     assetstatuswidget.ui \
     addassetdialog.ui \
     addshotsdialog.ui \
