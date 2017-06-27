@@ -171,11 +171,6 @@ void MainWindow::mapEvents()
     connect(dbi,SIGNAL(message(QString,int)),this,SLOT(showMessage(QString,int)));
     connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
 
-    //connect DBI status
-    connect(dbi,SIGNAL(statusAdded(bool,QString)),this,SLOT(statusAdded(bool,QString)));
-    connect(dbi,SIGNAL(gotStatuses(bool,QString,QJsonValue)),this,SLOT(gotStatuses(bool,QString,QJsonValue)));
-    connect(dbi,SIGNAL(statusUpdated(bool,QString)),this,SLOT(statusUpdated(bool,QString)));
-    connect(dbi,SIGNAL(statusRemoved(bool,QString)),this,SLOT(statusRemoved(bool,QString)));
     //connect DBI stages
     connect(dbi,SIGNAL(stageAdded(bool,QString)),this,SLOT(stageAdded(bool,QString)));
     connect(dbi,SIGNAL(gotStages(bool,QString,QJsonValue)),this,SLOT(gotStages(bool,QString,QJsonValue)));
@@ -268,6 +263,7 @@ void MainWindow::logout()
     //empty everything
     qDeleteAll(statusesList);
     statusesList.clear();
+    statusAdminList->clear();
     qDeleteAll(stagesList);
     stagesList.clear();
     qDeleteAll(projectsList);
@@ -387,7 +383,7 @@ void MainWindow::connected(bool available, QString err)
         actionLogout->setIcon(QIcon(":/icons/logout"));
 
         //load everything
-        getStatuses();
+        dbi->getStatuses();
         getStages();
         getProjects();
 
@@ -446,7 +442,22 @@ void MainWindow::dataReceived(QJsonObject data)
         if (!success) connected(false,message);
         return;
     }
-
+    else if (type == "getStatuses")
+    {
+        if (success) gotStatuses(content);
+        else showMessage("Warning: Status list was not correctly updated from remote server.");
+        return;
+    }
+    else if (type == "updateStatus")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "removeStatus")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
 
     // If the data was not handled, just display message
     if (message != "") showMessage(message);
@@ -587,6 +598,104 @@ void MainWindow::on_adminWidget_currentChanged(int index)
 
 //ADMIN - STATUS
 
+//add / get
+void MainWindow::on_addStatusButton_clicked()
+{
+    // Create a new Default Status
+    QString name = "New Status";
+    QString shortName = "New";
+    QColor color = QColor("#6d6d6d");
+    QString description = "";
+
+    RAMStatus *rs = new RAMStatus(dbi,statusesList.count()+1,name,shortName,color,description,true);
+    newStatus(rs);
+
+    // Select item
+    statusAdminList->setCurrentRow(statusAdminList->count()-1);
+    on_statusAdminList_itemClicked(statusAdminList->item(statusAdminList->count()-1));
+}
+
+void MainWindow::newStatus(RAMStatus *rs)
+{
+    // Add the status to the list and the UI
+    statusesList << rs;
+    // Create UI item
+    QListWidgetItem *item = new QListWidgetItem(rs->getShortName() + " | " + rs->getName());
+    item->setBackgroundColor(rs->getColor());
+    item->setToolTip(rs->getDescription());
+    statusAdminList->addItem(item);
+}
+
+void MainWindow::gotStatuses(QJsonValue statuses)
+{
+    setWaiting(true);
+
+    QJsonArray statusesArray = statuses.toArray();
+
+    // update statuses in the current list
+    for (int rsI = 0 ; rsI < statusesList.count() ; rsI++)
+    {
+        RAMStatus *rs = statusesList[rsI];
+
+        //search for status in new list
+        bool updated = false;
+        for(int i = 0 ; i < statusesArray.count();i++)
+        {
+            //new status
+            QJsonObject status = statusesArray[i].toObject();
+            QString name = status.value("name").toString();
+            QString shortName = status.value("shortName").toString();
+            QColor color(status.value("color").toString());
+            QString description = status.value("description").toString();
+            int id = status.value("id").toInt();
+
+            if (rs->getId() == id)
+            {
+                //update
+                rs->setName(name);
+                rs->setShortName(shortName);
+                rs->setColor(color);
+                rs->setDescription(description);
+                QListWidgetItem *item = statusAdminList->item(rsI);
+                item->setText(shortName + " | " + name);
+                item->setToolTip(description);
+                item->setBackgroundColor(color);
+
+                //remove from the new list
+                statusesArray.removeAt(i);
+                i--;
+            }
+        }
+        // if the status is not in the new list, remove it
+        if (!updated)
+        {
+            statusesList.removeAt(rsI);
+            QListWidgetItem *item = statusAdminList->takeItem(rsI);
+            delete item;
+            rsI--;
+        }
+    }
+
+    //add the remaining new statuses
+    for (int i = 0 ; i < statusesArray.count() ; i++)
+    {
+        //new status
+        QJsonObject status = statusesArray[i].toObject();
+        QString name = status.value("name").toString();
+        QString shortName = status.value("shortName").toString();
+        QColor color(status.value("color").toString());
+        QString description = status.value("description").toString();
+        int id = status.value("id").toInt();
+
+        //add to UI
+        RAMStatus *rs = new RAMStatus(dbi,id,name,shortName,color,description,false);
+        newStatus(rs);
+    }
+
+    setWaiting(false);
+}
+
+//edit / update
 void MainWindow::on_statusColorButton_clicked()
 {
     this->setEnabled(false);
@@ -603,87 +712,9 @@ void MainWindow::on_statusColorButton_clicked()
     this->setEnabled(true);
 }
 
-//add a new default status
-void MainWindow::on_addStatusButton_clicked()
-{
-    setWaiting();
-
-    // Create a new Default Status
-    QString name = "New Status";
-    QString shortName = "New";
-    QColor color = "#6d6d6d";
-    QString description = "";
-    RAMStatus *rs = new RAMStatus(statusesList.count()+1,name,shortName,color,description);
-    statusesList << rs;
-
-    // Add the status to the DB
-    dbi->addStatus(rs);
-
-    // Create UI item
-    QListWidgetItem *item = new QListWidgetItem(shortName + " | " + name);
-    item->setBackgroundColor(color);
-    item->setToolTip(description);
-    statusAdminList->addItem(item);
-    // Select item
-    statusAdminList->setCurrentRow(statusAdminList->count()-1);
-    on_statusAdminList_itemClicked(statusAdminList->item(statusAdminList->count()-1));
-
-    setWaiting(false);
-}
-
-//get all statuses
-void MainWindow::getStatuses()
-{
-    setWaiting();
-    statusesAdminReset();
-    dbi->getStatuses();
-}
-
-void MainWindow::gotStatuses(bool success,QString message,QJsonValue statuses)
-{
-    setWaiting(false);
-    if (!success) return;
-
-    //clear UI and stored list
-    statusAdminList->clear();
-    qDeleteAll(statusesList);
-    statusesList.clear();
-
-    QJsonArray statusesArray = statuses.toArray();
-    int newRow = -1;
-    foreach (QJsonValue sta, statusesArray)
-    {
-        //get values
-        QJsonObject status = sta.toObject();
-        QString name = status.value("name").toString();
-        QString shortName = status.value("shortName").toString();
-        QColor color = "#" + status.value("color").toString();
-        QString description = status.value("description").toString();
-        int id = status.value("id").toInt();
-        //create UI item
-        QListWidgetItem *item = new QListWidgetItem(shortName + " | " + name);
-        item->setBackgroundColor(color);
-        item->setToolTip(description);
-        statusAdminList->addItem(item);
-        if (shortName == "New" && name == "New status")
-        {
-            newRow = statusAdminList->count()-1;
-        }
-        //add status to stored list
-        RAMStatus *rs = new RAMStatus(id,name,shortName,color,description);
-        statusesList << rs;
-    }
-    if (newRow > -1)
-    {
-        statusAdminList->setCurrentRow(newRow);
-        on_statusAdminList_itemClicked(statusAdminList->item(newRow));
-    }
-}
-
-//edit status
 void MainWindow::on_statusAdminList_itemClicked(QListWidgetItem *i)
 {
-   int currentRow = statusAdminList->currentRow();
+    int currentRow = statusAdminList->currentRow();
 
     RAMStatus *s = statusesList[currentRow];
 
@@ -708,22 +739,25 @@ void MainWindow::on_statusApplyButton_clicked()
     int currentRow = statusAdminList->currentRow();
     if (currentRow < 0) return;
 
-    setWaiting();
+    QString name = statusNameEdit->text();
+    QString shortName = statusShortNameEdit->text();
+    QString description = statusDescriptionEdit->toPlainText();
+    QColor color("#" + statusColorEdit->text());
 
-    int id = statusesList[currentRow]->getId();
-    dbi->updateStatus(id,statusNameEdit->text(),statusShortNameEdit->text(),statusColorEdit->text(),statusDescriptionEdit->toPlainText());
-
-    statusesAdminReset();
+    RAMStatus *rs = statusesList[currentRow];
+    rs->setColor(color);
+    rs->setName(name);
+    rs->setShortName(shortName);
+    rs->setDescription(description);
+    rs->update();
+    //update UI
+    QListWidgetItem *item = statusAdminList->item(currentRow);
+    item->setText(shortName + " | " + name);
+    item->setBackgroundColor(color);
+    item->setToolTip(description);
 }
 
-void MainWindow::statusUpdated(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getStatuses();
-}
-
-//remove status
+//remove
 void MainWindow::on_removeStatusButton_clicked()
 {
     int currentRow = statusAdminList->currentRow();
@@ -736,20 +770,12 @@ void MainWindow::on_removeStatusButton_clicked()
         return;
     }
 
+    statusesList[currentRow]->remove();
+    statusesList.removeAt(currentRow);
+    QListWidgetItem *item = statusAdminList->takeItem(currentRow);
+    delete item;
 
-    setWaiting();
-
-    int id = statusesList[currentRow]->getId();
-
-    dbi->removeStatus(id);
     statusesAdminReset();
-}
-
-void MainWindow::statusRemoved(bool success,QString message)
-{
-    setWaiting(false);
-    if (!success) return;
-    getStatuses();
 }
 
 void MainWindow::statusesAdminReset()

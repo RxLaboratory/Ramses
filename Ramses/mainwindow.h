@@ -105,8 +105,19 @@ private:
 
     // STATUSES
 
-    void getStatuses();
+    /**
+     * @brief Creates a new status and adds it to the list
+     * @param rs    the status
+     */
+    void newStatus(RAMStatus *rs);
+    /**
+     * @brief the current list of statuses
+     */
     QList<RAMStatus*> statusesList;
+    /**
+     * @brief Resets the admin panel of the statuses
+     */
+    void statusesAdminReset();
 
     // STAGES
 
@@ -192,18 +203,16 @@ private slots:
     //admin
     void on_adminWidget_currentChanged(int index);
     //admin - status
-    /**
-     * @brief Adds a new Status
-     */
     void on_addStatusButton_clicked();
-    void on_statusColorButton_clicked();
-    void gotStatuses(bool success, QString message, QJsonValue statuses);
+    /**
+     * @brief Called when the remote server has sent the list of statuses
+     * @param statuses The list
+     */
+    void gotStatuses(QJsonValue statuses);
     void on_statusAdminList_itemClicked(QListWidgetItem *i);
-    void statusUpdated(bool success,QString message);
+    void on_statusColorButton_clicked();
     void on_statusApplyButton_clicked();
     void on_removeStatusButton_clicked();
-    void statusRemoved(bool success,QString message);
-    void statusesAdminReset();
     //admin - stages
     void on_addStageButton_clicked();
     void stageAdded(bool success,QString message);

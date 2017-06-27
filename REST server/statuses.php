@@ -25,8 +25,11 @@
 			$id = $data->{'id'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($color) == 6)
+		if (strlen($name) > 0 AND strlen($shortName) > 0 AND (strlen($color) == 6 OR strlen($color) == 7))
 		{
+			//add # on color if needed
+			if (strlen($color) == 6) $color = "#" . $color;
+			//if an id is provided
 			if (strlen($id) > 0)
 			{
 				$qString = "INSERT INTO status (name,shortName,color,description,id) VALUES ('" . $name . "','" . $shortName . "','" . $color . "','" . $description . "'," . $id . ");";
@@ -111,11 +114,14 @@
 			$id = $data->{'id'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($color) == 6 AND strlen($id) > 0)
+		if (strlen($name) > 0 AND strlen($shortName) > 0 AND (strlen($color) == 6 OR strlen($color) == 7) AND strlen($id) > 0)
 		{
+			//add # on color if needed
+			if (strlen($color) == 6) $color = "#" . $color;
+			$qString = "UPDATE status SET name='" . $name . "',shortName='" . $shortName . "',color='" . $color . "',description='" . $description . "' WHERE id=" . $id . ";";
 			try
 			{
-				$rep = $bdd->query("UPDATE status SET name='" . $name . "',shortName='" . $shortName . "',color='" . $color . "',description='" . $description . "' WHERE id=" . $id . ";");
+				$rep = $bdd->query($qString);
 				$rep->closeCursor();
 
 				$reply["message"] = "Status " . $shortName . " (" . $id . ") updated.";
@@ -123,7 +129,7 @@
 			}
 			catch (Exception $e)
 			{
-				$reply["message"] = "Server issue: SQL Query failed.";
+				$reply["message"] = "Server issue: SQL Query failed. |\n" . $qString;
 				$reply["success"] = false;
 			}
 		}

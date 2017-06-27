@@ -102,14 +102,8 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         bool repSuccess = repObj.value("success").toBool();
         QJsonValue content = repObj.value("content");
 
-
-        //STATUS
-        if (repType == "getStatuses") { emit gotStatuses(repSuccess,repMessage,content); return; }
-        else if (repType == "updateStatus") { emit statusUpdated(repSuccess,repMessage); return; }
-        else if (repType == "removeStatus") { emit statusRemoved(repSuccess,repMessage); return; }
-
         //STAGE
-        else if (repType == "addStage") {  emit stageAdded(repSuccess,repMessage); return; }
+        if (repType == "addStage") {  emit stageAdded(repSuccess,repMessage); return; }
         else if (repType == "getStages") { emit gotStages(repSuccess,repMessage,content); return; }
         else if (repType == "updateStage") { emit stageUpdated(repSuccess,repMessage); return; }
         else if (repType == "removeStage") { emit stageRemoved(repSuccess,repMessage); return; }
@@ -297,11 +291,6 @@ void DBInterface::addStatus(QString name,QString shortName,QString color,QString
 
     emit message("Submitting status");
     sendRequest(q,json);
-}
-
-void DBInterface::addStatus(RAMStatus *rs)
-{
-    addStatus(rs->getName(),rs->getShortName(),rs->getColor().name().replace("#",""),rs->getDescription(),rs->getId());
 }
 
 void DBInterface::getStatuses()

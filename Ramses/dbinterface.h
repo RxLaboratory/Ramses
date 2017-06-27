@@ -10,7 +10,6 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QNetworkCookieJar>
-#include "ramstatus.h"
 
 class DBInterface : public QObject
 {
@@ -26,7 +25,6 @@ public:
     void sendRequest(QString request, QJsonDocument content = QJsonDocument());
     //Status
     void addStatus(QString name = "New status", QString shortName = "New", QString color = "6d6d6d", QString description = "", int id = -1);
-    void addStatus(RAMStatus *rs);
     void getStatuses();
     void updateStatus(int id, QString name, QString shortName, QString color, QString description);
     void removeStatus(int id);
@@ -61,11 +59,6 @@ signals:
     void connected(bool,QString);
     void message(QString,int i = 0);
     void data(QJsonObject d);
-    //Status
-    void statusAdded(bool,QString);
-    void gotStatuses(bool,QString,QJsonValue);
-    void statusUpdated(bool,QString);
-    void statusRemoved(bool,QString);
     //Stage
     void stageAdded(bool,QString);
     void gotStages(bool,QString,QJsonValue);
