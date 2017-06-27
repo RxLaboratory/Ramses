@@ -115,7 +115,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
 
     //Connections
-    //mapEvents();
+    mapEvents();
 
     freezeSelectors = false;
 
