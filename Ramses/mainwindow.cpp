@@ -658,7 +658,14 @@ void MainWindow::on_addStatusButton_clicked()
     QColor color = QColor("#6d6d6d");
     QString description = "";
 
-    RAMStatus *rs = new RAMStatus(dbi,statusesList.count()+1,name,shortName,color,description,true);
+    // find higher id
+    int id = 1;
+    foreach(RAMStatus *rs,statusesList)
+    {
+        if (rs->getId() >= id) id = rs->getId()+1;
+    }
+
+    RAMStatus *rs = new RAMStatus(dbi,id,name,shortName,color,description,true);
     newStatus(rs);
 
     // Select item
@@ -845,7 +852,14 @@ void MainWindow::on_addStageButton_clicked()
     QString name = "New Stage";
     QString shortName = "New";
 
-    RAMStage *rs = new RAMStage(dbi,name,shortName,stagesList.count()+1,true);
+    // find higher id
+    int id = 1;
+    foreach(RAMStage *rs,stagesList)
+    {
+        if (rs->getId() >= id) id = rs->getId()+1;
+    }
+
+    RAMStage *rs = new RAMStage(dbi,name,shortName,id,true);
     newStage(rs);
 
     //select item
@@ -983,7 +997,7 @@ void MainWindow::on_addProjectButton_clicked()
     int id = 1;
     foreach(RAMProject *rp,projectsList)
     {
-        if (rp->getId() > id) id = rp->getId()+1;
+        if (rp->getId() >= id) id = rp->getId()+1;
     }
 
     RAMProject *rp = new RAMProject(dbi,id,name,shortName,true);
