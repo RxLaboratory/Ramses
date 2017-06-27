@@ -55,22 +55,24 @@ void RAMProject::update()
     dbi->updateProject(projectId,projectName,projectShortName);
 }
 
-void RAMProject::addStage(RAMStage *s)
+void RAMProject::addStage(RAMStage *s, bool updateDb)
 {
     projectStages.append(s);
+    if (updateDb) dbi->addProjectStage(projectId,s->getId());
 }
 
-void RAMProject::removeStage(RAMStage *s)
+void RAMProject::removeStage(RAMStage *s, bool updateDb)
 {
-    projectStages.removeOne(s);
+    projectStages.removeAll(s);
+    if (updateDb) dbi->removeProjectStage(projectId,s->getId());
 }
 
-void RAMProject::addShot(RAMShot *s)
+void RAMProject::addShot(RAMShot *s, bool updateDb)
 {
     projectShots.append(s);
 }
 
-void RAMProject::removeShot(RAMShot *s)
+void RAMProject::removeShot(RAMShot *s, bool updateDb)
 {
     projectShots.removeOne(s);
 }

@@ -23,11 +23,11 @@ public:
     void setShortName(QString shortName, bool updateDb = false);
     void update();
     //stages
-    void addStage(RAMStage *s);
-    void removeStage(RAMStage *s);
+    void addStage(RAMStage *s, bool updateDb = false);
+    void removeStage(RAMStage *s, bool updateDb = false);
     //shots
-    void addShot(RAMShot *s);
-    void removeShot(RAMShot *s);
+    void addShot(RAMShot *s, bool updateDb = false);
+    void removeShot(RAMShot *s, bool updateDb = false);
     //remove
     void remove();
 

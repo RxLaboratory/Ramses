@@ -59,18 +59,6 @@ signals:
     void connected(bool,QString);
     void message(QString,int i = 0);
     void data(QJsonObject d);
-    //Stage
-    void stageAdded(bool,QString);
-    void gotStages(bool,QString,QJsonValue);
-    void stageUpdated(bool,QString);
-    void stageRemoved(bool,QString);
-    //Project
-    void projectAdded(bool,QString);
-    void gotProjects(bool,QString,QJsonValue);
-    void projectUpdated(bool,QString);
-    void projectRemoved(bool,QString);
-    void projectStageAdded(bool,QString);
-    void projectStageRemoved(bool,QString);
     //Shot
     void shotAdded(bool,QString);
     void gotShots(bool,QString,QJsonValue);

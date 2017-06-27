@@ -136,6 +136,12 @@ private:
      */
     QList<RAMStage*> stagesList;
     /**
+     * @brief Gets a stage using its Id
+     * @param id    The stage id
+     * @return The stage
+     */
+    RAMStage* getStage(int id);
+    /**
      * @brief Resets the admin panel of the stages
      */
     void stagesAdminReset();
@@ -148,9 +154,24 @@ private:
      * @param rp the stage
      */
     void newProject(RAMProject *rp);
+    /**
+     * @brief Called when the remote server has sent the list of projects
+     * @param projects    The list
+     */
     void gotProjects(QJsonValue projects);
+    /**
+     * @brief The current list of projects
+     */
     QList<RAMProject*> projectsList;
+    /**
+     * @brief Gets a project using its Id
+     * @param id    The project id
+     * @return The project
+     */
     RAMProject* getProject(int id);
+    /**
+     * @brief Resets the admin panel for the projects
+     */
     void projectsAdminReset();
 
     //admin - shots

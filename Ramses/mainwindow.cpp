@@ -171,13 +171,6 @@ void MainWindow::mapEvents()
     connect(dbi,SIGNAL(message(QString,int)),this,SLOT(showMessage(QString,int)));
     connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
 
-    //connect DBI projects
-    connect(dbi,SIGNAL(projectAdded(bool,QString)),this,SLOT(projectAdded(bool,QString)));
-    connect(dbi,SIGNAL(gotProjects(bool,QString,QJsonValue)),this,SLOT(gotProjects(bool,QString,QJsonValue)));
-    connect(dbi,SIGNAL(projectUpdated(bool,QString)),this,SLOT(projectUpdated(bool,QString)));
-    connect(dbi,SIGNAL(projectRemoved(bool,QString)),this,SLOT(projectRemoved(bool,QString)));
-    connect(dbi,SIGNAL(projectStageAdded(bool,QString)),this,SLOT(projectStageAdded(bool,QString)));
-    connect(dbi,SIGNAL(projectStageRemoved(bool,QString)),this,SLOT(projectStageRemoved(bool,QString)));
     //connect DBI shots
     connect(dbi,SIGNAL(shotAdded(bool,QString)),this,SLOT(shotAdded(bool,QString)));
     connect(dbi,SIGNAL(gotShots(bool,QString,QJsonValue)),this,SLOT(gotShots(bool,QString,QJsonValue)));
@@ -875,6 +868,14 @@ void MainWindow::newStage(RAMStage *rs)
     stagesAdminList->addItem(item);
 }
 
+RAMStage* MainWindow::getStage(int id)
+{
+    foreach(RAMStage *rs,stagesList)
+    {
+        if (rs->getId() == id) return rs;
+    }
+}
+
 void MainWindow::gotStages(QJsonValue stages)
 {
     setWaiting(true);
@@ -1049,6 +1050,7 @@ void MainWindow::gotProjects(QJsonValue projects)
             QString name = project.value("name").toString();
             QString shortName = project.value("shortName").toString();
             int id = project.value("id").toInt();
+            QJsonArray projectStagesArray = project.value("stages").toArray();
 
             if (rp->getId() == id)
             {
@@ -1059,6 +1061,11 @@ void MainWindow::gotProjects(QJsonValue projects)
                 item->setText(shortName + " | " + name);
 
                 //update stages list
+                foreach(QJsonValue proStage,projectStagesArray)
+                {
+                    RAMStage *stage = getStage(proStage.toInt());
+                    rp->addStage(stage);
+                }
 
                 //update shots list
 
@@ -1085,13 +1092,20 @@ void MainWindow::gotProjects(QJsonValue projects)
         QString name = project.value("name").toString();
         QString shortName = project.value("shortName").toString();
         int id = project.value("id").toInt();
+        QJsonArray projectStagesArray = project.value("stages").toArray();
 
-        //add stages list
+        RAMProject *rp = new RAMProject(dbi,id,name,shortName,false);
+
+        //update stages list
+        foreach(QJsonValue proStage,projectStagesArray)
+        {
+            RAMStage *stage = getStage(proStage.toInt());
+            rp->addStage(stage);
+        }
 
         //add shots list
 
         //add to UI
-        RAMProject *rp = new RAMProject(dbi,id,name,shortName,false);
         newProject(rp);
     }
 
@@ -1154,21 +1168,23 @@ void MainWindow::on_projectAdminList_itemClicked(QListWidgetItem *item)
      projectNameEdit->setText(p->getName());
      projectShortNameEdit->setText(p->getShortName());
 
-     /*//populate stages combo box and list
+     //populate stages combo box and list
      projectStagesList->clear();
      projectStagesComboBox->clear();
      QList<RAMStage*> pStages = p->getStages();
+
      foreach(RAMStage*s,stagesList)
      {
          //check if it is used
          bool usedByProject = false;
-         foreach(RAMStage*ps,pStages)
+         foreach(RAMStage *ps,pStages)
          {
-             if (ps->getId() == s->getId())
+             if (ps == s)
              {
                  //add to list
                  QListWidgetItem *i = new QListWidgetItem(s->getShortName());
                  i->setToolTip(s->getName());
+                 i->setData(Qt::UserRole,s->getId());
                  projectStagesList->addItem(i);
                  usedByProject = true;
                  break;
@@ -1179,7 +1195,7 @@ void MainWindow::on_projectAdminList_itemClicked(QListWidgetItem *item)
          {
             projectStagesComboBox->addItem(s->getShortName(),s->getId());
          }
-     }*/
+     }
 
      projectConfigWidget->setEnabled(true);
 }
@@ -1223,27 +1239,37 @@ void MainWindow::on_removeProjectButton_clicked()
 //project stages
 void MainWindow::on_projectAddStageButton_clicked()
 {
-   /* int sId = projectStagesComboBox->currentData().toInt();
-    int pId = projectsList[projectAdminList->currentRow()]->getId();
-    dbi->addProjectStage(pId,sId);*/
+    int sId = projectStagesComboBox->currentData().toInt();
+    int pId = projectAdminList->currentItem()->data(Qt::UserRole).toInt();
+    RAMProject *rp = getProject(pId);
+    RAMStage *rs = getStage(sId);
+    rp->addStage(rs,true);
+
+    //update UI
+    //remove from combobox
+    projectStagesComboBox->removeItem(projectStagesComboBox->currentIndex());
+    //add to list
+    QListWidgetItem *i = new QListWidgetItem(rs->getShortName());
+    i->setToolTip(rs->getName());
+    i->setData(Qt::UserRole,rs->getId());
+    projectStagesList->addItem(i);
 }
 
 void MainWindow::on_removeStageProjectButton_clicked()
 {
-    /*//get stage ID
-    int sId = -1;
     if (projectStagesList->currentRow() < 0) return;
-    foreach(RAMStage *s,stagesList)
-    {
-        if (s->getShortName() == projectStagesList->currentItem()->text() && s->getName() == projectStagesList->currentItem()->toolTip())
-        {
-            sId = s->getId();
-            break;
-        }
-    }
 
-    int pId = projectsList[projectAdminList->currentRow()]->getId();
-    dbi->removeProjectStage(pId,sId);*/
+    RAMStage *rs = getStage(projectStagesList->currentIndex().data(Qt::UserRole).toInt());
+    RAMProject *rp = getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt());
+
+    rp->removeStage(rs,true);
+
+    //update UI
+    //remove from list
+    QListWidgetItem *item = projectStagesList->takeItem(projectStagesList->currentRow());
+    delete item;
+    //add to combobox
+    projectStagesComboBox->addItem(rs->getShortName(),rs->getId());
 }
 
 void MainWindow::projectsAdminReset()
