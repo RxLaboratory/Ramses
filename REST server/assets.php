@@ -30,7 +30,8 @@
 		{
 			//construct add asset query
             $q = "INSERT INTO assets (name,shortName,statusId,stageId,comment,id)
-			VALUES ( ':name' , ':shortName' , :statusId , :stageId , ':comment' , :id );";
+			VALUES ( :name , :shortName , :statusId , :stageId , :comment , :id );";
+
 			try
 			{
 				//create asset
@@ -67,9 +68,9 @@
 			$shotId = $data->{'shotId'};
 		}
 
-		if (strlen($assetId) > 0 AND strlen($shotId) > 0 AND strlen($stageId) > 0)
+		if (strlen($assetId) > 0 AND strlen($shotId) > 0)
 		{
-			$q = "INSERT INTO assetstatuses (shotId,assetId,stageId)
+			$q = "INSERT INTO assetstatuses (shotId,assetId)
 			VALUES (:shotId , :assetId);";
 
 			try
@@ -110,8 +111,7 @@
 		//get assets
 		$qAssets = "SELECT assets.id,assets.name,assets.shortName,assets.statusId,assets.comment,assets.stageId
 		FROM assets
-		JOIN assetstatuses ON assetstatuses.assetId = assets.id
-		JOIN projectstage ON assetstatuses.stageId = projectstage.stageId
+		JOIN projectstage ON assets.stageId = projectstage.stageId
 		WHERE projectstage.projectId = :projectId";
 
 		//get assignments

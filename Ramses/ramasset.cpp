@@ -14,7 +14,7 @@ RAMAsset::RAMAsset(DBInterface *db, int i, QString n, QString sn, RAMStatus *st,
     dbi = db;
     if (updateDb)
     {
-        dbi->addAsset(name,shortName,status->getId(),comment,id);
+        dbi->addAsset(name,shortName,status->getId(),stage->getId(),comment,id);
     }
 }
 

@@ -555,13 +555,14 @@ void DBInterface::moveShotsDown(QList<int> ids)
 }
 
 //ASSETS
-void DBInterface::addAsset(QString name, QString shortName, int statusId,QString comment, int id)
+void DBInterface::addAsset(QString name, QString shortName, int statusId,int stageId,QString comment, int id)
 {
     QString q = "?type=addAsset";
     QJsonObject obj;
     obj.insert("name",name);
     obj.insert("shortName",shortName);
     obj.insert("statusId",statusId);
+    obj.insert("stageId",stageId);
     obj.insert("id",id);
     obj.insert("comment",comment);
     QJsonDocument json(obj);
