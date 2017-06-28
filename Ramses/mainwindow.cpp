@@ -592,54 +592,21 @@ void MainWindow::selectorProjectChanged(int i)
     currentProject = getProject(projectSelector->itemData(i).toInt());
 
     //get stages
-    foreach(RAMStage *rs,currentProject->getStages())
+    QList<RAMStage*> stages;
+    stages = currentProject->getStages();
+    for (int i = 0 ; i < stages.count() ; i++)
     {
+        RAMStage *rs = stages[i];
         stageSelector->addItem(rs->getShortName(),rs->getId());
+        QTableWidgetItem *item = new QTableWidgetItem(rs->getShortName());
+        item->setToolTip(rs->getName());
+        item->setData(Qt::UserRole,rs->getId());
+        mainTable->setColumnCount(i+1);
+        mainTable->setHorizontalHeaderItem(i,item);
     }
 
     //get shots
     dbi->getShots(currentProject->getId());
-
-
-    /*if (i<0) return;
-
-    foreach(RAMProject *p,projectsList)
-    {
-        if (projectSelector->currentData().toInt() == p->getId())
-        {
-            currentProject = p;
-            break;
-        }
-    }
-
-    if (!currentProject) return;
-
-    //setTooltip
-    projectSelector->setToolTip(currentProject->getName());
-
-    //load stages
-    currentStages = currentProject->getStages();
-
-    mainTable->setColumnCount(currentStages.count());
-
-    for(int i = 0 ; i < currentStages.count() ; i++)
-    {
-        RAMStage *s = currentStages[i];
-        stageSelector->addItem(s->getShortName(),s->getId());
-        //add table columns
-        QTableWidgetItem *item = new QTableWidgetItem(s->getShortName());
-        item->setToolTip(s->getName());
-
-        mainTable->setHorizontalHeaderItem(i,item);
-    }
-
-#ifdef QT_DEBUG
-    qDebug() << "test " + currentProject->getName();
-#endif
-
-    //load shots
-    updater->getShots(currentProject);*/
-
 }
 
 //SETTINGS
@@ -1359,6 +1326,18 @@ void MainWindow::newShot(RAMShot *rs,int row)
     rowHeader->setData(Qt::UserRole,rs->getId());
     mainTable->insertRow(row);
     mainTable->setVerticalHeaderItem(row,rowHeader);
+
+    //add asset widgets
+    QList<RAMStage*> stages;
+    stages = currentProject->getStages();
+    for (int i = 0 ; i < stages.count() ; i++)
+    {
+        AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusesList,assetsList,dbi);
+        connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
+        connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
+        //add widget to cell
+        mainTable->setCellWidget(row,i,assetWidget);
+    }
 }
 
 RAMShot* MainWindow::getShot(int id)
