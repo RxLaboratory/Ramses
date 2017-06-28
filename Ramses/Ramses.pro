@@ -34,8 +34,7 @@ SOURCES += main.cpp\
     assetstatusbox.cpp \
     shotdetailsdialog.cpp \
     assetdetailsdialog.cpp \
-    xmlreader.cpp \
-    ramassignment.cpp
+    xmlreader.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -56,8 +55,7 @@ HEADERS  += mainwindow.h \
     assetstatusbox.h \
     shotdetailsdialog.h \
     assetdetailsdialog.h \
-    xmlreader.h \
-    ramassignment.h
+    xmlreader.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \

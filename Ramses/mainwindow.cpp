@@ -2013,16 +2013,27 @@ void MainWindow::gotAssets(QJsonValue assets)
         QString shortName = asset.value("shortName").toString();
         QString comment = asset.value("comment").toString();
         int statusId = asset.value("statusId").toInt();
+        int stageId = asset.value("stageId").toInt();
         QJsonArray assignments = asset.value("assignments").toArray();
         int id = asset.value("id").toInt();
 
-        RAMAsset *ra = new RAMAsset(dbi,id,name,shortName,getStatus(statusId),comment,false);
+        RAMAsset *testRa = new RAMAsset(dbi,id,name,shortName,getStatus(statusId),getStage(stageId),comment,false);
+        RAMAsset *ra;
+        //check if asset already exists
+        int testI = assetsList.indexOf(testRa);
+        if (testI >= 0)
+        {
+            delete testRa;
+            ra = assetsList[testI];
+        }
+        else
+        {
+            ra = testRa;
+        }
         for (int j = 0;j<assignments.count() ; j++)
         {
-            QJsonObject assignment = assignments[j].toObject();
-            int stageId = assignment.value("stageId").toInt();
-            int shotId = assignment.value("shotId").toInt();
-            ra->assign(getStage(stageId),getShot(shotId));
+            int shotId = assignments[j].toInt();
+            ra->assign(getShot(shotId));
         }
 
         //add to UI
@@ -2037,11 +2048,9 @@ void MainWindow::newAsset(RAMAsset *asset)
 {
     assetsList << asset;
     emit assetsListUpdated(assetsList);
-    foreach(RAMAssignment assignment,asset->getAssignments())
+    RAMStage *stage = asset->getStage();
+    foreach(RAMShot *shot,asset->getAssignments())
     {
-        RAMShot *shot = assignment.getShot();
-        RAMStage *stage = assignment.getStage();
-
         //find row
         int row = -1;
         for (int i = 0;i < allShots.count();i++)

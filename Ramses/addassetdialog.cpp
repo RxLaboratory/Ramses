@@ -38,8 +38,8 @@ void AddAssetDialog::on_createButton_clicked()
     {
         if (ra->getId() >= id) id = ra->getId()+1;
     }
-    asset = new RAMAsset(dbi,id,nameEdit->text(),shortNameEdit->text(),status,"",true);
-    asset->assign(stage,shot,true);
+    asset = new RAMAsset(dbi,id,nameEdit->text(),shortNameEdit->text(),status,stage,"",true);
+    asset->assign(shot,true);
 
     this->accept();
 }

@@ -52,7 +52,7 @@ public:
     void moveShotsDown(QList<int> ids);
     //Asset
     void addAsset(QString name, QString shortName, int statusId, QString comment, int id);
-    void assignAsset(int assetId,int shotId, int stageId);
+    void assignAsset(int assetId, int shotId);
     void getAssets(int projectId);
     void setAssetStatus(int statusId, int assetId);
 signals:

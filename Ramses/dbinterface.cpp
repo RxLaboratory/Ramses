@@ -570,13 +570,12 @@ void DBInterface::addAsset(QString name, QString shortName, int statusId,QString
     sendRequest(q,json);
 }
 
-void DBInterface::assignAsset(int assetId, int shotId, int stageId)
+void DBInterface::assignAsset(int assetId, int shotId)
 {
     QString q = "?type=assignAsset";
     QJsonObject obj;
     obj.insert("assetId",assetId);
     obj.insert("shotId",shotId);
-    obj.insert("stageId",stageId);
     QJsonDocument json(obj);
 
     emit message("Assigning asset");
