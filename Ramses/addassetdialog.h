@@ -6,13 +6,15 @@
 #include "ramshot.h"
 #include "ramstage.h"
 #include "ramasset.h"
+#include "ramstatus.h"
 
 class AddAssetDialog : public QDialog, private Ui::AddAssetDialog
 {
     Q_OBJECT
 
 public:
-    explicit AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, int sid,QList<RAMAsset*> aa, QWidget *parent = 0);
+    explicit AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, RAMStatus *sta, QList<RAMAsset*> aa, QWidget *parent = 0);
+    RAMAsset *getAsset();
 
 private slots:
     void on_addButton_clicked();
@@ -22,8 +24,9 @@ private:
     DBInterface *dbi;
     RAMShot * shot;
     RAMStage * stage;
-    int statusId;
+    RAMStatus *status;
     QList<RAMAsset*> allAssets;
+    RAMAsset *asset;
 };
 
 #endif // ADDASSETDIALOG_H

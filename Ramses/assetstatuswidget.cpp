@@ -31,12 +31,12 @@ void AssetStatusWidget::on_addButton_clicked()
     setEditing(true);
 
     //get STB status
-    int statusId = 0;
+    RAMStatus *status;
     foreach(RAMStatus *s,statusesList)
     {
         if (s->getShortName() == "STB")
         {
-            statusId = s->getId();
+            status = s;
             break;
         }
     }
@@ -46,7 +46,7 @@ void AssetStatusWidget::on_addButton_clicked()
         allAssets.removeAll(a);
     }
 
-    AddAssetDialog ad(dbi,shot,stage,statusId,allAssets);
+    AddAssetDialog ad(dbi,shot,stage,status,allAssets);
     //get button global coordinates
     QPoint thisCenter = this->parentWidget()->parentWidget()->mapToGlobal(this->parentWidget()->parentWidget()->geometry().center());
     QPoint newCenter(thisCenter.x()-ad.geometry().width()/2, thisCenter.y()-ad.geometry().height()/2);
@@ -64,7 +64,7 @@ void AssetStatusWidget::setEditing(bool e)
 
 void AssetStatusWidget::assetsListUpdated(QList<RAMAsset *> aa)
 {
-    //keep only assets for current stage
+    /*//keep only assets for current stage
     allAssets.clear();
     foreach(RAMAsset *asset, aa)
     {
@@ -72,5 +72,5 @@ void AssetStatusWidget::assetsListUpdated(QList<RAMAsset *> aa)
         {
             allAssets.append(asset);
         }
-    }
+    }*/
 }

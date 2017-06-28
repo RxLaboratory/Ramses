@@ -3,13 +3,18 @@
 #include <QtDebug>
 #endif
 
-RAMAsset::RAMAsset(int i, QString n, QString sn, QList<RAMStage *> s, RAMStatus *st, QObject *parent) : QObject(parent)
+RAMAsset::RAMAsset(DBInterface *db, int i, QString n, QString sn, RAMStatus *st, QString c, bool updateDb, QObject *parent) : QObject(parent)
 {
     name = n;
     id = i;
     status = st;
-    stages = s;
     shortName = sn;
+    comment = c;
+    dbi = db;
+    if (updateDb)
+    {
+        dbi->addAsset(name,shortName,status->getId(),comment,id);
+    }
 }
 
 int RAMAsset::getId()
@@ -35,11 +40,6 @@ RAMStatus* RAMAsset::getStatus()
 QString RAMAsset::getName()
 {
     return name;
-}
-
-QList<RAMStage*> RAMAsset::getStages()
-{
-    return stages;
 }
 
 QString RAMAsset::getShortName()

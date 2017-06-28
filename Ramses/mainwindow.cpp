@@ -498,7 +498,7 @@ void MainWindow::dataReceived(QJsonObject data)
         return;
     }
 
-    //SHOT
+    //SHOTS
     else if (type == "addShots")
     {
         if (!success) connected(false,message);
@@ -531,6 +531,24 @@ void MainWindow::dataReceived(QJsonObject data)
         return;
     }
     else if (type == "moveShotsDown")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+
+
+    //ASSETS
+    else if (type == "addAsset")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "setAssetStatus")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
+    else if (type == "assignAsset")
     {
         if (!success) connected(false,message);
         return;
@@ -1289,12 +1307,14 @@ void MainWindow::on_addShotButton_clicked()
         int projectId = projectSelector->currentData().toInt();
 
 
-        //get higher id
+        //get higher id, prefix with project id
         int id = 1;
         foreach(RAMShot *rs,allShots)
         {
             if (rs->getId() >= id) id = rs->getId()+1;
         }
+        QString idString = QString::number(currentProject->getId()) + QString::number(id);
+        id = idString.toInt();
 
         RAMShot *rs = new RAMShot(dbi,projectId,id,"000",0.0,true);
 

@@ -101,11 +101,6 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         QString repMessage = repObj.value("message").toString();
         bool repSuccess = repObj.value("success").toBool();
         QJsonValue content = repObj.value("content");
-
-        //ASSET
-        if (repType == "addAsset") {  emit assetAdded(repSuccess,repMessage); return; }
-        else if (repType == "setAssetStatus") { emit assetStatusUpdated(repSuccess,repMessage); return; }
-        else if (repType == "assignAsset") { emit assetAssigned(repSuccess,repMessage); return; }
     }
 
 }
@@ -560,15 +555,15 @@ void DBInterface::moveShotsDown(QList<int> ids)
 }
 
 //ASSETS
-void DBInterface::addAsset(QString name, QString shortName, int stageId, int statusId, int shotId)
+void DBInterface::addAsset(QString name, QString shortName, int statusId,QString comment, int id)
 {
     QString q = "?type=addAsset";
     QJsonObject obj;
     obj.insert("name",name);
     obj.insert("shortName",shortName);
-    obj.insert("stageId",stageId);
     obj.insert("statusId",statusId);
-    obj.insert("shotId",shotId);
+    obj.insert("id",id);
+    obj.insert("comment",comment);
     QJsonDocument json(obj);
 
     emit message("Submitting asset");
