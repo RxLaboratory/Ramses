@@ -99,7 +99,11 @@
 			$projectId = $data->{'projectId'};
 		}
 
-		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,projectshot.shotOrder as shotOrder FROM shots JOIN projectshot ON projectshot.shotId = shots.id WHERE projectId= :projectId ORDER BY projectshot.shotOrder,shots.name;";
+		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,projectshot.shotOrder as shotOrder,
+		FROM shots
+		JOIN projectshot ON projectshot.shotId = shots.id
+		WHERE projectId= :projectId
+		ORDER BY projectshot.shotOrder,shots.name;";
 
 		try
 		{
@@ -127,7 +131,7 @@
 		}
 		catch (Exception $e)
 		{
-			$reply["message"] = "Server issue: SQL Query failed retrieving shots list. | " . $q;
+			$reply["message"] = "Server issue: SQL Query failed retrieving shots list. |\n" . $q;
 			$reply["success"] = false;
 		}
 	}
