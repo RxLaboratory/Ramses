@@ -21,7 +21,7 @@
 			if (!isset($shotOrder)) $shotOrder = 0;
 
 			//update order of shots after the ones we insert
-			$qOrder = "UPDATE shots SET shotOrder = shotOrder + " . count($shots) . " WHERE shotOrder >= " . $shotOrder . " ;";
+			$qOrder = "UPDATE shots JOIN projectshot ON projectshot.shotId = shots.id  SET projectshot.shotOrder = projectshot.shotOrder + " . count($shots) . " WHERE projectshot.shotOrder >= " . $shotOrder . " ;";
 
 			try
 			{
@@ -38,20 +38,30 @@
 			if (isset($repOrder))
 			{
 				//construct add shots query
-				$qShots = "INSERT INTO shots (id,name,projectId,shotOrder,duration) VALUES ";
-				$reply["message"] = $qShots;
+				$qShots = "INSERT INTO shots (id,name,duration) VALUES ";
 
 				$first = true;
-				$order = (int)$shotOrder;
 				foreach($shots as $shot)
 				{
 					if (!$first) $qShots = $qShots . ",";
-					$qShots = $qShots . "('" . $shot->{'id'} . "','" . $shot->{'name'} . "'," . $projectId . "," . $order . "," . $shot->{'duration'} . ")";
-					$order = $order + 1;
+					$qShots = $qShots . "(" . $shot->{'id'} . ",'" . $shot->{'name'} . "'," . $shot->{'duration'} . ")";
 					$first = false;
 				}
 
-				$qShots = $qShots . " ON DUPLICATE KEY UPDATE duration = VALUES(duration);";
+				$qShots = $qShots . " ON DUPLICATE KEY UPDATE duration = VALUES(duration);\n";
+
+				//add assignment query
+				$qShots = $qShots . "INSERT INTO projectshot (shotId,projectId,shotOrder) VALUES ";
+
+				$order = (int)$shotOrder;
+				$first = true;
+				foreach($shots as $shot)
+				{
+					if (!$first) $qShots = $qShots . ",";
+					$qShots = $qShots . "(" . $shot->{'id'} . "," . $projectId . "," . $order . ")";
+					$order = $order + 1;
+					$first = false;
+				}
 
 				//add shots
 				try
@@ -64,7 +74,7 @@
 				}
 				catch (Exception $e)
 				{
-					$reply["message"] = "Server issue: SQL Query failed adding shots. |\n" . $qShots;
+					$reply["message"] = "Server issue: SQL Query failed adding shots. |\n" . $qShots ;
 					$reply["success"] = false;
 				}
 			}
@@ -89,7 +99,7 @@
 			$projectId = $data->{'projectId'};
 		}
 
-		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,shots.shotOrder FROM shots WHERE projectId= :projectId ORDER BY shots.shotOrder,shots.name;";
+		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,projectshot.shotOrder as shotOrder FROM shots JOIN projectshot ON projectshot.shotId = shots.id WHERE projectId= :projectId ORDER BY projectshot.shotOrder,shots.name;";
 
 		try
 		{
@@ -224,7 +234,7 @@
 			$qString = "";
 			foreach($ids as $id)
 			{
-				$qString = $qString . "UPDATE shots SET shotOrder = " . $shotOrder . " WHERE id = " . $id . ";\n";
+				$qString = $qString . "UPDATE projectshot SET shotOrder = " . $shotOrder . " WHERE shotId = " . $id . ";\n";
 				$shotOrder = $shotOrder + 1;
 			}
 
@@ -270,7 +280,7 @@
 			foreach($ids as $id)
 			{
 				//get this shot order and the order just before
-				$qOrders = "SELECT shotOrder,id FROM shots WHERE shotOrder <= (SELECT shotOrder FROM shots WHERE id=" . $id . ") ORDER BY shotOrder DESC;";
+				$qOrders = "SELECT shotOrder,id FROM projectshot WHERE shotOrder <= (SELECT shotOrder FROM projectshot WHERE shotId=" . $id . ") ORDER BY shotOrder DESC;";
 
 				try
 				{
@@ -279,8 +289,8 @@
 					$orderBefore = $repOrder->fetch();
 					$repOrder->closeCursor();
 
-					$q = $q . "UPDATE shots SET shotOrder=" . $orderCurrent["shotOrder"] . " WHERE id=" . $orderBefore['id'] . ";\n";
-					$q = $q . "UPDATE shots SET shotOrder=" . $orderBefore["shotOrder"] . " WHERE id=" . $orderCurrent['id'] . ";\n";
+					$q = $q . "UPDATE projectshot SET shotOrder=" . $orderCurrent["shotOrder"] . " WHERE id=" . $orderBefore['id'] . ";\n";
+					$q = $q . "UPDATE projectshot SET shotOrder=" . $orderBefore["shotOrder"] . " WHERE id=" . $orderCurrent['id'] . ";\n";
 
 					$rep = $bdd->query($q);
 					$rep->closeCursor();
@@ -324,7 +334,7 @@
 			foreach($ids as $id)
 			{
 				//get this shot order and the order just before
-				$qOrders = "SELECT shotOrder,id FROM shots WHERE shotOrder >= (SELECT shotOrder FROM shots WHERE id=" . $id . ") ORDER BY shotOrder ASC;";
+				$qOrders = "SELECT shotOrder,id FROM projectshot WHERE shotOrder >= (SELECT shotOrder FROM shots WHERE shotId=" . $id . ") ORDER BY shotOrder ASC;";
 
 				try
 				{
@@ -335,8 +345,8 @@
 
 					if (count($orderAfter) > 0 AND count($orderCurrent) > 0)
 					{
-						$q = $q . "UPDATE shots SET shotOrder=" . $orderCurrent["shotOrder"] . " WHERE id=" . $orderAfter['id'] . ";\n";
-						$q = $q . "UPDATE shots SET shotOrder=" . $orderAfter["shotOrder"] . " WHERE id=" . $orderCurrent['id'] . ";\n";
+						$q = $q . "UPDATE projectshot SET shotOrder=" . $orderCurrent["shotOrder"] . " WHERE id=" . $orderAfter['id'] . ";\n";
+						$q = $q . "UPDATE projectshot SET shotOrder=" . $orderAfter["shotOrder"] . " WHERE id=" . $orderCurrent['id'] . ";\n";
 
 						$rep = $bdd->query($q);
 						$rep->closeCursor();
