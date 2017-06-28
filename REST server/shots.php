@@ -206,6 +206,7 @@
 		}
 	}
 
+	// ========= RESET SHOT ORDER ======
 	if ($reply["type"] == "resetShotsOrder")
 	{
 		$reply["accepted"] = true;

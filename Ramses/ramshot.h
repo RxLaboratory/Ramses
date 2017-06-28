@@ -26,6 +26,7 @@ private:
     int projectId;
     int id;
     DBInterface *dbi;
+
 protected:
     bool operator==(RAMShot s);
     bool operator==(RAMShot *s);

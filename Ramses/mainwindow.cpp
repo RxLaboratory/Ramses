@@ -280,7 +280,6 @@ void MainWindow::showPage(int page)
         helpDialog->showHelp(0);
         break;
     case 1:
-        updater->getShots(currentProject);
         actionMain->setChecked(true);
         break;
     case 2:
@@ -579,10 +578,13 @@ void MainWindow::selectorProjectChanged(int i)
 
     stageSelector->clear();
     mainTable->clear();
+    mainTable->setRowCount(0);
+    mainTable->setColumnCount(0);
 
     qDeleteAll(allShots);
     allShots.clear();
     shotsAdminList->clear();
+
 
     if (i<0) return;
 
@@ -1295,22 +1297,25 @@ void MainWindow::on_addShotButton_clicked()
 {
     //only if new
     bool ok = true;
+    int row = 0;
     foreach(RAMShot *rs,allShots)
     {
-        if (rs->getName() == "000") ok = false;
+        if (rs->getName() == "000")
+        {
+            ok = false;
+            row = allShots.indexOf(rs);
+        }
     }
 
     if (ok)
     {
-        //get order (if a row is selected, or else insert after the last row)
-        int order = 0;
         if (shotsAdminList->currentItem())
         {
-            order = allShots[shotsAdminList->currentRow()]->getShotOrder()+1;
+            row = shotsAdminList->currentRow() + 1;
         }
         else if (shotsAdminList->count() > 0)
         {
-            order = allShots[shotsAdminList->count()-1]->getShotOrder()+1;
+            row = shotsAdminList->count();
         }
 
         //getProject
@@ -1324,44 +1329,36 @@ void MainWindow::on_addShotButton_clicked()
             if (rs->getId() >= id) id = rs->getId()+1;
         }
 
-        RAMShot *rs = new RAMShot(dbi,projectId,id,"000",0.0,order,true);
+        RAMShot *rs = new RAMShot(dbi,projectId,id,"000",0.0,row,true);
 
         //update UI
-        newShot(rs);
+        newShot(rs,row);
     }
 
 
     //select shot
     shotsAdminList->clearSelection();
-    for(int i = 0 ; i < shotsAdminList->count() ; i++)
-    {
-        if (shotsAdminList->item(i)->text() == "000")
-        {
-            shotsAdminList->setCurrentRow(i);
-            on_shotsAdminList_itemClicked(shotsAdminList->item(i));
-            break;
-        }
-    }
+    shotsAdminList->setCurrentRow(row);
+    on_shotsAdminList_itemClicked(shotsAdminList->item(row));
+
+    resetShotsOrder();
 }
 
-void MainWindow::newShot(RAMShot *rs)
+void MainWindow::newShot(RAMShot *rs,int row)
 {
-    int row = 0;
-    if (shotsAdminList->currentItem())
-    {
-        row = shotsAdminList->currentRow() + 1;
-    }
-    else if (shotsAdminList->count() > 0)
-    {
-        row = shotsAdminList->count();
-    }
-
     allShots.insert(row,rs);
 
     //update list
     QListWidgetItem *item = new QListWidgetItem(rs->getName());
     item->setData(Qt::UserRole,rs->getId());
     shotsAdminList->insertItem(row,item);
+
+    //add to table
+    QTableWidgetItem *rowHeader = new QTableWidgetItem(rs->getName());
+    rowHeader->setToolTip(QString::number(rs->getDuration()) + "s");
+    rowHeader->setData(Qt::UserRole,rs->getId());
+    mainTable->insertRow(row);
+    mainTable->setVerticalHeaderItem(row,rowHeader);
 }
 
 RAMShot* MainWindow::getShot(int id)
@@ -1401,6 +1398,11 @@ void MainWindow::gotShots(QJsonValue shots)
                 item->setText(name);
                 item->setData(Qt::UserRole,rs->getId());
 
+                QTableWidgetItem *rowHeader = new QTableWidgetItem(rs->getName());
+                rowHeader->setToolTip(QString::number(rs->getDuration()) + "s");
+                rowHeader->setData(Qt::UserRole,rs->getId());
+                mainTable->setVerticalHeaderItem(rsI,rowHeader);
+
                 //remove from the new list
                 shotsArray.removeAt(i);
                 i--;
@@ -1412,6 +1414,7 @@ void MainWindow::gotShots(QJsonValue shots)
             allShots.removeAt(rsI);
             QListWidgetItem *item = shotsAdminList->takeItem(rsI);
             delete item;
+            mainTable->removeRow(rsI);
             rsI--;
         }
     }
@@ -1429,7 +1432,7 @@ void MainWindow::gotShots(QJsonValue shots)
         RAMShot *rs = new RAMShot(dbi,currentProject->getId(),id,name,duration,order,false);
 
         //add to UI
-        newShot(rs);
+        newShot(rs,rs->getShotOrder());
     }
 
 
@@ -1785,54 +1788,6 @@ void MainWindow::on_batchAddShotButton_clicked()
     this->setEnabled(true);*/
 }
 
-//TODO Remove when table populated too
-void MainWindow::shotAdded(RAMShot *shot)
-{
-    /*QString name = shot->getName();
-    QString toolTip = "Duration: " + QString::number(shot->getDuration()) + "s";
-    int id = shot->getId();
-    int order = shot->getShotOrder();
-
-#ifdef QT_DEBUG
-    qDebug() << "Displaying shot " + name;
-    qDebug() << "Order " + QString::number(order);
-#endif
-
-    //add new line in table
-    QTableWidgetItem *rowHeader = new QTableWidgetItem(name);
-    rowHeader->setToolTip(toolTip);
-    rowHeader->setData(Qt::UserRole,id);
-    rowHeader->setData(Qt::UserRole+1,order);
-
-    //find line
-    int row=0;
-    if(mainTable->rowCount() > 0)
-    {
-        int testOrder = -1;
-        while (order > testOrder)
-        {
-            row++;
-            if (row == mainTable->rowCount()) break;
-            testOrder = mainTable->verticalHeaderItem(row)->data(Qt::UserRole+1).toInt();
-        }
-    }
-
-
-    mainTable->insertRow(row);
-    mainTable->setVerticalHeaderItem(row,rowHeader);
-    //add to admin list
-    shotsAdminList->insertItem(row,name);
-    //if shot name = 000, select it in admin list
-    if (name == "000")
-    {
-        shotsAdminList->setCurrentRow(row);
-    }
-
-    //and connect shot signals
-    //TODO CONNECT SHOT SIGNALS*/
-
-}
-
 void MainWindow::on_shotsAdminList_itemClicked(QListWidgetItem *item)
 {
      RAMShot *rs = getShot(shotsAdminList->currentItem()->data(Qt::UserRole).toInt());
@@ -1870,11 +1825,15 @@ void MainWindow::on_removeShotButton_clicked()
         ids << id;
         RAMShot *rs = getShot(id);
 
+        int row = shotsAdminList->row(item);
+        mainTable->removeRow(row);
+
         allShots.removeAll(rs);
         delete item;
     }
 
     dbi->removeShots(ids);
+    resetShotsOrder();
 
     shotsAdminReset();
 }
@@ -1885,6 +1844,16 @@ void MainWindow::shotsAdminReset()
     shotNameEdit->setText("");
     shotDurationSpinBox->setValue(0.0);
     shotConfigWidget->setEnabled(false);
+}
+
+void MainWindow::resetShotsOrder()
+{
+    QList<int> ids;
+    foreach(RAMShot *rs,allShots)
+    {
+        ids << rs->getId();
+    }
+    dbi->resetShotsOrder(ids);
 }
 
 void MainWindow::on_moveShotUpButton_clicked()
@@ -1916,6 +1885,8 @@ void MainWindow::on_moveShotUpButton_clicked()
 
         shotsAdminList->takeItem(index+1);
         shotsAdminList->insertItem(index,item);
+
+        mainTable->verticalHeader()->moveSection(index+1,index);
     }
 
     //reselect items
@@ -1925,12 +1896,7 @@ void MainWindow::on_moveShotUpButton_clicked()
     }
 
     //update db
-    QList<int> ids;
-    foreach(RAMShot *rs,allShots)
-    {
-        ids << rs->getId();
-    }
-    dbi->resetShotsOrder(ids);
+    resetShotsOrder();
 }
 
 void MainWindow::on_moveShotDownButton_clicked()
@@ -1971,14 +1937,8 @@ void MainWindow::on_moveShotDownButton_clicked()
     }
 
     //update db
-    QList<int> ids;
-    foreach(RAMShot *rs,allShots)
-    {
-        ids << rs->getId();
-    }
-    dbi->resetShotsOrder(ids);
+    resetShotsOrder();
 }
-
 
 //ADMIN - ASSETS
 
@@ -1987,7 +1947,6 @@ void MainWindow::assetAdded(bool success,QString message)
 {
     setWaiting(false);
     //refresh shots list
-    updater->getShots(currentProject);
 }
 
 //asset statuses
@@ -2006,7 +1965,6 @@ void MainWindow::assetAssigned(bool success,QString message)
 {
     setWaiting(false);
     //refresh shots list
-    updater->getShots(currentProject);
 }
 
 void MainWindow::assetAssigned(RAMAsset *a,RAMShot *s)

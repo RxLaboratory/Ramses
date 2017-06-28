@@ -19,7 +19,6 @@
 #include <QXmlStreamReader>
 #include "idletimer.h"
 #include "dbinterface.h"
-#include "updater.h"
 #include "projectselectorwidget.h"
 #include "ramstatus.h"
 #include "ramstage.h"
@@ -178,7 +177,7 @@ private:
      * @brief Creates a new shot and adds it to the list
      * @param rs the shot
      */
-    void newShot(RAMShot *rs);
+    void newShot(RAMShot *rs, int row);
     /**
      * @brief Called when the remote server has sent the list of shots
      * @param projects    The list
@@ -194,6 +193,10 @@ private:
      * @return The shot
      */
     RAMShot *getShot(int id);
+    /**
+     * @brief Resets the order of the shots in the DB
+     */
+    void resetShotsOrder();
     /**
      * @brief Sorter method to sort the item selection in shotsAdminList
      * @param a
@@ -224,8 +227,6 @@ private:
     QSqlDatabase settingsDB;
     //database interface
     DBInterface *dbi;
-    //updater
-    Updater *updater;
 
     //resources
     QString resourcesFolder;
@@ -308,7 +309,6 @@ private slots:
     //admin - shots
     void on_addShotButton_clicked();
     void on_batchAddShotButton_clicked();
-    void shotAdded(RAMShot *shot);
     void on_shotsAdminList_itemClicked(QListWidgetItem *item);
     void on_shotApplyButton_clicked();
     void on_removeShotButton_clicked();
