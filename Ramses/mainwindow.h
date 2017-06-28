@@ -330,6 +330,7 @@ private slots:
     void on_moveShotDownButton_clicked();
     void on_importShotsButton_clicked();
     //admin - assets
+    void assetCreated(RAMAsset *asset);
     void updateAssetStatus(RAMAsset *asset);
     void assetStatusUpdated(bool success,QString message);
     void assetAssigned(bool success,QString message);
@@ -383,7 +384,6 @@ private slots:
      * @param i Timeout for the status bar
      */
     void showMessage(QString m, int i = 0);
-
 
 
 protected:

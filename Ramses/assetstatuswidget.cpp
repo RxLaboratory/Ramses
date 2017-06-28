@@ -52,8 +52,9 @@ void AssetStatusWidget::on_addButton_clicked()
     ad.setWindowFlags(Qt::FramelessWindowHint);
     if (ad.exec() == QDialog::Accepted)
     {
-        //give the asset to the mainwindow
+        //add to UI
         addAsset(ad.getAsset());
+        emit newAsset(ad.getAsset());
     }
 
     setEditing(false);

@@ -1366,6 +1366,7 @@ void MainWindow::newShot(RAMShot *rs,int row)
     {
         AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusesList,assetsList,dbi);
         connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
+        connect(assetWidget,SIGNAL(newAsset(RAMAsset*)),this,SLOT(assetCreated(RAMAsset*)));
         connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
         //add widget to cell
         mainTable->setCellWidget(row,i,assetWidget);
@@ -2046,8 +2047,7 @@ void MainWindow::gotAssets(QJsonValue assets)
 
 void MainWindow::newAsset(RAMAsset *asset)
 {
-    assetsList << asset;
-    emit assetsListUpdated(assetsList);
+    assetCreated(asset);
     RAMStage *stage = asset->getStage();
     foreach(RAMShot *shot,asset->getAssignments())
     {
@@ -2081,6 +2081,12 @@ void MainWindow::newAsset(RAMAsset *asset)
         AssetStatusWidget* aw = (AssetStatusWidget*)mainTable->cellWidget(row,col);
         aw->addAsset(asset);
     }
+}
+
+void MainWindow::assetCreated(RAMAsset* asset)
+{
+    assetsList << asset;
+    emit assetsListUpdated(assetsList);
 }
 
 //asset statuses

@@ -71,7 +71,7 @@
 		if (strlen($assetId) > 0 AND strlen($shotId) > 0)
 		{
 			$q = "INSERT INTO assetstatuses (shotId,assetId)
-			VALUES (:shotId , :assetId);";
+			VALUES ( :shotId , :assetId );";
 
 			try
 			{
