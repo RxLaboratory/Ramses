@@ -75,6 +75,13 @@
 					$projectStages[] = (int)$projectStage['stageId'];
 				}
 				$proj['stages'] = $projectStages;
+				//get shots
+				$projectShots = Array();
+				$repShots = $bdd->query("SELECT shotId FROM projectshot WHERE projectId=" . $project['id'] . ";");
+				while ($projectShot = $repShots->fetch())
+				{
+					$projectShots[] = (int)$projectShot['shotId'];
+				}
 				$projects[] = $proj;
 			}
 			$rep->closeCursor();

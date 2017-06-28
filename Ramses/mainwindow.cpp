@@ -1296,7 +1296,7 @@ void MainWindow::on_addShotButton_clicked()
             if (rs->getId() >= id) id = rs->getId()+1;
         }
 
-        RAMShot *rs = new RAMShot(dbi,projectId,id,"000",0.0,row,true);
+        RAMShot *rs = new RAMShot(dbi,projectId,id,"000",0.0,true);
 
         //update UI
         newShot(rs,row);
@@ -1408,10 +1408,10 @@ void MainWindow::gotShots(QJsonValue shots)
         int order = shot.value("shotOrder").toInt();
         int id = shot.value("shotId").toInt();
 
-        RAMShot *rs = new RAMShot(dbi,currentProject->getId(),id,name,duration,order,false);
+        RAMShot *rs = new RAMShot(dbi,currentProject->getId(),id,name,duration,false);
 
         //add to UI
-        newShot(rs,rs->getShotOrder());
+        newShot(rs,order);
     }
 
 
@@ -1793,6 +1793,10 @@ void MainWindow::on_shotApplyButton_clicked()
     //update UI
     QListWidgetItem *item = shotsAdminList->item(currentRow);
     item->setText(name);
+
+    QTableWidgetItem *header = mainTable->verticalHeaderItem(currentRow);
+    header->setText(name);
+    header->setToolTip(QString::number(duration) + "s");
 }
 
 void MainWindow::on_removeShotButton_clicked()
