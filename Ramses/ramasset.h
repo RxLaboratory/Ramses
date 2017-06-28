@@ -16,7 +16,10 @@ public:
     QString getShortName();
     int getId();
     QString getComment();
+    QList<RAMAssignment> getAssignments();
     void assign(RAMStage *stage,RAMShot *shot,bool updateDb = false);
+    void setName(QString n);
+    void setShortName(QString sn);
     void setComment(QString c);
     void setStatus(RAMStatus *s);
 

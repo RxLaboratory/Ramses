@@ -25,6 +25,7 @@ private slots:
 
 signals:
     void editing(bool);
+    void newAsset(RAMAsset *asset);
 
 private:
     QList<RAMAsset *> assets;

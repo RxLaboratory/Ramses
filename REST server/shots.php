@@ -99,7 +99,7 @@
 			$projectId = $data->{'projectId'};
 		}
 
-		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,projectshot.shotOrder as shotOrder,
+		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,projectshot.shotOrder as shotOrder
 		FROM shots
 		JOIN projectshot ON projectshot.shotId = shots.id
 		WHERE projectId= :projectId

@@ -103,6 +103,12 @@ private:
      */
     void newStatus(RAMStatus *rs);
     /**
+     * @brief Gets a status using its Id
+     * @param id    The status id
+     * @return The status
+     */
+    RAMStatus *getStatus(int id);
+    /**
      * @brief Called when the remote server has sent the list of statuses
      * @param statuses  The list
      */
@@ -180,7 +186,7 @@ private:
     void newShot(RAMShot *rs, int row);
     /**
      * @brief Called when the remote server has sent the list of shots
-     * @param projects    The list
+     * @param shots    The list
      */
     void gotShots(QJsonValue shots);
     /**
@@ -209,8 +215,16 @@ private:
      */
     void shotsAdminReset();
 
-    //admin - assets
+    // ----------------- SHOTS -----------------------
+
+    /**
+     * @brief Called when the remote server has sent the list of assets
+     * @param assets    The list
+     */
+    void gotAssets(QJsonValue assets);
+    void newAsset(RAMAsset *asset);
     QList<RAMAsset*> assetsList;
+
     //login
 
     QString username;
@@ -316,7 +330,6 @@ private slots:
     void on_moveShotDownButton_clicked();
     void on_importShotsButton_clicked();
     //admin - assets
-    void assetAdded(bool success,QString message);
     void updateAssetStatus(RAMAsset *asset);
     void assetStatusUpdated(bool success,QString message);
     void assetAssigned(bool success,QString message);

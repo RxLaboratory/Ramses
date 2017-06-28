@@ -22,8 +22,6 @@ void AssetStatusWidget::addAsset(RAMAsset *asset)
     AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,this);
     connect(assetBox,SIGNAL(dialogShown(bool)),this,SLOT(setEditing(bool)));
     assetsWidget->layout()->addWidget(assetBox);
-
-
 }
 
 void AssetStatusWidget::on_addButton_clicked()
@@ -52,7 +50,11 @@ void AssetStatusWidget::on_addButton_clicked()
     QPoint newCenter(thisCenter.x()-ad.geometry().width()/2, thisCenter.y()-ad.geometry().height()/2);
     ad.move(ad.mapFromGlobal(newCenter));
     ad.setWindowFlags(Qt::FramelessWindowHint);
-    ad.exec();
+    if (ad.exec() == QDialog::Accepted)
+    {
+        //give the asset to the mainwindow
+        addAsset(ad.getAsset());
+    }
 
     setEditing(false);
 }
@@ -64,13 +66,5 @@ void AssetStatusWidget::setEditing(bool e)
 
 void AssetStatusWidget::assetsListUpdated(QList<RAMAsset *> aa)
 {
-    /*//keep only assets for current stage
-    allAssets.clear();
-    foreach(RAMAsset *asset, aa)
-    {
-        if (asset->getStages()[0] == stage) //TODO Check in all stages list
-        {
-            allAssets.append(asset);
-        }
-    }*/
+    allAssets = aa;
 }

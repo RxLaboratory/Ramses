@@ -52,8 +52,9 @@ public:
     void moveShotsDown(QList<int> ids);
     //Asset
     void addAsset(QString name, QString shortName, int statusId, QString comment, int id);
-    void setAssetStatus(int statusId, int assetId);
     void assignAsset(int assetId,int shotId, int stageId);
+    void getAssets(int projectId);
+    void setAssetStatus(int statusId, int assetId);
 signals:
     void connecting();
     void connected(bool,QString);

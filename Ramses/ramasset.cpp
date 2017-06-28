@@ -27,6 +27,11 @@ QString RAMAsset::getComment()
     return comment;
 }
 
+QList<RAMAssignment> RAMAsset::getAssignments()
+{
+    return assignments;
+}
+
 void RAMAsset::assign(RAMStage *stage, RAMShot *shot, bool updateDb)
 {
     RAMAssignment assignment(stage,shot);
@@ -35,6 +40,16 @@ void RAMAsset::assign(RAMStage *stage, RAMShot *shot, bool updateDb)
     {
         dbi->assignAsset(id,shot->getId(),stage->getId());
     }
+}
+
+void RAMAsset::setName(QString n)
+{
+    name = n;
+}
+
+void RAMAsset::setShortName(QString sn)
+{
+    shortName = sn;
 }
 
 void RAMAsset::setComment(QString c)
