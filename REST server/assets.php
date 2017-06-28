@@ -95,28 +95,39 @@
 
 		$assetId = "";
 		$shotId = "";
+		$stageId = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
 			$assetId = $data->{'assetId'};
 			$shotId = $data->{'shotId'};
+			$stageId = $data->{'stageId'};
 		}
 
-		$q = "INSERT INTO shotassets (shotId,assetId) VALUES (" . $shotId . "," . $assetId . ");";
+		if (strlen($assetId) > 0 AND strlen($shotId) > 0 AND strlen($stageId) > 0)
+		{
+			$q = "INSERT INTO assetstatuses (shotId,assetId,stageId) VALUES (" . $shotId . "," . $assetId . "," . $stageId . ");";
 
-		try
-		{
-			$rep = $bdd->query($q);
-			$rep->closeCursor();
-			$reply["message"] = "Asset assigned.";
-			$reply["success"] = true;
+			try
+			{
+				$rep = $bdd->query($q);
+				$rep->closeCursor();
+				$reply["message"] = "Asset assigned.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+			   $reply["message"] = "Server issue: SQL Query failed adding assigning asset | " . $q;
+			   $reply["success"] = false;
+			}
 		}
-		catch (Exception $e)
+		else
 		{
-		   $reply["message"] = "Server issue: SQL Query failed adding assigning asset | " . $q;
-		   $reply["success"] = false;
+			$reply["message"] = "Invalid request, missing values.";
+			$reply["success"] = false;
 		}
+
 
 
 	}

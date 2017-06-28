@@ -27,6 +27,16 @@ QString RAMAsset::getComment()
     return comment;
 }
 
+void RAMAsset::assign(RAMStage *stage, RAMShot *shot, bool updateDb)
+{
+    RAMAssignment assignment(stage,shot);
+    assignments << assignment;
+    if (updateDb)
+    {
+        dbi->assignAsset(id,shot->getId(),stage->getId());
+    }
+}
+
 void RAMAsset::setComment(QString c)
 {
     comment = c;

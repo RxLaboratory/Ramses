@@ -1,6 +1,6 @@
 #include "ramassignment.h"
 
-RAMAssignment::RAMAssignment(RAMStage *s, RAMShot *sh, QObject *parent) : QObject(parent)
+RAMAssignment::RAMAssignment(RAMStage *s, RAMShot *sh)
 {
     stage = s;
     shot = sh;

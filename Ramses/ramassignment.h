@@ -1,15 +1,13 @@
 #ifndef RAMASSIGNMENT_H
 #define RAMASSIGNMENT_H
 
-#include <QObject>
 #include "ramstage.h"
 #include "ramshot.h"
 
-class RAMAssignment : public QObject
+class RAMAssignment
 {
-    Q_OBJECT
 public:
-    explicit RAMAssignment(RAMStage *s,RAMShot *sh,QObject *parent = 0);
+    explicit RAMAssignment(RAMStage *s,RAMShot *sh);
     RAMStage *getStage();
     RAMShot *getShot();
 

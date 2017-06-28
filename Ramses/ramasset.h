@@ -16,6 +16,7 @@ public:
     QString getShortName();
     int getId();
     QString getComment();
+    void assign(RAMStage *stage,RAMShot *shot,bool updateDb = false);
     void setComment(QString c);
     void setStatus(RAMStatus *s);
 
