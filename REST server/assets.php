@@ -11,6 +11,7 @@
 		$name = "";
 		$shortName = "";
 		$statusId = "";
+		$stageId = "";
 		$comment = "";
 		$id = "";
 
@@ -20,18 +21,21 @@
 			$name = $data->{'name'};
 			$shortName = $data->{'shortName'};
 			$statusId = $data->{'statusId'};
+			$stageId = $data->{'stageId'};
 			$comment = $data->{'comment'};
 			$id = $data->{'id'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($statusId) > 0)
+		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($statusId) > 0 AND strlen($stageId) > 0)
 		{
 			//construct add asset query
-            $q = "INSERT INTO assets (name,shortName,statusId,comment,id) VALUES ('" . $name . "','" . $shortName . "'," . $statusId . ",'" . $comment . "'," . $id . ");";
+            $q = "INSERT INTO assets (name,shortName,statusId,stageId,comment,id)
+			VALUES ( ':name' , ':shortName' , :statusId , :stageId , ':comment' , :id );";
 			try
 			{
 				//create asset
-				$repCreateAsset = $bdd->query($q);
+				$repCreateAsset = $bdd->prepare($q);
+				$repCreateAsset->execute(array('name' => $name , 'shortName' => $shortName , 'statusId' => $statusId , 'stageId' => $stageId , 'comment' => $comment , 'id' => $id));
 				$repCreateAsset->closeCursor();
 				$reply["message"] = "Asset added";
 				$reply["success"] = true;
@@ -55,23 +59,23 @@
 
 		$assetId = "";
 		$shotId = "";
-		$stageId = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
 			$assetId = $data->{'assetId'};
 			$shotId = $data->{'shotId'};
-			$stageId = $data->{'stageId'};
 		}
 
 		if (strlen($assetId) > 0 AND strlen($shotId) > 0 AND strlen($stageId) > 0)
 		{
-			$q = "INSERT INTO assetstatuses (shotId,assetId,stageId) VALUES (" . $shotId . "," . $assetId . "," . $stageId . ");";
+			$q = "INSERT INTO assetstatuses (shotId,assetId,stageId)
+			VALUES (:shotId , :assetId);";
 
 			try
 			{
-				$rep = $bdd->query($q);
+				$rep = $bdd->prepare($q);
+				$rep->execute(array('shotId' => $shotId , 'assetId' => $assetId));
 				$rep->closeCursor();
 				$reply["message"] = "Asset assigned.";
 				$reply["success"] = true;
@@ -104,14 +108,14 @@
 		}
 
 		//get assets
-		$qAssets = "SELECT assets.id,assets.name,assets.shortName,assets.statusId,assets.comment
+		$qAssets = "SELECT assets.id,assets.name,assets.shortName,assets.statusId,assets.comment,assets.stageId
 		FROM assets
 		JOIN assetstatuses ON assetstatuses.assetId = assets.id
 		JOIN projectstage ON assetstatuses.stageId = projectstage.stageId
 		WHERE projectstage.projectId = :projectId";
 
 		//get assignments
-		$qAssign = "SELECT assetstatuses.stageId,assetstatuses.shotId
+		$qAssign = "SELECT assetstatuses.shotId
 		FROM assetstatuses
 		JOIN assets ON assetstatuses.assetId = assets.id
 		WHERE assetstatuses.assetId = :id";
@@ -129,6 +133,7 @@
 				$a['name'] = $asset['name'];
 				$a['shortName'] = $asset['shortName'];
 				$a['statusId'] = (int)$asset['statusId'];
+				$a['stageId'] = (int)$asset['stageId'];
 				$a['comment'] = $asset['comment'];
 
 				$repAssign = $bdd->prepare($qAssign);
@@ -137,9 +142,7 @@
 				$assignments = Array();
 				while ($assignment = $repAssign->fetch())
 				{
-					$as = Array();
-					$as['stageId'] = (int)$assignment['stageId'];
-					$as['shotId'] = (int)$assignment['shotId'];
+					$as = (int)$assignment['shotId'];
 					$assignments[] = $as;
 				}
 				$repAssign->closeCursor();
