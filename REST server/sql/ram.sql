@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 27 Juin 2017 à 09:15
+-- Généré le :  Mer 28 Juin 2017 à 08:13
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -30,6 +30,8 @@ CREATE TABLE `assets` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `shortName` varchar(15) NOT NULL,
+  `statusId` int(11) DEFAULT NULL,
+  `comment` text NOT NULL,
   `latestUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -43,9 +45,7 @@ CREATE TABLE `assetstatuses` (
   `id` int(11) NOT NULL,
   `stageId` int(11) NOT NULL,
   `assetId` int(11) NOT NULL,
-  `statusId` int(11) DEFAULT NULL,
   `shotId` int(11) NOT NULL,
-  `comment` text NOT NULL,
   `latestUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -101,7 +101,6 @@ CREATE TABLE `stages` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `shortName` varchar(15) NOT NULL,
-  `type` varchar(1) NOT NULL,
   `latestUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -115,9 +114,9 @@ CREATE TABLE `status` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `shortName` varchar(15) NOT NULL,
-  `color` varchar(6) NOT NULL,
+  `color` varchar(7) NOT NULL,
   `description` text NOT NULL,
-  `latestUpdate` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
+  `latestUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -144,7 +143,8 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `assets`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`shortName`,`name`);
+  ADD UNIQUE KEY `name` (`shortName`,`name`),
+  ADD KEY `statusId` (`statusId`);
 
 --
 -- Index pour la table `assetstatuses`
@@ -153,7 +153,6 @@ ALTER TABLE `assetstatuses`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `stage` (`stageId`,`assetId`),
   ADD KEY `assetId` (`assetId`),
-  ADD KEY `statusId` (`statusId`),
   ADD KEY `shotId` (`shotId`);
 
 --
@@ -191,8 +190,7 @@ ALTER TABLE `stages`
 -- Index pour la table `status`
 --
 ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`,`shortName`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `users`
@@ -250,12 +248,17 @@ ALTER TABLE `users`
 --
 
 --
+-- Contraintes pour la table `assets`
+--
+ALTER TABLE `assets`
+  ADD CONSTRAINT `assets_ibfk_1` FOREIGN KEY (`statusId`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `assetstatuses`
 --
 ALTER TABLE `assetstatuses`
   ADD CONSTRAINT `assetstatuses_ibfk_1` FOREIGN KEY (`stageId`) REFERENCES `stages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `assetstatuses_ibfk_2` FOREIGN KEY (`assetId`) REFERENCES `assets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `assetstatuses_ibfk_3` FOREIGN KEY (`statusId`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `assetstatuses_ibfk_4` FOREIGN KEY (`shotId`) REFERENCES `shots` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
