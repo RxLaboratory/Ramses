@@ -63,6 +63,11 @@ void RAMShot::update()
     dbi->updateShot(id,name,duration);
 }
 
+void RAMShot::remove()
+{
+    dbi->removeShot(id);
+}
+
 bool RAMShot::operator==(RAMShot s)
 {
     return s.getId() == this->getId();

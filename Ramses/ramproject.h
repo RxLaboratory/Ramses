@@ -17,7 +17,6 @@ public:
     QString getName();
     QString getShortName();
     QList<RAMStage *> getStages();
-    QList<RAMShot *> getShots();
     //set
     void setName(QString name, bool updateDb = false);
     void setShortName(QString shortName, bool updateDb = false);
@@ -25,9 +24,6 @@ public:
     //stages
     void addStage(RAMStage *s, bool updateDb = false);
     void removeStage(RAMStage *s, bool updateDb = false);
-    //shots
-    void addShot(RAMShot *s, bool updateDb = false);
-    void removeShot(RAMShot *s, bool updateDb = false);
     //remove
     void remove();
 
@@ -40,7 +36,6 @@ private:
     QString projectName;
     QString projectShortName;
     QList<RAMStage *> projectStages;
-    QList<RAMShot *> projectShots;
     DBInterface *dbi;
 
 protected:

@@ -206,6 +206,48 @@
 		}
 	}
 
+	if ($reply["type"] == "resetShotsOrder")
+	{
+		$reply["accepted"] = true;
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			if (isset($data->{'ids'})) $ids = $data->{'ids'};
+		}
+
+		if (isset($ids) AND count($ids) > 0)
+		{
+			$shotOrder = 0;
+			$first = true;
+			$qString = "";
+			foreach($ids as $id)
+			{
+				$qString = $qString . "UPDATE shots SET shotOrder = " . $shotOrder . " WHERE id = " . $id . ";\n";
+				$shotOrder = $shotOrder + 1;
+			}
+
+			try
+			{
+				$rep = $bdd->query($qString);
+				$rep->closeCursor();
+
+				$reply["message"] = "Shot order successfully changed.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+				$reply["message"] = "Server issue: SQL Query failed setting shots orders. | " . $qString;
+				$reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+	}
+
 	// ========= MOVE SHOT UP =========
 	if ($reply["type"] == "moveShotsUp")
 	{
@@ -235,8 +277,6 @@
 					$orderCurrent = $repOrder->fetch();
 					$orderBefore = $repOrder->fetch();
 					$repOrder->closeCursor();
-
-
 
 					$q = $q . "UPDATE shots SET shotOrder=" . $orderCurrent["shotOrder"] . " WHERE id=" . $orderBefore['id'] . ";\n";
 					$q = $q . "UPDATE shots SET shotOrder=" . $orderBefore["shotOrder"] . " WHERE id=" . $orderCurrent['id'] . ";\n";

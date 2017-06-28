@@ -17,6 +17,7 @@ public:
     void setDuration(double d, bool updateDB = false);
     void setShotOrder(int o);
     void update();
+    void remove();
 
 private:
     double duration;

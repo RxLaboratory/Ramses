@@ -33,11 +33,6 @@ QList<RAMStage *> RAMProject::getStages()
     return projectStages;
 }
 
-QList<RAMShot *> RAMProject::getShots()
-{
-    return projectShots;
-}
-
 void RAMProject::setName(QString name, bool updateDb)
 {
     projectName = name;
@@ -65,16 +60,6 @@ void RAMProject::removeStage(RAMStage *s, bool updateDb)
 {
     projectStages.removeAll(s);
     if (updateDb) dbi->removeProjectStage(projectId,s->getId());
-}
-
-void RAMProject::addShot(RAMShot *s, bool updateDb)
-{
-    projectShots.append(s);
-}
-
-void RAMProject::removeShot(RAMShot *s, bool updateDb)
-{
-    projectShots.removeOne(s);
 }
 
 void RAMProject::remove()

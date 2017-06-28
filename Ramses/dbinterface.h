@@ -45,7 +45,9 @@ public:
     void addShots(int projectId, QList<QStringList> shots, int order);
     void getShots(int projectId);
     void updateShot(int id, QString name, double duration);
+    void removeShot(int id);
     void removeShots(QList<int> ids);
+    void resetShotsOrder(QList<int> ids);
     void moveShotsUp(QList<int> ids);
     void moveShotsDown(QList<int> ids);
     //Asset

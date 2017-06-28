@@ -482,6 +482,19 @@ void DBInterface::updateShot(int id, QString name, double duration)
     sendRequest(q,json);
 }
 
+void DBInterface::removeShot(int id)
+{
+    QString q = "?type=removeShots";
+    QJsonObject obj;
+    QJsonArray jsonIds;
+    jsonIds.insert(0,id);
+    obj.insert("ids",jsonIds);
+    QJsonDocument json(obj);
+
+    emit message("Removing shots");
+    sendRequest(q,json);
+}
+
 void DBInterface::removeShots(QList<int> ids)
 {
     QString q = "?type=removeShots";
@@ -495,6 +508,22 @@ void DBInterface::removeShots(QList<int> ids)
     QJsonDocument json(obj);
 
     emit message("Removing shots");
+    sendRequest(q,json);
+}
+
+void DBInterface::resetShotsOrder(QList<int> ids)
+{
+    QString q = "?type=resetShotsOrder";
+    QJsonObject obj;
+    QJsonArray jsonIds;
+    foreach(int id, ids)
+    {
+        jsonIds.insert(jsonIds.count(),id);
+    }
+    obj.insert("ids",jsonIds);
+    QJsonDocument json(obj);
+
+    emit message("Reseting shots order.");
     sendRequest(q,json);
 }
 

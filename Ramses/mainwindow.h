@@ -179,18 +179,43 @@ private:
      * @param rs the shot
      */
     void newShot(RAMShot *rs);
+    /**
+     * @brief Called when the remote server has sent the list of shots
+     * @param projects    The list
+     */
     void gotShots(QJsonValue shots);
-    //void getShots();
-    //QList<RAMShot*> shotsList;
+    /**
+     * @brief The current list of shots
+     */
     QList<RAMShot*> allShots;
+    /**
+     * @brief Gets a shot using its Id
+     * @param id    The shot id
+     * @return The shot
+     */
+    RAMShot *getShot(int id);
+    /**
+     * @brief Sorter method to sort the item selection in shotsAdminList
+     * @param a
+     * @param b
+     * @return
+     */
+    static bool shotsAdminSelectionSort(QListWidgetItem *a,QListWidgetItem *b);
+    /**
+     * @brief Resets the admin panel for the shots
+     */
+    void shotsAdminReset();
+
     //admin - assets
     QList<RAMAsset*> assetsList;
     //login
+
     QString username;
     QString passHash;
     RAMProject *currentProject;
     RAMStage *currentStage;
     QList<RAMStage *> currentStages;
+
     //QList<RAMShot *> currentShots;
     //used to drag window grabing the toolbar
     QPoint dragPosition;
@@ -252,13 +277,16 @@ private slots:
 
     //selectors
     void selectorProjectChanged(int i);
+
     //settings
     void on_serverAddressEdit_editingFinished();
     void on_sslCheckBox_clicked(bool checked);
     void on_updateFreqSpinBox_editingFinished();
     void on_timeOutEdit_editingFinished();
+
     //admin
     void on_adminWidget_currentChanged(int index);
+
     //admin - status
     void on_addStatusButton_clicked();
     void on_statusAdminList_itemClicked(QListWidgetItem *i);
@@ -280,15 +308,10 @@ private slots:
     //admin - shots
     void on_addShotButton_clicked();
     void on_batchAddShotButton_clicked();
-    void shotAdded(bool success,QString message);
     void shotAdded(RAMShot *shot);
     void on_shotsAdminList_itemClicked(QListWidgetItem *item);
-    void shotUpdated(bool success,QString message);
     void on_shotApplyButton_clicked();
     void on_removeShotButton_clicked();
-    void shotRemoved(bool success ,QString message);
-    void shotsAdminReset();
-    void shotsMoved(bool success, QString message);
     void on_moveShotUpButton_clicked();
     void on_moveShotDownButton_clicked();
     void on_importShotsButton_clicked();
