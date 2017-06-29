@@ -43,6 +43,9 @@ private:
     QList<RAMStage *> projectStages;
     DBInterface *dbi;
 
+private slots:
+    void stageDeleted(RAMStage *s);
+
 protected:
     bool operator==(RAMProject s);
     bool operator==(RAMProject *s);

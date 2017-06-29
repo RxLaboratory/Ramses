@@ -20,6 +20,7 @@ public:
     RAMStage *getStage();
     QList<RAMShot*> getAssignments();
     void assign(RAMShot *shot,bool updateDb = false);
+    void unAssign(RAMShot *shot,bool updateDb = false);
     void setName(QString n,bool updateDb = false);
     void setShortName(QString sn,bool updateDb = false);
     void setComment(QString c,bool updateDb = false);
@@ -32,8 +33,12 @@ signals:
     void nameChanged(QString);
     void shortNameChanged(QString);
     void commentChanged(QString);
+    void assetRemoved(RAMAsset*);
+    void assetUnAssigned(RAMShot*);
+    void assetAssigned(RAMShot*);
 
 public slots:
+    void remove(bool updateDB = false);
 
 private:
     QString name;
@@ -44,6 +49,12 @@ private:
     RAMStage *stage;
     QList<RAMShot*> assignments;
     DBInterface *dbi;
+
+private slots:
+    void statusDeleted(RAMStatus *s);
+    void stageDeleted(RAMStage *s);
+    void shotDeleted(RAMShot *s);
+
 protected:
     bool operator==(RAMAsset a);
     bool operator==(RAMAsset *a);

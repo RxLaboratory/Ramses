@@ -8,9 +8,12 @@ RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, RAMSta
     id = i;
     name = n;
     status = st;
+    connect(status,SIGNAL(statusRemoved(RAMStatus*)),this,SLOT(statusDeleted(RAMStatus*)));
     shortName = sn;
     comment = c;
     stage = s;
+    connect(stage,SIGNAL(stageRemoved(RAMStage*)),this,SLOT(stageDeleted(RAMStage*)));
+
     dbi = db;
     if (updateDb)
     {
@@ -41,10 +44,18 @@ QList<RAMShot *> RAMAsset::getAssignments()
 void RAMAsset::assign(RAMShot *shot, bool updateDb)
 {
     assignments << shot;
+    connect(shot,SIGNAL(shotRemoved(RAMShot*)),this,SLOT(shotDeleted(RAMShot*)));
     if (updateDb)
     {
         dbi->assignAsset(id,shot->getId());
     }
+    emit assetAssigned(shot);
+}
+
+void RAMAsset::unAssign(RAMShot *shot, bool updateDb)
+{
+    assignments.removeAll(shot);
+    emit assetUnAssigned(shot);
 }
 
 void RAMAsset::setName(QString n,bool updateDb)
@@ -75,6 +86,26 @@ void RAMAsset::setStatus(RAMStatus *s, bool updateDb)
 void RAMAsset::update()
 {
 
+}
+
+void RAMAsset::remove(bool updateDB)
+{
+    emit assetRemoved(this);
+}
+
+void RAMAsset::statusDeleted(RAMStatus *s)
+{
+    setStatus(0,false);
+}
+
+void RAMAsset::stageDeleted(RAMStage *s)
+{
+    remove(false);
+}
+
+void RAMAsset::shotDeleted(RAMShot *s)
+{
+    unAssign(s,false);
 }
 
 RAMStatus* RAMAsset::getStatus()
