@@ -1,0 +1,23 @@
+• Items connexions
+
+• Settings
+	separate from mainwidow
+	chose local db location
+	export db //not urgent
+	import db //not urgent
+	wipe local db (get data from remote)
+	wipe remote (get data from local)
+	wipe all (restore default status)
+
+• Shots
+	include in project
+
+• Assets
+	add existing (assign)
+	change status
+	edit
+	remove (unassign)
+
+• Local
+
+• Offline mode
