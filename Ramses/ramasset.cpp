@@ -47,19 +47,34 @@ void RAMAsset::assign(RAMShot *shot, bool updateDb)
     }
 }
 
-void RAMAsset::setName(QString n)
+void RAMAsset::setName(QString n,bool updateDb = false)
 {
     name = n;
+    emit nameChanged(n);
 }
 
-void RAMAsset::setShortName(QString sn)
+void RAMAsset::setShortName(QString sn,bool updateDb = false)
 {
     shortName = sn;
+    emit shortNameChanged(sn);
 }
 
-void RAMAsset::setComment(QString c)
+void RAMAsset::setComment(QString c,bool updateDb = false)
 {
     comment = c;
+    emit commentChanged(c);
+}
+
+void RAMAsset::setStatus(RAMStatus *s, bool updateDb)
+{
+    status = s;
+    emit statusChanged(this,s);
+    emit statusChanged(s);
+}
+
+void RAMAsset::update()
+{
+
 }
 
 RAMStatus* RAMAsset::getStatus()
@@ -75,13 +90,6 @@ QString RAMAsset::getName()
 QString RAMAsset::getShortName()
 {
     return shortName;
-}
-
-void RAMAsset::setStatus(RAMStatus *s)
-{
-    status = s;
-    emit statusChanged(this);
-    emit statusChanged();
 }
 
 bool RAMAsset::operator==(RAMAsset a)

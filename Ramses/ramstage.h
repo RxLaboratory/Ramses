@@ -20,6 +20,8 @@ public:
 
 signals:
     void stageRemoved(RAMStage*);
+    void nameChanged(QString);
+    void shortNameChanged(QString);
 
 public slots:
 

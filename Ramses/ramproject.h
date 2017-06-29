@@ -31,6 +31,8 @@ signals:
     void projectRemoved(RAMProject*);
     void stageAdded(RAMProject*,RAMStage*);
     void stageRemoved(RAMProject*,RAMStage*);
+    void nameChanged(QString);
+    void shortNameChanged(QString);
 
 public slots:
 

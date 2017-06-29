@@ -28,6 +28,10 @@ public:
 
 signals:
     void statusRemoved(RAMStatus*);
+    void nameChanged(QString);
+    void shortNameChanged(QString);
+    void colorChanged(QColor);
+    void descriptionChanged(QString);
 
 public slots:
 

@@ -19,6 +19,8 @@ public:
 
 signals:
     void shotRemoved(RAMShot*);
+    void nameChanged(QString);
+    void durationChanged(double);
 
 private:
     double duration;

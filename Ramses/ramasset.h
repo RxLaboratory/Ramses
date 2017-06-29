@@ -20,14 +20,18 @@ public:
     RAMStage *getStage();
     QList<RAMShot*> getAssignments();
     void assign(RAMShot *shot,bool updateDb = false);
-    void setName(QString n);
-    void setShortName(QString sn);
-    void setComment(QString c);
-    void setStatus(RAMStatus *s);
+    void setName(QString n,bool updateDb = false);
+    void setShortName(QString sn,bool updateDb = false);
+    void setComment(QString c,bool updateDb = false);
+    void setStatus(RAMStatus *s,bool updateDb = false);
+    void update();
 
 signals:
-    void statusChanged(RAMAsset *);
-    void statusChanged();
+    void statusChanged(RAMAsset *,RAMStage*);
+    void statusChanged(RAMStage*);
+    void nameChanged(QString);
+    void shortNameChanged(QString);
+    void commentChanged(QString);
 
 public slots:
 

@@ -37,12 +37,14 @@ void RAMStage::setName(QString name, bool updateDb)
 {
     stageName = name;
     if (updateDb) update();
+    emit nameChanged(name);
 }
 
 void RAMStage::setShortName(QString shortName, bool updateDb)
 {
     stageShortName = shortName;
     if (updateDb) update();
+    emit shortNameChanged(shortName);
 }
 
 void RAMStage::update()

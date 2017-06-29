@@ -36,6 +36,7 @@ void RAMShot::setName(QString n, bool updateDB)
         update();
     }
     name = n;
+    emit nameChanged(n);
 }
 
 void RAMShot::setDuration(double d, bool updateDB)
@@ -45,6 +46,7 @@ void RAMShot::setDuration(double d, bool updateDB)
         update();
     }
     duration = d;
+    emit durationChanged(d);
 }
 
 void RAMShot::update()

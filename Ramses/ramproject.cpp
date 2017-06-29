@@ -37,12 +37,14 @@ void RAMProject::setName(QString name, bool updateDb)
 {
     projectName = name;
     if (updateDb) update();
+    emit nameChanged(name);
 }
 
 void RAMProject::setShortName(QString shortName, bool updateDb)
 {
     projectShortName = shortName;
     if (updateDb) update();
+    emit shortNameChanged(shortName);
 }
 
 void RAMProject::update()
