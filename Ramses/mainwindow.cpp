@@ -86,7 +86,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //========= LOAD SETTINGS ========
 
     showMessage("Loading settings");
-    settingsDB = QSqlDatabase::addDatabase("QSQLITE");
+    settingsDB = QSqlDatabase::addDatabase("QSQLITE","settings");
 
     //check if the file already exists, if not, extract it from resources
     QString settingsPath = "";
@@ -2018,7 +2018,7 @@ void MainWindow::gotAssets(QJsonValue assets)
         QJsonArray assignments = asset.value("assignments").toArray();
         int id = asset.value("id").toInt();
 
-        RAMAsset *testRa = new RAMAsset(dbi,id,name,shortName,getStatus(statusId),getStage(stageId),comment,false);
+        RAMAsset *testRa = new RAMAsset(dbi,name,shortName,getStatus(statusId),getStage(stageId),false,comment,id);
         RAMAsset *ra;
         //check if asset already exists
         int testI = assetsList.indexOf(testRa);

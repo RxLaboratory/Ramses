@@ -32,14 +32,8 @@ void AddAssetDialog::on_addButton_clicked()
 void AddAssetDialog::on_createButton_clicked()
 {
     if (nameEdit->text() == "") return;
-    //generate id
-    int id = 1;
-    foreach(RAMAsset *ra,allAssets)
-    {
-        if (ra->getId() >= id) id = ra->getId()+1;
-    }
 
-    asset = new RAMAsset(dbi,id,nameEdit->text(),shortNameEdit->text(),status,stage,"",true);
+    asset = new RAMAsset(dbi,nameEdit->text(),shortNameEdit->text(),status,stage,true);
     asset->assign(shot,true);
 
     this->accept();

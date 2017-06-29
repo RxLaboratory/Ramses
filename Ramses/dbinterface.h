@@ -10,6 +10,9 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QNetworkCookieJar>
+#include <QFile>
+#include <QSqlQuery>
+#include <QSqlError>
 
 class DBInterface : public QObject
 {
@@ -51,7 +54,7 @@ public:
     void moveShotsUp(QList<int> ids);
     void moveShotsDown(QList<int> ids);
     //Asset
-    void addAsset(QString name, QString shortName, int statusId, int stageId, QString comment, int id);
+    int addAsset(QString name, QString shortName, int statusId, int stageId, QString comment);
     void assignAsset(int assetId, int shotId);
     void getAssets(int projectId);
     void setAssetStatus(int statusId, int assetId);
@@ -79,6 +82,8 @@ public slots:
     void networkError(QNetworkReply::NetworkError err);
     void sslError(QNetworkReply *rep, QList<QSslError> errs);
 private:
+    //LOCAL DB
+    QSqlDatabase localDB;
     //PHP API
     QString serverAddress; //server
     QString protocol; //use SSL

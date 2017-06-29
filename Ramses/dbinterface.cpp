@@ -4,6 +4,39 @@
 
 DBInterface::DBInterface(QObject *parent) : QObject(parent)
 {
+    //========== LOCAL DATABASE =============
+
+    localDB = QSqlDatabase::addDatabase("QSQLITE","localdata");
+
+    //check if the file already exists, if not, extract it from resources
+    QString localDBPath = "";
+#ifdef Q_OS_MAC
+    localDBPath = QDir::homePath() + "/Ramses/localdata.s3db";
+#else
+    localDBPath = "localdata.s3db";
+#endif
+
+    QFile dbFile(localDBPath);
+
+    if (!dbFile.exists())
+    {
+        QFile dbResource(":/localdata");
+        //on mac, we can not write inside the app, so create folder at home
+#ifdef Q_OS_MAC
+        QDir home = QDir::home();
+        home.mkdir("Ramses");
+#endif
+        //copy the default file from the resources
+        dbResource.copy(localDBPath);
+        QFile::setPermissions(localDBPath,QFileDevice::ReadUser | QFileDevice::WriteUser | QFileDevice::ReadGroup | QFileDevice::WriteGroup | QFileDevice::ReadOther | QFileDevice::WriteOther);
+    }
+
+    localDB.setDatabaseName(localDBPath);
+    localDB.setHostName("localhost");
+    localDB.open();
+
+    //============ REMOTE SERVER =============
+
     serverAddress = "rainboxprod.coop/ramtest";
     protocol = "https://";
     updateFreq = 1;
@@ -14,7 +47,7 @@ DBInterface::DBInterface(QObject *parent) : QObject(parent)
     connect(&qnam, SIGNAL(finished(QNetworkReply *)), this,SLOT(dataReceived(QNetworkReply *)));
     connect(&qnam, SIGNAL(sslErrors(QNetworkReply *,QList<QSslError>)), this,SLOT(sslError(QNetworkReply *,QList<QSslError>)));
 
-    //TODO Check if server is available and if server version is higherr
+    //TODO Check if server is available and if server version is higher
 }
 
 //PARAMETERS
@@ -77,7 +110,6 @@ void DBInterface::sendRequest(QString req,QJsonDocument content)
         reply = qnam.post(request,content.toJson());
     }
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this,SLOT(networkError(QNetworkReply::NetworkError)));
-    message("Remote request === Sent!");
 }
 
 void DBInterface::dataReceived(QNetworkReply * rep)
@@ -250,7 +282,7 @@ void DBInterface::sslError(QNetworkReply *rep, QList<QSslError> errs)
 
 //STATUS
 void DBInterface::addStatus(QString name,QString shortName,QString color,QString description,int id)
-{
+{   
     QString q = "?type=addStatus";
     QJsonObject obj;
     obj.insert("name",name);
@@ -555,9 +587,22 @@ void DBInterface::moveShotsDown(QList<int> ids)
 }
 
 //ASSETS
-void DBInterface::addAsset(QString name, QString shortName, int statusId,int stageId,QString comment, int id)
+int DBInterface::addAsset(QString name, QString shortName, int statusId,int stageId,QString comment)
 {
-    QString q = "?type=addAsset";
+    // LOCAL
+
+    emit message("Saving asset");
+    QString local = "INSERT INTO assets (name,shortName,statusId,stageId,comment) VALUES ('%1','%2',%3,%4,'%5');";
+    local = local.arg(name,shortName,QString::number(statusId),QString::number(stageId),comment);
+    QSqlQuery qInsert(local,localDB);
+    QString result = "SELECT last_insert_rowid();";
+    QSqlQuery qResult(result,localDB);
+    qResult.next();
+    int id = qResult.value(0).toInt();
+
+    // REMOTE
+
+    QString remote = "?type=addAsset";
     QJsonObject obj;
     obj.insert("name",name);
     obj.insert("shortName",shortName);
@@ -568,7 +613,9 @@ void DBInterface::addAsset(QString name, QString shortName, int statusId,int sta
     QJsonDocument json(obj);
 
     emit message("Submitting asset");
-    sendRequest(q,json);
+    sendRequest(remote,json);
+
+    return id;
 }
 
 void DBInterface::assignAsset(int assetId, int shotId)
