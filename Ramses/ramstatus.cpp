@@ -62,21 +62,21 @@ void RAMStatus::setShortName(QString shortName, bool updateDb)
 {
     statusShortName = shortName;
     if (updateDb) update();
-    emit shortNameChanged(shortName)
+    emit shortNameChanged(shortName);
 }
 
 void RAMStatus::setColor(QColor color, bool updateDb)
 {
     statusColor = color;
     if (updateDb) update();
-    emit colorChanged(color)
+    emit colorChanged(color);
 }
 
 void RAMStatus::setDescription(QString description, bool updateDb)
 {
     statusDescription = description;
     if (updateDb) update();
-    emit descriptionChanged(description)
+    emit descriptionChanged(description);
 }
 
 void RAMStatus::update()

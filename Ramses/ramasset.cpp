@@ -47,19 +47,19 @@ void RAMAsset::assign(RAMShot *shot, bool updateDb)
     }
 }
 
-void RAMAsset::setName(QString n,bool updateDb = false)
+void RAMAsset::setName(QString n,bool updateDb)
 {
     name = n;
     emit nameChanged(n);
 }
 
-void RAMAsset::setShortName(QString sn,bool updateDb = false)
+void RAMAsset::setShortName(QString sn,bool updateDb)
 {
     shortName = sn;
     emit shortNameChanged(sn);
 }
 
-void RAMAsset::setComment(QString c,bool updateDb = false)
+void RAMAsset::setComment(QString c,bool updateDb)
 {
     comment = c;
     emit commentChanged(c);

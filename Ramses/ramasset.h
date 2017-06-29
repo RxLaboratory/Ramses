@@ -27,8 +27,8 @@ public:
     void update();
 
 signals:
-    void statusChanged(RAMAsset *,RAMStage*);
-    void statusChanged(RAMStage*);
+    void statusChanged(RAMAsset *,RAMStatus*);
+    void statusChanged(RAMStatus*);
     void nameChanged(QString);
     void shortNameChanged(QString);
     void commentChanged(QString);
