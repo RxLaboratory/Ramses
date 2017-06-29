@@ -27,6 +27,7 @@ public:
     void remove();
 
 signals:
+    void statusRemoved(RAMStatus*);
 
 public slots:
 
@@ -37,6 +38,10 @@ private:
     QColor statusColor;
     QString statusDescription;
     DBInterface *dbi;
+
+protected:
+    bool operator==(RAMStatus s);
+    bool operator==(RAMStatus *s);
 };
 
 #endif // RAMSTATUS_H

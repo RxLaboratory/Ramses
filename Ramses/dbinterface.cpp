@@ -87,7 +87,7 @@ void DBInterface::connection(QString user,QString passHash)
 void DBInterface::sendRequest(QString req,QJsonDocument content)
 {
     //request
-    message("Remote request === " + protocol + serverAddress + req);
+    emit message("Remote request === " + protocol + serverAddress + req);
     QUrl url(protocol + serverAddress + req);
     QNetworkRequest request;
     request.setUrl(QUrl(url));
@@ -101,11 +101,11 @@ void DBInterface::sendRequest(QString req,QJsonDocument content)
         request.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");
         if (req.indexOf("login") >= 0)
         {
-            message("Remote request === Content: [hidden login informations]");
+            emit message("Remote request === Content: [hidden login informations]");
         }
         else
         {
-            message("Remote request === Content: " + content.toJson());
+            emit message("Remote request === Content: " + content.toJson());
         }
         reply = qnam.post(request,content.toJson());
     }
@@ -293,6 +293,7 @@ void DBInterface::addStatus(QString name,QString shortName,QString color,QString
     QJsonDocument json(obj);
 
     emit message("Submitting status");
+
     sendRequest(q,json);
 }
 

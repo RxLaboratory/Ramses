@@ -53,6 +53,7 @@ void RAMStage::update()
 void RAMStage::remove()
 {
     dbi->removeStage(stageId);
+    emit stageRemoved(this);
 }
 
 bool RAMStage::operator==(RAMStage s)

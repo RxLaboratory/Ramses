@@ -28,6 +28,9 @@ public:
     void remove();
 
 signals:
+    void projectRemoved(RAMProject*);
+    void stageAdded(RAMProject*,RAMStage*);
+    void stageRemoved(RAMProject*,RAMStage*);
 
 public slots:
 

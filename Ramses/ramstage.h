@@ -19,6 +19,7 @@ public:
     void remove();
 
 signals:
+    void stageRemoved(RAMStage*);
 
 public slots:
 

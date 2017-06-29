@@ -15,7 +15,10 @@ public:
     void setName(QString n, bool updateDB = false);
     void setDuration(double d, bool updateDB = false);
     void update();
-    void remove();
+    void remove(bool updateDB = false);
+
+signals:
+    void shotRemoved(RAMShot*);
 
 private:
     double duration;

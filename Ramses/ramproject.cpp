@@ -54,17 +54,20 @@ void RAMProject::addStage(RAMStage *s, bool updateDb)
 {
     projectStages.append(s);
     if (updateDb) dbi->addProjectStage(projectId,s->getId());
+    emit stageAdded(this,s);
 }
 
 void RAMProject::removeStage(RAMStage *s, bool updateDb)
 {
     projectStages.removeAll(s);
     if (updateDb) dbi->removeProjectStage(projectId,s->getId());
+    emit stageRemoved(this,s);
 }
 
 void RAMProject::remove()
 {
     dbi->removeProject(projectId);
+    emit projectRemoved(this);
 }
 
 bool RAMProject::operator==(RAMProject s)

@@ -10,6 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setupUi(this);
 
+    //========= INITIALIZE ==========
+
+    //dbinterface
+    dbi = new DBInterface(this);
+
+
     // Get the desktop (to manage windows locations)
     desktop = qApp->desktop();
 
@@ -52,6 +58,10 @@ MainWindow::MainWindow(QWidget *parent) :
     mainToolBar->addWidget(maximizeButton);
     mainToolBar->addWidget(quitButton);
 
+    //Add admin
+    adminWidget = new AdminWidget(dbi);
+    adminPageLayout->addWidget(adminWidget);
+
     //statusbar
     mainStatusStopButton = new QPushButton("X");
 
@@ -76,12 +86,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //hider server error widget
     serverWidget->hide();
-
-    //========= INITIALIZE ==========
-
-    //dbinterface
-    showMessage("Starting DBI");
-    dbi = new DBInterface(this);
 
     //========= LOAD SETTINGS ========
 
@@ -166,6 +170,13 @@ void MainWindow::mapEvents()
     connect(dbi,SIGNAL(connecting()),this,SLOT(connecting()));
     connect(dbi,SIGNAL(message(QString,int)),this,SLOT(showMessage(QString,int)));
     connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
+
+    // ADMIN
+    connect(adminWidget,SIGNAL(statusCreated(RAMStatus*)),this,SLOT(newStatus(RAMStatus*)));
+    connect(adminWidget,SIGNAL(stageCreated(RAMStage*)),this,SLOT(newStage(RAMStage*)));
+    connect(adminWidget,SIGNAL(projectCreated(RAMProject*)),this,SLOT(newProject(RAMProject*)));
+    connect(adminWidget,SIGNAL(shotCreated(RAMShot*,int)),this,SLOT(newShot(RAMShot*,int)));
+
 }
 
 void MainWindow::updateCSS()
@@ -230,25 +241,25 @@ void MainWindow::logout()
 
     //empty everything
 
-    qDeleteAll(statusesList);
-    statusesList.clear();
-    statusAdminList->clear();
-
-    qDeleteAll(stagesList);
-    stagesList.clear();
-    stagesAdminList->clear();
-
-    qDeleteAll(projectsList);
-    projectsList.clear();
-    projectAdminList->clear();
-    projectSelector->clear();
+    qDeleteAll(assetsList);
+    assetsList.clear();
 
     qDeleteAll(allShots);
     allShots.clear();
-    shotsAdminList->clear();
 
-    qDeleteAll(assetsList);
-    assetsList.clear();
+    qDeleteAll(projectsList);
+    projectsList.clear();
+    projectSelector->clear();
+
+    qDeleteAll(stagesList);
+    stagesList.clear();
+    stageSelector->clear();
+
+    qDeleteAll(statusList);
+    statusList.clear();
+
+    qDeleteAll(removedItems);
+    removedItems.clear();
 
     mainTable->clear();
     mainTable->setRowCount(0);
@@ -282,6 +293,7 @@ void MainWindow::showPage(int page)
         actionStats->setChecked(true);
         break;
     case 4:
+        adminWidget->init(statusList,stagesList,projectsList,allShots,currentProject);
         actionAdmin->setChecked(true);
         break;
     case 5:
@@ -316,10 +328,10 @@ void MainWindow::stopWaiting()
 
 void MainWindow::showMessage(QString m, int i)
 {
-    #ifdef QT_DEBUG
-        qDebug() << m;
-    #endif
-    mainStatusBar->showMessage(m,i);
+#ifdef QT_DEBUG
+    qDebug() << m;
+#endif
+    //mainStatusBar->showMessage(m,i);
     helpDialog->showDebug(m);
 }
 
@@ -360,8 +372,6 @@ void MainWindow::connected(bool available, QString err)
 
         //load everything
         dbi->getStatuses();
-        dbi->getStages();
-        dbi->getProjects();
 
         //go to main page
         actionMain->setChecked(true);
@@ -420,7 +430,10 @@ void MainWindow::dataReceived(QJsonObject data)
     }
     else if (type == "getStatuses")
     {
-        if (success) gotStatuses(content);
+        if (success)
+        {
+            gotStatuses(content);
+        }
         else showMessage("Warning: Status list was not correctly updated from remote server.");
         return;
     }
@@ -443,7 +456,10 @@ void MainWindow::dataReceived(QJsonObject data)
     }
     else if (type == "getStages")
     {
-        if (success) gotStages(content);
+        if (success)
+        {
+            gotStages(content);
+        }
         else showMessage("Warning: Stages list was not correctly updated from remote server.");
         return;
     }
@@ -466,7 +482,10 @@ void MainWindow::dataReceived(QJsonObject data)
     }
     else if (type == "getProjects")
     {
-        if (success) gotProjects(content);
+        if (success)
+        {
+            gotProjects(content);
+        }
         else showMessage("Warning: Projects list was not correctly updated from remote server.");
         return;
     }
@@ -600,15 +619,17 @@ void MainWindow::selectorProjectChanged(int i)
 
     qDeleteAll(allShots);
     allShots.clear();
-    shotsAdminList->clear();
 
+    qDeleteAll(assetsList);
+    assetsList.clear();
 
     if (i<0) return;
 
     //set current project
     currentProject = getProject(projectSelector->itemData(i).toInt());
+    adminWidget->setCurrentProject(currentProject);
 
-    //get stages
+    //set current stages
     QList<RAMStage*> stages;
     stages = currentProject->getStages();
     for (int i = 0 ; i < stages.count() ; i++)
@@ -624,9 +645,6 @@ void MainWindow::selectorProjectChanged(int i)
 
     //get shots
     dbi->getShots(currentProject->getId());
-
-    //get assets
-    dbi->getAssets(currentProject->getId());
 }
 
 //SETTINGS
@@ -672,55 +690,26 @@ void MainWindow::on_timeOutEdit_editingFinished()
     QSqlQuery query(q,settingsDB);
 }
 
-//ADMIN GENERAL
-
-void MainWindow::on_adminWidget_currentChanged(int index)
-{
-    statusesAdminReset();
-    stagesAdminReset();
-    projectsAdminReset();
-    shotsAdminReset();
-}
-
-//ADMIN - STATUS
-
-void MainWindow::on_addStatusButton_clicked()
-{
-    // Create a new Default Status
-    QString name = "New Status";
-    QString shortName = "New";
-    QColor color = QColor("#6d6d6d");
-    QString description = "";
-
-    // find higher id
-    int id = 1;
-    foreach(RAMStatus *rs,statusesList)
-    {
-        if (rs->getId() >= id) id = rs->getId()+1;
-    }
-
-    RAMStatus *rs = new RAMStatus(dbi,id,name,shortName,color,description,true);
-    newStatus(rs);
-
-    // Select item
-    statusAdminList->setCurrentRow(statusAdminList->count()-1);
-    on_statusAdminList_itemClicked(statusAdminList->item(statusAdminList->count()-1));
-}
+// STATUS
 
 void MainWindow::newStatus(RAMStatus *rs)
 {
     // Add the status to the list and the UI
-    statusesList << rs;
-    // Create UI item
-    QListWidgetItem *item = new QListWidgetItem(rs->getShortName() + " | " + rs->getName());
-    item->setBackgroundColor(rs->getColor());
-    item->setToolTip(rs->getDescription());
-    statusAdminList->addItem(item);
+    statusList << rs;
+
+    // connect the status
+    connect(rs,SIGNAL(statusRemoved(RAMStatus*)),this,SLOT(removeStatus(RAMStatus*)));
+}
+
+void MainWindow::removeStatus(RAMStatus *rs)
+{
+    statusList.removeAll(rs);
+    removedItems << rs;
 }
 
 RAMStatus* MainWindow::getStatus(int id)
 {
-    foreach(RAMStatus *rs,statusesList)
+    foreach(RAMStatus *rs,statusList)
     {
         if (rs->getId() == id) return rs;
     }
@@ -734,9 +723,9 @@ void MainWindow::gotStatuses(QJsonValue statuses)
     QJsonArray statusesArray = statuses.toArray();
 
     // update statuses in the current list
-    for (int rsI = 0 ; rsI < statusesList.count() ; rsI++)
+    for (int rsI = 0 ; rsI < statusList.count() ; rsI++)
     {
-        RAMStatus *rs = statusesList[rsI];
+        RAMStatus *rs = statusList[rsI];
 
         //search for status in new list
         bool updated = false;
@@ -757,10 +746,6 @@ void MainWindow::gotStatuses(QJsonValue statuses)
                 rs->setShortName(shortName);
                 rs->setColor(color);
                 rs->setDescription(description);
-                QListWidgetItem *item = statusAdminList->item(rsI);
-                item->setText(shortName + " | " + name);
-                item->setToolTip(description);
-                item->setBackgroundColor(color);
 
                 //remove from the new list
                 statusesArray.removeAt(i);
@@ -770,9 +755,7 @@ void MainWindow::gotStatuses(QJsonValue statuses)
         // if the status is not in the new list, remove it
         if (!updated)
         {
-            statusesList.removeAt(rsI);
-            QListWidgetItem *item = statusAdminList->takeItem(rsI);
-            delete item;
+            removedItems << statusList.takeAt(rsI);
             rsI--;
         }
     }
@@ -794,128 +777,34 @@ void MainWindow::gotStatuses(QJsonValue statuses)
     }
 
     setWaiting(false);
-}
 
-void MainWindow::on_statusColorButton_clicked()
-{
-    this->setEnabled(false);
-    QColorDialog cd(QColor("#" + statusColorEdit->text()));
-    cd.setOptions(QColorDialog::DontUseNativeDialog);
-    cd.setWindowFlags(Qt::FramelessWindowHint);
-    cd.move(this->geometry().center().x()-cd.geometry().width()/2,this->geometry().center().y()-cd.geometry().height()/2);
-    if (cd.exec())
-    {
-        QColor color = cd.selectedColor();
-        QString colorHex = color.name();
-        statusColorEdit->setText(colorHex.right(6));
-    }
-    this->setEnabled(true);
-}
-
-void MainWindow::on_statusAdminList_itemClicked(QListWidgetItem *i)
-{
-    int currentRow = statusAdminList->currentRow();
-
-    RAMStatus *s = statusesList[currentRow];
-
-    statusNameEdit->setText(s->getName());
-    statusShortNameEdit->setText(s->getShortName());
-    if (s->getShortName() == "STB" || s->getShortName() == "OK" || s->getShortName() == "TODO")
-    {
-        statusShortNameEdit->setEnabled(false);
-    }
-    else
-    {
-        statusShortNameEdit->setEnabled(true);
-    }
-    statusColorEdit->setText(s->getColor().name().right(6));
-    statusDescriptionEdit->setPlainText(s->getDescription());
-
-    statusConfigWidget->setEnabled(true);
-}
-
-void MainWindow::on_statusApplyButton_clicked()
-{
-    int currentRow = statusAdminList->currentRow();
-    if (currentRow < 0) return;
-
-    QString name = statusNameEdit->text();
-    QString shortName = statusShortNameEdit->text();
-    QString description = statusDescriptionEdit->toPlainText();
-    QColor color("#" + statusColorEdit->text());
-
-    RAMStatus *rs = statusesList[currentRow];
-    rs->setColor(color);
-    rs->setName(name);
-    rs->setShortName(shortName);
-    rs->setDescription(description);
-    rs->update();
-    //update UI
-    QListWidgetItem *item = statusAdminList->item(currentRow);
-    item->setText(shortName + " | " + name);
-    item->setBackgroundColor(color);
-    item->setToolTip(description);
-}
-
-void MainWindow::on_removeStatusButton_clicked()
-{
-    int currentRow = statusAdminList->currentRow();
-    if (currentRow < 0) return;
-
-    QString sN = statusesList[currentRow]->getShortName();
-    if (sN == "OK" || sN == "STB" || sN == "TODO")
-    {
-        showMessage("Cannot remove OK, STB and TODO statuses.");
-        return;
-    }
-
-    statusesList[currentRow]->remove();
-    statusesList.removeAt(currentRow);
-    QListWidgetItem *item = statusAdminList->takeItem(currentRow);
-    delete item;
-
-    statusesAdminReset();
-}
-
-void MainWindow::statusesAdminReset()
-{
-    statusAdminList->setCurrentRow(-1);
-    statusNameEdit->setText("");
-    statusShortNameEdit->setText("");
-    statusColorEdit->setText("");
-    statusDescriptionEdit->setPlainText("");
-    statusConfigWidget->setEnabled(false);
+    //get Stages
+    dbi->getStages();
 }
 
 //ADMIN - STAGES
 
-void MainWindow::on_addStageButton_clicked()
-{
-    // Create a new default stage
-    QString name = "New Stage";
-    QString shortName = "New";
-
-    // find higher id
-    int id = 1;
-    foreach(RAMStage *rs,stagesList)
-    {
-        if (rs->getId() >= id) id = rs->getId()+1;
-    }
-
-    RAMStage *rs = new RAMStage(dbi,name,shortName,id,true);
-    newStage(rs);
-
-    //select item
-    stagesAdminList->setCurrentRow(stagesAdminList->count()-1);
-    on_stagesAdminList_itemClicked(stagesAdminList->item(stagesAdminList->count()-1));
-}
-
 void MainWindow::newStage(RAMStage *rs)
 {
     stagesList << rs;
-    // Create UI item
-    QListWidgetItem *item = new QListWidgetItem(rs->getShortName() + " | " + rs->getName());
-    stagesAdminList->addItem(item);
+
+    // connect the stage
+    connect(rs,SIGNAL(stageRemoved(RAMStage*)),this,SLOT(removeStage(RAMStage*)));
+}
+
+void MainWindow::removeStage(RAMStage *rs)
+{
+    stagesList.removeAll(rs);
+    removedItems << rs;
+
+    //remove from UI
+    for (int i = stageSelector->count()-1;i>=0;i--)
+    {
+        if (stageSelector->itemData(i).toInt() == rs->getId())
+        {
+            stageSelector->removeItem(i);
+        }
+    }
 }
 
 RAMStage* MainWindow::getStage(int id)
@@ -953,8 +842,7 @@ void MainWindow::gotStages(QJsonValue stages)
                 //update
                 rs->setName(name);
                 rs->setShortName(shortName);
-                QListWidgetItem *item = stagesAdminList->item(rsI);
-                item->setText(shortName + " | " + name);
+
                 //remove from the new list
                 stagesArray.removeAt(i);
                 i--;
@@ -963,9 +851,7 @@ void MainWindow::gotStages(QJsonValue stages)
         // if the stage is not in the new list, remove it
         if (!updated)
         {
-            stagesList.removeAt(rsI);
-            QListWidgetItem *item = stagesAdminList->takeItem(rsI);
-            delete item;
+            removedItems << stagesList.takeAt(rsI);
             rsI--;
         }
     }
@@ -984,91 +870,36 @@ void MainWindow::gotStages(QJsonValue stages)
         newStage(rs);
     }
     setWaiting(false);
-}
 
-void MainWindow::on_stagesAdminList_itemClicked(QListWidgetItem *item)
-{
-    int currentRow = stagesAdminList->currentRow();
-
-     RAMStage *s = stagesList[currentRow];
-
-     stageNameEdit->setText(s->getName());
-     stageShortNameEdit->setText(s->getShortName()); 
-     stageConfigWidget->setEnabled(true);
-}
-
-void MainWindow::on_stageApplyButton_clicked()
-{
-    int currentRow = stagesAdminList->currentRow();
-    if (currentRow < 0) return;
-
-    RAMStage *s = stagesList[currentRow];
-
-    QString name = stageNameEdit->text();
-    QString shortName = stageShortNameEdit->text();
-
-    s->setName(name);
-    s->setShortName(shortName);
-    s->update();
-
-    //update UI
-    QListWidgetItem *item = stagesAdminList->item(currentRow);
-    item->setText(shortName + " | " + name);
-}
-
-void MainWindow::on_removeStageButton_clicked()
-{
-    int currentRow = stagesAdminList->currentRow();
-    if (currentRow < 0) return;
-
-    stagesList[currentRow]->remove();
-    stagesList.removeAt(currentRow);
-    QListWidgetItem *item = stagesAdminList->takeItem(currentRow);
-    delete item;
-
-    stagesAdminReset();
-}
-
-void MainWindow::stagesAdminReset()
-{
-    stagesAdminList->setCurrentRow(-1);
-    stageNameEdit->setText("");
-    stageShortNameEdit->setText("");
-    stageConfigWidget->setEnabled(false);
+    //get projects
+    dbi->getProjects();
 }
 
 //ADMIN - PROJECTS
 
-void MainWindow::on_addProjectButton_clicked()
-{
-    // Create a new default project
-    QString name = "New Project";
-    QString shortName = "New";
-
-    // Find the biggest id
-    int id = 1;
-    foreach(RAMProject *rp,projectsList)
-    {
-        if (rp->getId() >= id) id = rp->getId()+1;
-    }
-
-    RAMProject *rp = new RAMProject(dbi,id,name,shortName,true);
-    newProject(rp);
-
-    //select item
-    projectAdminList->setCurrentRow(projectAdminList->count()-1);
-    on_projectAdminList_itemClicked(projectAdminList->item(projectAdminList->count()-1));
-}
-
 void MainWindow::newProject(RAMProject *rp)
 {
     projectsList << rp;
-    // Create UI item
-    QListWidgetItem *item = new QListWidgetItem(rp->getShortName() + " | " + rp->getName());
-    item->setData(Qt::UserRole,rp->getId());
-    projectAdminList->addItem(item);
     // Add to selector
     projectSelector->addItem(rp->getShortName(),rp->getId());
+
+    // connect the project
+    connect(rp,SIGNAL(projectRemoved(RAMProject*)),this,SLOT(removeProject(RAMProject*)));
+}
+
+void MainWindow::removeProject(RAMProject* rp)
+{
+    projectsList.removeAll(rp);
+    removedItems << rp;
+
+    //remove from UI
+    for (int i = projectSelector->count()-1;i>=0;i--)
+    {
+        if (projectSelector->itemData(i).toInt() == rp->getId())
+        {
+            projectSelector->removeItem(i);
+        }
+    }
 }
 
 RAMProject* MainWindow::getProject(int id)
@@ -1084,6 +915,10 @@ void MainWindow::gotProjects(QJsonValue projects)
     setWaiting(true);
 
     QJsonArray projectsArray = projects.toArray();
+
+    //project selected before update
+    int idBefore = -1;
+    if (projectSelector->currentIndex() >= 0) idBefore = projectSelector->currentData().toInt();
 
     freezeSelectors = true;
 
@@ -1108,8 +943,8 @@ void MainWindow::gotProjects(QJsonValue projects)
                 //update project
                 rp->setName(name);
                 rp->setShortName(shortName);
-                QListWidgetItem *item = projectAdminList->item(rpI);
-                item->setText(shortName + " | " + name);
+
+                projectSelector->setItemText(rpI,name);
 
                 //update stages list
                 foreach(QJsonValue proStage,projectStagesArray)
@@ -1126,9 +961,8 @@ void MainWindow::gotProjects(QJsonValue projects)
         // if the project is not in the new list, remove it
         if (!updated)
         {
-            projectsList.removeAt(rpI);
-            QListWidgetItem *item = projectAdminList->takeItem(rpI);
-            delete item;
+            removedItems << projectsList.takeAt(rpI);
+            projectSelector->removeItem(rpI);
             rpI--;
         }
     }
@@ -1158,199 +992,21 @@ void MainWindow::gotProjects(QJsonValue projects)
 
     freezeSelectors = false;
 
-    if (projectSelector->count() > 0) selectorProjectChanged(0);
+    int idAfter = -1;
+    if (projectSelector->currentIndex() >= 0) idAfter = projectSelector->currentData().toInt();
+
+    if (idAfter != idBefore) selectorProjectChanged(projectSelector->currentIndex());
+    else if (currentProject) dbi->getShots(currentProject->getId());
 
     setWaiting(false);
-}
 
-void MainWindow::on_projectAdminList_itemClicked(QListWidgetItem *item)
-{
-    int currentRow = projectAdminList->currentRow();
-
-     RAMProject *p = projectsList[currentRow];
-
-     projectNameEdit->setText(p->getName());
-     projectShortNameEdit->setText(p->getShortName());
-
-     //populate stages combo box and list
-     projectStagesList->clear();
-     projectStagesComboBox->clear();
-     QList<RAMStage*> pStages = p->getStages();
-
-     foreach(RAMStage*s,stagesList)
-     {
-         //check if it is used
-         bool usedByProject = false;
-         foreach(RAMStage *ps,pStages)
-         {
-             if (ps == s)
-             {
-                 //add to list
-                 QListWidgetItem *i = new QListWidgetItem(s->getShortName());
-                 i->setToolTip(s->getName());
-                 i->setData(Qt::UserRole,s->getId());
-                 projectStagesList->addItem(i);
-                 usedByProject = true;
-                 break;
-             }
-         }
-         //add to combo box
-         if (!usedByProject)
-         {
-            projectStagesComboBox->addItem(s->getShortName(),s->getId());
-         }
-     }
-
-     projectConfigWidget->setEnabled(true);
-}
-
-void MainWindow::on_projectApplyButton_clicked()
-{
-    int currentRow = projectAdminList->currentRow();
-    if (currentRow < 0) return;
-
-    RAMProject *rp = getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt());
-
-    QString name = projectNameEdit->text();
-    QString shortName = projectShortNameEdit->text();
-
-    rp->setName(name);
-    rp->setShortName(shortName);
-    rp->update();
-
-    //update UI
-    QListWidgetItem *item = projectAdminList->item(currentRow);
-    item->setText(shortName + " | " + name);
-    projectSelector->setItemText(currentRow,shortName);
-}
-
-void MainWindow::on_removeProjectButton_clicked()
-{
-    int currentRow = projectAdminList->currentRow();
-    if (currentRow < 0) return;
-
-    RAMProject *rp = getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt());
-
-    rp->remove();
-    projectsList.removeAll(rp);
-    QListWidgetItem *item = projectAdminList->takeItem(currentRow);
-    delete item;
-    projectSelector->removeItem(currentRow);
-
-    projectsAdminReset();
-}
-
-//project stages
-void MainWindow::on_projectAddStageButton_clicked()
-{
-    int sId = projectStagesComboBox->currentData().toInt();
-    int pId = projectAdminList->currentItem()->data(Qt::UserRole).toInt();
-    RAMProject *rp = getProject(pId);
-    RAMStage *rs = getStage(sId);
-    rp->addStage(rs,true);
-
-    //update UI
-    //remove from combobox
-    projectStagesComboBox->removeItem(projectStagesComboBox->currentIndex());
-    //add to list
-    QListWidgetItem *i = new QListWidgetItem(rs->getShortName());
-    i->setToolTip(rs->getName());
-    i->setData(Qt::UserRole,rs->getId());
-    projectStagesList->addItem(i);
-}
-
-void MainWindow::on_removeStageProjectButton_clicked()
-{
-    if (projectStagesList->currentRow() < 0) return;
-
-    RAMStage *rs = getStage(projectStagesList->currentIndex().data(Qt::UserRole).toInt());
-    RAMProject *rp = getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt());
-
-    rp->removeStage(rs,true);
-
-    //update UI
-    //remove from list
-    QListWidgetItem *item = projectStagesList->takeItem(projectStagesList->currentRow());
-    delete item;
-    //add to combobox
-    projectStagesComboBox->addItem(rs->getShortName(),rs->getId());
-}
-
-void MainWindow::projectsAdminReset()
-{
-    projectAdminList->setCurrentRow(-1);
-    projectNameEdit->setText("");
-    projectShortNameEdit->setText("");
-    projectConfigWidget->setEnabled(false);
-    projectStagesList->clear();
-    //reload stages into combo box
-    projectStagesComboBox->clear();
-    projectStagesList->clear();
 }
 
 //ADMIN - SHOTS
 
-void MainWindow::on_addShotButton_clicked()
-{
-    //only if new
-    bool ok = true;
-    int row = 0;
-    foreach(RAMShot *rs,allShots)
-    {
-        if (rs->getName() == "000")
-        {
-            ok = false;
-            row = allShots.indexOf(rs);
-        }
-    }
-
-    if (ok)
-    {
-        if (shotsAdminList->currentItem())
-        {
-            row = shotsAdminList->currentRow() + 1;
-        }
-        else if (shotsAdminList->count() > 0)
-        {
-            row = shotsAdminList->count();
-        }
-
-        //getProject
-        int projectId = projectSelector->currentData().toInt();
-
-
-        //get higher id, prefix with project id
-        int id = 1;
-        foreach(RAMShot *rs,allShots)
-        {
-            if (rs->getId() >= id) id = rs->getId()+1;
-        }
-        QString idString = QString::number(currentProject->getId()) + QString::number(id);
-        id = idString.toInt();
-
-        RAMShot *rs = new RAMShot(dbi,projectId,id,"000",0.0,true);
-
-        //update UI
-        newShot(rs,row);
-    }
-
-
-    //select shot
-    shotsAdminList->clearSelection();
-    shotsAdminList->setCurrentRow(row);
-    on_shotsAdminList_itemClicked(shotsAdminList->item(row));
-
-    resetShotsOrder();
-}
-
 void MainWindow::newShot(RAMShot *rs,int row)
 {
     allShots.insert(row,rs);
-
-    //update list
-    QListWidgetItem *item = new QListWidgetItem(rs->getName());
-    item->setData(Qt::UserRole,rs->getId());
-    shotsAdminList->insertItem(row,item);
 
     //add to table
     QTableWidgetItem *rowHeader = new QTableWidgetItem(rs->getName());
@@ -1364,12 +1020,32 @@ void MainWindow::newShot(RAMShot *rs,int row)
     stages = currentProject->getStages();
     for (int i = 0 ; i < stages.count() ; i++)
     {
-        AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusesList,assetsList,dbi);
+        AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusList,assetsList,dbi);
         connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
         connect(assetWidget,SIGNAL(newAsset(RAMAsset*)),this,SLOT(assetCreated(RAMAsset*)));
         connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
         //add widget to cell
         mainTable->setCellWidget(row,i,assetWidget);
+    }
+
+    // connect the shot
+    connect(rs,SIGNAL(shotRemoved(RAMShot*)),this,SLOT(removeShot(RAMShot*)));
+
+}
+
+void MainWindow::removeShot(RAMShot *rs)
+{
+    allShots.removeAll(rs);
+    removedItems << rs;
+
+    //remove from UI
+    for (int i = 0;i<mainTable->rowCount();i++)
+    {
+        if (mainTable->verticalHeaderItem(i)->data(Qt::UserRole).toInt() == rs->getId())
+        {
+            mainTable->removeRow(i);
+            break;
+        }
     }
 }
 
@@ -1406,9 +1082,6 @@ void MainWindow::gotShots(QJsonValue shots)
             {
                 //update shot
                 rs->setName(name);
-                QListWidgetItem *item = shotsAdminList->item(rsI);
-                item->setText(name);
-                item->setData(Qt::UserRole,rs->getId());
 
                 QTableWidgetItem *rowHeader = new QTableWidgetItem(rs->getName());
                 rowHeader->setToolTip(QString::number(rs->getDuration()) + "s");
@@ -1423,9 +1096,7 @@ void MainWindow::gotShots(QJsonValue shots)
         // if the shot is not in the new list, remove it
         if (!updated)
         {
-            allShots.removeAt(rsI);
-            QListWidgetItem *item = shotsAdminList->takeItem(rsI);
-            delete item;
+            removedItems << allShots.takeAt(rsI);
             mainTable->removeRow(rsI);
             rsI--;
         }
@@ -1449,6 +1120,9 @@ void MainWindow::gotShots(QJsonValue shots)
 
 
     setWaiting(false);
+
+    //get assets
+    if (currentProject) dbi->getAssets(currentProject->getId());
 
     /*setWaiting(false);
     if (!success) return;
@@ -1594,25 +1268,6 @@ void MainWindow::gotShots(QJsonValue shots)
 
     mainTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
     mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);*/
-}
-
-void MainWindow::on_importShotsButton_clicked()
-{
-    /*this->setEnabled(false);
-    QString file = QFileDialog::getOpenFileName(this,"Please choose the editing file you want to import.","","All supported edits (*.edl *.xml);;EDL (*.edl);;Final Cut / XML (*.xml);;All Files (*.*)");
-    if (file == "")
-    {
-        this->setEnabled(true);
-        return;
-    }
-
-    if (file.toLower().endsWith(".edl")) importEDL(file);
-    else if (file.toLower().endsWith(".xml")) importXML(file);
-    else
-    {
-        //TODO open file to try to find what it is
-    }
-    this->setEnabled(true);*/
 }
 
 void MainWindow::importEDL(QString f)
@@ -1763,105 +1418,6 @@ void MainWindow::importXML(QString f)
     dbi->addShots(projectId,statusId,shotsReady,order);*/
 }
 
-void MainWindow::on_batchAddShotButton_clicked()
-{
-    /*this->setEnabled(false);
-    AddShotsDialog as;
-    as.move(this->geometry().center().x()-as.geometry().width()/2,this->geometry().center().y()-as.geometry().height()/2);
-    if (as.exec())
-    {
-        QStringList shotNames = as.getShots();
-        setWaiting();
-        //get order (if a row is selected, or else insert after the last row)
-        int order = 0;
-        if (shotsAdminList->currentItem())
-        {
-            order = shotsList[shotsAdminList->currentRow()]->getShotOrder()+1;
-        }
-        else if (shotsAdminList->count() > 0)
-        {
-            order = shotsList[shotsAdminList->count()-1]->getShotOrder()+1;
-        }
-        shotsAdminReset();
-        //getProject
-        int projectId = projectSelector->currentData().toInt();
-        //get status
-        int statusId = 0;
-        foreach(RAMStatus *s,statusesList)
-        {
-            if (s->getShortName() == "STB")
-            {
-                statusId = s->getId();
-                break;
-            }
-        }
-        dbi->addShots(projectId,statusId,shotNames,order);
-    }
-    this->setEnabled(true);*/
-}
-
-void MainWindow::on_shotsAdminList_itemClicked(QListWidgetItem *item)
-{
-     RAMShot *rs = getShot(shotsAdminList->currentItem()->data(Qt::UserRole).toInt());
-
-     shotNameEdit->setText(rs->getName());
-     shotDurationSpinBox->setValue(rs->getDuration());
-     shotConfigWidget->setEnabled(true);
-}
-
-void MainWindow::on_shotApplyButton_clicked()
-{
-    int currentRow = shotsAdminList->currentRow();
-    if (currentRow < 0) return;
-
-    RAMShot *rs = getShot(shotsAdminList->currentItem()->data(Qt::UserRole).toInt());
-
-    QString name = shotNameEdit->text();
-    double duration = shotDurationSpinBox->value();
-
-    rs->setName(name);
-    rs->setDuration(duration);
-    rs->update();
-
-    //update UI
-    QListWidgetItem *item = shotsAdminList->item(currentRow);
-    item->setText(name);
-
-    QTableWidgetItem *header = mainTable->verticalHeaderItem(currentRow);
-    header->setText(name);
-    header->setToolTip(QString::number(duration) + "s");
-}
-
-void MainWindow::on_removeShotButton_clicked()
-{
-    QList<int> ids;
-    foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
-    {
-        int id = item->data(Qt::UserRole).toInt();
-        ids << id;
-        RAMShot *rs = getShot(id);
-
-        int row = shotsAdminList->row(item);
-        mainTable->removeRow(row);
-
-        allShots.removeAll(rs);
-        delete item;
-    }
-
-    dbi->removeShots(ids);
-    resetShotsOrder();
-
-    shotsAdminReset();
-}
-
-void MainWindow::shotsAdminReset()
-{
-    shotsAdminList->setCurrentRow(-1);
-    shotNameEdit->setText("");
-    shotDurationSpinBox->setValue(0.0);
-    shotConfigWidget->setEnabled(false);
-}
-
 void MainWindow::resetShotsOrder()
 {
     QList<int> ids;
@@ -1870,90 +1426,6 @@ void MainWindow::resetShotsOrder()
         ids << rs->getId();
     }
     dbi->resetShotsOrder(ids);
-}
-
-void MainWindow::on_moveShotUpButton_clicked()
-{
-    QList<QListWidgetItem *> items;
-
-    //sort selection
-    QList<int> rows;
-    foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
-    {
-        rows << shotsAdminList->row(item);
-    }
-    std::sort(rows.begin(),rows.end());
-
-    foreach(int row,rows)
-    {
-        items << shotsAdminList->item(row);
-    }
-
-    foreach(QListWidgetItem *item,items)
-    {
-        int id = item->data(Qt::UserRole).toInt();
-
-        RAMShot *rs = getShot(id);
-        int index = allShots.indexOf(rs)-1;
-
-        allShots.removeAll(rs);
-        allShots.insert(index,rs);
-
-        shotsAdminList->takeItem(index+1);
-        shotsAdminList->insertItem(index,item);
-
-        mainTable->verticalHeader()->moveSection(index+1,index);
-    }
-
-    //reselect items
-    foreach(QListWidgetItem *item,items)
-    {
-        item->setSelected(true);
-    }
-
-    //update db
-    resetShotsOrder();
-}
-
-void MainWindow::on_moveShotDownButton_clicked()
-{
-    QList<QListWidgetItem *> items;
-
-    //sort selection
-    QList<int> rows;
-    foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
-    {
-        rows << shotsAdminList->row(item);
-    }
-    std::sort(rows.begin(),rows.end());
-
-    for(int i = rows.count() -1 ; i >= 0 ; i--)
-    {
-        items << shotsAdminList->item(rows[i]);
-    }
-
-    foreach(QListWidgetItem *item,items)
-    {
-        int id = item->data(Qt::UserRole).toInt();
-
-        RAMShot *rs = getShot(id);
-        int index = allShots.indexOf(rs)+1;
-
-        allShots.removeAll(rs);
-        allShots.insert(index,rs);
-
-        shotsAdminList->takeItem(index-1);
-        shotsAdminList->insertItem(index,item);
-    }
-
-    //reselect items
-    foreach(QListWidgetItem *item,items)
-    {
-        item->setSelected(true);
-    }
-
-    //update db
-    resetShotsOrder();
 }
 
 //ADMIN - ASSETS

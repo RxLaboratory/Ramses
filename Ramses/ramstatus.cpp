@@ -3,12 +3,14 @@
 
 RAMStatus::RAMStatus(DBInterface *db, int i, QString n, QString sN, QColor c, QString d, bool updateDb, QObject *parent) : QObject(parent)
 {
+
     statusId = i;
     statusName = n;
     statusShortName = sN;
     statusColor = c;
     statusDescription = d;
     dbi = db;
+
     if (updateDb)
     {
         dbi->addStatus(statusName,statusShortName,statusColor.name(),statusDescription,statusId);
@@ -81,4 +83,15 @@ void RAMStatus::update()
 void RAMStatus::remove()
 {
     dbi->removeStatus(statusId);
+    emit statusRemoved(this);
+}
+
+bool RAMStatus::operator==(RAMStatus s)
+{
+    return this->getId() == s.getId();
+}
+
+bool RAMStatus::operator==(RAMStatus *s)
+{
+    return this->getId() == s->getId();
 }

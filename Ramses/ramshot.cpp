@@ -52,9 +52,10 @@ void RAMShot::update()
     dbi->updateShot(id,name,duration);
 }
 
-void RAMShot::remove()
+void RAMShot::remove(bool updateDB)
 {
-    dbi->removeShot(id);
+    if (updateDB) dbi->removeShot(id);
+    emit shotRemoved(this);
 }
 
 bool RAMShot::operator==(RAMShot s)

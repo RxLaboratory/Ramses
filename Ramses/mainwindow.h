@@ -28,6 +28,7 @@
 #include "assetstatuswidget.h"
 #include "helpdialog.h"
 #include "xmlreader.h"
+#include "adminwidget.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -39,6 +40,8 @@ public:
      * @param parent    Parent widget
      */
     explicit MainWindow(QWidget *parent = 0);
+
+
 private:
 
     // ==================================================
@@ -91,17 +94,22 @@ private:
      */
     void setWaiting(bool w = true);
 
+    /**
+     * @brief Keeps a list of pointers to delete when refreshing the data
+     */
+    QList<QObject*> removedItems;
+
     // ==================================================
     //                      ADMIN
     // ==================================================
 
-    // ----------------- STATUSES -----------------------
+    AdminWidget *adminWidget;
 
+    // ----------------- STATUS -----------------------
     /**
-     * @brief Creates a new status and adds it to the list
-     * @param rs    the status
+     * @brief the current list of statuses
      */
-    void newStatus(RAMStatus *rs);
+    QList<RAMStatus*> statusList;
     /**
      * @brief Gets a status using its Id
      * @param id    The status id
@@ -113,22 +121,8 @@ private:
      * @param statuses  The list
      */
     void gotStatuses(QJsonValue statuses);
-    /**
-     * @brief the current list of statuses
-     */
-    QList<RAMStatus*> statusesList;
-    /**
-     * @brief Resets the admin panel of the statuses
-     */
-    void statusesAdminReset();
 
     // ----------------- STAGES -----------------------
-
-    /**
-     * @brief Creates a new stage and adds it to the list
-     * @param rs the stage
-     */
-    void newStage(RAMStage *rs);
     /**
      * @brief Called when the remote server has sent the list of stages
      * @param stages    The list
@@ -144,19 +138,9 @@ private:
      * @return The stage
      */
     RAMStage* getStage(int id);
-    /**
-     * @brief Resets the admin panel of the stages
-     */
-    void stagesAdminReset();
-
 
     // ----------------- PROJECTS -----------------------
 
-    /**
-     * @brief Creates a new project and adds it to the list
-     * @param rp the stage
-     */
-    void newProject(RAMProject *rp);
     /**
      * @brief Called when the remote server has sent the list of projects
      * @param projects    The list
@@ -172,18 +156,9 @@ private:
      * @return The project
      */
     RAMProject* getProject(int id);
-    /**
-     * @brief Resets the admin panel for the projects
-     */
-    void projectsAdminReset();
 
     // ----------------- SHOTS -----------------------
 
-    /**
-     * @brief Creates a new shot and adds it to the list
-     * @param rs the shot
-     */
-    void newShot(RAMShot *rs, int row);
     /**
      * @brief Called when the remote server has sent the list of shots
      * @param shots    The list
@@ -210,12 +185,8 @@ private:
      * @return
      */
     static bool shotsAdminSelectionSort(QListWidgetItem *a,QListWidgetItem *b);
-    /**
-     * @brief Resets the admin panel for the shots
-     */
-    void shotsAdminReset();
 
-    // ----------------- SHOTS -----------------------
+    // ----------------- ASSETS -----------------------
 
     /**
      * @brief Called when the remote server has sent the list of assets
@@ -266,7 +237,6 @@ private:
     void importEDL(QString f);
     void importXML(QString f);
 
-
 signals:
     void assetsListUpdated(QList<RAMAsset *> a);
 
@@ -299,36 +269,19 @@ private slots:
     void on_updateFreqSpinBox_editingFinished();
     void on_timeOutEdit_editingFinished();
 
-    //admin
-    void on_adminWidget_currentChanged(int index);
+    //status
+    void newStatus(RAMStatus *rs);
+    void removeStatus(RAMStatus *rs);
+    //stages
+    void newStage(RAMStage *rs);
+    void removeStage(RAMStage *rs);
+    //projects
+    void newProject(RAMProject *rp);
+    void removeProject(RAMProject *rp);
+    //shots
+    void newShot(RAMShot *rs, int row);
+    void removeShot(RAMShot* rs);
 
-    //admin - status
-    void on_addStatusButton_clicked();
-    void on_statusAdminList_itemClicked(QListWidgetItem *i);
-    void on_statusColorButton_clicked();
-    void on_statusApplyButton_clicked();
-    void on_removeStatusButton_clicked();
-    //admin - stages
-    void on_addStageButton_clicked();
-    void on_stagesAdminList_itemClicked(QListWidgetItem *item);
-    void on_stageApplyButton_clicked();
-    void on_removeStageButton_clicked();
-    //admin - projects
-    void on_addProjectButton_clicked();
-    void on_projectAdminList_itemClicked(QListWidgetItem *item);
-    void on_projectApplyButton_clicked();
-    void on_removeProjectButton_clicked();
-    void on_projectAddStageButton_clicked();
-    void on_removeStageProjectButton_clicked();
-    //admin - shots
-    void on_addShotButton_clicked();
-    void on_batchAddShotButton_clicked();
-    void on_shotsAdminList_itemClicked(QListWidgetItem *item);
-    void on_shotApplyButton_clicked();
-    void on_removeShotButton_clicked();
-    void on_moveShotUpButton_clicked();
-    void on_moveShotDownButton_clicked();
-    void on_importShotsButton_clicked();
     //admin - assets
     void assetCreated(RAMAsset *asset);
     void updateAssetStatus(RAMAsset *asset);
@@ -384,7 +337,6 @@ private slots:
      * @param i Timeout for the status bar
      */
     void showMessage(QString m, int i = 0);
-
 
 protected:
     //events

@@ -63,19 +63,6 @@ signals:
     void connected(bool,QString);
     void message(QString,int i = 0);
     void data(QJsonObject d);
-    //Shot
-    void shotAdded(bool,QString);
-    void gotShots(bool,QString,QJsonValue);
-    void shotUpdated(bool,QString);
-    void stageStatusUpdated(bool,QString);
-    void stageCommentUpdated(bool,QString);
-    void shotRemoved(bool,QString);
-    void shotsMovedUp(bool,QString);
-    void shotsMovedDown(bool,QString);
-    //Asset
-    void assetAdded(bool,QString);
-    void assetStatusUpdated(bool,QString);
-    void assetAssigned(bool,QString);
 
 public slots:
     void dataReceived(QNetworkReply *rep);
