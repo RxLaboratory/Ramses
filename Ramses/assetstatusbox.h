@@ -16,6 +16,8 @@ private slots:
     void assetStatusChanged(RAMAsset*a, RAMStatus*s);
     void on_comboBox_currentIndexChanged(int index);
     void on_detailsButton_clicked();
+    void nameChanged(QString n);
+    void shortNameChanged(QString n);
 
 signals:
     void dialogShown(bool);

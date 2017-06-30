@@ -15,6 +15,8 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, QWidget *pare
     detailsButton->setText(as->getShortName());
 
     connect(asset,SIGNAL(statusChanged(RAMAsset*,RAMStatus*)),this,SLOT(assetStatusChanged(RAMAsset*,RAMStatus*)));
+    connect(asset,SIGNAL(nameChanged(QString)),this,SLOT(nameChanged(QString)));
+    connect(asset,SIGNAL(shortNameChanged(QString)),this,SLOT(shortNameChanged(QString)));
 
     int index = -1;
     freezeUI = true;
@@ -49,7 +51,6 @@ void AssetStatusBox::on_comboBox_currentIndexChanged(int index)
         {
             //update color
             QString bgColor = "background-color:" + status->getColor().name() + ";";
-            //comboBox->setStyleSheet(bgColor);
             this->setStyleSheet(bgColor);
 
             //update stageStatus
@@ -89,4 +90,14 @@ void AssetStatusBox::on_detailsButton_clicked()
         //dbi->setStageComment(sd.getComment(),stageStatus->getStage()->getId(),shot->getId());
     }
     emit dialogShown(false);
+}
+
+void AssetStatusBox::nameChanged(QString n)
+{
+    this->setToolTip(n);
+}
+
+void AssetStatusBox::shortNameChanged(QString n)
+{
+    detailsButton->setText(n);
 }
