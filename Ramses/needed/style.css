@@ -429,12 +429,36 @@ QTableWidget QTableCornerButton::section {
 	border:none;
 }
 
+QTableWidget QComboBox {
+	padding-left: 6px;
+}
+
 QTableWidget QComboBox:hover {
 	color: #e3e3e3;
 }
 
 QTableWidget QComboBox QAbstractItemView {
 	color: #e3e3e3;
+	padding-left:6px;
+}
+
+QTableWidget QPushButton {
+	border: 0px;
+	background-color:#535353;
+}
+
+AssetStatusBox QComboBox {
+	border-top-left-radius:3px;
+	border-top-right-radius:8px;
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:8px;
+}
+
+AssetStatusBox QPushButton {
+	border-top-left-radius:8px;
+	border-top-right-radius:3px;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:3px;
 }
 
 QHeaderView {
@@ -458,7 +482,7 @@ QHeaderView::section:vertical {
 
 /* TABS */
 
-QTabWidget { 
+QTabWidget {
     background-color:#434343;
 }
 

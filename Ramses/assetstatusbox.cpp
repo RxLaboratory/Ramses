@@ -12,19 +12,22 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, QWidget *pare
     asset = as;
     statusesList = sl;
 
+    detailsButton->setText(as->getShortName());
+
     connect(asset,SIGNAL(statusChanged(RAMAsset*,RAMStatus*)),this,SLOT(assetStatusChanged(RAMAsset*,RAMStatus*)));
 
     int index = -1;
     freezeUI = true;
+
+    //add statuses
     foreach(RAMStatus *status,statusesList)
     {
-        comboBox->addItem(asset->getShortName() + " | " + status->getShortName(),status->getId());
+        comboBox->addItem(status->getShortName(),status->getId());
         if (status->getId() == asset->getStatus()->getId())
         {
             index = comboBox->count()-1;
         }
     }
-
     comboBox->setCurrentIndex(-1);
 
     freezeUI = false;
@@ -45,7 +48,9 @@ void AssetStatusBox::on_comboBox_currentIndexChanged(int index)
         if (status->getId() == comboBox->currentData().toInt())
         {
             //update color
-            comboBox->setStyleSheet("background-color:" + status->getColor().name() + ";");
+            QString bgColor = "background-color:" + status->getColor().name() + ";";
+            //comboBox->setStyleSheet(bgColor);
+            this->setStyleSheet(bgColor);
 
             //update stageStatus
             if (!freezeDBI)
@@ -65,7 +70,7 @@ void AssetStatusBox::assetStatusChanged(RAMAsset *a, RAMStatus *s)
     freezeDBI = true;
     for (int i = 0; i< comboBox->count() ; i++)
     {
-	if (comboBox->itemData(i) == s->getId())
+    if (comboBox->itemData(i) == s->getId())
         {
             comboBox->setCurrentIndex(i);
         }

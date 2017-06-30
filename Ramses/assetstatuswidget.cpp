@@ -20,6 +20,7 @@ void AssetStatusWidget::addAsset(RAMAsset *asset)
 
     //add comboBox
     AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,this);
+    assetBox->setToolTip(asset->getName());
     connect(assetBox,SIGNAL(dialogShown(bool)),this,SLOT(setEditing(bool)));
     assetsWidget->layout()->addWidget(assetBox);
 }

@@ -243,7 +243,7 @@ void MainWindow::logout()
 
 void MainWindow::clean()
 {
-    mainTable->clear();
+    mainTable->clearContents();
     mainTable->setRowCount(0);
     mainTable->setColumnCount(1);
     projectSelector->clear();
