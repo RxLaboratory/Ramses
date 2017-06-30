@@ -1,6 +1,7 @@
 • Items connexions
 project ok
 
+• Move maintable in its own class
 
 • Settings
 	separate from mainwidow

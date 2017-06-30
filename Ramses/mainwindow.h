@@ -29,6 +29,7 @@
 #include "helpdialog.h"
 #include "xmlreader.h"
 #include "adminwidget.h"
+#include "shotwidget.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {

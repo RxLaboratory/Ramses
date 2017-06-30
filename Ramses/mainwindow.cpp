@@ -245,7 +245,7 @@ void MainWindow::clean()
 {
     mainTable->clear();
     mainTable->setRowCount(0);
-    mainTable->setColumnCount(0);
+    mainTable->setColumnCount(1);
     projectSelector->clear();
 
     //empty everything
@@ -611,9 +611,9 @@ void MainWindow::on_passwordEdit_returnPressed()
 
 void MainWindow::currentProjectChanged(RAMProject *p)
 {
-    mainTable->clear();
+    mainTable->clearContents();
     mainTable->setRowCount(0);
-    mainTable->setColumnCount(0);
+    mainTable->setColumnCount(1);
 
     qDeleteAll(allShots);
     allShots.clear();
@@ -636,8 +636,8 @@ void MainWindow::currentProjectChanged(RAMProject *p)
         QTableWidgetItem *item = new QTableWidgetItem(rs->getShortName());
         item->setToolTip(rs->getName());
         item->setData(Qt::UserRole,rs->getId());
-        mainTable->setColumnCount(i+1);
-        mainTable->setHorizontalHeaderItem(i,item);
+        mainTable->setColumnCount(i+2);
+        mainTable->setHorizontalHeaderItem(i+1,item);
     }
 
     //get shots
@@ -977,11 +977,9 @@ void MainWindow::newShot(RAMShot *rs,int row)
     rs->setParent(this);
 
     //add to table
-    QTableWidgetItem *rowHeader = new QTableWidgetItem(rs->getName());
-    rowHeader->setToolTip(QString::number(rs->getDuration()) + "s");
-    rowHeader->setData(Qt::UserRole,rs->getId());
+    ShotWidget *widget= new ShotWidget(rs);
     mainTable->insertRow(row);
-    mainTable->setVerticalHeaderItem(row,rowHeader);
+    mainTable->setCellWidget(row,0,widget);
 
     //add asset widgets
     QList<RAMStage*> stages;
@@ -993,7 +991,7 @@ void MainWindow::newShot(RAMShot *rs,int row)
         connect(assetWidget,SIGNAL(newAsset(RAMAsset*)),this,SLOT(assetCreated(RAMAsset*)));
         connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
         //add widget to cell
-        mainTable->setCellWidget(row,i,assetWidget);
+        mainTable->setCellWidget(row,i+1,assetWidget);
     }
 
     // connect the shot
@@ -1006,15 +1004,6 @@ void MainWindow::removeShot(RAMShot *rs)
     allShots.removeAll(rs);
     removedItems << rs;
 
-    //remove from UI
-    for (int i = 0;i<mainTable->rowCount();i++)
-    {
-        if (mainTable->verticalHeaderItem(i)->data(Qt::UserRole).toInt() == rs->getId())
-        {
-            mainTable->removeRow(i);
-            break;
-        }
-    }
 }
 
 RAMShot* MainWindow::getShot(int id)
@@ -1044,17 +1033,14 @@ void MainWindow::gotShots(QJsonValue shots)
             //new shot
             QJsonObject shot = shotsArray[i].toObject();
             QString name = shot.value("shotName").toString();
+            double duration = shot.value("duration").toDouble();
             int id = shot.value("shotId").toInt();
 
             if (rs->getId() == id)
             {
                 //update shot
                 rs->setName(name);
-
-                QTableWidgetItem *rowHeader = new QTableWidgetItem(rs->getName());
-                rowHeader->setToolTip(QString::number(rs->getDuration()) + "s");
-                rowHeader->setData(Qt::UserRole,rs->getId());
-                mainTable->setVerticalHeaderItem(rsI,rowHeader);
+                rs->setDuration(duration);
 
                 //remove from the new list
                 shotsArray.removeAt(i);
@@ -1092,150 +1078,6 @@ void MainWindow::gotShots(QJsonValue shots)
     //get assets
     if (currentProject) dbi->getAssets(currentProject->getId());
 
-    /*setWaiting(false);
-    if (!success) return;
-
-    showMessage("Loading shots...");
-
-    //clear UI and stored list
-    shotsAdminList->clear();
-    qDeleteAll(assetsList);
-    assetsList.clear();
-    mainTable->clearContents();
-    mainTable->setRowCount(0);
-
-    QJsonArray shotsJsonArray = shots.toArray();
-
-    //LOAD DATA
-    foreach (QJsonValue shotJson, shotsJsonArray)
-    {
-        //get values
-        QJsonObject shot = shotJson.toObject();
-        QString shotName = shot.value("shotName").toString();
-        double shotDuration = shot.value("duration").toDouble();
-        QString shotComment = shot.value("comment").toString();
-        int shotStageId = shot.value("stageId").toInt();
-        int shotStatusId = shot.value("statusId").toInt();
-        int shotId = shot.value("shotId").toInt();
-        int shotOrder = shot.value("shotOrder").toInt();
-
-        RAMShot *ramShot;
-        //if shot is not already existing, create it
-        bool found = false;
-        foreach(RAMShot *testShot,shotsList)
-        {
-            if (testShot->getId() == shotId)
-            {
-                found = true;
-                ramShot = testShot;
-                break;
-            }
-        }
-
-        if (!found)
-        {
-            ramShot = new RAMShot(dbi,shotId,shotName,shotDuration,shotOrder);
-            shotsList << ramShot;
-            //connections
-            connect(ramShot,SIGNAL(stageStatusUpdated(RAMStatus*,RAMStage*,RAMShot*)),this,SLOT(updateStageStatus(RAMStatus*,RAMStage*,RAMShot*)));
-            connect(ramShot,SIGNAL(assetAdded(RAMAsset*,RAMShot*)),this,SLOT(assetAssigned(RAMAsset*,RAMShot*)));
-            connect(ramShot,SIGNAL(statusAdded(RAMStageStatus*,RAMShot*)),this,SLOT(shotStatusAdded(RAMStageStatus*,RAMShot*)));
-
-            //Add to maintable
-
-            //create Table row
-            QTableWidgetItem *rowHeader = new QTableWidgetItem(shotName);
-            rowHeader->setToolTip(QString::number(shotDuration) + "s");
-            mainTable->setRowCount(mainTable->rowCount() + 1);
-            mainTable->setVerticalHeaderItem(mainTable->rowCount()-1,rowHeader);
-
-            //for each asset stage, add widgets
-            for(int i = 0 ; i < stagesList.count() ; i++)
-            {
-                RAMStage *stage = stagesList[i];
-                if (stage->getType() == "a")
-                {
-                    //create asset widget
-                    AssetStatusWidget *assetWidget = new AssetStatusWidget(ramShot,stage,statusesList,assetsList,dbi);
-                    connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
-                    connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
-                    //add widget to cell
-                    mainTable->setCellWidget(mainTable->rowCount()-1,i,assetWidget);
-                }
-
-            }
-
-            //Add to admin tab
-            shotsAdminList->addItem(ramShot->getName());
-
-        }
-
-        //find stage
-        RAMStage *shotStage;
-        foreach(RAMStage *stage,stagesList)
-        {
-            if (stage->getId() == shotStageId)
-            {
-                shotStage = stage;
-                break;
-            }
-        }
-
-        //find status
-        RAMStatus *shotStatus;
-        foreach(RAMStatus *status,statusesList)
-        {
-            if (status->getId() == shotStatusId)
-            {
-                shotStatus = status;
-                break;
-            }
-        }
-
-        if (shotStage)
-        {
-            //if shot production stage, add status
-            if (shotStage->getType() == "s")
-            {
-                //add status
-                RAMStageStatus *shotStageStatus = new RAMStageStatus(shotStatus,shotStage,shotComment);
-                ramShot->addStatus(shotStageStatus,false);
-            }
-            //if asset production stage, add asset
-            else if (shotStage->getType() == "a")
-            {
-                QString assetName = shot.value("assetName").toString();
-                QString assetShortName = shot.value("assetShortName").toString();
-                QString assetComment = shot.value("comment").toString();
-                int assetId = shot.value("assetId").toInt();
-                //check if asset is already created
-                bool assetFound = false;
-                RAMAsset *shotAsset;
-                foreach(RAMAsset *a,assetsList)
-                {
-                    if (a->getId() == assetId)
-                    {
-                        shotAsset = a;
-                        assetFound = true;
-                        break;
-                    }
-                }
-                if (!assetFound)
-                {
-                    QList<RAMStage*> stages;
-                    stages << shotStage;
-                    shotAsset = new RAMAsset(assetId, assetName, assetShortName, stages, shotStatus);
-                    shotAsset->setComment(assetComment);
-                    connect(shotAsset,SIGNAL(statusChanged(RAMAsset *)),this,SLOT(updateAssetStatus(RAMAsset *)));
-                    loadAsset(shotAsset);
-                }
-                ramShot->addAsset(shotAsset,false);
-            }
-        }
-    }
-
-    mainTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
-    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);*/
 }
 
 void MainWindow::importEDL(QString f)

@@ -76,7 +76,7 @@
     <item>
      <widget class="QStackedWidget" name="mainStack">
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="loginPage">
        <layout class="QVBoxLayout" name="loginPageLayout">
@@ -305,6 +305,17 @@
           <property name="cornerButtonEnabled">
            <bool>false</bool>
           </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderMinimumSectionSize">
+           <number>30</number>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Shots</string>
+           </property>
+          </column>
          </widget>
         </item>
        </layout>
@@ -518,7 +529,7 @@ Under construction, sorry!</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>430</width>
+                 <width>847</width>
                  <height>412</height>
                 </rect>
                </property>
