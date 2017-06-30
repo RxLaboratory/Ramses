@@ -1073,6 +1073,9 @@ void MainWindow::gotShots(QJsonValue shots)
     }
 
 
+    //resize columns
+    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+
     setWaiting(false);
 
     //get assets
@@ -1323,6 +1326,8 @@ void MainWindow::gotAssets(QJsonValue assets)
         newAsset(ra);
     }
 
+    //resize columns
+    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 
     setWaiting(false);
 }
@@ -1352,7 +1357,7 @@ void MainWindow::newAsset(RAMAsset *asset)
         {
             if (stage == currentProject->getStages()[i])
             {
-                col = i;
+                col = i+1;
                 break;
             }
         }
