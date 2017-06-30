@@ -13,6 +13,11 @@ RAMProject::RAMProject(DBInterface *db, int i, QString n, QString sN, bool updat
     }
 }
 
+RAMProject::~RAMProject()
+{
+
+}
+
 int RAMProject::getId()
 {
     return projectId;
@@ -37,14 +42,14 @@ void RAMProject::setName(QString name, bool updateDb)
 {
     projectName = name;
     if (updateDb) update();
-    emit nameChanged(name);
+    emit nameChanged(this,name);
 }
 
 void RAMProject::setShortName(QString shortName, bool updateDb)
 {
     projectShortName = shortName;
     if (updateDb) update();
-    emit shortNameChanged(shortName);
+    emit shortNameChanged(this,shortName);
 }
 
 void RAMProject::update()

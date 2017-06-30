@@ -13,7 +13,7 @@ public:
     explicit AssetStatusBox(RAMAsset *as, QList<RAMStatus *> sl, QWidget *parent = 0);
 
 private slots:
-    void assetStatusChanged();
+    void assetStatusChanged(RAMAsset*a, RAMStatus*s);
     void on_comboBox_currentIndexChanged(int index);
     void on_detailsButton_clicked();
 

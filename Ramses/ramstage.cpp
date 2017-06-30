@@ -12,6 +12,11 @@ RAMStage::RAMStage(DBInterface *db, QString n, QString sN, int i, bool updateDb,
     }
 }
 
+RAMStage::~RAMStage()
+{
+
+}
+
 int RAMStage::getId()
 {
     return stageId;

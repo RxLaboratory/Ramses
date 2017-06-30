@@ -87,6 +87,7 @@ void RAMStatus::update()
 void RAMStatus::remove()
 {
     dbi->removeStatus(statusId);
+
     emit statusRemoved(this);
 }
 

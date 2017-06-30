@@ -12,7 +12,7 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, QWidget *pare
     asset = as;
     statusesList = sl;
 
-    connect(asset,SIGNAL(statusChanged()),this,SLOT(assetStatusChanged()));
+    connect(asset,SIGNAL(statusChanged(RAMAsset*,RAMStatus*)),this,SLOT(assetStatusChanged(RAMAsset*,RAMStatus*)));
 
     int index = -1;
     freezeUI = true;
@@ -60,12 +60,12 @@ void AssetStatusBox::on_comboBox_currentIndexChanged(int index)
 
 }
 
-void AssetStatusBox::assetStatusChanged()
+void AssetStatusBox::assetStatusChanged(RAMAsset *a, RAMStatus *s)
 {
     freezeDBI = true;
     for (int i = 0; i< comboBox->count() ; i++)
     {
-        if (comboBox->itemData(i) == asset->getStatus()->getId())
+	if (comboBox->itemData(i) == s->getId())
         {
             comboBox->setCurrentIndex(i);
         }

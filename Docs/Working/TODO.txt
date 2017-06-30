@@ -1,4 +1,6 @@
 • Items connexions
+project ok
+
 
 • Settings
 	separate from mainwidow

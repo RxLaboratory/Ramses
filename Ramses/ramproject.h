@@ -12,6 +12,7 @@ class RAMProject : public QObject
     Q_OBJECT
 public:
     explicit RAMProject(DBInterface *db,int i, QString n, QString sN, bool updateDb, QObject *parent = 0);
+    ~RAMProject();
     //get
     int getId();
     QString getName();
@@ -31,8 +32,8 @@ signals:
     void projectRemoved(RAMProject*);
     void stageAdded(RAMProject*,RAMStage*);
     void stageRemoved(RAMProject*,RAMStage*);
-    void nameChanged(QString);
-    void shortNameChanged(QString);
+    void nameChanged(RAMProject*,QString);
+    void shortNameChanged(RAMProject*,QString);
 
 public slots:
 

@@ -14,6 +14,11 @@ RAMShot::RAMShot(DBInterface *db, int pid, int i, QString n, double d, bool upda
     }
 }
 
+RAMShot::~RAMShot()
+{
+
+}
+
 int RAMShot::getId()
 {
     return id;

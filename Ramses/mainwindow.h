@@ -69,12 +69,6 @@ private:
     void login();
 
     /**
-     * @brief Empties all lists
-     * Then displays the login page
-     */
-    void logout();
-
-    /**
      * @brief Changes the page displayed on the main widget
      * Changes the page in the help window too
      * 0- Login
@@ -219,9 +213,7 @@ private:
     QProgressBar *mainStatusProgress;
     QPushButton *mainStatusStopButton;
     //selectors
-    QComboBox *projectSelector;
-    QComboBox *stageSelector;
-    bool freezeSelectors;
+    ProjectSelectorWidget *projectSelector;
     //window buttons
     QPushButton *maximizeButton;
     QPushButton *minimizeButton;
@@ -261,7 +253,7 @@ private slots:
     void on_passwordEdit_returnPressed();
 
     //selectors
-    void selectorProjectChanged(int i);
+    void currentProjectChanged(RAMProject *p);
 
     //settings
     void on_serverAddressEdit_editingFinished();
@@ -337,6 +329,16 @@ private slots:
      * @param i Timeout for the status bar
      */
     void showMessage(QString m, int i = 0);
+    /**
+     * @brief cleans everything
+     * Remove UI items and deletes data
+     */
+    void clean();
+    /**
+     * @brief Empties all lists
+     * Then displays the login page
+     */
+    void logout();
 
 protected:
     //events

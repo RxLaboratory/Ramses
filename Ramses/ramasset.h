@@ -12,6 +12,7 @@ class RAMAsset : public QObject
     Q_OBJECT
 public:
     explicit RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, RAMStage *s, bool updateDb = false, QString c = "",int i = -1, QObject *parent = 0);
+    ~RAMAsset();
     RAMStatus* getStatus();
     QString getName();
     QString getShortName();

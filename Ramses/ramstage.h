@@ -9,6 +9,7 @@ class RAMStage : public QObject
     Q_OBJECT
 public:
     explicit RAMStage(DBInterface *db, QString n, QString sN, int i, bool updateDb, QObject *parent = 0);
+    ~RAMStage();
     int getId();
     QString getName();
     QString getShortName();

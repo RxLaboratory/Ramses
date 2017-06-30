@@ -21,6 +21,11 @@ RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, RAMSta
     }
 }
 
+RAMAsset::~RAMAsset()
+{
+
+}
+
 int RAMAsset::getId()
 {
     return id;

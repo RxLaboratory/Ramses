@@ -20,13 +20,11 @@ MainWindow::MainWindow(QWidget *parent) :
     desktop = qApp->desktop();
 
     // Help Dialog
-    helpDialog = new HelpDialog();
+    helpDialog = new HelpDialog(this);
     helpDialogDocked = true;
 
     // Feedback
     showMessage("Let's start!");
-
-    freezeSelectors = true;
 
 #ifdef QT_DEBUG
     // Test mode (auto login)
@@ -45,27 +43,25 @@ MainWindow::MainWindow(QWidget *parent) :
     loginPageLayout->setAlignment(serverWidget, Qt::AlignHCenter);
 
     //Add project and stage selector
-    ProjectSelectorWidget *projectSelectorW = new ProjectSelectorWidget();
-    mainToolBar->insertWidget(actionSettings,projectSelectorW);
-    projectSelector = projectSelectorW->projectsBox();
-    stageSelector = projectSelectorW->stagesBox();
+    projectSelector = new ProjectSelectorWidget(this);
+    mainToolBar->insertWidget(actionSettings,projectSelector);
 
     //Add window buttons
-    maximizeButton = new QPushButton(QIcon(":/icons/maximize"),"");
-    minimizeButton = new QPushButton(QIcon(":/icons/minimize"),"");
-    quitButton = new QPushButton(QIcon(":/icons/close"),"");
+    maximizeButton = new QPushButton(QIcon(":/icons/maximize"),"",this);
+    minimizeButton = new QPushButton(QIcon(":/icons/minimize"),"",this);
+    quitButton = new QPushButton(QIcon(":/icons/close"),"",this);
     mainToolBar->addWidget(minimizeButton);
     mainToolBar->addWidget(maximizeButton);
     mainToolBar->addWidget(quitButton);
 
     //Add admin
-    adminWidget = new AdminWidget(dbi);
+    adminWidget = new AdminWidget(dbi,this);
     adminPageLayout->addWidget(adminWidget);
 
     //statusbar
-    mainStatusStopButton = new QPushButton("X");
+    mainStatusStopButton = new QPushButton("X",this);
 
-    mainStatusProgress = new QProgressBar();
+    mainStatusProgress = new QProgressBar(this);
     mainStatusProgress->setTextVisible(false);
     mainStatusProgress->setMaximum(0);
     mainStatusProgress->setMinimum(0);
@@ -135,13 +131,8 @@ MainWindow::MainWindow(QWidget *parent) :
     mainStack->setCurrentIndex(0);
     loginButton->setFocus();
 
-    //detect inactivity
-    connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
-
     //Connections
     mapEvents();
-
-    freezeSelectors = false;
 
     showMessage("Ready!");
 }
@@ -150,12 +141,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::mapEvents()
 {
+    // general
+    connect(qApp,SIGNAL(aboutToQuit()),this,SLOT(logout()));
+    connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
+
     // helpDialog
     connect(helpDialog,SIGNAL(dock(bool)),this,SLOT(dockHelpDialog(bool)));
     connect(helpDialog,SIGNAL(visibilityChanged(bool)),actionHelp,SLOT(setChecked(bool)));
 
     // project selector
-    connect(projectSelector,SIGNAL(currentIndexChanged(int)),this,SLOT(selectorProjectChanged(int)));
+    connect(projectSelector,SIGNAL(currentProjectChanged(RAMProject*)),this,SLOT(currentProjectChanged(RAMProject*)));
 
     // window buttons
     connect(maximizeButton,SIGNAL(clicked()),this,SLOT(maximizeButton_clicked()));
@@ -239,6 +234,20 @@ void MainWindow::logout()
     serverSettingsWidget->show();
     settingsLogoutWidget->hide();
 
+    clean();
+
+    showPage(0);
+
+    showMessage("Logged out.");
+}
+
+void MainWindow::clean()
+{
+    mainTable->clear();
+    mainTable->setRowCount(0);
+    mainTable->setColumnCount(0);
+    projectSelector->clear();
+
     //empty everything
 
     qDeleteAll(assetsList);
@@ -249,23 +258,15 @@ void MainWindow::logout()
 
     qDeleteAll(projectsList);
     projectsList.clear();
-    projectSelector->clear();
 
     qDeleteAll(stagesList);
     stagesList.clear();
-    stageSelector->clear();
 
     qDeleteAll(statusList);
     statusList.clear();
 
     qDeleteAll(removedItems);
     removedItems.clear();
-
-    mainTable->clear();
-    mainTable->setRowCount(0);
-    mainTable->setColumnCount(0);
-
-    showPage(0);
 }
 
 void MainWindow::showPage(int page)
@@ -608,11 +609,8 @@ void MainWindow::on_passwordEdit_returnPressed()
 
 //SELECTORS
 
-void MainWindow::selectorProjectChanged(int i)
+void MainWindow::currentProjectChanged(RAMProject *p)
 {
-    if (freezeSelectors) return;
-
-    stageSelector->clear();
     mainTable->clear();
     mainTable->setRowCount(0);
     mainTable->setColumnCount(0);
@@ -623,10 +621,10 @@ void MainWindow::selectorProjectChanged(int i)
     qDeleteAll(assetsList);
     assetsList.clear();
 
-    if (i<0) return;
+    if (p == 0) return;
 
     //set current project
-    currentProject = getProject(projectSelector->itemData(i).toInt());
+    currentProject = p;
     adminWidget->setCurrentProject(currentProject);
 
     //set current stages
@@ -635,7 +633,6 @@ void MainWindow::selectorProjectChanged(int i)
     for (int i = 0 ; i < stages.count() ; i++)
     {
         RAMStage *rs = stages[i];
-        stageSelector->addItem(rs->getShortName(),rs->getId());
         QTableWidgetItem *item = new QTableWidgetItem(rs->getShortName());
         item->setToolTip(rs->getName());
         item->setData(Qt::UserRole,rs->getId());
@@ -696,6 +693,7 @@ void MainWindow::newStatus(RAMStatus *rs)
 {
     // Add the status to the list and the UI
     statusList << rs;
+    rs->setParent(this);
 
     // connect the status
     connect(rs,SIGNAL(statusRemoved(RAMStatus*)),this,SLOT(removeStatus(RAMStatus*)));
@@ -787,6 +785,7 @@ void MainWindow::gotStatuses(QJsonValue statuses)
 void MainWindow::newStage(RAMStage *rs)
 {
     stagesList << rs;
+    rs->setParent(this);
 
     // connect the stage
     connect(rs,SIGNAL(stageRemoved(RAMStage*)),this,SLOT(removeStage(RAMStage*)));
@@ -796,15 +795,6 @@ void MainWindow::removeStage(RAMStage *rs)
 {
     stagesList.removeAll(rs);
     removedItems << rs;
-
-    //remove from UI
-    for (int i = stageSelector->count()-1;i>=0;i--)
-    {
-        if (stageSelector->itemData(i).toInt() == rs->getId())
-        {
-            stageSelector->removeItem(i);
-        }
-    }
 }
 
 RAMStage* MainWindow::getStage(int id)
@@ -880,8 +870,10 @@ void MainWindow::gotStages(QJsonValue stages)
 void MainWindow::newProject(RAMProject *rp)
 {
     projectsList << rp;
+    rp->setParent(this);
+
     // Add to selector
-    projectSelector->addItem(rp->getShortName(),rp->getId());
+    projectSelector->addProject(rp);
 
     // connect the project
     connect(rp,SIGNAL(projectRemoved(RAMProject*)),this,SLOT(removeProject(RAMProject*)));
@@ -891,15 +883,6 @@ void MainWindow::removeProject(RAMProject* rp)
 {
     projectsList.removeAll(rp);
     removedItems << rp;
-
-    //remove from UI
-    for (int i = projectSelector->count()-1;i>=0;i--)
-    {
-        if (projectSelector->itemData(i).toInt() == rp->getId())
-        {
-            projectSelector->removeItem(i);
-        }
-    }
 }
 
 RAMProject* MainWindow::getProject(int id)
@@ -915,12 +898,6 @@ void MainWindow::gotProjects(QJsonValue projects)
     setWaiting(true);
 
     QJsonArray projectsArray = projects.toArray();
-
-    //project selected before update
-    int idBefore = -1;
-    if (projectSelector->currentIndex() >= 0) idBefore = projectSelector->currentData().toInt();
-
-    freezeSelectors = true;
 
     // update projects in the current list
     for (int rpI = 0 ; rpI < projectsList.count() ; rpI++)
@@ -944,8 +921,6 @@ void MainWindow::gotProjects(QJsonValue projects)
                 rp->setName(name);
                 rp->setShortName(shortName);
 
-                projectSelector->setItemText(rpI,name);
-
                 //update stages list
                 foreach(QJsonValue proStage,projectStagesArray)
                 {
@@ -961,8 +936,8 @@ void MainWindow::gotProjects(QJsonValue projects)
         // if the project is not in the new list, remove it
         if (!updated)
         {
+            projectsList[rpI]->remove();
             removedItems << projectsList.takeAt(rpI);
-            projectSelector->removeItem(rpI);
             rpI--;
         }
     }
@@ -990,14 +965,6 @@ void MainWindow::gotProjects(QJsonValue projects)
         newProject(rp);
     }
 
-    freezeSelectors = false;
-
-    int idAfter = -1;
-    if (projectSelector->currentIndex() >= 0) idAfter = projectSelector->currentData().toInt();
-
-    if (idAfter != idBefore) selectorProjectChanged(projectSelector->currentIndex());
-    else if (currentProject) dbi->getShots(currentProject->getId());
-
     setWaiting(false);
 
 }
@@ -1007,6 +974,7 @@ void MainWindow::gotProjects(QJsonValue projects)
 void MainWindow::newShot(RAMShot *rs,int row)
 {
     allShots.insert(row,rs);
+    rs->setParent(this);
 
     //add to table
     QTableWidgetItem *rowHeader = new QTableWidgetItem(rs->getName());
@@ -1558,6 +1526,7 @@ void MainWindow::newAsset(RAMAsset *asset)
 void MainWindow::assetCreated(RAMAsset* asset)
 {
     assetsList << asset;
+    asset->setParent(this);
     emit assetsListUpdated(assetsList);
 }
 
