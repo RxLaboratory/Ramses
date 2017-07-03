@@ -81,14 +81,9 @@ void AssetStatusBox::assetStatusChanged(RAMAsset *a, RAMStatus *s)
 
 void AssetStatusBox::on_detailsButton_clicked()
 {
-    AssetDetailsDialog ad;
-    ad.setComment(asset->getComment());
+    AssetDetailsDialog ad(asset);
     emit dialogShown(true);
-    if (ad.exec())
-    {
-        asset->setComment(ad.getComment());
-        //dbi->setStageComment(sd.getComment(),stageStatus->getStage()->getId(),shot->getId());
-    }
+    ad.exec();
     emit dialogShown(false);
 }
 

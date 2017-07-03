@@ -202,6 +202,50 @@
 		}
 	}
 
+		if ($reply["type"] == "updateAsset")
+		{
+			$reply["accepted"] = true;
+
+			$assetId = "";
+			$name = "";
+			$shortName = "";
+			$comment = "";
+
+			$data = json_decode(file_get_contents('php://input'));
+			if ($data)
+			{
+				$assetId = $data->{'assetId'};
+				$name = $data->{'name'};
+				$shortName = $data->{'shortName'};
+				$comment = $data->{'comment'};
+			}
+
+			if (strlen($assetId) > 0)
+			{
+				$q = "UPDATE assets SET name= :name , shortName = :shortName , comment = :comment WHERE id= :assetId ;";
+				try
+				{
+					//create asset
+					$rep = $bdd->prepare($q);
+					$rep->execute(array('name' => $name , 'shortName' => $shortName , 'comment' => $comment , 'assetId' => $assetId ));
+					$rep->closeCursor();
+
+					$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
+					$reply["success"] = true;
+				}
+				catch (Exception $e)
+				{
+					$reply["message"] = "Server issue: SQL Query failed updating asset (id:" . $assetId . "). | " . $q;
+					$reply["success"] = false;
+				}
+			}
+			else
+			{
+				$reply["message"] = "Invalid request, missing values.";
+				$reply["success"] = false;
+			}
+		}
+
 
 
 /*

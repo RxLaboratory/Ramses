@@ -578,6 +578,11 @@ void MainWindow::dataReceived(QJsonObject data)
         if (!success) connected(false,message);
         return;
     }
+    else if (type == "updateAsset")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
 
     // If the data was not handled, just display message
     if (message != "") showMessage(message);

@@ -84,7 +84,7 @@ void RAMAsset::setStatus(RAMStatus *s, bool updateDb)
 
 void RAMAsset::update()
 {
-
+    dbi->updateAsset(id,name,shortName,comment);
 }
 
 void RAMAsset::remove(bool updateDB)

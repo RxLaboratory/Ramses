@@ -13,7 +13,6 @@
 	include in project
 
 • Assets
-	edit
 	remove (unassign)
 
 • Option to auto create assets for stage
@@ -25,3 +24,11 @@
 • progress bar
 
 • Auto size columns
+
+• bugfix crash when quit
+
+• Different levels of debugging info
+
+• better error display when disconnect
+
+• quit when mainwindow hidden

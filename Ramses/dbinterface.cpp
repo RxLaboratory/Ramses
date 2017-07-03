@@ -619,6 +619,21 @@ int DBInterface::addAsset(QString name, QString shortName, int statusId,int stag
     return id;
 }
 
+void DBInterface::updateAsset(int id, QString name, QString shortName, QString comment)
+{
+    QString remote = "?type=updateAsset";
+    QJsonObject obj;
+    obj.insert("assetId",id);
+    obj.insert("name",name);
+    obj.insert("shortName",shortName);
+    obj.insert("comment",comment);
+
+    QJsonDocument json(obj);
+
+    emit message("Updating asset");
+    sendRequest(remote,json);
+}
+
 void DBInterface::assignAsset(int assetId, int shotId)
 {
     QString q = "?type=assignAsset";
@@ -638,7 +653,7 @@ void DBInterface::getAssets(int projectId)
     obj.insert("projectId",projectId);
     QJsonDocument json(obj);
 
-    emit message("Assigning asset");
+    emit message("Requesting assets");
     sendRequest(q,json);
 }
 
