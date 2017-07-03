@@ -984,6 +984,7 @@ void MainWindow::newShot(RAMShot *rs,int row)
     //add asset widgets
     QList<RAMStage*> stages;
     stages = currentProject->getStages();
+    //get the assets list for this stage
     for (int i = 0 ; i < stages.count() ; i++)
     {
         AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusList,assetsList,dbi);

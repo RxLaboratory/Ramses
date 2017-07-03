@@ -17,6 +17,7 @@
 	change status
 	edit
 	remove (unassign)
+	include in stage
 
 • Local
 

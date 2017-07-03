@@ -24,9 +24,18 @@ RAMAsset *AddAssetDialog::getAsset()
 
 void AddAssetDialog::on_addButton_clicked()
 {
-    /*if (assetList->currentIndex() < 0) return;
-    //shot->addAsset(allAssets[assetList->currentIndex()]);
-    this->accept();*/
+    if (assetList->currentIndex() < 0) return;
+    foreach(RAMAsset *a,allAssets)
+    {
+        if (assetList->currentData().toInt() == a->getId())
+        {
+            a->assign(shot,true);
+            asset = a;
+            break;
+        }
+    }
+
+    this->accept();
 }
 
 void AddAssetDialog::on_createButton_clicked()

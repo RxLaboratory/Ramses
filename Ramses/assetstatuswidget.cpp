@@ -39,6 +39,7 @@ void AssetStatusWidget::on_addButton_clicked()
         }
     }
 
+    //remove assets already assigned here
     foreach(RAMAsset *a,assets)
     {
         allAssets.removeAll(a);
