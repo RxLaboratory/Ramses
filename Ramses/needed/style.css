@@ -447,6 +447,13 @@ QTableWidget QPushButton {
 	background-color:#535353;
 }
 
+AssetStatusBox #removeButton {
+	border-top-left-radius:8px;
+	border-top-right-radius:3px;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:3px;
+}
+
 AssetStatusBox QComboBox {
 	border-top-left-radius:3px;
 	border-top-right-radius:8px;
@@ -455,9 +462,9 @@ AssetStatusBox QComboBox {
 }
 
 AssetStatusBox QPushButton {
-	border-top-left-radius:8px;
+	border-top-left-radius:3px;
 	border-top-right-radius:3px;
-	border-bottom-left-radius:8px;
+	border-bottom-left-radius:3px;
 	border-bottom-right-radius:3px;
 }
 

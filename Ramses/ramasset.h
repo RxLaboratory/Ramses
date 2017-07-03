@@ -33,7 +33,7 @@ signals:
     void shortNameChanged(QString);
     void commentChanged(QString);
     void assetRemoved(RAMAsset*);
-    void assetUnAssigned(RAMShot*);
+    void assetUnAssigned(RAMShot*,RAMAsset*);
     void assetAssigned(RAMShot*);
 
 public slots:

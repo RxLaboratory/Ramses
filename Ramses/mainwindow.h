@@ -199,7 +199,6 @@ private:
     RAMStage *currentStage;
     QList<RAMStage *> currentStages;
 
-    //QList<RAMShot *> currentShots;
     //used to drag window grabing the toolbar
     QPoint dragPosition;
     bool toolBarClicked;

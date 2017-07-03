@@ -53,7 +53,8 @@ void RAMAsset::assign(RAMShot *shot, bool updateDb)
 void RAMAsset::unAssign(RAMShot *shot, bool updateDb)
 {
     assignments.removeAll(shot);
-    emit assetUnAssigned(shot);
+    if (updateDb) dbi->unAssignAsset(id,shot->getId());
+    emit assetUnAssigned(shot,this);
 }
 
 void RAMAsset::setName(QString n,bool updateDb)

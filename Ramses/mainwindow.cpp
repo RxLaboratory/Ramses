@@ -573,6 +573,11 @@ void MainWindow::dataReceived(QJsonObject data)
         if (!success) connected(false,message);
         return;
     }
+    else if (type == "unAssignAsset")
+    {
+        if (!success) connected(false,message);
+        return;
+    }
     else if (type == "setAssetStatus")
     {
         if (!success) connected(false,message);
@@ -583,6 +588,8 @@ void MainWindow::dataReceived(QJsonObject data)
         if (!success) connected(false,message);
         return;
     }
+
+
 
     // If the data was not handled, just display message
     if (message != "") showMessage(message);
@@ -1341,10 +1348,10 @@ void MainWindow::gotAssets(QJsonValue assets)
         newAsset(ra,stage);
     }
 
-    //resize columns
-    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 
     setWaiting(false);
+    //resize columns
+
 }
 
 void MainWindow::newAsset(RAMAsset *asset,RAMStage *stage)
@@ -1511,7 +1518,7 @@ void MainWindow::on_actionHelp_triggered(bool checked)
 #endif
 }
 
-// ============ WINDOW BUTTONS ======
+// ============ WINDOW BUTTONS AND UI ======
 
 void MainWindow::maximizeButton_clicked()
 {

@@ -92,6 +92,45 @@
 			$reply["message"] = "Invalid request, missing values.";
 			$reply["success"] = false;
 		}
+	}
+
+	if ($reply["type"] == "unAssignAsset")
+	{
+		$reply["accepted"] = true;
+
+		$assetId = "";
+		$shotId = "";
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			$assetId = $data->{'assetId'};
+			$shotId = $data->{'shotId'};
+		}
+
+		if (strlen($assetId) > 0 AND strlen($shotId) > 0)
+		{
+			$q = "DELETE assetstatuses FROM assetstatuses WHERE shotId = :shotId AND assetId = :assetId ;";
+
+			try
+			{
+				$rep = $bdd->prepare($q);
+				$rep->execute(array('shotId' => $shotId , 'assetId' => $assetId));
+				$rep->closeCursor();
+				$reply["message"] = "Asset un-assigned.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+			   $reply["message"] = "Server issue: SQL Query failed adding un-assigning asset | " . $q;
+			   $reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values.";
+			$reply["success"] = false;
+		}
 
 
 

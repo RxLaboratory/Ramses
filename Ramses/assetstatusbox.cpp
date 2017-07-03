@@ -3,7 +3,7 @@
 #include <QtDebug>
 #endif
 
-AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, QWidget *parent) :
+AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, RAMShot *s,QWidget *parent) :
     QWidget(parent)
 {
     freezeDBI = true;
@@ -11,6 +11,7 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, QWidget *pare
 
     asset = as;
     statusesList = sl;
+    shot = s;
 
     detailsButton->setText(as->getShortName());
 
@@ -66,6 +67,12 @@ void AssetStatusBox::on_comboBox_currentIndexChanged(int index)
 
 }
 
+void AssetStatusBox::on_removeButton_clicked()
+{
+    asset->unAssign(shot,true);
+    delete this;
+}
+
 void AssetStatusBox::assetStatusChanged(RAMAsset *a, RAMStatus *s)
 {
     freezeDBI = true;
@@ -103,3 +110,5 @@ void AssetStatusBox::shortNameChanged(QString n)
 {
     detailsButton->setText(n);
 }
+
+

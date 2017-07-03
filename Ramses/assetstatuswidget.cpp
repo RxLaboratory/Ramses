@@ -18,9 +18,11 @@ void AssetStatusWidget::addAsset(RAMAsset *asset)
     assignedAssets << asset;
 
     //add comboBox
-    AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,this);
+    AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,shot,this);
     connect(assetBox,SIGNAL(dialogShown(bool)),this,SLOT(setEditing(bool)));
     assetsWidget->layout()->addWidget(assetBox);
+
+    connect(asset,SIGNAL(assetUnAssigned(RAMShot*,RAMAsset*)),this,SLOT(unAssign(RAMShot*,RAMAsset*)));
 }
 
 void AssetStatusWidget::on_addButton_clicked()
@@ -65,5 +67,11 @@ void AssetStatusWidget::on_addButton_clicked()
 void AssetStatusWidget::setEditing(bool e)
 {
     emit editing(e);
+}
+
+void AssetStatusWidget::unAssign(RAMShot *s,RAMAsset *a)
+{
+    if (s != shot) return;
+    assignedAssets.removeAll(a);
 }
 

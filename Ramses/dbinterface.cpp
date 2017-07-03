@@ -646,6 +646,18 @@ void DBInterface::assignAsset(int assetId, int shotId)
     sendRequest(q,json);
 }
 
+void DBInterface::unAssignAsset(int assetId, int shotId)
+{
+    QString q = "?type=unAssignAsset";
+    QJsonObject obj;
+    obj.insert("assetId",assetId);
+    obj.insert("shotId",shotId);
+    QJsonDocument json(obj);
+
+    emit message("un-assigning asset");
+    sendRequest(q,json);
+}
+
 void DBInterface::getAssets(int projectId)
 {
     QString q = "?type=getAssets";

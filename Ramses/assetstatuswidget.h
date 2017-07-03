@@ -21,6 +21,7 @@ public:
 private slots:
     void on_addButton_clicked();
     void setEditing(bool e);
+    void unAssign(RAMShot *s,RAMAsset *a);
 
 signals:
     void editing(bool);

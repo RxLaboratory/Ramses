@@ -13,7 +13,7 @@
 	include in project
 
 • Assets
-	remove (unassign)
+	delete (in settings)
 
 • Option to auto create assets for stage
 
@@ -33,4 +33,5 @@
 
 • quit when mainwindow hidden
 
+• remove right click on toolbar
 • add window icon

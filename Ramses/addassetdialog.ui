@@ -38,7 +38,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Add existing asset</string>
+        <string>Assign asset</string>
        </property>
       </widget>
      </item>
