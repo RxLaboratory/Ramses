@@ -52,6 +52,23 @@ void RAMStage::setShortName(QString shortName, bool updateDb)
     emit shortNameChanged(shortName);
 }
 
+void RAMStage::addAsset(RAMAsset *a)
+{
+    if (assets.indexOf(a) >= 0) return;
+    assets << a;
+    connect(a,SIGNAL(assetRemoved(RAMAsset*)),this,SLOT(removeAsset(RAMAsset*)));
+}
+
+QList<RAMAsset *> RAMStage::getAssets()
+{
+    return assets;
+}
+
+void RAMStage::removeAsset(RAMAsset *a)
+{
+    assets.removeAll(a);
+}
+
 void RAMStage::update()
 {
     dbi->updateStage(stageId,stageName,stageShortName);

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "dbinterface.h"
+#include "ramasset.h"
 
 class RAMStage : public QObject
 {
@@ -16,6 +17,8 @@ public:
     void setId(int id, bool updateDb = false);
     void setName(QString name, bool updateDb = false);
     void setShortName(QString shortName, bool updateDb = false);
+    void addAsset(RAMAsset *a);
+    QList<RAMAsset*> getAssets();
     void update();
     void remove();
 
@@ -26,11 +29,16 @@ signals:
 
 public slots:
 
+private slots:
+    void removeAsset(RAMAsset *a);
+
 private:
     int stageId;
     QString stageName;
     QString stageShortName;
     DBInterface *dbi;
+    QList<RAMAsset*> assets;
+
 protected:
     bool operator==(RAMStage s);
     bool operator==(RAMStage *s);

@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     desktop = qApp->desktop();
 
     // Help Dialog
-    helpDialog = new HelpDialog(this);
+    helpDialog = new HelpDialog();
     helpDialogDocked = true;
 
     // Feedback
@@ -142,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::mapEvents()
 {
     // general
-    connect(qApp,SIGNAL(aboutToQuit()),this,SLOT(logout()));
+    connect(qApp,SIGNAL(aboutToQuit()),this,SLOT(quit()));
     connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
 
     // helpDialog
@@ -320,6 +320,12 @@ void MainWindow::setWaiting(bool w)
         mainStatusProgress->hide();
         mainStatusStopButton->hide();
     }
+}
+
+void MainWindow::quit()
+{
+    logout();
+    helpDialog->hide();
 }
 
 void MainWindow::stopWaiting()
@@ -987,10 +993,8 @@ void MainWindow::newShot(RAMShot *rs,int row)
     //get the assets list for this stage
     for (int i = 0 ; i < stages.count() ; i++)
     {
-        AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusList,assetsList,dbi);
+        AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusList,dbi);
         connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
-        connect(assetWidget,SIGNAL(newAsset(RAMAsset*)),this,SLOT(assetCreated(RAMAsset*)));
-        connect(this,SIGNAL(assetsListUpdated(QList<RAMAsset*>)),assetWidget,SLOT(assetsListUpdated(QList<RAMAsset*>)));
         //add widget to cell
         mainTable->setCellWidget(row,i+1,assetWidget);
     }
@@ -1304,8 +1308,9 @@ void MainWindow::gotAssets(QJsonValue assets)
         QJsonArray assignments = asset.value("assignments").toArray();
         int id = asset.value("id").toInt();
 
-        RAMAsset *testRa = new RAMAsset(dbi,name,shortName,getStatus(statusId),getStage(stageId),false,comment,id);
+        RAMAsset *testRa = new RAMAsset(dbi,name,shortName,getStatus(statusId),stageId,false,comment,id);
         RAMAsset *ra;
+        RAMStage *stage = getStage(stageId);
         //check if asset already exists
         int testI = assetsList.indexOf(testRa);
         if (testI >= 0)
@@ -1316,15 +1321,19 @@ void MainWindow::gotAssets(QJsonValue assets)
         else
         {
             ra = testRa;
+            assetsList << ra;
+            //add to stage
+            stage->addAsset(ra);
         }
+
         for (int j = 0;j<assignments.count() ; j++)
         {
             int shotId = assignments[j].toInt();
-            ra->assign(getShot(shotId));
+            ra->assign(getShot(shotId),false);
         }
 
         //add to UI
-        newAsset(ra);
+        newAsset(ra,stage);
     }
 
     //resize columns
@@ -1333,10 +1342,8 @@ void MainWindow::gotAssets(QJsonValue assets)
     setWaiting(false);
 }
 
-void MainWindow::newAsset(RAMAsset *asset)
+void MainWindow::newAsset(RAMAsset *asset,RAMStage *stage)
 {
-    assetCreated(asset);
-    RAMStage *stage = asset->getStage();
     foreach(RAMShot *shot,asset->getAssignments())
     {
         //find row
@@ -1369,13 +1376,6 @@ void MainWindow::newAsset(RAMAsset *asset)
         AssetStatusWidget* aw = (AssetStatusWidget*)mainTable->cellWidget(row,col);
         aw->addAsset(asset);
     }
-}
-
-void MainWindow::assetCreated(RAMAsset* asset)
-{
-    assetsList << asset;
-    asset->setParent(this);
-    emit assetsListUpdated(assetsList);
 }
 
 //asset statuses
@@ -1501,6 +1501,9 @@ void MainWindow::on_actionHelp_triggered(bool checked)
         helpDialog->show();
     }
     else helpDialog->hide();
+#ifdef QT_DEBUG
+    qDebug() << "Help Dialog";
+#endif
 }
 
 // ============ WINDOW BUTTONS ======

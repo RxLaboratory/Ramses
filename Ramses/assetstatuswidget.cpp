@@ -3,7 +3,7 @@
 #include <QtDebug>
 #endif
 
-AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, QList<RAMAsset *> aa, DBInterface *d, QWidget *parent) :
+AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
@@ -11,12 +11,11 @@ AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *
     stage = st;
     dbi = d;
     statusesList = sl;
-    allAssets = aa;
 }
 
 void AssetStatusWidget::addAsset(RAMAsset *asset)
 {
-    assets.append(asset);
+    assignedAssets << asset;
 
     //add comboBox
     AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,this);
@@ -39,13 +38,14 @@ void AssetStatusWidget::on_addButton_clicked()
         }
     }
 
+    QList<RAMAsset*> assets = stage->getAssets();
     //remove assets already assigned here
-    foreach(RAMAsset *a,assets)
+    foreach(RAMAsset *a,assignedAssets)
     {
-        allAssets.removeAll(a);
+        assets.removeAll(a);
     }
 
-    AddAssetDialog ad(dbi,shot,stage,status,allAssets);
+    AddAssetDialog ad(dbi,shot,stage,status,assets);
     //get button global coordinates
     QPoint thisCenter = this->parentWidget()->parentWidget()->mapToGlobal(this->parentWidget()->parentWidget()->geometry().center());
     QPoint newCenter(thisCenter.x()-ad.geometry().width()/2, thisCenter.y()-ad.geometry().height()/2);
@@ -55,7 +55,8 @@ void AssetStatusWidget::on_addButton_clicked()
     {
         //add to UI
         addAsset(ad.getAsset());
-        emit newAsset(ad.getAsset());
+        stage->addAsset(ad.getAsset());
+        emit newAsset(ad.getAsset(),stage);
     }
 
     setEditing(false);
@@ -66,7 +67,3 @@ void AssetStatusWidget::setEditing(bool e)
     emit editing(e);
 }
 
-void AssetStatusWidget::assetsListUpdated(QList<RAMAsset *> aa)
-{
-    allAssets = aa;
-}

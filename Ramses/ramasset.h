@@ -4,21 +4,19 @@
 #include <QObject>
 #include "ramstatus.h"
 #include "ramshot.h"
-#include "ramstage.h"
 #include "dbinterface.h"
 
 class RAMAsset : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, RAMStage *s, bool updateDb = false, QString c = "",int i = -1, QObject *parent = 0);
+    explicit RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, int stageId, bool updateDb = false, QString c = "", int i = -1, QObject *parent = 0);
     ~RAMAsset();
     RAMStatus* getStatus();
     QString getName();
     QString getShortName();
     int getId();
     QString getComment();
-    RAMStage *getStage();
     QList<RAMShot*> getAssignments();
     void assign(RAMShot *shot,bool updateDb = false);
     void unAssign(RAMShot *shot,bool updateDb = false);
@@ -47,13 +45,11 @@ private:
     int id;
     QString comment;
     RAMStatus *status;
-    RAMStage *stage;
     QList<RAMShot*> assignments;
     DBInterface *dbi;
 
 private slots:
     void statusDeleted(RAMStatus *s);
-    void stageDeleted(RAMStage *s);
     void shotDeleted(RAMShot *s);
 
 protected:

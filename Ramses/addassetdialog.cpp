@@ -42,7 +42,7 @@ void AddAssetDialog::on_createButton_clicked()
 {
     if (nameEdit->text() == "") return;
 
-    asset = new RAMAsset(dbi,nameEdit->text(),shortNameEdit->text(),status,stage,true);
+    asset = new RAMAsset(dbi,nameEdit->text(),shortNameEdit->text(),status,stage->getId(),true);
     asset->assign(shot,true);
 
     this->accept();

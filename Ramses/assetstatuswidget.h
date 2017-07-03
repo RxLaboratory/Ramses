@@ -15,25 +15,23 @@ class AssetStatusWidget : public QWidget, private Ui::AssetStatusWidget
     Q_OBJECT
 
 public:
-    explicit AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, QList<RAMAsset *> aa, DBInterface *d, QWidget *parent = 0);
+    explicit AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent = 0);
     void addAsset(RAMAsset *asset);
 
 private slots:
     void on_addButton_clicked();
     void setEditing(bool e);
-    void assetsListUpdated(QList<RAMAsset *> aa);
 
 signals:
     void editing(bool);
-    void newAsset(RAMAsset *asset);
+    void newAsset(RAMAsset *asset,RAMStage *stage);
 
 private:
-    QList<RAMAsset *> assets;
     QList<RAMStatus *> statusesList;
-    QList<RAMAsset *> allAssets;
     RAMShot *shot;
     RAMStage *stage;
     DBInterface *dbi;
+    QList<RAMAsset*> assignedAssets;
 };
 
 #endif // ASSETSTATUSWIDGET_H

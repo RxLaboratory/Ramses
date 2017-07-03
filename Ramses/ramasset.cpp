@@ -3,7 +3,7 @@
 #include <QtDebug>
 #endif
 
-RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, RAMStage *s, bool updateDb, QString c, int i, QObject *parent) : QObject(parent)
+RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st,int stageId, bool updateDb, QString c, int i, QObject *parent) : QObject(parent)
 {
     id = i;
     name = n;
@@ -11,13 +11,11 @@ RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, RAMSta
     connect(status,SIGNAL(statusRemoved(RAMStatus*)),this,SLOT(statusDeleted(RAMStatus*)));
     shortName = sn;
     comment = c;
-    stage = s;
-    connect(stage,SIGNAL(stageRemoved(RAMStage*)),this,SLOT(stageDeleted(RAMStage*)));
 
     dbi = db;
     if (updateDb)
     {
-        id = dbi->addAsset(name,shortName,status->getId(),stage->getId(),comment);
+        id = dbi->addAsset(name,shortName,status->getId(),stageId,comment);
     }
 }
 
@@ -34,11 +32,6 @@ int RAMAsset::getId()
 QString RAMAsset::getComment()
 {
     return comment;
-}
-
-RAMStage *RAMAsset::getStage()
-{
-    return stage;
 }
 
 QList<RAMShot *> RAMAsset::getAssignments()
@@ -101,11 +94,6 @@ void RAMAsset::remove(bool updateDB)
 void RAMAsset::statusDeleted(RAMStatus *s)
 {
     setStatus(0,false);
-}
-
-void RAMAsset::stageDeleted(RAMStage *s)
-{
-    remove(false);
 }
 
 void RAMAsset::shotDeleted(RAMShot *s)

@@ -188,7 +188,7 @@ private:
      * @param assets    The list
      */
     void gotAssets(QJsonValue assets);
-    void newAsset(RAMAsset *asset);
+    void newAsset(RAMAsset *asset, RAMStage *stage);
     QList<RAMAsset*> assetsList;
 
     //login
@@ -276,7 +276,6 @@ private slots:
     void removeShot(RAMShot* rs);
 
     //admin - assets
-    void assetCreated(RAMAsset *asset);
     void updateAssetStatus(RAMAsset *asset);
     void assetStatusUpdated(bool success,QString message);
     void assetAssigned(bool success,QString message);
@@ -340,6 +339,10 @@ private slots:
      * Then displays the login page
      */
     void logout();
+    /**
+     * @brief quits the application
+     */
+    void quit();
 
 protected:
     //events
