@@ -82,6 +82,13 @@ void AssetStatusBox::assetStatusChanged(RAMAsset *a, RAMStatus *s)
 void AssetStatusBox::on_detailsButton_clicked()
 {
     AssetDetailsDialog ad(asset);
+
+    //get button global coordinates
+    QPoint thisCenter = this->parentWidget()->parentWidget()->parentWidget()->mapToGlobal(this->parentWidget()->parentWidget()->parentWidget()->geometry().center());
+    QPoint newCenter(thisCenter.x()-ad.geometry().width()/2, thisCenter.y()-ad.geometry().height()/2);
+    ad.move(ad.mapFromGlobal(newCenter));
+
+
     emit dialogShown(true);
     ad.exec();
     emit dialogShown(false);

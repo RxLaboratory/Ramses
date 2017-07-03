@@ -32,3 +32,5 @@
 • better error display when disconnect
 
 • quit when mainwindow hidden
+
+• add window icon
