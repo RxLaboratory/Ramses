@@ -170,19 +170,17 @@
 
 		$assetId = "";
 		$statusId = "";
-		$stageId = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
 			$statusId = $data->{'statusId'};
 			$assetId = $data->{'assetId'};
-			$stageId = $data->{'stageId'};
 		}
 
-		if (strlen($statusId) > 0 AND strlen($assetId) > 0 AND strlen($stageId) > 0)
+		if (strlen($statusId) > 0 AND strlen($assetId) > 0)
 		{
-			$q = "UPDATE assetstatuses SET statusId=" . $statusId . " WHERE assetId=" . $assetId . " AND stageId=" . $stageId . ";";
+			$q = "UPDATE assets SET statusId=" . $statusId . " WHERE id=" . $assetId . ";";
 			try
 			{
 				$rep = $bdd->query($q);

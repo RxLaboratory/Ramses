@@ -57,7 +57,7 @@ void AssetStatusBox::on_comboBox_currentIndexChanged(int index)
             if (!freezeDBI)
             {
                 freezeUI = true;
-                asset->setStatus(status);
+                asset->setStatus(status,true);
                 freezeUI = false;
             }
             break;

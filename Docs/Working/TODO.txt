@@ -13,12 +13,15 @@
 	include in project
 
 • Assets
-	add existing (assign)
-	change status
 	edit
 	remove (unassign)
-	include in stage
+
+• Option to auto create assets for stage
 
 • Local
 
 • Offline mode
+
+• progress bar
+
+• Auto size columns

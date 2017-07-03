@@ -77,6 +77,7 @@ void RAMAsset::setComment(QString c,bool updateDb)
 void RAMAsset::setStatus(RAMStatus *s, bool updateDb)
 {
     status = s;
+    if (updateDb) dbi->setAssetStatus(s->getId(),id);
     emit statusChanged(this,s);
     emit statusChanged(s);
 }
