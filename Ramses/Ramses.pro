@@ -31,7 +31,6 @@ SOURCES += main.cpp\
     helpdialog.cpp \
     separatorwidget.cpp \
     assetstatusbox.cpp \
-    shotdetailsdialog.cpp \
     assetdetailsdialog.cpp \
     xmlreader.cpp \
     adminwidget.cpp \
@@ -54,7 +53,6 @@ HEADERS  += mainwindow.h \
     helpdialog.h \
     separatorwidget.h \
     assetstatusbox.h \
-    shotdetailsdialog.h \
     assetdetailsdialog.h \
     xmlreader.h \
     adminwidget.h \
@@ -68,7 +66,6 @@ FORMS    += mainwindow.ui \
     helpdialog.ui \
     separatorwidget.ui \
     assetstatusbox.ui \
-    shotdetailsdialog.ui \
     assetdetailsdialog.ui \
     adminwidget.ui \
     shotwidget.ui \
