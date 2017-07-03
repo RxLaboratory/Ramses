@@ -1,9 +1,9 @@
-#include "assetstatuswidget.h"
+#include "shotassetswidget.h"
 #ifdef QT_DEBUG
 #include <QtDebug>
 #endif
 
-AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent) :
+ShotAssetsWidget::ShotAssetsWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
@@ -13,7 +13,7 @@ AssetStatusWidget::AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *
     statusesList = sl;
 }
 
-void AssetStatusWidget::addAsset(RAMAsset *asset)
+void ShotAssetsWidget::addAsset(RAMAsset *asset)
 {
     assignedAssets << asset;
 
@@ -25,7 +25,7 @@ void AssetStatusWidget::addAsset(RAMAsset *asset)
     connect(asset,SIGNAL(assetUnAssigned(RAMShot*,RAMAsset*)),this,SLOT(unAssign(RAMShot*,RAMAsset*)));
 }
 
-void AssetStatusWidget::on_addButton_clicked()
+void ShotAssetsWidget::on_addButton_clicked()
 {
     setEditing(true);
 
@@ -64,12 +64,12 @@ void AssetStatusWidget::on_addButton_clicked()
     setEditing(false);
 }
 
-void AssetStatusWidget::setEditing(bool e)
+void ShotAssetsWidget::setEditing(bool e)
 {
     emit editing(e);
 }
 
-void AssetStatusWidget::unAssign(RAMShot *s,RAMAsset *a)
+void ShotAssetsWidget::unAssign(RAMShot *s,RAMAsset *a)
 {
     if (s != shot) return;
     assignedAssets.removeAll(a);

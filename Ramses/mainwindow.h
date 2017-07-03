@@ -25,7 +25,7 @@
 #include "ramproject.h"
 #include "addshotsdialog.h"
 #include "ramasset.h"
-#include "assetstatuswidget.h"
+#include "shotassetswidget.h"
 #include "helpdialog.h"
 #include "xmlreader.h"
 #include "adminwidget.h"

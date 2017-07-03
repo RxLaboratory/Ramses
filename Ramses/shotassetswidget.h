@@ -1,7 +1,7 @@
 #ifndef ASSETSTATUSWIDGET_H
 #define ASSETSTATUSWIDGET_H
 
-#include "ui_assetstatuswidget.h"
+#include "ui_shotassetswidget.h"
 #include "ramasset.h"
 #include "ramshot.h"
 #include "ramstage.h"
@@ -10,12 +10,12 @@
 #include "dbinterface.h"
 #include "assetstatusbox.h"
 
-class AssetStatusWidget : public QWidget, private Ui::AssetStatusWidget
+class ShotAssetsWidget : public QWidget, private Ui::ShotAssetsWidget
 {
     Q_OBJECT
 
 public:
-    explicit AssetStatusWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent = 0);
+    explicit ShotAssetsWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent = 0);
     void addAsset(RAMAsset *asset);
 
 private slots:

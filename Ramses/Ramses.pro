@@ -25,7 +25,6 @@ SOURCES += main.cpp\
     application.cpp \
     ramproject.cpp \
     ramshot.cpp \
-    assetstatuswidget.cpp \
     ramasset.cpp \
     addassetdialog.cpp \
     addshotsdialog.cpp \
@@ -36,7 +35,8 @@ SOURCES += main.cpp\
     assetdetailsdialog.cpp \
     xmlreader.cpp \
     adminwidget.cpp \
-    shotwidget.cpp
+    shotwidget.cpp \
+    shotassetswidget.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -48,7 +48,6 @@ HEADERS  += mainwindow.h \
     application.h \
     ramproject.h \
     ramshot.h \
-    assetstatuswidget.h \
     ramasset.h \
     addassetdialog.h \
     addshotsdialog.h \
@@ -59,11 +58,11 @@ HEADERS  += mainwindow.h \
     assetdetailsdialog.h \
     xmlreader.h \
     adminwidget.h \
-    shotwidget.h
+    shotwidget.h \
+    shotassetswidget.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
-    assetstatuswidget.ui \
     addassetdialog.ui \
     addshotsdialog.ui \
     helpdialog.ui \
@@ -72,7 +71,8 @@ FORMS    += mainwindow.ui \
     shotdetailsdialog.ui \
     assetdetailsdialog.ui \
     adminwidget.ui \
-    shotwidget.ui
+    shotwidget.ui \
+    shotassetswidget.ui
 
 DISTFILES +=
 

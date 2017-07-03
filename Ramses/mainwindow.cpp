@@ -1005,7 +1005,7 @@ void MainWindow::newShot(RAMShot *rs,int row)
     //get the assets list for this stage
     for (int i = 0 ; i < stages.count() ; i++)
     {
-        AssetStatusWidget *assetWidget = new AssetStatusWidget(rs,stages[i],statusList,dbi);
+        ShotAssetsWidget *assetWidget = new ShotAssetsWidget(rs,stages[i],statusList,dbi);
         connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
         //add widget to cell
         mainTable->setCellWidget(row,i+1,assetWidget);
@@ -1385,7 +1385,7 @@ void MainWindow::newAsset(RAMAsset *asset,RAMStage *stage)
         if (col < 0) return;
 
         //add widget
-        AssetStatusWidget* aw = (AssetStatusWidget*)mainTable->cellWidget(row,col);
+        ShotAssetsWidget* aw = (ShotAssetsWidget*)mainTable->cellWidget(row,col);
         aw->addAsset(asset);
     }
 }
