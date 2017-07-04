@@ -2,7 +2,7 @@
 #define ASSETSTATUSBOX_H
 
 #include "ui_assetstatusbox.h"
-#include "ramasset.h"
+#include "updater.h"
 #include "assetdetailsdialog.h"
 
 class AssetStatusBox : public QWidget, private Ui::AssetStatusBox
@@ -10,9 +10,11 @@ class AssetStatusBox : public QWidget, private Ui::AssetStatusBox
     Q_OBJECT
 
 public:   
-    explicit AssetStatusBox(RAMAsset *as, QList<RAMStatus *> sl,RAMShot *s, QWidget *parent = 0);
+    explicit AssetStatusBox(RAMAsset *as, RAMShot *s, Updater *up, QWidget *parent = 0);
 
 private slots:
+    void addStatus(RAMStatus*status);
+    void removeStatus(RAMStatus*status);
     void assetStatusChanged(RAMAsset*a, RAMStatus*s);
     void on_comboBox_currentIndexChanged(int index);
     void on_removeButton_clicked();
@@ -26,6 +28,7 @@ signals:
     void dialogShown(bool);
 
 private:
+    Updater *updater;
     RAMAsset *asset;
     RAMShot *shot;
     QList<RAMStatus *> statusesList;

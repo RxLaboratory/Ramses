@@ -1,4 +1,10 @@
-• Give updater object instead of lists
+• Securize php api
+
+• Option to auto create assets for stage
+
+• Reimplement IO and batch shots
+
+• updater timer
 
 • Settings
 	separate from mainwidow
@@ -9,14 +15,16 @@
 	wipe remote (get data from local)
 	wipe all (restore default status)
 
-• Assets
-	delete (in admin)
-
-• Option to auto create assets for stage
+• Admin
+	new ui
+	does not depend on project selector
+	asset management
 
 • Local
 
 • Offline mode
+
+• User management
 
 • progress bar
 
@@ -34,5 +42,4 @@
 
 • add window icon
 
-• New admin UI
-	does not depend on project selector
+	

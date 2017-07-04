@@ -1,14 +1,31 @@
 #include "addassetdialog.h"
 
-AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, RAMStatus *sta, QList<RAMAsset *> aa, QWidget *parent) :
+AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, Updater *up, QList<RAMAsset*> aa, QWidget *parent) :
     QDialog(parent)
 {
     setupUi(this);
     dbi = d;
     shot = sh;
     stage = st;
-    status = sta;
+    updater = up;
     allAssets = aa;
+
+    //get STB status
+    foreach(RAMStatus *s,updater->getStatuses())
+    {
+        if (s->getShortName() == "STB")
+        {
+            status = s;
+            break;
+        }
+    }
+
+    //get all assets from stage if assets are not provided
+    if (allAssets.count() == 0)
+    {
+        allAssets = stage->getAssets();
+    }
+
     foreach(RAMAsset *asset, allAssets)
     {
         assetList->addItem(asset->getShortName(),asset->getId());

@@ -3,14 +3,17 @@
 #include <QtDebug>
 #endif
 
-AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, RAMShot *s,QWidget *parent) :
+AssetStatusBox::AssetStatusBox(RAMAsset *as, RAMShot *s, Updater *up, QWidget *parent) :
     QWidget(parent)
 {
     freezeDBI = true;
+    freezeUI = false;
     setupUi(this);
 
+    updater = up;
+
     asset = as;
-    statusesList = sl;
+    statusesList = updater->getStatuses();
     shot = s;
 
     detailsButton->setText(as->getShortName());
@@ -20,26 +23,38 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, RAMShot *s,QW
     connect(asset,SIGNAL(shortNameChanged(QString)),this,SLOT(shortNameChanged(QString)));
     connect(asset,SIGNAL(assetRemoved(RAMAsset*)),this,SLOT(deleteLater()));
     connect(asset,SIGNAL(assetUnAssigned(RAMShot*,RAMAsset*)),this,SLOT(unAssign(RAMShot*,RAMAsset*)));
-
-    int index = -1;
-    freezeUI = true;
+    connect(updater,SIGNAL(statusAdded(RAMStatus*)),this,SLOT(addStatus(RAMStatus*)));
+    connect(updater,SIGNAL(statusRemoved(RAMStatus*)),this,SLOT(removeStatus(RAMStatus*)));
 
     //add statuses
     foreach(RAMStatus *status,statusesList)
     {
-        comboBox->addItem(status->getShortName(),status->getId());
-        if (status->getId() == asset->getStatus()->getId())
-        {
-            index = comboBox->count()-1;
-        }
+        addStatus(status);
     }
-    comboBox->setCurrentIndex(-1);
 
-    freezeUI = false;
-
-    comboBox->setCurrentIndex(index);
 
     freezeDBI = false;
+}
+
+void AssetStatusBox::addStatus(RAMStatus *status)
+{
+    comboBox->addItem(status->getShortName(),status->getId());
+    if (status->getId() == asset->getStatus()->getId())
+    {
+        comboBox->setCurrentIndex(comboBox->count()-1);
+    }
+}
+
+void AssetStatusBox::removeStatus(RAMStatus *status)
+{
+    for (int i = 0 ; i < comboBox->count() ; i++)
+    {
+        if (comboBox->itemData(i).toInt() == status->getId())
+        {
+            comboBox->removeItem(i);
+            break;
+        }
+    }
 }
 
 void AssetStatusBox::on_comboBox_currentIndexChanged(int index)

@@ -36,7 +36,7 @@ void ShotAssetsWidget::addAsset(RAMAsset *asset)
     assignedAssets << asset;
 
     //add comboBox
-    AssetStatusBox *assetBox = new AssetStatusBox(asset,updater->getStatuses(),shot,this);
+    AssetStatusBox *assetBox = new AssetStatusBox(asset,shot,updater,this);
     connect(assetBox,SIGNAL(dialogShown(bool)),this,SLOT(setEditing(bool)));
     assetsWidget->layout()->addWidget(assetBox);
 
@@ -48,17 +48,6 @@ void ShotAssetsWidget::on_addButton_clicked()
 {
     setEditing(true);
 
-    //get STB status
-    RAMStatus *status;
-    foreach(RAMStatus *s,updater->getStatuses())
-    {
-        if (s->getShortName() == "STB")
-        {
-            status = s;
-            break;
-        }
-    }
-
     QList<RAMAsset*> assets = stage->getAssets();
     //remove assets already assigned here
     foreach(RAMAsset *a,assignedAssets)
@@ -66,7 +55,7 @@ void ShotAssetsWidget::on_addButton_clicked()
         assets.removeAll(a);
     }
 
-    AddAssetDialog ad(dbi,shot,stage,status,assets);
+    AddAssetDialog ad(dbi,shot,stage,updater,assets);
     //get button global coordinates
     QPoint thisCenter = this->parentWidget()->parentWidget()->mapToGlobal(this->parentWidget()->parentWidget()->geometry().center());
     QPoint newCenter(thisCenter.x()-ad.geometry().width()/2, thisCenter.y()-ad.geometry().height()/2);
