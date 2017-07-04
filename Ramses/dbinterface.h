@@ -51,8 +51,6 @@ public:
     void removeShot(int id);
     void removeShots(QList<int> ids);
     void resetShotsOrder(QList<int> ids);
-    void moveShotsUp(QList<int> ids);
-    void moveShotsDown(QList<int> ids);
     //Asset
     int addAsset(QString name, QString shortName, int statusId, int stageId, QString comment);
     void updateAsset(int id,QString name,QString shortName,QString comment);

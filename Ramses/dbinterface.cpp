@@ -555,38 +555,6 @@ void DBInterface::resetShotsOrder(QList<int> ids)
     sendRequest(q,json);
 }
 
-void DBInterface::moveShotsUp(QList<int> ids)
-{
-    QString q = "?type=moveShotsUp";
-    QJsonObject obj;
-    QJsonArray jsonIds;
-    foreach(int id, ids)
-    {
-        jsonIds.insert(jsonIds.count(),id);
-    }
-    obj.insert("ids",jsonIds);
-    QJsonDocument json(obj);
-
-    emit message("Moving shots up.");
-    sendRequest(q,json);
-}
-
-void DBInterface::moveShotsDown(QList<int> ids)
-{
-    QString q = "?type=moveShotsDown";
-    QJsonObject obj;
-    QJsonArray jsonIds;
-    foreach(int id, ids)
-    {
-        jsonIds.insert(jsonIds.count(),id);
-    }
-    obj.insert("ids",jsonIds);
-    QJsonDocument json(obj);
-
-    emit message("Moving shots down.");
-    sendRequest(q,json);
-}
-
 //ASSETS
 int DBInterface::addAsset(QString name, QString shortName, int statusId,int stageId,QString comment)
 {
