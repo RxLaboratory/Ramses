@@ -24,15 +24,18 @@
 		{
 			if (strlen($id) > 0)
 			{
-				$qString = "INSERT INTO stages (name,shortName,id) VALUES ('" . $name . "','" . $shortName . "'," . $id . ");";
+				$qString = "INSERT INTO stages (name,shortName,id) VALUES ( :name , :shortName , :id );";
+				$values = array('name' => $name,'shortName' => $shortName, 'id' => $id);
 			}
 			else
 			{
-				$qString = "INSERT INTO stages (name,shortName) VALUES ('" . $name . "','" . $shortName . "');";
+				$qString = "INSERT INTO stages (name,shortName) VALUES ( :name , :shortName );";
+				$values = array('name' => $name,'shortName' => $shortName);
 			}
 			try
 			{
-				$rep = $bdd->query($qString);
+				$rep = $bdd->prepare($qString);
+				$rep->execute($values);
 				$rep->closeCursor();
 
 				$reply["message"] = "Stage " . $shortName . " added.";
@@ -102,7 +105,8 @@
 		{
 			try
 			{
-				$rep = $bdd->query("UPDATE stages SET name='" . $name . "',shortName='" . $shortName . "' WHERE id=" . $id . ";");
+				$rep = $bdd->prepare("UPDATE stages SET name= :name ,shortName= :shortName WHERE id= :id ;");
+				$rep->execute(array('name' => $name, 'shortName' => $shortName, 'id' => $id));
 				$rep->closeCursor();
 
 				$reply["message"] = "Stage " . $shortName . " (" . $id . ") updated.";
@@ -137,7 +141,8 @@
 		{
 			try
 			{
-				$rep = $bdd->query("DELETE stages FROM stages WHERE id=" . $id . ";");
+				$rep = $bdd->prepare("DELETE stages FROM stages WHERE id= :id ;");
+				$rep->execute(array('id' => $id));
 				$rep->closeCursor();
 
 				$reply["message"] = "Stage " . $id . " removed.";

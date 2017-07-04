@@ -8,10 +8,10 @@
 	if ($reply["type"] == "login")
 	{
 		$reply["accepted"] = true;
-		
+
 		$username = "";
 		$password = "";
-        
+
         $data = file_get_contents('php://input');
         if (isset($data["username"]) and isset($data["password"]))
         {
@@ -27,15 +27,16 @@
 				$password = $data->{'password'};
             }
         }
-		
+
 		//get login informations from URL
 		if (strlen($username) > 0 AND strlen($password) > 0)
 		{
 			//query the database
-			$rep = $bdd->query("SELECT password FROM users WHERE username = '" . $username . "';");//prepare la requete (idem pour insertion, update, delete...)
+			$rep = $bdd->prepare("SELECT password FROM users WHERE username = :username ;");
+			$rep->execute(array('username' => $username));
 			$testPass = $rep->fetch();
 			$rep->closeCursor();
-			
+
 			//check password
 			if ($testPass["password"] == $password)
 			{

@@ -3,7 +3,6 @@
 		Rainbox Asset Manager
 		Projects management
 	*/
-
 	// ========= ADD PROJECT ==========
 	if ($reply["type"] == "addProject")
 	{
@@ -25,15 +24,18 @@
 		{
 			if (strlen($id) > 0)
 			{
-				$qString = "INSERT INTO projects (name,shortName,id) VALUES ('" . $name . "','" . $shortName . "'," . $id . ");";
+				$qString = "INSERT INTO projects (name,shortName,id) VALUES ( :name , :shortName , :id );";
+				$values = array('name' => $name, 'shortName' => $shortName, 'id' => $id);
 			}
 			else
 			{
-				$qString = "INSERT INTO projects (name,shortName) VALUES ('" . $name . "','" . $shortName . "');";
+				$qString = "INSERT INTO projects (name,shortName) VALUES ( :name , :shortName );";
+				$values = array('name' => $name, 'shortName' => $shortName);
 			}
 			try
 			{
-				$rep = $bdd->query($qString);
+				$rep = $bdd->prepare($qString);
+				$rep->execute($values);
 				$rep->closeCursor();
 
 				$reply["message"] = "Project " . $shortName . " added.";
@@ -118,7 +120,8 @@
 		{
 			try
 			{
-				$rep = $bdd->query("UPDATE projects SET name='" . $name . "',shortName='" . $shortName . "' WHERE id=" . $id . ";");
+				$rep = $bdd->prepare("UPDATE projects SET name= :name ,shortName= :shortName WHERE id= :id ;");
+				$rep->execute(array('name' => $name,'shortName' => $shortName,'id' => $id));
 				$rep->closeCursor();
 
 				$reply["message"] = "Project " . $shortName . " (" . $id . ") updated.";
@@ -153,7 +156,8 @@
 		{
 			try
 			{
-				$rep = $bdd->query("DELETE projects FROM projects WHERE id=" . $id . ";");
+				$rep = $bdd->prepare("DELETE projects FROM projects WHERE id= :id ;");
+				$rep->execute(array('id' => $id));
 				$rep->closeCursor();
 
 				$reply["message"] = "Project " . $id . " removed.";
@@ -191,7 +195,8 @@
 		{
 			try
 			{
-				$rep = $bdd->query("INSERT INTO projectstage (stageId,projectId) VALUES (" . $stageId . "," . $projectId . ");");
+				$rep = $bdd->prepare("INSERT INTO projectstage (stageId,projectId) VALUES ( :stageId , :projectId );");
+				$rep->execute(array('stageId' => $stageId,'projectId' => $projectId));
 				$rep->closeCursor();
 
 				$reply["message"] = "Stage " . $stageId . " associated with project " . $projectId . ".";
@@ -227,7 +232,8 @@
 		{
 			try
 			{
-				$rep = $bdd->query("DELETE projectstage FROM projectstage WHERE stageId=" . $stageId . " AND projectId=" . $projectId . ";");
+				$rep = $bdd->prepare("DELETE projectstage FROM projectstage WHERE stageId= :stageId AND projectId= :projectId ;");
+				$rep->execute(array('stageId' => $stageId,'projectId' => $projectId));
 				$rep->closeCursor();
 
 				$reply["message"] = "Stage " . $stageId . " removed from project " . $projectId . ".";

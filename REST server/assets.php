@@ -219,10 +219,11 @@
 
 		if (strlen($statusId) > 0 AND strlen($assetId) > 0)
 		{
-			$q = "UPDATE assets SET statusId=" . $statusId . " WHERE id=" . $assetId . ";";
+			$q = "UPDATE assets SET statusId= :statusId WHERE id= :assetId ;";
 			try
 			{
-				$rep = $bdd->query($q);
+				$rep = $bdd->prepare($q);
+				$rep->execute(array('statusId' => $statusId, 'assetId' => $assetId));
 				$rep->closeCursor();
 
 				$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
@@ -241,49 +242,49 @@
 		}
 	}
 
-		if ($reply["type"] == "updateAsset")
+	if ($reply["type"] == "updateAsset")
+	{
+		$reply["accepted"] = true;
+
+		$assetId = "";
+		$name = "";
+		$shortName = "";
+		$comment = "";
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
 		{
-			$reply["accepted"] = true;
+			$assetId = $data->{'assetId'};
+			$name = $data->{'name'};
+			$shortName = $data->{'shortName'};
+			$comment = $data->{'comment'};
+		}
 
-			$assetId = "";
-			$name = "";
-			$shortName = "";
-			$comment = "";
-
-			$data = json_decode(file_get_contents('php://input'));
-			if ($data)
+		if (strlen($assetId) > 0)
+		{
+			$q = "UPDATE assets SET name= :name , shortName = :shortName , comment = :comment WHERE id= :assetId ;";
+			try
 			{
-				$assetId = $data->{'assetId'};
-				$name = $data->{'name'};
-				$shortName = $data->{'shortName'};
-				$comment = $data->{'comment'};
+				//create asset
+				$rep = $bdd->prepare($q);
+				$rep->execute(array('name' => $name , 'shortName' => $shortName , 'comment' => $comment , 'assetId' => $assetId ));
+				$rep->closeCursor();
+
+				$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
+				$reply["success"] = true;
 			}
-
-			if (strlen($assetId) > 0)
+			catch (Exception $e)
 			{
-				$q = "UPDATE assets SET name= :name , shortName = :shortName , comment = :comment WHERE id= :assetId ;";
-				try
-				{
-					//create asset
-					$rep = $bdd->prepare($q);
-					$rep->execute(array('name' => $name , 'shortName' => $shortName , 'comment' => $comment , 'assetId' => $assetId ));
-					$rep->closeCursor();
-
-					$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
-					$reply["success"] = true;
-				}
-				catch (Exception $e)
-				{
-					$reply["message"] = "Server issue: SQL Query failed updating asset (id:" . $assetId . "). | " . $q;
-					$reply["success"] = false;
-				}
-			}
-			else
-			{
-				$reply["message"] = "Invalid request, missing values.";
+				$reply["message"] = "Server issue: SQL Query failed updating asset (id:" . $assetId . "). | " . $q;
 				$reply["success"] = false;
 			}
 		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values.";
+			$reply["success"] = false;
+		}
+	}
 
 
 

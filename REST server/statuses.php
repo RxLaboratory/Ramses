@@ -32,17 +32,19 @@
 			//if an id is provided
 			if (strlen($id) > 0)
 			{
-				$qString = "INSERT INTO status (name,shortName,color,description,id) VALUES ('" . $name . "','" . $shortName . "','" . $color . "','" . $description . "'," . $id . ");";
-
+				$qString = "INSERT INTO status (name,shortName,color,description,id) VALUES ( :name , :shortName , :color , :description , :id );";
+				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id);
 			}
 			else
 			{
-				$qString = "INSERT INTO status (name,shortName,color,description) VALUES ('" . $name . "','" . $shortName . "','" . $color . "','" . $description . "');";
+				$qString = "INSERT INTO status (name,shortName,color,description) VALUES ( :name , :shortName , :color , :description );";
+				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description);
 			}
 			try
 			{
 
-				$rep = $bdd->query($qString);
+				$rep = $bdd->prepare($qString);
+				$rep->execute($values);
 				$rep->closeCursor();
 
 				$reply["message"] = "Status " . $shortName . " added.";
@@ -118,10 +120,11 @@
 		{
 			//add # on color if needed
 			if (strlen($color) == 6) $color = "#" . $color;
-			$qString = "UPDATE status SET name='" . $name . "',shortName='" . $shortName . "',color='" . $color . "',description='" . $description . "' WHERE id=" . $id . ";";
+			$qString = "UPDATE status SET name= :name ,shortName= :shortName ,color= :color ,description= :description WHERE id= :id ;";
 			try
 			{
-				$rep = $bdd->query($qString);
+				$rep = $bdd->prepare($qString);
+				$rep->execute(array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id));
 				$rep->closeCursor();
 
 				$reply["message"] = "Status " . $shortName . " (" . $id . ") updated.";
@@ -156,7 +159,8 @@
 		{
 			try
 			{
-				$rep = $bdd->query("DELETE status FROM status WHERE id=" . $id . ";");
+				$rep = $bdd->prepare("DELETE status FROM status WHERE id= :id ;");
+				$rep->execute(array('id' => $id));
 				$rep->closeCursor();
 
 				$reply["message"] = "Status " . $id . " removed.";
