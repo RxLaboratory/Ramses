@@ -19,6 +19,7 @@ private slots:
     void on_detailsButton_clicked();
     void nameChanged(QString n);
     void shortNameChanged(QString n);
+    void unAssign(RAMShot*s,RAMAsset*a);
 
 
 signals:

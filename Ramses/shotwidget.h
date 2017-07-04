@@ -10,6 +10,7 @@ class ShotWidget : public QWidget, private Ui::ShotWidget
 
 public:
     explicit ShotWidget(RAMShot *s,QWidget *parent = 0);
+    RAMShot *getShot();
 
 private slots:
     void nameChanged(QString name);

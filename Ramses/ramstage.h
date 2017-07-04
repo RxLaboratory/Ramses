@@ -26,10 +26,10 @@ signals:
     void stageRemoved(RAMStage*);
     void nameChanged(QString);
     void shortNameChanged(QString);
+    void assetAdded(RAMAsset*);
+    void assetRemoved(RAMAsset*);
 
 public slots:
-
-private slots:
     void removeAsset(RAMAsset *a);
 
 private:

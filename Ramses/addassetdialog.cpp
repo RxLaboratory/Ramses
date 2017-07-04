@@ -44,6 +44,7 @@ void AddAssetDialog::on_createButton_clicked()
 
     asset = new RAMAsset(dbi,nameEdit->text(),shortNameEdit->text(),status,stage->getId(),true);
     asset->assign(shot,true);
+    stage->addAsset(asset);
 
     this->accept();
 }

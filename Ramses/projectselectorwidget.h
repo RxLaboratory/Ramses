@@ -4,16 +4,16 @@
 #include "ui_projectselectorwidget.h"
 #include <QWidget>
 #include <QComboBox>
-#include "ramproject.h"
-#include "ramstage.h"
+#include "updater.h"
 
 class ProjectSelectorWidget : public QWidget, private Ui::ProjectSelectorWidget
 {
     Q_OBJECT
 
 public:
-    explicit ProjectSelectorWidget(QWidget *parent = 0);
+    explicit ProjectSelectorWidget(Updater *up,QWidget *parent = 0);
     ~ProjectSelectorWidget();
+    RAMProject *getCurrentProject();
 
 public slots:
     void addProject(RAMProject *project);
@@ -29,6 +29,7 @@ private:
     QList<RAMProject*> projectsList;
     RAMProject *currentProject;
     bool freeze;
+    Updater *updater;
 
 private slots:
     void projectShortNameChanged(RAMProject*project, QString shortName);

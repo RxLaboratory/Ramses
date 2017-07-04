@@ -34,7 +34,7 @@ signals:
     void commentChanged(QString);
     void assetRemoved(RAMAsset*);
     void assetUnAssigned(RAMShot*,RAMAsset*);
-    void assetAssigned(RAMShot*);
+    void assetAssigned(RAMShot*,RAMAsset*);
 
 public slots:
     void remove(bool updateDB = false);

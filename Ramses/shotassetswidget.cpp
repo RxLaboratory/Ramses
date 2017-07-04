@@ -3,26 +3,45 @@
 #include <QtDebug>
 #endif
 
-ShotAssetsWidget::ShotAssetsWidget(RAMShot *s, RAMStage *st, QList<RAMStatus *> sl, DBInterface *d, QWidget *parent) :
+ShotAssetsWidget::ShotAssetsWidget(RAMShot *s, RAMStage *st, DBInterface *d, Updater *up, QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
     shot = s;
     stage = st;
     dbi = d;
-    statusesList = sl;
+    updater = up;
+
+    //check existing assets, add them
+    foreach(RAMAsset *asset,stage->getAssets())
+    {
+        addAsset(asset);
+    }
+
+    connect(stage,SIGNAL(assetAdded(RAMAsset*)),this,SLOT(addAsset(RAMAsset*)));
 }
 
 void ShotAssetsWidget::addAsset(RAMAsset *asset)
 {
+    //check assignment
+    QList<RAMShot*> assignments = asset->getAssignments();
+    connect(asset,SIGNAL(assetAssigned(RAMShot*,RAMAsset*)),this,SLOT(assign(RAMShot*,RAMAsset*)));
+
+    if (assignments.indexOf(shot) < 0) return;
+
+#ifdef QT_DEBUG
+    qDebug() << "Status box " + asset->getShortName() + " to " + stage->getShortName() + " " + shot->getName();
+#endif
+
     assignedAssets << asset;
 
     //add comboBox
-    AssetStatusBox *assetBox = new AssetStatusBox(asset,statusesList,shot,this);
+    AssetStatusBox *assetBox = new AssetStatusBox(asset,updater->getStatuses(),shot,this);
     connect(assetBox,SIGNAL(dialogShown(bool)),this,SLOT(setEditing(bool)));
     assetsWidget->layout()->addWidget(assetBox);
 
     connect(asset,SIGNAL(assetUnAssigned(RAMShot*,RAMAsset*)),this,SLOT(unAssign(RAMShot*,RAMAsset*)));
+    connect(asset,SIGNAL(assetRemoved(RAMAsset*)),this,SLOT(unAssign(RAMAsset*)));
 }
 
 void ShotAssetsWidget::on_addButton_clicked()
@@ -31,7 +50,7 @@ void ShotAssetsWidget::on_addButton_clicked()
 
     //get STB status
     RAMStatus *status;
-    foreach(RAMStatus *s,statusesList)
+    foreach(RAMStatus *s,updater->getStatuses())
     {
         if (s->getShortName() == "STB")
         {
@@ -53,13 +72,7 @@ void ShotAssetsWidget::on_addButton_clicked()
     QPoint newCenter(thisCenter.x()-ad.geometry().width()/2, thisCenter.y()-ad.geometry().height()/2);
     ad.move(ad.mapFromGlobal(newCenter));
     ad.setWindowFlags(Qt::FramelessWindowHint);
-    if (ad.exec() == QDialog::Accepted)
-    {
-        //add to UI
-        addAsset(ad.getAsset());
-        stage->addAsset(ad.getAsset());
-        emit newAsset(ad.getAsset(),stage);
-    }
+    ad.exec();
 
     setEditing(false);
 }
@@ -69,9 +82,19 @@ void ShotAssetsWidget::setEditing(bool e)
     emit editing(e);
 }
 
+void ShotAssetsWidget::assign(RAMShot *s, RAMAsset *a)
+{
+    if (s == shot) addAsset(a);
+}
+
 void ShotAssetsWidget::unAssign(RAMShot *s,RAMAsset *a)
 {
     if (s != shot) return;
+    assignedAssets.removeAll(a);
+}
+
+void ShotAssetsWidget::unAssign(RAMAsset *a)
+{
     assignedAssets.removeAll(a);
 }
 

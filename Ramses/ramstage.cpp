@@ -56,7 +56,9 @@ void RAMStage::addAsset(RAMAsset *a)
 {
     if (assets.indexOf(a) >= 0) return;
     assets << a;
+    a->setParent(this);
     connect(a,SIGNAL(assetRemoved(RAMAsset*)),this,SLOT(removeAsset(RAMAsset*)));
+    emit assetAdded(a);
 }
 
 QList<RAMAsset *> RAMStage::getAssets()
@@ -67,6 +69,8 @@ QList<RAMAsset *> RAMStage::getAssets()
 void RAMStage::removeAsset(RAMAsset *a)
 {
     assets.removeAll(a);
+    a->remove();
+    emit assetRemoved(a);
 }
 
 void RAMStage::update()

@@ -20,16 +20,13 @@
 #include "idletimer.h"
 #include "dbinterface.h"
 #include "projectselectorwidget.h"
-#include "ramstatus.h"
-#include "ramstage.h"
-#include "ramproject.h"
 #include "addshotsdialog.h"
-#include "ramasset.h"
 #include "shotassetswidget.h"
 #include "helpdialog.h"
 #include "xmlreader.h"
 #include "adminwidget.h"
-#include "shotwidget.h"
+#include "maintable.h"
+#include "updater.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -45,9 +42,7 @@ public:
 
 private:
 
-    // ==================================================
-    //                       GENERAL
-    // ==================================================
+    // ----------------- GENERAL -----------------------
 
     /**
      * @brief  Connects required signals and slots
@@ -59,7 +54,7 @@ private:
      * @brief Updates the current stylesheet for the application
      * (Just reloads it)
      */
-    void updateCSS();
+    void updateCSS(QString cssPath = ":/styles/default");
 
     /**
      * @brief Hashes the password and stores credentials in username and passHash
@@ -90,114 +85,19 @@ private:
     void setWaiting(bool w = true);
 
     /**
-     * @brief Keeps a list of pointers to delete when refreshing the data
+     * @brief The object which handles data updates from remote server
      */
-    QList<QObject*> removedItems;
+    Updater *updater;
 
-    // ==================================================
-    //                      ADMIN
-    // ==================================================
+    // ----------------- WIDGETS -----------------------
 
     AdminWidget *adminWidget;
-
-    // ----------------- STATUS -----------------------
-    /**
-     * @brief the current list of statuses
-     */
-    QList<RAMStatus*> statusList;
-    /**
-     * @brief Gets a status using its Id
-     * @param id    The status id
-     * @return The status
-     */
-    RAMStatus *getStatus(int id);
-    /**
-     * @brief Called when the remote server has sent the list of statuses
-     * @param statuses  The list
-     */
-    void gotStatuses(QJsonValue statuses);
-
-    // ----------------- STAGES -----------------------
-    /**
-     * @brief Called when the remote server has sent the list of stages
-     * @param stages    The list
-     */
-    void gotStages(QJsonValue stages);
-    /**
-     * @brief The current list of stages
-     */
-    QList<RAMStage*> stagesList;
-    /**
-     * @brief Gets a stage using its Id
-     * @param id    The stage id
-     * @return The stage
-     */
-    RAMStage* getStage(int id);
-
-    // ----------------- PROJECTS -----------------------
-
-    /**
-     * @brief Called when the remote server has sent the list of projects
-     * @param projects    The list
-     */
-    void gotProjects(QJsonValue projects);
-    /**
-     * @brief The current list of projects
-     */
-    QList<RAMProject*> projectsList;
-    /**
-     * @brief Gets a project using its Id
-     * @param id    The project id
-     * @return The project
-     */
-    RAMProject* getProject(int id);
-
-    // ----------------- SHOTS -----------------------
-
-    /**
-     * @brief Called when the remote server has sent the list of shots
-     * @param shots    The list
-     */
-    void gotShots(QJsonValue shots);
-    /**
-     * @brief The current list of shots
-     */
-    QList<RAMShot*> allShots;
-    /**
-     * @brief Gets a shot using its Id
-     * @param id    The shot id
-     * @return The shot
-     */
-    RAMShot *getShot(int id);
-    /**
-     * @brief Resets the order of the shots in the DB
-     */
-    void resetShotsOrder();
-    /**
-     * @brief Sorter method to sort the item selection in shotsAdminList
-     * @param a
-     * @param b
-     * @return
-     */
-    static bool shotsAdminSelectionSort(QListWidgetItem *a,QListWidgetItem *b);
-
-    // ----------------- ASSETS -----------------------
-
-    /**
-     * @brief Called when the remote server has sent the list of assets
-     * @param assets    The list
-     */
-    void gotAssets(QJsonValue assets);
-    void newAsset(RAMAsset *asset, RAMStage *stage);
-    QList<RAMAsset*> assetsList;
+    MainTable *mainTable;
 
     //login
 
     QString username;
     QString passHash;
-    RAMProject *currentProject;
-    RAMStage *currentStage;
-    QList<RAMStage *> currentStages;
 
     //used to drag window grabing the toolbar
     QPoint dragPosition;
@@ -252,34 +152,11 @@ private slots:
     void on_usernameEdit_returnPressed();
     void on_passwordEdit_returnPressed();
 
-    //selectors
-    void currentProjectChanged(RAMProject *p);
-
     //settings
     void on_serverAddressEdit_editingFinished();
     void on_sslCheckBox_clicked(bool checked);
     void on_updateFreqSpinBox_editingFinished();
     void on_timeOutEdit_editingFinished();
-
-    //status
-    void newStatus(RAMStatus *rs);
-    void removeStatus(RAMStatus *rs);
-    //stages
-    void newStage(RAMStage *rs);
-    void removeStage(RAMStage *rs);
-    //projects
-    void newProject(RAMProject *rp);
-    void removeProject(RAMProject *rp);
-    //shots
-    void newShot(RAMShot *rs, int row);
-    void removeShot(RAMShot* rs);
-
-    //admin - assets
-    void updateAssetStatus(RAMAsset *asset);
-    void assetStatusUpdated(bool success,QString message);
-    void assetAssigned(bool success,QString message);
-    void assetAssigned(RAMAsset *a,RAMShot *s);
-    void loadAsset(RAMAsset *a);
 
     // =======ACTIONS
     void on_actionMain_triggered(bool checked);
@@ -327,7 +204,7 @@ private slots:
      * @param m The message
      * @param i Timeout for the status bar
      */
-    void showMessage(QString m, int i = 0);
+    void showMessage(QString m);
     /**
      * @brief cleans everything
      * Remove UI items and deletes data

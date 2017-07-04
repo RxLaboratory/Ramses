@@ -3,9 +3,7 @@
 
 #include "ui_adminwidget.h"
 #include "dbinterface.h"
-#include "ramstatus.h"
-#include "ramstage.h"
-#include "ramproject.h"
+#include "updater.h"
 #include <QColorDialog>
 #include <QErrorMessage>
 
@@ -14,13 +12,12 @@ class AdminWidget : public QWidget, private Ui::AdminWidget
     Q_OBJECT
 
 public:
-    explicit AdminWidget(DBInterface *db,QWidget *parent = 0);
+    explicit AdminWidget(DBInterface *db,Updater *up,QWidget *parent = 0);
     /**
      * @brief initializes the admin widget with all lists and items
      * @param status    The status list
      */
-    void init(QList<RAMStatus*> status, QList<RAMStage *> stages, QList<RAMProject *> projects, QList<RAMShot *> shots,RAMProject *current);
-    void setCurrentProject(RAMProject *project);
+    void init();
 
 signals:
     void statusCreated(RAMStatus*);
@@ -63,50 +60,32 @@ private slots:
 private:
     // ----------------- GENERAL ------------------------
     QErrorMessage *error;
+    /**
+     * @brief The interface to the local and remote Databases
+     */
+    DBInterface *dbi;
+    Updater *updater;
 
     // ----------------- STATUSES -----------------------
 
-    /**
-     * @brief the current list of statuses
-     */
-    QList<RAMStatus*> statusList;
     /**
      * @brief Creates the UI item for a status
      * @param rs    the status
      */
     void newStatus(RAMStatus *rs);
     /**
-     * @brief Gets a status using its Id
-     * @param id    The status id
-     * @return The status
-     */
-    RAMStatus *getStatus(int id);
-    /**
      * @brief Resets the admin panel of the statuses
      */
     void statusesAdminReset();
-    /**
-     * @brief The interface to the local and remote Databases
-     */
-    DBInterface *dbi;
+
 
     // ----------------- STAGES -----------------------
 
-    /**
-     * @brief The current list of stages
-     */
-    QList<RAMStage*> stagesList;
     /**
      * @brief Creates a new stage and adds it to the list
      * @param rs the stage
      */
     void newStage(RAMStage *rs);
-    /**
-     * @brief Gets a stage using its Id
-     * @param id    The stage id
-     * @return The stage
-     */
-    RAMStage *getStage(int id);
     /**
      * @brief Resets the admin panel of the stages
      */
@@ -115,20 +94,10 @@ private:
     // ----------------- PROJECTS -----------------------
 
     /**
-     * @brief The current list of projects
-     */
-    QList<RAMProject*> projectsList;
-    /**
      * @brief Creates a new project and adds it to the list
      * @param rp the stage
      */
     void newProject(RAMProject *rp);
-    /**
-     * @brief Gets a project using its Id
-     * @param id    The project id
-     * @return The project
-     */
-    RAMProject *getProject(int id);
     /**
      * @brief Resets the admin panel for the projects
      */
@@ -136,14 +105,9 @@ private:
     /**
      * @brief The project currently selected
      */
-    RAMProject *currentProject;
 
     // ----------------- SHOTS -----------------------
 
-    /**
-     * @brief The current list of shots
-     */
-    QList<RAMShot*> shotsList;
     /**
      * @brief Creates a new shot and adds it to the list
      * @param rs the shot
@@ -153,12 +117,6 @@ private:
      * @brief Resets the order of the shots in the DB
      */
     void resetShotsOrder();
-    /**
-     * @brief Gets a shot using its Id
-     * @param id    The shot id
-     * @return The shot
-     */
-    RAMShot *getShot(int id);
     /**
      * @brief Resets the admin panel for the shots
      */

@@ -1,4 +1,4 @@
-• Move maintable in its own class
+• Give updater object instead of lists
 
 • Settings
 	separate from mainwidow
@@ -9,11 +9,8 @@
 	wipe remote (get data from local)
 	wipe all (restore default status)
 
-• Shots
-	include in project
-
 • Assets
-	delete (in settings)
+	delete (in admin)
 
 • Option to auto create assets for stage
 
@@ -34,4 +31,8 @@
 • quit when mainwindow hidden
 
 • remove right click on toolbar
+
 • add window icon
+
+• New admin UI
+	does not depend on project selector

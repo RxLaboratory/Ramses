@@ -16,6 +16,11 @@ ShotWidget::ShotWidget(RAMShot *s, QWidget *parent) :
 
 }
 
+RAMShot *ShotWidget::getShot()
+{
+    return shot;
+}
+
 void ShotWidget::nameChanged(QString name)
 {
     nameLabel->setText(name);

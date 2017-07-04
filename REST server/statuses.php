@@ -83,7 +83,7 @@
 			$rep->closeCursor();
 
 			$reply["content"] = $statuses;
-			$reply["message"] = "Statuses list retrived";
+			$reply["message"] = "Statuses list retreived";
 			$reply["success"] = true;
 		}
 		catch (Exception $e)

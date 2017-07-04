@@ -38,6 +38,20 @@ QList<RAMStage *> RAMProject::getStages()
     return projectStages;
 }
 
+QList<RAMShot *> RAMProject::getShots()
+{
+    return shots;
+}
+
+RAMShot *RAMProject::getShot(int id)
+{
+    foreach(RAMShot *rs,shots)
+    {
+        if (rs->getId() == id) return rs;
+    }
+    return 0;
+}
+
 void RAMProject::setName(QString name, bool updateDb)
 {
     projectName = name;
@@ -55,6 +69,30 @@ void RAMProject::setShortName(QString shortName, bool updateDb)
 void RAMProject::update()
 {
     dbi->updateProject(projectId,projectName,projectShortName);
+}
+
+void RAMProject::addShot(RAMShot *shot, int row)
+{
+    if (row >= 0 && row <= shots.count()) shots.insert(row,shot);
+    else shots << shot;
+    shot->setParent(this);
+    emit shotAdded(this,shot,row);
+}
+
+void RAMProject::removeShot(RAMShot *shot)
+{
+    shots.removeAll(shot);
+    emit shotRemoved(this,shot);
+}
+
+void RAMProject::resetShotsOrder()
+{
+    QList<int> ids;
+    foreach(RAMShot *rs,shots)
+    {
+        ids << rs->getId();
+    }
+    dbi->resetShotsOrder(ids);
 }
 
 void RAMProject::addStage(RAMStage *s, bool updateDb)

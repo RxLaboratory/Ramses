@@ -1,15 +1,24 @@
 #include "projectselectorwidget.h"
 
-ProjectSelectorWidget::ProjectSelectorWidget(QWidget *parent) :
+ProjectSelectorWidget::ProjectSelectorWidget(Updater *up, QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
     freeze = false;
+    updater = up;
+    connect(updater,SIGNAL(projectAdded(RAMProject*)),this,SLOT(addProject(RAMProject*)));
+    connect(updater,SIGNAL(projectRemoved(RAMProject*)),this,SLOT(removeProject(RAMProject*)));
+    connect(this,SIGNAL(currentProjectChanged(RAMProject*)),updater,SLOT(setCurrentProject(RAMProject*)));
 }
 
 ProjectSelectorWidget::~ProjectSelectorWidget()
 {
     delete ui;
+}
+
+RAMProject *ProjectSelectorWidget::getCurrentProject()
+{
+    return currentProject;
 }
 
 

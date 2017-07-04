@@ -35,7 +35,9 @@ SOURCES += main.cpp\
     xmlreader.cpp \
     adminwidget.cpp \
     shotwidget.cpp \
-    shotassetswidget.cpp
+    shotassetswidget.cpp \
+    maintable.cpp \
+    updater.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -57,7 +59,9 @@ HEADERS  += mainwindow.h \
     xmlreader.h \
     adminwidget.h \
     shotwidget.h \
-    shotassetswidget.h
+    shotassetswidget.h \
+    maintable.h \
+    updater.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
@@ -65,11 +69,12 @@ FORMS    += mainwindow.ui \
     addshotsdialog.ui \
     helpdialog.ui \
     separatorwidget.ui \
-    assetstatusbox.ui \
     assetdetailsdialog.ui \
     adminwidget.ui \
     shotwidget.ui \
-    shotassetswidget.ui
+    shotassetswidget.ui \
+    assetstatusbox.ui \
+    maintable.ui
 
 DISTFILES +=
 

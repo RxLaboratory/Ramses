@@ -18,6 +18,8 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as,QList<RAMStatus *> sl, RAMShot *s,QW
     connect(asset,SIGNAL(statusChanged(RAMAsset*,RAMStatus*)),this,SLOT(assetStatusChanged(RAMAsset*,RAMStatus*)));
     connect(asset,SIGNAL(nameChanged(QString)),this,SLOT(nameChanged(QString)));
     connect(asset,SIGNAL(shortNameChanged(QString)),this,SLOT(shortNameChanged(QString)));
+    connect(asset,SIGNAL(assetRemoved(RAMAsset*)),this,SLOT(deleteLater()));
+    connect(asset,SIGNAL(assetUnAssigned(RAMShot*,RAMAsset*)),this,SLOT(unAssign(RAMShot*,RAMAsset*)));
 
     int index = -1;
     freezeUI = true;
@@ -70,7 +72,6 @@ void AssetStatusBox::on_comboBox_currentIndexChanged(int index)
 void AssetStatusBox::on_removeButton_clicked()
 {
     asset->unAssign(shot,true);
-    delete this;
 }
 
 void AssetStatusBox::assetStatusChanged(RAMAsset *a, RAMStatus *s)
@@ -111,4 +112,8 @@ void AssetStatusBox::shortNameChanged(QString n)
     detailsButton->setText(n);
 }
 
+void AssetStatusBox::unAssign(RAMShot *s, RAMAsset *a)
+{
+    if (s == shot) deleteLater();
+}
 

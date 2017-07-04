@@ -18,10 +18,15 @@ public:
     QString getName();
     QString getShortName();
     QList<RAMStage *> getStages();
+    QList<RAMShot *> getShots();
+    RAMShot *getShot(int id);
     //set
     void setName(QString name, bool updateDb = false);
     void setShortName(QString shortName, bool updateDb = false);
     void update();
+    void addShot(RAMShot *shot, int row = -1);
+    void removeShot(RAMShot *shot);
+    void resetShotsOrder();
     //stages
     void addStage(RAMStage *s, bool updateDb = false);
     void removeStage(RAMStage *s, bool updateDb = false);
@@ -34,6 +39,8 @@ signals:
     void stageRemoved(RAMProject*,RAMStage*);
     void nameChanged(RAMProject*,QString);
     void shortNameChanged(RAMProject*,QString);
+    void shotAdded(RAMProject*,RAMShot*,int row);
+    void shotRemoved(RAMProject*,RAMShot*);
 
 public slots:
 
@@ -42,6 +49,7 @@ private:
     QString projectName;
     QString projectShortName;
     QList<RAMStage *> projectStages;
+    QList<RAMShot *> shots;
     DBInterface *dbi;
 
 private slots:

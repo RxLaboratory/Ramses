@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //dbinterface
     dbi = new DBInterface(this);
 
+    //updater
+    updater = new Updater(dbi,this);
 
     // Get the desktop (to manage windows locations)
     desktop = qApp->desktop();
@@ -32,18 +34,20 @@ MainWindow::MainWindow(QWidget *parent) :
     passwordEdit->setText("tp");
 #endif
 
-    //======== SETUP UI ============
-
     //load stylesheet
-    //QApplication::setStyle(QStyleFactory::create("Fusion"));
-    updateCSS();
+    QString cssFile = "";
+#ifdef QT_DEBUG
+    cssFile = "E:/DEV SRC/Ramses/Ramses/needed/style.css";
+#endif
+    updateCSS(cssFile);
+
 
     //center login widget and server error widget
     loginPageLayout->setAlignment(loginWidget, Qt::AlignHCenter);
     loginPageLayout->setAlignment(serverWidget, Qt::AlignHCenter);
 
     //Add project and stage selector
-    projectSelector = new ProjectSelectorWidget(this);
+    projectSelector = new ProjectSelectorWidget(updater,this);
     mainToolBar->insertWidget(actionSettings,projectSelector);
 
     //Add window buttons
@@ -55,8 +59,12 @@ MainWindow::MainWindow(QWidget *parent) :
     mainToolBar->addWidget(quitButton);
 
     //Add admin
-    adminWidget = new AdminWidget(dbi,this);
+    adminWidget = new AdminWidget(dbi,updater,this);
     adminPageLayout->addWidget(adminWidget);
+
+    //Add main table
+    mainTable = new MainTable(dbi,updater,this);
+    mainPageLayout->addWidget(mainTable);
 
     //statusbar
     mainStatusStopButton = new QPushButton("X",this);
@@ -149,9 +157,6 @@ void MainWindow::mapEvents()
     connect(helpDialog,SIGNAL(dock(bool)),this,SLOT(dockHelpDialog(bool)));
     connect(helpDialog,SIGNAL(visibilityChanged(bool)),actionHelp,SLOT(setChecked(bool)));
 
-    // project selector
-    connect(projectSelector,SIGNAL(currentProjectChanged(RAMProject*)),this,SLOT(currentProjectChanged(RAMProject*)));
-
     // window buttons
     connect(maximizeButton,SIGNAL(clicked()),this,SLOT(maximizeButton_clicked()));
     connect(minimizeButton,SIGNAL(clicked()),this,SLOT(showMinimized()));
@@ -163,20 +168,16 @@ void MainWindow::mapEvents()
     // DBI GENERAL
     connect(dbi,SIGNAL(connected(bool, QString)),this,SLOT(connected(bool, QString)));
     connect(dbi,SIGNAL(connecting()),this,SLOT(connecting()));
-    connect(dbi,SIGNAL(message(QString,int)),this,SLOT(showMessage(QString,int)));
+    connect(dbi,SIGNAL(message(QString)),this,SLOT(showMessage(QString)));
     connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
 
-    // ADMIN
-    connect(adminWidget,SIGNAL(statusCreated(RAMStatus*)),this,SLOT(newStatus(RAMStatus*)));
-    connect(adminWidget,SIGNAL(stageCreated(RAMStage*)),this,SLOT(newStage(RAMStage*)));
-    connect(adminWidget,SIGNAL(projectCreated(RAMProject*)),this,SLOT(newProject(RAMProject*)));
-    connect(adminWidget,SIGNAL(shotCreated(RAMShot*,int)),this,SLOT(newShot(RAMShot*,int)));
-
+    // UPDATER
+    connect(updater,SIGNAL(message(QString)),this,SLOT(showMessage(QString)));
 }
 
-void MainWindow::updateCSS()
+void MainWindow::updateCSS(QString cssPath)
 {
-    QFile cssFile(":/styles/default");
+    QFile cssFile(cssPath);
     cssFile.open(QFile::ReadOnly);
     QString css = QString(cssFile.readAll());
     cssFile.close();
@@ -243,30 +244,9 @@ void MainWindow::logout()
 
 void MainWindow::clean()
 {
-    mainTable->clearContents();
-    mainTable->setRowCount(0);
-    mainTable->setColumnCount(1);
+    mainTable->clean();
     projectSelector->clear();
-
-    //empty everything
-
-    qDeleteAll(assetsList);
-    assetsList.clear();
-
-    qDeleteAll(allShots);
-    allShots.clear();
-
-    qDeleteAll(projectsList);
-    projectsList.clear();
-
-    qDeleteAll(stagesList);
-    stagesList.clear();
-
-    qDeleteAll(statusList);
-    statusList.clear();
-
-    qDeleteAll(removedItems);
-    removedItems.clear();
+    updater->clean();
 }
 
 void MainWindow::showPage(int page)
@@ -294,7 +274,7 @@ void MainWindow::showPage(int page)
         actionStats->setChecked(true);
         break;
     case 4:
-        adminWidget->init(statusList,stagesList,projectsList,allShots,currentProject);
+        adminWidget->init();
         actionAdmin->setChecked(true);
         break;
     case 5:
@@ -333,12 +313,12 @@ void MainWindow::stopWaiting()
     setWaiting(false);
 }
 
-void MainWindow::showMessage(QString m, int i)
+void MainWindow::showMessage(QString m)
 {
 #ifdef QT_DEBUG
     qDebug() << m;
 #endif
-    //mainStatusBar->showMessage(m,i);
+    mainStatusBar->showMessage(m);
     helpDialog->showDebug(m);
 }
 
@@ -378,7 +358,7 @@ void MainWindow::connected(bool available, QString err)
         actionLogout->setIcon(QIcon(":/icons/logout"));
 
         //load everything
-        dbi->getStatuses();
+        updater->updateAll();
 
         //go to main page
         actionMain->setChecked(true);
@@ -407,20 +387,17 @@ void MainWindow::dataReceived(QJsonObject data)
     QString type = data.value("type").toString();
     bool accepted = data.value("accepted").toBool();
     bool success = data.value("success").toBool();
-    QJsonValue content = data.value("content");
 
     //show feedback
     showMessage(message);
 
-    //if not accepted, set to offline
-    if (!accepted)
+    //if not accepted or unsuccessful, set to offline
+    if (!accepted || !success)
     {
         if (message == "") message = "The server could not compute the request.";
         connected(false,message);
         return;
     }
-
-    //check type and compute
 
     // LOGIN
     if (type == "login")
@@ -428,171 +405,6 @@ void MainWindow::dataReceived(QJsonObject data)
         connected(success,message);
         return;
     }
-
-    // STATUSES
-    else if (type == "addStatus")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "getStatuses")
-    {
-        if (success)
-        {
-            gotStatuses(content);
-        }
-        else showMessage("Warning: Status list was not correctly updated from remote server.");
-        return;
-    }
-    else if (type == "updateStatus")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "removeStatus")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-
-    // STAGES
-    else if (type == "addStage")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "getStages")
-    {
-        if (success)
-        {
-            gotStages(content);
-        }
-        else showMessage("Warning: Stages list was not correctly updated from remote server.");
-        return;
-    }
-    else if (type == "updateStage")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "removeStage")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-
-    // PROJECTS
-    else if (type == "addProject")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "getProjects")
-    {
-        if (success)
-        {
-            gotProjects(content);
-        }
-        else showMessage("Warning: Projects list was not correctly updated from remote server.");
-        return;
-    }
-    else if (type == "updateProject")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "removeProject")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "addProjectStage")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "removeProjectStage")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-
-    //SHOTS
-    else if (type == "addShots")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "getShots")
-    {
-        if (success) gotShots(content);
-        else showMessage("Warning: Shots list was not correctly updated from remote server.");
-        return;
-    }
-    else if (type == "updateShot")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "removeShots")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "resetShotsOrder")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "moveShotsUp")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "moveShotsDown")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-
-
-    //ASSETS
-    else if (type == "addAsset")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "getAssets")
-    {
-        if (success) gotAssets(content);
-        else showMessage("Warning: Assets list was not correctly updated from remote server.");
-        return;
-    }
-    else if (type == "assignAsset")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "unAssignAsset")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "setAssetStatus")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-    else if (type == "updateAsset")
-    {
-        if (!success) connected(false,message);
-        return;
-    }
-
-
-
-    // If the data was not handled, just display message
-    if (message != "") showMessage(message);
 }
 
 // ========= BUTTONS ================
@@ -623,43 +435,6 @@ void MainWindow::on_usernameEdit_returnPressed()
 void MainWindow::on_passwordEdit_returnPressed()
 {
     login();
-}
-
-//SELECTORS
-
-void MainWindow::currentProjectChanged(RAMProject *p)
-{
-    mainTable->clearContents();
-    mainTable->setRowCount(0);
-    mainTable->setColumnCount(1);
-
-    qDeleteAll(allShots);
-    allShots.clear();
-
-    qDeleteAll(assetsList);
-    assetsList.clear();
-
-    if (p == 0) return;
-
-    //set current project
-    currentProject = p;
-    adminWidget->setCurrentProject(currentProject);
-
-    //set current stages
-    QList<RAMStage*> stages;
-    stages = currentProject->getStages();
-    for (int i = 0 ; i < stages.count() ; i++)
-    {
-        RAMStage *rs = stages[i];
-        QTableWidgetItem *item = new QTableWidgetItem(rs->getShortName());
-        item->setToolTip(rs->getName());
-        item->setData(Qt::UserRole,rs->getId());
-        mainTable->setColumnCount(i+2);
-        mainTable->setHorizontalHeaderItem(i+1,item);
-    }
-
-    //get shots
-    dbi->getShots(currentProject->getId());
 }
 
 //SETTINGS
@@ -705,400 +480,7 @@ void MainWindow::on_timeOutEdit_editingFinished()
     QSqlQuery query(q,settingsDB);
 }
 
-// STATUS
-
-void MainWindow::newStatus(RAMStatus *rs)
-{
-    // Add the status to the list and the UI
-    statusList << rs;
-    rs->setParent(this);
-
-    // connect the status
-    connect(rs,SIGNAL(statusRemoved(RAMStatus*)),this,SLOT(removeStatus(RAMStatus*)));
-}
-
-void MainWindow::removeStatus(RAMStatus *rs)
-{
-    statusList.removeAll(rs);
-    removedItems << rs;
-}
-
-RAMStatus* MainWindow::getStatus(int id)
-{
-    foreach(RAMStatus *rs,statusList)
-    {
-        if (rs->getId() == id) return rs;
-    }
-    return 0;
-}
-
-void MainWindow::gotStatuses(QJsonValue statuses)
-{
-    setWaiting(true);
-
-    QJsonArray statusesArray = statuses.toArray();
-
-    // update statuses in the current list
-    for (int rsI = 0 ; rsI < statusList.count() ; rsI++)
-    {
-        RAMStatus *rs = statusList[rsI];
-
-        //search for status in new list
-        bool updated = false;
-        for(int i = 0 ; i < statusesArray.count();i++)
-        {
-            //new status
-            QJsonObject status = statusesArray[i].toObject();
-            QString name = status.value("name").toString();
-            QString shortName = status.value("shortName").toString();
-            QColor color(status.value("color").toString());
-            QString description = status.value("description").toString();
-            int id = status.value("id").toInt();
-
-            if (rs->getId() == id)
-            {
-                //update
-                rs->setName(name);
-                rs->setShortName(shortName);
-                rs->setColor(color);
-                rs->setDescription(description);
-
-                //remove from the new list
-                statusesArray.removeAt(i);
-                i--;
-            }
-        }
-        // if the status is not in the new list, remove it
-        if (!updated)
-        {
-            removedItems << statusList.takeAt(rsI);
-            rsI--;
-        }
-    }
-
-    //add the remaining new statuses
-    for (int i = 0 ; i < statusesArray.count() ; i++)
-    {
-        //new status
-        QJsonObject status = statusesArray[i].toObject();
-        QString name = status.value("name").toString();
-        QString shortName = status.value("shortName").toString();
-        QColor color(status.value("color").toString());
-        QString description = status.value("description").toString();
-        int id = status.value("id").toInt();
-
-        //add to UI
-        RAMStatus *rs = new RAMStatus(dbi,id,name,shortName,color,description,false);
-        newStatus(rs);
-    }
-
-    setWaiting(false);
-
-    //get Stages
-    dbi->getStages();
-}
-
-//ADMIN - STAGES
-
-void MainWindow::newStage(RAMStage *rs)
-{
-    stagesList << rs;
-    rs->setParent(this);
-
-    // connect the stage
-    connect(rs,SIGNAL(stageRemoved(RAMStage*)),this,SLOT(removeStage(RAMStage*)));
-}
-
-void MainWindow::removeStage(RAMStage *rs)
-{
-    stagesList.removeAll(rs);
-    removedItems << rs;
-}
-
-RAMStage* MainWindow::getStage(int id)
-{
-    foreach(RAMStage *rs,stagesList)
-    {
-        if (rs->getId() == id) return rs;
-    }
-    return 0;
-}
-
-void MainWindow::gotStages(QJsonValue stages)
-{
-    setWaiting(true);
-
-    QJsonArray stagesArray = stages.toArray();
-
-    // update statuses in the current list
-    for (int rsI = 0 ; rsI < stagesList.count() ; rsI++)
-    {
-        RAMStage *rs = stagesList[rsI];
-
-        //search for stage in new list
-        bool updated = false;
-        for(int i = 0 ; i < stagesArray.count();i++)
-        {
-            //new status
-            QJsonObject stage = stagesArray[i].toObject();
-            QString name = stage.value("name").toString();
-            QString shortName = stage.value("shortName").toString();
-            int id = stage.value("id").toInt();
-
-            if (rs->getId() == id)
-            {
-                //update
-                rs->setName(name);
-                rs->setShortName(shortName);
-
-                //remove from the new list
-                stagesArray.removeAt(i);
-                i--;
-            }
-        }
-        // if the stage is not in the new list, remove it
-        if (!updated)
-        {
-            removedItems << stagesList.takeAt(rsI);
-            rsI--;
-        }
-    }
-
-    //add the remaining new stages
-    for (int i = 0 ; i < stagesArray.count() ; i++)
-    {
-        //new stage
-        QJsonObject stage = stagesArray[i].toObject();
-        QString name = stage.value("name").toString();
-        QString shortName = stage.value("shortName").toString();
-        int id = stage.value("id").toInt();
-
-        //add to UI
-        RAMStage *rs = new RAMStage(dbi,name,shortName,id,false);
-        newStage(rs);
-    }
-    setWaiting(false);
-
-    //get projects
-    dbi->getProjects();
-}
-
-//ADMIN - PROJECTS
-
-void MainWindow::newProject(RAMProject *rp)
-{
-    projectsList << rp;
-    rp->setParent(this);
-
-    // Add to selector
-    projectSelector->addProject(rp);
-
-    // connect the project
-    connect(rp,SIGNAL(projectRemoved(RAMProject*)),this,SLOT(removeProject(RAMProject*)));
-}
-
-void MainWindow::removeProject(RAMProject* rp)
-{
-    projectsList.removeAll(rp);
-    removedItems << rp;
-}
-
-RAMProject* MainWindow::getProject(int id)
-{
-    foreach(RAMProject *rp,projectsList)
-    {
-        if (rp->getId() == id) return rp;
-    }
-}
-
-void MainWindow::gotProjects(QJsonValue projects)
-{
-    setWaiting(true);
-
-    QJsonArray projectsArray = projects.toArray();
-
-    // update projects in the current list
-    for (int rpI = 0 ; rpI < projectsList.count() ; rpI++)
-    {
-        RAMProject *rp = projectsList[rpI];
-
-        //search for project in new list
-        bool updated = false;
-        for(int i = 0 ; i < projectsArray.count();i++)
-        {
-            //new project
-            QJsonObject project = projectsArray[i].toObject();
-            QString name = project.value("name").toString();
-            QString shortName = project.value("shortName").toString();
-            int id = project.value("id").toInt();
-            QJsonArray projectStagesArray = project.value("stages").toArray();
-
-            if (rp->getId() == id)
-            {
-                //update project
-                rp->setName(name);
-                rp->setShortName(shortName);
-
-                //update stages list
-                foreach(QJsonValue proStage,projectStagesArray)
-                {
-                    RAMStage *stage = getStage(proStage.toInt());
-                    rp->addStage(stage);
-                }
-
-                //remove from the new list
-                projectsArray.removeAt(i);
-                i--;
-            }
-        }
-        // if the project is not in the new list, remove it
-        if (!updated)
-        {
-            projectsList[rpI]->remove();
-            removedItems << projectsList.takeAt(rpI);
-            rpI--;
-        }
-    }
-
-    //add the remaining new projects
-    for (int i = 0 ; i < projectsArray.count() ; i++)
-    {
-        //new project
-        QJsonObject project = projectsArray[i].toObject();
-        QString name = project.value("name").toString();
-        QString shortName = project.value("shortName").toString();
-        int id = project.value("id").toInt();
-        QJsonArray projectStagesArray = project.value("stages").toArray();
-
-        RAMProject *rp = new RAMProject(dbi,id,name,shortName,false);
-
-        //update stages list
-        foreach(QJsonValue proStage,projectStagesArray)
-        {
-            RAMStage *stage = getStage(proStage.toInt());
-            rp->addStage(stage);
-        }
-
-        //add to UI
-        newProject(rp);
-    }
-
-    setWaiting(false);
-
-}
-
-//ADMIN - SHOTS
-
-void MainWindow::newShot(RAMShot *rs,int row)
-{
-    allShots.insert(row,rs);
-    rs->setParent(this);
-
-    //add to table
-    ShotWidget *widget= new ShotWidget(rs);
-    mainTable->insertRow(row);
-    mainTable->setCellWidget(row,0,widget);
-
-    //add asset widgets
-    QList<RAMStage*> stages;
-    stages = currentProject->getStages();
-    //get the assets list for this stage
-    for (int i = 0 ; i < stages.count() ; i++)
-    {
-        ShotAssetsWidget *assetWidget = new ShotAssetsWidget(rs,stages[i],statusList,dbi);
-        connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
-        //add widget to cell
-        mainTable->setCellWidget(row,i+1,assetWidget);
-    }
-
-    // connect the shot
-    connect(rs,SIGNAL(shotRemoved(RAMShot*)),this,SLOT(removeShot(RAMShot*)));
-
-}
-
-void MainWindow::removeShot(RAMShot *rs)
-{
-    allShots.removeAll(rs);
-    removedItems << rs;
-
-}
-
-RAMShot* MainWindow::getShot(int id)
-{
-    foreach(RAMShot *rs,allShots)
-    {
-        if (rs->getId() == id) return rs;
-    }
-    return 0;
-}
-
-void MainWindow::gotShots(QJsonValue shots)
-{
-    setWaiting(true);
-
-    QJsonArray shotsArray = shots.toArray();
-
-    // update shots in the current list
-    for (int rsI = 0 ; rsI < allShots.count() ; rsI++)
-    {
-        RAMShot *rs = allShots[rsI];
-
-        //search for shot in new list
-        bool updated = false;
-        for(int i = 0 ; i < shotsArray.count();i++)
-        {
-            //new shot
-            QJsonObject shot = shotsArray[i].toObject();
-            QString name = shot.value("shotName").toString();
-            double duration = shot.value("duration").toDouble();
-            int id = shot.value("shotId").toInt();
-
-            if (rs->getId() == id)
-            {
-                //update shot
-                rs->setName(name);
-                rs->setDuration(duration);
-
-                //remove from the new list
-                shotsArray.removeAt(i);
-                i--;
-            }
-        }
-        // if the shot is not in the new list, remove it
-        if (!updated)
-        {
-            removedItems << allShots.takeAt(rsI);
-            mainTable->removeRow(rsI);
-            rsI--;
-        }
-    }
-
-    //add the remaining new shots
-    for (int i = 0 ; i < shotsArray.count() ; i++)
-    {
-        //new shot
-        QJsonObject shot = shotsArray[i].toObject();
-        QString name = shot.value("shotName").toString();
-        double duration = shot.value("duration").toDouble();
-        int order = shot.value("shotOrder").toInt();
-        int id = shot.value("shotId").toInt();
-
-        RAMShot *rs = new RAMShot(dbi,currentProject->getId(),id,name,duration,false);
-
-        //add to UI
-        newShot(rs,order);
-    }
-
-
-    //resize columns
-    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
-
-    setWaiting(false);
-
-    //get assets
-    if (currentProject) dbi->getAssets(currentProject->getId());
-
-}
+//ADMIN - IO
 
 void MainWindow::importEDL(QString f)
 {
@@ -1246,209 +628,6 @@ void MainWindow::importXML(QString f)
     }
 
     dbi->addShots(projectId,statusId,shotsReady,order);*/
-}
-
-void MainWindow::resetShotsOrder()
-{
-    QList<int> ids;
-    foreach(RAMShot *rs,allShots)
-    {
-        ids << rs->getId();
-    }
-    dbi->resetShotsOrder(ids);
-}
-
-//ADMIN - ASSETS
-
-void MainWindow::gotAssets(QJsonValue assets)
-{
-    setWaiting(true);
-
-    QJsonArray assetsArray = assets.toArray();
-
-    // update assets in the current list
-    for (int raI = 0 ; raI < assetsList.count() ; raI++)
-    {
-        RAMAsset *ra = assetsList[raI];
-
-        //search for asset in new list
-        bool updated = false;
-        for(int i = 0 ; i < assetsArray.count();i++)
-        {
-            //new asset
-            QJsonObject asset = assetsArray[i].toObject();
-            QString name = asset.value("name").toString();
-            QString shortName = asset.value("shortName").toString();
-            QString comment = asset.value("comment").toString();
-            int statusId = asset.value("statusId").toInt();
-            QJsonArray assignments = asset.value("assignments").toArray();
-            int id = asset.value("id").toInt();
-
-            if (ra->getId() == id)
-            {
-                //update asset
-                ra->setName(name);
-                ra->setShortName(shortName);
-                ra->setComment(comment);
-                ra->setStatus(getStatus(statusId));
-
-                //TODO check assignments
-
-                //remove from the new list
-                assetsArray.removeAt(i);
-                i--;
-            }
-        }
-        // if the asset is not in the new list, remove it
-        if (!updated)
-        {
-            assetsList.removeAt(raI);
-            raI--;
-        }
-    }
-
-    //add the remaining new assets
-    for (int i = 0 ; i < assetsArray.count() ; i++)
-    {
-        //new asset
-        QJsonObject asset = assetsArray[i].toObject();
-        QString name = asset.value("name").toString();
-        QString shortName = asset.value("shortName").toString();
-        QString comment = asset.value("comment").toString();
-        int statusId = asset.value("statusId").toInt();
-        int stageId = asset.value("stageId").toInt();
-        QJsonArray assignments = asset.value("assignments").toArray();
-        int id = asset.value("id").toInt();
-
-        RAMAsset *testRa = new RAMAsset(dbi,name,shortName,getStatus(statusId),stageId,false,comment,id);
-        RAMAsset *ra;
-        RAMStage *stage = getStage(stageId);
-        //check if asset already exists
-        int testI = assetsList.indexOf(testRa);
-        if (testI >= 0)
-        {
-            delete testRa;
-            ra = assetsList[testI];
-        }
-        else
-        {
-            ra = testRa;
-            assetsList << ra;
-            //add to stage
-            stage->addAsset(ra);
-        }
-
-        for (int j = 0;j<assignments.count() ; j++)
-        {
-            int shotId = assignments[j].toInt();
-            ra->assign(getShot(shotId),false);
-        }
-
-        //add to UI
-        newAsset(ra,stage);
-    }
-
-
-    setWaiting(false);
-    //resize columns
-
-}
-
-void MainWindow::newAsset(RAMAsset *asset,RAMStage *stage)
-{
-    foreach(RAMShot *shot,asset->getAssignments())
-    {
-        //find row
-        int row = -1;
-        for (int i = 0;i < allShots.count();i++)
-        {
-            if (shot == allShots[i])
-            {
-                row = i;
-                break;
-            }
-        }
-
-        if (row < 0) return;
-
-        //find column
-        int col = -1;
-        for (int i = 0;i < currentProject->getStages().count();i++)
-        {
-            if (stage == currentProject->getStages()[i])
-            {
-                col = i+1;
-                break;
-            }
-        }
-
-        if (col < 0) return;
-
-        //add widget
-        ShotAssetsWidget* aw = (ShotAssetsWidget*)mainTable->cellWidget(row,col);
-        aw->addAsset(asset);
-    }
-}
-
-//asset statuses
-void MainWindow::updateAssetStatus(RAMAsset *asset)
-{
-    showMessage("Updateing status of the asset " + asset->getName() + " to " + asset->getStatus()->getShortName());
-    dbi->setAssetStatus(asset->getStatus()->getId(),asset->getId());
-}
-
-void MainWindow::assetStatusUpdated(bool success,QString message)
-{
-    if (!success) connected(false,message);
-}
-
-void MainWindow::assetAssigned(bool success,QString message)
-{
-    setWaiting(false);
-    //refresh shots list
-}
-
-void MainWindow::assetAssigned(RAMAsset *a,RAMShot *s)
-{/*
-    //update UI
-    //find row
-    int row = -1;
-    for(int i = 0 ; i < shotsList.count() ; i++)
-    {
-        if (shotsList[i] == s)
-        {
-            row = i;
-            break;
-        }
-    }
-
-    if (row < 0) return;
-
-    //find column
-    int col = -1;
-    for(int i = 0 ; i < stagesList.count() ; i++)
-    {
-        if (a->getStages()[0] == stagesList[i]) //TODO stages list
-        {
-            col = i;
-            break;
-        }
-    }
-
-    if (col < 0) return;
-
-
-    AssetStatusWidget* aw = (AssetStatusWidget*)mainTable->cellWidget(row,col);
-    aw->addAsset(a);
-
-    mainTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
-    mainTable->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);*/
-}
-
-void MainWindow::loadAsset(RAMAsset *a)
-{
-    assetsList.append(a);
-    emit assetsListUpdated(assetsList);
 }
 
 // ========= ACTIONS ================
