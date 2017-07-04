@@ -6,15 +6,15 @@
 
 	//configuration
 	include ("config.php");
-	
+
 	// server should keep session data for AT LEAST  sessionTimeout
 	ini_set('session.gc_maxlifetime', $sessionTimeout);
 
 	// each client should remember their session id for EXACTLY sessionTimeout
 	session_set_cookie_params($sessionTimeout);
-	
+
 	session_start();
-	
+
 	$now = time();
 	if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after'])
 	{
@@ -28,7 +28,7 @@
 		// either new or old, it should live at most for sessionTimeout
 		$_SESSION['discard_after'] = $now + $sessionTimeout;
 	}
-	
+
 	//result of the request
 	$reply = Array();
 	$reply["accepted"] = false;
@@ -37,13 +37,14 @@
 	if (isset($_GET["type"]))
 	{
 		$reply["type"] = $_GET["type"];
-		
+		$reply["success"] = false;
+
 		//connect to database
 		include('db.php');
-		
+
 		//login
 		include ("login.php");
-		
+
 		if ($reply["type"] != "login")
 		{
 			if (isset($_SESSION["login"]) AND $_SESSION["login"])//if logged in
@@ -58,7 +59,7 @@
 				include ("shots.php");
 				//assets
 				include("assets.php");
-				
+
 				//if accepted display result
 				if ($reply["accepted"])
 				{
@@ -88,8 +89,7 @@
 		$reply["type"] = "Unknown";
 		echo json_encode($reply);
 	}
-	
-	
+
+
 
 ?>
-

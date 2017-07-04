@@ -1,11 +1,12 @@
 #include "ramproject.h"
 #include <QtDebug>
 
-RAMProject::RAMProject(DBInterface *db, int i, QString n, QString sN, bool updateDb, QObject *parent) : QObject(parent)
+RAMProject::RAMProject(DBInterface *db, int i, QString n, QString sN, RAMStatus *defStatus, bool updateDb, QObject *parent) : QObject(parent)
 {
     projectId = i;
     projectName = n;
     projectShortName = sN;
+    defaultStatus = defStatus;
     dbi = db;
     if (updateDb)
     {
@@ -76,6 +77,7 @@ void RAMProject::addShot(RAMShot *shot, int row)
     if (row >= 0 && row <= shots.count()) shots.insert(row,shot);
     else shots << shot;
     shot->setParent(this);
+
     emit shotAdded(this,shot,row);
 }
 
@@ -97,7 +99,8 @@ void RAMProject::resetShotsOrder()
 
 void RAMProject::addStage(RAMStage *s, bool updateDb)
 {
-    projectStages.append(s);
+    projectStages << s;
+
     if (updateDb) dbi->addProjectStage(projectId,s->getId());
 
     //connect
@@ -117,6 +120,33 @@ void RAMProject::remove()
 {
     dbi->removeProject(projectId);
     emit projectRemoved(this);
+}
+
+void RAMProject::createAsset(RAMStage *stage, RAMShot *shot)
+{
+    RAMAsset *asset = new RAMAsset(dbi,"Shot " + shot->getName() + " " + stage->getName(),stage->getShortName() + " " + shot->getName(),defaultStatus,stage->getId(),true,"",-1,projectId);
+    asset->assign(shot,true);
+    stage->addAsset(asset);
+}
+
+void RAMProject::createStageAssets(RAMStage *stage)
+{
+
+    //list shots which already have assets
+    QList<RAMShot*> shotsAssigned;
+    foreach(RAMAsset *asset,stage->getAssets())
+    {
+        shotsAssigned << asset->getAssignments();
+    }
+
+    //for each shot, create asset if needed
+    foreach(RAMShot *shot,shots)
+    {
+        if (shotsAssigned.indexOf(shot) < 0)
+        {
+            createAsset(stage,shot);
+        }
+    }
 }
 
 void RAMProject::stageDeleted(RAMStage *s)

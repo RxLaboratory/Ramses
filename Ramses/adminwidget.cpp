@@ -211,6 +211,19 @@ void AdminWidget::on_addStageButton_clicked()
     QString name = "New Stage";
     QString shortName = "New";
 
+    // Check if already exists
+    for(int i = 0 ; i < updater->getStages().count() ; i++)
+    {
+        RAMStage *stage = updater->getStages()[i];
+        if (stage->getName() == name && stage->getShortName() == shortName)
+        {
+            //select item
+            stagesAdminList->setCurrentRow(i);
+            on_stagesAdminList_itemClicked(stagesAdminList->item(i));
+            return;
+        }
+    }
+
     // find higher id
     int id = 1;
     foreach(RAMStage *rs,updater->getStages())
@@ -234,6 +247,15 @@ void AdminWidget::on_stagesAdminList_itemClicked(QListWidgetItem *item)
      stageNameEdit->setText(s->getName());
      stageShortNameEdit->setText(s->getShortName());
      stageConfigWidget->setEnabled(true);
+}
+
+void AdminWidget::on_createAssetsButton_clicked()
+{
+    if (stagesAdminList->currentRow() < 0) return;
+
+    RAMStage *rs = updater->getStage(stagesAdminList->currentIndex().data(Qt::UserRole).toInt());
+
+    updater->getCurrentProject()->createStageAssets(rs);
 }
 
 void AdminWidget::on_stageApplyButton_clicked()
@@ -301,7 +323,7 @@ void AdminWidget::on_addProjectButton_clicked()
         if (rp->getId() >= id) id = rp->getId()+1;
     }
 
-    RAMProject *rp = new RAMProject(dbi,id,name,shortName,true);
+    RAMProject *rp = new RAMProject(dbi,id,name,shortName,updater->getDefaultStatus(),true);
     updater->addProject(rp);
     newProject(rp);
 

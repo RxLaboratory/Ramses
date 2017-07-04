@@ -57,6 +57,8 @@ private slots:
 
 
 
+    void on_createAssetsButton_clicked();
+
 private:
     // ----------------- GENERAL ------------------------
     QErrorMessage *error;

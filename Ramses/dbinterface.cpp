@@ -556,18 +556,28 @@ void DBInterface::resetShotsOrder(QList<int> ids)
 }
 
 //ASSETS
-int DBInterface::addAsset(QString name, QString shortName, int statusId,int stageId,QString comment)
+int DBInterface::addAsset(QString name, QString shortName, int statusId,int stageId, int projectId,QString comment)
 {
     // LOCAL
 
     emit message("Saving asset");
-    QString local = "INSERT INTO assets (name,shortName,statusId,stageId,comment) VALUES ('%1','%2',%3,%4,'%5');";
-    local = local.arg(name,shortName,QString::number(statusId),QString::number(stageId),comment);
-    QSqlQuery qInsert(local,localDB);
+    QString local = "INSERT INTO assets (name,shortName,statusId,stageId,projectId,comment) VALUES ('%1','%2',%3,%4,%5,'%6');";
+    local = local.arg(name,shortName,QString::number(statusId),QString::number(stageId),QString::number(projectId),comment);
+    QSqlQuery(local,localDB);
     QString result = "SELECT last_insert_rowid();";
     QSqlQuery qResult(result,localDB);
     qResult.next();
     int id = qResult.value(0).toInt();
+    //if asset already exists, just get its id //TODO use error instead of id 0
+    if (id == 0)
+    {
+        QString existing = "SELECT id FROM assets WHERE shortName = '%1' AND name = '%2' and projectId = %3 ;";
+        existing = existing.arg(shortName,name,QString::number(projectId));
+        QSqlQuery qExisting(existing,localDB);
+        qExisting.next();
+        id = qExisting.value(0).toInt();
+        return id;
+    }
 
     // REMOTE
 
@@ -579,6 +589,7 @@ int DBInterface::addAsset(QString name, QString shortName, int statusId,int stag
     obj.insert("stageId",stageId);
     obj.insert("id",id);
     obj.insert("comment",comment);
+    obj.insert("projectId",projectId);
     QJsonDocument json(obj);
 
     emit message("Submitting asset");

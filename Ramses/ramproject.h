@@ -11,7 +11,7 @@ class RAMProject : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMProject(DBInterface *db,int i, QString n, QString sN, bool updateDb, QObject *parent = 0);
+    explicit RAMProject(DBInterface *db,int i, QString n, QString sN,RAMStatus *defStatus, bool updateDb, QObject *parent = 0);
     ~RAMProject();
     //get
     int getId();
@@ -30,6 +30,7 @@ public:
     //stages
     void addStage(RAMStage *s, bool updateDb = false);
     void removeStage(RAMStage *s, bool updateDb = false);
+    void createStageAssets(RAMStage*stage);
     //remove
     void remove();
 
@@ -45,11 +46,13 @@ signals:
 public slots:
 
 private:
+    void createAsset(RAMStage *stage, RAMShot *shot);
     int projectId;
     QString projectName;
     QString projectShortName;
     QList<RAMStage *> projectStages;
     QList<RAMShot *> shots;
+    RAMStatus *defaultStatus;
     DBInterface *dbi;
 
 private slots:

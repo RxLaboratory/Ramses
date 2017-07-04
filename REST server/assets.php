@@ -12,6 +12,7 @@
 		$shortName = "";
 		$statusId = "";
 		$stageId = "";
+		$projectId = "";
 		$comment = "";
 		$id = "";
 
@@ -22,6 +23,7 @@
 			$shortName = $data->{'shortName'};
 			$statusId = $data->{'statusId'};
 			$stageId = $data->{'stageId'};
+			$projectId = $data->{'projectId'};
 			$comment = $data->{'comment'};
 			$id = $data->{'id'};
 		}
@@ -29,14 +31,14 @@
 		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($statusId) > 0 AND strlen($stageId) > 0)
 		{
 			//construct add asset query
-            $q = "INSERT INTO assets (name,shortName,statusId,stageId,comment,id)
-			VALUES ( :name , :shortName , :statusId , :stageId , :comment , :id );";
+            $q = "INSERT INTO assets (name,shortName,statusId,stageId,projectId,comment,id)
+			VALUES ( :name , :shortName , :statusId , :stageId , :projectId, :comment , :id );";
 
 			try
 			{
 				//create asset
 				$repCreateAsset = $bdd->prepare($q);
-				$repCreateAsset->execute(array('name' => $name , 'shortName' => $shortName , 'statusId' => $statusId , 'stageId' => $stageId , 'comment' => $comment , 'id' => $id));
+				$repCreateAsset->execute(array('name' => $name , 'shortName' => $shortName , 'statusId' => $statusId , 'stageId' => $stageId , 'projectId' => $projectId , 'comment' => $comment , 'id' => $id));
 				$repCreateAsset->closeCursor();
 				$reply["message"] = "Asset added";
 				$reply["success"] = true;
@@ -83,7 +85,7 @@
 			}
 			catch (Exception $e)
 			{
-			   $reply["message"] = "Server issue: SQL Query failed adding assigning asset | " . $q;
+			   $reply["message"] = "Server issue: SQL Query failed adding assigning asset |\n" . $q . " |\nAsset: " . $assetId . " |\nShot: " . $shotId;
 			   $reply["success"] = false;
 			}
 		}
@@ -148,7 +150,7 @@
 		}
 
 		//get assets
-		$qAssets = "SELECT assets.id,assets.name,assets.shortName,assets.statusId,assets.comment,assets.stageId
+		$qAssets = "SELECT assets.id,assets.name,assets.shortName,assets.statusId,assets.comment,assets.stageId,assets.projectId
 		FROM assets
 		JOIN projectstage ON assets.stageId = projectstage.stageId
 		WHERE projectstage.projectId = :projectId";
@@ -174,6 +176,7 @@
 				$a['statusId'] = (int)$asset['statusId'];
 				$a['stageId'] = (int)$asset['stageId'];
 				$a['comment'] = $asset['comment'];
+				$a['projectId'] = $asset['projectId'];
 
 				$repAssign = $bdd->prepare($qAssign);
 				$repAssign->execute(array('id' => $a['id']));

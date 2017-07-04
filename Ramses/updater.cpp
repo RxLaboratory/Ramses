@@ -142,6 +142,11 @@ RAMStatus* Updater::getStatus(int id)
     return 0;
 }
 
+RAMStatus *Updater::getDefaultStatus()
+{
+    return defaultStatus;
+}
+
 void Updater::addStage(RAMStage *stage)
 {
     stages << stage;
@@ -231,6 +236,16 @@ void Updater::gotStatuses(QJsonValue newStatuses)
         emit statusAdded(rs);
     }
 
+    //reset the default status
+    foreach(RAMStatus *status,statuses)
+    {
+        if (status->getShortName() == "STB")
+        {
+            defaultStatus = status;
+            break;
+        }
+    }
+
     //get Stages
     dbi->getStages();
 }
@@ -285,7 +300,6 @@ void Updater::gotStages(QJsonValue newStages)
         QString name = stage.value("name").toString();
         QString shortName = stage.value("shortName").toString();
         int id = stage.value("id").toInt();
-
         //add to UI
         RAMStage *rs = new RAMStage(dbi,name,shortName,id,false,this);
         stages << rs;
@@ -357,7 +371,7 @@ void Updater::gotProjects(QJsonValue newProjects)
         int id = project.value("id").toInt();
         QJsonArray projectStagesArray = project.value("stages").toArray();
 
-        RAMProject *rp = new RAMProject(dbi,id,name,shortName,false,this);
+        RAMProject *rp = new RAMProject(dbi,id,name,shortName,defaultStatus,false,this);
 
         //update stages list
         foreach(QJsonValue proStage,projectStagesArray)
@@ -548,6 +562,7 @@ void Updater::gotAssets(QJsonValue newAssets)
             QString shortName = asset.value("shortName").toString();
             QString comment = asset.value("comment").toString();
             int stageId = asset.value("stageId").toInt();
+            int projectId = asset.value("projectId").toInt();
             QJsonArray assignments = asset.value("assignments").toArray();
             int id = asset.value("id").toInt();
 
@@ -570,7 +585,7 @@ void Updater::gotAssets(QJsonValue newAssets)
 
             if (stageId != stage->getId()) continue;
 
-            RAMAsset *ra = new RAMAsset(dbi,name,shortName,getStatus(statusId),stageId,false,comment,id);
+            RAMAsset *ra = new RAMAsset(dbi,name,shortName,getStatus(statusId),stageId,false,comment,id,projectId);
             if (statusReAssigned) ra->setStatus(getStatus(statusId),true);
             for (int j = 0;j<assignments.count() ; j++)
             {

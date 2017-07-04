@@ -21,6 +21,7 @@ public:
     void removeStatus(RAMStatus *status);
     QList<RAMStatus*> getStatuses();
     RAMStatus *getStatus(int id);
+    RAMStatus *getDefaultStatus();
     //stages
     void addStage(RAMStage*stage);
     void removeStage(RAMStage *stage);
@@ -75,6 +76,10 @@ private:
      * and improve performance
      */
     RAMProject *currentProject;
+    /**
+     * @brief The status assigned to assets by default
+     */
+    RAMStatus *defaultStatus;
 
     //DBI
     DBInterface *dbi;

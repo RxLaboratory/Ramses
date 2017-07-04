@@ -38,7 +38,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="usesScrollButtons">
       <bool>true</bool>
@@ -384,82 +384,12 @@
        <property name="verticalSpacing">
         <number>3</number>
        </property>
-       <item row="3" column="1">
-        <spacer name="verticalSpacer_14">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="2" column="3">
-        <spacer name="horizontalSpacer_8">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="2" column="0">
-        <spacer name="horizontalSpacer_7">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="1">
-        <spacer name="verticalSpacer_13">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="2" column="2">
         <widget class="QWidget" name="stageConfigWidget" native="true">
          <property name="enabled">
           <bool>false</bool>
          </property>
-         <layout class="QFormLayout" name="formLayout_5">
-          <property name="horizontalSpacing">
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing">
-           <number>10</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
+         <layout class="QFormLayout" name="formLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="label_15">
             <property name="text">
@@ -501,6 +431,16 @@
            </widget>
           </item>
           <item row="2" column="1">
+           <widget class="QPushButton" name="createAssetsButton">
+            <property name="toolTip">
+             <string>Creates one asset for each shot of the current project.</string>
+            </property>
+            <property name="text">
+             <string>Create assets</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
            <widget class="QPushButton" name="stageApplyButton">
             <property name="text">
              <string>Update</string>
@@ -508,6 +448,13 @@
            </widget>
           </item>
          </layout>
+         <zorder>label_15</zorder>
+         <zorder>stageNameEdit</zorder>
+         <zorder>label_16</zorder>
+         <zorder>stageShortNameEdit</zorder>
+         <zorder>stageApplyButton</zorder>
+         <zorder>createAssetsButton</zorder>
+         <zorder>horizontalSpacer_8</zorder>
         </widget>
        </item>
        <item row="2" column="1">
@@ -585,6 +532,58 @@
           </item>
          </layout>
         </widget>
+       </item>
+       <item row="3" column="1">
+        <spacer name="verticalSpacer_14">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1">
+        <spacer name="verticalSpacer_13">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="3">
+        <spacer name="horizontalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -739,31 +738,10 @@
               <widget class="QListWidget" name="projectStagesList"/>
              </item>
              <item>
-              <widget class="QWidget" name="widget_13" native="true">
-               <layout class="QHBoxLayout" name="horizontalLayout_8">
-                <property name="spacing">
-                 <number>3</number>
-                </property>
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QPushButton" name="removeStageProjectButton">
-                  <property name="text">
-                   <string>Remove</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+              <widget class="QPushButton" name="removeStageProjectButton">
+               <property name="text">
+                <string>Remove</string>
+               </property>
               </widget>
              </item>
             </layout>

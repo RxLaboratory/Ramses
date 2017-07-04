@@ -10,7 +10,7 @@ class RAMAsset : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, int stageId, bool updateDb = false, QString c = "", int i = -1, QObject *parent = 0);
+    explicit RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, int stageId, bool updateDb = false, QString c = "", int i = -1, int projectId = 0, QObject *parent = 0);
     ~RAMAsset();
     RAMStatus* getStatus();
     QString getName();

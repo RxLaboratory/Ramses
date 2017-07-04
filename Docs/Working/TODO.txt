@@ -1,10 +1,6 @@
-• Securize php api
-$rep = $bdd->prepare($q);
-$rep->execute(array('statusId' => $statusId, 'assetId' => $assetId))
+• when removing asset, remove from local
 
-• shot order on creation bug
-
-• Option to auto create assets for stage
+• shot id generation
 
 • Reimplement IO and batch shots
 
@@ -53,3 +49,5 @@ $rep->execute(array('statusId' => $statusId, 'assetId' => $assetId))
 • order of stages in project
 
 • order of statuses
+
+• confirmation when removing something important

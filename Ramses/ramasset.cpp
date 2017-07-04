@@ -3,7 +3,7 @@
 #include <QtDebug>
 #endif
 
-RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st,int stageId, bool updateDb, QString c, int i, QObject *parent) : QObject(parent)
+RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, int stageId, bool updateDb, QString c, int i, int projectId, QObject *parent) : QObject(parent)
 {
     id = i;
     name = n;
@@ -15,10 +15,7 @@ RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st,int sta
     dbi = db;
     if (updateDb)
     {
-        id = dbi->addAsset(name,shortName,status->getId(),stageId,comment);
-#ifdef QT_DEBUG
-        qDebug() << id;
-#endif
+        id = dbi->addAsset(name,shortName,status->getId(),stageId,projectId,comment);
     }
 }
 
@@ -44,9 +41,6 @@ QList<RAMShot *> RAMAsset::getAssignments()
 
 void RAMAsset::assign(RAMShot *shot, bool updateDb)
 {
-#ifdef QT_DEBUG
-    qDebug() << "assigning " + this->getShortName() + " to " + shot->getName();
-#endif
     assignments << shot;
     connect(shot,SIGNAL(shotRemoved(RAMShot*)),this,SLOT(shotDeleted(RAMShot*)));
     if (updateDb)
