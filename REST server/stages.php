@@ -63,13 +63,13 @@
 		{
 			$rep = $bdd->query("SELECT name,shortName,id FROM stages ORDER BY shortName;");
 			$stages = Array();
-			while ($status = $rep->fetch())
+			while ($stage = $rep->fetch())
 			{
-				$stat = Array();
-				$stat['name'] = $status['name'];
-				$stat['shortName'] = $status['shortName'];
-				$stat['id'] = (int)$status['id'];
-				$stages[] = $stat;
+				$sta = Array();
+				$sta['name'] = $stage['name'];
+				$sta['shortName'] = $stage['shortName'];
+				$sta['id'] = (int)$stage['id'];
+				$stages[] = $sta;
 			}
 			$rep->closeCursor();
 
