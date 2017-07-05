@@ -1,14 +1,24 @@
+• fix bug (appeared when changing status of an asset)
+
+• delete asset (in assetsdetails)
+
+• add a create assets for stage button in assetsdetails
+
 • Manage on duplicate key for all inserts (sql)
 
 • Reimplement IO
+
+• Admin
+	new ui
+	does not depend on project selector
+	asset management (• when removing asset, remove from local)
 
 • updater timer
 
 • add/remove/move shots in table
 
-• delete asset (in assetsdetails)
-
 • Settings
+	appearance (see in dutranslator)
 	separate from mainwidow
 	chose local db location
 	export db //not urgent
@@ -16,11 +26,6 @@
 	wipe local db (get data from remote)
 	wipe remote (get data from local)
 	wipe all (restore default status)
-
-• Admin
-	new ui
-	does not depend on project selector
-	asset management (• when removing asset, remove from local)
 
 • Local
 
@@ -34,6 +39,7 @@
 
 • when help has been shown, slower
 	find a way to fix this
+
 • Auto size columns
 
 • bugfix crash when quit
@@ -57,3 +63,5 @@
 • choose debugging level in help window
 
 • fix warnings at debug
+
+• statuses progress %

@@ -249,15 +249,6 @@ void AdminWidget::on_stagesAdminList_itemClicked(QListWidgetItem *item)
      stageConfigWidget->setEnabled(true);
 }
 
-void AdminWidget::on_createAssetsButton_clicked()
-{
-    if (stagesAdminList->currentRow() < 0) return;
-
-    RAMStage *rs = updater->getStage(stagesAdminList->currentIndex().data(Qt::UserRole).toInt());
-
-    updater->getCurrentProject()->createStageAssets(rs);
-}
-
 void AdminWidget::on_stageApplyButton_clicked()
 {
     int currentRow = stagesAdminList->currentRow();
@@ -423,6 +414,15 @@ void AdminWidget::on_projectAddStageButton_clicked()
     i->setToolTip(rs->getName());
     i->setData(Qt::UserRole,rs->getId());
     projectStagesList->addItem(i);
+}
+
+void AdminWidget::on_createAssetsButton_clicked()
+{
+    if (projectStagesList->currentRow() < 0) return;
+
+    RAMStage *rs = updater->getStage(projectStagesList->currentIndex().data(Qt::UserRole).toInt());
+
+    updater->getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt())->createStageAssets(rs);
 }
 
 void AdminWidget::on_removeStageProjectButton_clicked()
