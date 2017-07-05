@@ -142,23 +142,33 @@ void RAMProject::createStageAssets(RAMStage *stage)
             QString name = "Shot " + shot->getName() + " " + stage->getName();
             QString shortName = stage->getShortName() + " " + shot->getName();
             RAMAsset *asset = new RAMAsset(dbi,name,shortName,defaultStatus,stage->getId(),false,"",-1,projectId);
+            //the asset values for the db
             QStringList newAsset;
             newAsset << name << shortName << QString::number(defaultStatus->getId()) << "";
             assetsToCreate << newAsset;
+            //the new RAMAsset
             newAssets << asset;
+            //the shots on which the asset has to be assigned
             shotsToAssign << shot;
         }
     }
     //create in db
     QList<int> ids = dbi->addAssets(assetsToCreate,stage->getId(),projectId);
     //assign
+    QList<QStringList> assignments;
     for(int i = 0 ; i < newAssets.count() ; i++ )
     {
         RAMAsset *asset = newAssets[i];
         asset->setId(ids[i]);
-        asset->assign(shotsToAssign[i],true);
+        asset->assign(shotsToAssign[i],false);
         stage->addAsset(asset);
+        //assignments
+        QStringList assignment;
+        assignment << QString::number(ids[i]) << QString::number(shotsToAssign[i]->getId()) ;
+        assignments << assignment;
     }
+    //assign in db
+    dbi->assignAssets(assignments);
 }
 
 void RAMProject::stageDeleted(RAMStage *s)

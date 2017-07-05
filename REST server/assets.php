@@ -155,6 +155,56 @@
 		}
 	}
 
+	if ($reply["type"] == "assignAssets")
+	{
+		$reply["accepted"] = true;
+
+		$assignments = array();
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			if (isset($data->{'assignments'})) $assignments = $data->{'assignments'};
+		}
+
+		if (count($assignments) > 0)
+		{
+			$q = "INSERT INTO assetstatuses (shotId,assetId) VALUES ";
+			$placeHolder = "(?,?)";
+
+			$placeHolders = array();
+			$values = array();
+			foreach($assignments as $assignment)
+			{
+				$placeHolders[] = $placeHolder;
+				$values[] = $assignment->{'shotId'};
+				$values[] = $assignment->{'assetId'};
+			}
+
+			$q = $q . implode(",",$placeHolders);
+			$q = $q . " ON DUPLICATE KEY UPDATE shotId = VALUES(shotId);";
+
+			try
+			{
+				$rep = $bdd->prepare($q);
+				$rep->execute($values);
+				$rep->closeCursor();
+				$reply["message"] = "Assets assigned.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+				$reply["message"] = "Server issue: SQL Query failed assigning assets. |\n" . $q ;
+				$reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+	}
+
 	if ($reply["type"] == "unAssignAsset")
 	{
 		$reply["accepted"] = true;

@@ -600,6 +600,8 @@ int DBInterface::addAsset(QString name, QString shortName, int statusId,int stag
 
 QList<int> DBInterface::addAssets(QList<QStringList> assets, int stageId, int projectId)
 {
+    if (assets.count() == 0) return QList<int>();
+
     // LOCAL
     emit message("Saving assets");
     QString local = "INSERT OR IGNORE INTO assets (name,shortName,statusId,comment,stageId,projectId) VALUES %1 ;";
@@ -692,6 +694,29 @@ void DBInterface::assignAsset(int assetId, int shotId)
     QJsonDocument json(obj);
 
     emit message("Assigning asset");
+    sendRequest(q,json);
+}
+
+void DBInterface::assignAssets(QList<QStringList> assignments)
+{
+    if (assignments.count() == 0) return;
+
+    QString q = "?type=assignAssets";
+    QJsonObject obj;
+    QJsonArray jsonAssignments;
+    foreach(QStringList assignment,assignments)
+    {
+        QJsonObject jsonAssignment;
+        jsonAssignment.insert("assetId",assignment[0]);
+        jsonAssignment.insert("shotId",assignment[1]);
+
+        jsonAssignments.insert(jsonAssignments.count(),jsonAssignment);
+    }
+
+    obj.insert("assignments",jsonAssignments);
+    QJsonDocument json(obj);
+
+    emit message("Assigning assets");
     sendRequest(q,json);
 }
 

@@ -1,5 +1,3 @@
-• Batch add assets
-
 • Batch assign assets
 
 • Different levels of debugging info
