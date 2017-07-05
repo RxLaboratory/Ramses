@@ -38,9 +38,6 @@ bool XMLReader::nextStartElement(QString name, bool recursive)
     {
         if (this->name().toString() == name)
         {
-            #ifdef QT_DEBUG
-            qDebug() << "XML Found - " + name;
-            #endif
             return true;
         }
         else if (!recursive) this->skipCurrentElement();
@@ -56,9 +53,6 @@ bool XMLReader::nextStartElement(QStringList names, bool recursive)
         {
             if (this->name().toString() == name)
             {
-                #ifdef QT_DEBUG
-                qDebug() << "XML Found - " + name;
-                #endif
                 return true;
             }
         }

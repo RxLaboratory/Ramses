@@ -27,31 +27,31 @@ void Updater::dataReceived(QJsonObject data)
     if (type == "getStatuses")
     {
         if (success) gotStatuses(content);
-        else emit message("Warning: Status list was not correctly updated from remote server.");
+        else emit message("Warning: Status list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getStages")
     {
         if (success) gotStages(content);
-        else emit message("Warning: Stages list was not correctly updated from remote server.");
+        else emit message("Warning: Stages list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getProjects")
     {
         if (success) gotProjects(content);
-        else emit message("Warning: Projects list was not correctly updated from remote server.");
+        else emit message("Warning: Projects list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getShots")
     {
         if (success) gotShots(content);
-        else emit message("Warning: Shots list was not correctly updated from remote server.");
+        else emit message("Warning: Shots list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getAssets")
     {
         if (success) gotAssets(content);
-        else emit message("Warning: Assets list was not correctly updated from remote server.");
+        else emit message("Warning: Assets list was not correctly updated from remote server.","warning");
         return;
     }
 }
@@ -107,9 +107,6 @@ RAMProject *Updater::getCurrentProject()
 
 void Updater::setCurrentProject(RAMProject *project)
 {
-#ifdef QT_DEBUG
-    qDebug() << "NEW CURRENT PROJECT " + project->getShortName();
-#endif
     currentProject = project;
     dbi->getShots(currentProject->getId());
     emit currentProjectChanged(currentProject);

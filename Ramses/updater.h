@@ -35,7 +35,7 @@ public:
     RAMProject *getCurrentProject();
 
 signals:
-    void message(QString);
+    void message(QString,QString);
     void currentProjectChanged(RAMProject*);
     void statusRemoved(RAMStatus*);
     void statusAdded(RAMStatus*);

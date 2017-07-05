@@ -202,9 +202,9 @@ private slots:
     /**
      * @brief Shows a message in the status bar and help window
      * @param m The message
-     * @param i Timeout for the status bar
+     * @param type Type of message, one of: "remote", "local", "general", "connexion", "critical", "warning","debug"
      */
-    void showMessage(QString m);
+    void showMessage(QString m, QString type = "general");
     /**
      * @brief cleans everything
      * Remove UI items and deletes data

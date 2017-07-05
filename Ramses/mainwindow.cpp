@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     helpDialogDocked = true;
 
     // Feedback
-    showMessage("Let's start!");
+    showMessage("Let's start!","general");
 
 #ifdef QT_DEBUG
     // Test mode (auto login)
@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //========= LOAD SETTINGS ========
 
-    showMessage("Loading settings");
+    showMessage("Loading settings","local");
     settingsDB = QSqlDatabase::addDatabase("QSQLITE","settings");
 
     //check if the file already exists, if not, extract it from resources
@@ -121,8 +121,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     settingsDB.setDatabaseName(settingsPath);
     settingsDB.setHostName("localhost");
-    if (settingsDB.open()) showMessage("Settings Opened");
-    else showMessage("Settings could not be opened");
+    if (settingsDB.open()) showMessage("Settings Opened","local");
+    else showMessage("Settings could not be opened","warning");
     //settings
     QString q = "SELECT networkSettings.serverAddress, networkSettings.ssl, networkSettings.updateFrequency, networkSettings.timeout FROM networkSettings JOIN users ON users.id = networkSettings.userID WHERE users.username = 'Default';";
     QSqlQuery networkSettingsQuery(q,settingsDB);
@@ -142,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //Connections
     mapEvents();
 
-    showMessage("Ready!");
+    showMessage("Ready!","general");
 }
 
 // ========= GENERAL METHODS ========
@@ -168,11 +168,11 @@ void MainWindow::mapEvents()
     // DBI GENERAL
     connect(dbi,SIGNAL(connected(bool, QString)),this,SLOT(connected(bool, QString)));
     connect(dbi,SIGNAL(connecting()),this,SLOT(connecting()));
-    connect(dbi,SIGNAL(message(QString)),this,SLOT(showMessage(QString)));
+    connect(dbi,SIGNAL(message(QString,QString)),this,SLOT(showMessage(QString,QString)));
     connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
 
     // UPDATER
-    connect(updater,SIGNAL(message(QString)),this,SLOT(showMessage(QString)));
+    connect(updater,SIGNAL(message(QString,QString)),this,SLOT(showMessage(QString,QString)));
 }
 
 void MainWindow::updateCSS(QString cssPath)
@@ -239,7 +239,7 @@ void MainWindow::logout()
 
     showPage(0);
 
-    showMessage("Logged out.");
+    showMessage("Logged out.","general");
 }
 
 void MainWindow::clean()
@@ -313,18 +313,57 @@ void MainWindow::stopWaiting()
     setWaiting(false);
 }
 
-void MainWindow::showMessage(QString m)
+void MainWindow::showMessage(QString m,QString type)
 {
+    if (m == "") return;
+
+    if (type == "general")
+    {
+        mainStatusBar->showMessage(m,5000);
+        helpDialog->showDebug(m);
+    }
+    else if (type == "remote")
+    {
+
+    }
+    else if (type == "local")
+    {
+
+    }
+    else if (type == "connexion")
+    {
+
+    }
+    else if (type == "critical")
+    {
+        mainStatusBar->showMessage(m);
+        helpDialog->showDebug(m);
 #ifdef QT_DEBUG
     qDebug() << m;
 #endif
-    mainStatusBar->showMessage(m);
-    helpDialog->showDebug(m);
+    }
+    else if (type == "warning")
+    {
+        mainStatusBar->showMessage(m,5000);
+        helpDialog->showDebug(m);
+#ifdef QT_DEBUG
+    qDebug() << m;
+#endif
+    }
+#ifdef QT_DEBUG
+    else if (type == "debug")
+    {
+        qDebug() << m;
+    }
+#endif
+
+
+
 }
 
 void MainWindow::idle()
 {
-    showMessage("Session timed out, you have been logged out.");
+    showMessage("Session timed out, you have been logged out.","general");
     logout();
 }
 
@@ -363,6 +402,8 @@ void MainWindow::connected(bool available, QString err)
         //go to main page
         actionMain->setChecked(true);
         mainStack->setCurrentIndex(1); //show main page
+
+        showMessage(err,"general");
     }
     else
     {
@@ -371,6 +412,7 @@ void MainWindow::connected(bool available, QString err)
         serverWidget->show();
         loginWidget->setEnabled(true);
         connectionStatusLabel->setText(err);
+        showMessage(err,"critical");
         connectionStatusLabel->setEnabled(true);
     }
 }
@@ -387,9 +429,6 @@ void MainWindow::dataReceived(QJsonObject data)
     QString type = data.value("type").toString();
     bool accepted = data.value("accepted").toBool();
     bool success = data.value("success").toBool();
-
-    //show feedback
-    showMessage(message);
 
     //if not accepted or unsuccessful, set to offline
     if (!accepted || !success)
@@ -484,19 +523,19 @@ void MainWindow::on_timeOutEdit_editingFinished()
 
 void MainWindow::importEDL(QString f)
 {
-    showMessage("Importing EDL " + f + " (not yet implemented)");
+    showMessage("Importing EDL " + f + " (not yet implemented)","warning");
 }
 
 void MainWindow::importXML(QString f)
 {
     /*setWaiting();
-    showMessage("Importing XML " + f);
+    showMessage("Importing XML " + f,"general);
 
      //open file and load data
     QFile *xmlFile = new QFile(f);
     if (!xmlFile->open(QFile::ReadOnly | QFile::Text))
     {
-        showMessage("XML File could not be opened.");
+        showMessage("XML File could not be opened.","warning");
         return;
     }
     QByteArray xmlData = xmlFile->readAll();
@@ -692,9 +731,6 @@ void MainWindow::on_actionHelp_triggered(bool checked)
         helpDialog->show();
     }
     else helpDialog->hide();
-#ifdef QT_DEBUG
-    qDebug() << "Help Dialog";
-#endif
 }
 
 // ============ WINDOW BUTTONS AND UI ======

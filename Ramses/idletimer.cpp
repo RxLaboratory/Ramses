@@ -11,7 +11,6 @@ bool IdleTimer::eventFilter(QObject *obj, QEvent *ev)
     if(ev->type() == QEvent::KeyPress || ev->type() == QEvent::MouseButtonPress)
     {
          //reset timer
-        qDebug() <<"event";
         timer->start(30000); //30s
     }
     else if (ev->type() == QEvent::ChildAdded)

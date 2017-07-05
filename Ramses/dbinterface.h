@@ -63,7 +63,7 @@ public:
 signals:
     void connecting();
     void connected(bool,QString);
-    void message(QString,int i = 0);
+    void message(QString,QString type);
     void data(QJsonObject d);
 
 public slots:

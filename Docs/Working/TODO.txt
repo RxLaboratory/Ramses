@@ -1,5 +1,3 @@
-• Different levels of debugging info
-
 • Manage on duplicate key for all inserts (sql)
 
 • Deactivate mouse wheel on statuses combo box
@@ -7,6 +5,10 @@
 • Reimplement IO
 
 • updater timer
+
+• add/remove/move shots in table
+
+• delete asset (in assetsdetails)
 
 • Settings
 	separate from mainwidow
@@ -30,6 +32,8 @@
 
 • progress bar
 
+• waiting cursor
+
 • when help has been shown, slower
 	find a way to fix this
 • Auto size columns
@@ -51,3 +55,7 @@
 • order of statuses
 
 • confirmation when removing something important
+
+• choose debugging level in help window
+
+• fix warnings at debug

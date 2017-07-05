@@ -13,7 +13,6 @@ bool mainWindowDragEvent::eventFilter(QWidget *obj, QEvent *event)
       QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
       if (mouseEvent->button() == Qt::LeftButton)
       {
-          qDebug() << "Mouse pressed";
         dragPosition = mouseEvent->globalPos() - obj->frameGeometry().topLeft();
         event->accept();
       }
@@ -22,10 +21,8 @@ bool mainWindowDragEvent::eventFilter(QWidget *obj, QEvent *event)
   else if (event->type() == QEvent::MouseMove)
   {
     QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
-    qDebug() << "Mouse drag";
     if (mouseEvent->buttons() & Qt::LeftButton)
     {
-        qDebug() << "Mouse drag accepted";
       obj->move(mouseEvent->globalPos() - dragPosition);
       event->accept();
     }
