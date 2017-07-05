@@ -1,6 +1,6 @@
-• Batch assign assets
-
 • Different levels of debugging info
+
+• Manage on duplicate key for all inserts (sql)
 
 • Deactivate mouse wheel on statuses combo box
 
