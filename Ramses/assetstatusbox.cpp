@@ -18,6 +18,9 @@ AssetStatusBox::AssetStatusBox(RAMAsset *as, RAMShot *s, Updater *up, QWidget *p
 
     detailsButton->setText(as->getShortName());
 
+    //remove wheel event from combobox
+    comboBox->installEventFilter(this);
+
     connect(asset,SIGNAL(statusChanged(RAMAsset*,RAMStatus*)),this,SLOT(assetStatusChanged(RAMAsset*,RAMStatus*)));
     connect(asset,SIGNAL(nameChanged(QString)),this,SLOT(nameChanged(QString)));
     connect(asset,SIGNAL(shortNameChanged(QString)),this,SLOT(shortNameChanged(QString)));
@@ -130,5 +133,15 @@ void AssetStatusBox::shortNameChanged(QString n)
 void AssetStatusBox::unAssign(RAMShot *s, RAMAsset *a)
 {
     if (s == shot) deleteLater();
+}
+
+bool AssetStatusBox::eventFilter(QObject *obj, QEvent *event)
+{
+    if ( event->type() == QEvent::Wheel )
+    {
+        event->ignore();
+        return true;
+    }
+    return QWidget::eventFilter( obj, event );
 }
 

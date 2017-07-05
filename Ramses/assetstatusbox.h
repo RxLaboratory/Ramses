@@ -34,6 +34,9 @@ private:
     QList<RAMStatus *> statusesList;
     bool freezeDBI;
     bool freezeUI;
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
 };
 
 #endif // ASSETSTATUSBOX_H

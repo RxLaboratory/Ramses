@@ -1,7 +1,5 @@
 • Manage on duplicate key for all inserts (sql)
 
-• Deactivate mouse wheel on statuses combo box
-
 • Reimplement IO
 
 • updater timer
