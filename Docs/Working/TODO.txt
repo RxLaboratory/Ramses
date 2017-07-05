@@ -1,6 +1,12 @@
-• shot id generation
+• Batch add assets
 
-• Reimplement IO and batch shots
+• Batch assign assets
+
+• Different levels of debugging info
+
+• Deactivate mouse wheel on statuses combo box
+
+• Reimplement IO
 
 • updater timer
 
@@ -31,8 +37,6 @@
 • Auto size columns
 
 • bugfix crash when quit
-
-• Different levels of debugging info
 
 • better error display when disconnect
 

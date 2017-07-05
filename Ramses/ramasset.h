@@ -24,6 +24,7 @@ public:
     void setShortName(QString sn,bool updateDb = false);
     void setComment(QString c,bool updateDb = false);
     void setStatus(RAMStatus *s,bool updateDb = false);
+    void setId(int i);
     void update();
 
 signals:

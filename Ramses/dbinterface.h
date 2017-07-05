@@ -53,6 +53,7 @@ public:
     void resetShotsOrder(QList<int> ids);
     //Asset
     int addAsset(QString name, QString shortName, int statusId, int stageId, int projectId, QString comment);
+    QList<int> addAssets(QList<QStringList> assets, int stageId, int projectId);
     void updateAsset(int id,QString name,QString shortName,QString comment);
     void assignAsset(int assetId, int shotId);
     void unAssignAsset(int assetId, int shotId);

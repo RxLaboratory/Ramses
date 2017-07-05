@@ -84,6 +84,11 @@ void RAMAsset::setStatus(RAMStatus *s, bool updateDb)
     emit statusChanged(s);
 }
 
+void RAMAsset::setId(int i)
+{
+    id = i;
+}
+
 void RAMAsset::update()
 {
     dbi->updateAsset(id,name,shortName,comment);

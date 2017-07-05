@@ -4,6 +4,7 @@
 #include "ui_adminwidget.h"
 #include "dbinterface.h"
 #include "updater.h"
+#include "addshotsdialog.h"
 #include <QColorDialog>
 #include <QErrorMessage>
 
@@ -115,6 +116,16 @@ private:
      * @param rs the shot
      */
     void newShot(RAMShot *rs, int row);
+    /**
+     * @brief Gets the row to create a new shot
+     * @returns The row
+     */
+    int getNewShotRow();
+    /**
+     * @brief Generates a new Id for a shot
+     * @return The id
+     */
+    int generateShotId();
     /**
      * @brief Resets the order of the shots in the DB
      */

@@ -29,10 +29,6 @@ void ShotAssetsWidget::addAsset(RAMAsset *asset)
 
     if (assignments.indexOf(shot) < 0) return;
 
-#ifdef QT_DEBUG
-    qDebug() << "Status box " + asset->getShortName() + " to " + stage->getShortName() + " " + shot->getName();
-#endif
-
     assignedAssets << asset;
 
     //add comboBox

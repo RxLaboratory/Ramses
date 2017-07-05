@@ -56,6 +56,65 @@
 		}
 	}
 
+	if ($reply["type"] == "addAssets")
+	{
+		$reply["accepted"] = true;
+
+		$assets = array();
+		$projectId = "";
+		$stageId = "";
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			if (isset($data->{'projectId'})) $assets = $data->{'assets'};
+			if (isset($data->{'assets'})) $projectId = $data->{'projectId'};
+			if (isset($data->{'stageId'})) $stageId = $data->{'stageId'};
+		}
+
+		if (strlen($projectId) > 0 AND strlen($stageId) > 0 AND count($assets) > 0)
+		{
+			$q = "INSERT INTO assets (name,shortName,statusId,comment,id,stageId,projectId) VALUES ";
+			$placeHolder = "(?,?,?,?,?,?,?)";
+
+			$placeHolders = array();
+			$values = array();
+			foreach($assets as $asset)
+			{
+				$placeHolders[] = $placeHolder;
+				$values[] = $asset->{'name'};
+				$values[] = $asset->{'shortName'};
+				$values[] = $asset->{'statusId'};
+				$values[] = $asset->{'comment'};
+				$values[] = $asset->{'id'};
+				$values[] = $stageId;
+				$values[] = $projectId;
+			}
+
+			$q = $q . implode(",",$placeHolders);
+			$q = $q . " ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
+
+			try
+			{
+				$rep = $bdd->prepare($q);
+				$rep->execute($values);
+				$rep->closeCursor();
+				$reply["message"] = "Assets added.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+				$reply["message"] = "Server issue: SQL Query failed adding assets. |\n" . $q ;
+				$reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+	}
+
 	if ($reply["type"] == "assignAsset")
 	{
 		$reply["accepted"] = true;

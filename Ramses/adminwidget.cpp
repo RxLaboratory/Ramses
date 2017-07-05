@@ -464,6 +464,43 @@ void AdminWidget::newShot(RAMShot *rs, int row)
     shotsAdminList->insertItem(row,item);
 }
 
+int AdminWidget::getNewShotRow()
+{
+    int row = 0;
+    if (shotsAdminList->currentItem())
+    {
+        row = shotsAdminList->currentRow() + 1;
+    }
+    else if (shotsAdminList->count() > 0)
+    {
+        row = shotsAdminList->count();
+    }
+
+    return row;
+}
+
+int AdminWidget::generateShotId()
+{
+    //getProject
+    int projectId = updater->getCurrentProject()->getId();
+    QString projectIdString = QString::number(projectId);
+
+    //get higher id, prefix with project id
+    int id = 1;
+    foreach(RAMShot *rs,updater->getCurrentProject()->getShots())
+    {
+        //get the id without the project id
+        QString idString = QString::number(rs->getId());
+        idString = idString.mid(projectIdString.count());
+        int rsId = idString.toInt();
+        if (rsId >= id) id = rsId+1;
+    }
+    QString idString = QString::number(projectId) + QString::number(id);
+    id = idString.toInt();
+
+    return id;
+}
+
 void AdminWidget::resetShotsOrder()
 {
     QList<int> ids;
@@ -490,33 +527,10 @@ void AdminWidget::on_addShotButton_clicked()
 
     if (ok)
     {
-        if (shotsAdminList->currentItem())
-        {
-            row = shotsAdminList->currentRow() + 1;
-        }
-        else if (shotsAdminList->count() > 0)
-        {
-            row = shotsAdminList->count();
-        }
+        int id = generateShotId();
+        int row = getNewShotRow();
 
-        //getProject
-        int projectId = updater->getCurrentProject()->getId();
-        QString projectIdString = QString::number(projectId);
-        //get higher id, prefix with project id
-        int id = 1;
-        foreach(RAMShot *rs,updater->getCurrentProject()->getShots())
-        {
-            //get the id without the project id
-            QString idString = QString::number(rs->getId());
-            idString = idString.mid(projectIdString.count());
-            int rsId = idString.toInt();
-            if (rsId >= id) id = rsId+1;
-        }
-        QString idString = QString::number(projectId) + QString::number(id);
-        id = idString.toInt();
-
-        RAMShot *rs = new RAMShot(dbi,projectId,id,"000",0.0,true);
-
+        RAMShot *rs = new RAMShot(dbi,updater->getCurrentProject()->getId(),id,"000",0.0,true);
         //update UI
         newShot(rs,row);
         updater->getCurrentProject()->addShot(rs,row);
@@ -532,39 +546,33 @@ void AdminWidget::on_addShotButton_clicked()
 
 void AdminWidget::on_batchAddShotButton_clicked()
 {
-    /*this->setEnabled(false);
+    this->setEnabled(false);
     AddShotsDialog as;
-    as.move(this->geometry().center().x()-as.geometry().width()/2,this->geometry().center().y()-as.geometry().height()/2);
+    //as.move(this->parentWidget()->geometry().center().x()-as.geometry().width()/2,this->parentWidget()->geometry().center().y()-as.geometry().height()/2);
     if (as.exec())
     {
         QStringList shotNames = as.getShots();
-        setWaiting();
-        //get order (if a row is selected, or else insert after the last row)
-        int order = 0;
-        if (shotsAdminList->currentItem())
+        QList<QStringList> newShots;
+        int row = getNewShotRow();
+        int newRow = row;
+        int projectId = updater->getCurrentProject()->getId();
+        foreach(QString name,shotNames)
         {
-            order = shotsList[shotsAdminList->currentRow()]->getShotOrder()+1;
+            int id = generateShotId();
+            QStringList shot;
+            shot << name << "0" << QString::number(id);
+            newShots << shot;
+
+            RAMShot *rs = new RAMShot(dbi,projectId,id,name,0.0,false);
+            //update UI
+            newShot(rs,newRow);
+            updater->getCurrentProject()->addShot(rs,newRow);
+            newRow++;
         }
-        else if (shotsAdminList->count() > 0)
-        {
-            order = shotsList[shotsAdminList->count()-1]->getShotOrder()+1;
-        }
-        shotsAdminReset();
-        //getProject
-        int projectId = projectSelector->currentData().toInt();
-        //get status
-        int statusId = 0;
-        foreach(RAMStatus *s,statusesList)
-        {
-            if (s->getShortName() == "STB")
-            {
-                statusId = s->getId();
-                break;
-            }
-        }
-        dbi->addShots(projectId,statusId,shotNames,order);
+
+        dbi->addShots(projectId,newShots,row);
     }
-    this->setEnabled(true);*/
+    this->setEnabled(true);
 }
 
 void AdminWidget::on_importShotsButton_clicked()

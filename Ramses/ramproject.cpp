@@ -122,16 +122,8 @@ void RAMProject::remove()
     emit projectRemoved(this);
 }
 
-void RAMProject::createAsset(RAMStage *stage, RAMShot *shot)
-{
-    RAMAsset *asset = new RAMAsset(dbi,"Shot " + shot->getName() + " " + stage->getName(),stage->getShortName() + " " + shot->getName(),defaultStatus,stage->getId(),true,"",-1,projectId);
-    asset->assign(shot,true);
-    stage->addAsset(asset);
-}
-
 void RAMProject::createStageAssets(RAMStage *stage)
 {
-
     //list shots which already have assets
     QList<RAMShot*> shotsAssigned;
     foreach(RAMAsset *asset,stage->getAssets())
@@ -140,12 +132,32 @@ void RAMProject::createStageAssets(RAMStage *stage)
     }
 
     //for each shot, create asset if needed
+    QList<QStringList> assetsToCreate;
+    QList<RAMAsset*> newAssets;
+    QList<RAMShot*> shotsToAssign;
     foreach(RAMShot *shot,shots)
     {
         if (shotsAssigned.indexOf(shot) < 0)
         {
-            createAsset(stage,shot);
+            QString name = "Shot " + shot->getName() + " " + stage->getName();
+            QString shortName = stage->getShortName() + " " + shot->getName();
+            RAMAsset *asset = new RAMAsset(dbi,name,shortName,defaultStatus,stage->getId(),false,"",-1,projectId);
+            QStringList newAsset;
+            newAsset << name << shortName << QString::number(defaultStatus->getId()) << "";
+            assetsToCreate << newAsset;
+            newAssets << asset;
+            shotsToAssign << shot;
         }
+    }
+    //create in db
+    QList<int> ids = dbi->addAssets(assetsToCreate,stage->getId(),projectId);
+    //assign
+    for(int i = 0 ; i < newAssets.count() ; i++ )
+    {
+        RAMAsset *asset = newAssets[i];
+        asset->setId(ids[i]);
+        asset->assign(shotsToAssign[i],true);
+        stage->addAsset(asset);
     }
 }
 

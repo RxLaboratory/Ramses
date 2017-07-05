@@ -46,7 +46,6 @@ signals:
 public slots:
 
 private:
-    void createAsset(RAMStage *stage, RAMShot *shot);
     int projectId;
     QString projectName;
     QString projectShortName;
