@@ -501,13 +501,16 @@ void AdminWidget::on_addShotButton_clicked()
 
         //getProject
         int projectId = updater->getCurrentProject()->getId();
-
-
+        QString projectIdString = QString::number(projectId);
         //get higher id, prefix with project id
         int id = 1;
         foreach(RAMShot *rs,updater->getCurrentProject()->getShots())
         {
-            if (rs->getId() >= id) id = rs->getId()+1;
+            //get the id without the project id
+            QString idString = QString::number(rs->getId());
+            idString = idString.mid(projectIdString.count());
+            int rsId = idString.toInt();
+            if (rsId >= id) id = rsId+1;
         }
         QString idString = QString::number(projectId) + QString::number(id);
         id = idString.toInt();

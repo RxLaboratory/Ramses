@@ -1,5 +1,3 @@
-• when removing asset, remove from local
-
 • shot id generation
 
 • Reimplement IO and batch shots
@@ -18,7 +16,7 @@
 • Admin
 	new ui
 	does not depend on project selector
-	asset management
+	asset management (• when removing asset, remove from local)
 
 • Local
 
