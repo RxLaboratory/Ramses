@@ -32,12 +32,12 @@
 			//if an id is provided
 			if (strlen($id) > 0)
 			{
-				$qString = "INSERT INTO status (name,shortName,color,description,id) VALUES ( :name , :shortName , :color , :description , :id );";
+				$qString = "INSERT INTO status (name,shortName,color,description,id) VALUES ( :name , :shortName , :color , :description , :id ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
 				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id);
 			}
 			else
 			{
-				$qString = "INSERT INTO status (name,shortName,color,description) VALUES ( :name , :shortName , :color , :description );";
+				$qString = "INSERT INTO status (name,shortName,color,description) VALUES ( :name , :shortName , :color , :description ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
 				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description);
 			}
 			try

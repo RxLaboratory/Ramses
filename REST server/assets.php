@@ -32,7 +32,7 @@
 		{
 			//construct add asset query
             $q = "INSERT INTO assets (name,shortName,statusId,stageId,projectId,comment,id)
-			VALUES ( :name , :shortName , :statusId , :stageId , :projectId, :comment , :id );";
+			VALUES ( :name , :shortName , :statusId , :stageId , :projectId, :comment , :id ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name) ;";
 
 			try
 			{
@@ -132,7 +132,7 @@
 		if (strlen($assetId) > 0 AND strlen($shotId) > 0)
 		{
 			$q = "INSERT INTO assetstatuses (shotId,assetId)
-			VALUES ( :shotId , :assetId );";
+			VALUES ( :shotId , :assetId ) ON DUPLICATE KEY UPDATE shotId = VALUES(shotId);";
 
 			try
 			{

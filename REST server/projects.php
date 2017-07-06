@@ -24,7 +24,7 @@
 		{
 			if (strlen($id) > 0)
 			{
-				$qString = "INSERT INTO projects (name,shortName,id) VALUES ( :name , :shortName , :id );";
+				$qString = "INSERT INTO projects (name,shortName,id) VALUES ( :name , :shortName , :id ) ON DUPLICATE KEY UPDATE name = VALUES(name) , shortName = VALUES(shortName);";
 				$values = array('name' => $name, 'shortName' => $shortName, 'id' => $id);
 			}
 			else
@@ -195,7 +195,7 @@
 		{
 			try
 			{
-				$rep = $bdd->prepare("INSERT INTO projectstage (stageId,projectId) VALUES ( :stageId , :projectId );");
+				$rep = $bdd->prepare("INSERT INTO projectstage (stageId,projectId) VALUES ( :stageId , :projectId ) ON DUPLICATE KEY UPDATE stageId = VALUES(stageId) , projectId = VALUES(projectId);");
 				$rep->execute(array('stageId' => $stageId,'projectId' => $projectId));
 				$rep->closeCursor();
 
