@@ -331,8 +331,8 @@ void MainWindow::showMessage(QString m,QString type)
     else if (type == "remote")
     {
 #ifdef QT_DEBUG
-        qDebug() << "REMOTE:";
-        qDebug() << m;
+        //qDebug() << "REMOTE:";
+        //qDebug() << m;
 #endif
     }
     else if (type == "local")

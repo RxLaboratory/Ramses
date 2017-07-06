@@ -20,12 +20,6 @@ AddAssetDialog::AddAssetDialog(DBInterface *d, RAMShot *sh, RAMStage *st, Update
         }
     }
 
-    //get all assets from stage if assets are not provided
-    if (allAssets.count() == 0)
-    {
-        allAssets = stage->getAssets();
-    }
-
     foreach(RAMAsset *asset, allAssets)
     {
         assetList->addItem(asset->getShortName(),asset->getId());
