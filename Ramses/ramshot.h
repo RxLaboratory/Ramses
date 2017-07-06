@@ -8,7 +8,7 @@ class RAMShot : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMShot(DBInterface *db,int pid,int i , QString n, double d = 0.0,bool updateDb = false, QObject *parent = 0);
+    explicit RAMShot(DBInterface *db,int i , QString n, double d = 0.0,bool updateDb = false, QObject *parent = 0);
     ~RAMShot();
     int getId();
     QString getName();
@@ -26,7 +26,6 @@ signals:
 private:
     double duration;
     QString name;
-    int projectId;
     int id;
     DBInterface *dbi;
 

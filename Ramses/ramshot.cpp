@@ -1,16 +1,15 @@
 #include "ramshot.h"
 #include <QtDebug>
 
-RAMShot::RAMShot(DBInterface *db, int pid, int i, QString n, double d, bool updateDb , QObject *parent) : QObject(parent)
+RAMShot::RAMShot(DBInterface *db, int i, QString n, double d, bool updateDb , QObject *parent) : QObject(parent)
 {
-    projectId = pid;
     id = i;
     name = n;
     duration = d;
     dbi = db;
     if (updateDb)
     {
-        dbi->addShot(projectId,id,name,duration);
+        dbi->addShot(id,name,duration);
     }
 }
 

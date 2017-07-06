@@ -27,6 +27,10 @@ void MainTable::setCurrentProject(RAMProject *project)
 {
     clean();
 
+#ifdef QT_DEBUG
+    qDebug() << "Set current project: " + project->getShortName() + " id: " + QString::number(project->getId());
+#endif
+
     //set current stages
     QList<RAMStage*> stages = project->getStages();
     for (int i = 0 ; i < stages.count() ; i++)

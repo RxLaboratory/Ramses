@@ -72,12 +72,12 @@ void RAMProject::update()
     dbi->updateProject(projectId,projectName,projectShortName);
 }
 
-void RAMProject::addShot(RAMShot *shot, int row)
+void RAMProject::addShot(RAMShot *shot, int row,bool updateDb)
 {
     if (row >= 0 && row <= shots.count()) shots.insert(row,shot);
     else shots << shot;
     shot->setParent(this);
-
+    if (updateDb) dbi->insertShot(shot->getId(),projectId,row);
     emit shotAdded(this,shot,row);
 }
 
@@ -85,16 +85,6 @@ void RAMProject::removeShot(RAMShot *shot)
 {
     shots.removeAll(shot);
     emit shotRemoved(this,shot);
-}
-
-void RAMProject::resetShotsOrder()
-{
-    QList<int> ids;
-    foreach(RAMShot *rs,shots)
-    {
-        ids << rs->getId();
-    }
-    dbi->resetShotsOrder(ids);
 }
 
 void RAMProject::addStage(RAMStage *s, bool updateDb)

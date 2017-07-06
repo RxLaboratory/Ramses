@@ -324,15 +324,24 @@ void MainWindow::showMessage(QString m,QString type)
     }
     else if (type == "remote")
     {
-
+#ifdef QT_DEBUG
+        qDebug() << "REMOTE:";
+        qDebug() << m;
+#endif
     }
     else if (type == "local")
     {
-
+#ifdef QT_DEBUG
+        qDebug() << "LOCAL:";
+        qDebug() << m;
+#endif
     }
     else if (type == "connexion")
     {
-
+#ifdef QT_DEBUG
+        qDebug() << "CONNEXION:";
+        qDebug() << m;
+#endif
     }
     else if (type == "critical")
     {

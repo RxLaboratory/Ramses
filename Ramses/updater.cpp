@@ -26,30 +26,35 @@ void Updater::dataReceived(QJsonObject data)
 
     if (type == "getStatuses")
     {
+        emit message("Loading statuses","debug");
         if (success) gotStatuses(content);
         else emit message("Warning: Status list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getStages")
     {
+        emit message("Loading stages","debug");
         if (success) gotStages(content);
         else emit message("Warning: Stages list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getProjects")
     {
+        emit message("Loading projects","debug");
         if (success) gotProjects(content);
         else emit message("Warning: Projects list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getShots")
     {
+        emit message("Loading shots","debug");
         if (success) gotShots(content);
         else emit message("Warning: Shots list was not correctly updated from remote server.","warning");
         return;
     }
     else if (type == "getAssets")
     {
+        emit message("Loading assets","debug");
         if (success) gotAssets(content);
         else emit message("Warning: Assets list was not correctly updated from remote server.","warning");
         return;
@@ -437,15 +442,16 @@ void Updater::gotShots(QJsonValue newShots)
         int order = shot.value("shotOrder").toInt();
         int id = shot.value("shotId").toInt();
 
-        RAMShot *rs = new RAMShot(dbi,currentProject->getId(),id,name,duration,false);
+        RAMShot *rs = new RAMShot(dbi,id,name,duration,false);
 
         //add to project
         currentProject->addShot(rs,order);
     }
 
-
     //get assets
-    if (currentProject != 0) dbi->getAssets(currentProject->getId());
+    //if (currentProject != 0) dbi->getAssets(currentProject->getId());
+
+    emit message("Got Shots","debug");
 }
 
 void Updater::gotAssets(QJsonValue newAssets)
@@ -593,4 +599,6 @@ void Updater::gotAssets(QJsonValue newAssets)
             stage->addAsset(ra);
         }
     }
+
+    emit message("Got Assets","debug");
 }

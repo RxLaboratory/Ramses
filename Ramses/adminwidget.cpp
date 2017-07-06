@@ -530,10 +530,10 @@ void AdminWidget::on_addShotButton_clicked()
         int id = generateShotId();
         int row = getNewShotRow();
 
-        RAMShot *rs = new RAMShot(dbi,updater->getCurrentProject()->getId(),id,"000",0.0,true);
+        RAMShot *rs = new RAMShot(dbi,id,"000",0.0,true);
         //update UI
         newShot(rs,row);
-        updater->getCurrentProject()->addShot(rs,row);
+        updater->getCurrentProject()->addShot(rs,row,true);
     }
 
     //select shot
@@ -541,7 +541,6 @@ void AdminWidget::on_addShotButton_clicked()
     shotsAdminList->setCurrentRow(row);
     on_shotsAdminList_itemClicked(shotsAdminList->item(row));
 
-    resetShotsOrder();
 }
 
 void AdminWidget::on_batchAddShotButton_clicked()
@@ -553,6 +552,7 @@ void AdminWidget::on_batchAddShotButton_clicked()
     {
         QStringList shotNames = as.getShots();
         QList<QStringList> newShots;
+        QList<int> shotIds;
         int row = getNewShotRow();
         int newRow = row;
         int projectId = updater->getCurrentProject()->getId();
@@ -562,16 +562,19 @@ void AdminWidget::on_batchAddShotButton_clicked()
             QStringList shot;
             shot << name << "0" << QString::number(id);
             newShots << shot;
+            shotIds << id;
 
-            RAMShot *rs = new RAMShot(dbi,projectId,id,name,0.0,false);
+            RAMShot *rs = new RAMShot(dbi,id,name,0.0,false);
             //update UI
             newShot(rs,newRow);
             updater->getCurrentProject()->addShot(rs,newRow);
             newRow++;
         }
 
-        dbi->addShots(projectId,newShots,row);
+        dbi->addShots(newShots);
+        dbi->insertShots(shotIds,projectId,row);
     }
+
     this->setEnabled(true);
 }
 
@@ -635,8 +638,7 @@ void AdminWidget::on_removeShotButton_clicked()
         delete item;
     }
 
-    dbi->removeShots(ids);
-    resetShotsOrder();
+    dbi->removeShots(ids,updater->getCurrentProject()->getId());
 
     shotsAdminReset();
 }

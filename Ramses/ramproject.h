@@ -24,9 +24,8 @@ public:
     void setName(QString name, bool updateDb = false);
     void setShortName(QString shortName, bool updateDb = false);
     void update();
-    void addShot(RAMShot *shot, int row = -1);
+    void addShot(RAMShot *shot, int row = -1, bool updateDb = false);
     void removeShot(RAMShot *shot);
-    void resetShotsOrder();
     //stages
     void addStage(RAMStage *s, bool updateDb = false);
     void removeStage(RAMStage *s, bool updateDb = false);

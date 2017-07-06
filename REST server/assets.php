@@ -144,8 +144,8 @@
 			}
 			catch (Exception $e)
 			{
-			   $reply["message"] = "Server issue: SQL Query failed adding assigning asset |\n" . $q . " |\nAsset: " . $assetId . " |\nShot: " . $shotId;
-			   $reply["success"] = false;
+				$reply["message"] = "Server issue: SQL Query failed assigning asset |\n" . $q . " |\nAsset: " . $assetId . " |\nShot: " . $shotId;
+				$reply["success"] = false;
 			}
 		}
 		else

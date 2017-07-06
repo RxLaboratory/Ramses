@@ -8,6 +8,10 @@
 
 • Reimplement IO
 
+• PHP : addAndInsert shots and assets
+
+• better changing of order without resetshotorder
+
 • Admin
 	new ui
 	does not depend on project selector

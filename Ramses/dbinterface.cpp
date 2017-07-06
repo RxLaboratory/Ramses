@@ -132,15 +132,14 @@ void DBInterface::dataReceived(QNetworkReply * rep)
         QString repType = repObj.value("type").toString();
         QString repMessage = repObj.value("message").toString();
         bool repSuccess = repObj.value("success").toBool();
-        QJsonValue content = repObj.value("content");
 
         if (repSuccess)
         {
-            emit message(repType + "\n" + repMessage + "\nContent:\n" + content.toString(),"remote");
+            emit message(repType + "\n" + repMessage + "\nContent:\n" + repAll,"remote");
         }
         else
         {
-            emit message("UNSUCCESSFUL:\n" + repType + "\n" + repMessage + "\nContent:\n" + content.toString(),"warning");
+            emit message("UNSUCCESSFUL:\n" + repType + "\n" + repMessage + "\nContent:\n" + repAll,"warning");
         }
 
     }
@@ -454,7 +453,7 @@ void DBInterface::removeProjectStage(int projectId, int stageId)
 }
 
 //SHOTS
-void DBInterface::addShot(int projectId, int id, QString name, double duration, int order)
+void DBInterface::addShot(int id, QString name, double duration)
 {
     QString q = "?type=addShots";
     QJsonObject obj;
@@ -465,15 +464,13 @@ void DBInterface::addShot(int projectId, int id, QString name, double duration, 
     jsonShot.insert("id",id);
     jsonShots.insert(0,jsonShot);
     obj.insert("shots",jsonShots);
-    obj.insert("projectId",projectId);
-    obj.insert("shotOrder",order);
     QJsonDocument json(obj);
 
     emit message("Submitting shot","remote");
     sendRequest(q,json);
 }
 
-void DBInterface::addShots(int projectId, QList<QStringList> shots, int order)
+void DBInterface::addShots(QList<QStringList> shots)
 {
     QString q = "?type=addShots";
     QJsonObject obj;
@@ -487,11 +484,46 @@ void DBInterface::addShots(int projectId, QList<QStringList> shots, int order)
         jsonShots.insert(jsonShots.count(),jsonShot);
     }
     obj.insert("shots",jsonShots);
+    QJsonDocument json(obj);
+
+    emit message("Submitting shots","remote");
+    sendRequest(q,json);
+}
+
+void DBInterface::insertShots(QList<int> shots,int projectId, int order)
+{
+    QString q = "?type=insertShots";
+    QJsonObject obj;
+    QJsonArray jsonShots;
+    foreach(int shot,shots)
+    {
+        QJsonObject jsonShot;
+        jsonShot.insert("shotId",shot);
+        jsonShots.insert(jsonShots.count(),jsonShot);
+    }
+    obj.insert("shots",jsonShots);
     obj.insert("projectId",projectId);
     obj.insert("shotOrder",order);
     QJsonDocument json(obj);
 
-    emit message("Submitting shots","remote");
+    emit message("Inserting shots","remote");
+    sendRequest(q,json);
+}
+
+void DBInterface::insertShot(int id,int projectId, int order)
+{
+    QString q = "?type=insertShots";
+    QJsonObject obj;
+    QJsonArray jsonShots;
+    QJsonObject jsonShot;
+    jsonShot.insert("shotId",id);
+    jsonShots.insert(0,jsonShot);
+    obj.insert("shots",jsonShots);
+    obj.insert("projectId",projectId);
+    obj.insert("shotOrder",order);
+    QJsonDocument json(obj);
+
+    emit message("Inserting shot","remote");
     sendRequest(q,json);
 }
 
@@ -532,7 +564,7 @@ void DBInterface::removeShot(int id)
     sendRequest(q,json);
 }
 
-void DBInterface::removeShots(QList<int> ids)
+void DBInterface::removeShots(QList<int> ids, int projectId)
 {
     QString q = "?type=removeShots";
     QJsonObject obj;
@@ -542,6 +574,7 @@ void DBInterface::removeShots(QList<int> ids)
         jsonIds.insert(jsonIds.count(),id);
     }
     obj.insert("ids",jsonIds);
+    obj.insert("projectId",projectId);
     QJsonDocument json(obj);
 
     emit message("Removing shots","remote");

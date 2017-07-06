@@ -44,12 +44,14 @@ public:
     void addProjectStage(int projectId, int stageId);
     void removeProjectStage(int projectId, int stageId);
     //Shot
-    void addShot(int projectId, int id, QString name, double duration, int order = 0);
-    void addShots(int projectId, QList<QStringList> shots, int order);
+    void addShot(int id, QString name, double duration);
+    void addShots(QList<QStringList> shots);
+    void insertShots(QList<int> shots, int projectId, int order);
+    void insertShot(int id, int projectId, int order);
     void getShots(int projectId);
     void updateShot(int id, QString name, double duration);
     void removeShot(int id);
-    void removeShots(QList<int> ids);
+    void removeShots(QList<int> ids, int projectId);
     void resetShotsOrder(QList<int> ids);
     //Asset
     int addAsset(QString name, QString shortName, int statusId, int stageId, int projectId, QString comment);

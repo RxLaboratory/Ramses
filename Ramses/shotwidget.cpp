@@ -13,7 +13,6 @@ ShotWidget::ShotWidget(RAMShot *s, QWidget *parent) :
     connect(s,SIGNAL(nameChanged(QString)),this,SLOT(nameChanged(QString)));
     connect(s,SIGNAL(durationChanged(double)),this,SLOT(durationChanged(double)));
     connect(s,SIGNAL(shotRemoved(RAMShot*)),this,SLOT(deleteLater()));
-
 }
 
 RAMShot *ShotWidget::getShot()

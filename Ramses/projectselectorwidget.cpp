@@ -21,7 +21,6 @@ RAMProject *ProjectSelectorWidget::getCurrentProject()
     return currentProject;
 }
 
-
 void ProjectSelectorWidget::addProject(RAMProject *project)
 {
     freeze = true;
