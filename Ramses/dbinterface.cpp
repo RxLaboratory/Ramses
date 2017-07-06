@@ -797,4 +797,15 @@ void DBInterface::setAssetStatus(int statusId, int assetId)
     sendRequest(q,json);
 }
 
+void DBInterface::removeAsset(int id)
+{
+    QString q = "?type=removeAsset";
+    QJsonObject obj;
+    obj.insert("assetId",id);
+    QJsonDocument json(obj);
+
+    emit message("Removing asset","remote");
+    sendRequest(q,json);
+}
+
 

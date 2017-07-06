@@ -158,6 +158,7 @@ void MainWindow::mapEvents()
     connect(mainTable,SIGNAL(working(bool)),this,SLOT(setWaiting(bool)));
     connect(mainTable,&MainTable::progressMax,mainStatusProgress,&QProgressBar::setMaximum);
     connect(mainTable,&MainTable::progress,mainStatusProgress,&QProgressBar::setValue);
+    connect(mainTable,SIGNAL(message(QString,QString)),this,SLOT(showMessage(QString,QString)));
 
     // window buttons
     connect(maximizeButton,SIGNAL(clicked()),this,SLOT(maximizeButton_clicked()));
@@ -177,6 +178,7 @@ void MainWindow::mapEvents()
 
 void MainWindow::updateCSS(QString cssPath)
 {
+    showMessage(cssPath,"debug");
     QFile cssFile(cssPath);
     cssFile.open(QFile::ReadOnly);
     QString css = QString(cssFile.readAll());
@@ -329,8 +331,8 @@ void MainWindow::showMessage(QString m,QString type)
     else if (type == "remote")
     {
 #ifdef QT_DEBUG
-        //qDebug() << "REMOTE:";
-        //qDebug() << m;
+        qDebug() << "REMOTE:";
+        qDebug() << m;
 #endif
     }
     else if (type == "local")
@@ -384,7 +386,11 @@ void MainWindow::idle()
 
 void MainWindow::on_updateCSSButton_clicked()
 {
-    updateCSS();
+    QString cssFile = "";
+#ifdef QT_DEBUG
+    cssFile = "E:/DEV SRC/Ramses/Ramses/needed/style.css";
+#endif
+    updateCSS(cssFile);
 }
 
 // ========== DBI ===================

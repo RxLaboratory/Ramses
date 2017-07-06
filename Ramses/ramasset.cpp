@@ -96,6 +96,7 @@ void RAMAsset::update()
 
 void RAMAsset::remove(bool updateDB)
 {
+    if (updateDB) dbi->removeAsset(id);
     emit assetRemoved(this);
 }
 

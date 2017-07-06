@@ -1,6 +1,6 @@
-• delete asset (in assetsdetails)
-
 • add a create assets for stage button in assetsdetails
+
+• fix assets list in assetsdetails
 
 • Manage on duplicate key for all inserts (sql)
 

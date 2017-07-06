@@ -69,7 +69,6 @@ QList<RAMAsset *> RAMStage::getAssets()
 void RAMStage::removeAsset(RAMAsset *a)
 {
     assets.removeAll(a);
-    a->remove();
     emit assetRemoved(a);
 }
 

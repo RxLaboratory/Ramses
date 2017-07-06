@@ -398,7 +398,43 @@
 		}
 	}
 
+	if ($reply["type"] == "removeAsset")
+	{
+		$reply["accepted"] = true;
 
+		$assetId = "";
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			if (isset($data->{'assetId'})) $assetId = $data->{'assetId'};
+		}
+
+		if (strlen($assetId) > 0)
+		{
+			$q = "DELETE assets FROM assets WHERE id = :assetId ;";
+			try
+			{
+				$rep = $bdd->prepare($q);
+				$rep->execute(array('assetId' => $assetId));
+				$rep->closeCursor();
+
+				$reply["message"] = "Asset removed.";
+				$reply["success"] = true;
+			}
+			catch (Exception $e)
+			{
+				$reply["message"] = "Server issue: SQL Query failed deleting asset. | " . $q;
+				$reply["success"] = false;
+			}
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+
+	}
 
 /*
 

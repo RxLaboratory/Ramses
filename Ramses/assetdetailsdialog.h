@@ -4,6 +4,7 @@
 #include "ui_assetdetailsdialog.h"
 #include "ramshot.h"
 #include "ramasset.h"
+#include <QMessageBox>
 
 class AssetDetailsDialog : public QDialog, private Ui::AssetDetailsDialog
 {
@@ -14,6 +15,7 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
+    void on_deleteButton_clicked();
 
 private:
     RAMAsset *asset;

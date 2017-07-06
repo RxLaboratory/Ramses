@@ -27,6 +27,7 @@ void MainTable::clean()
 void MainTable::setCurrentProject(RAMProject *project)
 {
     emit working(true);
+    emit message("Showing project " + project->getShortName(),"general");
 
 #ifdef QT_DEBUG
     qDebug() << "Set current project: " + project->getShortName() + " id: " + QString::number(project->getId());

@@ -404,6 +404,7 @@ void Updater::gotProjects(QJsonValue newProjects)
 void Updater::gotShots(QJsonValue newShots)
 {
     emit working(true);
+    emit message("(Re)Loading shots","general");
 
     QJsonArray shotsArray = newShots.toArray();
     QList<RAMShot*> shots = currentProject->getShots();
@@ -464,14 +465,15 @@ void Updater::gotShots(QJsonValue newShots)
 
     //get assets
     if (currentProject != 0) dbi->getAssets(currentProject->getId());
+    else emit working(false);
 
-    emit working(false);
     emit message("Got Shots","debug");
 }
 
 void Updater::gotAssets(QJsonValue newAssets)
 {
     emit working(true);
+    emit message("(Re)Loading assets","general");
 
     QJsonArray assetsArray = newAssets.toArray();
 
@@ -571,7 +573,7 @@ void Updater::gotAssets(QJsonValue newAssets)
             if (!updated)
             {
                 RAMAsset *assetToRemove = assets[raI];
-                stage->removeAsset(assetToRemove);
+                assetToRemove->remove();
 
                 removedItems << assetToRemove;
             }

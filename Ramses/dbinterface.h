@@ -62,6 +62,7 @@ public:
     void unAssignAsset(int assetId, int shotId);
     void getAssets(int projectId);
     void setAssetStatus(int statusId, int assetId);
+    void removeAsset(int id);
 signals:
     void connecting();
     void connected(bool,QString);

@@ -22,6 +22,7 @@ signals:
     void working(bool);
     void progressMax(int);
     void progress(int);
+    void message(QString,QString);
 
 private slots:
     void removeShot(RAMProject *project, RAMShot *shot);

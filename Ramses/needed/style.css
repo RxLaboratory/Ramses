@@ -7,6 +7,11 @@ MainWindow, QDialog {
 	border: 4px solid #6d6d6d;
 }
 
+MainWindow:disabled, QDialog:disabled {
+	background-color: #333333;
+	border: 4px solid #434343;
+}
+
 QDialog {
     border-color: #e3e3e3;
 }
@@ -373,18 +378,6 @@ QToolBar QComboBox {
 	background-color: #e3e3e3;
 }
 
-/* Table COMBO BOX */
-QTableWidget QComboBox {
-    color: #e3e3e3;
-	border:none;
-	padding-left:40%;
-}
-
-QTableWidget QComboBox QAbstractItemView {
-	padding-left:30%;
-	padding-right:30%;
-}
-
 /* LIST */
 
 QListWidget {
@@ -424,12 +417,19 @@ QTableWidget {
 	alternate-background-color: #494949;
 }
 
+QTableWidget:disabled {
+	background-color: #333333;
+	alternate-background-color: #333333;
+}
+
 QTableWidget QTableCornerButton::section {
 	background-color: #333333;
 	border:none;
 }
 
 QTableWidget QComboBox {
+	color: #e3e3e3;
+	border:none;
 	padding-left: 6px;
 }
 
@@ -530,14 +530,15 @@ QStatusBar::item {
 
 QStatusBar QLabel {
 	color: #6d6d6d;
+	margin-bottom: 5px;
 }
 
 QStatusBar QProgressBar {
 	color: #6d6d6d;
 	border:2px solid #6d6d6d;
 	background-color: #434343;
-	border-radius:8px;
-	height:15px;
+	height:8px;
+	margin-bottom: 10px;
 }
 
 
