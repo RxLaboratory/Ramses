@@ -467,7 +467,7 @@ void AdminWidget::newShot(RAMShot *rs, int row)
 int AdminWidget::getNewShotRow()
 {
     int row = 0;
-    if (shotsAdminList->currentItem())
+    if (shotsAdminList->currentRow() >= 0)
     {
         row = shotsAdminList->currentRow() + 1;
     }
@@ -528,14 +528,13 @@ void AdminWidget::on_addShotButton_clicked()
     if (ok)
     {
         int id = generateShotId();
-        int row = getNewShotRow();
+        row = getNewShotRow();
 
         RAMShot *rs = new RAMShot(dbi,id,"000",0.0,true);
         //update UI
         newShot(rs,row);
         updater->getCurrentProject()->addShot(rs,row,true);
     }
-
     //select shot
     shotsAdminList->clearSelection();
     shotsAdminList->setCurrentRow(row);

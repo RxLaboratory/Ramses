@@ -449,7 +449,7 @@ void Updater::gotShots(QJsonValue newShots)
     }
 
     //get assets
-    //if (currentProject != 0) dbi->getAssets(currentProject->getId());
+    if (currentProject != 0) dbi->getAssets(currentProject->getId());
 
     emit message("Got Shots","debug");
 }
