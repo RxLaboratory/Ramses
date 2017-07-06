@@ -1,17 +1,13 @@
-• Manage on duplicate key for all inserts (sql)
-
-• Reimplement IO
-
 • PHP : addAndInsert shots and assets
 
-• better changing of order without resetshotorder
+• Reimplement IO
 
 • Admin
 	new ui
 	does not depend on project selector
 	asset management (• when removing asset, remove from local)
 
-• updater timer
+• updater timer (and update button)
 
 • add/remove/move shots in table
 
