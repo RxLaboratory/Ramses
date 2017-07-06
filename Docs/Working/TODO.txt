@@ -35,10 +35,6 @@
 
 • User management
 
-• progress bar
-
-• waiting cursor
-
 • when help has been shown, slower
 	find a way to fix this
 
