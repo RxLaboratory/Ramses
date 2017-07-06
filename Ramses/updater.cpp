@@ -465,7 +465,7 @@ void Updater::gotAssets(QJsonValue newAssets)
         // update assets in the current list
         QList<RAMAsset*> assets = stage->getAssets();
         for (int raI = 0 ; raI < assets.count() ; raI++)
-        {
+        { 
             RAMAsset *ra = assets[raI];
 
             //search for asset in new list
@@ -532,7 +532,6 @@ void Updater::gotAssets(QJsonValue newAssets)
                             ra->unAssign(shot,false);
                         }
 
-                        updated = true;
                     }
                     //add remaining new assignemnts
                     for (int j = 0 ; j < assignments.count() ; j++)
@@ -545,6 +544,10 @@ void Updater::gotAssets(QJsonValue newAssets)
                     //remove from the new list
                     assetsArray.removeAt(i);
                     i--;
+
+                    updated = true;
+
+                    break;
                 }
             }
             // if the asset is not in the new list, remove it
@@ -555,49 +558,52 @@ void Updater::gotAssets(QJsonValue newAssets)
 
                 removedItems << assetToRemove;
             }
-        }
-        //add the remaining new assets
-        for (int i = 0 ; i < assetsArray.count() ; i++)
-        {
-            //new asset
-            QJsonObject asset = assetsArray[i].toObject();
-            QString name = asset.value("name").toString();
-            QString shortName = asset.value("shortName").toString();
-            QString comment = asset.value("comment").toString();
-            int stageId = asset.value("stageId").toInt();
-            int projectId = asset.value("projectId").toInt();
-            QJsonArray assignments = asset.value("assignments").toArray();
-            int id = asset.value("id").toInt();
+        } 
+    }
 
-            //check if status is null
-            bool statusReAssigned = false;
-            int statusId = asset.value("statusId").toInt();
-            if (statusId == 0)
+    //add the remaining new assets
+    for (int i = 0 ; i < assetsArray.count() ; i++)
+    {
+        //new asset
+        QJsonObject asset = assetsArray[i].toObject();
+        QString name = asset.value("name").toString();
+        QString shortName = asset.value("shortName").toString();
+        QString comment = asset.value("comment").toString();
+        int stageId = asset.value("stageId").toInt();
+        int projectId = asset.value("projectId").toInt();
+        QJsonArray assignments = asset.value("assignments").toArray();
+        int id = asset.value("id").toInt();
+
+        //check if status is null
+        bool statusReAssigned = false;
+        int statusId = asset.value("statusId").toInt();
+        if (statusId == 0)
+        {
+            //get STB Status
+            foreach(RAMStatus *status,statuses)
             {
-                //get STB Status
-                foreach(RAMStatus *status,statuses)
+                if (status->getShortName() == "STB")
                 {
-                    if (status->getShortName() == "STB")
-                    {
-                        statusId = status->getId();
-                        statusReAssigned = true;
-                        break;
-                    }
+                    statusId = status->getId();
+                    statusReAssigned = true;
+                    break;
                 }
             }
-
-            if (stageId != stage->getId()) continue;
-
-            RAMAsset *ra = new RAMAsset(dbi,name,shortName,getStatus(statusId),stageId,false,comment,id,projectId);
-            if (statusReAssigned) ra->setStatus(getStatus(statusId),true);
-            for (int j = 0;j<assignments.count() ; j++)
-            {
-                int shotId = assignments[j].toInt();
-                ra->assign(currentProject->getShot(shotId),false);
-            }
-
-            stage->addAsset(ra);
         }
+
+        RAMStage *stage = getStage(stageId);
+
+        if (stage == 0) continue;
+
+        RAMAsset *ra = new RAMAsset(dbi,name,shortName,getStatus(statusId),stageId,false,comment,id,projectId);
+        if (statusReAssigned) ra->setStatus(getStatus(statusId),true);
+        for (int j = 0;j<assignments.count() ; j++)
+        {
+            int shotId = assignments[j].toInt();
+            ra->assign(currentProject->getShot(shotId),false);
+        }
+
+        stage->addAsset(ra);
     }
 
     emit message("Got Assets","debug");

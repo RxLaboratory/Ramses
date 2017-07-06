@@ -1,5 +1,3 @@
-• fix bug (appeared when changing status of an asset)
-
 • delete asset (in assetsdetails)
 
 • add a create assets for stage button in assetsdetails
