@@ -114,7 +114,7 @@ void Updater::setCurrentProject(RAMProject *project)
 {
     currentProject = project;
     dbi->getShots(currentProject->getId());
-    emit currentProjectChanged(currentProject);
+    emit currentProjectChanging();
 }
 
 void Updater::addStatus(RAMStatus *status)
@@ -177,6 +177,7 @@ RAMStage* Updater::getStage(int id)
 
 void Updater::gotStatuses(QJsonValue newStatuses)
 {
+    emit working(true);
     QJsonArray statusesArray = newStatuses.toArray();
 
     // update statuses in the current list
@@ -250,10 +251,14 @@ void Updater::gotStatuses(QJsonValue newStatuses)
 
     //get Stages
     dbi->getStages();
+
+    emit working(false);
+    emit message("Got statuses","debug");
 }
 
 void Updater::gotStages(QJsonValue newStages)
 {
+    emit working(true);
     QJsonArray stagesArray = newStages.toArray();
 
     // update statuses in the current list
@@ -310,10 +315,15 @@ void Updater::gotStages(QJsonValue newStages)
 
     //get projects
     dbi->getProjects();
+
+    emit working(false);
+    emit message("Got stages","debug");
 }
 
 void Updater::gotProjects(QJsonValue newProjects)
 {
+    emit working(true);
+
     QJsonArray projectsArray = newProjects.toArray();
 
     // update projects in the current list
@@ -387,10 +397,14 @@ void Updater::gotProjects(QJsonValue newProjects)
         emit projectAdded(rp);
     }
 
+    emit working(false);
+    emit message("Got Projects","debug");
 }
 
 void Updater::gotShots(QJsonValue newShots)
 {
+    emit working(true);
+
     QJsonArray shotsArray = newShots.toArray();
     QList<RAMShot*> shots = currentProject->getShots();
 
@@ -451,11 +465,14 @@ void Updater::gotShots(QJsonValue newShots)
     //get assets
     if (currentProject != 0) dbi->getAssets(currentProject->getId());
 
+    emit working(false);
     emit message("Got Shots","debug");
 }
 
 void Updater::gotAssets(QJsonValue newAssets)
 {
+    emit working(true);
+
     QJsonArray assetsArray = newAssets.toArray();
 
 
@@ -606,5 +623,10 @@ void Updater::gotAssets(QJsonValue newAssets)
         stage->addAsset(ra);
     }
 
+
+    emit working(false);
     emit message("Got Assets","debug");
+
+    emit currentProjectChanged(currentProject);
+
 }

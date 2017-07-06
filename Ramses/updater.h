@@ -37,12 +37,14 @@ public:
 signals:
     void message(QString,QString);
     void currentProjectChanged(RAMProject*);
+    void currentProjectChanging();
     void statusRemoved(RAMStatus*);
     void statusAdded(RAMStatus*);
     void stageRemoved(RAMStage*);
     void stageAdded(RAMStage*);
     void projectRemoved(RAMProject*);
     void projectAdded(RAMProject*);
+    void working(bool);
 
 public slots:
     /**

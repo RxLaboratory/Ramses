@@ -14,6 +14,7 @@ MainTable::MainTable(DBInterface *db, Updater *up, QWidget *parent) :
 void MainTable::mapEvents()
 {
     connect(updater,SIGNAL(currentProjectChanged(RAMProject*)),this,SLOT(setCurrentProject(RAMProject*)));
+    connect(updater,SIGNAL(currentProjectChanging()),this,SLOT(clean()));
 }
 
 void MainTable::clean()
@@ -25,14 +26,18 @@ void MainTable::clean()
 
 void MainTable::setCurrentProject(RAMProject *project)
 {
-    clean();
+    emit working(true);
 
 #ifdef QT_DEBUG
     qDebug() << "Set current project: " + project->getShortName() + " id: " + QString::number(project->getId());
 #endif
 
-    //set current stages
+
     QList<RAMStage*> stages = project->getStages();
+
+
+
+    //set current stages
     for (int i = 0 ; i < stages.count() ; i++)
     {
         RAMStage *rs = stages[i];
@@ -50,10 +55,12 @@ void MainTable::setCurrentProject(RAMProject *project)
     connect(project,SIGNAL(shotRemoved(RAMProject*,RAMShot*)),this,SLOT(removeShot(RAMProject*,RAMShot*)));
     connect(project,SIGNAL(stageAdded(RAMProject*,RAMStage*)),this,SLOT(addStage(RAMProject*,RAMStage*)));
     connect(project,SIGNAL(stageRemoved(RAMProject*,RAMStage*)),this,SLOT(removeStage(RAMProject*,RAMStage*)));
+
+    emit working(false);
 }
 
 void MainTable::addShot(RAMProject *project,RAMShot *shot, int row)
-{
+{  
     if (project != updater->getCurrentProject()) return;
 
     //set shots
@@ -71,6 +78,7 @@ void MainTable::addShot(RAMProject *project,RAMShot *shot, int row)
         //add widget to cell
         mainTable->setCellWidget(row,i+1,assetWidget);
     }
+
 }
 
 void MainTable::removeShot(RAMProject *project,RAMShot *shot)

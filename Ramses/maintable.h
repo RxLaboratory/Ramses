@@ -13,10 +13,15 @@ class MainTable : public QWidget, private Ui::MainTable
 
 public:
     explicit MainTable(DBInterface *db,Updater *up, QWidget *parent = 0);
-    void clean();
 
 public slots:
     void setCurrentProject(RAMProject*);
+    void clean();
+
+signals:
+    void working(bool);
+    void progressMax(int);
+    void progress(int);
 
 private slots:
     void removeShot(RAMProject *project, RAMShot *shot);

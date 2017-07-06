@@ -78,13 +78,6 @@ private:
     void showPage(int page = 0);
 
     /**
-     * @brief Sets/unsets the window in "waiting" mode
-     * Disables some widgets to prevent user interaction
-     * @param w true to enable waiting mode, false to disable
-     */
-    void setWaiting(bool w = true);
-
-    /**
      * @brief The object which handles data updates from remote server
      */
     Updater *updater;
@@ -111,7 +104,6 @@ private:
     QString resourcesFolder;
     //statusbar
     QProgressBar *mainStatusProgress;
-    QPushButton *mainStatusStopButton;
     //selectors
     ProjectSelectorWidget *projectSelector;
     //window buttons
@@ -194,6 +186,12 @@ private slots:
     //                      GENERAL
     // ==================================================
 
+    /**
+     * @brief Sets/unsets the window in "waiting" mode
+     * Disables some widgets to prevent user interaction
+     * @param w true to enable waiting mode, false to disable
+     */
+    void setWaiting(bool w = true);
     /**
      * @brief slot which calls setWaiting(false)
      * Disables the waiting mode

@@ -67,7 +67,6 @@ MainWindow::MainWindow(QWidget *parent) :
     mainPageLayout->addWidget(mainTable);
 
     //statusbar
-    mainStatusStopButton = new QPushButton("X",this);
 
     mainStatusProgress = new QProgressBar(this);
     mainStatusProgress->setTextVisible(false);
@@ -76,10 +75,8 @@ MainWindow::MainWindow(QWidget *parent) :
     mainStatusProgress->setMaximumWidth(100);
 
     mainStatusBar->addPermanentWidget(mainStatusProgress);
-    mainStatusBar->addPermanentWidget(mainStatusStopButton);
 
     mainStatusProgress->hide();
-    mainStatusStopButton->hide();
 
     //drag window using the toolbar
     toolBarClicked = false;
@@ -157,13 +154,15 @@ void MainWindow::mapEvents()
     connect(helpDialog,SIGNAL(dock(bool)),this,SLOT(dockHelpDialog(bool)));
     connect(helpDialog,SIGNAL(visibilityChanged(bool)),actionHelp,SLOT(setChecked(bool)));
 
+    // mainTable
+    connect(mainTable,SIGNAL(working(bool)),this,SLOT(setWaiting(bool)));
+    connect(mainTable,&MainTable::progressMax,mainStatusProgress,&QProgressBar::setMaximum);
+    connect(mainTable,&MainTable::progress,mainStatusProgress,&QProgressBar::setValue);
+
     // window buttons
     connect(maximizeButton,SIGNAL(clicked()),this,SLOT(maximizeButton_clicked()));
     connect(minimizeButton,SIGNAL(clicked()),this,SLOT(showMinimized()));
     connect(quitButton,SIGNAL(clicked()),qApp,SLOT(quit()));
-
-    // status bar
-    connect(mainStatusStopButton, SIGNAL(clicked()), this, SLOT(stopWaiting()));
 
     // DBI GENERAL
     connect(dbi,SIGNAL(connected(bool, QString)),this,SLOT(connected(bool, QString)));
@@ -173,6 +172,7 @@ void MainWindow::mapEvents()
 
     // UPDATER
     connect(updater,SIGNAL(message(QString,QString)),this,SLOT(showMessage(QString,QString)));
+    connect(updater,SIGNAL(working(bool)),this,SLOT(setWaiting(bool)));
 }
 
 void MainWindow::updateCSS(QString cssPath)
@@ -292,14 +292,18 @@ void MainWindow::setWaiting(bool w)
     {
         mainStack->setEnabled(false);
         mainStatusProgress->show();
-        mainStatusStopButton->show();
+        setCursor(Qt::WaitCursor);
+        repaint();
     }
     else
     {
         mainStack->setEnabled(true);
         mainStatusProgress->hide();
-        mainStatusStopButton->hide();
+        setCursor(Qt::ArrowCursor);
+        mainStatusProgress->setValue(0);
+        mainStatusProgress->setMaximum(0);
     }
+
 }
 
 void MainWindow::quit()
