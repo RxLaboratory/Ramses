@@ -7,9 +7,11 @@
 	does not depend on project selector
 	asset management (• when removing asset, remove from local)
 
-• updater timer (and update button)
+• better changing of order without resetshotorder
 
 • add/remove/move shots in table
+
+• updater timer (and update button)
 
 • Settings
 	appearance (see in dutranslator)
