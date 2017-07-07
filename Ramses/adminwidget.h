@@ -7,6 +7,10 @@
 #include "addshotsdialog.h"
 #include <QColorDialog>
 #include <QErrorMessage>
+#include <QFileDialog>
+#include <QXmlStreamReader>
+#include "xmlreader.h"
+#include "importerdialog.h"
 
 class AdminWidget : public QWidget, private Ui::AdminWidget
 {
@@ -25,6 +29,7 @@ signals:
     void stageCreated(RAMStage*);
     void projectCreated(RAMProject*);
     void shotCreated(RAMShot*,int row);
+    void message(QString,QString);
 
 private slots:
     void on_adminTab_currentChanged(int index);
@@ -134,6 +139,17 @@ private:
      * @brief Resets the admin panel for the shots
      */
     void shotsAdminReset();
+    // IO
+    /**
+     * @brief Imports an EDL file
+     * @param f The path to the file
+     */
+    void importEDL(QString f);
+    /**
+     * @brief Imports a Final Cut XML file
+     * @param f The path to the file
+     */
+    void importXML(QString f);
 };
 
 #endif // ADMINWIDGET_H

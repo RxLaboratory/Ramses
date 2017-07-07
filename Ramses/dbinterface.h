@@ -48,6 +48,7 @@ public:
     void addShots(QList<QStringList> shots);
     void insertShots(QList<int> shots, int projectId, int order);
     void insertShot(int id, int projectId, int order);
+    void addInsertShots(QList<QStringList> shots, int projectId, int order);
     void getShots(int projectId);
     void updateShot(int id, QString name, double duration);
     void removeShot(int id);

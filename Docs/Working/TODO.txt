@@ -1,6 +1,8 @@
-• PHP : addAndInsert shots and assets
+• IO dialog (prefix, suffix)
 
-• Reimplement IO
+• checkbox style
+
+• Batch rename shots
 
 • Admin
 	new ui
@@ -59,3 +61,5 @@
 • fix warnings at debug
 
 • statuses progress %
+
+• PHP : addAndInsert shots and assets

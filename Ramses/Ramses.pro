@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     shotwidget.cpp \
     shotassetswidget.cpp \
     maintable.cpp \
-    updater.cpp
+    updater.cpp \
+    importerdialog.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -61,7 +62,8 @@ HEADERS  += mainwindow.h \
     shotwidget.h \
     shotassetswidget.h \
     maintable.h \
-    updater.h
+    updater.h \
+    importerdialog.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
@@ -74,7 +76,8 @@ FORMS    += mainwindow.ui \
     shotwidget.ui \
     shotassetswidget.ui \
     assetstatusbox.ui \
-    maintable.ui
+    maintable.ui \
+    importerdialog.ui
 
 DISTFILES +=
 

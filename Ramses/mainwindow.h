@@ -7,23 +7,16 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QComboBox>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
 #include <QCryptographicHash>
 #include <QColorDialog>
 #include <QProgressBar>
-#include <QJsonArray>
 #include <QDesktopWidget>
-#include <QFileDialog>
-#include <QXmlStreamReader>
 #include "idletimer.h"
 #include "dbinterface.h"
 #include "projectselectorwidget.h"
 #include "addshotsdialog.h"
 #include "shotassetswidget.h"
 #include "helpdialog.h"
-#include "xmlreader.h"
 #include "adminwidget.h"
 #include "maintable.h"
 #include "updater.h"
@@ -115,11 +108,6 @@ private:
     bool helpDialogDocked;
     //desktop
     QDesktopWidget *desktop;
-
-    // IO
-    // TODO
-    void importEDL(QString f);
-    void importXML(QString f);
 
 signals:
     void assetsListUpdated(QList<RAMAsset *> a);

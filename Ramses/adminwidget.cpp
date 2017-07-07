@@ -400,6 +400,8 @@ void AdminWidget::on_removeProjectButton_clicked()
 
 void AdminWidget::on_projectAddStageButton_clicked()
 {
+    if(projectStagesComboBox->currentIndex() < 0) return;
+
     int sId = projectStagesComboBox->currentData().toInt();
     int pId = projectAdminList->currentItem()->data(Qt::UserRole).toInt();
     RAMProject *rp = updater->getProject(pId);
@@ -579,21 +581,31 @@ void AdminWidget::on_batchAddShotButton_clicked()
 
 void AdminWidget::on_importShotsButton_clicked()
 {
-    /*this->setEnabled(false);
-    QString file = QFileDialog::getOpenFileName(this,"Please choose the editing file you want to import.","","All supported edits (*.edl *.xml);;EDL (*.edl);;Final Cut / XML (*.xml);;All Files (*.*)");
-    if (file == "")
-    {
-        this->setEnabled(true);
-        return;
-    }
+    this->setEnabled(false);
 
-    if (file.toLower().endsWith(".edl")) importEDL(file);
-    else if (file.toLower().endsWith(".xml")) importXML(file);
-    else
+    ImporterDialog imp;
+    if (imp.exec())
     {
-        //TODO open file to try to find what it is
+        QString file = imp.getPath();
+        QString prefix = imp.getPrefix();
+        QString suffix = imp.getSuffix();
+        bool audio = imp.getAudio();
+        bool video = imp.getVideo();
+        if (file == "" || !QFile(file).exists())
+        {
+            emit message("File not found.","general");
+            this->setEnabled(true);
+            return;
+        }
+
+        if (file.toLower().endsWith(".edl")) importEDL(file);
+        else if (file.toLower().endsWith(".xml")) importXML(file);
+        else
+        {
+            //TODO open file to try to find what it is
+        }
     }
-    this->setEnabled(true);*/
+    this->setEnabled(true);
 }
 
 void AdminWidget::on_shotsAdminList_itemClicked(QListWidgetItem *item)
@@ -730,4 +742,144 @@ void AdminWidget::shotsAdminReset()
     shotNameEdit->setText("");
     shotDurationSpinBox->setValue(0.0);
     shotConfigWidget->setEnabled(false);
+}
+
+void AdminWidget::importEDL(QString f)
+{
+    emit message("Importing EDL " + f + " (not yet implemented)","warning");
+}
+
+void AdminWidget::importXML(QString f)
+{
+    emit message("Importing XML " + f,"general");
+
+    //open file and load data
+    QFile *xmlFile = new QFile(f);
+    if (!xmlFile->open(QFile::ReadOnly | QFile::Text))
+    {
+        emit message("XML File could not be opened.","warning");
+        return;
+    }
+    QByteArray xmlData = xmlFile->readAll();
+    xmlFile->close();
+    delete xmlFile;
+
+    //create reader
+    XMLReader xml(xmlData);
+
+    //parse file to get needed informations
+    QList<QStringList> shotsFound;
+    QString timebase = "24";
+    while(!xml.atEnd())
+    {
+        if (xml.readNext() == QXmlStreamReader::StartElement)
+        {
+            //find sequence
+            if (xml.name().toString() == "sequence")
+            {
+                //find rate and media
+                while(xml.readNextStartElement())
+                {
+                    if (xml.name().toString() == "rate")
+                    {
+                        //find timebase
+                        while (xml.readNextStartElement())
+                        {
+                            if (xml.name() == "timebase") timebase = xml.readElementText();
+                            else xml.skipCurrentElement();
+                        }
+                    }
+                    else if (xml.name().toString() == "media")
+                    {
+                        emit message("Media found","debug");
+                        //find video and audio
+                        while (xml.readNextStartElement())
+                        {
+                            if (xml.name().toString() == "video" || xml.name() == "audio")
+                            {
+                                if (xml.name().toString() == "video") emit message("Video found","debug");
+                                if (xml.name().toString() == "video") emit message("Audio found","debug");
+                                //find track
+                                while (xml.readNextStartElement())
+                                {
+                                    if (xml.name() == "track")
+                                    {
+                                        emit message("Track found","debug");
+                                        //find clipitem
+                                        while (xml.readNextStartElement())
+                                        {
+                                            if (xml.name() == "clipitem")
+                                            {
+                                                //find name, start, end
+                                                QString name = "";
+                                                QString start = "0";
+                                                QString end = "0";
+                                                while (xml.readNextStartElement())
+                                                {
+                                                    if (xml.name().toString() == "name")
+                                                        name = xml.readElementText();
+                                                    else if (xml.name().toString() == "start")
+                                                        start = xml.readElementText();
+                                                    else if (xml.name().toString() == "end")
+                                                        end = xml.readElementText();
+                                                    else xml.skipCurrentElement();
+                                                }
+                                                QStringList details;
+                                                details << name << start << end;
+                                                shotsFound << details;
+                                            }
+                                            else xml.skipCurrentElement();//<track>
+                                        }
+                                    }
+                                    else xml.skipCurrentElement();//<video> OR <audio>
+                                }
+                            }
+                            else xml.skipCurrentElement();//<media>
+                        }
+                    }
+                    else xml.skipCurrentElement(); //<sequence>
+                }
+            }
+        }
+    }
+
+    if (xml.hasError())
+    {
+          emit message("XML error","warning");
+          emit message(xml.errorString(),"warning");
+    }
+
+    //Add shots
+
+    //get order (if a row is selected, or else insert after the last row)
+    int order = getNewShotRow();
+    int newRow = order;
+
+    shotsAdminReset();
+
+    //getProject
+    int projectId = updater->getCurrentProject()->getId();
+
+    QList<QStringList> shotsReady;
+
+    foreach(QStringList s,shotsFound)
+    {
+        int id = generateShotId();
+
+        //build lists for dbi
+        float duration = (s[2].toFloat() - s[1].toFloat()) / timebase.toFloat();
+        QString name = s[0];
+        QStringList currentShot;
+        currentShot << name << QString::number(duration) << QString::number(id);
+        shotsReady << currentShot;
+
+        //create shot
+        RAMShot *rs = new RAMShot(dbi,id,name,duration,false);
+        //update UI
+        newShot(rs,newRow);
+        updater->getCurrentProject()->addShot(rs,newRow);
+        newRow++;
+    }
+
+    dbi->addInsertShots(shotsReady,projectId,order);
 }

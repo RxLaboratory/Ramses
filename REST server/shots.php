@@ -83,7 +83,7 @@
 
 			try
 			{
-				//create shots
+				//update order
 				$repOrder = $bdd->prepare($qOrder);
 				$repOrder->execute(array('shotsCount' => count($shots), 'shotOrder' => $shotOrder, 'projectId' => $projectId ));
 				$repOrder->closeCursor();
@@ -114,19 +114,12 @@
 				$q = $q . implode(",",$placeHolders);
 				$q = $q . " ON DUPLICATE KEY UPDATE shotOrder = VALUES(shotOrder);";
 
-				try
-				{
-					$rep = $bdd->prepare($q);
-					$rep->execute($values);
-					$rep->closeCursor();
-					$reply["message"] = "Shots assigned.";
-					$reply["success"] = true;
-				}
-				catch (Exception $e)
-				{
-					$reply["message"] = "Server issue: SQL Query failed assigning shots. |\n" . $q . " |\nProject: " . $projectId . " |\nShot: " . $shotId;
-					$reply["success"] = false;
-				}
+				$rep = $bdd->prepare($q);
+				$rep->execute($values);
+				$rep->closeCursor();
+
+				$reply["message"] = "Shots assigned.";
+				$reply["success"] = true;
 			}
 		}
 		else
@@ -135,6 +128,79 @@
 			$reply["success"] = false;
 		}
 
+	}
+
+	if ($reply["type"] == "addInsertShots")
+	{
+		$reply["accepted"] = true;
+
+		$shots = array();
+		$shotOrder = 0;
+		$projectId = "";
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			if (isset($data->{'shots'})) $shots = $data->{'shots'};
+			if (isset($data->{'projectId'})) $projectId = $data->{'projectId'};
+			if (isset($data->{'shotOrder'})) $shotOrder = (int)$data->{'shotOrder'};
+		}
+
+		if (count($shots) > 0 AND strlen($projectId) > 0)
+		{
+			//update order of shots after the ones we insert
+			$qOrder = "UPDATE shots JOIN projectshot ON projectshot.shotId = shots.id
+			SET projectshot.shotOrder = projectshot.shotOrder + :shotsCount
+			WHERE projectshot.shotOrder >= :shotOrder AND projectshot.projectId = :projectId ;";
+
+			//create shots
+			$repOrder = $bdd->prepare($qOrder);
+			$repOrder->execute(array('shotsCount' => count($shots), 'shotOrder' => $shotOrder, 'projectId' => $projectId ));
+			$repOrder->closeCursor();
+
+			$qShots = "INSERT INTO shots (id,name,duration) VALUES ";
+			$qInsert = "INSERT INTO projectshot (shotId,projectId,shotOrder) VALUES ";
+			$placeHolder = "(?,?,?)";
+
+			$placeHolders = array();
+			$values = array();
+
+			//addShots values
+			foreach($shots as $shot)
+			{
+				$placeHolders[] = $placeHolder;
+				$values[] = $shot->{'id'};
+				$values[] = $shot->{'name'};
+				$values[] = $shot->{'duration'};
+			}
+			//insert values
+			foreach($shots as $shot)
+			{
+				$values[] = $shot->{'id'};
+				$values[] = $projectId;
+				$values[] = $shotOrder;
+				$shotOrder = $shotOrder + 1;
+			}
+
+			$qShots = $qShots . implode(",",$placeHolders);
+			$qShots = $qShots . " ON DUPLICATE KEY UPDATE duration = VALUES(duration);\n";
+			$qInsert = $qInsert . implode(",",$placeHolders);
+			$qInsert = $qInsert . " ON DUPLICATE KEY UPDATE shotOrder = VALUES(shotOrder);";
+			$q = $qShots . $qInsert;
+
+			$rep = $bdd->prepare($q);
+			$rep->execute($values);
+			$rep->closeCursor();
+
+			$reply["message"] = "Shots added and inserted.";
+			$reply["success"] = true;
+
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values.";
+			$reply["success"] = false;
+		}
 	}
 
 	// ========= GET SHOTS ==========
