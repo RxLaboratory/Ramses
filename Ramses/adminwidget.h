@@ -11,6 +11,7 @@
 #include <QXmlStreamReader>
 #include "xmlreader.h"
 #include "importerdialog.h"
+#include "renamedialog.h"
 
 class AdminWidget : public QWidget, private Ui::AdminWidget
 {
@@ -52,6 +53,7 @@ private slots:
     void on_removeProjectButton_clicked();
     void on_projectAddStageButton_clicked();
     void on_removeStageProjectButton_clicked();
+    void on_createAssetsButton_clicked();
     //shots
     void on_addShotButton_clicked();
     void on_batchAddShotButton_clicked();
@@ -61,10 +63,8 @@ private slots:
     void on_removeShotButton_clicked();
     void on_moveShotUpButton_clicked();
     void on_moveShotDownButton_clicked();
+    void on_renameShotsButton_clicked();
 
-
-
-    void on_createAssetsButton_clicked();
 
 private:
     // ----------------- GENERAL ------------------------

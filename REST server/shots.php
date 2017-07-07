@@ -295,6 +295,51 @@
 		}
 	}
 
+	if ($reply["type"] == "updateShots")
+	{
+		$reply["accepted"] = true;
+
+		$shots = array();
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			if (isset($data->{'shots'})) $shots = $data->{'shots'};
+		}
+
+		if (count($shots) > 0)
+		{
+			//construct add shots query
+			$qShots = "INSERT INTO shots (id,name,duration) VALUES ";
+			$placeHolder = "(?,?,?)";
+
+			$placeHolders = array();
+			$values = array();
+			foreach($shots as $shot)
+			{
+				$placeHolders[] = $placeHolder;
+				$values[] = $shot->{'id'};
+				$values[] = $shot->{'name'};
+				$values[] = $shot->{'duration'};
+			}
+
+			$qShots = $qShots . implode(",",$placeHolders);
+			$qShots = $qShots . " ON DUPLICATE KEY UPDATE duration = VALUES(duration), name = VALUES(name);\n";
+
+			//update shots
+			$rep = $bdd->prepare($qShots);
+			$rep->execute($values);
+			$rep->closeCursor();
+			$reply["message"] = "Shots inserted.";
+			$reply["success"] = true;
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+	}
+
 	// ========= REMOVE SHOT ==========
 	if ($reply["type"] == "removeShots")
 	{

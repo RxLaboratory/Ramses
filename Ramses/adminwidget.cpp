@@ -651,6 +651,7 @@ void AdminWidget::on_removeShotButton_clicked()
         int id = item->data(Qt::UserRole).toInt();
         ids << id;
         RAMShot *rs = updater->getCurrentProject()->getShot(id);
+        if (rs == 0) continue;
         updater->getCurrentProject()->removeShot(rs);
         rs->remove(false);
         delete item;
@@ -659,6 +660,26 @@ void AdminWidget::on_removeShotButton_clicked()
     dbi->removeShots(ids,updater->getCurrentProject()->getId());
 
     shotsAdminReset();
+}
+
+void AdminWidget::on_renameShotsButton_clicked()
+{
+    if (shotsAdminList->currentRow() < 0) return;
+
+    this->setEnabled(false);
+
+    QList<RAMShot*> shots;
+    foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
+    {
+        int id = item->data(Qt::UserRole).toInt();
+        RAMShot *rs = updater->getCurrentProject()->getShot(id);
+        if (rs == 0) continue;
+        shots << rs;
+    }
+    RenameDialog rd(dbi,shots);
+    rd.exec();
+
+    this->setEnabled(true);
 }
 
 void AdminWidget::on_moveShotUpButton_clicked()
@@ -927,3 +948,4 @@ void AdminWidget::importXML(QString f,QString prefix,QString suffix,bool video,b
 
     dbi->addInsertShots(shotsReady,projectId,order);
 }
+
