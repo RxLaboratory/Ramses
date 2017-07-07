@@ -124,7 +124,7 @@
 				}
 				catch (Exception $e)
 				{
-					$reply["message"] = "Server issue: SQL Query failed assigning shots. |\n" . $q . " |\nAsset: " . $assetId . " |\nShot: " . $shotId;
+					$reply["message"] = "Server issue: SQL Query failed assigning shots. |\n" . $q . " |\nProject: " . $projectId . " |\nShot: " . $shotId;
 					$reply["success"] = false;
 				}
 			}
