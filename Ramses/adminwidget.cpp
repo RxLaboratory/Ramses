@@ -601,7 +601,7 @@ void AdminWidget::on_importShotsButton_clicked()
         }
 
         if (file.toLower().endsWith(".edl")) importEDL(file);
-        else if (file.toLower().endsWith(".xml")) importXML(file);
+        else if (file.toLower().endsWith(".xml")) importXML(file,prefix,suffix,video,audio);
         else
         {
             //TODO open file to try to find what it is
@@ -751,7 +751,7 @@ void AdminWidget::importEDL(QString f)
     emit message("Importing EDL " + f + " (not yet implemented)","warning");
 }
 
-void AdminWidget::importXML(QString f)
+void AdminWidget::importXML(QString f,QString prefix,QString suffix,bool video,bool audio)
 {
     emit message("Importing XML " + f,"general");
 
@@ -797,9 +797,46 @@ void AdminWidget::importXML(QString f)
                         //find video and audio
                         while (xml.readNextStartElement())
                         {
-                            if (xml.name().toString() == "video" || xml.name() == "audio")
+                            if (xml.name().toString() == "video" && video)
                             {
                                 if (xml.name().toString() == "video") emit message("Video found","debug");
+                                //find track
+                                while (xml.readNextStartElement())
+                                {
+                                    if (xml.name() == "track")
+                                    {
+                                        emit message("Track found","debug");
+                                        //find clipitem
+                                        while (xml.readNextStartElement())
+                                        {
+                                            if (xml.name() == "clipitem")
+                                            {
+                                                //find name, start, end
+                                                QString name = "";
+                                                QString start = "0";
+                                                QString end = "0";
+                                                while (xml.readNextStartElement())
+                                                {
+                                                    if (xml.name().toString() == "name")
+                                                        name = xml.readElementText();
+                                                    else if (xml.name().toString() == "start")
+                                                        start = xml.readElementText();
+                                                    else if (xml.name().toString() == "end")
+                                                        end = xml.readElementText();
+                                                    else xml.skipCurrentElement();
+                                                }
+                                                QStringList details;
+                                                details << name << start << end;
+                                                shotsFound << details;
+                                            }
+                                            else xml.skipCurrentElement();//<track>
+                                        }
+                                    }
+                                    else xml.skipCurrentElement();//<video>
+                                }
+                            }
+                            else if (xml.name().toString() == "audio" && audio)
+                            {
                                 if (xml.name().toString() == "video") emit message("Audio found","debug");
                                 //find track
                                 while (xml.readNextStartElement())
@@ -833,7 +870,7 @@ void AdminWidget::importXML(QString f)
                                             else xml.skipCurrentElement();//<track>
                                         }
                                     }
-                                    else xml.skipCurrentElement();//<video> OR <audio>
+                                    else xml.skipCurrentElement();//<video> or <audio>
                                 }
                             }
                             else xml.skipCurrentElement();//<media>
@@ -870,7 +907,7 @@ void AdminWidget::importXML(QString f)
 
         //build lists for dbi
         float duration = (s[2].toFloat() - s[1].toFloat()) / timebase.toFloat();
-        QString name = s[0];
+        QString name = prefix + s[0] + suffix;
         QStringList currentShot;
         currentShot << name << QString::number(duration) << QString::number(id);
         shotsReady << currentShot;

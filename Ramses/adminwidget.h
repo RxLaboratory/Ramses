@@ -150,7 +150,7 @@ private:
      * @brief Imports a Final Cut XML file
      * @param f The path to the file
      */
-    void importXML(QString f);
+    void importXML(QString f, QString prefix = "", QString suffix = "", bool video = true, bool audio = false);
 };
 
 #endif // ADMINWIDGET_H
