@@ -41,6 +41,7 @@ QList<RAMShot *> RAMAsset::getAssignments()
 
 void RAMAsset::assign(RAMShot *shot, bool updateDb)
 {
+    if (assignments.indexOf(shot) >= 0) return;
     assignments << shot;
     connect(shot,SIGNAL(shotRemoved(RAMShot*)),this,SLOT(shotDeleted(RAMShot*)));
     if (updateDb)
