@@ -5,6 +5,7 @@ Updater::Updater(DBInterface *db, QObject *parent) : QObject(parent)
     dbi = db;
 
     mapEvents();
+    currentProject = 0;
 }
 
 void Updater::mapEvents()
