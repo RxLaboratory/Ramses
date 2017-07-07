@@ -44,10 +44,14 @@ void AdminWidget::init()
     }
 
     //shots
-    for(int i = 0 ; i < updater->getCurrentProject()->getShots().count() ; i++)
+    if (updater->getCurrentProject() != 0)
     {
-        RAMShot *shot = updater->getCurrentProject()->getShots()[i];
-        newShot(shot,i);
+        for(int i = 0 ; i < updater->getCurrentProject()->getShots().count() ; i++)
+        {
+            RAMShot *shot = updater->getCurrentProject()->getShots()[i];
+            newShot(shot,i);
+        }
+
     }
 }
 
@@ -640,6 +644,7 @@ void AdminWidget::on_shotApplyButton_clicked()
 
 void AdminWidget::on_removeShotButton_clicked()
 {
+    if (shotsAdminList->currentRow() < 0) return;
     QList<int> ids;
     foreach(QListWidgetItem *item,shotsAdminList->selectedItems())
     {
