@@ -60,6 +60,7 @@ public:
     void updateAsset(int id,QString name,QString shortName,QString comment);
     void assignAsset(int assetId, int shotId);
     void assignAssets(QList<QStringList> assignments);
+    QList<int> addAssignAssets(QList<QStringList> assets, int stageId, int projectId);
     void unAssignAsset(int assetId, int shotId);
     void getAssets(int projectId);
     void setAssetStatus(int statusId, int assetId);

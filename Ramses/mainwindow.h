@@ -88,10 +88,15 @@ private:
     //used to drag window grabing the toolbar
     QPoint dragPosition;
     bool toolBarClicked;
+
     //settings
     QSqlDatabase settingsDB;
+
     //database interface
     DBInterface *dbi;
+
+    //pageShown
+    int currentPage;
 
     //resources
     QString resourcesFolder;
@@ -180,6 +185,7 @@ private slots:
      * @param w true to enable waiting mode, false to disable
      */
     void setWaiting(bool w = true);
+    void showProgress();
     /**
      * @brief slot which calls setWaiting(false)
      * Disables the waiting mode

@@ -205,6 +205,73 @@
 		}
 	}
 
+	if ($reply["type"] == "addAssignAssets")
+	{
+		$reply["accepted"] = true;
+
+		$assets = array();
+		$projectId = "";
+		$stageId = "";
+
+		$data = json_decode(file_get_contents('php://input'));
+		if ($data)
+		{
+			if (isset($data->{'projectId'})) $assets = $data->{'assets'};
+			if (isset($data->{'assets'})) $projectId = $data->{'projectId'};
+			if (isset($data->{'stageId'})) $stageId = $data->{'stageId'};
+		}
+
+		if (strlen($projectId) > 0 AND strlen($stageId) > 0 AND count($assets) > 0)
+		{
+			$qAdd = "INSERT INTO assets (name,shortName,statusId,comment,id,stageId,projectId) VALUES ";
+			$qAssign = "INSERT INTO assetstatuses (shotId,assetId) VALUES ";
+			$placeHolderAdd = "(?,?,?,?,?,?,?)";
+			$placeHolderAssign = "(?,?)";
+
+			$placeHoldersAdd = array();
+			$placeHoldersAssign = array();
+			$values = array();
+
+			//add values
+			foreach($assets as $asset)
+			{
+				$placeHoldersAdd[] = $placeHolderAdd;
+				$values[] = $asset->{'name'};
+				$values[] = $asset->{'shortName'};
+				$values[] = $asset->{'statusId'};
+				$values[] = $asset->{'comment'};
+				$values[] = $asset->{'id'};
+				$values[] = $stageId;
+				$values[] = $projectId;
+			}
+			//assign values
+			foreach($assets as $asset)
+			{
+				$placeHoldersAssign[] = $placeHolderAssign;
+				$values[] = $asset->{'shotId'};
+				$values[] = $asset->{'id'};
+			}
+
+			$qAdd = $qAdd . implode(",",$placeHoldersAdd);
+			$qAdd = $qAdd . " ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);\n";
+			$qAssign = $qAssign . implode(",",$placeHoldersAssign);
+			$qAssign = $qAssign . " ON DUPLICATE KEY UPDATE shotId = VALUES(shotId);";
+			$q = $qAdd . $qAssign;
+
+			$rep = $bdd->prepare($q);
+			$rep->execute($values);
+			$rep->closeCursor();
+			$reply["message"] = "Assets added and assigned.";
+			$reply["success"] = true;
+		}
+		else
+		{
+			$reply["message"] = "Invalid request, missing values";
+			$reply["success"] = false;
+		}
+
+	}
+
 	if ($reply["type"] == "unAssignAsset")
 	{
 		$reply["accepted"] = true;

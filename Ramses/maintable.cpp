@@ -27,20 +27,24 @@ void MainTable::clean()
 void MainTable::setCurrentProject(RAMProject *project)
 {
     emit working(true);
-    emit message("Showing project " + project->getShortName(),"general");
+    emit showProgress();
+    emit message("Building project " + project->getName(),"general");
 
 #ifdef QT_DEBUG
     qDebug() << "Set current project: " + project->getShortName() + " id: " + QString::number(project->getId());
+    QDateTime start = QDateTime::currentDateTime();
 #endif
 
 
     QList<RAMStage*> stages = project->getStages();
 
-
+    int max = stages.count() + project->getShots().count();
+    emit progressMax(max);
 
     //set current stages
     for (int i = 0 ; i < stages.count() ; i++)
     {
+        emit progress(i);
         RAMStage *rs = stages[i];
         addStage(project,rs);
     }
@@ -48,6 +52,7 @@ void MainTable::setCurrentProject(RAMProject *project)
     //set shots
     for (int i = 0; i < project->getShots().count() ; i++)
     {
+        emit progress(i+stages.count());
         RAMShot *shot = project->getShots()[i];
         addShot(project,shot,i);
     }
@@ -57,7 +62,15 @@ void MainTable::setCurrentProject(RAMProject *project)
     connect(project,SIGNAL(stageAdded(RAMProject*,RAMStage*)),this,SLOT(addStage(RAMProject*,RAMStage*)));
     connect(project,SIGNAL(stageRemoved(RAMProject*,RAMStage*)),this,SLOT(removeStage(RAMProject*,RAMStage*)));
 
+    emit progressMax(0);
     emit working(false);
+
+#ifdef QT_DEBUG
+    qDebug() << "Set current project:";
+    QDateTime end = QDateTime::currentDateTime();
+    qint64 elapsed = start.msecsTo(end);
+    qDebug() << "Took " + QString::number(elapsed/1000) + "s.";
+#endif
 }
 
 void MainTable::addShot(RAMProject *project,RAMShot *shot, int row)
@@ -65,7 +78,7 @@ void MainTable::addShot(RAMProject *project,RAMShot *shot, int row)
     if (project != updater->getCurrentProject()) return;
 
     //set shots
-    ShotWidget *widget= new ShotWidget(shot);
+    ShotWidget *widget= new ShotWidget(shot,mainTable);
     mainTable->insertRow(row);
     mainTable->setCellWidget(row,0,widget);
 
@@ -74,7 +87,7 @@ void MainTable::addShot(RAMProject *project,RAMShot *shot, int row)
     QList<RAMStage*> stages = updater->getCurrentProject()->getStages();
     for (int i = 0 ; i < stages.count() ; i++)
     {
-        ShotAssetsWidget *assetWidget = new ShotAssetsWidget(shot,stages[i],dbi,updater);
+        ShotAssetsWidget *assetWidget = new ShotAssetsWidget(shot,stages[i],dbi,updater,mainTable);
         connect(assetWidget,SIGNAL(editing(bool)),this,SLOT(setDisabled(bool)));
         //add widget to cell
         mainTable->setCellWidget(row,i+1,assetWidget);

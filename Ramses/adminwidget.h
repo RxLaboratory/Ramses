@@ -30,6 +30,7 @@ signals:
     void projectCreated(RAMProject*);
     void shotCreated(RAMShot*,int row);
     void message(QString,QString);
+    void working(bool);
 
 private slots:
     void on_adminTab_currentChanged(int index);

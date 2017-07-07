@@ -156,9 +156,16 @@ void MainWindow::mapEvents()
 
     // mainTable
     connect(mainTable,SIGNAL(working(bool)),this,SLOT(setWaiting(bool)));
+    connect(mainTable,SIGNAL(showProgress()),this,SLOT(showProgress()));
     connect(mainTable,&MainTable::progressMax,mainStatusProgress,&QProgressBar::setMaximum);
     connect(mainTable,&MainTable::progress,mainStatusProgress,&QProgressBar::setValue);
+    connect(mainTable,&MainTable::progressMax,waitingProgressBar,&QProgressBar::setMaximum);
+    connect(mainTable,&MainTable::progress,waitingProgressBar,&QProgressBar::setValue);
     connect(mainTable,SIGNAL(message(QString,QString)),this,SLOT(showMessage(QString,QString)));
+
+    //admin
+    connect(adminWidget,SIGNAL(message(QString,QString)),this,SLOT(showMessage(QString,QString)));
+    connect(adminWidget,SIGNAL(working(bool)),this,SLOT(setWaiting(bool)));
 
     // window buttons
     connect(maximizeButton,SIGNAL(clicked()),this,SLOT(maximizeButton_clicked()));
@@ -255,6 +262,8 @@ void MainWindow::showPage(int page)
 {
     mainStack->setCurrentIndex(page);
 
+    if (page != 6) currentPage = page;
+
     actionMain->setChecked(false);
     actionStage->setChecked(false);
     actionStats->setChecked(false);
@@ -283,6 +292,8 @@ void MainWindow::showPage(int page)
         actionSettings->setChecked(true);
         helpDialog->showHelp(1);
         break;
+    case 6:
+        break;
     default:
         break;
     }
@@ -299,6 +310,7 @@ void MainWindow::setWaiting(bool w)
     }
     else
     {
+        showPage(currentPage);
         mainStack->setEnabled(true);
         mainStatusProgress->hide();
         setCursor(Qt::ArrowCursor);
@@ -306,6 +318,11 @@ void MainWindow::setWaiting(bool w)
         mainStatusProgress->setMaximum(0);
     }
 
+}
+
+void MainWindow::showProgress()
+{
+    showPage(6);
 }
 
 void MainWindow::quit()
@@ -327,6 +344,7 @@ void MainWindow::showMessage(QString m,QString type)
     {
         mainStatusBar->showMessage(m,5000);
         helpDialog->showDebug(m);
+        waitingLabel->setText(m);
     }
     else if (type == "remote")
     {
@@ -420,7 +438,7 @@ void MainWindow::connected(bool available, QString err)
 
         //go to main page
         actionMain->setChecked(true);
-        mainStack->setCurrentIndex(1); //show main page
+        showPage(1); //show main page
 
         showMessage(err,"general");
     }

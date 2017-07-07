@@ -420,11 +420,16 @@ void AdminWidget::on_projectAddStageButton_clicked()
 
 void AdminWidget::on_createAssetsButton_clicked()
 {
+    emit message("Creating assets","general");
+    emit working(true);
     if (projectStagesList->currentRow() < 0) return;
 
     RAMStage *rs = updater->getStage(projectStagesList->currentIndex().data(Qt::UserRole).toInt());
 
     updater->getProject(projectAdminList->currentItem()->data(Qt::UserRole).toInt())->createStageAssets(rs);
+
+    emit message("Assets created for stage " + rs->getShortName(),"general");
+    emit working(false);
 }
 
 void AdminWidget::on_removeStageProjectButton_clicked()
@@ -553,7 +558,6 @@ void AdminWidget::on_batchAddShotButton_clicked()
     {
         QStringList shotNames = as.getShots();
         QList<QStringList> newShots;
-        QList<int> shotIds;
         int row = getNewShotRow();
         int newRow = row;
         int projectId = updater->getCurrentProject()->getId();
@@ -563,7 +567,6 @@ void AdminWidget::on_batchAddShotButton_clicked()
             QStringList shot;
             shot << name << "0" << QString::number(id);
             newShots << shot;
-            shotIds << id;
 
             RAMShot *rs = new RAMShot(dbi,id,name,0.0,false);
             //update UI
@@ -572,8 +575,7 @@ void AdminWidget::on_batchAddShotButton_clicked()
             newRow++;
         }
 
-        dbi->addShots(newShots);
-        dbi->insertShots(shotIds,projectId,row);
+        dbi->addInsertShots(newShots,projectId,row);
     }
 
     this->setEnabled(true);

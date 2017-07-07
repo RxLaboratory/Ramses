@@ -785,6 +785,79 @@ void DBInterface::assignAssets(QList<QStringList> assignments)
     sendRequest(q,json);
 }
 
+QList<int> DBInterface::addAssignAssets(QList<QStringList> assets, int stageId, int projectId)
+{
+    if (assets.count() == 0) return QList<int>();
+
+    // LOCAL ADD
+    emit message("Saving assets","local");
+    QString local = "INSERT OR IGNORE INTO assets (name,shortName,statusId,comment,stageId,projectId) VALUES %1 ;";
+    QString result = "SELECT DISTINCT id FROM assets WHERE %1 ORDER BY id;";
+
+    //the values for insert
+    QStringList assetsValues;
+    //the values for select id
+    QStringList assetsResults;
+
+    QString stageIdString = QString::number(stageId);
+    QString projectIdString = QString::number(projectId);
+
+    //build values
+    foreach(QStringList asset,assets)
+    {
+        QString assetValue = "('" + asset[0] + "','" + asset[1] + "'," + asset[2] + ",'" + asset[3] + "'," + stageIdString + "," + projectIdString + ")";
+        assetsValues << assetValue;
+
+        QString assetResult = "( name = '" + asset[0] + "' AND shortName = '" + asset[1] + "' AND projectId = " + projectIdString + " )";
+        assetsResults << assetResult;
+    }
+
+    //build queries
+    local = local.arg(assetsValues.join(","));
+    result = result.arg(assetsResults.join(" OR "));
+
+    //insert
+    QSqlQuery(local,localDB);
+
+    //get ids
+    QSqlQuery qResult(result,localDB);
+    QList<int> ids;
+    while(qResult.next())
+    {
+        int id = qResult.value(0).toInt();
+        ids << id;
+    }
+
+
+    // REMOTE ADD AND ASSIGN
+
+    QString remote = "?type=addAssignAssets";
+    QJsonObject obj;
+    QJsonArray jsonAssets;
+    for(int i = 0 ; i < assets.count() ; i++)
+    {
+        QStringList asset = assets[i];
+
+        QJsonObject jsonAsset;
+        jsonAsset.insert("name",asset[0]);
+        jsonAsset.insert("shortName",asset[1]);
+        jsonAsset.insert("statusId",asset[2]);
+        jsonAsset.insert("comment",asset[3]);
+        jsonAsset.insert("id",ids[i]);
+        jsonAsset.insert("shotId",asset[4]);
+        jsonAssets.insert(jsonAssets.count(),jsonAsset);
+    }
+    obj.insert("assets",jsonAssets);
+    obj.insert("projectId",projectId);
+    obj.insert("stageId",stageId);
+    QJsonDocument json(obj);
+
+    emit message("Submitting assets","remote");
+    sendRequest(remote,json);
+
+    return ids;
+}
+
 void DBInterface::unAssignAsset(int assetId, int shotId)
 {
     QString q = "?type=unAssignAsset";

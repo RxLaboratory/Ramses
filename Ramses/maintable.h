@@ -20,6 +20,7 @@ public slots:
 
 signals:
     void working(bool);
+    void showProgress();
     void progressMax(int);
     void progress(int);
     void message(QString,QString);
