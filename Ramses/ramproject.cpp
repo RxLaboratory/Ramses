@@ -76,6 +76,7 @@ void RAMProject::update()
 
 void RAMProject::addShot(RAMShot *shot, int row,bool updateDb)
 {
+    if (shots.indexOf(shot) >= 0)return;
     if (row >= 0 && row <= shots.count()) shots.insert(row,shot);
     else shots << shot;
     shot->setParent(this);
@@ -91,6 +92,7 @@ void RAMProject::removeShot(RAMShot *shot)
 
 void RAMProject::addStage(RAMStage *s, bool updateDb)
 {
+    if (projectStages.indexOf(s) >= 0) return;
     projectStages << s;
 
     if (updateDb) dbi->addProjectStage(projectId,s->getId());
