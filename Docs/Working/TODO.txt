@@ -1,7 +1,5 @@
 • sequences feature
 
-• checkbox style
-
 • Batch rename shots
 
 • Admin

@@ -119,6 +119,7 @@ QCheckBox {
 	border:none;
 	border-radius:8px;
 	padding: 3px;
+	color:#e3e3e3;
 }
 
 QCheckBox::indicator:disabled {
