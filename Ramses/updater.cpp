@@ -178,7 +178,7 @@ RAMStage* Updater::getStage(int id)
 
 void Updater::gotStatuses(QJsonValue newStatuses)
 {
-    emit working(true);
+    //emit working(true);
     QJsonArray statusesArray = newStatuses.toArray();
 
     // update statuses in the current list
@@ -253,13 +253,13 @@ void Updater::gotStatuses(QJsonValue newStatuses)
     //get Stages
     dbi->getStages();
 
-    emit working(false);
+    //emit working(false);
     emit message("Got statuses","debug");
 }
 
 void Updater::gotStages(QJsonValue newStages)
 {
-    emit working(true);
+    //emit working(true);
     QJsonArray stagesArray = newStages.toArray();
 
     // update statuses in the current list
@@ -318,12 +318,12 @@ void Updater::gotStages(QJsonValue newStages)
     dbi->getProjects();
 
     emit working(false);
-    emit message("Got stages","debug");
+    //emit message("Got stages","debug");
 }
 
 void Updater::gotProjects(QJsonValue newProjects)
 {
-    emit working(true);
+    //emit working(true);
 
     QJsonArray projectsArray = newProjects.toArray();
 
@@ -399,12 +399,12 @@ void Updater::gotProjects(QJsonValue newProjects)
     }
 
     emit working(false);
-    emit message("Got Projects","debug");
+    //emit message("Got Projects","debug");
 }
 
 void Updater::gotShots(QJsonValue newShots)
 {
-    emit working(true);
+    //emit working(true);
     emit message("(Re)Loading shots","general");
 
     QJsonArray shotsArray = newShots.toArray();
@@ -468,12 +468,12 @@ void Updater::gotShots(QJsonValue newShots)
     if (currentProject != 0) dbi->getAssets(currentProject->getId());
     else emit working(false);
 
-    emit message("Got Shots","debug");
+    //emit message("Got Shots","debug");
 }
 
 void Updater::gotAssets(QJsonValue newAssets)
 {
-    emit working(true);
+    //emit working(true);
     emit message("(Re)Loading assets","general");
 
     QJsonArray assetsArray = newAssets.toArray();
@@ -482,6 +482,8 @@ void Updater::gotAssets(QJsonValue newAssets)
     //for each stage
     foreach(RAMStage *stage,currentProject->getStages())
     {
+        emit message("Loading assets for stage " + stage->getShortName(),"debug");
+
         // update assets in the current list
         QList<RAMAsset*> assets = stage->getAssets();
         for (int raI = 0 ; raI < assets.count() ; raI++)
@@ -491,7 +493,7 @@ void Updater::gotAssets(QJsonValue newAssets)
             //search for asset in new list
             bool updated = false;
             for(int i = 0 ; i < assetsArray.count();i++)
-            {
+            {   
                 //new asset
                 QJsonObject asset = assetsArray[i].toObject();
                 int stageId = asset.value("stageId").toInt();
@@ -502,7 +504,7 @@ void Updater::gotAssets(QJsonValue newAssets)
                 int id = asset.value("id").toInt();
 
                 if (ra->getId() == id)
-                {
+                {  
                     QString name = asset.value("name").toString();
                     QString shortName = asset.value("shortName").toString();
                     QString comment = asset.value("comment").toString();
@@ -581,6 +583,8 @@ void Updater::gotAssets(QJsonValue newAssets)
         } 
     }
 
+    emit message("Old assets updated","debug");
+
     //add the remaining new assets
     for (int i = 0 ; i < assetsArray.count() ; i++)
     {
@@ -620,14 +624,15 @@ void Updater::gotAssets(QJsonValue newAssets)
         for (int j = 0;j<assignments.count() ; j++)
         {
             int shotId = assignments[j].toInt();
-            ra->assign(currentProject->getShot(shotId),false);
+            RAMShot *shot = currentProject->getShot(shotId);
+            if (shot != 0) ra->assign(shot,false);
         }
 
         stage->addAsset(ra);
     }
 
 
-    emit working(false);
+    //emit working(false);
     emit message("Got Assets","debug");
 
     emit currentProjectChanged(currentProject);

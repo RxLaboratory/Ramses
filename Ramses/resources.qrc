@@ -21,6 +21,7 @@
         <file>icons/bug.png</file>
         <file>icons/info.png</file>
         <file alias="link">icons/link.png</file>
+        <file alias="refresh">icons/refresh2.png</file>
     </qresource>
     <qresource prefix="/">
         <file alias="styles/default">needed/style.css</file>

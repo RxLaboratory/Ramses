@@ -233,6 +233,7 @@ void MainWindow::logout()
     loginWidget->setEnabled(true);
     passwordEdit->setText("");
 
+    actionRefresh->setEnabled(false);
     actionMain->setEnabled(false);
     actionStage->setEnabled(false);
     actionStats->setEnabled(false);
@@ -304,12 +305,14 @@ void MainWindow::setWaiting(bool w)
     if (w)
     {
         mainStack->setEnabled(false);
+        actionRefresh->setEnabled(false);
         mainStatusProgress->show();
         setCursor(Qt::WaitCursor);
         repaint();
     }
     else
     {
+        actionRefresh->setEnabled(true);
         showPage(currentPage);
         mainStack->setEnabled(true);
         mainStatusProgress->hide();
@@ -419,6 +422,7 @@ void MainWindow::connected(bool available, QString err)
     if (available)
     {
         //enable actions
+        actionRefresh->setEnabled(true);
         actionMain->setEnabled(true);
         actionStage->setEnabled(true);
         actionStats->setEnabled(true);
@@ -557,6 +561,11 @@ void MainWindow::on_timeOutEdit_editingFinished()
 }
 
 // ========= ACTIONS ================
+
+void MainWindow::on_actionRefresh_triggered()
+{
+    updater->updateAll();
+}
 
 void MainWindow::on_actionMain_triggered(bool checked)
 {
@@ -719,4 +728,5 @@ bool MainWindow::event(QEvent *event)
 
     return QMainWindow::event(event);
 }
+
 

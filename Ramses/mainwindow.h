@@ -212,6 +212,8 @@ private slots:
      */
     void quit();
 
+    void on_actionRefresh_triggered();
+
 protected:
     //events
     bool eventFilter(QObject *obj, QEvent *event);

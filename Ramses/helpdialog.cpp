@@ -5,14 +5,6 @@ HelpDialog::HelpDialog(QWidget *parent) :
 {
     setupUi(this);
 
-#ifdef QT_DEBUG
-    releaseAboutText->hide();
-    releaseLabel->hide();
-#else
-    testingAboutText->hide();
-    testingLabel->hide();
-#endif
-
     toolBar = new QToolBar(this);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->addAction(actionHelp);

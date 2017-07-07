@@ -76,7 +76,7 @@
     <item>
      <widget class="QStackedWidget" name="mainStack">
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="loginPage">
        <layout class="QVBoxLayout" name="loginPageLayout">
@@ -963,6 +963,7 @@ Under construction, sorry!</string>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionRefresh"/>
    <addaction name="actionMain"/>
    <addaction name="actionStage"/>
    <addaction name="actionStats"/>
@@ -1074,6 +1075,21 @@ Under construction, sorry!</string>
    </property>
    <property name="text">
     <string>Help</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/refresh</normaloff>:/icons/refresh</iconset>
+   </property>
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+   <property name="toolTip">
+    <string>Update the local data from remote server.</string>
    </property>
   </action>
  </widget>
