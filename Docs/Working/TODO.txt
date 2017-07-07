@@ -1,6 +1,3 @@
-• admin without currentproject
-• remove no shot
-
 • sequences feature
 
 • checkbox style
