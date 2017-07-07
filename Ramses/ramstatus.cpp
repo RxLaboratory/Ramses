@@ -1,5 +1,7 @@
 #include "ramstatus.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 
 RAMStatus::RAMStatus(DBInterface *db, int i, QString n, QString sN, QColor c, QString d, bool updateDb, QObject *parent) : QObject(parent)
 {

@@ -48,8 +48,9 @@ void ProjectSelectorWidget::addProject(RAMProject *project)
 
     }
 
+    projectsComboBox->setCurrentIndex(indexBefore);
+
     freeze = false;
-    if (projectsComboBox->currentIndex() != indexBefore) on_projectsComboBox_currentIndexChanged(projectsComboBox->currentIndex());
 }
 
 void ProjectSelectorWidget::removeProject(RAMProject *project)

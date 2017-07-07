@@ -1,5 +1,7 @@
 #include "idletimer.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 
 IdleTimer::IdleTimer(QTimer *t, QObject *parent) : QObject(parent)
 {

@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     //load stylesheet
-    QString cssFile = "";
+    QString cssFile = ":/styles/default";
 #ifdef QT_DEBUG
     cssFile = "E:/DEV SRC/Ramses/Ramses/needed/style.css";
 #endif

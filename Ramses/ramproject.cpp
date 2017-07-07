@@ -1,5 +1,7 @@
 #include "ramproject.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 
 RAMProject::RAMProject(DBInterface *db, int i, QString n, QString sN, RAMStatus *defStatus, bool updateDb, QObject *parent) : QObject(parent)
 {

@@ -1,5 +1,7 @@
 #include "dbinterface.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 #include <QtGlobal>
 
 DBInterface::DBInterface(QObject *parent) : QObject(parent)

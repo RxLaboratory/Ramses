@@ -1,5 +1,7 @@
 #include "application.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 
 Application::Application(int& argc, char** argv) : QApplication(argc, argv)
 {

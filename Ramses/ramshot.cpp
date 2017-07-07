@@ -1,5 +1,7 @@
 #include "ramshot.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 
 RAMShot::RAMShot(DBInterface *db, int i, QString n, double d, bool updateDb , QObject *parent) : QObject(parent)
 {

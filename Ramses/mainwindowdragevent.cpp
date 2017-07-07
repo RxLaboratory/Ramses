@@ -1,5 +1,7 @@
 #include "mainwindowdragevent.h"
+#ifdef QT_DEBUG
 #include <QtDebug>
+#endif
 
 mainWindowDragEvent::mainWindowDragEvent(QObject *parent) : QObject(parent)
 {
