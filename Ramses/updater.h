@@ -2,6 +2,7 @@
 #define UPDATER_H
 
 #include <QObject>
+#include <QTimer>
 #include "dbinterface.h"
 #include "ramproject.h"
 #include "ramstage.h"
@@ -14,8 +15,10 @@ class Updater : public QObject
     Q_OBJECT
 public:
     explicit Updater(DBInterface *db,QObject *parent = 0);
-    void updateAll();
     void clean();
+    void setUpdateFrequency(int f);
+    void start();
+    void stop();
     //statuses
     void addStatus(RAMStatus*status);
     void removeStatus(RAMStatus *status);
@@ -49,21 +52,54 @@ signals:
 public slots:
     /**
      * @brief Sets the current project
-     * Load shots and assets for this project
+     * Loads shots and assets for this project from remote server
      * @param project
      */
     void setCurrentProject(RAMProject *project);
+    /**
+     * @brief Updates all the data from remote server
+     */
+    void updateAll();
 
 private slots:
     void dataReceived(QJsonObject data);
 
 private:
+    /**
+     * @brief Connects signals and slots
+     * Run only once by the constructor
+     */
     void mapEvents();
 
+    /**
+     * @brief Run when the statuses are received from the remote server
+     * Updates the statuses
+     * @param newStatuses
+     */
     void gotStatuses(QJsonValue newStatuses);
+    /**
+     * @brief Run when the stages are received from the remote server
+     * Updates the stages
+     * @param newStages
+     */
     void gotStages(QJsonValue newStages);
+    /**
+     * @brief Run when the projects are received from the remote server
+     * Updates the projects
+     * @param newProjects
+     */
     void gotProjects(QJsonValue newProjects);
+    /**
+     * @brief Run when the shots are received from the remote server
+     * Updates the shots
+     * @param newShots
+     */
     void gotShots(QJsonValue newShots);
+    /**
+     * @brief Run when the assets are received from the remote server
+     * Updates the assets
+     * @param newAssets
+     */
     void gotAssets(QJsonValue newAssets);
 
     //lists
@@ -85,6 +121,9 @@ private:
 
     //DBI
     DBInterface *dbi;
+
+    //Timer for pulling data
+    QTimer pullTimer;
 
 
 };

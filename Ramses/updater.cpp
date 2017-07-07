@@ -6,11 +6,17 @@ Updater::Updater(DBInterface *db, QObject *parent) : QObject(parent)
 
     mapEvents();
     currentProject = 0;
+
+    pullTimer.setSingleShot(false);
 }
 
 void Updater::mapEvents()
 {
+    //DBI
     connect(dbi,SIGNAL(data(QJsonObject)),this,SLOT(dataReceived(QJsonObject)));
+
+    //TIMER
+    connect(&pullTimer,SIGNAL(timeout()),this,SLOT(updateAll()));
 }
 
 void Updater::dataReceived(QJsonObject data)
@@ -77,6 +83,21 @@ void Updater::clean()
     statuses.clear();
     qDeleteAll(removedItems);
     removedItems.clear();
+}
+
+void Updater::setUpdateFrequency(int f)
+{
+    pullTimer.setInterval(f);
+}
+
+void Updater::start()
+{
+    pullTimer.start();
+}
+
+void Updater::stop()
+{
+    pullTimer.stop();
 }
 
 QList<RAMProject *> Updater::getProjects()

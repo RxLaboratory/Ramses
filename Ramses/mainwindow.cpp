@@ -132,6 +132,7 @@ MainWindow::MainWindow(QWidget *parent) :
     dbi->setServerAddress(networkSettingsQuery.value(0).toString());
     dbi->setSsl(networkSettingsQuery.value(1).toBool());
     dbi->setUpdateFreq(networkSettingsQuery.value(2).toInt());
+    updater->setUpdateFrequency(networkSettingsQuery.value(2).toInt()*1000*60);
 
     mainStack->setCurrentIndex(0);
     loginButton->setFocus();
@@ -228,6 +229,9 @@ void MainWindow::login()
 
 void MainWindow::logout()
 {
+    //stop the updater
+    updater->stop();
+
     connectionStatusLabel->setText("Ready...");
     connectionStatusLabel->setEnabled(false);
     loginWidget->setEnabled(true);
@@ -437,8 +441,9 @@ void MainWindow::connected(bool available, QString err)
 
         actionLogout->setIcon(QIcon(":/icons/logout"));
 
-        //load everything
+        //load everything and starts the updater
         updater->updateAll();
+        updater->start();
 
         //go to main page
         actionMain->setChecked(true);

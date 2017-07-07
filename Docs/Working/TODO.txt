@@ -11,8 +11,6 @@
 
 • add/remove/move shots in table
 
-• updater timer (and update button)
-
 • Settings
 	appearance (see in dutranslator)
 	separate from mainwidow
