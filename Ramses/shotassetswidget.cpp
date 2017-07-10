@@ -28,6 +28,7 @@ void ShotAssetsWidget::addAsset(RAMAsset *asset)
     connect(asset,SIGNAL(assetAssigned(RAMShot*,RAMAsset*)),this,SLOT(assign(RAMShot*,RAMAsset*)));
 
     if (assignments.indexOf(shot) < 0) return;
+    if (assignedAssets.indexOf(asset) >= 0) return;
 
     assignedAssets << asset;
 
