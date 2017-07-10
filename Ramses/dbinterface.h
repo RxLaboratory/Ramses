@@ -22,7 +22,6 @@ public:
     //parameters
     void setServerAddress(QString address);
     void setSsl(bool ssl);
-    void setUpdateFreq(int freq);
     //connection
     void connection(QString user,QString passHash);
     void sendRequest(QString request, QJsonDocument content = QJsonDocument());
@@ -82,7 +81,6 @@ private:
     //PHP API
     QString serverAddress; //server
     QString protocol; //use SSL
-    int updateFreq; //update freq in minutes
     QNetworkAccessManager qnam;
     QNetworkReply *reply;
     //QSqlDatabase localDB; //SQLite used for offline mode and sync

@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     maintable.cpp \
     updater.cpp \
     importerdialog.cpp \
-    renamedialog.cpp
+    renamedialog.cpp \
+    settingswidget.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -65,7 +66,8 @@ HEADERS  += mainwindow.h \
     maintable.h \
     updater.h \
     importerdialog.h \
-    renamedialog.h
+    renamedialog.h \
+    settingswidget.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
@@ -80,7 +82,8 @@ FORMS    += mainwindow.ui \
     assetstatusbox.ui \
     maintable.ui \
     importerdialog.ui \
-    renamedialog.ui
+    renamedialog.ui \
+    settingswidget.ui
 
 DISTFILES +=
 

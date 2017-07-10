@@ -18,6 +18,7 @@ public:
 public slots:
     void showDebug(QString m);
     void showHelp(int i);
+    void setToolButtonStyle(int s);
 signals:
     void visibilityChanged(bool);
     void dock(bool);

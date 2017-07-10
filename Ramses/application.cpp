@@ -7,7 +7,8 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
 {
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(idleTimeOut()));
-    timeout=600000;//10mn
+    timeout=600000;
+    timer->start(timeout);
 }
 
 void Application::idleTimeOut()

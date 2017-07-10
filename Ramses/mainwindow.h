@@ -20,6 +20,7 @@
 #include "adminwidget.h"
 #include "maintable.h"
 #include "updater.h"
+#include "settingswidget.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -42,12 +43,6 @@ private:
      * Executed on construction only
      */
     void mapEvents();
-
-    /**
-     * @brief Updates the current stylesheet for the application
-     * (Just reloads it)
-     */
-    void updateCSS(QString cssPath = ":/styles/default");
 
     /**
      * @brief Hashes the password and stores credentials in username and passHash
@@ -79,18 +74,15 @@ private:
 
     AdminWidget *adminWidget;
     MainTable *mainTable;
+    SettingsWidget *settingsWidget;
 
     //login
-
     QString username;
     QString passHash;
 
     //used to drag window grabing the toolbar
     QPoint dragPosition;
     bool toolBarClicked;
-
-    //settings
-    QSqlDatabase settingsDB;
 
     //database interface
     DBInterface *dbi;
@@ -125,10 +117,6 @@ public slots:
 
 private slots:
 
-    // =======DEV AND DEBUG
-
-    void on_updateCSSButton_clicked();
-
     // =======BUTTONS
 
     //login page
@@ -136,12 +124,6 @@ private slots:
     void on_serverSettingsButton_clicked();
     void on_usernameEdit_returnPressed();
     void on_passwordEdit_returnPressed();
-
-    //settings
-    void on_serverAddressEdit_editingFinished();
-    void on_sslCheckBox_clicked(bool checked);
-    void on_updateFreqSpinBox_editingFinished();
-    void on_timeOutEdit_editingFinished();
 
     // =======ACTIONS
     void on_actionMain_triggered(bool checked);
@@ -153,7 +135,6 @@ private slots:
     void on_actionHelp_triggered(bool checked);
     // =======WINDOW BUTTONS
     void maximizeButton_clicked();
-    void on_settingsLogoutButton_clicked();
     void dockHelpDialog(bool dock);
 
     // =======DBI
@@ -211,6 +192,8 @@ private slots:
      * @brief quits the application
      */
     void quit();
+
+    void setToolBarStyle(int s);
 
     void on_actionRefresh_triggered();
 

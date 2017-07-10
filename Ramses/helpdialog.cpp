@@ -77,6 +77,26 @@ void HelpDialog::showHelp(int i)
     helpTabs->setCurrentIndex(i);
 }
 
+void HelpDialog::setToolButtonStyle(int s)
+{
+    if (s == 0)
+    {
+        toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    }
+    else if (s == 1)
+    {
+        toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    }
+    else if (s == 2)
+    {
+        toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    }
+    else if (s == 3)
+    {
+        toolBar->setToolButtonStyle(Qt::ToolButtonTextOnly);
+    }
+}
+
 // ======== ACTIONS
 
 void HelpDialog::on_actionAbout_triggered()

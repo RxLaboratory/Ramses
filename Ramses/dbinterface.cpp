@@ -41,7 +41,6 @@ DBInterface::DBInterface(QObject *parent) : QObject(parent)
 
     serverAddress = "rainboxprod.coop/ramtest";
     protocol = "https://";
-    updateFreq = 1;
 
     QNetworkCookieJar *cj = new QNetworkCookieJar();
     qnam.setCookieJar(cj);
@@ -63,11 +62,6 @@ void DBInterface::setSsl(bool ssl)
 {
     if (ssl) protocol = "https://";
     else protocol = "http://";
-}
-
-void DBInterface::setUpdateFreq(int freq)
-{
-    updateFreq = freq;
 }
 
 //CONNECTION

@@ -25,6 +25,10 @@ MainWindow::MainWindow(QWidget *parent) :
     helpDialog = new HelpDialog();
     helpDialogDocked = true;
 
+    //settings
+    settingsWidget = new SettingsWidget(dbi,updater);
+    settingsPageLayout->addWidget(settingsWidget);
+
     // Feedback
     showMessage("Let's start!","general");
 
@@ -34,13 +38,10 @@ MainWindow::MainWindow(QWidget *parent) :
     passwordEdit->setText("tp");
 #endif
 
-    //load stylesheet
-    QString cssFile = ":/styles/default";
-#ifdef QT_DEBUG
-    cssFile = "E:/DEV SRC/Ramses/Ramses/needed/style.css";
-#endif
-    updateCSS(cssFile);
+    // INIT UI
 
+    setToolBarStyle(settingsWidget->getToolButtonStyle());
+    helpDialog->setToolButtonStyle(settingsWidget->getToolButtonStyle());
 
     //center login widget and server error widget
     loginPageLayout->setAlignment(loginWidget, Qt::AlignHCenter);
@@ -67,72 +68,20 @@ MainWindow::MainWindow(QWidget *parent) :
     mainPageLayout->addWidget(mainTable);
 
     //statusbar
-
     mainStatusProgress = new QProgressBar(this);
     mainStatusProgress->setTextVisible(false);
     mainStatusProgress->setMaximum(0);
     mainStatusProgress->setMinimum(0);
     mainStatusProgress->setMaximumWidth(100);
-
     mainStatusBar->addPermanentWidget(mainStatusProgress);
-
     mainStatusProgress->hide();
 
     //drag window using the toolbar
     toolBarClicked = false;
     mainToolBar->installEventFilter(this);
 
-    //hide settings logout widget
-    settingsLogoutWidget->hide();
-
     //hider server error widget
     serverWidget->hide();
-
-    //========= LOAD SETTINGS ========
-
-    showMessage("Loading settings","local");
-    settingsDB = QSqlDatabase::addDatabase("QSQLITE","settings");
-
-    //check if the file already exists, if not, extract it from resources
-    QString settingsPath = "";
-#ifdef Q_OS_MAC
-    settingsPath = QDir::homePath() + "/Ramses/settings.s3db";
-#else
-    settingsPath = "settings.s3db";
-#endif
-
-    QFile dbFile(settingsPath);
-
-    if (!dbFile.exists())
-    {
-        QFile dbResource(":/settings");
-        //on mac, we can not write inside the app, so create folder at home
-#ifdef Q_OS_MAC
-        QDir home = QDir::home();
-        home.mkdir("Ramses");
-#endif
-        //copy the default file from the resources
-        dbResource.copy(settingsPath);
-        QFile::setPermissions(settingsPath,QFileDevice::ReadUser | QFileDevice::WriteUser | QFileDevice::ReadGroup | QFileDevice::WriteGroup | QFileDevice::ReadOther | QFileDevice::WriteOther);
-    }
-
-    settingsDB.setDatabaseName(settingsPath);
-    settingsDB.setHostName("localhost");
-    if (settingsDB.open()) showMessage("Settings Opened","local");
-    else showMessage("Settings could not be opened","warning");
-    //settings
-    QString q = "SELECT networkSettings.serverAddress, networkSettings.ssl, networkSettings.updateFrequency, networkSettings.timeout FROM networkSettings JOIN users ON users.id = networkSettings.userID WHERE users.username = 'Default';";
-    QSqlQuery networkSettingsQuery(q,settingsDB);
-    networkSettingsQuery.next();
-    serverAddressEdit->setText(networkSettingsQuery.value(0).toString());
-    sslCheckBox->setChecked(networkSettingsQuery.value(1).toBool());
-    updateFreqSpinBox->setValue(networkSettingsQuery.value(2).toInt());
-    timeOutEdit->setValue(networkSettingsQuery.value(3).toInt());
-    //dispatch settings
-    dbi->setServerAddress(networkSettingsQuery.value(0).toString());
-    dbi->setSsl(networkSettingsQuery.value(1).toBool());
-    dbi->setUpdateFreq(networkSettingsQuery.value(2).toInt());
-    updater->setUpdateFrequency(networkSettingsQuery.value(2).toInt()*1000*60);
 
     mainStack->setCurrentIndex(0);
     loginButton->setFocus();
@@ -150,6 +99,11 @@ void MainWindow::mapEvents()
     // general
     connect(qApp,SIGNAL(aboutToQuit()),this,SLOT(quit()));
     connect(qApp,SIGNAL(idle()),this,SLOT(idle()));
+
+    // settings
+    connect(settingsWidget,SIGNAL(loggedOut()),this,SLOT(logout()));
+    connect(settingsWidget,SIGNAL(setToolButtonStyle(int)),this,SLOT(setToolBarStyle(int)));
+    connect(settingsWidget,SIGNAL(setToolButtonStyle(int)),helpDialog,SLOT(setToolButtonStyle(int)));
 
     // helpDialog
     connect(helpDialog,SIGNAL(dock(bool)),this,SLOT(dockHelpDialog(bool)));
@@ -182,16 +136,6 @@ void MainWindow::mapEvents()
     // UPDATER
     connect(updater,SIGNAL(message(QString,QString)),this,SLOT(showMessage(QString,QString)));
     connect(updater,SIGNAL(working(bool)),this,SLOT(setWaiting(bool)));
-}
-
-void MainWindow::updateCSS(QString cssPath)
-{
-    showMessage(cssPath,"debug");
-    QFile cssFile(cssPath);
-    cssFile.open(QFile::ReadOnly);
-    QString css = QString(cssFile.readAll());
-    cssFile.close();
-    qApp->setStyleSheet(css);
 }
 
 void MainWindow::login()
@@ -245,13 +189,9 @@ void MainWindow::logout()
     actionLogout->setText("Login");
     actionLogout->setChecked(false);
 
-    //enable network settings
-    serverSettingsWidget->show();
-    settingsLogoutWidget->hide();
+    settingsWidget->logout();
 
     clean();
-
-    showPage(0);
 
     showMessage("Logged out.","general");
 }
@@ -338,6 +278,26 @@ void MainWindow::quit()
     helpDialog->hide();
 }
 
+void MainWindow::setToolBarStyle(int s)
+{
+    if (s == 0)
+    {
+        this->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    }
+    else if (s == 1)
+    {
+        this->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    }
+    else if (s == 2)
+    {
+        this->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    }
+    else if (s == 3)
+    {
+        this->setToolButtonStyle(Qt::ToolButtonTextOnly);
+    }
+}
+
 void MainWindow::stopWaiting()
 {
     setWaiting(false);
@@ -404,18 +364,8 @@ void MainWindow::showMessage(QString m,QString type)
 void MainWindow::idle()
 {
     showMessage("Session timed out, you have been logged out.","general");
+    showPage(0);
     logout();
-}
-
-// ========= DEV AND DEBUG ==========
-
-void MainWindow::on_updateCSSButton_clicked()
-{
-    QString cssFile = "";
-#ifdef QT_DEBUG
-    cssFile = "E:/DEV SRC/Ramses/Ramses/needed/style.css";
-#endif
-    updateCSS(cssFile);
 }
 
 // ========== DBI ===================
@@ -435,9 +385,7 @@ void MainWindow::connected(bool available, QString err)
         actionLogout->setText("Logout");
         actionLogout->setChecked(true);
 
-        //disable network settings
-        serverSettingsWidget->hide();
-        settingsLogoutWidget->show();
+        settingsWidget->login();
 
         actionLogout->setIcon(QIcon(":/icons/logout"));
 
@@ -509,7 +457,6 @@ void MainWindow::on_serverSettingsButton_clicked()
     actionStats->setChecked(false);
     actionAdmin->setChecked(false);
     mainStack->setCurrentIndex(5); //show settings page
-    settingsWidget->setCurrentIndex(0); //show network settings
 }
 
 void MainWindow::on_usernameEdit_returnPressed()
@@ -520,49 +467,6 @@ void MainWindow::on_usernameEdit_returnPressed()
 void MainWindow::on_passwordEdit_returnPressed()
 {
     login();
-}
-
-//SETTINGS
-
-void MainWindow::on_settingsLogoutButton_clicked()
-{
-    logout();
-}
-
-void MainWindow::on_serverAddressEdit_editingFinished()
-{
-    QString q = "UPDATE networkSettings ";
-    q += "SET serverAddress = '" + serverAddressEdit->text() + "' ";
-    q += "WHERE userID = (SELECT id FROM users WHERE username = 'Default');";
-    QSqlQuery query(q,settingsDB);
-    dbi->setServerAddress(serverAddressEdit->text());
-}
-
-void MainWindow::on_sslCheckBox_clicked(bool checked)
-{
-    QString q = "UPDATE networkSettings ";
-    if (checked) q += "SET ssl = 1 ";
-    else q += "SET ssl = 0 ";
-    q += "WHERE userID = (SELECT id FROM users WHERE username = 'Default');";
-    QSqlQuery query(q,settingsDB);
-    dbi->setSsl(checked);
-}
-
-void MainWindow::on_updateFreqSpinBox_editingFinished()
-{
-    QString q = "UPDATE networkSettings ";
-    q += "SET updateFrequency = " + QString::number(updateFreqSpinBox->value()) + " ";
-    q += "WHERE userID = (SELECT id FROM users WHERE username = 'Default');";
-    QSqlQuery query(q,settingsDB);
-    dbi->setUpdateFreq(updateFreqSpinBox->value());
-}
-
-void MainWindow::on_timeOutEdit_editingFinished()
-{
-    QString q = "UPDATE networkSettings ";
-    q += "SET timeout = " + QString::number(timeOutEdit->value()) + " ";
-    q += "WHERE userID = (SELECT id FROM users WHERE username = 'Default');";
-    QSqlQuery query(q,settingsDB);
 }
 
 // ========= ACTIONS ================
@@ -611,6 +515,7 @@ void MainWindow::on_actionLogout_triggered(bool checked)
         actionLogout->setIcon(QIcon(":/icons/login"));
         mainStack->setCurrentIndex(0); //show login page
         helpDialog->showHelp(0);
+        showPage(0);
     }
     else
     {
@@ -619,7 +524,7 @@ void MainWindow::on_actionLogout_triggered(bool checked)
         else
         {
             helpDialog->showHelp(0);
-            mainStack->setCurrentIndex(0);
+            showPage(0);
         }
     }
 }
