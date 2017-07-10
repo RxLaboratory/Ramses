@@ -408,6 +408,7 @@ void MainWindow::connected(bool available, QString err)
         connectionStatusLabel->setText(err);
         showMessage(err,"critical");
         connectionStatusLabel->setEnabled(true);
+        showPage(0); //show login page
     }
 }
 
