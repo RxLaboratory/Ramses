@@ -71,7 +71,7 @@
 				$proj['id'] = (int)$project['id'];
 				//get stages
 				$projectStages = Array();
-				$repS = $bdd->query("SELECT stageId FROM projectstage WHERE projectId=" . $project['id'] . ";");
+				$repS = $bdd->query("SELECT stageId FROM projectstage JOIN stages ON stages.id = projectstage.stageId WHERE projectId=" . $project['id'] . " ORDER BY stages.shortName;");
 				while ($projectStage = $repS->fetch())
 				{
 					$projectStages[] = (int)$projectStage['stageId'];
