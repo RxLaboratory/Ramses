@@ -1,3 +1,5 @@
+• SSL on release (find the good dlls)
+
 • sequences feature
 
 • Batch rename shots
