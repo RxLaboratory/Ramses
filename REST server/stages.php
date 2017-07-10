@@ -62,7 +62,7 @@
 
 		try
 		{
-			$rep = $bdd->query("SELECT name,shortName,id FROM stages ORDER BY shortName;");
+			$rep = $bdd->query("SELECT name,shortName,id FROM stages ORDER BY shortName,name,id;");
 			$stages = Array();
 			while ($stage = $rep->fetch())
 			{
