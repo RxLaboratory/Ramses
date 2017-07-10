@@ -29,6 +29,9 @@
 		$_SESSION['discard_after'] = $now + $sessionTimeout;
 	}
 
+	//add the _ after table prefix
+	if (strlen($tablePrefix) > 0) $tablePrefix = $tablePrefix . "_";
+
 	//result of the request
 	$reply = Array();
 	$reply["accepted"] = false;

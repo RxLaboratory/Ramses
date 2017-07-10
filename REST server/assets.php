@@ -31,23 +31,15 @@
 		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($statusId) > 0 AND strlen($stageId) > 0)
 		{
 			//construct add asset query
-            $q = "INSERT INTO assets (name,shortName,statusId,stageId,projectId,comment,id)
+            $q = "INSERT INTO " . $tablePrefix . "assets (name,shortName,statusId,stageId,projectId,comment,id)
 			VALUES ( :name , :shortName , :statusId , :stageId , :projectId, :comment , :id ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name) ;";
 
-			try
-			{
-				//create asset
-				$repCreateAsset = $bdd->prepare($q);
-				$repCreateAsset->execute(array('name' => $name , 'shortName' => $shortName , 'statusId' => $statusId , 'stageId' => $stageId , 'projectId' => $projectId , 'comment' => $comment , 'id' => $id));
-				$repCreateAsset->closeCursor();
-				$reply["message"] = "Asset added";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed adding asset. | " . $q;
-				$reply["success"] = false;
-			}
+			//create asset
+			$repCreateAsset = $bdd->prepare($q);
+			$repCreateAsset->execute(array('name' => $name , 'shortName' => $shortName , 'statusId' => $statusId , 'stageId' => $stageId , 'projectId' => $projectId , 'comment' => $comment , 'id' => $id));
+			$repCreateAsset->closeCursor();
+			$reply["message"] = "Asset added";
+			$reply["success"] = true;
 		}
 		else
 		{
@@ -74,7 +66,7 @@
 
 		if (strlen($projectId) > 0 AND strlen($stageId) > 0 AND count($assets) > 0)
 		{
-			$q = "INSERT INTO assets (name,shortName,statusId,comment,id,stageId,projectId) VALUES ";
+			$q = "INSERT INTO " . $tablePrefix . "assets (name,shortName,statusId,comment,id,stageId,projectId) VALUES ";
 			$placeHolder = "(?,?,?,?,?,?,?)";
 
 			$placeHolders = array();
@@ -94,19 +86,12 @@
 			$q = $q . implode(",",$placeHolders);
 			$q = $q . " ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
 
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute($values);
-				$rep->closeCursor();
-				$reply["message"] = "Assets added.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed adding assets. |\n" . $q ;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute($values);
+			$rep->closeCursor();
+			$reply["message"] = "Assets added.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -131,22 +116,15 @@
 
 		if (strlen($assetId) > 0 AND strlen($shotId) > 0)
 		{
-			$q = "INSERT INTO assetstatuses (shotId,assetId)
+			$q = "INSERT INTO " . $tablePrefix . "assetstatuses (shotId,assetId)
 			VALUES ( :shotId , :assetId ) ON DUPLICATE KEY UPDATE shotId = VALUES(shotId);";
 
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute(array('shotId' => $shotId , 'assetId' => $assetId));
-				$rep->closeCursor();
-				$reply["message"] = "Asset assigned.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed assigning asset |\n" . $q . " |\nAsset: " . $assetId . " |\nShot: " . $shotId;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute(array('shotId' => $shotId , 'assetId' => $assetId));
+			$rep->closeCursor();
+			$reply["message"] = "Asset assigned.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -169,7 +147,7 @@
 
 		if (count($assignments) > 0)
 		{
-			$q = "INSERT INTO assetstatuses (shotId,assetId) VALUES ";
+			$q = "INSERT INTO " . $tablePrefix . "assetstatuses (shotId,assetId) VALUES ";
 			$placeHolder = "(?,?)";
 
 			$placeHolders = array();
@@ -184,19 +162,11 @@
 			$q = $q . implode(",",$placeHolders);
 			$q = $q . " ON DUPLICATE KEY UPDATE shotId = VALUES(shotId);";
 
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute($values);
-				$rep->closeCursor();
-				$reply["message"] = "Assets assigned.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed assigning assets. |\n" . $q ;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute($values);
+			$rep->closeCursor();
+			$reply["message"] = "Assets assigned.";
+			$reply["success"] = true;
 		}
 		else
 		{
@@ -223,8 +193,8 @@
 
 		if (strlen($projectId) > 0 AND strlen($stageId) > 0 AND count($assets) > 0)
 		{
-			$qAdd = "INSERT INTO assets (name,shortName,statusId,comment,id,stageId,projectId) VALUES ";
-			$qAssign = "INSERT INTO assetstatuses (shotId,assetId) VALUES ";
+			$qAdd = "INSERT INTO " . $tablePrefix . "assets (name,shortName,statusId,comment,id,stageId,projectId) VALUES ";
+			$qAssign = "INSERT INTO " . $tablePrefix . "assetstatuses (shotId,assetId) VALUES ";
 			$placeHolderAdd = "(?,?,?,?,?,?,?)";
 			$placeHolderAssign = "(?,?)";
 
@@ -288,21 +258,14 @@
 
 		if (strlen($assetId) > 0 AND strlen($shotId) > 0)
 		{
-			$q = "DELETE assetstatuses FROM assetstatuses WHERE shotId = :shotId AND assetId = :assetId ;";
+			$q = "DELETE " . $tablePrefix . "assetstatuses FROM " . $tablePrefix . "assetstatuses WHERE shotId = :shotId AND assetId = :assetId ;";
 
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute(array('shotId' => $shotId , 'assetId' => $assetId));
-				$rep->closeCursor();
-				$reply["message"] = "Asset un-assigned.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-			   $reply["message"] = "Server issue: SQL Query failed adding un-assigning asset | " . $q;
-			   $reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute(array('shotId' => $shotId , 'assetId' => $assetId));
+			$rep->closeCursor();
+			$reply["message"] = "Asset un-assigned.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -326,61 +289,53 @@
 		}
 
 		//get assets
-		$qAssets = "SELECT assets.id,assets.name,assets.shortName,assets.statusId,assets.comment,assets.stageId,assets.projectId
-		FROM assets
-		JOIN projectstage ON assets.stageId = projectstage.stageId
-		WHERE projectstage.projectId = :projectId";
+		$qAssets = "SELECT " . $tablePrefix . "assets.id," . $tablePrefix . "assets.name," . $tablePrefix . "assets.shortName," . $tablePrefix . "assets.statusId," . $tablePrefix . "assets.comment," . $tablePrefix . "assets.stageId," . $tablePrefix . "assets.projectId
+		FROM " . $tablePrefix . "assets
+		JOIN " . $tablePrefix . "projectstage ON " . $tablePrefix . "assets.stageId = " . $tablePrefix . "projectstage.stageId
+		WHERE " . $tablePrefix . "projectstage.projectId = :projectId";
 
 		//get assignments
-		$qAssign = "SELECT assetstatuses.shotId
-		FROM assetstatuses
-		JOIN assets ON assetstatuses.assetId = assets.id
-		WHERE assetstatuses.assetId = :id";
+		$qAssign = "SELECT " . $tablePrefix . "assetstatuses.shotId
+		FROM " . $tablePrefix . "assetstatuses
+		JOIN " . $tablePrefix . "assets ON " . $tablePrefix . "assetstatuses.assetId = " . $tablePrefix . "assets.id
+		WHERE " . $tablePrefix . "assetstatuses.assetId = :id";
 
-		try
+		$repAssets = $bdd->prepare($qAssets);
+		$repAssets->execute(array('projectId' => $projectId));
+
+		$assets = Array();
+		while ($asset = $repAssets->fetch())
 		{
-			$repAssets = $bdd->prepare($qAssets);
-			$repAssets->execute(array('projectId' => $projectId));
+			$a = Array();
+			$a['id'] = (int)$asset['id'];
+			$a['name'] = $asset['name'];
+			$a['shortName'] = $asset['shortName'];
+			$a['statusId'] = (int)$asset['statusId'];
+			$a['stageId'] = (int)$asset['stageId'];
+			$a['comment'] = $asset['comment'];
+			$a['projectId'] = $asset['projectId'];
 
-			$assets = Array();
-			while ($asset = $repAssets->fetch())
+			$repAssign = $bdd->prepare($qAssign);
+			$repAssign->execute(array('id' => $a['id']));
+
+			$assignments = Array();
+			while ($assignment = $repAssign->fetch())
 			{
-				$a = Array();
-				$a['id'] = (int)$asset['id'];
-				$a['name'] = $asset['name'];
-				$a['shortName'] = $asset['shortName'];
-				$a['statusId'] = (int)$asset['statusId'];
-				$a['stageId'] = (int)$asset['stageId'];
-				$a['comment'] = $asset['comment'];
-				$a['projectId'] = $asset['projectId'];
-
-				$repAssign = $bdd->prepare($qAssign);
-				$repAssign->execute(array('id' => $a['id']));
-
-				$assignments = Array();
-				while ($assignment = $repAssign->fetch())
-				{
-					$as = (int)$assignment['shotId'];
-					$assignments[] = $as;
-				}
-				$repAssign->closeCursor();
-
-				$a['assignments'] = $assignments;
-
-				$assets[] = $a;
+				$as = (int)$assignment['shotId'];
+				$assignments[] = $as;
 			}
-			$repAssets->closeCursor();
+			$repAssign->closeCursor();
 
-			$reply["content"] = $assets;
-			$reply["message"] = "Assets list retrieved ";
-			$reply["success"] = true;
+			$a['assignments'] = $assignments;
+
+			$assets[] = $a;
 		}
-		catch (Exception $e)
-		{
-			$reply["message"] = "Server issue: SQL Query failed retrieving assets list. |\n" . $qAssets;
-			$reply["success"] = false;
-		}
-	}
+		$repAssets->closeCursor();
+
+		$reply["content"] = $assets;
+		$reply["message"] = "Assets list retrieved ";
+		$reply["success"] = true;
+}
 
 	if ($reply["type"] == "setAssetStatus")
 	{
@@ -398,21 +353,15 @@
 
 		if (strlen($statusId) > 0 AND strlen($assetId) > 0)
 		{
-			$q = "UPDATE assets SET statusId= :statusId WHERE id= :assetId ;";
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute(array('statusId' => $statusId, 'assetId' => $assetId));
-				$rep->closeCursor();
+			$q = "UPDATE " . $tablePrefix . "assets SET statusId= :statusId WHERE id= :assetId ;";
 
-				$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed updating asset (id:" . $assetId . "). | " . $q;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute(array('statusId' => $statusId, 'assetId' => $assetId));
+			$rep->closeCursor();
+
+			$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -441,22 +390,16 @@
 
 		if (strlen($assetId) > 0)
 		{
-			$q = "UPDATE assets SET name= :name , shortName = :shortName , comment = :comment WHERE id= :assetId ;";
-			try
-			{
-				//create asset
-				$rep = $bdd->prepare($q);
-				$rep->execute(array('name' => $name , 'shortName' => $shortName , 'comment' => $comment , 'assetId' => $assetId ));
-				$rep->closeCursor();
+			$q = "UPDATE " . $tablePrefix . "assets SET name= :name , shortName = :shortName , comment = :comment WHERE id= :assetId ;";
 
-				$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed updating asset (id:" . $assetId . "). | " . $q;
-				$reply["success"] = false;
-			}
+			//create asset
+			$rep = $bdd->prepare($q);
+			$rep->execute(array('name' => $name , 'shortName' => $shortName , 'comment' => $comment , 'assetId' => $assetId ));
+			$rep->closeCursor();
+
+			$reply["message"] = "Status for the asset (id:" . $assetId . ") has been updated.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -479,21 +422,15 @@
 
 		if (strlen($assetId) > 0)
 		{
-			$q = "DELETE assets FROM assets WHERE id = :assetId ;";
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute(array('assetId' => $assetId));
-				$rep->closeCursor();
+			$q = "DELETE " . $tablePrefix . "assets FROM " . $tablePrefix . "assets WHERE id = :assetId ;";
 
-				$reply["message"] = "Asset removed.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed deleting asset. | " . $q;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute(array('assetId' => $assetId));
+			$rep->closeCursor();
+
+			$reply["message"] = "Asset removed.";
+			$reply["success"] = true;
+
 		}
 		else
 		{

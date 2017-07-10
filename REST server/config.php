@@ -3,8 +3,8 @@
 		Rainbox Asset Manager
 		Configuration file
 	*/
-	
-	
+
+
 	//SQL
 	//Fill in your SQL Server configuration
 	//host
@@ -15,9 +15,11 @@
 	$sqlUser = "ram";
 	//password
 	$sqlpassword = "XMvsjo6mHt67K2oT";
-	
+	//table prefix
+	$tablePrefix = "";
+
 	//SESSION
 	//timeout (seconds)
 	$sessionTimeout = 1200;
-	
+
 ?>

@@ -32,29 +32,23 @@
 			//if an id is provided
 			if (strlen($id) > 0)
 			{
-				$qString = "INSERT INTO status (name,shortName,color,description,id) VALUES ( :name , :shortName , :color , :description , :id ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
+				$qString = "INSERT INTO " . $tablePrefix . "status (name,shortName,color,description,id) VALUES ( :name , :shortName , :color , :description , :id ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
 				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id);
 			}
 			else
 			{
-				$qString = "INSERT INTO status (name,shortName,color,description) VALUES ( :name , :shortName , :color , :description ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
+				$qString = "INSERT INTO " . $tablePrefix . "status (name,shortName,color,description) VALUES ( :name , :shortName , :color , :description ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
 				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description);
 			}
-			try
-			{
 
-				$rep = $bdd->prepare($qString);
-				$rep->execute($values);
-				$rep->closeCursor();
 
-				$reply["message"] = "Status " . $shortName . " added.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed.\n" . $qString;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($qString);
+			$rep->execute($values);
+			$rep->closeCursor();
+
+			$reply["message"] = "Status " . $shortName . " added.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -68,31 +62,24 @@
 	{
 		$reply["accepted"] = true;
 
-		try
+		$rep = $bdd->query("SELECT name,shortName,color,description,id FROM " . $tablePrefix . "status ORDER BY shortName;");
+		$statuses = Array();
+		while ($status = $rep->fetch())
 		{
-			$rep = $bdd->query("SELECT name,shortName,color,description,id FROM status ORDER BY shortName;");
-			$statuses = Array();
-			while ($status = $rep->fetch())
-			{
-				$stat = Array();
-				$stat['name'] = $status['name'];
-				$stat['shortName'] = $status['shortName'];
-				$stat['color'] = $status['color'];
-				$stat['description'] = $status['description'];
-				$stat['id'] = (int)$status['id'];
-				$statuses[] = $stat;
-			}
-			$rep->closeCursor();
+			$stat = Array();
+			$stat['name'] = $status['name'];
+			$stat['shortName'] = $status['shortName'];
+			$stat['color'] = $status['color'];
+			$stat['description'] = $status['description'];
+			$stat['id'] = (int)$status['id'];
+			$statuses[] = $stat;
+		}
+		$rep->closeCursor();
 
-			$reply["content"] = $statuses;
-			$reply["message"] = "Statuses list retreived";
-			$reply["success"] = true;
-		}
-		catch (Exception $e)
-		{
-			$reply["message"] = "Server issue: SQL Query failed.";
-			$reply["success"] = false;
-		}
+		$reply["content"] = $statuses;
+		$reply["message"] = "Statuses list retreived";
+		$reply["success"] = true;
+
 	}
 
 	// ========= UPDATE STATUS ==========
@@ -120,21 +107,15 @@
 		{
 			//add # on color if needed
 			if (strlen($color) == 6) $color = "#" . $color;
-			$qString = "UPDATE status SET name= :name ,shortName= :shortName ,color= :color ,description= :description WHERE id= :id ;";
-			try
-			{
-				$rep = $bdd->prepare($qString);
-				$rep->execute(array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id));
-				$rep->closeCursor();
+			$qString = "UPDATE " . $tablePrefix . "status SET name= :name ,shortName= :shortName ,color= :color ,description= :description WHERE id= :id ;";
 
-				$reply["message"] = "Status " . $shortName . " (" . $id . ") updated.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed. |\n" . $qString;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($qString);
+			$rep->execute(array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id));
+			$rep->closeCursor();
+
+			$reply["message"] = "Status " . $shortName . " (" . $id . ") updated.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -157,20 +138,14 @@
 		}
 		if (strlen($id) > 0)
 		{
-			try
-			{
-				$rep = $bdd->prepare("DELETE status FROM status WHERE id= :id ;");
-				$rep->execute(array('id' => $id));
-				$rep->closeCursor();
 
-				$reply["message"] = "Status " . $id . " removed.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed.";
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare("DELETE " . $tablePrefix . "status FROM " . $tablePrefix . "status WHERE id= :id ;");
+			$rep->execute(array('id' => $id));
+			$rep->closeCursor();
+
+			$reply["message"] = "Status " . $id . " removed.";
+			$reply["success"] = true;
+
 		}
 		else
 		{

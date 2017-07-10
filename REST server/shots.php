@@ -19,7 +19,7 @@
 		if (count($shots) > 0)
 		{
 			//construct add shots query
-			$qShots = "INSERT INTO shots (id,name,duration) VALUES ";
+			$qShots = "INSERT INTO " . $tablePrefix . "shots (id,name,duration) VALUES ";
 			$placeHolder = "(?,?,?)";
 
 			$placeHolders = array();
@@ -35,21 +35,13 @@
 			$qShots = $qShots . implode(",",$placeHolders);
 			$qShots = $qShots . " ON DUPLICATE KEY UPDATE duration = VALUES(duration);\n";
 
-			//add shots
-			try
-			{
-				//create shots
-				$rep = $bdd->prepare($qShots);
-				$rep->execute($values);
-				$rep->closeCursor();
-				$reply["message"] = "Shots inserted.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed adding shots. |\n" . $qShots ;
-				$reply["success"] = false;
-			}
+			//create shots
+			$rep = $bdd->prepare($qShots);
+			$rep->execute($values);
+			$rep->closeCursor();
+			$reply["message"] = "Shots inserted.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -77,26 +69,19 @@
 		if (count($shots) > 0 AND strlen($projectId) > 0)
 		{
 			//update order of shots after the ones we insert
-			$qOrder = "UPDATE shots JOIN projectshot ON projectshot.shotId = shots.id
-			SET projectshot.shotOrder = projectshot.shotOrder + :shotsCount
-			WHERE projectshot.shotOrder >= :shotOrder AND projectshot.projectId = :projectId ;";
+			$qOrder = "UPDATE " . $tablePrefix . "shots JOIN " . $tablePrefix . "projectshot ON " . $tablePrefix . "projectshot.shotId = " . $tablePrefix . "shots.id
+			SET " . $tablePrefix . "projectshot.shotOrder = " . $tablePrefix . "projectshot.shotOrder + :shotsCount
+			WHERE " . $tablePrefix . "projectshot.shotOrder >= :shotOrder AND " . $tablePrefix . "projectshot.projectId = :projectId ;";
 
-			try
-			{
-				//update order
-				$repOrder = $bdd->prepare($qOrder);
-				$repOrder->execute(array('shotsCount' => count($shots), 'shotOrder' => $shotOrder, 'projectId' => $projectId ));
-				$repOrder->closeCursor();
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed moving shots. | " + $qOrder;
-				$reply["success"] = false;
-			}
+			//update order
+			$repOrder = $bdd->prepare($qOrder);
+			$repOrder->execute(array('shotsCount' => count($shots), 'shotOrder' => $shotOrder, 'projectId' => $projectId ));
+			$repOrder->closeCursor();
+
 
 			if (isset($repOrder))
 			{
-				$q = "INSERT INTO projectshot (shotId,projectId,shotOrder) VALUES ";
+				$q = "INSERT INTO " . $tablePrefix . "projectshot (shotId,projectId,shotOrder) VALUES ";
 				$placeHolder = "(?,?,?)";
 
 				$placeHolders = array();
@@ -149,17 +134,17 @@
 		if (count($shots) > 0 AND strlen($projectId) > 0)
 		{
 			//update order of shots after the ones we insert
-			$qOrder = "UPDATE shots JOIN projectshot ON projectshot.shotId = shots.id
-			SET projectshot.shotOrder = projectshot.shotOrder + :shotsCount
-			WHERE projectshot.shotOrder >= :shotOrder AND projectshot.projectId = :projectId ;";
+			$qOrder = "UPDATE " . $tablePrefix . "shots JOIN " . $tablePrefix . "projectshot ON " . $tablePrefix . "projectshot.shotId = " . $tablePrefix . "shots.id
+			SET " . $tablePrefix . "projectshot.shotOrder = " . $tablePrefix . "projectshot.shotOrder + :shotsCount
+			WHERE " . $tablePrefix . "projectshot.shotOrder >= :shotOrder AND " . $tablePrefix . "projectshot.projectId = :projectId ;";
 
 			//create shots
 			$repOrder = $bdd->prepare($qOrder);
 			$repOrder->execute(array('shotsCount' => count($shots), 'shotOrder' => $shotOrder, 'projectId' => $projectId ));
 			$repOrder->closeCursor();
 
-			$qShots = "INSERT INTO shots (id,name,duration) VALUES ";
-			$qInsert = "INSERT INTO projectshot (shotId,projectId,shotOrder) VALUES ";
+			$qShots = "INSERT INTO " . $tablePrefix . "shots (id,name,duration) VALUES ";
+			$qInsert = "INSERT INTO " . $tablePrefix . "projectshot (shotId,projectId,shotOrder) VALUES ";
 			$placeHolder = "(?,?,?)";
 
 			$placeHolders = array();
@@ -216,41 +201,34 @@
 			$projectId = $data->{'projectId'};
 		}
 
-		$q = "SELECT shots.name as shotName,shots.duration,shots.id as shotId,projectshot.shotOrder as shotOrder
-		FROM shots
-		JOIN projectshot ON projectshot.shotId = shots.id
+		$q = "SELECT " . $tablePrefix . "shots.name as shotName," . $tablePrefix . "shots.duration,shots.id as shotId," . $tablePrefix . "projectshot.shotOrder as shotOrder
+		FROM " . $tablePrefix . "shots
+		JOIN " . $tablePrefix . "projectshot ON " . $tablePrefix . "projectshot.shotId = " . $tablePrefix . "shots.id
 		WHERE projectId= :projectId
 		ORDER BY projectshot.shotOrder,shots.name;";
 
-		try
+		//get shots
+		$rep = $bdd->prepare($q);
+		$rep->execute(array('projectId' => $projectId));
+
+		$shots = Array();
+
+		while ($shot = $rep->fetch())
 		{
-			//get shots
-			$rep = $bdd->prepare($q);
-			$rep->execute(array('projectId' => $projectId));
+			$s = Array();
+			$s['shotName'] = $shot['shotName'];
+			$s['duration'] = (double)$shot['duration'];
+			$s['shotId'] = (int)$shot['shotId'];
+			$s['shotOrder'] = (int)$shot['shotOrder'];
 
-			$shots = Array();
-
-			while ($shot = $rep->fetch())
-			{
-				$s = Array();
-				$s['shotName'] = $shot['shotName'];
-				$s['duration'] = (double)$shot['duration'];
-				$s['shotId'] = (int)$shot['shotId'];
-				$s['shotOrder'] = (int)$shot['shotOrder'];
-
-				$shots[] = $s;
-			}
-			$rep->closeCursor();
-
-			$reply["content"] = $shots;
-			$reply["message"] = "Shots list retrieved ";
-			$reply["success"] = true;
+			$shots[] = $s;
 		}
-		catch (Exception $e)
-		{
-			$reply["message"] = "Server issue: SQL Query failed retrieving shots list. |\n" . $q;
-			$reply["success"] = false;
-		}
+		$rep->closeCursor();
+
+		$reply["content"] = $shots;
+		$reply["message"] = "Shots list retrieved ";
+		$reply["success"] = true;
+
 	}
 
 	// ========= UPDATE SHOT ==========
@@ -272,21 +250,15 @@
 
 		if (strlen($name) > 0 AND strlen($duration) > 0 AND strlen($id) > 0)
 		{
-			$q = "UPDATE shots SET name= :name ,duration= :duration WHERE id= :id ;";
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute(array('name' => $name, 'duration' => $duration, 'id' => $id));
-				$rep->closeCursor();
+			$q = "UPDATE " . $tablePrefix . "shots SET name= :name ,duration= :duration WHERE id= :id ;";
 
-				$reply["message"] = "Shot " . $name . " (" . $id . ") updated.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed updating shot " . $name . ". | " . $q;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute(array('name' => $name, 'duration' => $duration, 'id' => $id));
+			$rep->closeCursor();
+
+			$reply["message"] = "Shot " . $name . " (" . $id . ") updated.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -310,7 +282,7 @@
 		if (count($shots) > 0)
 		{
 			//construct add shots query
-			$qShots = "INSERT INTO shots (id,name,duration) VALUES ";
+			$qShots = "INSERT INTO " . $tablePrefix . "shots (id,name,duration) VALUES ";
 			$placeHolder = "(?,?,?)";
 
 			$placeHolders = array();
@@ -357,7 +329,7 @@
 
 		if (count($ids) > 0 AND strlen($projectId) > 0)
 		{
-			$q = "DELETE shots FROM shots WHERE ";
+			$q = "DELETE " . $tablePrefix . "shots FROM " . $tablePrefix . "shots WHERE ";
 			$placeHolder = "id = ?";
 			$placeHolders = array();
 			$values = array();
@@ -369,23 +341,17 @@
 			$q = $q . implode(" OR ",$placeHolders) . ";\n";
 			//reset the order
 			$q = $q . "SET @count = -1;\n";
-			$q = $q . "UPDATE projectshot SET projectshot.shotOrder = @count:= @count + 1 WHERE projectshot.projectId = ? ;";
+			$q = $q . "UPDATE " . $tablePrefix . "projectshot SET " . $tablePrefix . "projectshot.shotOrder = @count:= @count + 1 WHERE " . $tablePrefix . "projectshot.projectId = ? ;";
 			$values[] = $projectId;
 
-			try
-			{
-				$rep = $bdd->prepare($q);
-				$rep->execute($values);
-				$rep->closeCursor();
 
-				$reply["message"] = "Multiple shots removed.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed deleting multiple shots | " . $q;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare($q);
+			$rep->execute($values);
+			$rep->closeCursor();
+
+			$reply["message"] = "Multiple shots removed.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
@@ -413,26 +379,20 @@
 			$values = array();
 			foreach($ids as $id)
 			{
-				$queries[] = "UPDATE projectshot SET shotOrder = ? WHERE shotId = ? ;";
+				$queries[] = "UPDATE " . $tablePrefix . "projectshot SET shotOrder = ? WHERE shotId = ? ;";
 				$values[] = $shotOrder;
 				$values[] = $id;
 				$shotOrder = $shotOrder + 1;
 			}
 
-			try
-			{
-				$rep = $bdd->prepare(implode("\n",$queries));
-				$rep->execute($values);
-				$rep->closeCursor();
 
-				$reply["message"] = "Shot order successfully changed.";
-				$reply["success"] = true;
-			}
-			catch (Exception $e)
-			{
-				$reply["message"] = "Server issue: SQL Query failed setting shots orders. | " . $qString;
-				$reply["success"] = false;
-			}
+			$rep = $bdd->prepare(implode("\n",$queries));
+			$rep->execute($values);
+			$rep->closeCursor();
+
+			$reply["message"] = "Shot order successfully changed.";
+			$reply["success"] = true;
+
 		}
 		else
 		{
