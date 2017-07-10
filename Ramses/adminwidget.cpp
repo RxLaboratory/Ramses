@@ -524,6 +524,7 @@ void AdminWidget::resetShotsOrder()
 
 void AdminWidget::on_addShotButton_clicked()
 {
+    if (updater->getCurrentProject() == 0) return;
     //only if new
     bool ok = true;
     int row = 0;
@@ -555,6 +556,7 @@ void AdminWidget::on_addShotButton_clicked()
 
 void AdminWidget::on_batchAddShotButton_clicked()
 {
+    if (updater->getCurrentProject() == 0) return;
     this->setEnabled(false);
     AddShotsDialog as;
     //as.move(this->parentWidget()->geometry().center().x()-as.geometry().width()/2,this->parentWidget()->geometry().center().y()-as.geometry().height()/2);
@@ -587,6 +589,7 @@ void AdminWidget::on_batchAddShotButton_clicked()
 
 void AdminWidget::on_importShotsButton_clicked()
 {
+    if (updater->getCurrentProject() == 0) return;
     this->setEnabled(false);
 
     ImporterDialog imp;
@@ -684,6 +687,8 @@ void AdminWidget::on_renameShotsButton_clicked()
 
 void AdminWidget::on_moveShotUpButton_clicked()
 {
+    if (shotsAdminList->currentRow() < 0) return;
+
     QList<QListWidgetItem *> items;
 
     //sort selection
@@ -725,6 +730,8 @@ void AdminWidget::on_moveShotUpButton_clicked()
 
 void AdminWidget::on_moveShotDownButton_clicked()
 {
+    if (shotsAdminList->currentRow() < 0) return;
+
     QList<QListWidgetItem *> items;
 
     //sort selection
