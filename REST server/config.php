@@ -1,5 +1,6 @@
 <?php
 	/*
+		RAMSES
 		Rainbox Asset Manager
 		Configuration file
 	*/
@@ -16,7 +17,7 @@
 	//password
 	$sqlpassword = "XMvsjo6mHt67K2oT";
 	//table prefix
-	$tablePrefix = "";
+	$tablePrefix = "Cq5sJNGg";
 
 	//SESSION
 	//timeout (seconds)

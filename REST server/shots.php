@@ -201,11 +201,11 @@
 			$projectId = $data->{'projectId'};
 		}
 
-		$q = "SELECT " . $tablePrefix . "shots.name as shotName," . $tablePrefix . "shots.duration,shots.id as shotId," . $tablePrefix . "projectshot.shotOrder as shotOrder
+		$q = "SELECT " . $tablePrefix . "shots.name as shotName," . $tablePrefix . "shots.duration," . $tablePrefix . "shots.id as shotId," . $tablePrefix . "projectshot.shotOrder as shotOrder
 		FROM " . $tablePrefix . "shots
 		JOIN " . $tablePrefix . "projectshot ON " . $tablePrefix . "projectshot.shotId = " . $tablePrefix . "shots.id
 		WHERE projectId= :projectId
-		ORDER BY projectshot.shotOrder,shots.name;";
+		ORDER BY " . $tablePrefix . "projectshot.shotOrder," . $tablePrefix . "shots.name;";
 
 		//get shots
 		$rep = $bdd->prepare($q);
