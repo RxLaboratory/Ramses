@@ -3,16 +3,17 @@
 
 #include <QObject>
 #include <QColor>
+#include "ramuuid.h"
 #include "dbinterface.h"
 
 class RAMStatus : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMStatus(DBInterface *db, int i, QString n, QString sN, QColor c, QString d, bool updateDb, QObject *parent = 0);
+    explicit RAMStatus(DBInterface *db,  QString n, QString sN, QColor c, QString d, QString id = "", bool updateDb = false, QObject *parent = 0);
     ~RAMStatus();
     // GET
-    int getId();
+    QString getId();
     QString getName();
     QString getShortName();
     QColor getColor();
@@ -36,7 +37,7 @@ signals:
 public slots:
 
 private:
-    int statusId;
+    QString uuid;
     QString statusName;
     QString statusShortName;
     QColor statusColor;

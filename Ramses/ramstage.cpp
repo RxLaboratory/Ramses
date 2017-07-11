@@ -1,14 +1,18 @@
 #include "ramstage.h"
 
-RAMStage::RAMStage(DBInterface *db, QString n, QString sN, int i, bool updateDb, QObject *parent) : QObject(parent)
+RAMStage::RAMStage(DBInterface *db, QString n, QString sN, bool updateDb, QString i, QObject *parent) : QObject(parent)
 {
-    stageId = i;
+    uuid = i;
     stageName = n;
     stageShortName = sN;
     dbi = db;
+
+    //generate uuid
+    if (uuid == "") uuid = RAMUuid::generateUuidString(stageName);
+
     if (updateDb)
     {
-        dbi->addStage(stageName,stageShortName,stageId);
+        dbi->addStage(stageName,stageShortName,uuid);
     }
 }
 
@@ -17,9 +21,9 @@ RAMStage::~RAMStage()
 
 }
 
-int RAMStage::getId()
+QString RAMStage::getId()
 {
-    return stageId;
+    return uuid;
 }
 
 QString RAMStage::getName()
@@ -32,10 +36,9 @@ QString RAMStage::getShortName()
     return stageShortName;
 }
 
-void RAMStage::setId(int id, bool updateDb)
+void RAMStage::setId(QString id)
 {
-    stageId = id;
-    if (updateDb) update();
+    uuid = id;
 }
 
 void RAMStage::setName(QString name, bool updateDb)
@@ -74,12 +77,12 @@ void RAMStage::removeAsset(RAMAsset *a)
 
 void RAMStage::update()
 {
-    dbi->updateStage(stageId,stageName,stageShortName);
+    dbi->updateStage(uuid,stageName,stageShortName);
 }
 
 void RAMStage::remove()
 {
-    dbi->removeStage(stageId);
+    dbi->removeStage(uuid);
     emit stageRemoved(this);
 }
 

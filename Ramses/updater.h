@@ -23,18 +23,18 @@ public:
     void addStatus(RAMStatus*status);
     void removeStatus(RAMStatus *status);
     QList<RAMStatus*> getStatuses();
-    RAMStatus *getStatus(int id);
+    RAMStatus *getStatus(QString id);
     RAMStatus *getDefaultStatus();
     //stages
     void addStage(RAMStage*stage);
     void removeStage(RAMStage *stage);
     QList<RAMStage*> getStages();
-    RAMStage* getStage(int id);
+    RAMStage* getStage(QString id);
     //projects
     QList<RAMProject*> getProjects();
     void addProject(RAMProject*project);
     void removeProject(RAMProject *project);
-    RAMProject *getProject(int id);
+    RAMProject *getProject(QString id);
     RAMProject *getCurrentProject();
 
 signals:

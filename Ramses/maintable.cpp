@@ -31,7 +31,7 @@ void MainTable::setCurrentProject(RAMProject *project)
     emit message("Building project " + project->getName(),"general");
 
 #ifdef QT_DEBUG
-    qDebug() << "Set current project: " + project->getShortName() + " id: " + QString::number(project->getId());
+    qDebug() << "Set current project: " + project->getShortName() + " id: " + project->getId();
     QDateTime start = QDateTime::currentDateTime();
 #endif
 
@@ -137,7 +137,7 @@ void MainTable::removeStage(RAMProject *project, RAMStage *stage)
     //get column
     for (int i = 1 ; i < mainTable->columnCount() ; i++)
     {
-        int stageId = mainTable->horizontalHeaderItem(i)->data(Qt::UserRole).toInt();
+        QString stageId = mainTable->horizontalHeaderItem(i)->data(Qt::UserRole).toString();
         if (stageId == stage->getId())
         {
             mainTable->removeColumn(i);

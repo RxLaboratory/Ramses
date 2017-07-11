@@ -61,11 +61,11 @@ void RenameDialog::on_buttonBox_accepted()
 
         //prepare values for dbi
         QStringList renamedShot;
-        renamedShot << shotName << QString::number(shot->getDuration()) << QString::number(shot->getId());
+        renamedShot << shotName << QString::number(shot->getDuration()) << shot->getId();
         renamedShots << renamedShot;
     }
 
-    //dbi->updateShots(renamedShots);
+    dbi->updateShots(renamedShots);
 }
 
 void RenameDialog::on_nameButton_clicked(bool checked)

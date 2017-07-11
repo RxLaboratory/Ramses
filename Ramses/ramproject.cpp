@@ -3,13 +3,16 @@
 #include <QtDebug>
 #endif
 
-RAMProject::RAMProject(DBInterface *db, int i, QString n, QString sN, RAMStatus *defStatus, bool updateDb, QObject *parent) : QObject(parent)
+RAMProject::RAMProject(DBInterface *db, QString n, QString sN, RAMStatus *defStatus, bool updateDb, QString i, QObject *parent) : QObject(parent)
 {
     projectId = i;
     projectName = n;
     projectShortName = sN;
     defaultStatus = defStatus;
     dbi = db;
+
+    if (projectId == "") projectId = RAMUuid::generateUuidString(projectName);
+
     if (updateDb)
     {
         dbi->addProject(projectName,projectShortName,projectId);
@@ -21,7 +24,7 @@ RAMProject::~RAMProject()
 
 }
 
-int RAMProject::getId()
+QString RAMProject::getId()
 {
     return projectId;
 }
@@ -46,7 +49,7 @@ QList<RAMShot *> RAMProject::getShots()
     return shots;
 }
 
-RAMShot *RAMProject::getShot(int id)
+RAMShot *RAMProject::getShot(QString id)
 {
     foreach(RAMShot *rs,shots)
     {
@@ -134,10 +137,10 @@ void RAMProject::createStageAssets(RAMStage *stage)
         {
             QString name = "Shot " + shot->getName() + " " + stage->getName();
             QString shortName = stage->getShortName() + " " + shot->getName();
-            RAMAsset *asset = new RAMAsset(dbi,name,shortName,defaultStatus,stage->getId(),false,"",-1,projectId);
+            RAMAsset *asset = new RAMAsset(dbi,name,shortName,defaultStatus,stage->getId(),false,"","",projectId);
             //the asset values for the db
             QStringList newAsset;
-            newAsset << name << shortName << QString::number(defaultStatus->getId()) << "" << QString::number(shot->getId());
+            newAsset << name << shortName << defaultStatus->getId() << "" << shot->getId() << asset->getId();
             assetsToCreate << newAsset;
             //the new RAMAsset
             newAssets << asset;
@@ -147,14 +150,7 @@ void RAMProject::createStageAssets(RAMStage *stage)
         }
     }
     //create and assign in db
-    QList<int> ids = dbi->addAssignAssets(assetsToCreate,stage->getId(),projectId);
-    //update the ids
-    for(int i = 0 ; i < newAssets.count() ; i++ )
-    {
-        RAMAsset *asset = newAssets[i];
-        asset->setId(ids[i]);
-
-    }
+    dbi->addAssignAssets(assetsToCreate,stage->getId(),projectId);
 }
 
 void RAMProject::stageDeleted(RAMStage *s)

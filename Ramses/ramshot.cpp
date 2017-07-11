@@ -3,12 +3,15 @@
 #include <QtDebug>
 #endif
 
-RAMShot::RAMShot(DBInterface *db, int i, QString n, double d, bool updateDb , QObject *parent) : QObject(parent)
+RAMShot::RAMShot(DBInterface *db, QString n, double d, bool updateDb , QString i, QObject *parent) : QObject(parent)
 {
     id = i;
     name = n;
     duration = d;
     dbi = db;
+
+    if (id == "") id = RAMUuid::generateUuidString(name);
+
     if (updateDb)
     {
         dbi->addShot(id,name,duration);
@@ -20,7 +23,7 @@ RAMShot::~RAMShot()
 
 }
 
-int RAMShot::getId()
+QString RAMShot::getId()
 {
     return id;
 }

@@ -3,14 +3,15 @@
 
 #include <QObject>
 #include "dbinterface.h"
+#include "ramuuid.h"
 
 class RAMShot : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMShot(DBInterface *db,int i , QString n, double d = 0.0,bool updateDb = false, QObject *parent = 0);
+    explicit RAMShot(DBInterface *db, QString n, double d = 0.0,bool updateDb = false,QString i ="" , QObject *parent = 0);
     ~RAMShot();
-    int getId();
+    QString getId();
     QString getName();
     double getDuration();
     void setName(QString n, bool updateDB = false);
@@ -26,7 +27,7 @@ signals:
 private:
     double duration;
     QString name;
-    int id;
+    QString id;
     DBInterface *dbi;
 
 protected:

@@ -6,20 +6,21 @@
 #include "dbinterface.h"
 #include "ramstage.h"
 #include "ramshot.h"
+#include "ramuuid.h"
 
 class RAMProject : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMProject(DBInterface *db,int i, QString n, QString sN,RAMStatus *defStatus, bool updateDb, QObject *parent = 0);
+    explicit RAMProject(DBInterface *db, QString n, QString sN,RAMStatus *defStatus, bool updateDb = false,QString i = "", QObject *parent = 0);
     ~RAMProject();
     //get
-    int getId();
+    QString getId();
     QString getName();
     QString getShortName();
     QList<RAMStage *> getStages();
     QList<RAMShot *> getShots();
-    RAMShot *getShot(int id);
+    RAMShot *getShot(QString id);
     //set
     void setName(QString name, bool updateDb = false);
     void setShortName(QString shortName, bool updateDb = false);
@@ -45,7 +46,7 @@ signals:
 public slots:
 
 private:
-    int projectId;
+    QString projectId;
     QString projectName;
     QString projectShortName;
     QList<RAMStage *> projectStages;

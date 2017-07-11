@@ -118,7 +118,7 @@ void Updater::removeProject(RAMProject *project)
     emit projectRemoved(project);
 }
 
-RAMProject *Updater::getProject(int id)
+RAMProject *Updater::getProject(QString id)
 {
     foreach(RAMProject *project,projects)
     {
@@ -157,7 +157,7 @@ QList<RAMStatus *> Updater::getStatuses()
     return statuses;
 }
 
-RAMStatus* Updater::getStatus(int id)
+RAMStatus* Updater::getStatus(QString id)
 {
     foreach(RAMStatus *status,statuses)
     {
@@ -189,7 +189,7 @@ QList<RAMStage *> Updater::getStages()
     return stages;
 }
 
-RAMStage* Updater::getStage(int id)
+RAMStage* Updater::getStage(QString id)
 {
     foreach(RAMStage *stage,stages)
     {
@@ -212,7 +212,7 @@ void Updater::gotStatuses(QJsonValue newStatuses)
         for(int i = 0 ; i < statusesArray.count();i++)
         {
             QJsonObject status = statusesArray[i].toObject();
-            int id = status.value("id").toInt();
+            QString id = status.value("uuid").toString();
 
             if (rs->getId() == id)
             {
@@ -254,9 +254,9 @@ void Updater::gotStatuses(QJsonValue newStatuses)
         QString shortName = status.value("shortName").toString();
         QColor color(status.value("color").toString());
         QString description = status.value("description").toString();
-        int id = status.value("id").toInt();
+        QString id = status.value("uuid").toString();
 
-        RAMStatus *rs = new RAMStatus(dbi,id,name,shortName,color,description,false,this);
+        RAMStatus *rs = new RAMStatus(dbi,name,shortName,color,description,id,false,this);
         statuses << rs;
         emit statusAdded(rs);
     }
@@ -280,7 +280,6 @@ void Updater::gotStatuses(QJsonValue newStatuses)
 
 void Updater::gotStages(QJsonValue newStages)
 {
-    //emit working(true);
     QJsonArray stagesArray = newStages.toArray();
 
     // update statuses in the current list
@@ -293,7 +292,7 @@ void Updater::gotStages(QJsonValue newStages)
         for(int i = 0 ; i < stagesArray.count();i++)
         {
             QJsonObject stage = stagesArray[i].toObject();
-            int id = stage.value("id").toInt();
+            QString id = stage.value("uuid").toString();
 
             if (rs->getId() == id)
             {
@@ -328,18 +327,15 @@ void Updater::gotStages(QJsonValue newStages)
         QJsonObject stage = stagesArray[i].toObject();
         QString name = stage.value("name").toString();
         QString shortName = stage.value("shortName").toString();
-        int id = stage.value("id").toInt();
+        QString id = stage.value("uuid").toString();
         //add to UI
-        RAMStage *rs = new RAMStage(dbi,name,shortName,id,false,this);
+        RAMStage *rs = new RAMStage(dbi,name,shortName,false,id,this);
         stages << rs;
         emit stageAdded(rs);
     }
 
     //get projects
     dbi->getProjects();
-
-    emit working(false);
-    //emit message("Got stages","debug");
 }
 
 void Updater::gotProjects(QJsonValue newProjects)
@@ -359,7 +355,7 @@ void Updater::gotProjects(QJsonValue newProjects)
         {
             //new project
             QJsonObject project = projectsArray[i].toObject();
-            int id = project.value("id").toInt();
+            QString id = project.value("uuid").toString();
 
             if (rp->getId() == id)
             {
@@ -374,7 +370,7 @@ void Updater::gotProjects(QJsonValue newProjects)
                 //update stages list
                 foreach(QJsonValue proStage,projectStagesArray)
                 {
-                    RAMStage *stage = getStage(proStage.toInt());
+                    RAMStage *stage = getStage(proStage.toString());
                     rp->addStage(stage);
                 }
 
@@ -402,15 +398,15 @@ void Updater::gotProjects(QJsonValue newProjects)
         QJsonObject project = projectsArray[i].toObject();
         QString name = project.value("name").toString();
         QString shortName = project.value("shortName").toString();
-        int id = project.value("id").toInt();
+        QString id = project.value("uuid").toString();
         QJsonArray projectStagesArray = project.value("stages").toArray();
 
-        RAMProject *rp = new RAMProject(dbi,id,name,shortName,defaultStatus,false,this);
+        RAMProject *rp = new RAMProject(dbi,name,shortName,defaultStatus,false,id,this);
 
         //update stages list
         foreach(QJsonValue proStage,projectStagesArray)
         {
-            RAMStage *stage = getStage(proStage.toInt());
+            RAMStage *stage = getStage(proStage.toString());
             rp->addStage(stage);
         }
 
@@ -442,7 +438,7 @@ void Updater::gotShots(QJsonValue newShots)
         {
             //new shot
             QJsonObject shot = shotsArray[i].toObject();
-            int id = shot.value("shotId").toInt();
+            QString id = shot.value("shotId").toInt();
 
             if (rs->getId() == id)
             {
@@ -477,9 +473,9 @@ void Updater::gotShots(QJsonValue newShots)
         QString name = shot.value("shotName").toString();
         double duration = shot.value("duration").toDouble();
         int order = shot.value("shotOrder").toInt();
-        int id = shot.value("shotId").toInt();
+        QString id = shot.value("shotId").toString();
 
-        RAMShot *rs = new RAMShot(dbi,id,name,duration,false);
+        RAMShot *rs = new RAMShot(dbi,name,duration,false,id);
 
         //add to project
         currentProject->addShot(rs,order);
@@ -517,12 +513,12 @@ void Updater::gotAssets(QJsonValue newAssets)
             {   
                 //new asset
                 QJsonObject asset = assetsArray[i].toObject();
-                int stageId = asset.value("stageId").toInt();
+                QString stageId = asset.value("stageId").toString();
 
                 //only if in current stage
                 if (stageId != stage->getId()) continue;
 
-                int id = asset.value("id").toInt();
+                QString id = asset.value("uuid").toString();
 
                 if (ra->getId() == id)
                 {  
@@ -533,7 +529,7 @@ void Updater::gotAssets(QJsonValue newAssets)
 
                     //check if status is null
                     bool statusReAssigned = false;
-                    int statusId = asset.value("statusId").toInt();
+                    QString statusId = asset.value("statusId").toString();
                     if (statusId == 0)
                     {
                         //get STB Status
@@ -561,7 +557,7 @@ void Updater::gotAssets(QJsonValue newAssets)
                         bool ok = false;
                         for (int k = 0; k < assignments.count() ; k++)
                         {
-                            int shotId = assignments[k].toInt();
+                            QString shotId = assignments[k].toString();
                             if (shot->getId() == shotId)
                             {
                                 //remove from new list
@@ -579,7 +575,7 @@ void Updater::gotAssets(QJsonValue newAssets)
                     //add remaining new assignemnts
                     for (int j = 0 ; j < assignments.count() ; j++)
                     {
-                        int shotId = assignments[j].toInt();
+                        QString shotId = assignments[j].toString();
                         RAMShot *shot = currentProject->getShot(shotId);
                         ra->assign(shot,false);
                     }
@@ -614,14 +610,14 @@ void Updater::gotAssets(QJsonValue newAssets)
         QString name = asset.value("name").toString();
         QString shortName = asset.value("shortName").toString();
         QString comment = asset.value("comment").toString();
-        int stageId = asset.value("stageId").toInt();
-        int projectId = asset.value("projectId").toInt();
+        QString stageId = asset.value("stageId").toString();
+        QString projectId = asset.value("projectId").toString();
         QJsonArray assignments = asset.value("assignments").toArray();
-        int id = asset.value("id").toInt();
+        QString id = asset.value("uuid").toString();
 
         //check if status is null
         bool statusReAssigned = false;
-        int statusId = asset.value("statusId").toInt();
+        QString statusId = asset.value("statusId").toString();
         if (statusId == 0)
         {
             //get STB Status
@@ -644,7 +640,7 @@ void Updater::gotAssets(QJsonValue newAssets)
         if (statusReAssigned) ra->setStatus(getStatus(statusId),true);
         for (int j = 0;j<assignments.count() ; j++)
         {
-            int shotId = assignments[j].toInt();
+            QString shotId = assignments[j].toString();
             RAMShot *shot = currentProject->getShot(shotId);
             if (shot != 0) ra->assign(shot,false);
         }

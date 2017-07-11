@@ -128,11 +128,6 @@ private:
      */
     int getNewShotRow();
     /**
-     * @brief Generates a new Id for a shot
-     * @return The id
-     */
-    int generateShotId();
-    /**
      * @brief Resets the order of the shots in the DB
      */
     void resetShotsOrder();

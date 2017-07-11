@@ -31,7 +31,7 @@ void ProjectSelectorWidget::addProject(RAMProject *project)
     bool ok = true;
     for (int i = 0 ; i < projectsComboBox->count() ; i++)
     {
-        if (projectsComboBox->itemData(i).toInt() == project->getId())
+        if (projectsComboBox->itemData(i).toString() == project->getId())
         {
             ok = false;
             break;
@@ -62,7 +62,7 @@ void ProjectSelectorWidget::removeProject(RAMProject *project)
     //remove from combobox
     for (int i = 0 ; i < projectsComboBox->count() ; i++)
     {
-        if (projectsComboBox->itemData(i).toInt() == project->getId())
+        if (projectsComboBox->itemData(i).toString() == project->getId())
         {
             projectsComboBox->removeItem(i);
             break;
@@ -87,11 +87,11 @@ void ProjectSelectorWidget::removeStage(RAMProject *project,RAMStage *stage)
 
     if (projectsComboBox->currentIndex() < 0) return;
     //if current
-    if (project->getId() == projectsComboBox->currentData().toInt())
+    if (project->getId() == projectsComboBox->currentData().toString())
     {
         for (int i = 0 ; i < stagesComboBox->count() ; i++)
         {
-            if (stagesComboBox->itemData(i).toInt() == stage->getId())
+            if (stagesComboBox->itemData(i).toString() == stage->getId())
             {
                 stagesComboBox->removeItem(i);
                 break;
@@ -116,7 +116,7 @@ void ProjectSelectorWidget::addStage(RAMProject *project,RAMStage *stage)
         bool ok = true;
         for (int i = 0 ; i < stagesComboBox->count() ; i++)
         {
-            if (stagesComboBox->itemData(i).toInt() == stage->getId())
+            if (stagesComboBox->itemData(i).toString() == stage->getId())
             {
                 ok = false;
                 break;
@@ -134,7 +134,7 @@ void ProjectSelectorWidget::projectShortNameChanged(RAMProject *project, QString
     //update name in combo box
     for (int i = 0 ; i < projectsComboBox->count() ; i++)
     {
-        if (projectsComboBox->itemData(i).toInt() == project->getId())
+        if (projectsComboBox->itemData(i).toString() == project->getId())
         {
             projectsComboBox->setItemText(i,shortName);
             break;
@@ -153,7 +153,7 @@ void ProjectSelectorWidget::on_projectsComboBox_currentIndexChanged(int index)
     //get project
     foreach(RAMProject *project, projectsList)
     {
-        if (project->getId() == projectsComboBox->itemData(index).toInt())
+        if (project->getId() == projectsComboBox->itemData(index).toString())
         {
             emit currentProjectChanged(project);
             currentProject = project;
@@ -174,7 +174,7 @@ void ProjectSelectorWidget::on_stagesComboBox_currentIndexChanged(int index)
     //get stage
     foreach(RAMStage *stage, currentProject->getStages())
     {
-        if (stage->getId() == stagesComboBox->itemData(index).toInt())
+        if (stage->getId() == stagesComboBox->itemData(index).toString())
         {
             emit currentStageChanged(stage);
         }

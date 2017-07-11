@@ -19,7 +19,7 @@
 		if (count($shots) > 0)
 		{
 			//construct add shots query
-			$qShots = "INSERT INTO " . $tablePrefix . "shots (id,name,duration) VALUES ";
+			$qShots = "INSERT INTO " . $tablePrefix . "shots (uuid,name,duration) VALUES ";
 			$placeHolder = "(?,?,?)";
 
 			$placeHolders = array();
@@ -27,7 +27,7 @@
 			foreach($shots as $shot)
 			{
 				$placeHolders[] = $placeHolder;
-				$values[] = $shot->{'id'};
+				$values[] = $shot->{'uuid'};
 				$values[] = $shot->{'name'};
 				$values[] = $shot->{'duration'};
 			}
@@ -71,7 +71,8 @@
 			//update order of shots after the ones we insert
 			$qOrder = "UPDATE " . $tablePrefix . "shots JOIN " . $tablePrefix . "projectshot ON " . $tablePrefix . "projectshot.shotId = " . $tablePrefix . "shots.id
 			SET " . $tablePrefix . "projectshot.shotOrder = " . $tablePrefix . "projectshot.shotOrder + :shotsCount
-			WHERE " . $tablePrefix . "projectshot.shotOrder >= :shotOrder AND " . $tablePrefix . "projectshot.projectId = :projectId ;";
+			WHERE " . $tablePrefix . "projectshot.shotOrder >= :shotOrder
+			AND " . $tablePrefix . "projectshot.projectId = (SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = :projectId ) ;";
 
 			//update order
 			$repOrder = $bdd->prepare($qOrder);
@@ -82,7 +83,7 @@
 			if (isset($repOrder))
 			{
 				$q = "INSERT INTO " . $tablePrefix . "projectshot (shotId,projectId,shotOrder) VALUES ";
-				$placeHolder = "(?,?,?)";
+				$placeHolder = "((SELECT " . $tablePrefix . "shots.id FROM " . $tablePrefix . "shots WHERE " . $tablePrefix . "shots.uuid = ? ),(SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = ? ),?)";
 
 				$placeHolders = array();
 				$values = array();
@@ -136,40 +137,44 @@
 			//update order of shots after the ones we insert
 			$qOrder = "UPDATE " . $tablePrefix . "shots JOIN " . $tablePrefix . "projectshot ON " . $tablePrefix . "projectshot.shotId = " . $tablePrefix . "shots.id
 			SET " . $tablePrefix . "projectshot.shotOrder = " . $tablePrefix . "projectshot.shotOrder + :shotsCount
-			WHERE " . $tablePrefix . "projectshot.shotOrder >= :shotOrder AND " . $tablePrefix . "projectshot.projectId = :projectId ;";
+			WHERE " . $tablePrefix . "projectshot.shotOrder >= :shotOrder
+			AND " . $tablePrefix . "projectshot.projectId = (SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = :projectId ) ;";
 
 			//create shots
 			$repOrder = $bdd->prepare($qOrder);
 			$repOrder->execute(array('shotsCount' => count($shots), 'shotOrder' => $shotOrder, 'projectId' => $projectId ));
 			$repOrder->closeCursor();
 
-			$qShots = "INSERT INTO " . $tablePrefix . "shots (id,name,duration) VALUES ";
+			$qShots = "INSERT INTO " . $tablePrefix . "shots (uuid,name,duration) VALUES ";
 			$qInsert = "INSERT INTO " . $tablePrefix . "projectshot (shotId,projectId,shotOrder) VALUES ";
-			$placeHolder = "(?,?,?)";
+			$placeHolderShots = "(?,?,?)";
+			$placeHolderInsert = "((SELECT " . $tablePrefix . "shots.id FROM " . $tablePrefix . "shots WHERE " . $tablePrefix . "shots.uuid = ? ),(SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = ? ),?)";
 
-			$placeHolders = array();
+			$placeHoldersShots = array();
+			$placeHoldersInsert = array();
 			$values = array();
 
 			//addShots values
 			foreach($shots as $shot)
 			{
-				$placeHolders[] = $placeHolder;
-				$values[] = $shot->{'id'};
+				$placeHoldersShots[] = $placeHolderShots;
+				$values[] = $shot->{'uuid'};
 				$values[] = $shot->{'name'};
 				$values[] = $shot->{'duration'};
 			}
 			//insert values
 			foreach($shots as $shot)
 			{
-				$values[] = $shot->{'id'};
+				$placeHoldersInsert[] = $placeHolderInsert;
+				$values[] = $shot->{'uuid'};
 				$values[] = $projectId;
 				$values[] = $shotOrder;
 				$shotOrder = $shotOrder + 1;
 			}
 
-			$qShots = $qShots . implode(",",$placeHolders);
+			$qShots = $qShots . implode(",",$placeHoldersShots);
 			$qShots = $qShots . " ON DUPLICATE KEY UPDATE duration = VALUES(duration);\n";
-			$qInsert = $qInsert . implode(",",$placeHolders);
+			$qInsert = $qInsert . implode(",",$placeHoldersInsert);
 			$qInsert = $qInsert . " ON DUPLICATE KEY UPDATE shotOrder = VALUES(shotOrder);";
 			$q = $qShots . $qInsert;
 
@@ -198,13 +203,13 @@
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$projectId = $data->{'projectId'};
+			if (isset($data->{'projectId'})) $projectId = $data->{'projectId'};
 		}
 
-		$q = "SELECT " . $tablePrefix . "shots.name as shotName," . $tablePrefix . "shots.duration," . $tablePrefix . "shots.id as shotId," . $tablePrefix . "projectshot.shotOrder as shotOrder
+		$q = "SELECT " . $tablePrefix . "shots.name as shotName," . $tablePrefix . "shots.duration," . $tablePrefix . "shots.uuid as shotId," . $tablePrefix . "projectshot.shotOrder as shotOrder
 		FROM " . $tablePrefix . "shots
 		JOIN " . $tablePrefix . "projectshot ON " . $tablePrefix . "projectshot.shotId = " . $tablePrefix . "shots.id
-		WHERE projectId= :projectId
+		WHERE projectId= (SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = :projectId )
 		ORDER BY " . $tablePrefix . "projectshot.shotOrder," . $tablePrefix . "shots.name;";
 
 		//get shots
@@ -218,7 +223,7 @@
 			$s = Array();
 			$s['shotName'] = $shot['shotName'];
 			$s['duration'] = (double)$shot['duration'];
-			$s['shotId'] = (int)$shot['shotId'];
+			$s['shotId'] = $shot['shotId'];
 			$s['shotOrder'] = (int)$shot['shotOrder'];
 
 			$shots[] = $s;
@@ -238,25 +243,25 @@
 
 		$name = "";
 		$duration = "";
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$name = $data->{'name'};
-			$duration = $data->{'duration'};
-			$id = $data->{'id'};
+			if (isset($data->{'name'})) $name = $data->{'name'};
+			if (isset($data->{'duration'})) $duration = $data->{'duration'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
 
-		if (strlen($name) > 0 AND strlen($duration) > 0 AND strlen($id) > 0)
+		if (strlen($name) > 0 AND strlen($duration) > 0 AND strlen($uuid) > 0)
 		{
-			$q = "UPDATE " . $tablePrefix . "shots SET name= :name ,duration= :duration WHERE id= :id ;";
+			$q = "UPDATE " . $tablePrefix . "shots SET name= :name ,duration= :duration WHERE uuid= :uuid ;";
 
 			$rep = $bdd->prepare($q);
-			$rep->execute(array('name' => $name, 'duration' => $duration, 'id' => $id));
+			$rep->execute(array('name' => $name, 'duration' => $duration, 'uuid' => $uuid));
 			$rep->closeCursor();
 
-			$reply["message"] = "Shot " . $name . " (" . $id . ") updated.";
+			$reply["message"] = "Shot " . $name . " (" . $uuid . ") updated.";
 			$reply["success"] = true;
 
 		}
@@ -282,7 +287,7 @@
 		if (count($shots) > 0)
 		{
 			//construct add shots query
-			$qShots = "INSERT INTO " . $tablePrefix . "shots (id,name,duration) VALUES ";
+			$qShots = "INSERT INTO " . $tablePrefix . "shots (uuid,name,duration) VALUES ";
 			$placeHolder = "(?,?,?)";
 
 			$placeHolders = array();
@@ -290,7 +295,7 @@
 			foreach($shots as $shot)
 			{
 				$placeHolders[] = $placeHolder;
-				$values[] = $shot->{'id'};
+				$values[] = $shot->{'uuid'};
 				$values[] = $shot->{'name'};
 				$values[] = $shot->{'duration'};
 			}
@@ -330,7 +335,7 @@
 		if (count($ids) > 0 AND strlen($projectId) > 0)
 		{
 			$q = "DELETE " . $tablePrefix . "shots FROM " . $tablePrefix . "shots WHERE ";
-			$placeHolder = "id = ?";
+			$placeHolder = "uuid = ?";
 			$placeHolders = array();
 			$values = array();
 			foreach($ids as $id)
@@ -341,7 +346,7 @@
 			$q = $q . implode(" OR ",$placeHolders) . ";\n";
 			//reset the order
 			$q = $q . "SET @count = -1;\n";
-			$q = $q . "UPDATE " . $tablePrefix . "projectshot SET " . $tablePrefix . "projectshot.shotOrder = @count:= @count + 1 WHERE " . $tablePrefix . "projectshot.projectId = ? ;";
+			$q = $q . "UPDATE " . $tablePrefix . "projectshot SET " . $tablePrefix . "projectshot.shotOrder = @count:= @count + 1 WHERE " . $tablePrefix . "projectshot.projectId = (SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = ? ) ;";
 			$values[] = $projectId;
 
 
@@ -379,7 +384,7 @@
 			$values = array();
 			foreach($ids as $id)
 			{
-				$queries[] = "UPDATE " . $tablePrefix . "projectshot SET shotOrder = ? WHERE shotId = ? ;";
+				$queries[] = "UPDATE " . $tablePrefix . "projectshot SET shotOrder = ? WHERE shotId = (SELECT id FROM " . $tablePrefix . "shots WHERE uuid = ? ) ;";
 				$values[] = $shotOrder;
 				$values[] = $id;
 				$shotOrder = $shotOrder + 1;

@@ -10,26 +10,26 @@
 
 		$name = "";
 		$shortName = "";
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$name = $data->{'name'};
-			$shortName = $data->{'shortName'};
-			$id = $data->{'id'};
+			if (isset($data->{'name'})) $name = $data->{'name'};
+			if (isset($data->{'shortName'})) $shortName = $data->{'shortName'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
 
 		if (strlen($name) > 0 AND strlen($shortName) > 0)
 		{
-			if (strlen($id) > 0)
+			if (strlen($uuid) > 0)
 			{
-				$qString = "INSERT INTO " . $tablePrefix . "projects (name,shortName,id) VALUES ( :name , :shortName , :id ) ON DUPLICATE KEY UPDATE name = VALUES(name) , shortName = VALUES(shortName);";
-				$values = array('name' => $name, 'shortName' => $shortName, 'id' => $id);
+				$qString = "INSERT INTO " . $tablePrefix . "projects (name,shortName,uuid) VALUES ( :name , :shortName , :uuid ) ON DUPLICATE KEY UPDATE name = VALUES(name) , shortName = VALUES(shortName);";
+				$values = array('name' => $name, 'shortName' => $shortName, 'uuid' => $uuid);
 			}
 			else
 			{
-				$qString = "INSERT INTO " . $tablePrefix . "projects (name,shortName) VALUES ( :name , :shortName );";
+				$qString = "INSERT INTO " . $tablePrefix . "projects (name,shortName,uuid) VALUES ( :name , :shortName , uuid() );";
 				$values = array('name' => $name, 'shortName' => $shortName);
 			}
 
@@ -54,28 +54,28 @@
 		$reply["accepted"] = true;
 
 
-		$rep = $bdd->query("SELECT name,shortName,id FROM " . $tablePrefix . "projects ORDER BY shortName;");
+		$rep = $bdd->query("SELECT name,shortName,uuid,id FROM " . $tablePrefix . "projects ORDER BY shortName;");
 		$projects = Array();
 		while ($project = $rep->fetch())
 		{
 			$proj = Array();
 			$proj['name'] = $project['name'];
 			$proj['shortName'] = $project['shortName'];
-			$proj['id'] = (int)$project['id'];
+			$proj['uuid'] = $project['uuid'];
 			//get stages
 			$projectStages = Array();
-			$repS = $bdd->query("SELECT stageId FROM " . $tablePrefix . "projectstage JOIN " . $tablePrefix . "stages ON " . $tablePrefix . "stages.id = " . $tablePrefix . "projectstage.stageId WHERE projectId=" . $project['id'] . " ORDER BY " . $tablePrefix . "stages.shortName;");
+			$repS = $bdd->query("SELECT " . $tablePrefix . "stages.uuid as stageId FROM " . $tablePrefix . "projectstage JOIN " . $tablePrefix . "stages ON " . $tablePrefix . "stages.id = " . $tablePrefix . "projectstage.stageId WHERE projectId=" . $project['id'] . " ORDER BY " . $tablePrefix . "stages.shortName;");
 			while ($projectStage = $repS->fetch())
 			{
-				$projectStages[] = (int)$projectStage['stageId'];
+				$projectStages[] = $projectStage['stageId'];
 			}
 			$proj['stages'] = $projectStages;
 			//get shots
 			$projectShots = Array();
-			$repShots = $bdd->query("SELECT shotId FROM " . $tablePrefix . "projectshot WHERE projectId=" . $project['id'] . ";");
+			$repShots = $bdd->query("SELECT " . $tablePrefix . "shots.uuid as shotId FROM " . $tablePrefix . "projectshot JOIN " . $tablePrefix . "shots ON " . $tablePrefix . "shots.id = " . $tablePrefix . "projectshot.shotId WHERE projectId=" . $project['id'] . ";");
 			while ($projectShot = $repShots->fetch())
 			{
-				$projectShots[] = (int)$projectShot['shotId'];
+				$projectShots[] = $projectShot['shotId'];
 			}
 			$projects[] = $proj;
 		}
@@ -94,24 +94,24 @@
 
 		$name = "";
 		$shortName = "";
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$name = $data->{'name'};
-			$shortName = $data->{'shortName'};
-			$id = $data->{'id'};
+			if (isset($data->{'name'})) $name = $data->{'name'};
+			if (isset($data->{'shortName'})) $shortName = $data->{'shortName'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($id) > 0)
+		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($uuid) > 0)
 		{
 
-			$rep = $bdd->prepare("UPDATE " . $tablePrefix . "projects SET name= :name ,shortName= :shortName WHERE id= :id ;");
-			$rep->execute(array('name' => $name,'shortName' => $shortName,'id' => $id));
+			$rep = $bdd->prepare("UPDATE " . $tablePrefix . "projects SET name= :name ,shortName= :shortName WHERE uuid= :uuid ;");
+			$rep->execute(array('name' => $name,'shortName' => $shortName,'uuid' => $uuid));
 			$rep->closeCursor();
 
-			$reply["message"] = "Project " . $shortName . " (" . $id . ") updated.";
+			$reply["message"] = "Project " . $shortName . " (" . $uuid . ") updated.";
 			$reply["success"] = true;
 
 		}
@@ -127,21 +127,21 @@
 	if ($reply["type"] == "removeProject")
 	{
 		$reply["accepted"] = true;
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$id = $data->{'id'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
-		if (strlen($id) > 0)
+		if (strlen($uuid) > 0)
 		{
 
-			$rep = $bdd->prepare("DELETE " . $tablePrefix . "projects FROM " . $tablePrefix . "projects WHERE id= :id ;");
-			$rep->execute(array('id' => $id));
+			$rep = $bdd->prepare("DELETE " . $tablePrefix . "projects FROM " . $tablePrefix . "projects WHERE uuid= :uuid ;");
+			$rep->execute(array('uuid' => $uuid));
 			$rep->closeCursor();
 
-			$reply["message"] = "Project " . $id . " removed.";
+			$reply["message"] = "Project " . $uuid . " removed.";
 			$reply["success"] = true;
 
 		}
@@ -163,14 +163,19 @@
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$stageId = $data->{'stageId'};
-			$projectId = $data->{'projectId'};
+			if (isset($data->{'stageId'})) $stageId = $data->{'stageId'};
+			if (isset($data->{'projectId'})) $projectId = $data->{'projectId'};
 		}
 
 		if (strlen($stageId) > 0 AND strlen($projectId) > 0)
 		{
+			$q = "INSERT INTO " . $tablePrefix . "projectstage (stageId,projectId) VALUES (
+			( SELECT " . $tablePrefix . "stages.id FROM " . $tablePrefix . "stages WHERE " . $tablePrefix . "stages.uuid = :stageId )
+			,
+			( SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = :projectId )
+			) ON DUPLICATE KEY UPDATE " . $tablePrefix . "projectstage.id = " . $tablePrefix . "projectstage.id ;";
 
-			$rep = $bdd->prepare("INSERT INTO " . $tablePrefix . "projectstage (stageId,projectId) VALUES ( :stageId , :projectId ) ON DUPLICATE KEY UPDATE stageId = VALUES(stageId) , projectId = VALUES(projectId);");
+			$rep = $bdd->prepare($q);
 			$rep->execute(array('stageId' => $stageId,'projectId' => $projectId));
 			$rep->closeCursor();
 
@@ -195,12 +200,17 @@
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$stageId = $data->{'stageId'};
-			$projectId = $data->{'projectId'};
+			if (isset($data->{'stageId'})) $stageId = $data->{'stageId'};
+			if (isset($data->{'projectId'})) $projectId = $data->{'projectId'};
 		}
 		if (strlen($projectId) > 0 AND strlen($stageId) > 0)
 		{
-			$rep = $bdd->prepare("DELETE " . $tablePrefix . "projectstage FROM " . $tablePrefix . "projectstage WHERE stageId= :stageId AND projectId= :projectId ;");
+			$q = "DELETE " . $tablePrefix . "projectstage FROM " . $tablePrefix . "projectstage WHERE
+			stageId= ( SELECT " . $tablePrefix . "stages.id FROM " . $tablePrefix . "stages WHERE " . $tablePrefix . "stages.uuid = :stageId )
+			AND
+			projectId= ( SELECT " . $tablePrefix . "projects.id FROM " . $tablePrefix . "projects WHERE " . $tablePrefix . "projects.uuid = :projectId )
+			;";
+			$rep = $bdd->prepare($q);
 			$rep->execute(array('stageId' => $stageId,'projectId' => $projectId));
 			$rep->closeCursor();
 

@@ -26,45 +26,45 @@ public:
     void connection(QString user,QString passHash);
     void sendRequest(QString request, QJsonDocument content = QJsonDocument());
     //Status
-    void addStatus(QString name = "New status", QString shortName = "New", QString color = "6d6d6d", QString description = "", int id = -1);
+    void addStatus(QString name = "New status", QString shortName = "New", QString color = "6d6d6d", QString description = "", QString uuid = "");
     void getStatuses();
-    void updateStatus(int id, QString name, QString shortName, QString color, QString description);
-    void removeStatus(int id);
+    void updateStatus(QString uuid, QString name, QString shortName, QString color, QString description);
+    void removeStatus(QString uuid);
     //Stage
-    void addStage(QString name = "New stage", QString shortName = "New", int id = -1);
+    void addStage(QString name = "New stage", QString shortName = "New", QString uuid = "");
     void getStages();
-    void updateStage(int id, QString name, QString shortName);
-    void removeStage(int id);
+    void updateStage(QString uuid, QString name, QString shortName);
+    void removeStage(QString uuid);
     //Project
-    void addProject(QString name = "New project",QString shortName = "New", int id = -1);
+    void addProject(QString name = "New project",QString shortName = "New", QString id = "");
     void getProjects();
-    void updateProject(int id, QString name, QString shortName);
-    void removeProject(int id);
-    void addProjectStage(int projectId, int stageId);
-    void removeProjectStage(int projectId, int stageId);
+    void updateProject(QString id, QString name, QString shortName);
+    void removeProject(QString id);
+    void addProjectStage(QString projectId, QString stageId);
+    void removeProjectStage(QString projectId, QString stageId);
     //Shot
-    void addShot(int id, QString name, double duration);
+    void addShot(QString id, QString name, double duration);
     void addShots(QList<QStringList> shots);
     void updateShots(QList<QStringList> shots);
-    void insertShots(QList<int> shots, int projectId, int order);
-    void insertShot(int id, int projectId, int order);
-    void addInsertShots(QList<QStringList> shots, int projectId, int order);
-    void getShots(int projectId);
-    void updateShot(int id, QString name, double duration);
-    void removeShot(int id);
-    void removeShots(QList<int> ids, int projectId);
-    void resetShotsOrder(QList<int> ids);
+    void insertShots(QStringList shots, QString projectId, int order);
+    void insertShot(QString id, QString projectId, int order);
+    void addInsertShots(QList<QStringList> shots, QString projectId, int order);
+    void getShots(QString projectId);
+    void updateShot(QString id, QString name, double duration);
+    void removeShot(QString id);
+    void removeShots(QStringList ids, QString projectId);
+    void resetShotsOrder(QStringList ids);
     //Asset
-    int addAsset(QString name, QString shortName, int statusId, int stageId, int projectId, QString comment);
-    QList<int> addAssets(QList<QStringList> assets, int stageId, int projectId);
-    void updateAsset(int id,QString name,QString shortName,QString comment);
-    void assignAsset(int assetId, int shotId);
+    void addAsset(QString name, QString shortName, QString statusId, QString stageId, QString comment, QString uuid);
+    void addAssets(QList<QStringList> assets, QString stageId, QString projectId);
+    void updateAsset(QString id, QString name, QString shortName, QString comment);
+    void assignAsset(QString assetId, QString shotId);
     void assignAssets(QList<QStringList> assignments);
-    QList<int> addAssignAssets(QList<QStringList> assets, int stageId, int projectId);
-    void unAssignAsset(int assetId, int shotId);
-    void getAssets(int projectId);
-    void setAssetStatus(int statusId, int assetId);
-    void removeAsset(int id);
+    void addAssignAssets(QList<QStringList> assets, QString stageId, QString projectId);
+    void unAssignAsset(QString assetId, QString shotId);
+    void getAssets(QString projectId);
+    void setAssetStatus(QString statusId, QString assetId);
+    void removeAsset(QString id);
 signals:
     void connecting();
     void connected(bool,QString);

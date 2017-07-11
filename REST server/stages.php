@@ -11,26 +11,26 @@
 
 		$name = "";
 		$shortName = "";
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
 			if (isset($data->{'name'})) $name = $data->{'name'};
 			if (isset($data->{'shortName'})) $shortName = $data->{'shortName'};
-			if (isset($data->{'id'})) $id = $data->{'id'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
 
 		if (strlen($name) > 0 AND strlen($shortName) > 0)
 		{
-			if (strlen($id) > 0)
+			if (strlen($uuid) > 0)
 			{
-				$qString = "INSERT INTO " . $tablePrefix . "stages (name,shortName,id) VALUES ( :name , :shortName , :id ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
-				$values = array('name' => $name,'shortName' => $shortName, 'id' => $id);
+				$qString = "INSERT INTO " . $tablePrefix . "stages (name,shortName,uuid) VALUES ( :name , :shortName , :uuid ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
+				$values = array('name' => $name,'shortName' => $shortName, 'uuid' => $uuid);
 			}
 			else
 			{
-				$qString = "INSERT INTO " . $tablePrefix . "stages (name,shortName) VALUES ( :name , :shortName ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
+				$qString = "INSERT INTO " . $tablePrefix . "stages (name,shortName,uuid) VALUES ( :name , :shortName , uuid() ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
 				$values = array('name' => $name,'shortName' => $shortName);
 			}
 
@@ -55,14 +55,14 @@
 		$reply["accepted"] = true;
 
 
-		$rep = $bdd->query("SELECT name,shortName,id FROM " . $tablePrefix . "stages ORDER BY shortName,name,id;");
+		$rep = $bdd->query("SELECT name,shortName,uuid FROM " . $tablePrefix . "stages ORDER BY shortName,name,id;");
 		$stages = Array();
 		while ($stage = $rep->fetch())
 		{
 			$sta = Array();
 			$sta['name'] = $stage['name'];
 			$sta['shortName'] = $stage['shortName'];
-			$sta['id'] = (int)$stage['id'];
+			$sta['uuid'] = $stage['uuid'];
 			$stages[] = $sta;
 		}
 		$rep->closeCursor();
@@ -80,24 +80,24 @@
 
 		$name = "";
 		$shortName = "";
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$name = $data->{'name'};
-			$shortName = $data->{'shortName'};
-			$id = $data->{'id'};
+			if (isset($data->{'name'})) $name = $data->{'name'};
+			if (isset($data->{'shortName'})) $shortName = $data->{'shortName'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($id) > 0)
+		if (strlen($name) > 0 AND strlen($shortName) > 0 AND strlen($uuid) > 0)
 		{
 
-			$rep = $bdd->prepare("UPDATE " . $tablePrefix . "stages SET name= :name ,shortName= :shortName WHERE id= :id ;");
-			$rep->execute(array('name' => $name, 'shortName' => $shortName, 'id' => $id));
+			$rep = $bdd->prepare("UPDATE " . $tablePrefix . "stages SET name= :name ,shortName= :shortName WHERE uuid= :uuid ;");
+			$rep->execute(array('name' => $name, 'shortName' => $shortName, 'uuid' => $uuid));
 			$rep->closeCursor();
 
-			$reply["message"] = "Stage " . $shortName . " (" . $id . ") updated.";
+			$reply["message"] = "Stage " . $shortName . " (" . $uuid . ") updated.";
 			$reply["success"] = true;
 
 		}
@@ -118,16 +118,16 @@
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$id = $data->{'id'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
-		if (strlen($id) > 0)
+		if (strlen($uuid) > 0)
 		{
 
-			$rep = $bdd->prepare("DELETE " . $tablePrefix . "stages FROM " . $tablePrefix . "stages WHERE id= :id ;");
-			$rep->execute(array('id' => $id));
+			$rep = $bdd->prepare("DELETE " . $tablePrefix . "stages FROM " . $tablePrefix . "stages WHERE uuid= :uuid ;");
+			$rep->execute(array('uuid' => $uuid));
 			$rep->closeCursor();
 
-			$reply["message"] = "Stage " . $id . " removed.";
+			$reply["message"] = "Stage " . $uuid . " removed.";
 			$reply["success"] = true;
 
 		}

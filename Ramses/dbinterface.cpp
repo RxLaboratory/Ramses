@@ -285,7 +285,7 @@ void DBInterface::sslError(QNetworkReply *rep, QList<QSslError> errs)
 }
 
 //STATUS
-void DBInterface::addStatus(QString name,QString shortName,QString color,QString description,int id)
+void DBInterface::addStatus(QString name,QString shortName,QString color,QString description,QString uuid)
 {   
     QString q = "?type=addStatus";
     QJsonObject obj;
@@ -293,7 +293,7 @@ void DBInterface::addStatus(QString name,QString shortName,QString color,QString
     obj.insert("shortName",shortName);
     obj.insert("color",color);
     obj.insert("description",description);
-    if (id >= 0) obj.insert("id",id);
+    if (uuid != "") obj.insert("uuid",uuid);
     QJsonDocument json(obj);
 
     emit message("Submitting status","remote");
@@ -308,11 +308,11 @@ void DBInterface::getStatuses()
     sendRequest(q);
 }
 
-void DBInterface::updateStatus(int id, QString name, QString shortName, QString color, QString description)
+void DBInterface::updateStatus(QString uuid, QString name, QString shortName, QString color, QString description)
 {
     QString q = "?type=updateStatus";
     QJsonObject obj;
-    obj.insert("id",id);
+    obj.insert("uuid",uuid);
     obj.insert("name",name);
     obj.insert("shortName",shortName);
     obj.insert("color",color);
@@ -323,11 +323,11 @@ void DBInterface::updateStatus(int id, QString name, QString shortName, QString 
     sendRequest(q,json);
 }
 
-void DBInterface::removeStatus(int id)
+void DBInterface::removeStatus(QString uuid)
 {
     QString q = "?type=removeStatus";
     QJsonObject obj;
-    obj.insert("id",id);
+    obj.insert("uuid",uuid);
     QJsonDocument json(obj);
 
     emit message("Removing status","remote");
@@ -335,13 +335,13 @@ void DBInterface::removeStatus(int id)
 }
 
 //STAGES
-void DBInterface::addStage(QString name, QString shortName, int id)
+void DBInterface::addStage(QString name, QString shortName, QString uuid)
 {
     QString q = "?type=addStage";
     QJsonObject obj;
     obj.insert("name",name);
     obj.insert("shortName",shortName);
-    if (id >= 0) obj.insert("id",id);
+    if (uuid != "") obj.insert("uuid",uuid);
     QJsonDocument json(obj);
 
     emit message("Submitting stage","remote");
@@ -355,11 +355,11 @@ void DBInterface::getStages()
     sendRequest(q);
 }
 
-void DBInterface::updateStage(int id, QString name, QString shortName)
+void DBInterface::updateStage(QString uuid, QString name, QString shortName)
 {
     QString q = "?type=updateStage";
     QJsonObject obj;
-    obj.insert("id",id);
+    obj.insert("uuid",uuid);
     obj.insert("name",name);
     obj.insert("shortName",shortName);
     QJsonDocument json(obj);
@@ -368,11 +368,11 @@ void DBInterface::updateStage(int id, QString name, QString shortName)
     sendRequest(q,json);
 }
 
-void DBInterface::removeStage(int id)
+void DBInterface::removeStage(QString uuid)
 {
     QString q = "?type=removeStage";
     QJsonObject obj;
-    obj.insert("id",id);
+    obj.insert("uuid",uuid);
     QJsonDocument json(obj);
 
     emit message("Removing stage","remote");
@@ -380,13 +380,13 @@ void DBInterface::removeStage(int id)
 }
 
 //PROJECTS
-void DBInterface::addProject(QString name,QString shortName, int id)
+void DBInterface::addProject(QString name,QString shortName, QString id)
 {
     QString q = "?type=addProject";
     QJsonObject obj;
     obj.insert("name",name);
     obj.insert("shortName",shortName);
-    if (id >= 0) obj.insert("id",id);
+    if (id != "") obj.insert("uuid",id);
     QJsonDocument json(obj);
 
     emit message("Submitting project","remote");
@@ -400,11 +400,11 @@ void DBInterface::getProjects()
     sendRequest(q);
 }
 
-void DBInterface::updateProject(int id, QString name, QString shortName)
+void DBInterface::updateProject(QString id, QString name, QString shortName)
 {
     QString q = "?type=updateProject";
     QJsonObject obj;
-    obj.insert("id",id);
+    obj.insert("uuid",id);
     obj.insert("name",name);
     obj.insert("shortName",shortName);
     QJsonDocument json(obj);
@@ -413,18 +413,18 @@ void DBInterface::updateProject(int id, QString name, QString shortName)
     sendRequest(q,json);
 }
 
-void DBInterface::removeProject(int id)
+void DBInterface::removeProject(QString id)
 {
     QString q = "?type=removeProject";
     QJsonObject obj;
-    obj.insert("id",id);
+    obj.insert("uuid",id);
     QJsonDocument json(obj);
 
     emit message("Removing project","remote");
     sendRequest(q,json);
 }
 
-void DBInterface::addProjectStage(int projectId, int stageId)
+void DBInterface::addProjectStage(QString projectId, QString stageId)
 {
     QString q = "?type=addProjectStage";
     QJsonObject obj;
@@ -436,7 +436,7 @@ void DBInterface::addProjectStage(int projectId, int stageId)
     sendRequest(q,json);
 }
 
-void DBInterface::removeProjectStage(int projectId, int stageId)
+void DBInterface::removeProjectStage(QString projectId, QString stageId)
 {
     QString q = "?type=removeProjectStage";
     QJsonObject obj;
@@ -449,7 +449,7 @@ void DBInterface::removeProjectStage(int projectId, int stageId)
 }
 
 //SHOTS
-void DBInterface::addShot(int id, QString name, double duration)
+void DBInterface::addShot(QString id, QString name, double duration)
 {
     QString q = "?type=addShots";
     QJsonObject obj;
@@ -457,7 +457,7 @@ void DBInterface::addShot(int id, QString name, double duration)
     QJsonObject jsonShot;
     jsonShot.insert("name",name);
     jsonShot.insert("duration",duration);
-    jsonShot.insert("id",id);
+    jsonShot.insert("uuid",id);
     jsonShots.insert(0,jsonShot);
     obj.insert("shots",jsonShots);
     QJsonDocument json(obj);
@@ -476,7 +476,7 @@ void DBInterface::addShots(QList<QStringList> shots)
         QJsonObject jsonShot;
         jsonShot.insert("name",shot[0]);
         jsonShot.insert("duration",shot[1]);
-        jsonShot.insert("id",shot[2]);
+        jsonShot.insert("uuid",shot[2]);
         jsonShots.insert(jsonShots.count(),jsonShot);
     }
     obj.insert("shots",jsonShots);
@@ -496,7 +496,7 @@ void DBInterface::updateShots(QList<QStringList> shots)
         QJsonObject jsonShot;
         jsonShot.insert("name",shot[0]);
         jsonShot.insert("duration",shot[1]);
-        jsonShot.insert("id",shot[2]);
+        jsonShot.insert("uuid",shot[2]);
         jsonShots.insert(jsonShots.count(),jsonShot);
     }
     obj.insert("shots",jsonShots);
@@ -506,12 +506,12 @@ void DBInterface::updateShots(QList<QStringList> shots)
     sendRequest(q,json);
 }
 
-void DBInterface::insertShots(QList<int> shots,int projectId, int order)
+void DBInterface::insertShots(QStringList shots,QString projectId, int order)
 {
     QString q = "?type=insertShots";
     QJsonObject obj;
     QJsonArray jsonShots;
-    foreach(int shot,shots)
+    foreach(QString shot,shots)
     {
         QJsonObject jsonShot;
         jsonShot.insert("shotId",shot);
@@ -526,7 +526,7 @@ void DBInterface::insertShots(QList<int> shots,int projectId, int order)
     sendRequest(q,json);
 }
 
-void DBInterface::insertShot(int id,int projectId, int order)
+void DBInterface::insertShot(QString id,QString projectId, int order)
 {
     QString q = "?type=insertShots";
     QJsonObject obj;
@@ -543,7 +543,7 @@ void DBInterface::insertShot(int id,int projectId, int order)
     sendRequest(q,json);
 }
 
-void DBInterface::addInsertShots(QList<QStringList> shots,int projectId, int order)
+void DBInterface::addInsertShots(QList<QStringList> shots,QString projectId, int order)
 {
     QString q = "?type=addInsertShots";
     QJsonObject obj;
@@ -553,7 +553,7 @@ void DBInterface::addInsertShots(QList<QStringList> shots,int projectId, int ord
         QJsonObject jsonShot;
         jsonShot.insert("name",shot[0]);
         jsonShot.insert("duration",shot[1]);
-        jsonShot.insert("id",shot[2]);
+        jsonShot.insert("uuid",shot[2]);
         jsonShots.insert(jsonShots.count(),jsonShot);
     }
     obj.insert("shots",jsonShots);
@@ -565,8 +565,7 @@ void DBInterface::addInsertShots(QList<QStringList> shots,int projectId, int ord
     sendRequest(q,json);
 }
 
-
-void DBInterface::getShots(int projectId)
+void DBInterface::getShots(QString projectId)
 {
     QString q = "?type=getShots";
     QJsonObject obj;
@@ -577,11 +576,11 @@ void DBInterface::getShots(int projectId)
     sendRequest(q, json);
 }
 
-void DBInterface::updateShot(int id, QString name, double duration)
+void DBInterface::updateShot(QString id, QString name, double duration)
 {
     QString q = "?type=updateShot";
     QJsonObject obj;
-    obj.insert("id",id);
+    obj.insert("uuid",id);
     obj.insert("name",name);
     obj.insert("duration",duration);
     QJsonDocument json(obj);
@@ -590,7 +589,7 @@ void DBInterface::updateShot(int id, QString name, double duration)
     sendRequest(q,json);
 }
 
-void DBInterface::removeShot(int id)
+void DBInterface::removeShot(QString id)
 {
     QString q = "?type=removeShots";
     QJsonObject obj;
@@ -603,12 +602,12 @@ void DBInterface::removeShot(int id)
     sendRequest(q,json);
 }
 
-void DBInterface::removeShots(QList<int> ids, int projectId)
+void DBInterface::removeShots(QStringList ids, QString projectId)
 {
     QString q = "?type=removeShots";
     QJsonObject obj;
     QJsonArray jsonIds;
-    foreach(int id, ids)
+    foreach(QString id, ids)
     {
         jsonIds.insert(jsonIds.count(),id);
     }
@@ -620,12 +619,12 @@ void DBInterface::removeShots(QList<int> ids, int projectId)
     sendRequest(q,json);
 }
 
-void DBInterface::resetShotsOrder(QList<int> ids)
+void DBInterface::resetShotsOrder(QStringList ids)
 {
     QString q = "?type=resetShotsOrder";
     QJsonObject obj;
     QJsonArray jsonIds;
-    foreach(int id, ids)
+    foreach(QString id, ids)
     {
         jsonIds.insert(jsonIds.count(),id);
     }
@@ -637,29 +636,8 @@ void DBInterface::resetShotsOrder(QList<int> ids)
 }
 
 //ASSETS
-int DBInterface::addAsset(QString name, QString shortName, int statusId,int stageId, int projectId,QString comment)
+void DBInterface::addAsset(QString name, QString shortName, QString statusId,QString stageId,QString comment,QString uuid)
 {
-    // LOCAL
-
-    emit message("Saving asset","local");
-    QString local = "INSERT INTO assets (name,shortName,statusId,stageId,projectId,comment) VALUES ('%1','%2',%3,%4,%5,'%6');";
-    local = local.arg(name,shortName,QString::number(statusId),QString::number(stageId),QString::number(projectId),comment);
-    QSqlQuery(local,localDB);
-    QString result = "SELECT last_insert_rowid();";
-    QSqlQuery qResult(result,localDB);
-    qResult.next();
-    int id = qResult.value(0).toInt();
-    //if asset already exists, just get its id //TODO use error instead of id 0
-    if (id == 0)
-    {
-        QString existing = "SELECT id FROM assets WHERE shortName = '%1' AND name = '%2' and projectId = %3 ;";
-        existing = existing.arg(shortName,name,QString::number(projectId));
-        QSqlQuery qExisting(existing,localDB);
-        qExisting.next();
-        id = qExisting.value(0).toInt();
-        return id;
-    }
-
     // REMOTE
 
     QString remote = "?type=addAsset";
@@ -668,22 +646,19 @@ int DBInterface::addAsset(QString name, QString shortName, int statusId,int stag
     obj.insert("shortName",shortName);
     obj.insert("statusId",statusId);
     obj.insert("stageId",stageId);
-    obj.insert("id",id);
+    obj.insert("uuid",uuid);
     obj.insert("comment",comment);
-    obj.insert("projectId",projectId);
     QJsonDocument json(obj);
 
     emit message("Submitting asset","remote");
     sendRequest(remote,json);
-
-    return id;
 }
 
-QList<int> DBInterface::addAssets(QList<QStringList> assets, int stageId, int projectId)
+void DBInterface::addAssets(QList<QStringList> assets, QString stageId, QString projectId)
 {
-    if (assets.count() == 0) return QList<int>();
+    if (assets.count() == 0) return ;
 
-    // LOCAL
+/*    // LOCAL
     emit message("Saving assets","local");
     QString local = "INSERT OR IGNORE INTO assets (name,shortName,statusId,comment,stageId,projectId) VALUES %1 ;";
     QString result = "SELECT DISTINCT id FROM assets WHERE %1 ORDER BY id;";
@@ -722,6 +697,9 @@ QList<int> DBInterface::addAssets(QList<QStringList> assets, int stageId, int pr
         ids << id;
     }
 
+*/
+
+
 
     // REMOTE
 
@@ -737,7 +715,7 @@ QList<int> DBInterface::addAssets(QList<QStringList> assets, int stageId, int pr
         jsonAsset.insert("shortName",asset[1]);
         jsonAsset.insert("statusId",asset[2]);
         jsonAsset.insert("comment",asset[3]);
-        jsonAsset.insert("id",ids[i]);
+        jsonAsset.insert("uuid",asset[4]);
         jsonAssets.insert(jsonAssets.count(),jsonAsset);
     }
     obj.insert("assets",jsonAssets);
@@ -747,11 +725,9 @@ QList<int> DBInterface::addAssets(QList<QStringList> assets, int stageId, int pr
 
     emit message("Submitting assets","remote");
     sendRequest(remote,json);
-
-    return ids;
 }
 
-void DBInterface::updateAsset(int id, QString name, QString shortName, QString comment)
+void DBInterface::updateAsset(QString id, QString name, QString shortName, QString comment)
 {
     QString remote = "?type=updateAsset";
     QJsonObject obj;
@@ -766,7 +742,7 @@ void DBInterface::updateAsset(int id, QString name, QString shortName, QString c
     sendRequest(remote,json);
 }
 
-void DBInterface::assignAsset(int assetId, int shotId)
+void DBInterface::assignAsset(QString assetId, QString shotId)
 {
     QString q = "?type=assignAsset";
     QJsonObject obj;
@@ -801,12 +777,12 @@ void DBInterface::assignAssets(QList<QStringList> assignments)
     sendRequest(q,json);
 }
 
-QList<int> DBInterface::addAssignAssets(QList<QStringList> assets, int stageId, int projectId)
+void DBInterface::addAssignAssets(QList<QStringList> assets, QString stageId, QString projectId)
 {
-    if (assets.count() == 0) return QList<int>();
+    if (assets.count() == 0) return ;
 
     // LOCAL ADD
-    emit message("Saving assets","local");
+ /*   emit message("Saving assets","local");
     QString local = "INSERT OR IGNORE INTO assets (name,shortName,statusId,comment,stageId,projectId) VALUES %1 ;";
     QString result = "SELECT DISTINCT id FROM assets WHERE %1 ORDER BY id;";
 
@@ -815,13 +791,12 @@ QList<int> DBInterface::addAssignAssets(QList<QStringList> assets, int stageId, 
     //the values for select id
     QStringList assetsResults;
 
-    QString stageIdString = QString::number(stageId);
     QString projectIdString = QString::number(projectId);
 
     //build values
     foreach(QStringList asset,assets)
     {
-        QString assetValue = "('" + asset[0] + "','" + asset[1] + "'," + asset[2] + ",'" + asset[3] + "'," + stageIdString + "," + projectIdString + ")";
+        QString assetValue = "('" + asset[0] + "','" + asset[1] + "'," + asset[2] + ",'" + asset[3] + "'," + stageId + "," + projectIdString + ")";
         assetsValues << assetValue;
 
         QString assetResult = "( name = '" + asset[0] + "' AND shortName = '" + asset[1] + "' AND projectId = " + projectIdString + " )";
@@ -844,6 +819,8 @@ QList<int> DBInterface::addAssignAssets(QList<QStringList> assets, int stageId, 
         ids << id;
     }
 
+*/
+
 
     // REMOTE ADD AND ASSIGN
 
@@ -859,7 +836,7 @@ QList<int> DBInterface::addAssignAssets(QList<QStringList> assets, int stageId, 
         jsonAsset.insert("shortName",asset[1]);
         jsonAsset.insert("statusId",asset[2]);
         jsonAsset.insert("comment",asset[3]);
-        jsonAsset.insert("id",ids[i]);
+        jsonAsset.insert("uuid",asset[5]);
         jsonAsset.insert("shotId",asset[4]);
         jsonAssets.insert(jsonAssets.count(),jsonAsset);
     }
@@ -870,11 +847,9 @@ QList<int> DBInterface::addAssignAssets(QList<QStringList> assets, int stageId, 
 
     emit message("Submitting assets","remote");
     sendRequest(remote,json);
-
-    return ids;
 }
 
-void DBInterface::unAssignAsset(int assetId, int shotId)
+void DBInterface::unAssignAsset(QString assetId, QString shotId)
 {
     QString q = "?type=unAssignAsset";
     QJsonObject obj;
@@ -886,7 +861,7 @@ void DBInterface::unAssignAsset(int assetId, int shotId)
     sendRequest(q,json);
 }
 
-void DBInterface::getAssets(int projectId)
+void DBInterface::getAssets(QString projectId)
 {
     QString q = "?type=getAssets";
     QJsonObject obj;
@@ -897,7 +872,7 @@ void DBInterface::getAssets(int projectId)
     sendRequest(q,json);
 }
 
-void DBInterface::setAssetStatus(int statusId, int assetId)
+void DBInterface::setAssetStatus(QString statusId, QString assetId)
 {
     QString q = "?type=setAssetStatus";
     QJsonObject obj;
@@ -909,7 +884,7 @@ void DBInterface::setAssetStatus(int statusId, int assetId)
     sendRequest(q,json);
 }
 
-void DBInterface::removeAsset(int id)
+void DBInterface::removeAsset(QString id)
 {
     QString q = "?type=removeAsset";
     QJsonObject obj;

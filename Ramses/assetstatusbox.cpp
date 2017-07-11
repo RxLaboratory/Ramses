@@ -52,7 +52,7 @@ void AssetStatusBox::removeStatus(RAMStatus *status)
 {
     for (int i = 0 ; i < comboBox->count() ; i++)
     {
-        if (comboBox->itemData(i).toInt() == status->getId())
+        if (comboBox->itemData(i).toString() == status->getId())
         {
             comboBox->removeItem(i);
             break;
@@ -68,7 +68,7 @@ void AssetStatusBox::on_comboBox_currentIndexChanged(int index)
     //find status
     foreach(RAMStatus *status,statusesList)
     {
-        if (status->getId() == comboBox->currentData().toInt())
+        if (status->getId() == comboBox->currentData().toString())
         {
             //update color
             QString bgColor = "background-color:" + status->getColor().name() + ";";

@@ -5,17 +5,18 @@
 #include "ramstatus.h"
 #include "ramshot.h"
 #include "dbinterface.h"
+#include "ramuuid.h"
 
 class RAMAsset : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, int stageId, bool updateDb = false, QString c = "", int i = -1, int projectId = 0, QObject *parent = 0);
+    explicit RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, QString stageId, bool updateDb = false, QString c = "", QString i = "", QString projectId = "", QObject *parent = 0);
     ~RAMAsset();
     RAMStatus* getStatus();
     QString getName();
     QString getShortName();
-    int getId();
+    QString getId();
     QString getComment();
     QList<RAMShot*> getAssignments();
     void assign(RAMShot *shot,bool updateDb = false);
@@ -24,7 +25,7 @@ public:
     void setShortName(QString sn,bool updateDb = false);
     void setComment(QString c,bool updateDb = false);
     void setStatus(RAMStatus *s,bool updateDb = false);
-    void setId(int i);
+    void setId(QString i);
     void update();
 
 signals:
@@ -43,7 +44,7 @@ public slots:
 private:
     QString name;
     QString shortName;
-    int id;
+    QString id;
     QString comment;
     RAMStatus *status;
     QList<RAMShot*> assignments;

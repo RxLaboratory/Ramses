@@ -38,7 +38,7 @@ void AddAssetDialog::on_addButton_clicked()
     if (assetList->currentIndex() < 0) return;
     foreach(RAMAsset *a,allAssets)
     {
-        if (assetList->currentData().toInt() == a->getId())
+        if (assetList->currentData().toString() == a->getId())
         {
             a->assign(shot,true);
             asset = a;
@@ -53,7 +53,7 @@ void AddAssetDialog::on_createButton_clicked()
 {
     if (nameEdit->text() == "") return;
 
-    asset = new RAMAsset(dbi,nameEdit->text(),shortNameEdit->text(),status,stage->getId(),true,"",-1,updater->getCurrentProject()->getId());
+    asset = new RAMAsset(dbi,nameEdit->text(),shortNameEdit->text(),status,stage->getId(),true,"","",updater->getCurrentProject()->getId());
     asset->assign(shot,true);
     stage->addAsset(asset);
 

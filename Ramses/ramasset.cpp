@@ -3,7 +3,7 @@
 #include <QtDebug>
 #endif
 
-RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, int stageId, bool updateDb, QString c, int i, int projectId, QObject *parent) : QObject(parent)
+RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, QString stageId, bool updateDb, QString c, QString i, QString projectId, QObject *parent) : QObject(parent)
 {
     id = i;
     name = n;
@@ -12,10 +12,12 @@ RAMAsset::RAMAsset(DBInterface *db, QString n, QString sn, RAMStatus *st, int st
     shortName = sn;
     comment = c;
 
+    if (id == "") id = RAMUuid::generateUuidString(name);
+
     dbi = db;
     if (updateDb)
     {
-        id = dbi->addAsset(name,shortName,status->getId(),stageId,projectId,comment);
+        dbi->addAsset(name,shortName,status->getId(),stageId,comment,id);
     }
 }
 
@@ -24,7 +26,7 @@ RAMAsset::~RAMAsset()
 
 }
 
-int RAMAsset::getId()
+QString RAMAsset::getId()
 {
     return id;
 }
@@ -85,7 +87,7 @@ void RAMAsset::setStatus(RAMStatus *s, bool updateDb)
     emit statusChanged(s);
 }
 
-void RAMAsset::setId(int i)
+void RAMAsset::setId(QString i)
 {
     id = i;
 }

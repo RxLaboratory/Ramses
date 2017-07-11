@@ -4,17 +4,18 @@
 #include <QObject>
 #include "dbinterface.h"
 #include "ramasset.h"
+#include "ramuuid.h"
 
 class RAMStage : public QObject
 {
     Q_OBJECT
 public:
-    explicit RAMStage(DBInterface *db, QString n, QString sN, int i, bool updateDb, QObject *parent = 0);
+    explicit RAMStage(DBInterface *db, QString n, QString sN, bool updateDb = false, QString i = "", QObject *parent = 0);
     ~RAMStage();
-    int getId();
+    QString getId();
     QString getName();
     QString getShortName();
-    void setId(int id, bool updateDb = false);
+    void setId(QString id);
     void setName(QString name, bool updateDb = false);
     void setShortName(QString shortName, bool updateDb = false);
     void addAsset(RAMAsset *a);
@@ -33,7 +34,7 @@ public slots:
     void removeAsset(RAMAsset *a);
 
 private:
-    int stageId;
+    QString uuid;
     QString stageName;
     QString stageShortName;
     DBInterface *dbi;

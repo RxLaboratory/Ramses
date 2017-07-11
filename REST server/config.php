@@ -17,7 +17,7 @@
 	//password
 	$sqlpassword = "XMvsjo6mHt67K2oT";
 	//table prefix
-	$tablePrefix = "Cq5sJNGg";
+	$tablePrefix = "";
 
 	//SESSION
 	//timeout (seconds)

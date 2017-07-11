@@ -3,19 +3,24 @@
 #include <QtDebug>
 #endif
 
-RAMStatus::RAMStatus(DBInterface *db, int i, QString n, QString sN, QColor c, QString d, bool updateDb, QObject *parent) : QObject(parent)
+RAMStatus::RAMStatus(DBInterface *db, QString n, QString sN, QColor c, QString d, QString id, bool updateDb, QObject *parent) : QObject(parent)
 {
 
-    statusId = i;
     statusName = n;
     statusShortName = sN;
     statusColor = c;
     statusDescription = d;
+    uuid = id;
     dbi = db;
+
+    if (uuid == "")
+    {
+        uuid = RAMUuid::generateUuidString(statusName);
+    }
 
     if (updateDb)
     {
-        dbi->addStatus(statusName,statusShortName,statusColor.name(),statusDescription,statusId);
+        dbi->addStatus(statusName,statusShortName,statusColor.name(),statusDescription,uuid);
     }
 }
 
@@ -26,9 +31,9 @@ RAMStatus::~RAMStatus()
 
 // GET
 
-int RAMStatus::getId()
+QString RAMStatus::getId()
 {
-    return statusId;
+    return uuid;
 }
 
 QString RAMStatus::getName()
@@ -83,12 +88,12 @@ void RAMStatus::setDescription(QString description, bool updateDb)
 
 void RAMStatus::update()
 {
-    dbi->updateStatus(statusId,statusName,statusShortName,statusColor.name(),statusDescription);
+    dbi->updateStatus(uuid,statusName,statusShortName,statusColor.name(),statusDescription);
 }
 
 void RAMStatus::remove()
 {
-    dbi->removeStatus(statusId);
+    dbi->removeStatus(uuid);
     emit statusRemoved(this);
 }
 

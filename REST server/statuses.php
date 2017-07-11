@@ -13,16 +13,16 @@
 		$shortName = "";
 		$color = "";
 		$description = "";
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$name = $data->{'name'};
-			$shortName = $data->{'shortName'};
-			$color = $data->{'color'};
-			$description = $data->{'description'};
-			$id = $data->{'id'};
+			if (isset($data->{'name'})) $name = $data->{'name'};
+			if (isset($data->{'shortName'})) $shortName = $data->{'shortName'};
+			if (isset($data->{'color'})) $color = $data->{'color'};
+			if (isset($data->{'description'})) $description = $data->{'description'};
+			if (isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
 
 		if (strlen($name) > 0 AND strlen($shortName) > 0 AND (strlen($color) == 6 OR strlen($color) == 7))
@@ -30,14 +30,14 @@
 			//add # on color if needed
 			if (strlen($color) == 6) $color = "#" . $color;
 			//if an id is provided
-			if (strlen($id) > 0)
+			if (strlen($uuid) > 0)
 			{
-				$qString = "INSERT INTO " . $tablePrefix . "status (name,shortName,color,description,id) VALUES ( :name , :shortName , :color , :description , :id ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
-				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id);
+				$qString = "INSERT INTO " . $tablePrefix . "status (name,shortName,color,description,uuid) VALUES ( :name , :shortName , :color , :description , :uuid ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
+				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'uuid' => $uuid);
 			}
 			else
 			{
-				$qString = "INSERT INTO " . $tablePrefix . "status (name,shortName,color,description) VALUES ( :name , :shortName , :color , :description ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
+				$qString = "INSERT INTO " . $tablePrefix . "status (name,shortName,color,description,uuid) VALUES ( :name , :shortName , :color , :description, uuid() ) ON DUPLICATE KEY UPDATE shortName = VALUES(shortName), name = VALUES(name);";
 				$values = array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description);
 			}
 
@@ -62,7 +62,7 @@
 	{
 		$reply["accepted"] = true;
 
-		$rep = $bdd->query("SELECT name,shortName,color,description,id FROM " . $tablePrefix . "status ORDER BY shortName;");
+		$rep = $bdd->query("SELECT name,shortName,color,description,uuid FROM " . $tablePrefix . "status ORDER BY shortName;");
 		$statuses = Array();
 		while ($status = $rep->fetch())
 		{
@@ -71,7 +71,7 @@
 			$stat['shortName'] = $status['shortName'];
 			$stat['color'] = $status['color'];
 			$stat['description'] = $status['description'];
-			$stat['id'] = (int)$status['id'];
+			$stat['uuid'] = $status['uuid'];
 			$statuses[] = $stat;
 		}
 		$rep->closeCursor();
@@ -91,31 +91,30 @@
 		$shortName = "";
 		$color = "";
 		$description = "";
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$name = $data->{'name'};
-			$shortName = $data->{'shortName'};
-			$color = $data->{'color'};
-			$description = $data->{'description'};
-			$id = $data->{'id'};
+			if(isset($data->{'name'})) $name = $data->{'name'};
+			if(isset($data->{'shortName'})) $shortName = $data->{'shortName'};
+			if(isset($data->{'color'})) $color = $data->{'color'};
+			if(isset($data->{'description'})) $description = $data->{'description'};
+			if(isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
 
-		if (strlen($name) > 0 AND strlen($shortName) > 0 AND (strlen($color) == 6 OR strlen($color) == 7) AND strlen($id) > 0)
+		if (strlen($name) > 0 AND strlen($shortName) > 0 AND (strlen($color) == 6 OR strlen($color) == 7) AND strlen($uuid) > 0)
 		{
 			//add # on color if needed
 			if (strlen($color) == 6) $color = "#" . $color;
-			$qString = "UPDATE " . $tablePrefix . "status SET name= :name ,shortName= :shortName ,color= :color ,description= :description WHERE id= :id ;";
+			$qString = "UPDATE " . $tablePrefix . "status SET name= :name ,shortName= :shortName ,color= :color ,description= :description WHERE uuid= :uuid ;";
 
 			$rep = $bdd->prepare($qString);
-			$rep->execute(array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'id' => $id));
+			$rep->execute(array('name' => $name, 'shortName' => $shortName, 'color' => $color, 'description' => $description, 'uuid' => $uuid));
 			$rep->closeCursor();
 
-			$reply["message"] = "Status " . $shortName . " (" . $id . ") updated.";
+			$reply["message"] = "Status " . $shortName . " (" . $uuid . ") updated.";
 			$reply["success"] = true;
-
 		}
 		else
 		{
@@ -129,21 +128,21 @@
 	if ($reply["type"] == "removeStatus")
 	{
 		$reply["accepted"] = true;
-		$id = "";
+		$uuid = "";
 
 		$data = json_decode(file_get_contents('php://input'));
 		if ($data)
 		{
-			$id = $data->{'id'};
+			if(isset($data->{'uuid'})) $uuid = $data->{'uuid'};
 		}
-		if (strlen($id) > 0)
+		if (strlen($uuid) > 0)
 		{
 
-			$rep = $bdd->prepare("DELETE " . $tablePrefix . "status FROM " . $tablePrefix . "status WHERE id= :id ;");
-			$rep->execute(array('id' => $id));
+			$rep = $bdd->prepare("DELETE " . $tablePrefix . "status FROM " . $tablePrefix . "status WHERE uuid= :uuid ;");
+			$rep->execute(array('uuid' => $uuid));
 			$rep->closeCursor();
 
-			$reply["message"] = "Status " . $id . " removed.";
+			$reply["message"] = "Status " . $uuid . " removed.";
 			$reply["success"] = true;
 
 		}
