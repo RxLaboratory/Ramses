@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 12 Juillet 2017 à 11:23
+-- Généré le :  Mer 12 Juillet 2017 à 16:07
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -168,7 +168,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `uuid`, `firstName`, `lastName`, `userName`, `password`, `latestUpdate`) VALUES
-(1, '', '', '', 'Admin', 'e7b3f04140f24f2d9b2e04410e483c147c785df5f83bf5b9200adfe8c7811c271e3365e0dcf1e976bafbbd33a554ffc365b1760f9bc028aa918314c5fea9a767', '2017-07-12 11:21:58');
+(1, '2d7d7e01-671c-11e7-a78f-4ccc6a288527', '', '', 'Admin', 'e7b3f04140f24f2d9b2e04410e483c147c785df5f83bf5b9200adfe8c7811c271e3365e0dcf1e976bafbbd33a554ffc365b1760f9bc028aa918314c5fea9a767', '2017-07-12 16:07:06');
 
 --
 -- Index pour les tables exportées
