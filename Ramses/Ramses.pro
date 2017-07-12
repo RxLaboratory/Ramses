@@ -41,7 +41,8 @@ SOURCES += main.cpp\
     importerdialog.cpp \
     renamedialog.cpp \
     settingswidget.cpp \
-    ramuuid.cpp
+    ramuuid.cpp \
+    ramuser.cpp
 
 HEADERS  += mainwindow.h \
     projectselectorwidget.h \
@@ -69,7 +70,8 @@ HEADERS  += mainwindow.h \
     importerdialog.h \
     renamedialog.h \
     settingswidget.h \
-    ramuuid.h
+    ramuuid.h \
+    ramuser.h
 
 FORMS    += mainwindow.ui \
     projectselectorwidget.ui \
