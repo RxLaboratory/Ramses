@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 11 Juillet 2017 à 14:33
+-- Généré le :  Mer 12 Juillet 2017 à 11:23
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -143,12 +143,9 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`id`, `uuid`, `name`, `shortName`, `color`, `description`, `latestUpdate`) VALUES
-(1, '', 'Stand by', 'STB', '#6d6d6d', '', '2017-06-27 15:39:30'),
-(2, '', 'To do', 'TODO', '#00aaff', '', '2017-06-27 15:39:42'),
-(3, '', 'Retake', 'RTK', '#aa0000', '', '2017-06-27 15:39:52'),
-(4, '', 'OK', 'OK', '#00aa00', '', '2017-06-27 15:40:00'),
-(6, '', 'Check', 'CHK', '#ffaa00', '', '2017-06-27 15:41:49'),
-(7, '', 'Work in progress', 'WIP', '#d1bf61', '', '2017-07-04 14:12:50');
+(11, '5261f4cb-e40f-5595-9d42-284fbffdef3d', 'Stand by', 'STB', '#6d6d6d', '', '2017-07-11 15:07:35'),
+(12, '6382ad1a-99a7-5fd4-bd31-1bc45a62cda1', 'Finished!', 'OK', '#00aa00', '', '2017-07-11 15:07:57'),
+(13, '6ed72e24-2182-51b8-82b1-90a865241131', 'To do', 'TODO', '#00aaff', '', '2017-07-11 15:08:10');
 
 -- --------------------------------------------------------
 
@@ -171,7 +168,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `uuid`, `firstName`, `lastName`, `userName`, `password`, `latestUpdate`) VALUES
-(1, '', '', '', 'Duduf', '7115e065d67c5949b9bf22490f6b793240191f6fc046791e5f4e91a1c0eb5d987b7d0c99fca9feb48ad416f58f375466a824ec6822bf1b253c28a5eb208895c0', '2017-07-11 14:32:55');
+(1, '', '', '', 'Admin', 'e7b3f04140f24f2d9b2e04410e483c147c785df5f83bf5b9200adfe8c7811c271e3365e0dcf1e976bafbbd33a554ffc365b1760f9bc028aa918314c5fea9a767', '2017-07-12 11:21:58');
 
 --
 -- Index pour les tables exportées
@@ -201,7 +198,8 @@ ALTER TABLE `assetstatuses`
 --
 ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`,`shortName`);
+  ADD UNIQUE KEY `name` (`name`,`shortName`),
+  ADD UNIQUE KEY `uuid` (`uuid`);
 
 --
 -- Index pour la table `projectshot`
@@ -223,7 +221,8 @@ ALTER TABLE `projectstage`
 -- Index pour la table `shots`
 --
 ALTER TABLE `shots`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uuid` (`uuid`);
 
 --
 -- Index pour la table `stages`
@@ -231,21 +230,24 @@ ALTER TABLE `shots`
 ALTER TABLE `stages`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`,`shortName`),
-  ADD UNIQUE KEY `name_2` (`name`,`shortName`);
+  ADD UNIQUE KEY `name_2` (`name`,`shortName`),
+  ADD UNIQUE KEY `uuid` (`uuid`);
 
 --
 -- Index pour la table `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`,`shortName`);
+  ADD UNIQUE KEY `name` (`name`,`shortName`),
+  ADD UNIQUE KEY `uuid` (`uuid`);
 
 --
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `userName` (`userName`);
+  ADD UNIQUE KEY `userName` (`userName`),
+  ADD UNIQUE KEY `uuid` (`uuid`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées

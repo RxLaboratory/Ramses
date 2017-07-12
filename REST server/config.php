@@ -11,11 +11,11 @@
 	//host
 	$sqlHost = "localhost";
 	//database name
-	$sqlDBName = "ram";
+	$sqlDBName = "ramtest";
 	//user
-	$sqlUser = "ram";
+	$sqlUser = "root";
 	//password
-	$sqlpassword = "XMvsjo6mHt67K2oT";
+	$sqlpassword = "";
 	//table prefix
 	$tablePrefix = "";
 
