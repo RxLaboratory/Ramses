@@ -43,10 +43,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setToolBarStyle(settingsWidget->getToolButtonStyle());
     helpDialog->setToolButtonStyle(settingsWidget->getToolButtonStyle());
 
-    //center login widget and server error widget
-    loginPageLayout->setAlignment(loginWidget, Qt::AlignHCenter);
-    loginPageLayout->setAlignment(serverWidget, Qt::AlignHCenter);
-
     //Add project and stage selector
     projectSelector = new ProjectSelectorWidget(updater,this);
     mainToolBar->insertWidget(actionSettings,projectSelector);
@@ -152,8 +148,8 @@ void MainWindow::login()
         return;
     }
 
-    //hash password
-    QString salt = "4JZFyVWhJLEM8nan";
+    //hash password //TODO Use UUID of User as salt (gotten from the database, either local or remote)
+    QString salt = "salt";
     QString passToHash = salt + passwordEdit->text();
     passHash = QCryptographicHash::hash(passToHash.toUtf8(), QCryptographicHash::Sha3_512).toHex();
     username = usernameEdit->text();
@@ -307,10 +303,11 @@ void MainWindow::showMessage(QString m,QString type)
 {
     if (m == "") return;
 
+    helpDialog->showDebug(m,type);
+
     if (type == "general")
     {
         mainStatusBar->showMessage(m,5000);
-        helpDialog->showDebug(m);
         waitingLabel->setText(m);
     }
     else if (type == "remote")
@@ -323,21 +320,20 @@ void MainWindow::showMessage(QString m,QString type)
     else if (type == "local")
     {
 #ifdef QT_DEBUG
-        //qDebug() << "LOCAL:";
-        //qDebug() << m;
+        qDebug() << "LOCAL:";
+        qDebug() << m;
 #endif
     }
     else if (type == "connexion")
     {
 #ifdef QT_DEBUG
-        //qDebug() << "CONNEXION:";
-        //qDebug() << m;
+        qDebug() << "CONNEXION:";
+        qDebug() << m;
 #endif
     }
     else if (type == "critical")
     {
         mainStatusBar->showMessage(m);
-        helpDialog->showDebug(m);
 #ifdef QT_DEBUG
     qDebug() << m;
 #endif
@@ -345,7 +341,6 @@ void MainWindow::showMessage(QString m,QString type)
     else if (type == "warning")
     {
         mainStatusBar->showMessage(m,5000);
-        helpDialog->showDebug(m);
 #ifdef QT_DEBUG
     qDebug() << m;
 #endif
