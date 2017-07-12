@@ -25,6 +25,8 @@ public:
     //connection
     void connection(QString user,QString passHash);
     void sendRequest(QString request, QJsonDocument content = QJsonDocument());
+    //Users
+    void updateUser(QString uuid, QString userName, QString firstName, QString lastName, QString password);
     //Status
     void addStatus(QString name = "New status", QString shortName = "New", QString color = "6d6d6d", QString description = "", QString uuid = "");
     void getStatuses();

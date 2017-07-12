@@ -52,6 +52,8 @@
 		{
 			if (isset($_SESSION["login"]) AND $_SESSION["login"])//if logged in
 			{
+				//users
+				include ("users.php");
 				//statuses
 				include ("statuses.php");
 				//stages

@@ -284,6 +284,22 @@ void DBInterface::sslError(QNetworkReply *rep, QList<QSslError> errs)
     emit message("SSL Error. Connection may not be secured.","warning");
 }
 
+//USERS
+void DBInterface::updateUser(QString uuid, QString userName, QString firstName, QString lastName, QString password)
+{
+    QString q = "?type=updateUser";
+    QJsonObject obj;
+    obj.insert("uuid",uuid);
+    obj.insert("userName",userName);
+    obj.insert("firstName",firstName);
+    obj.insert("lastName",lastName);
+    obj.insert("password",password);
+    QJsonDocument json(obj);
+
+    emit message("Submitting user","remote");
+    sendRequest(q,json);
+}
+
 //STATUS
 void DBInterface::addStatus(QString name,QString shortName,QString color,QString description,QString uuid)
 {   

@@ -23,16 +23,15 @@
             $data = json_decode(file_get_contents('php://input'));
             if ($data)
             {
-                $username = $data->{'username'};
-				$password = $data->{'password'};
+                if (isset($data->{'username'})) $username = $data->{'username'};
+				if (isset($data->{'password'})) $password = $data->{'password'};
             }
         }
 
-		//get login informations from URL
 		if (strlen($username) > 0 AND strlen($password) > 0)
 		{
 			//query the database
-			$rep = $bdd->prepare("SELECT password FROM " . $tablePrefix . "users WHERE username = :username ;");
+			$rep = $bdd->prepare("SELECT password,firstName,lastName,uuid FROM " . $tablePrefix . "users WHERE username = :username ;");
 			$rep->execute(array('username' => $username));
 			$testPass = $rep->fetch();
 			$rep->closeCursor();
@@ -41,6 +40,11 @@
 			if ($testPass["password"] == $password)
 			{
 				$_SESSION["login"] = true;
+				$content = array();
+				$content["firstName"] = $testPass["firstName"];
+				$content["lastName"] = $testPass["lastName"];
+				$content["uuid"] = $testPass["uuid"];
+				$reply["content"] = $content;
 				$reply["message"] = "Successful login. Welcome " . $username . "!";
 				$reply["success"] = true;
 				echo json_encode($reply);
