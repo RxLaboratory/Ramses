@@ -91,3 +91,6 @@ DISTFILES +=
 
 RESOURCES += \
     resources.qrc
+
+#WIN ICON
+RC_ICONS = ./icons/icon.ico

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>893</width>
-    <height>477</height>
+    <width>759</width>
+    <height>566</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -56,6 +56,10 @@
   <property name="windowTitle">
    <string>Ramses</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/icon</normaloff>:/icons/icon</iconset>
+  </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonTextUnderIcon</enum>
   </property>
@@ -76,39 +80,11 @@
     <item>
      <widget class="QStackedWidget" name="mainStack">
       <property name="currentIndex">
-       <number>5</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="loginPage">
-       <layout class="QVBoxLayout" name="loginPageLayout">
-        <property name="spacing">
-         <number>3</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="1" column="0">
          <widget class="QWidget" name="loginWidget" native="true">
           <property name="minimumSize">
            <size>
@@ -119,7 +95,7 @@
           <property name="maximumSize">
            <size>
             <width>200</width>
-            <height>200</height>
+            <height>400</height>
            </size>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -138,6 +114,31 @@
            <property name="bottomMargin">
             <number>0</number>
            </property>
+           <item>
+            <widget class="QLabel" name="logoLabel">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resources.qrc">:/icons/logo</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="QLineEdit" name="usernameEdit">
              <property name="frame">
@@ -225,7 +226,7 @@
           </layout>
          </widget>
         </item>
-        <item>
+        <item row="2" column="0">
          <widget class="QLabel" name="connectionStatusLabel">
           <property name="enabled">
            <bool>false</bool>
@@ -238,7 +239,20 @@
           </property>
          </widget>
         </item>
-        <item>
+        <item row="0" column="0">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="3" column="0">
          <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
