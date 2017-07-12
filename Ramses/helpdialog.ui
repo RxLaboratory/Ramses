@@ -35,7 +35,7 @@
    <item>
     <widget class="QStackedWidget" name="mainWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -172,7 +172,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>0</number>
+        <number>3</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -195,6 +195,51 @@ p, li { white-space: pre-wrap; }
           <bool>false</bool>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="fileDebugButton">
+         <property name="text">
+          <string>Write to file</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Show infos from:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>3</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="remoteDebugButton">
+           <property name="text">
+            <string>Remote Server</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="networkDebugButton">
+           <property name="text">
+            <string>Networking</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="localDebugButton">
+           <property name="text">
+            <string>Local Data</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
