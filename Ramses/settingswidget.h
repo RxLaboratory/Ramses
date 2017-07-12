@@ -5,7 +5,10 @@
 #include "updater.h"
 #include "dbinterface.h"
 #include "application.h"
+#include "ramuser.h"
 #include <QFileDialog>
+#include <QErrorMessage>
+#include <QMessageBox>
 
 class SettingsWidget : public QWidget, private Ui::SettingsWidget
 {
@@ -13,7 +16,7 @@ class SettingsWidget : public QWidget, private Ui::SettingsWidget
 
 public:
     explicit SettingsWidget(DBInterface *db,Updater *up,QWidget *parent = 0);
-    void login();
+    void login(RAMUser *user);
     void logout();
     int getToolButtonStyle();
 
@@ -31,7 +34,10 @@ private slots:
     void on_styleBox_currentIndexChanged(int index);
     void on_toolButtonStyleBox_currentIndexChanged(int index);
 
+    void on_profileUpdateButton_clicked();
+
 private:
+    QErrorMessage *error;
     //app
     Application *app ;
     //settings
@@ -40,6 +46,8 @@ private:
     DBInterface *dbi;
     //Updater
     Updater *updater;
+    //user
+    RAMUser *currentUser;
 
     void updateCSS(QString cssPath);
 };

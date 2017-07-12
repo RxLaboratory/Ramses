@@ -8,6 +8,11 @@ SettingsWidget::SettingsWidget(DBInterface *db, Updater *up, QWidget *parent) :
     dbi = db;
     updater = up;
 
+    currentUser = 0;
+
+    error = new QErrorMessage(this);
+    error->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+
 
     //hide settings logout widget
     settingsLogoutWidget->hide();
@@ -105,13 +110,17 @@ SettingsWidget::SettingsWidget(DBInterface *db, Updater *up, QWidget *parent) :
 
 }
 
-void SettingsWidget::login()
+void SettingsWidget::login(RAMUser *user)
 {
     //disable network settings
     serverAddressWidget->setEnabled(false);
     sslCheckBox->setEnabled(false);
     settingsLogoutWidget->show();
-
+    profileWidget->setEnabled(true);
+    unameEdit->setText(user->getUsername());
+    fnameEdit->setText(user->getFirstname());
+    lnameEdit->setText(user->getLastname());
+    currentUser = user;
 }
 
 void SettingsWidget::logout()
@@ -120,6 +129,7 @@ void SettingsWidget::logout()
     serverAddressWidget->setEnabled(true);
     sslCheckBox->setEnabled(true);
     settingsLogoutWidget->hide();
+    profileWidget->setEnabled(false);
 }
 
 int SettingsWidget::getToolButtonStyle()
@@ -224,4 +234,57 @@ void SettingsWidget::on_toolButtonStyleBox_currentIndexChanged(int index)
     q += "WHERE userID = (SELECT id FROM users WHERE username = 'Default');";
     QSqlQuery(q,settingsDB);
     emit setToolButtonStyle(index);
+}
+
+void SettingsWidget::on_profileUpdateButton_clicked()
+{
+    this->setEnabled(false);
+    //check if everything is alright
+    if (unameEdit->text() == "")
+    {
+        error->showMessage("You must choose a user name!");
+        this->setEnabled(true);
+        return;
+    }
+
+    if (npassword1Edit->text() != "")
+    {
+        if (cpasswordEdit->text() == "")
+        {
+            error->showMessage("You must specify your current password to be able to modify it.");
+            this->setEnabled(true);
+            return;
+        }
+        if (npassword1Edit->text() != npassword2Edit->text())
+        {
+            QMessageBox warning(QMessageBox::Warning,"Cannot create new password","The two fields for the new password are different.",QMessageBox::Ok,this,Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::FramelessWindowHint);
+            warning.exec();
+            this->setEnabled(true);
+            return;
+        }
+
+        QString currentHash = currentUser->generatePassHash(cpasswordEdit->text());
+        if (currentHash != currentUser->getPassHash())
+        {
+            QMessageBox warning(QMessageBox::Warning,"Cannot create new password","The current password is incorrect.",QMessageBox::Ok,this,Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::FramelessWindowHint);
+            warning.exec();
+            this->setEnabled(true);
+            return;
+        }
+
+        currentUser->setPassword(npassword1Edit->text());
+    }
+
+    currentUser->setFirstname(fnameEdit->text());
+    currentUser->setLastname(lnameEdit->text());
+    currentUser->setUsername(unameEdit->text());
+    currentUser->update();
+
+    npassword1Edit->setText("");
+    npassword2Edit->setText("");
+    cpasswordEdit->setText("");
+
+    QMessageBox info(QMessageBox::Information,"Profile updated","Profile updated.",QMessageBox::Ok,this,Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::FramelessWindowHint);
+    info.exec();
+    this->setEnabled(true);
 }
