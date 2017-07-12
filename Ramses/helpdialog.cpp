@@ -5,6 +5,8 @@ HelpDialog::HelpDialog(QWidget *parent) :
 {
     setupUi(this);
 
+    writeDebugToFile = false;
+
     toolBar = new QToolBar(this);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->addAction(actionHelp);
@@ -61,15 +63,32 @@ void HelpDialog::showPage(int i)
     }
 }
 
-void HelpDialog::showDebug(QString m)
+void HelpDialog::showDebug(QString m,QString type)
 {
+    if (type =="remote" && !remoteDebugButton->isChecked()) return;
+    if (type =="local" && !localDebugButton->isChecked()) return;
+    if (type =="connexion" && !networkDebugButton->isChecked()) return;
+    if (type =="debug") return;
     QString message = "\n\n";
+    message += type.toUpper();
+    message += "\n";
     QDateTime currentTime = QDateTime::currentDateTime();
     message += currentTime.toString("[yyyy-MM-dd HH:mm:ss] ");
     message += m;
     debugText->setPlainText(debugText->toPlainText() + message);
     debugText->moveCursor(QTextCursor::End);
 
+    if (writeDebugToFile)
+    {
+        if (debugFile.open(QIODevice::Append | QIODevice::Text))
+        {
+            QTextStream out(&debugFile);
+            out.setCodec("UTF-8");
+            out << message;
+            debugFile.close();
+        }
+
+    }
 }
 
 void HelpDialog::showHelp(int i)
@@ -173,4 +192,26 @@ bool HelpDialog::eventFilter(QObject *obj, QEvent *event)
       // standard event processing
       return QObject::eventFilter(obj, event);
   }
+}
+
+void HelpDialog::on_fileDebugButton_clicked(bool checked)
+{
+    if (checked)
+    {
+        QString filePath = QFileDialog::getSaveFileName(this,"Select a log file","","Log Files (*.log)");
+        if (filePath != "")
+        {
+            debugFile.setFileName(filePath);
+            writeDebugToFile = true;
+        }
+        else
+        {
+            writeDebugToFile = false;
+            fileDebugButton->setChecked(false);
+        }
+    }
+    else
+    {
+        writeDebugToFile = false;
+    }
 }
