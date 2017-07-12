@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
         <file>icons/cogs.png</file>
-        <file>icons/user.png</file>
+        <file alias="user">icons/user.png</file>
         <file>icons/pencil_square.png</file>
         <file>icons/bar_chart.png</file>
         <file>icons/angle down.png</file>
