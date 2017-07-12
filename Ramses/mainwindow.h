@@ -21,6 +21,7 @@
 #include "maintable.h"
 #include "updater.h"
 #include "settingswidget.h"
+#include "ramuser.h"
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -77,8 +78,7 @@ private:
     SettingsWidget *settingsWidget;
 
     //login
-    QString username;
-    QString passHash;
+    RAMUser *currentUser;
 
     //used to drag window grabing the toolbar
     QPoint dragPosition;
@@ -126,11 +126,12 @@ private slots:
     void on_passwordEdit_returnPressed();
 
     // =======ACTIONS
-    void on_actionMain_triggered(bool checked);
-    void on_actionStage_triggered(bool checked);
-    void on_actionStats_triggered(bool checked);
-    void on_actionAdmin_triggered(bool checked);
-    void on_actionSettings_triggered(bool checked);
+    void on_actionRefresh_triggered();
+    void on_actionMain_triggered();
+    void on_actionStage_triggered();
+    void on_actionStats_triggered();
+    void on_actionAdmin_triggered();
+    void on_actionSettings_triggered();
     void on_actionLogout_triggered(bool checked);
     void on_actionHelp_triggered(bool checked);
     // =======WINDOW BUTTONS
@@ -194,8 +195,6 @@ private slots:
     void quit();
 
     void setToolBarStyle(int s);
-
-    void on_actionRefresh_triggered();
 
 protected:
     //events

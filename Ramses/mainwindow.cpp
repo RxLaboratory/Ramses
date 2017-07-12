@@ -34,8 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 #ifdef QT_DEBUG
     // Test mode (auto login)
-    usernameEdit->setText("Duduf");
-    passwordEdit->setText("tp");
+    usernameEdit->setText("Admin");
+    passwordEdit->setText("password");
 #endif
 
     // INIT UI
@@ -45,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Add project and stage selector
     projectSelector = new ProjectSelectorWidget(updater,this);
-    mainToolBar->insertWidget(actionSettings,projectSelector);
+    mainToolBar->insertWidget(actionLogout,projectSelector);
 
     //Add window buttons
     maximizeButton = new QPushButton(QIcon(":/icons/maximize"),"",this);
@@ -136,6 +136,8 @@ void MainWindow::mapEvents()
 
 void MainWindow::login()
 {
+    showPage(0);
+
     //check login in database, initiate
     if (usernameEdit->text() == "")
     {
@@ -148,13 +150,10 @@ void MainWindow::login()
         return;
     }
 
-    //hash password //TODO Use UUID of User as salt (gotten from the database, either local or remote)
-    QString salt = "salt";
-    QString passToHash = salt + passwordEdit->text();
-    passHash = QCryptographicHash::hash(passToHash.toUtf8(), QCryptographicHash::Sha3_512).toHex();
-    username = usernameEdit->text();
-
-    showPage(0);
+    //Construct current user
+    currentUser = new RAMUser(dbi,usernameEdit->text(),false,passwordEdit->text());
+    //connexion
+    currentUser->login();
 
     loginWidget->setEnabled(false);
     connectionStatusLabel->setText("Initializing connection...");
@@ -162,9 +161,6 @@ void MainWindow::login()
     serverSettingsButton->hide();
     setWaiting();
     this->repaint();
-
-    //test connexion
-    dbi->connection(username,passHash);
 }
 
 void MainWindow::logout()
@@ -380,7 +376,7 @@ void MainWindow::connected(bool available, QString err)
         actionLogout->setText("Logout");
         actionLogout->setChecked(true);
 
-        settingsWidget->login();
+        settingsWidget->login(currentUser);
 
         actionLogout->setIcon(QIcon(":/icons/logout"));
 
@@ -472,27 +468,27 @@ void MainWindow::on_actionRefresh_triggered()
     updater->updateAll();
 }
 
-void MainWindow::on_actionMain_triggered(bool checked)
+void MainWindow::on_actionMain_triggered()
 {
     showPage(1);
 }
 
-void MainWindow::on_actionStage_triggered(bool checked)
+void MainWindow::on_actionStage_triggered()
 {
     showPage(2);
 }
 
-void MainWindow::on_actionStats_triggered(bool checked)
+void MainWindow::on_actionStats_triggered()
 {
     showPage(3);
 }
 
-void MainWindow::on_actionAdmin_triggered(bool checked)
+void MainWindow::on_actionAdmin_triggered()
 {
     showPage(4);
 }
 
-void MainWindow::on_actionSettings_triggered(bool checked)
+void MainWindow::on_actionSettings_triggered()
 {
     showPage(5);
 }
@@ -634,5 +630,3 @@ bool MainWindow::event(QEvent *event)
 
     return QMainWindow::event(event);
 }
-
-

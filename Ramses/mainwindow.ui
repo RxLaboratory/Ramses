@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
-    <height>566</height>
+    <width>1006</width>
+    <height>499</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -80,7 +80,7 @@
     <item>
      <widget class="QStackedWidget" name="mainStack">
       <property name="currentIndex">
-       <number>0</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="loginPage">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -549,9 +549,9 @@ Under construction, sorry!</string>
    <addaction name="actionStage"/>
    <addaction name="actionStats"/>
    <addaction name="actionAdmin"/>
+   <addaction name="actionLogout"/>
    <addaction name="actionHelp"/>
    <addaction name="actionSettings"/>
-   <addaction name="actionLogout"/>
   </widget>
   <widget class="QStatusBar" name="mainStatusBar"/>
   <action name="actionMain">
