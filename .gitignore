@@ -37,3 +37,4 @@ Makefile*
 CMakeLists.txt.user
 
 Utils/Hash/Duhash.exe
+.vscode/.ropeproject/config.py
