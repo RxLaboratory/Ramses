@@ -89,7 +89,7 @@ def ramSave( context, increment = False, publish = False ):
                     currentVersion = version
 
     # increment
-    if currentVersion == 0 or increment:
+    if currentVersion == 0 or increment or publish:
         currentVersion += 1
 
     # copy
