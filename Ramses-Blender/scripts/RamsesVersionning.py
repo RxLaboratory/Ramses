@@ -141,6 +141,7 @@ class RAMSES_OT_Publish(types.Operator):
         return ramSave(context, publish = True)
 
 def menu_func(self, context):
+    self.layout.separator()
     self.layout.operator(RAMSES_OT_Save.bl_idname,  text="Ramses: Save")
     self.layout.operator(RAMSES_OT_IncrementalSave.bl_idname,  text="Ramses: Save new version")
     self.layout.operator(RAMSES_OT_Publish.bl_idname,  text="Ramses: Publish")
