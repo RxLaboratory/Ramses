@@ -4,7 +4,7 @@ bl_info = {
     "blender": (2, 80, 0),
     "author": "Nicolas Dufresne",
     "location": "Menu > File",
-    "version": (1, 0, 2),
+    "version": (1, 0, 3),
     "description": "Saving and versionning tools."
 }
 
@@ -41,10 +41,13 @@ class RAMSES_OT_Save(types.Operator):
     bl_options = {'REGISTER'}
 
     
-    increment: bpy.props.BoolProperty(default = False)
-    publish: bpy.props.BoolProperty(default = False)
+    mode: bpy.props.StringProperty(default = 'NORMAL')
 
     def execute(self, context):
+
+        increment = self.mode == 'INCREMENT'
+        publish = self.mode == 'PUBLISH'
+
         """Performs Ramses saving operations (standard, incremental, publish)"""
         ramLog(log='Saving scene...')
 
@@ -97,12 +100,12 @@ class RAMSES_OT_Save(types.Operator):
                         currentVersion = version
 
         # increment
-        if currentVersion == 0 or self.increment or self.publish:
+        if currentVersion == 0 or increment or publish:
             currentVersion += 1
 
         # copy
         versionFileName = sceneName
-        if self.publish:
+        if publish:
             versionFileName = versionFileName + "_pub"
         else:
             versionFileName = versionFileName + "_wip"
@@ -110,12 +113,12 @@ class RAMSES_OT_Save(types.Operator):
         versionFile = versionsFolder / versionFileName
         shutil.copy2( currentFile, versionFile )
         ramLog(log = 'Backed up version "' +  versionFileName + '"')
-        if self.increment:
+        if increment:
             self.report({'INFO'},"New version saved: " + str(currentVersion))
 
         # Publish
 
-        if self.publish:
+        if publish:
             publishFileName = sceneName + ".blend"
             publishFile = currentFolder / publishFileName
             shutil.copy2( currentFile, publishFile )
@@ -126,22 +129,15 @@ class RAMSES_OT_Save(types.Operator):
 
 def menu_func(self, context):
     self.layout.separator()
-    self.layout.operator(RAMSES_OT_Save.bl_idname,  text="Ramses: Save")
-    self.layout.operator(RAMSES_OT_Save.bl_idname,  text="Ramses: Save new version").increment = True
-    self.layout.operator(RAMSES_OT_Save.bl_idname,  text="Ramses: Publish").publish = True
+    self.layout.operator(RAMSES_OT_Save.bl_idname,  text="Ramses: Save").mode = 'NORMAL'
+    self.layout.operator(RAMSES_OT_Save.bl_idname,  text="Ramses: Save new version").mode = 'INCREMENT'
+    self.layout.operator(RAMSES_OT_Save.bl_idname,  text="Ramses: Publish").mode = 'PUBLISH'
 
-def addKeyMap(name, idname, key, ctrl = False, alt = False, shift = False):
-    wm = bpy.context.window_manager
-    km = wm.keyconfigs.addon.keymaps.new( name=name, space_type='EMPTY' )
-    kmi = km.keymap_items.new(idname, key, 'PRESS', ctrl=ctrl, shift = shift, alt = alt)
-    ramsesVersionning_keymaps.append((km, kmi))
 
 
 classes = (
     RAMSES_OT_Save,
 )
-
-ramsesVersionning_keymaps = []
 
 def register():
     # register
@@ -149,12 +145,6 @@ def register():
         utils.register_class(cls)
     # menu
     types.TOPBAR_MT_file.append(menu_func)
-    # keymaps
-    wm = bpy.context.window_manager
-    # check if keyconfigs is available (not in background)
-    kc = wm.keyconfigs.addon
-    if kc:
-        addKeyMap('Ramses: Save', RAMSES_OT_Save.bl_idname, 'S', ctrl = True)       
 
 def unregister():
     # unregister
@@ -162,10 +152,7 @@ def unregister():
         utils.unregister_class(cls)
     # menu
     #types.TOPBAR_MT_file.remove(menu_func)
-    #keymaps
-    for km, kmi in ramsesVersionning_keymaps:
-        km.keymap_items.remove(kmi)
-    ramsesVersionning_keymaps.clear()
+
 
 if __name__ == "__main__":
     register()
