@@ -1,34 +1,12 @@
-/*
-    Ramses - The Rainbox Asset Manager
-    (c) 2019 Nicolas Dufresne & Rainbox Productions
-
-    This file is part of Ramses.
-
-    Ramses is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Ramses is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Ramses. If not, see <http://www.gnu.org/licenses/>.
-*/
+#include "Ramses_required/Ramses_license.jsxinc"
 
 //encapsulate the script in a function to avoid global variables
 ( function ( thisObj ) {
 
-    //================
-    var version = '0.0.0-a';
-    var scriptName = "Ramses";
-    //================
-
     //=============== INCLUDES ================
 
     #include DuAEF.jsxinc
+    DuAEF.init("Ramses", "0.0.0-b");
 
     #include 'Ramses_required/Ramses_w25icons.jsxinc'
 
@@ -38,13 +16,13 @@
     //TODO move in DuAEF.DuSettings along with a function to set defaults
     function setDefaultSettings( s ) {
         s.data.debugMode = true;
-        s.data.versionFolderName = '_versions';
-        s.data.wipName = 'WIP';
+        s.data.versionFolderName = DuAEF.Ramses.versionFolderName = '_versions';
+        s.data.wipName = DuAEF.Ramses.wipName = 'WIP';
         s.save();
     }
 
     // Create/load settings
-    var settings = new DuSettings( scriptName );
+    var settings = new DuSettings( DuAEF.scriptName );
     setDefaultSettings( settings );
 
 
@@ -53,102 +31,44 @@
 
 
     // ================ FUNCTIONS =============
-    //MAIN
+    
+    #include 'Ramses_required/Ramses_api-functions.jsxinc'
 
-    //TODO mark versions as WIP or Published
-    function saveProject( increment, publish ) {
-
-        if ( typeof increment === 'undefined' ) increment = false;
-        if ( typeof publish === 'undefined' ) publish = false;
-
+    function ui_saveButton_clicked () {
         var projectFile = app.project.file;
-        var projectName = '';
-        var projectPath = '';
-
-        // == save WIP project ==
-
-        if ( projectFile ) {
-            //Adds WIP in the name if not already there
-            projectName = DuAEF.DuJS.Fs.getBasename( projectFile );
-            if ( DuAEF.DuJS.String.endsWith( projectName, settings.data.wipName ) ) {
-                projectName = projectName.substring( 0, projectName.length - settings.data.wipName.length - 1 );
-            }
-        } else {
-            //todo demander destination et save
+        //todo prompt for destination and save
+        if ( !projectFile ) {
             alert( 'Please save this project with After Effects once before using Ramses.' );
             return;
         }
+        Ramses.save();
+    }
 
-        projectPath = projectFile.path;
-
-        var saveName = projectPath + '/' + projectName;
-        if ( !publish ) saveName += '_' + settings.data.wipName;
-        saveName += '.aep';
-        projectFile = new File( saveName );
-        app.project.save( projectFile );
-
-        // == Copy version ==
-
-        var versionFolder = new Folder( projectPath + '/' + settings.data.versionFolderName );
-
-        // gets current version
-        var currentVersion = 0;
-
-        if ( versionFolder.exists ) {
-            // gets all exsting versions
-            var projectVersionFiles = versionFolder.getFiles( projectName + "_wip*.aep" );
-            projectVersionFiles = projectVersionFiles.concat( versionFolder.getFiles( projectName + "_pub*.aep" ) );
-            for ( var i = 0, num = projectVersionFiles.length; i < num; i++ ) {
-                var f = projectVersionFiles[ i ];
-                if ( DuAEF.DuJS.Fs.isFile( f ) ) {
-                    var fName = DuAEF.DuJS.Fs.getBasename( f );
-                    var v = fName.replace( projectName + "_wip", '' );
-                    v = v.replace( projectName + "_pub", '' );
-                    v = v.replace( ".aepx", '' );
-                    v = v.replace( ".aep", '' );
-                    v = parseInt( v, 10 );
-                    if ( !isNaN( v ) ) {
-                        if ( v > currentVersion ) currentVersion = v;
-                    }
-                }
-            }
-        } else {
-            versionFolder.create();
+    function ui_saveIncrementalButton_clicked () {
+        var projectFile = app.project.file;
+        if ( !projectFile ) {
+            alert( 'Please save this project with After Effects once before using Ramses.' );
+            return;
         }
-
-        // increment
-        if ( increment || currentVersion == 0 ) currentVersion++;
-
-        // copy version
-        var currentVersionString = DuAEF.DuJS.Number.convertToString( currentVersion, 3 );
-        var versionPath = versionFolder.absoluteURI + "/" + projectName;
-        if ( publish ) versionPath += "_pub";
-        else versionPath += "_wip";
-        versionPath += currentVersionString + ".aep";
-        var successful = projectFile.copy( versionPath );
-        if ( !successful ) alert( "Warning - Error writing file\nThe version could not be backed up properly." );
-        return successful;
+        Ramses.saveIncremental();
     }
 
-    //TODO clean : removes all wip versions but the highest, and main wip if a more recent final is found
-
-    //UI EVENTS
-
-    function ui_saveButton_clicked() {
-        saveProject( false );
+    function ui_publishButton_clicked () {
+        var projectFile = app.project.file;
+        if ( !projectFile ) {
+            alert( 'Please save this project with After Effects once before using Ramses.' );
+            return;
+        }
+        Ramses.publish();
     }
 
-    function ui_saveIncrementalButton_clicked() {
-        saveProject( true );
-    }
-
-    function ui_publishButton_clicked() {
-        saveProject( true, true );
+    function ui_cleanButton_clicked () {
+        DuAEF.DuAE.Project.collectFiles( undefined, false, true);
     }
 
 
     // _______ UI SETUP _______
-    var ui = DuAEF.DuScriptUI.createUI( thisObj, scriptName );
+    var ui = DuAEF.DuScriptUI.createUI( thisObj, DuAEF.scriptName );
 
     var ui_buttonsGroup = DuAEF.DuScriptUI.addGroup( ui.contents );
     var ui_bottomLine = DuAEF.DuScriptUI.addGroup( ui.contents );
@@ -167,9 +87,8 @@
     // Clean
     ui_cleanButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_broom_l ), 'Cleans the version folder', DuAEF.DuBinary.toFile( w25_broom_r ) );
     ui_cleanButton.alignment = [ 'left', 'top' ];
-    ui_cleanButton.enabled = false;
     // Version
-    ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + version + ' | rainboxlab.org' );
+    ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + DuAEF.scriptVersion + ' | rainboxlab.org' );
     ui_versionLabel.alignment = [ 'left', 'bottom' ];
 
     // ========== CONNECT EVENTS ===============
@@ -177,8 +96,11 @@
     ui_saveButton.onClick = ui_saveButton_clicked;
     ui_saveIncrementalButton.onClick = ui_saveIncrementalButton_clicked;
     ui_publishButton.onClick = ui_publishButton_clicked;
+    ui_cleanButton.onClick = ui_cleanButton_clicked;
 
     //Show UI
     DuAEF.DuScriptUI.showUI( ui );
+
+    DuAEF.enterRunTime();
 
 } )( this );

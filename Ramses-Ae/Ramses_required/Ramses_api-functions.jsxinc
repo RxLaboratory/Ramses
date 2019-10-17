@@ -1,0 +1,51 @@
+/**
+ * To use the Ramses API, just include the API file in the beginning of your script.<br />
+ * Most of the methods work without any parameter but use the context (the active composition, the selected layers and properties).<br />
+ * If you need lower-level methods, for example being able to set an IK on specific layers or to wiggle specific properties,<br />
+ * you should use the {@link http://duaef-docs.rainboxlab.org/ | DuAEF Framework} - Duduf After Effects Framework, which Ramses is based on.<br />
+ * A {@link http://duaef-reference.rainboxlab.org/ | complete reference of this framework is available here}.<br />
+ * The API is contained in the <code>Duik</code> object, and DuAEF is also made available in the <code>DuAEF</code> object.<br />
+ * @author Nicolas Dufresne and contributors
+ * @copyright 2019 Nicolas Dufresne, Rainbox Productions
+ * @version 0.0.0
+ * @license GPL-3.0 <br />
+ * Ramses is free software: you can redistribute it and/or modify<br />
+ * it under the terms of the GNU General Public License as published by<br />
+ * the Free Software Foundation, either version 3 of the License, or<br />
+ * (at your option) any later version.<br />
+ *<br />
+ * Ramses is distributed in the hope that it will be useful,<br />
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+ * GNU General Public License for more details.<br />
+ *<br />
+ * You should have received a copy of the GNU General Public License<br />
+ * along with Ramses. If not, see {@link http://www.gnu.org/licenses/}.
+ * @namespace
+ */
+var Ramses = {}
+
+/**
+ * Saves the current project as "WIP" and copies a "_wip" backup file in the "_versions" subfolder.
+ */
+Ramses.save = function()
+{
+    DuAEF.Ramses.saveProject( false );
+}
+
+/**
+ * Saves the current project as "WIP" and copies an incremented "_wip" backup file in the "_versions" subfolder.
+ */
+Ramses.saveIncremental = function()
+{
+    DuAEF.Ramses.saveProject( true );
+}
+
+/**
+ * Saves the current project without the "WIP" suffix and copies an incremented "_pub" backup file in the "_versions" subfolder.
+ */
+Ramses.publish = function()
+{
+    DuAEF.Ramses.saveProject( true, true );
+}
+

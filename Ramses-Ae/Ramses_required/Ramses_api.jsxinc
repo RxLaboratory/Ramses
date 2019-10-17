@@ -1,0 +1,5 @@
+//import DuAEF
+#include "../DuAEF.jsxinc"
+DuAEF.init( 'Ramses', 'API 0.0.0');
+
+#include 'Ramses_api-functions.jsxinc'
