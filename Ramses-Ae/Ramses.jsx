@@ -199,9 +199,15 @@
         undefined
         );
     ui_aFolderGroupedSelector.addButton(
-        "One archive per sub-folder",
+        "One archive per folder",
         undefined,
-        "One archive for each sub-folder found, containing all AEP from the subfolder.",
+        "One archive for each sub-folder found, containing all AEP from the subfolder. All footage for projects of the same folder will be shared when possible",
+        undefined
+        );
+    ui_aFolderGroupedSelector.addButton(
+        "One archive for all",
+        undefined,
+        "One archive for all projects. All footage will be shared when possible.",
         undefined
         );
     var ui_aFolderValidButtons = DuAEF.DuScriptUI.addGroup( ui_aFolder_contents );
