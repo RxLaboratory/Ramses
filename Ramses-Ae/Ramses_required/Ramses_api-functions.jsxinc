@@ -49,3 +49,12 @@ Ramses.publish = function()
     DuAEF.Ramses.saveProject( true, true );
 }
 
+/**
+ * Archives the current project
+ * @param {boolean} [selectedComps=true] Uses selected comps if any. If set to true without any selected comps, the project will not be reduced. If false, all comps at the root of the projects will be used.
+ * @param {boolean} [zip=false] Uses selected comps if any. Otherwise, uses all comps at the root of the project.
+ */
+Ramses.archive = function( selectedComps, zip )
+{
+    DuAEF.Ramses.archiveProject( undefined, true, selectedComps, zip );
+}

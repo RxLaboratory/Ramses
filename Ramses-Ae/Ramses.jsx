@@ -9,6 +9,7 @@
     DuAEF.init("Ramses", "0.0.0-b");
 
     #include 'Ramses_required/Ramses_w25icons.jsxinc'
+    #include 'Ramses_required/Ramses_w14icons.jsxinc'
 
     // ================ SETTINGS ==============
 
@@ -33,6 +34,14 @@
     // ================ FUNCTIONS =============
     
     #include 'Ramses_required/Ramses_api-functions.jsxinc'
+
+    function ui_aFolderRecursiveCheckbox_clicked() {
+        if ( ui_aFolderRecursiveCheckbox.checked) {
+            ui_aFolderGroupedSelector.enabled = true;
+            ui_aFolderGroupedSelector.setCurrentIndex(0);
+        }
+        else ui_aFolderGroupedSelector.enabled = false;
+    }
 
     function ui_saveButton_clicked () {
         var projectFile = app.project.file;
@@ -62,10 +71,27 @@
         Ramses.publish();
     }
 
-    function ui_cleanButton_clicked () {
-        DuAEF.DuAE.Project.collectFiles( undefined, false, true);
+    function ui_archiveCompsButton_clicked () {
+        Ramses.archive( true, ui_aCompZipCheckBox.checked);
+        ui_aComp_window.hide();
     }
 
+    function ui_archiveProjectButton_clicked () {
+        Ramses.archive( false, ui_aProjectZipCheckBox.checked);
+        ui_aProject_window.hide();
+    }
+
+    function ui_aFolderCancelButton_clicked() {
+        ui_aFolder_window.hide();
+    }
+
+    function ui_aCompCancelButton_clicked() {
+        ui_aComp_window.hide();
+    }
+
+    function ui_aProjectCancelButton_clicked() {
+        ui_aProject_window.hide();
+    }
 
     // _______ UI SETUP _______
     var ui = DuAEF.DuScriptUI.createUI( thisObj, DuAEF.scriptName );
@@ -74,6 +100,8 @@
     var ui_bottomLine = DuAEF.DuScriptUI.addGroup( ui.contents );
 
     // ============ UI CONTENT =================
+
+    // MAIN PALETTE
 
     // Save
     ui_saveButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_save2_l ), 'Save project', DuAEF.DuBinary.toFile( w25_save2_r ) );
@@ -84,19 +112,183 @@
     // Publish
     ui_publishButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_publish_l ), 'Validate and publish project', DuAEF.DuBinary.toFile( w25_publish_r ) );
     ui_publishButton.alignment = [ 'left', 'top' ];
-    // Clean
-    ui_cleanButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_broom_l ), 'Cleans the version folder', DuAEF.DuBinary.toFile( w25_broom_r ) );
-    ui_cleanButton.alignment = [ 'left', 'top' ];
+    // Archive comps
+    var ui_archiveCompsGroup = DuAEF.DuScriptUI.addGroup(ui_buttonsGroup, 'column');
+    ui_archiveCompsGroup.alignment = [ 'left', 'top' ];
+    ui_archiveCompsButton = DuAEF.DuScriptUI.addButton(
+        ui_archiveCompsGroup,
+        '',
+        DuAEF.DuBinary.toFile( w25_archivecomp_l ),
+        "Exports selected compositions (or all if there's no selection)",
+        DuAEF.DuBinary.toFile( w25_archivecomp_r )
+        );
+    var ui_archiveCompOptionsButton = DuAEF.DuScriptUI.addButton(
+        ui_archiveCompsGroup,
+        '',
+        DuAEF.DuBinary.toFile( w14_plus_m ),
+        "Options",
+        DuAEF.DuBinary.toFile( w14_plus_r )
+        );
+    // Archive project
+    var ui_archiveProjectGroup = DuAEF.DuScriptUI.addGroup(ui_buttonsGroup, 'column');
+    ui_archiveProjectGroup.alignment = [ 'left', 'top' ];
+    ui_archiveProjectButton = DuAEF.DuScriptUI.addButton(
+        ui_archiveProjectGroup,
+        '',
+        DuAEF.DuBinary.toFile( w25_archiveproject_l ),
+        "Archives the current project, reducing it using the compositions at the root of the project.",
+        DuAEF.DuBinary.toFile( w25_archiveproject_r )
+        );
+    var ui_archiveProjectOptionsButton = DuAEF.DuScriptUI.addButton(
+        ui_archiveProjectGroup,
+        '',
+        DuAEF.DuBinary.toFile( w14_plus_m ),
+        "Options",
+        DuAEF.DuBinary.toFile( w14_plus_r )
+        );
+    // Archive folder
+    ui_archiveFolderButton = DuAEF.DuScriptUI.addButton(
+        ui_buttonsGroup,
+        '',
+        DuAEF.DuBinary.toFile( w25_archivefolder_l ),
+        "Archives a folder, collecting files for all AEPs found in the folder.",
+        DuAEF.DuBinary.toFile( w25_archivefolder_r )
+        );
+    ui_archiveFolderButton.alignment = [ 'left', 'top' ];
+    
     // Version
     ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + DuAEF.scriptVersion + ' | rainboxlab.org' );
     ui_versionLabel.alignment = [ 'left', 'bottom' ];
 
+    // OPTION DIALOGS
+
+    // Archive Folder Options
+    var ui_aFolder_window = DuAEF.DuScriptUI.createPopup( );
+    ui_aFolder_contents = ui_aFolder_window.contents;
+    var ui_aFolderInputSelector = DuAEF.DuScriptUI.addFolderSelector(
+        ui_aFolder_contents,
+        "Input...",
+        true,
+        "Select the input folder containing the AEP files to archive."
+        );
+    var ui_aFolderOutputSelector = DuAEF.DuScriptUI.addFolderSelector(
+        ui_aFolder_contents,
+        "Output...",
+        true,
+        "Select the output folder where to archive the projects."
+        );
+    var ui_aFolderRecursiveCheckbox = DuAEF.DuScriptUI.addCheckBox(
+        ui_aFolder_contents,
+        "Include subfolders",
+        undefined,
+        "Search for AEP files in subfolders too.",
+        undefined
+        );
+    var ui_aFolderZipCheckbox = DuAEF.DuScriptUI.addCheckBox(
+        ui_aFolder_contents,
+        "Compress archives (Zip)",
+        undefined,
+        "Compress each project archive in a zip file.",
+        undefined
+        );
+    var ui_aFolderGroupedSelector = DuAEF.DuScriptUI.addSelector( ui_aFolder_contents );
+    ui_aFolderGroupedSelector.addButton(
+        "One archive per AEP",
+        undefined,
+        "One archive for each project found.",
+        undefined
+        );
+    ui_aFolderGroupedSelector.addButton(
+        "One archive per sub-folder",
+        undefined,
+        "One archive for each sub-folder found, containing all AEP from the subfolder.",
+        undefined
+        );
+    var ui_aFolderValidButtons = DuAEF.DuScriptUI.addGroup( ui_aFolder_contents );
+    var ui_aFolderCancelButton = DuAEF.DuScriptUI.addButton(
+        ui_aFolderValidButtons,
+        'Cancel',
+        DuAEF.DuBinary.toFile( w25_back_m ),
+        '',
+        DuAEF.DuBinary.toFile( w25_back_r )
+        );
+    var ui_aFolderOKButton = DuAEF.DuScriptUI.addButton(
+        ui_aFolderValidButtons,
+        'Archive Folder',
+        DuAEF.DuBinary.toFile( w25_check_g ),
+        "Archives a folder, collecting files for all AEPs found in the folder.",
+        DuAEF.DuBinary.toFile( w25_check_r )
+        );
+
+    // Archive Comp Options
+    var ui_aComp_window = DuAEF.DuScriptUI.createPopup( );
+    ui_aComp_contents = ui_aComp_window.contents;
+    var ui_aCompZipCheckBox = DuAEF.DuScriptUI.addCheckBox(
+        ui_aComp_contents,
+        "Compress archives (Zip)",
+        undefined,
+        "Compress the project archive in a zip file.",
+        undefined
+        );
+    var ui_aCompValidButtons = DuAEF.DuScriptUI.addGroup( ui_aComp_contents );
+    var ui_aCompCancelButton = DuAEF.DuScriptUI.addButton(
+        ui_aCompValidButtons,
+        'Cancel',
+        DuAEF.DuBinary.toFile( w25_back_m ),
+        '',
+        DuAEF.DuBinary.toFile( w25_back_r )
+        );
+    var ui_aCompOKButton = DuAEF.DuScriptUI.addButton(
+        ui_aCompValidButtons,
+        'Archive Compositions',
+        DuAEF.DuBinary.toFile( w25_check_g ),
+        "Archives selected compositions (or all if there's no selection)",
+        DuAEF.DuBinary.toFile( w25_check_r )
+        );
+    // Archive Project Options
+    var ui_aProject_window = DuAEF.DuScriptUI.createPopup( );
+    ui_aProject_contents = ui_aProject_window.contents;
+    var ui_aProjectZipCheckBox = DuAEF.DuScriptUI.addCheckBox(
+        ui_aProject_contents,
+        "Compress archives (Zip)",
+        undefined,
+        "Compress the project archive in a zip file.",
+        undefined
+        );
+    var ui_aProjectValidButtons = DuAEF.DuScriptUI.addGroup( ui_aProject_contents );
+    var ui_aProjectCancelButton = DuAEF.DuScriptUI.addButton(
+        ui_aProjectValidButtons,
+        'Cancel',
+        DuAEF.DuBinary.toFile( w25_back_m ),
+        '',
+        DuAEF.DuBinary.toFile( w25_back_r )
+        );
+    var ui_aProjectOKButton = DuAEF.DuScriptUI.addButton(
+        ui_aProjectValidButtons,
+        'Archive Project',
+        DuAEF.DuBinary.toFile( w25_check_g ),
+        "Archives current project",
+        DuAEF.DuBinary.toFile( w25_check_r )
+        );
+    // ========== INIT =========================
+    ui_aFolderRecursiveCheckbox.setChecked(true);
+    ui_aFolderGroupedSelector.setCurrentIndex(0);
+    
     // ========== CONNECT EVENTS ===============
 
     ui_saveButton.onClick = ui_saveButton_clicked;
     ui_saveIncrementalButton.onClick = ui_saveIncrementalButton_clicked;
     ui_publishButton.onClick = ui_publishButton_clicked;
-    ui_cleanButton.onClick = ui_cleanButton_clicked;
+    ui_archiveCompsButton.onClick = ui_aCompOKButton.onClick = ui_archiveCompsButton_clicked;
+    ui_archiveProjectButton.onClick = ui_aProjectOKButton.onClick = ui_archiveProjectButton_clicked;
+    ui_aFolder_window.tieTo( ui_archiveFolderButton );
+    ui_aComp_window.tieTo( ui_archiveCompOptionsButton );
+    ui_aProject_window.tieTo( ui_archiveProjectOptionsButton );
+    ui_aFolderCancelButton.onClick = ui_aFolderCancelButton_clicked;
+    ui_aCompCancelButton.onClick = ui_aCompCancelButton_clicked;
+    ui_aProjectCancelButton.onClick = ui_aProjectCancelButton_clicked;
+
+    ui_aFolderRecursiveCheckbox.onClick = ui_aFolderRecursiveCheckbox_clicked;
 
     //Show UI
     DuAEF.DuScriptUI.showUI( ui );
