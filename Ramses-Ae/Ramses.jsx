@@ -6,7 +6,7 @@
     //=============== INCLUDES ================
 
     #include DuAEF.jsxinc
-    DuAEF.init("Ramses", "0.0.0-b");
+    DuAEF.init("Ramses", "0.0.1");
 
     #include 'Ramses_required/Ramses_w25icons.jsxinc'
     #include 'Ramses_required/Ramses_w14icons.jsxinc'
@@ -28,20 +28,13 @@
 
 
     // temp debug mode
-    DuAEF.debug = settings.data.debugMode;
+    //DuAEF.debug = settings.data.debugMode;
+    DuAEF.debug = false;
 
 
     // ================ FUNCTIONS =============
     
     #include 'Ramses_required/Ramses_api-functions.jsxinc'
-
-    function ui_aFolderRecursiveCheckbox_clicked() {
-        if ( ui_aFolderRecursiveCheckbox.checked) {
-            ui_aFolderGroupedSelector.enabled = true;
-            ui_aFolderGroupedSelector.setCurrentIndex(0);
-        }
-        else ui_aFolderGroupedSelector.enabled = false;
-    }
 
     function ui_saveButton_clicked () {
         var projectFile = app.project.file;
@@ -72,11 +65,23 @@
     }
 
     function ui_archiveCompsButton_clicked () {
+        var projectFile = app.project.file;
+        //todo prompt for destination and save
+        if ( !projectFile ) {
+            alert( 'Please save this project with After Effects once before using Ramses.' );
+            return;
+        }
         Ramses.archive( true, ui_aCompZipCheckBox.checked);
         ui_aComp_window.hide();
     }
 
     function ui_archiveProjectButton_clicked () {
+        var projectFile = app.project.file;
+        //todo prompt for destination and save
+        if ( !projectFile ) {
+            alert( 'Please save this project with After Effects once before using Ramses.' );
+            return;
+        }
         Ramses.archive( false, ui_aProjectZipCheckBox.checked);
         ui_aProject_window.hide();
     }
@@ -91,6 +96,32 @@
 
     function ui_aProjectCancelButton_clicked() {
         ui_aProject_window.hide();
+    }
+
+    function ui_aFolderOKButton_clicked() {
+
+        var inputFolder = ui_aFolderInputSelector.getFolder();
+        if (!inputFolder) {
+            alert("Incorrect input folder, please check its path.");
+            return;
+        }
+
+        var outputFolder = ui_aFolderOutputSelector.getFolder();
+        if (!outputFolder) {
+            alert("Incorrect output folder, please check its path.");
+            return;
+        }
+
+        var archiveType = DuAEF.Ramses.ArchiveModes.ONE_FOR_ALL;
+        if (ui_aFolderGroupedSelector.index == 0) archiveType = DuAEF.Ramses.ArchiveModes.ONE_PER_AEP;
+        else if (ui_aFolderGroupedSelector.index == 1) archiveType = DuAEF.Ramses.ArchiveModes.ONE_PER_FOLDER;
+        Ramses.archiveFolder(
+            inputFolder,
+            outputFolder,
+            ui_aFolderRecursiveCheckbox.checked,
+            ui_aFolderZipCheckbox.checked,
+            archiveType
+            );
     }
 
     // _______ UI SETUP _______
@@ -154,8 +185,7 @@
         "Archives a folder, collecting files for all AEPs found in the folder.",
         DuAEF.DuBinary.toFile( w25_archivefolder_r )
         );
-    ui_archiveFolderButton.alignment = [ 'left', 'top' ];
-    
+    ui_archiveFolderButton.alignment = [ 'left', 'top' ]; 
     // Version
     ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + DuAEF.scriptVersion + ' | rainboxlab.org' );
     ui_versionLabel.alignment = [ 'left', 'bottom' ];
@@ -293,8 +323,7 @@
     ui_aFolderCancelButton.onClick = ui_aFolderCancelButton_clicked;
     ui_aCompCancelButton.onClick = ui_aCompCancelButton_clicked;
     ui_aProjectCancelButton.onClick = ui_aProjectCancelButton_clicked;
-
-    ui_aFolderRecursiveCheckbox.onClick = ui_aFolderRecursiveCheckbox_clicked;
+    ui_aFolderOKButton.onClick = ui_aFolderOKButton_clicked;
 
     //Show UI
     DuAEF.DuScriptUI.showUI( ui );
