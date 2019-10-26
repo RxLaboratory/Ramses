@@ -135,18 +135,18 @@
     // MAIN PALETTE
 
     // Save
-    ui_saveButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_save2_l ), 'Save project', DuAEF.DuBinary.toFile( w25_save2_r ) );
+    var ui_saveButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_save2_l ), 'Save project', DuAEF.DuBinary.toFile( w25_save2_r ) );
     ui_saveButton.alignment = [ 'left', 'top' ];
     // Save New Version
-    ui_saveIncrementalButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_saveinc_l ), 'Save project and increment version', DuAEF.DuBinary.toFile( w25_saveinc_r ) );
+    var ui_saveIncrementalButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_saveinc_l ), 'Save project and increment version', DuAEF.DuBinary.toFile( w25_saveinc_r ) );
     ui_saveIncrementalButton.alignment = [ 'left', 'top' ];
     // Publish
-    ui_publishButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_publish_l ), 'Validate and publish project', DuAEF.DuBinary.toFile( w25_publish_r ) );
+    var ui_publishButton = DuAEF.DuScriptUI.addButton( ui_buttonsGroup, '', DuAEF.DuBinary.toFile( w25_publish_l ), 'Validate and publish project', DuAEF.DuBinary.toFile( w25_publish_r ) );
     ui_publishButton.alignment = [ 'left', 'top' ];
     // Archive comps
     var ui_archiveCompsGroup = DuAEF.DuScriptUI.addGroup(ui_buttonsGroup, 'column');
     ui_archiveCompsGroup.alignment = [ 'left', 'top' ];
-    ui_archiveCompsButton = DuAEF.DuScriptUI.addButton(
+    var ui_archiveCompsButton = DuAEF.DuScriptUI.addButton(
         ui_archiveCompsGroup,
         '',
         DuAEF.DuBinary.toFile( w25_archivecomp_l ),
@@ -163,7 +163,7 @@
     // Archive project
     var ui_archiveProjectGroup = DuAEF.DuScriptUI.addGroup(ui_buttonsGroup, 'column');
     ui_archiveProjectGroup.alignment = [ 'left', 'top' ];
-    ui_archiveProjectButton = DuAEF.DuScriptUI.addButton(
+    var ui_archiveProjectButton = DuAEF.DuScriptUI.addButton(
         ui_archiveProjectGroup,
         '',
         DuAEF.DuBinary.toFile( w25_archiveproject_l ),
@@ -178,7 +178,7 @@
         DuAEF.DuBinary.toFile( w14_plus_r )
         );
     // Archive folder
-    ui_archiveFolderButton = DuAEF.DuScriptUI.addButton(
+    var ui_archiveFolderButton = DuAEF.DuScriptUI.addButton(
         ui_buttonsGroup,
         '',
         DuAEF.DuBinary.toFile( w25_archivefolder_l ),
@@ -187,14 +187,14 @@
         );
     ui_archiveFolderButton.alignment = [ 'left', 'top' ]; 
     // Version
-    ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + DuAEF.scriptVersion + ' | rainboxlab.org' );
+    var ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + DuAEF.scriptVersion + ' | rainboxlab.org' );
     ui_versionLabel.alignment = [ 'left', 'bottom' ];
 
     // OPTION DIALOGS
 
     // Archive Folder Options
     var ui_aFolder_window = DuAEF.DuScriptUI.createPopup( );
-    ui_aFolder_contents = ui_aFolder_window.contents;
+    var ui_aFolder_contents = ui_aFolder_window.contents;
     var ui_aFolderInputSelector = DuAEF.DuScriptUI.addFolderSelector(
         ui_aFolder_contents,
         "Input...",
@@ -258,7 +258,7 @@
 
     // Archive Comp Options
     var ui_aComp_window = DuAEF.DuScriptUI.createPopup( );
-    ui_aComp_contents = ui_aComp_window.contents;
+    var ui_aComp_contents = ui_aComp_window.contents;
     var ui_aCompZipCheckBox = DuAEF.DuScriptUI.addCheckBox(
         ui_aComp_contents,
         "Compress archives (Zip)",
@@ -283,7 +283,7 @@
         );
     // Archive Project Options
     var ui_aProject_window = DuAEF.DuScriptUI.createPopup( );
-    ui_aProject_contents = ui_aProject_window.contents;
+    var ui_aProject_contents = ui_aProject_window.contents;
     var ui_aProjectZipCheckBox = DuAEF.DuScriptUI.addCheckBox(
         ui_aProject_contents,
         "Compress archives (Zip)",
