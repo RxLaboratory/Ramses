@@ -6,7 +6,7 @@
     //=============== INCLUDES ================
 
     #include DuAEF.jsxinc
-    DuAEF.init("Ramses", "0.0.1");
+    DuAEF.init("Ramses", "0.0.2");
 
     #include 'Ramses_required/Ramses_w25icons.jsxinc'
     #include 'Ramses_required/Ramses_w14icons.jsxinc'

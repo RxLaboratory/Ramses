@@ -69,5 +69,8 @@ Ramses.archive = function( selectedComps, zip )
  */
 Ramses.archiveFolder = function( inputFolder, outputFolder, recursive, zip, archiveType )
 {
+    //remove dialogs (if opening a project made with an older version of Ae)
+    app.beginSuppressDialogs();
     DuAEF.Ramses.archiveFolder( inputFolder, outputFolder, recursive, zip, archiveType );
+    app.endSuppressDialogs();
 }
