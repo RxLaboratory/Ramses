@@ -65,12 +65,13 @@ Ramses.archive = function( selectedComps, zip )
  * @param {Folder} outputFolder The folder where to save the archives
  * @param {boolean} [recursive=true] Scan for subfolders too. Folders named '_versions' and 'old' will be ignored, as long as auto-save folders from After Effects
  * @param {boolean} [zip=false] Set to true to automatically zip the archives.
+  * @param {boolean} [reduce=true] Will reduce the project before collecting files, using all comps found at first level in the project (not in subfolders)
  * @param {DuAEF.Ramses.ArchiveModes} [archiveType=DuAEF.Ramses.ArchiveModes.ONE_PER_FOLDER] Creates only one archive for each subfolder. This is a nice way to not duplicate dependencies, as they will be shared between projects from the same folder.
  */
-Ramses.archiveFolder = function( inputFolder, outputFolder, recursive, zip, archiveType )
+Ramses.archiveFolder = function( inputFolder, outputFolder, recursive, zip, reduce, archiveType )
 {
     //remove dialogs (if opening a project made with an older version of Ae)
     app.beginSuppressDialogs();
-    DuAEF.Ramses.archiveFolder( inputFolder, outputFolder, recursive, zip, archiveType );
+    DuAEF.Ramses.archiveFolder( inputFolder, outputFolder, recursive, zip, reduce, archiveType );
     app.endSuppressDialogs();
 }

@@ -120,6 +120,7 @@
             outputFolder,
             ui_aFolderRecursiveCheckbox.checked,
             ui_aFolderZipCheckbox.checked,
+            ui_aFolderReduceCheckbox.checked,
             archiveType
             );
     }
@@ -206,6 +207,13 @@
         "Output...",
         true,
         "Select the output folder where to archive the projects."
+        );
+    var ui_aFolderReduceCheckbox = DuAEF.DuScriptUI.addCheckBox(
+        ui_aFolder_contents,
+        "Reduce projects",
+        undefined,
+        "Reduces the project before collecting files, using all comps found at first level in the project (not in subfolders).",
+        undefined
         );
     var ui_aFolderRecursiveCheckbox = DuAEF.DuScriptUI.addCheckBox(
         ui_aFolder_contents,
@@ -308,6 +316,7 @@
         );
     // ========== INIT =========================
     ui_aFolderRecursiveCheckbox.setChecked(true);
+    ui_aFolderReduceCheckbox.setChecked(true);
     ui_aFolderGroupedSelector.setCurrentIndex(0);
     
     // ========== CONNECT EVENTS ===============
