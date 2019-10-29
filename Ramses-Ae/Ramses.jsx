@@ -31,6 +31,11 @@
     //DuAEF.debug = settings.data.debugMode;
     DuAEF.debug = false;
 
+    //set zip path explicitly so it works both in dev and deployed as a single file
+    if (DuAEF.win) {
+        DuAEF.Zip.processPath = new File($.fileName).parent.absoluteURI + "/7za.exe";
+    }
+
 
     // ================ FUNCTIONS =============
     
