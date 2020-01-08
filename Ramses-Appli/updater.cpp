@@ -438,7 +438,7 @@ void Updater::gotShots(QJsonValue newShots)
         {
             //new shot
             QJsonObject shot = shotsArray[i].toObject();
-            QString id = shot.value("shotId").toInt();
+            QString id = shot.value("shotId").toString();
 
             if (rs->getId() == id)
             {

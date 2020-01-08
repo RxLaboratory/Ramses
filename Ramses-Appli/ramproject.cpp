@@ -155,7 +155,7 @@ void RAMProject::createStageAssets(RAMStage *stage)
 
 void RAMProject::stageDeleted(RAMStage *s)
 {
-    removeStage(false);
+    removeStage(s,false);
 }
 
 bool RAMProject::operator==(RAMProject s)
