@@ -29,7 +29,7 @@
 
     // temp debug mode
     //DuAEF.debug = settings.data.debugMode;
-    DuAEF.debug = false;
+    DuAEF.debug = true;
 
     //set zip path explicitly so it works both in dev and deployed as a single file
     if (DuAEF.win) {
@@ -193,7 +193,7 @@
         );
     ui_archiveFolderButton.alignment = [ 'left', 'top' ]; 
     // Version
-    var ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + DuAEF.scriptVersion + ' | rainboxlab.org' );
+    var ui_versionLabel = DuAEF.DuScriptUI.addStaticText( ui_bottomLine, 'v' + DuAEF.scriptVersion.fullVersion + ' | rainboxlab.org' );
     ui_versionLabel.alignment = [ 'left', 'bottom' ];
 
     // OPTION DIALOGS
