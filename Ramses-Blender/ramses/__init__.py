@@ -4,13 +4,13 @@ bl_info = {
     "blender": (2, 80, 0),
     "author": "Nicolas Dufresne",
     "location": "Menu > File",
-    "version": (1, 0, 3),
+    "version": (1, 1, 0),
     "description": "Saving and versionning tools."
 }
 
 import bpy # pylint: disable=import-error
 from pathlib import Path
-import shutil
+import shutil, os, time
 
 ops  = bpy.ops
 utils = bpy.utils
@@ -34,21 +34,45 @@ def convertIntToString( integer , numChars = 3 ):
         numString = "0" + numString
     return numString
 
+class RAMSES_Preferences( bpy.types.AddonPreferences ):
+    # this must match the add-on name, use '__package__'
+    # when defining this in a submodule of a python package.
+    bl_idname = __name__
+
+    increment_timeout: bpy.props.IntProperty(
+        name="Incremental save time out (mn)",
+        description="Trigger an incrementation of the file when saving every X minutes",
+        default=120,
+        subtype='TIME'
+    )
+
+    def draw(self, context):
+        layout = self.layout
+        layout.prop(self, "increment_timeout")
+
 class RAMSES_OT_Save(types.Operator):
     """Saves the current version of the scene"""
     bl_idname = "wm.ramses_save"
     bl_label = "Ramses: Save"
     bl_options = {'REGISTER'}
 
-    
     mode: bpy.props.StringProperty(default = 'NORMAL')
 
     def execute(self, context):
+        """Performs Ramses saving operations (standard, incremental, publish)"""
 
         increment = self.mode == 'INCREMENT'
         publish = self.mode == 'PUBLISH'
 
-        """Performs Ramses saving operations (standard, incremental, publish)"""
+        preferences = context.preferences.addons[__name__].preferences
+
+                # if normal save and scene is too old, increment it anyway
+        if not increment and not publish:
+            modified = os.path.getmtime(context.blend_data.filepath)
+            now = time.time()
+            if preferences.increment_timeout * 60 < now - modified:
+                increment = True
+
         ramLog(log='Saving scene...')
 
         # get current scene path
@@ -136,6 +160,7 @@ def menu_func(self, context):
 
 
 classes = (
+    RAMSES_Preferences,
     RAMSES_OT_Save,
 )
 
