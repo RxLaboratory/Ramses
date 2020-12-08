@@ -1,5 +1,6 @@
-import os
+#Currently working on RamShot.getFromPath
 
+import os
 import re
 
 forbiddenCharacters = {
@@ -582,7 +583,7 @@ class RamItem( RamObject ):
         #TODO
         pass
 
-class RamShot( RamItem ):
+class RamShot( RamItem ): #WIP getFromPath
     """
 
     Attributes:
@@ -590,37 +591,43 @@ class RamShot( RamItem ):
             The assets used in this shot
     """
 
-    def __init__(self, shotName):
-        """
-
-        Args:
-            shotName: str.
-        """
-
+    def __init__(self):
         self.assets = []
     
     @staticmethod
     def getFromPath( filePath ): #WIP - TODO
-        #generate a RamShot from a given filePath
-        #as a RamItem inheritance, it also gets these attributes: published (bool), stepStatuses (list of RamStatus)
-        #as a RamObject inheritance (from RamItem), it also gets these attributes: name, shortName, folderPath
+        """Generate a RamShot from a given filePath
 
-        #check if it is a correct path?
-        #create folderPath from filePath
-        #if the file respects ramses' naming convention, the shortname can be found
-        #check if there already exists a RamShot with the same shortname and folder?
-        #else create a new RamShot
-        print("---------\nStart getFromPath\n---------\n")
+        Args:
+            filePath: str.
+        """
+        #Attrs from inheritances: published (bool), stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
+
+        #TODO : check if it is a correct path and a str
+        #TODO : check if it respects ramses' naming convention (return None if it aien't)
+        #Check if there already exists a RamShot with the same shortname and folder?
+
+        #TODO: check if already published
+        # > isPublished()
+        #TODO: stepStatuses
+
         folderPath = os.path.dirname(filePath)
         fileName = os.path.basename(filePath)
 
-        #decomposeRamsesFileName( fileName )
+        blocks = decomposeRamsesFileName( fileName )[0]
 
-        print(folderPath)
-        print(fileName)
+        if blocks[1] != 'S':
+            print("The given filepath does not point towards a shot")
+            return None
+        
+        shortName = blocks[2]
 
-        print('\n---------\nEnd getFromPath\n---------')
-        return None
+        shot = RamShot()
+        shot.shortName = shortName
+        shot.name = shortName
+        shot.folderPath = folderPath
+
+        return shot
 
     def getFileName(self):
         #TODO
@@ -633,14 +640,7 @@ class RamAsset( RamItem ):
         tags: list of str.
     """
 
-    def __init__(self, assetName, assetShortName):
-        """
-
-        Args:
-            assetName: str.
-            assetShortName: str.
-        """
-
+    def __init__(self):
         self.tags = []
     
     @staticmethod
@@ -743,8 +743,11 @@ for test in tests:
 
 '''
 
-testPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD_test.blend'
+testShotPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
+testShot = RamShot.getFromPath( testShotPath )
 
-testShot = RamShot.getFromPath(testPath)
+#testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD_test.blend'
+#testAsset = RamAsset.getFromPath( testAssetPath )
 
-print(isVersion('wip012'))
+print(testShot.shortName)
+print(testShot.folderPath)
