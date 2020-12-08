@@ -1,3 +1,7 @@
+import os
+
+#importer versionning
+
 class Ramses():
     """The main class, instantiated during init.
 
@@ -58,25 +62,25 @@ class Ramses():
     def login(self):
         """Logs the user in. Returns success."""
 
-        #todo
+        #TODO
         pass
     
     def logout(self):
         """Logs the user out."""
 
-        #todo
+        #TODO
         pass
 
     def connect(self):
         """Checks server or client availability and initiates the connection. Returns success."""
 
-        #todo
+        #TODO
         pass
 
     def disconnect(self):
         """Gets back to offline mode."""
 
-        #todo
+        #TODO
         pass
 
     def createProject(self, projectName, projectShortName, folder = ""):
@@ -88,7 +92,7 @@ class Ramses():
             folder: str
         """
 
-        #todo
+        #TODO
         pass
 
     def createUser(self, userName, userShortName, folder = ""):
@@ -100,7 +104,7 @@ class Ramses():
             folder: str
         """
 
-        #todo
+        #TODO
         pass
 
     def createStep(self, stepName, stepShortName):
@@ -111,7 +115,7 @@ class Ramses():
             stepShortName: str.
         """
 
-        #todo
+        #TODO
         pass
 
 class RamObject():
@@ -157,13 +161,13 @@ class RamUser( RamObject ):
     def login(self):
         """Logs the user in. Returns success."""
 
-        #todo
+        #TODO
         pass
     
     def logout(self):
         """Logs the user out."""
 
-        #todo
+        #TODO
         pass
 
 class RamApplication( RamObject ):
@@ -197,13 +201,13 @@ class RamApplication( RamObject ):
     def login(self):
         """Logs the user in. Returns success."""
 
-        #todo
+        #TODO
         pass
 
     def logout(self):
         """Logs the user out."""
 
-        #todo
+        #TODO
         pass
 
 class RamFileType( RamObject ):
@@ -254,7 +258,7 @@ class RamProject( RamObject ):
             step: RamStep.
         """
 
-        #todo
+        #TODO
         pass
 
     def addShot(self, shot):
@@ -264,7 +268,7 @@ class RamProject( RamObject ):
             shot: RamShot.
         """
 
-        #todo
+        #TODO
         pass
 
     def createShot(self, shotName):
@@ -274,7 +278,7 @@ class RamProject( RamObject ):
             shotName: str.
         """
 
-        #todo
+        #TODO
         pass
 
     def createShots(self, range):
@@ -284,7 +288,7 @@ class RamProject( RamObject ):
             range: int list.
         """
 
-        #todo
+        #TODO
         pass
 
     def addAsset(self, asset):
@@ -294,7 +298,7 @@ class RamProject( RamObject ):
             asset: RamAsset
         """
 
-        #todo
+        #TODO
         pass
 
 class RamStep( RamObject ):
@@ -413,9 +417,27 @@ class RamShot( RamItem ):
         self.assets = []
     
     @staticmethod
-    def getFromPath( filePath ):
-        #TODO
-        pass
+    def getFromPath( filePath ): #WIP - TODO
+        #generate a RamShot from a given filePath
+        #as a RamItem inheritance, it also gets these attributes: published (bool), stepStatuses (list of RamStatus)
+        #as a RamObject inheritance (from RamItem), it also gets these attributes: name, shortName, folderPath
+
+        #check if it is a correct path?
+        #create folderPath from filePath
+        #if the file respects ramses' naming convention, the shortname can be found
+        #check if there already exists a RamShot with the same shortname and folder?
+        #else create a new RamShot
+        print("---------\nStart getFromPath\n---------\n")
+        folderPath = os.path.dirname(filePath)
+        fileName = os.path.basename(filePath)
+
+        #decomposeRamsesFileName( fileName )
+
+        print(folderPath)
+        print(fileName)
+
+        print('\n---------\nEnd getFromPath\n---------')
+        return None
 
     def getFileName(self):
         #TODO
@@ -509,5 +531,7 @@ class RamStepStatus():
     def __init__(self):
         self.history = []
 
-#TODO: replace todo with TODO
-#finir de documenter le treeExample + push
+
+testPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD_test.blend'
+
+testShot = RamShot.getFromPath(testPath)

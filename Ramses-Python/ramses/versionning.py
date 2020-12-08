@@ -1,17 +1,4 @@
-'''TO DO:
-- RamAsset.getLatestPubVersion
-
-- RamAsset.getLatestVersion
-
-- RamAsset.getFromPath -> RamAsset / None
-'''
-
 import re
-
-from .ramses import (
-    RamAsset,
-    RamShot,
-)
 
 forbiddenCharacters = {
     '"' : ' ',
@@ -32,6 +19,9 @@ forbiddenCharacters = {
 
 version_prefixes = ['v', 'wip', 'pub']
 regexStr = ''
+
+def __init__():
+    pass
 
 def getVersionRegEx():
     regexStr = ''
@@ -57,7 +47,7 @@ def fixComment( comment ):
             fixedComment = fixedComment + char
     return fixedComment
 
-def buildramsesFileName( project , step , ext , ramType = 'G' , objectShortName = '' , comment = "" , version = -1 , version_prefixe = 'wip' ):
+def buildRamsesFileName( project , step , ext , ramType = 'G' , objectShortName = '' , comment = "" , version = -1 , version_prefixe = 'wip' ):
     #PROJECT_A_OBJECT_STEP_comment_wip012.extension
     #PROJECT_G_STEP_comment_wip012.extension
 
@@ -85,7 +75,7 @@ def buildramsesFileName( project , step , ext , ramType = 'G' , objectShortName 
 
     return ramsesFileName
 
-def decomposeramsesFileName( ramsesFileName ):
+def decomposeRamsesFileName( ramsesFileName ):
     splitramsesFileName = ramsesFileName.split('_')
     splitExtension = splitramsesFileName[-1].split('.')
 
@@ -123,7 +113,7 @@ def getFileStepId( ramsesFileName ):
     return fileStepId
 
 def getFileComment( ramsesFileName ):
-    blocks = decomposeramsesFileName( ramsesFileName )[0]
+    blocks = decomposeRamsesFileName( ramsesFileName )[0]
 
     if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a comment and/or a version
         if blocks[1] == 'G' and isVersion(blocks[3]) == False :
@@ -134,7 +124,7 @@ def getFileComment( ramsesFileName ):
     return None
 
 def getFileVersion( ramsesFileName ):
-    blocks = decomposeramsesFileName( ramsesFileName )[0]
+    blocks = decomposeRamsesFileName( ramsesFileName )[0]
     fileVersion = 0
     state = ''
 
@@ -148,11 +138,11 @@ def getFileVersion( ramsesFileName ):
     return None
 
 def getFileExtension( ramsesFileName ):
-    fileExtension = decomposeramsesFileName( ramsesFileName )[-1]
+    fileExtension = decomposeRamsesFileName( ramsesFileName )[-1]
     return fileExtension
 
-def incrementramsesFileName( ramsesFileName ):
-    separatedBlocks, extension = decomposeramsesFileName( ramsesFileName )
+def incrementRamsesFileName( ramsesFileName ):
+    separatedBlocks, extension = decomposeRamsesFileName( ramsesFileName )
     state, fileVersion = getFileVersion( ramsesFileName )
 
     if fileVersion == None:
@@ -202,7 +192,7 @@ testComment = ""
 testVersion = -1
 testExtension = "tar.gz.testing"
 
-print(buildramsesFileName( project = testProject, step = testStepName, ext = testExtension, ramType = testRamType, objectShortName = testobjectShortName,  comment = testComment, version = testVersion))
+print(buildRamsesFileName( project = testProject, step = testStepName, ext = testExtension, ramType = testRamType, objectShortName = testobjectShortName,  comment = testComment, version = testVersion))
 
 
 tests = [
@@ -217,7 +207,8 @@ tests = [
 
 for test in tests:
     print("Testing: " + test)
-    print(incrementramsesFileName(test))
-'''
+    print(incrementRamsesFileName(test))
 
-print(incrementramsesFileName("YUKU_G_STEP_wipcomment012wip012_pub012.blend"))
+
+print(incrementRamsesFileName("YUKU_G_STEP_wipcomment012wip012_pub012.blend"))
+'''
