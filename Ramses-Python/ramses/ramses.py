@@ -353,13 +353,54 @@ class RamShotStep( RamStep ):
 
         self.dependsOn = []
 
-class RamShot( RamObject ):
+class RamItem( RamObject ):
     """
 
     Attributes:
+        published: bool.
         stepStatuses: list of RamStatus.
+    """
+
+    def __init__(self):
+        self.published = False
+        self.stepStatuses = []
+    
+    def getWIPFilePath(self):
+        """Wip file path relative to the item root folder
+        """
+        #TODO
+        pass
+
+    def getVersionFilePath(self):
+        """Version file path relative to the item root folder
+        """
+        #TODO
+        pass
+    
+    def getPublishedFilePaths(self):
+        """Gets the list of file paths in the publish folder, relative to the item root folder
+        """
+        #TODO
+        pass
+    
+    def getLatestVersion(self):
+        """Returns the highest version number
+        """
+        #TODO
+        pass
+
+    def getLatestPubVersion(self):
+        """Returns the highest version number for published item
+        """
+        #TODO
+        pass
+
+class RamShot( RamItem ):
+    """
+
+    Attributes:
         assets: list of RamAsset.
-            The assets used in thi s shot
+            The assets used in this shot
     """
 
     def __init__(self, shotName):
@@ -369,18 +410,21 @@ class RamShot( RamObject ):
             shotName: str.
         """
 
-        self.stepStatuses = []
         self.assets = []
-
-    def getFileName(self):
-        #todo
+    
+    @staticmethod
+    def getFromPath( filePath ):
+        #TODO
         pass
 
-class RamAsset( RamObject ):
+    def getFileName(self):
+        #TODO
+        pass
+
+class RamAsset( RamItem ):
     """
 
     Attributes:
-        stepStatuses: list of RamStatus.
         tags: list of str.
     """
 
@@ -392,11 +436,15 @@ class RamAsset( RamObject ):
             assetShortName: str.
         """
 
-        self.stepStatuses = []
-        self.assets = []
+        self.tags = []
     
+    @staticmethod
+    def getFromPath( filePath ):
+        #TODO
+        pass
+
     def getFileName(self):
-        #todo
+        #TODO
         pass
 
 class RamState( RamObject ):
@@ -461,3 +509,5 @@ class RamStepStatus():
     def __init__(self):
         self.history = []
 
+#TODO: replace todo with TODO
+#finir de documenter le treeExample + push

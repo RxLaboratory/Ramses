@@ -1,17 +1,17 @@
 '''TO DO:
--getLatestPubVersion
+- RamAsset.getLatestPubVersion
 
--getLatestVersion
+- RamAsset.getLatestVersion
 
--isPublished
-
--getAsset(filename) -> RamAsset / None
-
--getShot(filename) -> RamShot / None
-
+- RamAsset.getFromPath -> RamAsset / None
 '''
 
 import re
+
+from .ramses import (
+    RamAsset,
+    RamShot,
+)
 
 forbiddenCharacters = {
     '"' : ' ',
@@ -57,39 +57,39 @@ def fixComment( comment ):
             fixedComment = fixedComment + char
     return fixedComment
 
-def buildRamsesName( project , step , ext , ramType = 'G' , objectName = '' , comment = "" , version = -1 , version_prefixe = 'wip' ):
+def buildramsesFileName( project , step , ext , ramType = 'G' , objectShortName = '' , comment = "" , version = -1 , version_prefixe = 'wip' ):
     #PROJECT_A_OBJECT_STEP_comment_wip012.extension
     #PROJECT_G_STEP_comment_wip012.extension
 
     comment = fixComment( comment )
-    ramsesName = project + '_' + ramType
+    ramsesFileName = project + '_' + ramType
 
     if ramType in ('A', 'S'):
-        ramsesName = ramsesName + '_' + objectName
+        ramsesFileName = ramsesFileName + '_' + objectShortName
 
-    ramsesName = ramsesName + '_' + step
+    ramsesFileName = ramsesFileName + '_' + step
 
     if comment != '':
-        ramsesName = ramsesName + '_' + comment
+        ramsesFileName = ramsesFileName + '_' + comment
 
     if version != -1:
-        ramsesName = ramsesName + '_' + version_prefixe
+        ramsesFileName = ramsesFileName + '_' + version_prefixe
         if version < 10:
-            ramsesName = ramsesName + '00' + str(version)
+            ramsesFileName = ramsesFileName + '00' + str(version)
         elif version < 100:
-            ramsesName = ramsesName + '0' + str(version)
+            ramsesFileName = ramsesFileName + '0' + str(version)
         else:
-            ramsesName = ramsesName + str(version)
+            ramsesFileName = ramsesFileName + str(version)
     
-    ramsesName = ramsesName + '.' + ext
+    ramsesFileName = ramsesFileName + '.' + ext
 
-    return ramsesName
+    return ramsesFileName
 
-def decomposeRamsesName( ramsesName ):
-    splitRamsesName = ramsesName.split('_')
-    splitExtension = splitRamsesName[-1].split('.')
+def decomposeramsesFileName( ramsesFileName ):
+    splitramsesFileName = ramsesFileName.split('_')
+    splitExtension = splitramsesFileName[-1].split('.')
 
-    blocks = splitRamsesName[0:-1]
+    blocks = splitramsesFileName[0:-1]
     blocks.append(splitExtension[0])
     extension = ''
 
@@ -100,30 +100,30 @@ def decomposeRamsesName( ramsesName ):
 
     return blocks, extension
 
-def getFileProjectId( ramsesName ):
-    fileProjectId = ramsesName.split('_')[0]
+def getFileProjectId( ramsesFileName ):
+    fileProjectId = ramsesFileName.split('_')[0]
     return fileProjectId
 
-def getFileRamTypeId( ramsesName ):
-    fileRamTypeId = ramsesName.split('_')[1]
+def getFileRamTypeId( ramsesFileName ):
+    fileRamTypeId = ramsesFileName.split('_')[1]
     return fileRamTypeId
 
-def getFileObjectId( ramsesName ):
-    if getFileRamTypeId( ramsesName ) == 'G':
+def getFileObjectId( ramsesFileName ):
+    if getFileRamTypeId( ramsesFileName ) == 'G':
         print("File is not an object")
         return None
-    fileObjectId = ramsesName.split('_')[2]
+    fileObjectId = ramsesFileName.split('_')[2]
     return fileObjectId
 
-def getFileStepId( ramsesName ):
-    if getFileRamTypeId( ramsesName ) == 'G':
-        fileStepId = ramsesName.split('_')[2]
+def getFileStepId( ramsesFileName ):
+    if getFileRamTypeId( ramsesFileName ) == 'G':
+        fileStepId = ramsesFileName.split('_')[2]
     else:
-        fileStepId = ramsesName.split('_')[3]
+        fileStepId = ramsesFileName.split('_')[3]
     return fileStepId
 
-def getFileComment( ramsesName ):
-    blocks = decomposeRamsesName( ramsesName )[0]
+def getFileComment( ramsesFileName ):
+    blocks = decomposeramsesFileName( ramsesFileName )[0]
 
     if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a comment and/or a version
         if blocks[1] == 'G' and isVersion(blocks[3]) == False :
@@ -133,8 +133,8 @@ def getFileComment( ramsesName ):
 
     return None
 
-def getFileVersion( ramsesName ):
-    blocks = decomposeRamsesName( ramsesName )[0]
+def getFileVersion( ramsesFileName ):
+    blocks = decomposeramsesFileName( ramsesFileName )[0]
     fileVersion = 0
     state = ''
 
@@ -147,48 +147,48 @@ def getFileVersion( ramsesName ):
 
     return None
 
-def getFileExtension( ramsesName ):
-    fileExtension = decomposeRamsesName( ramsesName )[-1]
+def getFileExtension( ramsesFileName ):
+    fileExtension = decomposeramsesFileName( ramsesFileName )[-1]
     return fileExtension
 
-def incrementRamsesName( ramsesName ):
-    separatedBlocks, extension = decomposeRamsesName( ramsesName )
-    state, fileVersion = getFileVersion( ramsesName )
+def incrementramsesFileName( ramsesFileName ):
+    separatedBlocks, extension = decomposeramsesFileName( ramsesFileName )
+    state, fileVersion = getFileVersion( ramsesFileName )
 
     if fileVersion == None:
-        fullBlocks = ramsesName.split('.')[0]
-        ramsesName = fullBlocks + '_wip001.' + extension
-        return ramsesName
+        fullBlocks = ramsesFileName.split('.')[0]
+        ramsesFileName = fullBlocks + '_wip001.' + extension
+        return ramsesFileName
 
     fileVersion = fileVersion + 1
-    ramsesName = ''
+    ramsesFileName = ''
 
     for block in separatedBlocks[0:-1]: #rebuilds name up to the file version
-        ramsesName = ramsesName + block + '_'
+        ramsesFileName = ramsesFileName + block + '_'
     
-    ramsesName = ramsesName + state
+    ramsesFileName = ramsesFileName + state
     
     if fileVersion < 10:
-        ramsesName = ramsesName + '00' + str(fileVersion)
+        ramsesFileName = ramsesFileName + '00' + str(fileVersion)
     elif fileVersion < 100:
-        ramsesName = ramsesName + '0' + str(fileVersion)
+        ramsesFileName = ramsesFileName + '0' + str(fileVersion)
     else:
-        ramsesName = ramsesName + str(fileVersion)
+        ramsesFileName = ramsesFileName + str(fileVersion)
     
     if extension != None:
-        ramsesName = ramsesName + '.' + extension
+        ramsesFileName = ramsesFileName + '.' + extension
 
-    return ramsesName
+    return ramsesFileName
 
-def getLatestPubVersion( ramsesName ): #todo
+def getLatestPubVersion( ramsesFileName ): #todo
     #todo. returns int, numero le plus haut parmi les pub
     pass
 
-def getLatestVersion( ramsesName ): #todo
+def getLatestVersion( ramsesFileName ): #todo
     #todo. returns int, numero le plus haut
     pass
 
-def isPublished( ramsesName ): #todo
+def isPublished( ramsesFileName ): #todo
     #todo. returns bool. True if last version is a pub
     pass
 
@@ -196,13 +196,13 @@ def isPublished( ramsesName ): #todo
 '''
 testProject = "YUKU"
 testRamType = "S"
-testObjectName = "GRANDMA"
+testobjectShortName = "GRANDMA"
 testStepName = "RIG"
 testComment = ""
 testVersion = -1
 testExtension = "tar.gz.testing"
 
-print(buildRamsesName( project = testProject, step = testStepName, ext = testExtension, ramType = testRamType, objectName = testObjectName,  comment = testComment, version = testVersion))
+print(buildramsesFileName( project = testProject, step = testStepName, ext = testExtension, ramType = testRamType, objectShortName = testobjectShortName,  comment = testComment, version = testVersion))
 
 
 tests = [
@@ -217,7 +217,7 @@ tests = [
 
 for test in tests:
     print("Testing: " + test)
-    print(incrementRamsesName(test))
+    print(incrementramsesFileName(test))
 '''
 
-print(incrementRamsesName("YUKU_G_STEP_wipcomment012wip012_pub012.blend"))
+print(incrementramsesFileName("YUKU_G_STEP_wipcomment012wip012_pub012.blend"))
