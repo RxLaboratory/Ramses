@@ -1,7 +1,7 @@
 # Modeling folder for the *Isolde* asset
 
 The name of the asset follows this convention:
-    projShortname_ramType_objectShortName_stepShortName_optionalComment.extension
+    projShortName_ramType_objectShortName_stepShortName_optionalComment.extension
     ...which is only used for Assets and Shots.
 
     eg: PROJ_A_ISOLDE_RIG_facialTest.blend

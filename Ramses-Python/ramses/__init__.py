@@ -2,11 +2,19 @@
 WIP:
 - getLatestPubVersion, getLatestVersion, isPublished:
     Work, but assume the given argument is the full path towards the file.
+    TODO: from the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
 - class RamShot, getFromPath:
-    TODO: check if the argument is valid (is a path, points towards a file that respects ramses' naming convention)
     TODO: check if there already exists a RamShot with this name and that pathFolder
-    TODO: complete attributes: stepStatuses, published
-
+    TODO: complete attribute: stepStatuses
+- added function isRamsesName and getRamsesNameRegEx.
+    RegEx has limitations:
+        projectShortName shouldn't be longer than 15 characters;
+        objectShortName shouldn't be longer than 50 characters;
+        ramStep shouldn't be longer than 15 characters;
+        comment shouldn't be longer than 50 characters;
+        version (prefix + number) shouldn't be longer than 15 characters;
+        extension shouldn't be longer than 50 characters.
+    TODO: see if these limitations are enough.
 '''
 
 import os
@@ -42,11 +50,37 @@ def getVersionRegEx():
     regexStr = '^(' + regexStr + ')(\\d+)$'
 
     regex = re.compile(regexStr, re.IGNORECASE)
+    return regex
 
+def getRamsesNameRegEx():
+    regexStr = ''
+    for prefix in version_prefixes[0:-1]:
+        regexStr = regexStr + prefix + '|'
+    regexStr = regexStr + version_prefixes[-1]
+    regexStr = '^([a-z]{1,15}[_])(([AS][_]([a-z]|[0-9]){1,50})|G)[_][a-z]{1,15}([_]([a-z]|[0-9]|[ -]){1,50})?([_](' + regexStr + ')[0-9]{1,15})?([.]([.]|[a-z]){1,50})$'
+    
+    regex = re.compile(regexStr, re.IGNORECASE)
     return regex
 
 def isVersion(v):
     if re.match(getVersionRegEx(), v): return True
+    return False
+
+def isRamsesName(n):
+    """Returns True if the given string respects the Ramses naming convention.
+
+    The name should look like this:
+        projShortName_ramType_objectShortName_stepShortName_comment_versionPrefixVersionNumber.extension
+    in which the ramType can be one of the following letters: A (asset), S (shot), G (general)
+    and there is an objectShortName only for assets and shots;
+    and the comment is optional
+    and the versionPrefixVersionNumber is optional
+    Will return false if there is no extension.
+
+    Args:
+        n : name to be checked, without its path. Needs its extension
+    """
+    if re.match(getRamsesNameRegEx(), n): return True
     return False
 
 def fixComment( comment ):
@@ -181,8 +215,13 @@ def incrementRamsesFileName( ramsesFileName ):
 
     return ramsesFileName
 
-def getLatestPubVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot
+def getLatestPubVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
     """Returns int. Highest version among all the published files.
+
+    Returns none if the ramses_publish dir has not been found.
+
+    Args:
+        ramsesFileName: str (full path towards the file for now)
     """
     #For now, assumes the filename includes the whole path
     #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
@@ -212,8 +251,13 @@ def getLatestPubVersion( ramsesFileName ): #TODO: get filepath from RamAsset/Ram
 
     return highestPubVersion
 
-def getLatestVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot
+def getLatestVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
     """Returns int. Highest version among all the version files.
+
+    Returns none if the ramses_versions dir has not been found.
+
+    Args:
+        ramsesFileName: str (full path towards the file for now)
     """
     #For now, assumes the filename includes the whole path
     #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
@@ -244,21 +288,30 @@ def getLatestVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamSho
 
     return highestFileVersion
 
-def isPublished( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot
+def isPublished( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
     """Returns bool. True if last version is a pub.
+
+    Returns false if no version was found at all.
+    Returns false if there is no publish in the ramses_publish folder, even if there is a pub in the ramses_versions folder.
+
+    Args:
+        ramsesFileName: str (full path towards the file for now)
     """
     #For now, assumes the filename includes the whole path
     #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
 
     fullPath = ramsesFileName
 
+    folderPath = os.path.dirname(fullPath)
+    fileName = os.path.basename(fullPath)
+
     latestVersion = getLatestVersion(fullPath)
 
-    if latestVersion == None:
-        print("ramses_versions directory has not been found")
-        return False
-    if latestVersion == 0:
+    if latestVersion == 0 or latestVersion == None:
         print("No version has been found")
+        return False
+    if os.path.isfile(folderPath + '/ramses_publish/' + fileName) == False: #even if there is a pub in the versions folder, if it is missing from the actual publish folder it returns false
+        print("There is no publish of the given file in the ramses_publish directory or the directory has not been found")
         return False
     
     latestPubVersion = getLatestPubVersion(fullPath)
@@ -664,7 +717,7 @@ class RamItem( RamObject ):
         #TODO
         pass
 
-class RamShot( RamItem ): #WIP getFromPath
+class RamShot( RamItem ):
     """
 
     Attributes:
@@ -682,31 +735,35 @@ class RamShot( RamItem ): #WIP getFromPath
         Args:
             filePath: str.
         """
-        #Attrs from inheritances: published (bool), stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
 
-        #TODO : check if it is a correct path and a str
-        #TODO : check if it respects ramses' naming convention (return None if it aien't)
-        #Check if there already exists a RamShot with the same shortname and folder?
-
-        #TODO: check if already published
-        # > isPublished()
-        #TODO: stepStatuses
+        if os.path.isfile(filePath) == False:
+            print("The given file could not be found")
+            return None
 
         folderPath = os.path.dirname(filePath)
         fileName = os.path.basename(filePath)
 
+        if isRamsesName(fileName) == False:
+            print("The given file does not match Ramses' naming convention or has no extension")
+            return None
+        
         blocks = decomposeRamsesFileName( fileName )[0]
 
         if blocks[1] != 'S':
             print("The given filepath does not point towards a shot")
             return None
         
-        shortName = blocks[2]
+        #TODO: check if there already exists a RamShot with the same shortname and folder?
 
         shot = RamShot()
+        shortName = blocks[2]
+
+        #Attrs from inheritances: published (bool), stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
         shot.shortName = shortName
         shot.name = shortName
         shot.folderPath = folderPath
+        shot.published = isPublished(filePath)
+        #TODO: stepStatuses
 
         return shot
 
@@ -820,19 +877,10 @@ tests = [
 
 for test in tests:
     print("Testing: " + test)
-    print(incrementRamsesFileName(test))
-
+    print(isRamsesName(test))
 '''
+
 testShotPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
-testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD_test.blend'
-
-'''testShot = RamShot.getFromPath( testShotPath )
-print(testShot.shortName)
-print(testShot.folderPath)
-
-testAsset = RamAsset.getFromPath( testAssetPath )'''
+testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD.blend'
 
 print(isPublished(testAssetPath))
-
-
-
