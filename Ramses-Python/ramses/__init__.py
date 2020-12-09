@@ -2,10 +2,19 @@
 WIP:
 - getLatestPubVersion, getLatestVersion, isPublished:
     Work, but assume the given argument is the full path towards the file.
-    TODO: from the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+    TODO: make them methods of RamItem
+
+- RamItem, RamShot, RamAsset .folderPath : is it the folder towards the asset in general (proj_a_isolde) or towards a step of the asset (proj_a_isolde_mod)?
+    If it only goes to the asset in general, the methods such as getWIPFilePath will need to know the step.
+    They also need to know the comment/secondary version (for example to recognize the correct publish), if there is any.
+
+- method getFilename: currently on ramAsset and ramShot, might be needed to getLatestPub, LatestVersion, isPublished to function in RamItem.
+    getFilename is not listed in the all-app draft
+
 - class RamShot, getFromPath:
     TODO: check if there already exists a RamShot with this name and that pathFolder
     TODO: complete attribute: stepStatuses
+
 - added function isRamsesName and getRamsesNameRegEx.
     RegEx has limitations:
         projectShortName shouldn't be longer than 15 characters;
@@ -15,6 +24,7 @@ WIP:
         version (prefix + number) shouldn't be longer than 15 characters;
         extension shouldn't be longer than 50 characters.
     TODO: see if these limitations are enough.
+
 '''
 
 import os
@@ -215,41 +225,7 @@ def incrementRamsesFileName( ramsesFileName ):
 
     return ramsesFileName
 
-def getLatestPubVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
-    """Returns int. Highest version among all the published files.
-
-    Returns none if the ramses_publish dir has not been found.
-
-    Args:
-        ramsesFileName: str (full path towards the file for now)
-    """
-    #For now, assumes the filename includes the whole path
-    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
-    
-    fullPath = ramsesFileName
-
-    folderPath = os.path.dirname(fullPath)
-    fileName = os.path.basename(fullPath)
-    
-    if os.path.isdir(folderPath + '/ramses_versions') == False:
-        print("ramses_versions directory has not been found")
-        return None
-    
-    ramsesName = fileName.split('.')[0]
-    extension = fileName.split('.')[1]
-
-    foundElements = os.listdir(folderPath + '/ramses_versions')
-    highestPubVersion = 0
-
-    for element in foundElements:
-        if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
-            if element.lower().endswith('.' + extension):
-                if element.startswith(ramsesName + '_pub'):
-                    pubVersion = getFileVersion(element)[1]
-                    if pubVersion > highestPubVersion:
-                        highestPubVersion = pubVersion
-
-    return highestPubVersion
+'''------------------- these functions need be methods for RamItem:
 
 def getLatestVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
     """Returns int. Highest version among all the version files.
@@ -288,6 +264,42 @@ def getLatestVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamSho
 
     return highestFileVersion
 
+def getLatestPubVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
+    """Returns int. Highest version among all the published files.
+
+    Returns none if the ramses_publish dir has not been found.
+
+    Args:
+        ramsesFileName: str (full path towards the file for now)
+    """
+    #For now, assumes the filename includes the whole path
+    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+    
+    fullPath = ramsesFileName
+
+    folderPath = os.path.dirname(fullPath)
+    fileName = os.path.basename(fullPath)
+    
+    if os.path.isdir(folderPath + '/ramses_versions') == False:
+        print("ramses_versions directory has not been found")
+        return None
+    
+    ramsesName = fileName.split('.')[0]
+    extension = fileName.split('.')[1]
+
+    foundElements = os.listdir(folderPath + '/ramses_versions')
+    highestPubVersion = 0
+
+    for element in foundElements:
+        if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+            if element.lower().endswith('.' + extension):
+                if element.startswith(ramsesName + '_pub'):
+                    pubVersion = getFileVersion(element)[1]
+                    if pubVersion > highestPubVersion:
+                        highestPubVersion = pubVersion
+
+    return highestPubVersion
+
 def isPublished( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
     """Returns bool. True if last version is a pub.
 
@@ -319,6 +331,7 @@ def isPublished( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
         return True
     
     return False
+'''
 
 class Ramses():
     """The main class, instantiated during init.
@@ -705,17 +718,112 @@ class RamItem( RamObject ):
         #TODO
         pass
     
-    def getLatestVersion(self):
-        """Returns the highest version number
-        """
-        #TODO
-        pass
+    '''
+    def getLatestVersion( ramsesFileName ): #TODO: rework to make them actual methods
+        """Returns int. Highest version among all the version files.
 
-    def getLatestPubVersion(self):
-        """Returns the highest version number for published item
+        Returns none if the ramses_versions dir has not been found.
+
+        Args:
+            ramsesFileName: str (full path towards the file for now)
         """
-        #TODO
-        pass
+        #For now, assumes the filename includes the whole path
+        #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+        
+        fullPath = ramsesFileName
+
+        folderPath = os.path.dirname(fullPath)
+        fileName = os.path.basename(fullPath)
+
+        if os.path.isdir(folderPath + '/ramses_versions') == False:
+            print("ramses_versions directory has not been found")
+            return None
+
+        ramsesName = fileName.split('.')[0]
+        extension = fileName.split('.')[1]
+
+        foundElements = os.listdir(folderPath + '/ramses_versions')
+        highestFileVersion = 0
+
+        for element in foundElements:
+            if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+                if element.lower().endswith('.' + extension):
+                    if element.startswith(ramsesName):
+                        fileVersion = getFileVersion(element)[1]
+                        if fileVersion != None:
+                            if fileVersion > highestFileVersion:
+                                highestFileVersion = fileVersion
+
+        return highestFileVersion
+
+    def getLatestPubVersion( ramsesFileName ): #TODO: rework to make them actual methods
+        """Returns int. Highest version among all the published files.
+
+        Returns none if the ramses_publish dir has not been found.
+
+        Args:
+            ramsesFileName: str (full path towards the file for now)
+        """
+        #For now, assumes the filename includes the whole path
+        #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+        
+        fullPath = ramsesFileName
+
+        folderPath = os.path.dirname(fullPath)
+        fileName = os.path.basename(fullPath)
+        
+        if os.path.isdir(folderPath + '/ramses_versions') == False:
+            print("ramses_versions directory has not been found")
+            return None
+        
+        ramsesName = fileName.split('.')[0]
+        extension = fileName.split('.')[1]
+
+        foundElements = os.listdir(folderPath + '/ramses_versions')
+        highestPubVersion = 0
+
+        for element in foundElements:
+            if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+                if element.lower().endswith('.' + extension):
+                    if element.startswith(ramsesName + '_pub'):
+                        pubVersion = getFileVersion(element)[1]
+                        if pubVersion > highestPubVersion:
+                            highestPubVersion = pubVersion
+
+        return highestPubVersion
+
+    def isPublished( ramsesFileName ): #TODO: rework to make them actual methods
+        """Returns bool. True if last version is a pub.
+
+        Returns false if no version was found at all.
+        Returns false if there is no publish in the ramses_publish folder, even if there is a pub in the ramses_versions folder.
+
+        Args:
+            ramsesFileName: str (full path towards the file for now)
+        """
+        #For now, assumes the filename includes the whole path
+        #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+
+        fullPath = ramsesFileName
+
+        folderPath = os.path.dirname(fullPath)
+        fileName = os.path.basename(fullPath)
+
+        latestVersion = getLatestVersion(fullPath)
+
+        if latestVersion == 0 or latestVersion == None:
+            print("No version has been found")
+            return False
+        if os.path.isfile(folderPath + '/ramses_publish/' + fileName) == False: #even if there is a pub in the versions folder, if it is missing from the actual publish folder it returns false
+            print("There is no publish of the given file in the ramses_publish directory or the directory has not been found")
+            return False
+        
+        latestPubVersion = getLatestPubVersion(fullPath)
+        if latestVersion <= latestPubVersion:
+            return True
+        
+        return False
+    '''
 
 class RamShot( RamItem ):
     """
@@ -753,7 +861,7 @@ class RamShot( RamItem ):
             print("The given filepath does not point towards a shot")
             return None
         
-        #TODO: check if there already exists a RamShot with the same shortname and folder?
+        #TODO: check if there already exists a RamShot with the same shortname and folder? isinstance?
 
         shot = RamShot()
         shortName = blocks[2]
@@ -762,7 +870,7 @@ class RamShot( RamItem ):
         shot.shortName = shortName
         shot.name = shortName
         shot.folderPath = folderPath
-        shot.published = isPublished(filePath)
+        shot.published = isPublished(filePath) #TODO: change to shot.isPublished once this method is in RamItem
         #TODO: stepStatuses
 
         return shot
@@ -883,4 +991,3 @@ for test in tests:
 testShotPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
 testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD.blend'
 
-print(isPublished(testAssetPath))
