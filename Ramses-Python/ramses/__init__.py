@@ -1,4 +1,13 @@
-#Currently working on RamShot.getFromPath
+'''
+WIP:
+- getLatestPubVersion, getLatestVersion, isPublished:
+    Work, but assume the given argument is the full path towards the file.
+- class RamShot, getFromPath:
+    TODO: check if the argument is valid (is a path, points towards a file that respects ramses' naming convention)
+    TODO: check if there already exists a RamShot with this name and that pathFolder
+    TODO: complete attributes: stepStatuses, published
+
+'''
 
 import os
 import re
@@ -172,19 +181,91 @@ def incrementRamsesFileName( ramsesFileName ):
 
     return ramsesFileName
 
-def getLatestPubVersion( ramsesFileName ): #todo
-    #todo. returns int, numero le plus haut parmi les pub
-    pass
+def getLatestPubVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot
+    """Returns int. Highest version among all the published files.
+    """
+    #For now, assumes the filename includes the whole path
+    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+    
+    fullPath = ramsesFileName
 
-def getLatestVersion( ramsesFileName ): #todo
-    #todo. returns int, numero le plus haut
-    pass
+    folderPath = os.path.dirname(fullPath)
+    fileName = os.path.basename(fullPath)
+    
+    if os.path.isdir(folderPath + '/ramses_versions') == False:
+        print("ramses_versions directory has not been found")
+        return None
+    
+    ramsesName = fileName.split('.')[0]
+    extension = fileName.split('.')[1]
 
-def isPublished( ramsesFileName ): #todo
-    #todo. returns bool. True if last version is a pub
-    pass
+    foundElements = os.listdir(folderPath + '/ramses_versions')
+    highestPubVersion = 0
 
+    for element in foundElements:
+        if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+            if element.lower().endswith('.' + extension):
+                if element.startswith(ramsesName + '_pub'):
+                    pubVersion = getFileVersion(element)[1]
+                    if pubVersion > highestPubVersion:
+                        highestPubVersion = pubVersion
 
+    return highestPubVersion
+
+def getLatestVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot
+    """Returns int. Highest version among all the version files.
+    """
+    #For now, assumes the filename includes the whole path
+    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+    
+    fullPath = ramsesFileName
+
+    folderPath = os.path.dirname(fullPath)
+    fileName = os.path.basename(fullPath)
+
+    if os.path.isdir(folderPath + '/ramses_versions') == False:
+        print("ramses_versions directory has not been found")
+        return None
+
+    ramsesName = fileName.split('.')[0]
+    extension = fileName.split('.')[1]
+
+    foundElements = os.listdir(folderPath + '/ramses_versions')
+    highestFileVersion = 0
+
+    for element in foundElements:
+        if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+            if element.lower().endswith('.' + extension):
+                if element.startswith(ramsesName):
+                    fileVersion = getFileVersion(element)[1]
+                    if fileVersion != None:
+                        if fileVersion > highestFileVersion:
+                            highestFileVersion = fileVersion
+
+    return highestFileVersion
+
+def isPublished( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot
+    """Returns bool. True if last version is a pub.
+    """
+    #For now, assumes the filename includes the whole path
+    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+
+    fullPath = ramsesFileName
+
+    latestVersion = getLatestVersion(fullPath)
+
+    if latestVersion == None:
+        print("ramses_versions directory has not been found")
+        return False
+    if latestVersion == 0:
+        print("No version has been found")
+        return False
+    
+    latestPubVersion = getLatestPubVersion(fullPath)
+    if latestVersion <= latestPubVersion:
+        return True
+    
+    return False
 
 class Ramses():
     """The main class, instantiated during init.
@@ -742,12 +823,16 @@ for test in tests:
     print(incrementRamsesFileName(test))
 
 '''
-
 testShotPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
-testShot = RamShot.getFromPath( testShotPath )
+testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD_test.blend'
 
-#testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD_test.blend'
-#testAsset = RamAsset.getFromPath( testAssetPath )
-
+'''testShot = RamShot.getFromPath( testShotPath )
 print(testShot.shortName)
 print(testShot.folderPath)
+
+testAsset = RamAsset.getFromPath( testAssetPath )'''
+
+print(isPublished(testAssetPath))
+
+
+
