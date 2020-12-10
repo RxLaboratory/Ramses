@@ -1,0 +1,981 @@
+'''
+WIP:
+- getLatestPubVersion, getLatestVersion, isPublished:
+    Work, but assume the given argument is the full path towards the file.
+    TODO: make them methods of RamItem
+
+- RamItem, RamShot, RamAsset .folderPath : is it the folder towards the asset in general (proj_a_isolde) or towards a step of the asset (proj_a_isolde_mod)?
+    If it only goes to the asset in general, the methods such as getWIPFilePath will need to know the step.
+    They also need to know the resource name
+
+- method getFilename: currently on ramAsset and ramShot, might be needed to getLatestPub, LatestVersion, isPublished to function in RamItem.
+    getFilename is not listed in the all-app draft
+
+- class RamShot, getFromPath:
+    TODO: check if there already exists a RamShot with this name and that pathFolder
+    TODO: complete attribute: stepStatuses
+
+- added function isRamsesName and getRamsesNameRegEx.
+    RegEx has limitations:
+        projectShortName shouldn't be longer than 15 characters;
+        objectShortName shouldn't be longer than 50 characters;
+        ramStep shouldn't be longer than 15 characters;
+        resourceStr shouldn't be longer than 50 characters;
+        version (prefix + number) shouldn't be longer than 15 characters;
+        extension shouldn't be longer than 50 characters.
+    TODO: see if these limitations are enough.
+
+'''
+
+import os
+import re
+
+forbiddenCharacters = {
+    '"' : ' ',
+    '_' : '-',
+    '[' : '-',
+    ']' : '-',
+    '{' : '-',
+    '}' : '-',
+    '(' : '-',
+    ')' : '-',
+    '\'': ' ',
+    '`' : ' ',
+    '.' : '-',
+    '/' : '-',
+    '\\' : '-',
+    ',' : ' ' 
+    }
+version_prefixes = ['v', 'wip', 'pub']
+regexStr = ''
+
+def __init__():
+    pass
+
+def getVersionRegEx():
+    regexStr = ''
+    for prefix in version_prefixes[0:-1]:
+        regexStr = regexStr + prefix + '|'
+    regexStr = regexStr + version_prefixes[-1]
+    regexStr = '^(' + regexStr + ')(\\d+)$'
+
+    regex = re.compile(regexStr, re.IGNORECASE)
+    return regex
+
+def getRamsesNameRegEx():
+    regexStr = ''
+    for prefix in version_prefixes[0:-1]:
+        regexStr = regexStr + prefix + '|'
+    regexStr = regexStr + version_prefixes[-1]
+    regexStr = '^([a-z]{1,15}[_])(([AS][_]([a-z]|[0-9]){1,50})|G)[_][a-z]{1,15}([_]([a-z]|[0-9]|[ -]){1,50})?([_](' + regexStr + ')[0-9]{1,15})?([.]([.]|[a-z]){1,50})$'
+    
+    regex = re.compile(regexStr, re.IGNORECASE)
+    return regex
+
+def isVersion(v):
+    if re.match(getVersionRegEx(), v): return True
+    return False
+
+def isRamsesName(n):
+    """Returns True if the given string respects the Ramses naming convention.
+
+    The name should look like this:
+        projShortName_ramType_objectShortName_stepShortName_resourceStr_versionPrefixVersionNumber.extension
+    in which the ramType can be one of the following letters: A (asset), S (shot), G (general)
+    and there is an objectShortName only for assets and shots;
+    and the resourceStr is optional: it only serves to differentiate the main working files and its resources
+    and the versionPrefixVersionNumber is optional
+    Will return false if there is no extension.
+
+    Args:
+        n : name to be checked, without its path. Needs its extension
+    """
+    if re.match(getRamsesNameRegEx(), n): return True
+    return False
+
+def fixResourceStr( resourceStr ):
+    fixedResourceStr = ''
+    for char in resourceStr:
+        if char in forbiddenCharacters:
+            fixedResourceStr = fixedResourceStr + forbiddenCharacters[char]
+        else:
+            fixedResourceStr = fixedResourceStr + char
+    return fixedResourceStr
+
+def buildRamsesFileName( project , step , ext , ramType = 'G' , objectShortName = '' , resourceStr = "" , version = -1 , version_prefixe = 'wip' ):
+    #PROJECT_A_OBJECT_STEP_resourceStr_wip012.extension
+    #PROJECT_G_STEP_resourceStr_wip012.extension
+
+    resourceStr = fixResourceStr( resourceStr )
+    ramsesFileName = project + '_' + ramType
+
+    if ramType in ('A', 'S'):
+        ramsesFileName = ramsesFileName + '_' + objectShortName
+
+    ramsesFileName = ramsesFileName + '_' + step
+
+    if resourceStr != '':
+        ramsesFileName = ramsesFileName + '_' + resourceStr
+
+    if version != -1:
+        ramsesFileName = ramsesFileName + '_' + version_prefixe
+        if version < 10:
+            ramsesFileName = ramsesFileName + '00' + str(version)
+        elif version < 100:
+            ramsesFileName = ramsesFileName + '0' + str(version)
+        else:
+            ramsesFileName = ramsesFileName + str(version)
+    
+    ramsesFileName = ramsesFileName + '.' + ext
+
+    return ramsesFileName
+
+def decomposeRamsesFileName( ramsesFileName ):
+    splitramsesFileName = ramsesFileName.split('_')
+    splitExtension = splitramsesFileName[-1].split('.')
+
+    blocks = splitramsesFileName[0:-1]
+    blocks.append(splitExtension[0])
+    extension = ''
+
+    if len(splitExtension) > 1: # If more than one item, all items are part of the extension except the first one
+        extension = '.'.join(splitExtension[1:])
+    else:
+        extension = None
+
+    return blocks, extension
+
+def getFileProjectId( ramsesFileName ):
+    fileProjectId = ramsesFileName.split('_')[0]
+    return fileProjectId
+
+def getFileRamTypeId( ramsesFileName ):
+    fileRamTypeId = ramsesFileName.split('_')[1]
+    return fileRamTypeId
+
+def getFileObjectId( ramsesFileName ):
+    if getFileRamTypeId( ramsesFileName ) == 'G':
+        print("File is not an object")
+        return None
+    fileObjectId = ramsesFileName.split('_')[2]
+    return fileObjectId
+
+def getFileStepId( ramsesFileName ):
+    if getFileRamTypeId( ramsesFileName ) == 'G':
+        fileStepId = ramsesFileName.split('_')[2]
+    else:
+        fileStepId = ramsesFileName.split('_')[3]
+    return fileStepId
+
+def getFileResourceStr( ramsesFileName ):
+    blocks = decomposeRamsesFileName( ramsesFileName )[0]
+
+    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a resourceStr and/or a version
+        if blocks[1] == 'G' and isVersion(blocks[3]) == False :
+            return blocks[3]
+        elif blocks[1] in ('A', 'S') and isVersion(blocks[4]) == False :
+            return blocks[4]
+
+    return None
+
+def getFileVersion( ramsesFileName ):
+    blocks = decomposeRamsesFileName( ramsesFileName )[0]
+    fileVersion = 0
+    state = ''
+
+    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a resourceStr and/or a version
+        if isVersion(blocks[-1]):
+            match = re.findall( getVersionRegEx(), blocks[-1] )
+            state = match[0][0]
+            fileVersion = int(match[0][1])
+            return state, fileVersion
+
+    return None
+
+def getFileExtension( ramsesFileName ):
+    fileExtension = decomposeRamsesFileName( ramsesFileName )[-1]
+    return fileExtension
+
+def incrementRamsesFileName( ramsesFileName ):
+    separatedBlocks, extension = decomposeRamsesFileName( ramsesFileName )
+    state, fileVersion = getFileVersion( ramsesFileName )
+
+    if fileVersion == None:
+        fullBlocks = ramsesFileName.split('.')[0]
+        ramsesFileName = fullBlocks + '_wip001.' + extension
+        return ramsesFileName
+
+    fileVersion = fileVersion + 1
+    ramsesFileName = ''
+
+    for block in separatedBlocks[0:-1]: #rebuilds name up to the file version
+        ramsesFileName = ramsesFileName + block + '_'
+    
+    ramsesFileName = ramsesFileName + state
+    
+    if fileVersion < 10:
+        ramsesFileName = ramsesFileName + '00' + str(fileVersion)
+    elif fileVersion < 100:
+        ramsesFileName = ramsesFileName + '0' + str(fileVersion)
+    else:
+        ramsesFileName = ramsesFileName + str(fileVersion)
+    
+    if extension != None:
+        ramsesFileName = ramsesFileName + '.' + extension
+
+    return ramsesFileName
+
+'''------------------- these functions need be methods for RamItem:
+
+def getLatestVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
+    """Returns int. Highest version among all the version files.
+
+    Returns none if the ramses_versions dir has not been found.
+
+    Args:
+        ramsesFileName: str (full path towards the file for now)
+    """
+    #For now, assumes the filename includes the whole path
+    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+    
+    fullPath = ramsesFileName
+
+    folderPath = os.path.dirname(fullPath)
+    fileName = os.path.basename(fullPath)
+
+    if os.path.isdir(folderPath + '/ramses_versions') == False:
+        print("ramses_versions directory has not been found")
+        return None
+
+    ramsesName = fileName.split('.')[0]
+    extension = fileName.split('.')[1]
+
+    foundElements = os.listdir(folderPath + '/ramses_versions')
+    highestFileVersion = 0
+
+    for element in foundElements:
+        if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+            if element.lower().endswith('.' + extension):
+                if element.startswith(ramsesName):
+                    fileVersion = getFileVersion(element)[1]
+                    if fileVersion != None:
+                        if fileVersion > highestFileVersion:
+                            highestFileVersion = fileVersion
+
+    return highestFileVersion
+
+def getLatestPubVersion( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
+    """Returns int. Highest version among all the published files.
+
+    Returns none if the ramses_publish dir has not been found.
+
+    Args:
+        ramsesFileName: str (full path towards the file for now)
+    """
+    #For now, assumes the filename includes the whole path
+    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+    
+    fullPath = ramsesFileName
+
+    folderPath = os.path.dirname(fullPath)
+    fileName = os.path.basename(fullPath)
+    
+    if os.path.isdir(folderPath + '/ramses_versions') == False:
+        print("ramses_versions directory has not been found")
+        return None
+    
+    ramsesName = fileName.split('.')[0]
+    extension = fileName.split('.')[1]
+
+    foundElements = os.listdir(folderPath + '/ramses_versions')
+    highestPubVersion = 0
+
+    for element in foundElements:
+        if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+            if element.lower().endswith('.' + extension):
+                if element.startswith(ramsesName + '_pub'):
+                    pubVersion = getFileVersion(element)[1]
+                    if pubVersion > highestPubVersion:
+                        highestPubVersion = pubVersion
+
+    return highestPubVersion
+
+def isPublished( ramsesFileName ): #TODO: get filepath from RamAsset/RamShot?
+    """Returns bool. True if last version is a pub.
+
+    Returns false if no version was found at all.
+    Returns false if there is no publish in the ramses_publish folder, even if there is a pub in the ramses_versions folder.
+
+    Args:
+        ramsesFileName: str (full path towards the file for now)
+    """
+    #For now, assumes the filename includes the whole path
+    #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+
+    fullPath = ramsesFileName
+
+    folderPath = os.path.dirname(fullPath)
+    fileName = os.path.basename(fullPath)
+
+    latestVersion = getLatestVersion(fullPath)
+
+    if latestVersion == 0 or latestVersion == None:
+        print("No version has been found")
+        return False
+    if os.path.isfile(folderPath + '/ramses_publish/' + fileName) == False: #even if there is a pub in the versions folder, if it is missing from the actual publish folder it returns false
+        print("There is no publish of the given file in the ramses_publish directory or the directory has not been found")
+        return False
+    
+    latestPubVersion = getLatestPubVersion(fullPath)
+    if latestVersion <= latestPubVersion:
+        return True
+    
+    return False
+'''
+
+class Ramses():
+    """The main class, instantiated during init.
+
+    Attributes:
+        localPort: int.
+            The port used to connect to the client if it's an add-on, or the port to listen to if this is the client
+        serverUrl: str.
+            The url to the php server
+        useSSL: bool.
+            Wether to use SSL to connect to the php server
+        online: bool, read only.
+            For the client app, true when connected to the network and logges in to the php server
+            For addons, true when client app is available and responding
+        user: RamUser.
+            The user currently using Ramses
+        project: RamProject.
+            The current project
+        projects: list of RamProject.
+            The projects
+        users: list of RamUser.
+            The users
+        steps: list of RamStep.
+            The steps
+        folderPath: str.
+            The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files...
+        alternateFolderPaths: str list.
+            A list of alternate absolute paths to the main Ramses folder.
+            Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.
+        backupFolderPath: str.
+            A copy of the main folder where all files are stored.     
+    """
+
+    def __init__(self, port = 1818, url = "", ssl = True, connect = True):
+        """
+
+        Args:
+            port: int.
+            url: str.
+            ssl: bool.
+            connect: bool.
+        """
+
+        self.localPort = port
+        self.serverUrl = url
+        self.useSSL = ssl
+        self.online = False
+        self.user = None
+        self.project = None
+        self.projects = []
+        self.users = []
+        self.folderPath = ""
+        self.alternateFolderPaths = []
+        self.backupFolderPath = ""
+
+        if connect:
+            self.connect() 
+    
+    def login(self):
+        """Logs the user in. Returns success."""
+
+        #TODO
+        pass
+    
+    def logout(self):
+        """Logs the user out."""
+
+        #TODO
+        pass
+
+    def connect(self):
+        """Checks server or client availability and initiates the connection. Returns success."""
+
+        #TODO
+        pass
+
+    def disconnect(self):
+        """Gets back to offline mode."""
+
+        #TODO
+        pass
+
+    def createProject(self, projectName, projectShortName, folder = ""):
+        """Returns RamProject.
+
+        Args:
+            projectName: str.
+            projectShortName: str
+            folder: str
+        """
+
+        #TODO
+        pass
+
+    def createUser(self, userName, userShortName, folder = ""):
+        """Returns RamUser.
+
+        Args:
+            userName: str
+            userShortName: str
+            folder: str
+        """
+
+        #TODO
+        pass
+
+    def createStep(self, stepName, stepShortName):
+        """Returns RamStep.
+
+        Args:
+            stepName: str.
+            stepShortName: str.
+        """
+
+        #TODO
+        pass
+
+class RamObject():
+    """The base class for all Ramses objects.
+    
+    Attributes:
+        name: str.
+            May contain spaces, [a-z] ,[A-Z], [0-9], [+-].
+        shortName: str.
+            Used for compact display, limited to 10 characters, must not contain spaces, may contain [a-z] ,[A-Z], [0-9], [+-].
+        folderPath: str.
+            The path relative to a project or the main Ramses folder, containing general files in relation to this object.
+    """
+
+    def __init__(self):
+        self.name = ""
+        self.shortName = ""
+        self.folderPath = ""
+
+class RamUser( RamObject ):
+    """The class representing users.
+    
+    Attributes:
+        role: enumerated value.
+            'ADMIN', 'LEAD', or 'STANDARD'
+        loggedIn: bool, readonly.
+            The user has been correctly logged in
+    """
+
+    def __init__(self, userName, userShortName, useFolderPath, role = 'STANDARD'):
+        """
+
+        Args:
+            userName: str.
+            userShortName: str.
+            useFolderPath: str.
+            role: enumerated.
+        """
+
+        self.role = role
+        self.loggedIn = True
+    
+    def login(self):
+        """Logs the user in. Returns success."""
+
+        #TODO
+        pass
+    
+    def logout(self):
+        """Logs the user out."""
+
+        #TODO
+        pass
+
+class RamApplication( RamObject ):
+    """
+
+    Attributes:
+        importTypes: list of RamFileType.
+            File types the app can import
+        exportTypes: list of RamFileType.
+            File types the app can export
+        nativeTypes: list of RamFileType.
+            File types the app supports natively
+        executableFilePath: str.
+            Path to the executable file of the application
+    """
+
+    def __init__(self, appName, appShortName, execFilePath):
+        """
+
+        Args:
+            appName: str.
+            appShortName: str.
+            execFilePath: str.
+        """
+
+        self.importTypes = []
+        self.exportTypes = []
+        self.nativeTypes = []
+        self.exectuableFilePath = execFilePath
+    
+    def login(self):
+        """Logs the user in. Returns success."""
+
+        #TODO
+        pass
+
+    def logout(self):
+        """Logs the user out."""
+
+        #TODO
+        pass
+
+class RamFileType( RamObject ):
+    """
+
+    Attributes:
+        extension: str.
+        defaultApplication: RamApplication.
+    """
+
+    def __init__(self, typeName, ext, defaultApp):
+        """By default, extension and shortName are the same.
+        
+        Args:
+            typeName: str.
+            ext: str.
+            defaultApp: RamApplication
+        """
+
+        self.extension = ext
+        self.defaultApplication = defaultApp
+
+class RamProject( RamObject ):
+    """
+
+    Attributes:
+    steps: list of RamStep.
+    shots: list of RamShot.
+    assets: list of RamAsset.
+    """
+    def __init__(self, projectName, projectShortName, projectPath):
+        """
+
+        Args:
+            projectName: str.
+            projectShortName: str.
+            projectPath: str.
+        """
+
+        self.steps = []
+        self.shots = []
+        self.assets = []
+
+    def addStep(self, step):
+        """
+
+        Args:
+            step: RamStep.
+        """
+
+        #TODO
+        pass
+
+    def addShot(self, shot):
+        """
+
+        Args:
+            shot: RamShot.
+        """
+
+        #TODO
+        pass
+
+    def createShot(self, shotName):
+        """
+
+        Args:
+            shotName: str.
+        """
+
+        #TODO
+        pass
+
+    def createShots(self, range):
+        """
+
+        Args:
+            range: int list.
+        """
+
+        #TODO
+        pass
+
+    def addAsset(self, asset):
+        """
+
+        Args:
+            asset: RamAsset
+        """
+
+        #TODO
+        pass
+
+class RamStep( RamObject ):
+    """
+
+    Attributes:
+        fileTypes: list of RamFileType.
+        publishFileTypes: list of RamFileType.
+        assignedUsers: list of RamUser.
+        leads: list of RamUser.
+    """
+    def __init__(self, stepName, stepShortName):
+        """
+
+        Args:
+            stepName: str.
+            stepShortName: str.
+        """
+
+        self.fileType = None
+        self.otherFileTypes = []
+        self.publishedFileTypes = []
+        self.assignedUsers = []
+        self.leads = []
+
+class RamAssetStep( RamStep ):
+    """
+
+    Attributes:
+        dependsOn: list of RamAssetStep.
+    """
+
+    def __init__(self, stepName, stepShortName):
+        """
+
+        Args:
+            stepName: str.
+            stepShortName: str.
+        """
+
+        self.dependsOn = []
+
+class RamShotStep( RamStep ):
+    """
+
+    Attributes:
+        dependsOn: list of RamStep.
+    """
+
+    def __init__(self, stepName, stepShortName):
+        """
+
+        Args:
+            stepName: str.
+            stepShortName: str.
+        """
+
+        self.dependsOn = []
+
+class RamItem( RamObject ):
+    """
+
+    Attributes:
+        published: bool.
+        stepStatuses: list of RamStatus.
+    """
+
+    def __init__(self):
+        self.published = False
+        self.stepStatuses = []
+    
+    def getWIPFilePath(self):
+        """Wip file path relative to the item root folder
+        """
+        #TODO
+        pass
+
+    def getVersionFilePath(self):
+        """Version file path relative to the item root folder
+        """
+        #TODO
+        pass
+    
+    def getPublishedFilePaths(self):
+        """Gets the list of file paths in the publish folder, relative to the item root folder
+        """
+        #TODO
+        pass
+
+    '''
+    def getLatestVersion( ramStep, resourceStr ): #TODO: rework to make them actual methods
+        """Returns int. Highest version among all the version files.
+
+        Returns none if the ramses_versions dir has not been found.
+
+        Args:
+            ramsesFileName: str (full path towards the file for now)
+        """
+        #For now, assumes the filename includes the whole path
+        #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+        
+        fullPath = ramsesFileName
+
+        folderPath = os.path.dirname(fullPath)
+        fileName = os.path.basename(fullPath)
+
+        if os.path.isdir(folderPath + '/ramses_versions') == False:
+            print("ramses_versions directory has not been found")
+            return None
+
+        ramsesName = fileName.split('.')[0]
+        extension = fileName.split('.')[1]
+
+        foundElements = os.listdir(folderPath + '/ramses_versions')
+        highestFileVersion = 0
+
+        for element in foundElements:
+            if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+                if element.lower().endswith('.' + extension):
+                    if element.startswith(ramsesName):
+                        fileVersion = getFileVersion(element)[1]
+                        if fileVersion != None:
+                            if fileVersion > highestFileVersion:
+                                highestFileVersion = fileVersion
+
+        return highestFileVersion
+
+    def getLatestPubVersion( ramsesFileName ): #TODO: rework to make them actual methods
+        """Returns int. Highest version among all the published files.
+
+        Returns none if the ramses_publish dir has not been found.
+
+        Args:
+            ramsesFileName: str (full path towards the file for now)
+        """
+        #For now, assumes the filename includes the whole path
+        #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+        
+        fullPath = ramsesFileName
+
+        folderPath = os.path.dirname(fullPath)
+        fileName = os.path.basename(fullPath)
+        
+        if os.path.isdir(folderPath + '/ramses_versions') == False:
+            print("ramses_versions directory has not been found")
+            return None
+        
+        ramsesName = fileName.split('.')[0]
+        extension = fileName.split('.')[1]
+
+        foundElements = os.listdir(folderPath + '/ramses_versions')
+        highestPubVersion = 0
+
+        for element in foundElements:
+            if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
+                if element.lower().endswith('.' + extension):
+                    if element.startswith(ramsesName + '_pub'):
+                        pubVersion = getFileVersion(element)[1]
+                        if pubVersion > highestPubVersion:
+                            highestPubVersion = pubVersion
+
+        return highestPubVersion
+
+    def isPublished( ramsesFileName ): #TODO: rework to make them actual methods
+        """Returns bool. True if last version is a pub.
+
+        Returns false if no version was found at all.
+        Returns false if there is no publish in the ramses_publish folder, even if there is a pub in the ramses_versions folder.
+
+        Args:
+            ramsesFileName: str (full path towards the file for now)
+        """
+        #For now, assumes the filename includes the whole path
+        #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
+
+        fullPath = ramsesFileName
+
+        folderPath = os.path.dirname(fullPath)
+        fileName = os.path.basename(fullPath)
+
+        latestVersion = getLatestVersion(fullPath)
+
+        if latestVersion == 0 or latestVersion == None:
+            print("No version has been found")
+            return False
+        if os.path.isfile(folderPath + '/ramses_publish/' + fileName) == False: #even if there is a pub in the versions folder, if it is missing from the actual publish folder it returns false
+            print("There is no publish of the given file in the ramses_publish directory or the directory has not been found")
+            return False
+        
+        latestPubVersion = getLatestPubVersion(fullPath)
+        if latestVersion <= latestPubVersion:
+            return True
+        
+        return False
+    '''
+
+class RamShot( RamItem ):
+    """
+
+    Attributes:
+        assets: list of RamAsset.
+            The assets used in this shot
+    """
+
+    def __init__(self):
+        self.assets = []
+    
+    @staticmethod
+    def getFromPath( filePath ): #WIP - TODO
+        """Returns a RamItem object built using the given file path
+
+        Args:
+            filePath: str.
+        """
+
+        if os.path.isfile(filePath) == False:
+            print("The given file could not be found")
+            return None
+
+        folderPath = os.path.dirname(filePath)
+        fileName = os.path.basename(filePath)
+
+        if isRamsesName(fileName) == False:
+            print("The given file does not match Ramses' naming convention or has no extension")
+            return None
+        
+        blocks = decomposeRamsesFileName( fileName )[0]
+
+        if blocks[1] != 'S':
+            print("The given filepath does not point towards a shot")
+            return None
+        
+        #TODO: check if there already exists a RamShot with the same shortname and folder? isinstance?
+
+        shot = RamShot()
+        shortName = blocks[2]
+
+        #Attrs from inheritances: published (bool), stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
+        shot.shortName = shortName
+        shot.name = shortName
+        shot.folderPath = folderPath
+        #shot.published = isPublished(filePath) #TODO: change to shot.isPublished once this method is in RamItem
+        #TODO: stepStatuses
+
+        return shot
+
+    def getFileName(self):
+        #TODO
+        pass
+
+class RamAsset( RamItem ):
+    """
+
+    Attributes:
+        tags: list of str.
+    """
+
+    def __init__(self):
+        self.tags = []
+    
+    @staticmethod
+    def getFromPath( filePath ):
+        #TODO
+        pass
+
+    def getFileName(self):
+        #TODO
+        pass
+
+class RamState( RamObject ):
+    """Represents a state used in a status, like CHK (to be checked), OK (ok), TODO, etc.
+
+    Attributes:
+        completionRatio: float.
+            The ratio of completion of this status
+    """
+
+    def __init__(self, stateName, stateShortName, completion):
+        """
+
+        Args:
+            stateName: str.
+            stateShortName: str.
+            completion: float.
+        """
+
+        self.completionRatio = completion
+
+class RamStatus():
+    """A state associated to a comment, the user who changed the state, etc.
+
+    Attributes:
+        state: RamState.
+        completionRatio: float.
+            The ratio of completion of this status
+        comment: string.
+        user: RamUser.
+        date: datetime.
+            The date at which this status was created
+        version: int.
+            The version of the corresponding working file
+        published: bool
+    """
+
+    def __init__(self, state, user, comment = ""):
+        """
+
+        Args:
+            state: RamState.
+            user: RamUser.
+            comment: str.
+        """
+
+        self.state = state
+        self.completion = 0.0
+        self.comment = comment
+        self.user = user
+        self.date = None
+        self.version = 0
+        self.published = False
+
+class RamStepStatus():
+    """A history of RamStatus for a given step.
+
+    Attributes:
+        history: list of RamStatus.
+    """
+
+    def __init__(self):
+        self.history = []
+
+'''
+tests = [
+    "YUKU_G_STEP_resourceStr_v001.tar.gz.test",
+    "YUKU_G_STEP_resourceStr_v001",
+    "YUKU_G_STEP_v001",
+    "YUKU_G_STEP.blend",
+    "YUKU_A_GRANDMA_RIG_resourceStr_v012.blend",
+    "YUKU_A_GRANDMA_RIG_v012.blend",
+    "YUKU_A_GRANDMA_RIG_resourceStr.blend"
+    ]
+
+for test in tests:
+    print("Testing: " + test)
+    print(isRamsesName(test))
+'''
+
+testShotPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
+testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD.blend'
