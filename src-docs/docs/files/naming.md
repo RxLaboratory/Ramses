@@ -26,6 +26,8 @@ Explanations:
 - Optionnal blocks are shown in parenthesis `()`
 - The vertical bar `|` characters means "or" and represents a choice in a list of possibilities.
 
+**A file name must include at least 3 blocks**: *projectID*, *Type* (*A*, *S* or *G*), and *stepID* and can include up to 6 blocks if adding the *assetId* or *shotID*, the resource name, and the version.
+
 ### Blocks
 
 - `projectID` is the ID of the project.  

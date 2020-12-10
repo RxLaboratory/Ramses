@@ -100,7 +100,7 @@ Here is an example for the modelling step of the asset called *Tristan*.
 - PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
     - PROJECTID_A_TRISTAN_MOD.blend # The main file for modelling Tristan (on Blender)
     - PROJECTID_A_TRISTAN_MOD_Sculpt.blend # Another resource
-    - ramses_versions # The versionning folder, handled by Ramses
+    - ramses_versions # The versionning folder, handled by Ramses.
         - PROJECTID_A_TRISTAN_MOD_wip001.blend # A WIP version
         - PROJECTID_A_TRISTAN_MOD_wip002.blend
         - PROJECTID_A_TRISTAN_MOD_chk003.blend # The version which has to be checked by the lead
@@ -111,4 +111,22 @@ Here is an example for the modelling step of the asset called *Tristan*.
     - published
         - PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
         - PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
+    - preview
+        - PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
+        - PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
 ```
+
+The *ramses_versions* subfolder contains the versionning and history of the work.
+
+The *published* subfolder contains the published and exported files to be used by other steps.
+
+The *preview* subfolder contains the files for previewing the current work, like videos or images. These files may be used by Ramses to generate thumbnails. Ramses is also able to list, preview, and play these files (if their format is standard and supported).
+
+!!! important
+    The working file and published files do not include the version in their names, and the versionning and history are hidden in a *ramses_versions* subfolder. This way, there can be no mistake about what file to open or import.
+
+!!! note
+    Only Ramses should access the *ramses_versions* subfolder and it should not be needed for the user to manipulate these files.
+
+!!! tip
+    When backuping a project, only the files in the *published* subfolder may be kept.
