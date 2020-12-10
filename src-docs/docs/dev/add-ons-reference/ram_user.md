@@ -10,7 +10,7 @@ Inherits: [***RamObject***](ram_object.md)
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| role | *enumerated value* | `STANDARD` | One of `ADMIN`, `LEAD` or `STANDARD` |
+| **role**<br />Read-only | *enumerated value* | `STANDARD` | One of `ADMIN`, `LEAD` or `STANDARD` |
 
 ## Methods
 
