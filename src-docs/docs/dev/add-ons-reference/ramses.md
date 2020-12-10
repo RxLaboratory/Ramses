@@ -10,8 +10,8 @@ The main class. One (and only one) instance globally available, instantiated dur
 | --- | --- | --- | --- |
 | **autoConnect** | *boolean* | `true` | Wether to always try to (re)connect if offline. |
 | **clientPort** | *integer* | `1818` | The port used to connect to the client. |
-| **currentProject** | *RamProject* | | The current project. |
-| **currentUser** | *RamUser* | | The current user. |
+| **currentProject**<br />*Read-only* | *RamProject* | | The current project. |
+| **currentUser**<br />*Read-only* | *RamUser* | | The current user. |
 | **online**<br/>*Read-only* | *boolean* | | True if connected to the client and the client is responding. |
 
 ## Methods
@@ -28,5 +28,7 @@ The main class. One (and only one) instance globally available, instantiated dur
 | **login**<br />▹ *boolean* | *string*: **userPassword**<br />*RamUser*: **user**=`currentUser` | Logs the user in. Launches and connect to the client if necessary.  Returns success. |
 | **logout**| | Logs the user out. |
 | **projects**<br />▹ *list of RamProject* | | The list of available projects. |
+| **setCurrentProject** | *[RamProject](ram_project.md)*: **project** | |
+| **setCurrentUser** | *[RamUser](ram_user.md)*: **user** | |
 | **steps**<br />▹ *list of RamStep* | | The list of available steps.
 | **users**<br />▹ *list of RamUser* | | The list of available users. |

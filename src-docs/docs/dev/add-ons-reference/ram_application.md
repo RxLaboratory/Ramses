@@ -10,10 +10,10 @@ Inherits: [***RamObject***](ram_object.md)
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **executableFilePath** | *string* | `""` | Path to the executable file of the application. |
-| **exportTypes** | *list of RamFileType* | `""` | File types the app can export. |
-| **importTypes** | *list of RamFileType* | `""` | File types the app can import. |
-| **nativeTypes** | *list of RamFileType* | `""` | File types the app supports natively. |
+| **executableFilePath** | *string* | `[]` | Path to the executable file of the application. |
+| **exportTypes** | *list of RamFileType* | `[]` | File types the app can export. |
+| **importTypes** | *list of RamFileType* | `[]` | File types the app can import. |
+| **nativeTypes** | *list of RamFileType* | `[]` | File types the app supports natively. |
 
 ## Methods
 
