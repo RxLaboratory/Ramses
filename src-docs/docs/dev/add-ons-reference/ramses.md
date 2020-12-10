@@ -18,13 +18,13 @@ The main class. One (and only one) instance globally available, instantiated dur
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *integer*: **port**=`1818`<br />*boolean*: **connect**=`true` | |
+| ***constructor*** | *integer*: **port**=`1818`<br />*boolean*: **connect**=`true` | If connect is true, will launch the client if needed and then tries to connect to it. |
 | **alternativeFolderPaths**<br />▹ *string list* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
 | **backupFolderPath**<br />▹ *string* | | A copy of the main folder where all files are stored. |
 | **connect**<br />▹ *boolean* | | Checks server or client availability and initiates the connection. Returns success. |
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode. |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
-| **launchClient**<br />▹ *boolean* | | Launches the Ramses client and tries to connect to it. Returns success |
+| **launchClient**<br />▹ *boolean* | *boolean*: **connect**=`true`| Launches the Ramses client and tries to connect to it. Returns success |
 | **login**<br />▹ *boolean* | *string*: **userPassword**<br />*RamUser*: **user**=`currentUser` | Logs the user in. Launches and connect to the client if necessary.  Returns success. |
 | **logout**| | Logs the user out. |
 | **projects**<br />▹ *list of RamProject* | | The list of available projects. |
