@@ -1,4 +1,4 @@
-Ramses
+## Ramses
 
 ### serverUrl: *string*
 
@@ -16,3 +16,20 @@ For addons, true when client app is available and respondonding.
 | createStep<br />▹ *RamStep* | 
 
 | *constructor* | *integer*: **port**=1818<br />*string*: **url**=""<br />*boolean*: **connect**=true | |
+
+
+## Project
+
+- addStep(RamStep:step)
+- addShot(RamShot:shot)
+- createShot(string:shotName)
+- createShots(int[]:range)
+- addAsset(RamAsset:asset)
+
+### createStep( string:stepName, string: stepShortName) ▸ *RamStep*
+
+Creates a new instance of a step.
+
+### createShot( string: shotShortName ) ▸ *RamShot*
+
+Creates a new instance of a shot.
