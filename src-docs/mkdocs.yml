@@ -28,6 +28,7 @@ nav:
     - Ramses: index.md
     - Files and folders:
         - Naming scheme: files/naming.md
+        - Folder structure: files/tree.md
     - Development:
         - Files and Folders:
             - Naming: dev/files/naming.md
@@ -48,6 +49,7 @@ nav:
             - RamStep: dev/add-ons-reference/ram_step.md
             - RamStepStatus: dev/add-ons-reference/ram_stepstatus.md
             - RamUser: dev/add-ons-reference/ram_user.md
+    - Credits: credits.md
     - Changelog: changelog.md
     - License:
         - GNU GPLv3: licenses/gnu-gpl.md
