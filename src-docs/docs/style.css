@@ -12,13 +12,16 @@ a:hover {
 .wy-side-nav-search {
     background-color: #710132;
 }
+
 .wy-nav-side {
     background-color: #333333;
     box-shadow: 1px 4px 7px #131313;
 }
+
 .wy-body-for-nav {
     background-color: #434343;
 }
+
 .wy-nav-content {
     background-color: #e3e3e3;
     margin-left: auto;
@@ -28,12 +31,31 @@ a:hover {
     border-radius: 10px;
     box-shadow: 1px 4px 7px #131313;
 }
+
 .wy-side-nav-search input[type="text"] {
     border-color: #710132;
 }
+
 .wy-menu-vertical li a {
     color: #a526c4;
 }
+
+.wy-menu-vertical li ul li {
+    padding-left: 10px;
+}
+
+.wy-menu-vertical li ul li ul li a {
+    color: #939393 !important;
+}
+
+.wy-menu-vertical li.toctree-l3.current > a {
+    background-color: #e3e3e3;
+}
+
+.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
+    background-color: #e3e3e3;
+}
+
 .wy-menu-vertical span {
     color: #a526c4;
 }

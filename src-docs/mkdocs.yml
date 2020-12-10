@@ -26,23 +26,28 @@ site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
     - Ramses: index.md
-    - Add-ons Development:
-        - Reference and classes: dev/add-ons-reference/index.md
-        - Ramses: dev/add-ons-reference/ramses.md
-        - RamApplication: dev/add-ons-reference/ram_application.md
-        - RamAsset: dev/add-ons-reference/ram_asset.md
-        - RamAssetStep: dev/add-ons-reference/ram_assetstep.md
-        - RamFileType: dev/add-ons-reference/ram_filetype.md
-        - RamItem: dev/add-ons-reference/ram_item.md
-        - RamObject: dev/add-ons-reference/ram_object.md
-        - RamProject: dev/add-ons-reference/ram_project.md
-        - RamShot: dev/add-ons-reference/ram_shot.md
-        - RamShotStep: dev/add-ons-reference/ram_shotstep.md
-        - RamState: dev/add-ons-reference/ram_state.md
-        - RamStatus: dev/add-ons-reference/ram_status.md
-        - RamStep: dev/add-ons-reference/ram_step.md
-        - RamStepStatus: dev/add-ons-reference/ram_stepstatus.md
-        - RamUser: dev/add-ons-reference/ram_user.md
+    - Files and folders:
+        - Naming scheme: files/naming.md
+    - Development:
+        - Files and Folders:
+            - Naming: dev/files/naming.md
+        - Scripting API:
+            - Reference: dev/add-ons-reference/index.md
+            - Ramses: dev/add-ons-reference/ramses.md
+            - RamApplication: dev/add-ons-reference/ram_application.md
+            - RamAsset: dev/add-ons-reference/ram_asset.md
+            - RamAssetStep: dev/add-ons-reference/ram_assetstep.md
+            - RamFileType: dev/add-ons-reference/ram_filetype.md
+            - RamItem: dev/add-ons-reference/ram_item.md
+            - RamObject: dev/add-ons-reference/ram_object.md
+            - RamProject: dev/add-ons-reference/ram_project.md
+            - RamShot: dev/add-ons-reference/ram_shot.md
+            - RamShotStep: dev/add-ons-reference/ram_shotstep.md
+            - RamState: dev/add-ons-reference/ram_state.md
+            - RamStatus: dev/add-ons-reference/ram_status.md
+            - RamStep: dev/add-ons-reference/ram_step.md
+            - RamStepStatus: dev/add-ons-reference/ram_stepstatus.md
+            - RamUser: dev/add-ons-reference/ram_user.md
     - Changelog: changelog.md
     - License:
         - GNU GPLv3: licenses/gnu-gpl.md

@@ -2,7 +2,7 @@
 
 The base class for most of Ramses objects.
 
-Inherited by: *[RamApplication](ram_application.mf), [RamFileType](ram_filetype.md), [RamItem](ram_item.md), [RamShot](ram_shot.md), [RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](ram_state.md), [RamStep](ram_step.md), [RamShotStep](ram_shotstep.md), [RamAssetStep](ram_assetstep.md), [RamUser](ram_user.md)*
+Inherited by: *[RamApplication](ram_application.md), [RamFileType](ram_filetype.md), [RamItem](ram_item.md), [RamShot](ram_shot.md), [RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](ram_state.md), [RamStep](ram_step.md), [RamShotStep](ram_shotstep.md), [RamAssetStep](ram_assetstep.md), [RamUser](ram_user.md)*
 
 [TOC]
 

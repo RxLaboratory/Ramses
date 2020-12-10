@@ -1,10 +1,10 @@
-# Add-ons reference
+# Scripting API reference
 
-All add-ons on all programming/scripting language should implement this reference, with the same classes, attributes and methods.
+[*Rainbox Laboratory*](https://rainboxlab.org) provides a reference implementation of the API in *Python* and *Adobe ExtendScript*.
+
+Other APIs may be developped, in which case all these APIs on all programming/scripting language should implement this reference, with the same classes, attributes and methods.
 
 [TOC]
-
-[*Rainbox Laboratory*](https://rainboxlab.org) provides a reference implementation in *Python* and *Adobe ExtendScript*.
 
 As this document is referring to different languages, it uses general terms which may be different than what is usually used in specific languages.
 
@@ -36,18 +36,7 @@ Some of the elements described in this documentation have to be interpreted depe
 
 ### Enumerated Values
 
-#### Python
+#### Python and ExtendScript
 
 Should be a string with the name of the value, enclosed in single quotes to differenciate them from other strings. Example: `'ADMIN'`, `'STANDARD'`.
 
-#### **ExtendScript** and **JavaScript**
-
-Should be an object containing a list of integers. Example:
-
-```js
-enum_value = {
-    ADMIN=0,
-    LEAD=1,
-    STANDARD=2
-    };
-```
