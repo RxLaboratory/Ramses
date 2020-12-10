@@ -34,6 +34,22 @@ def convertIntToString( integer , numChars = 3 ):
         numString = "0" + numString
     return numString
 
+def clean_file():
+    # Screens
+    for screen in bpy.data.screens:
+        name = screen.name
+        end_name = name.split(".")[-1]
+        try:
+            index = int(end_name)
+        except:
+            index = 0
+        
+        if index > 0 :
+            bpy.data.screens[name].user_clear()
+
+    # Purge Orphans
+    bpy.ops.outliner.orphans_purge()
+
 class RAMSES_Preferences( bpy.types.AddonPreferences ):
     # this must match the add-on name, use '__package__'
     # when defining this in a submodule of a python package.
@@ -143,6 +159,8 @@ class RAMSES_OT_Save(types.Operator):
         # Publish
 
         if publish:
+            clean_file()
+            
             publishFileName = sceneName + ".blend"
             publishFile = currentFolder / publishFileName
             shutil.copy2( currentFile, publishFile )
