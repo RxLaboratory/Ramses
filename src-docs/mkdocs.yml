@@ -1,0 +1,35 @@
+site_name: Ramses Documentation
+site_url: https://rainboxlab.org
+repo_url: https://github.com/Rainbox-dev/Ramses/
+edit_uri: edit/master/src-docs/docs/
+site_description: The Ramses comprehensive documentation
+site_author: Nicolas Dufresne and contributors
+copyright: 'Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
+theme:
+    name: readthedocs
+    custom_dir: theme/
+markdown_extensions:
+    - smarty
+    - footnotes
+    - tables
+    - admonition
+    - codehilite
+    - fenced_code
+    - toc
+    - attr_list
+extra_css:
+    - style.css
+    - video.css
+extra_javascript:
+    - video.js
+site_dir: ../docs/
+dev_addr: '127.0.0.1:8001'
+nav:
+    - Ramses: index.md
+    - Add-ons Development:
+        - Reference and classes: dev/add-ons-reference/index.md
+        - Ramses: dev/add-ons-reference/ramses.md
+    - Changelog: changelog.md
+    - License:
+        - GNU GPLv3: licenses/gnu-gpl.md
+        - Documentation license: licenses/gfdl.md
