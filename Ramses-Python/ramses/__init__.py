@@ -1,5 +1,4 @@
-'''
-WIP:
+'''WIP:
 - getLatestPubVersion, getLatestVersion, isPublished:
     Work, but assume the given argument is the full path towards the file.
     TODO: make them methods of RamItem
@@ -24,7 +23,6 @@ WIP:
         version (prefix + number) shouldn't be longer than 15 characters;
         extension shouldn't be longer than 50 characters.
     TODO: see if these limitations are enough.
-
 '''
 
 import os
@@ -358,7 +356,7 @@ class Ramses():
             The steps
         folderPath: str.
             The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files...
-        alternateFolderPaths: str list.
+        alternativeFolderPaths: str list.
             A list of alternate absolute paths to the main Ramses folder.
             Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.
         backupFolderPath: str.
@@ -384,7 +382,7 @@ class Ramses():
         self.projects = []
         self.users = []
         self.folderPath = ""
-        self.alternateFolderPaths = []
+        self.alternativeFolderPaths = []
         self.backupFolderPath = ""
 
         if connect:
@@ -438,17 +436,6 @@ class Ramses():
         #TODO
         pass
 
-    def createStep(self, stepName, stepShortName):
-        """Returns RamStep.
-
-        Args:
-            stepName: str.
-            stepShortName: str.
-        """
-
-        #TODO
-        pass
-
 class RamObject():
     """The base class for all Ramses objects.
     
@@ -476,7 +463,7 @@ class RamUser( RamObject ):
             The user has been correctly logged in
     """
 
-    def __init__(self, userName, userShortName, useFolderPath, role = 'STANDARD'):
+    def __init__(self, userName, userShortName, userFolderPath, role = 'STANDARD'):
         """
 
         Args:
@@ -488,6 +475,9 @@ class RamUser( RamObject ):
 
         self.role = role
         self.loggedIn = True
+        self.name = userName
+        self.shortName = userShortName
+        self.folderPath = userFolderPath
     
     def login(self):
         """Logs the user in. Returns success."""
@@ -523,7 +513,8 @@ class RamApplication( RamObject ):
             appShortName: str.
             execFilePath: str.
         """
-
+        self.name = appName
+        self.shortName = appShortName
         self.importTypes = []
         self.exportTypes = []
         self.nativeTypes = []
@@ -557,8 +548,9 @@ class RamFileType( RamObject ):
             ext: str.
             defaultApp: RamApplication
         """
-
+        self.name = typeName
         self.extension = ext
+        self.shortName = ext
         self.defaultApplication = defaultApp
 
 class RamProject( RamObject ):
@@ -577,7 +569,9 @@ class RamProject( RamObject ):
             projectShortName: str.
             projectPath: str.
         """
-
+        self.name = projectName
+        self.shortName = projectShortName
+        self.folderPath = projectPath
         self.steps = []
         self.shots = []
         self.assets = []
@@ -612,11 +606,22 @@ class RamProject( RamObject ):
         #TODO
         pass
 
-    def createShots(self, range):
+    def createShots(self, range, prefix = "", suffix = ""):
         """
 
         Args:
             range: int list.
+        """
+
+        #TODO
+        pass
+
+    def createStep(self, stepName, stepShortName):
+        """Returns RamStep.
+
+        Args:
+            stepName: str.
+            stepShortName: str.
         """
 
         #TODO
@@ -648,12 +653,13 @@ class RamStep( RamObject ):
             stepName: str.
             stepShortName: str.
         """
-
         self.fileType = None
         self.otherFileTypes = []
         self.publishedFileTypes = []
         self.assignedUsers = []
         self.leads = []
+        self.name = stepName
+        self.shortName = stepShortName
 
 class RamAssetStep( RamStep ):
     """
@@ -669,7 +675,8 @@ class RamAssetStep( RamStep ):
             stepName: str.
             stepShortName: str.
         """
-
+        self.name = stepName
+        self.shortName = stepShortName
         self.dependsOn = []
 
 class RamShotStep( RamStep ):
@@ -686,7 +693,8 @@ class RamShotStep( RamStep ):
             stepName: str.
             stepShortName: str.
         """
-
+        self.name = stepName
+        self.shortName = stepShortName
         self.dependsOn = []
 
 class RamItem( RamObject ):
@@ -719,8 +727,7 @@ class RamItem( RamObject ):
         #TODO
         pass
 
-    '''
-    def getLatestVersion( ramStep, resourceStr ): #TODO: rework to make them actual methods
+    def getLatestVersion( self, ramStep, resourceStr = '' ): #TODO
         """Returns int. Highest version among all the version files.
 
         Returns none if the ramses_versions dir has not been found.
@@ -728,9 +735,17 @@ class RamItem( RamObject ):
         Args:
             ramsesFileName: str (full path towards the file for now)
         """
-        #For now, assumes the filename includes the whole path
-        #From the ramsesFileName, try to find a corresponding RamAsset/RamShot and try to get the folderPath from it?
         
+        '''self.folderPath : folder général. PROJ A ISOLDE
+        ramStep : get the step. go in subfolder. PROJ A ISOLDE MOD
+        resourceStr : if it is a resource. helps in building the name.
+        extension: is it needed? anyway, can be found in RamStep.fileTypes'''
+
+        print(self.folderPath)
+
+        highestFileVersion = 0
+
+        '''ramsesFileName = "aaaa.heck"
         fullPath = ramsesFileName
 
         folderPath = os.path.dirname(fullPath)
@@ -753,11 +768,12 @@ class RamItem( RamObject ):
                         fileVersion = getFileVersion(element)[1]
                         if fileVersion != None:
                             if fileVersion > highestFileVersion:
-                                highestFileVersion = fileVersion
+                                highestFileVersion = fileVersion'''
 
         return highestFileVersion
 
-    def getLatestPubVersion( ramsesFileName ): #TODO: rework to make them actual methods
+    '''
+    def getLatestPubVersion( self, resourceStr = '' ): #TODO: rework to make them actual methods
         """Returns int. Highest version among all the published files.
 
         Returns none if the ramses_publish dir has not been found.
@@ -793,7 +809,7 @@ class RamItem( RamObject ):
 
         return highestPubVersion
 
-    def isPublished( ramsesFileName ): #TODO: rework to make them actual methods
+    def isPublished( self, resourceStr = '' ): #TODO: rework to make them actual methods
         """Returns bool. True if last version is a pub.
 
         Returns false if no version was found at all.
@@ -834,22 +850,28 @@ class RamShot( RamItem ):
             The assets used in this shot
     """
 
-    def __init__(self):
+    def __init__(self, shotName):
         self.assets = []
+        self.shortName = shotName
+        self.name = shotName
     
     @staticmethod
-    def getFromPath( filePath ): #WIP - TODO
+    def getFromPath( filePath ):
         """Returns a RamItem object built using the given file path
 
         Args:
             filePath: str.
+                Must point towards a file in a step subfolder, such as PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend
+                The file also needs to respect Ramses' naming convention
         """
 
         if os.path.isfile(filePath) == False:
             print("The given file could not be found")
             return None
 
-        folderPath = os.path.dirname(filePath)
+        folderPath = os.path.dirname(filePath) #From PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend we go to PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG
+        folderPath = os.path.dirname(folderPath) #And then we go to PROJ_A_ISOLDE
+
         fileName = os.path.basename(filePath)
 
         if isRamsesName(fileName) == False:
@@ -861,24 +883,15 @@ class RamShot( RamItem ):
         if blocks[1] != 'S':
             print("The given filepath does not point towards a shot")
             return None
-        
-        #TODO: check if there already exists a RamShot with the same shortname and folder? isinstance?
-
-        shot = RamShot()
-        shortName = blocks[2]
 
         #Attrs from inheritances: published (bool), stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
-        shot.shortName = shortName
-        shot.name = shortName
+        shortName = blocks[2]
+        shot = RamShot( shotName = shortName)
         shot.folderPath = folderPath
-        #shot.published = isPublished(filePath) #TODO: change to shot.isPublished once this method is in RamItem
+        #TODO: isPublished
         #TODO: stepStatuses
 
         return shot
-
-    def getFileName(self):
-        #TODO
-        pass
 
 class RamAsset( RamItem ):
     """
@@ -887,16 +900,16 @@ class RamAsset( RamItem ):
         tags: list of str.
     """
 
-    def __init__(self):
+    def __init__(self, assetShortName, assetName = ''):
         self.tags = []
+        self.shortName = assetShortName
+        if assetName == '': self.name = assetShortName
+        else: self.name = assetName
     
     @staticmethod
     def getFromPath( filePath ):
         #TODO
-        pass
-
-    def getFileName(self):
-        #TODO
+        #reuse RamShot's static method getFromPath
         pass
 
 class RamState( RamObject ):
@@ -915,7 +928,8 @@ class RamState( RamObject ):
             stateShortName: str.
             completion: float.
         """
-
+        self.name = stateName
+        self.shortName = stateShortName
         self.completionRatio = completion
 
 class RamStatus():
@@ -961,21 +975,6 @@ class RamStepStatus():
     def __init__(self):
         self.history = []
 
-'''
-tests = [
-    "YUKU_G_STEP_resourceStr_v001.tar.gz.test",
-    "YUKU_G_STEP_resourceStr_v001",
-    "YUKU_G_STEP_v001",
-    "YUKU_G_STEP.blend",
-    "YUKU_A_GRANDMA_RIG_resourceStr_v012.blend",
-    "YUKU_A_GRANDMA_RIG_v012.blend",
-    "YUKU_A_GRANDMA_RIG_resourceStr.blend"
-    ]
+rigStep = RamStep(stepName = "rigging", stepShortName = "RIG")
 
-for test in tests:
-    print("Testing: " + test)
-    print(isRamsesName(test))
-'''
-
-testShotPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
-testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD.blend'
+ramShot = RamShot
