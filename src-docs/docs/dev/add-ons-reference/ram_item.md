@@ -25,4 +25,4 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 | **getPublishedFilePaths**<br />▹ *list of string* | *RamStep*: **step**<br />*string*: **resource** = `""` | Gets the list of file paths in the publish folder. paths are relative to the root of the item folder. |
 | **getVersionFilePath**<br />▹ *string* | *RamStep*: **step**<br />*string*: **resource** = `""` | Latest version file path relative to the item root folder |
 | **getWIPFilePath**<br />▹ *string* | *RamStep*: **step**<br />*string*: **resource** = `""` | Current wip file path relative to the item root folder |
-| **setStepStatus** | *RamStatus*: **step**<br />*[RamStep](ram_step.md)*: **step** | Adds a new status in `stepStatuses` for the given step |
+| **setStepStatus** | *RamStatus*: **status**<br />*[RamStep](ram_step.md)*: **step** | Adds a new status in `stepStatuses` for the given step |
