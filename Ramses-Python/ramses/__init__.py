@@ -6,7 +6,7 @@ WIP:
 
 - RamItem, RamShot, RamAsset .folderPath : is it the folder towards the asset in general (proj_a_isolde) or towards a step of the asset (proj_a_isolde_mod)?
     If it only goes to the asset in general, the methods such as getWIPFilePath will need to know the step.
-    They also need to know the comment/secondary version (for example to recognize the correct publish), if there is any.
+    They also need to know the resource name
 
 - method getFilename: currently on ramAsset and ramShot, might be needed to getLatestPub, LatestVersion, isPublished to function in RamItem.
     getFilename is not listed in the all-app draft
@@ -20,7 +20,7 @@ WIP:
         projectShortName shouldn't be longer than 15 characters;
         objectShortName shouldn't be longer than 50 characters;
         ramStep shouldn't be longer than 15 characters;
-        comment shouldn't be longer than 50 characters;
+        resourceStr shouldn't be longer than 50 characters;
         version (prefix + number) shouldn't be longer than 15 characters;
         extension shouldn't be longer than 50 characters.
     TODO: see if these limitations are enough.
@@ -80,10 +80,10 @@ def isRamsesName(n):
     """Returns True if the given string respects the Ramses naming convention.
 
     The name should look like this:
-        projShortName_ramType_objectShortName_stepShortName_comment_versionPrefixVersionNumber.extension
+        projShortName_ramType_objectShortName_stepShortName_resourceStr_versionPrefixVersionNumber.extension
     in which the ramType can be one of the following letters: A (asset), S (shot), G (general)
     and there is an objectShortName only for assets and shots;
-    and the comment is optional
+    and the resourceStr is optional: it only serves to differentiate the main working files and its resources
     and the versionPrefixVersionNumber is optional
     Will return false if there is no extension.
 
@@ -93,20 +93,20 @@ def isRamsesName(n):
     if re.match(getRamsesNameRegEx(), n): return True
     return False
 
-def fixComment( comment ):
-    fixedComment = ''
-    for char in comment:
+def fixResourceStr( resourceStr ):
+    fixedResourceStr = ''
+    for char in resourceStr:
         if char in forbiddenCharacters:
-            fixedComment = fixedComment + forbiddenCharacters[char]
+            fixedResourceStr = fixedResourceStr + forbiddenCharacters[char]
         else:
-            fixedComment = fixedComment + char
-    return fixedComment
+            fixedResourceStr = fixedResourceStr + char
+    return fixedResourceStr
 
-def buildRamsesFileName( project , step , ext , ramType = 'G' , objectShortName = '' , comment = "" , version = -1 , version_prefixe = 'wip' ):
-    #PROJECT_A_OBJECT_STEP_comment_wip012.extension
-    #PROJECT_G_STEP_comment_wip012.extension
+def buildRamsesFileName( project , step , ext , ramType = 'G' , objectShortName = '' , resourceStr = "" , version = -1 , version_prefixe = 'wip' ):
+    #PROJECT_A_OBJECT_STEP_resourceStr_wip012.extension
+    #PROJECT_G_STEP_resourceStr_wip012.extension
 
-    comment = fixComment( comment )
+    resourceStr = fixResourceStr( resourceStr )
     ramsesFileName = project + '_' + ramType
 
     if ramType in ('A', 'S'):
@@ -114,8 +114,8 @@ def buildRamsesFileName( project , step , ext , ramType = 'G' , objectShortName 
 
     ramsesFileName = ramsesFileName + '_' + step
 
-    if comment != '':
-        ramsesFileName = ramsesFileName + '_' + comment
+    if resourceStr != '':
+        ramsesFileName = ramsesFileName + '_' + resourceStr
 
     if version != -1:
         ramsesFileName = ramsesFileName + '_' + version_prefixe
@@ -167,10 +167,10 @@ def getFileStepId( ramsesFileName ):
         fileStepId = ramsesFileName.split('_')[3]
     return fileStepId
 
-def getFileComment( ramsesFileName ):
+def getFileResourceStr( ramsesFileName ):
     blocks = decomposeRamsesFileName( ramsesFileName )[0]
 
-    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a comment and/or a version
+    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a resourceStr and/or a version
         if blocks[1] == 'G' and isVersion(blocks[3]) == False :
             return blocks[3]
         elif blocks[1] in ('A', 'S') and isVersion(blocks[4]) == False :
@@ -183,7 +183,7 @@ def getFileVersion( ramsesFileName ):
     fileVersion = 0
     state = ''
 
-    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a comment and/or a version
+    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a resourceStr and/or a version
         if isVersion(blocks[-1]):
             match = re.findall( getVersionRegEx(), blocks[-1] )
             state = match[0][0]
@@ -649,7 +649,8 @@ class RamStep( RamObject ):
             stepShortName: str.
         """
 
-        self.fileTypes = []
+        self.fileType = None
+        self.otherFileTypes = []
         self.publishedFileTypes = []
         self.assignedUsers = []
         self.leads = []
@@ -717,9 +718,9 @@ class RamItem( RamObject ):
         """
         #TODO
         pass
-    
+
     '''
-    def getLatestVersion( ramsesFileName ): #TODO: rework to make them actual methods
+    def getLatestVersion( ramStep, resourceStr ): #TODO: rework to make them actual methods
         """Returns int. Highest version among all the version files.
 
         Returns none if the ramses_versions dir has not been found.
@@ -838,7 +839,7 @@ class RamShot( RamItem ):
     
     @staticmethod
     def getFromPath( filePath ): #WIP - TODO
-        """Generate a RamShot from a given filePath
+        """Returns a RamItem object built using the given file path
 
         Args:
             filePath: str.
@@ -870,7 +871,7 @@ class RamShot( RamItem ):
         shot.shortName = shortName
         shot.name = shortName
         shot.folderPath = folderPath
-        shot.published = isPublished(filePath) #TODO: change to shot.isPublished once this method is in RamItem
+        #shot.published = isPublished(filePath) #TODO: change to shot.isPublished once this method is in RamItem
         #TODO: stepStatuses
 
         return shot
@@ -960,27 +961,15 @@ class RamStepStatus():
     def __init__(self):
         self.history = []
 
-
-
 '''
-testProject = "YUKU"
-testRamType = "S"
-testobjectShortName = "GRANDMA"
-testStepName = "RIG"
-testComment = ""
-testVersion = -1
-testExtension = "tar.gz.testing"
-
-print(buildRamsesFileName( project = testProject, step = testStepName, ext = testExtension, ramType = testRamType, objectShortName = testobjectShortName,  comment = testComment, version = testVersion))
-
 tests = [
-    "YUKU_G_STEP_comment_v001.tar.gz.test",
-    "YUKU_G_STEP_comment_v001",
+    "YUKU_G_STEP_resourceStr_v001.tar.gz.test",
+    "YUKU_G_STEP_resourceStr_v001",
     "YUKU_G_STEP_v001",
     "YUKU_G_STEP.blend",
-    "YUKU_A_GRANDMA_RIG_comment_v012.blend",
+    "YUKU_A_GRANDMA_RIG_resourceStr_v012.blend",
     "YUKU_A_GRANDMA_RIG_v012.blend",
-    "YUKU_A_GRANDMA_RIG_comment.blend"
+    "YUKU_A_GRANDMA_RIG_resourceStr.blend"
     ]
 
 for test in tests:
@@ -990,4 +979,3 @@ for test in tests:
 
 testShotPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
 testAssetPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_ASSETS/PROJ_G_ASSETS_Characters/PROJ_A_ISOLDE/PROJ_A_ISOLDE_MOD/PROJ_A_ISOLDE_MOD.blend'
-
