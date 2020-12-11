@@ -583,17 +583,15 @@ class RamItem( RamObject ):
             step: RamStep
             resource: str
         """
-        
-        '''self.folderPath : folder général. PROJ A ISOLDE
-        ramStep : get the step. go in subfolder. PROJ A ISOLDE MOD
-        resource : if it is a resource. helps in building the name.
-        extension: is it needed? anyway, can be found in RamStep.fileTypes'''
 
         if self.folderPath == '':
             print("The given item has no folderPath.")
             return None
-        if os.path.isdir( self.folderPath ) == False:
+        if not os.path.isdir( self.folderPath ):
             print("The given item's folder was not found.\nThis is the path that was checked:\n" + str(self.folderPath))
+            return None
+        if not isinstance(step, RamStep):
+            print("Step arg needs to be a RamStep")
             return None
 
         baseName = os.path.basename(self.folderPath) + '_' + step.shortName #Name without the resource str (added later)
@@ -608,35 +606,22 @@ class RamItem( RamObject ):
 
         foundFiles = os.listdir(stepFolderPath + '/ramses_versions')
         highestFileVersion = 0
-        if resource == '':
-            #TODO
-            pass
 
         for foundFile in foundFiles:
             if os.path.isfile( stepFolderPath + '/ramses_versions/' + foundFile ) == False: #This is in case the user has created folders in ramses_versions
                 continue
-                
-        '''ramsesFileName = "aaaa.heck"
-        fullPath = ramsesFileName
 
-        folderPath = os.path.dirname(fullPath)
-        fileName = os.path.basename(fullPath)
+            decomposedFoundFile = decomposeRamsesFileName(foundFile)
 
-        ramsesName = fileName.split('.')[0]
-        extension = fileName.split('.')[1]
-
-        foundElements = os.listdir(folderPath + '/ramses_versions')
-        highestFileVersion = 0
-
-        for element in foundElements:
-            if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
-                if element.lower().endswith('.' + extension):
-                    if element.startswith(ramsesName):
-                        fileVersion = getFileVersion(element)[1]
-                        if fileVersion != None:
-                            if fileVersion > highestFileVersion:
-                                highestFileVersion = fileVersion'''
-
+            if decomposedFoundFile == None:
+                continue
+            if decomposedFoundFile["resourceStr"] != resource:
+                continue
+            if decomposedFoundFile["version"] == '': #See next condition: int('') would raise an error
+                continue
+            
+            if int(decomposedFoundFile["version"]) > highestFileVersion:
+                highestFileVersion = int(decomposedFoundFile["version"])
         return highestFileVersion
 
     def getPublishedFilePaths(self, step, resource = ""):
@@ -847,15 +832,7 @@ class RamStepStatus():
         #TODO
         pass
 
-'''
-rigStep = RamStep(stepName = "animation", stepShortName = "ANIM")
-
-ramShot = RamShot( '001' )
-ramShot.folderPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001'
-
-ramShot.getLatestVersion( ramStep = rigStep , resourceStr = 'crowd')
-
-tests = [
+testNames = [
     'PROJ_A_ISOLDE_RIG.blend',
     'PROJ_A_ISOLDE_RIG_resource.blend',
     'PROJ_A_ISOLDE_RIG_pub9.blend',
@@ -867,15 +844,9 @@ tests = [
     'PROJ_G_SCRIPT.tar.gz',
 ]
 
-for test in tests:
-    print('-------------------\nTest start for: ' + str(test) + '\n')
-    print(incrementRamsesFileName(test))
-'''
+animStep = RamStep(stepName = "animation", stepShortName = "ANIM")
 
-path = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
+ramShot = RamShot( '001' )
+ramShot.folderPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/05-SHOTS/Projet01_S_001'
 
-result = RamShot.getFromPath(path)
-print(result)
-print(result.shortName)
-print(result.name)
-print(result.folderPath)
+print(ramShot.getLatestVersion(animStep, resource = ''))
