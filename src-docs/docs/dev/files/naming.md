@@ -42,7 +42,7 @@ Here is the list of matching groups:
 3. Asset or Shot ID or *empty* (for general items)
 4. Type: *G* (General) or *empty*
 5. Step ID
-6. Resource name
+6. Resource name or empty
 7. Status or empty
 8. Version number or empty
 9. Extension or empty
