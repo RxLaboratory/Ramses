@@ -29,6 +29,7 @@ The main class. One (and only one) instance globally available, instantiated dur
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
 | **launchClient**<br />▹ *boolean* | *boolean*: **connect**=`true`| Launches the Ramses client and tries to connect to it. Returns success |
 | **login**<br />▹ *boolean* | *string*: **userPassword**<br />*RamUser*: **user**=`currentUser` | Logs the user in. Launches and connect to the client if necessary.  Returns success. |
+| **request**<br />▹ *None or dict* | *dict*: **request**<br /> | Posts a request to the connected client. |
 | **logout**| | Logs the user out. |
 | **setCurrentProject** | *[RamProject](ram_project.md)*: **project** | |
 | **setCurrentUser** | *[RamUser](ram_user.md)*: **user** | |
