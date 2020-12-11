@@ -24,7 +24,7 @@ The first matching group contains the status (and may be empty), and the second 
 
 ## Resource names
 
-    /(?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-\s]+/gi
+    /(?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+/gi
 
 Resource names can be made of `a-z`, `0-9`, `+-` and white spaces but must not start with a version scheme.
 
@@ -32,7 +32,7 @@ Resource names can be made of `a-z`, `0-9`, `+-` and white spaces but must not s
 
 This is the regular expression for validating, matching and decomposing file names.
 
-    /^([a-z0-9+-]{1,10})_(?:([AS])_([a-z0-9+-]{1,10})|(G))_([a-z0-9+-]{1,10})(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-\s]+))?(?:_(PUB|WIP|V)?([0-9]+))?\.([a-z0-9.]+)$/gi
+    /^([a-z0-9+-]{1,10})_(?:([AS])_([a-z0-9+-]{1,10})|(G))_([a-z0-9+-]{1,10})(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+))?(?:_(PUB|WIP|V)?([0-9]+))?\.([a-z0-9.]+)$/gi
 
 
 Here is the list of matching groups:
