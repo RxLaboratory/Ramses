@@ -50,26 +50,53 @@ Nevertheless, you can always choose another folder to store a specific project, 
         - ...
 ```
 
-## Typical Project Folder
+## The Project Folder
+
+These are the content of the Project folder:
+
+```sh
+- PROJECTID # Root
+    - 00-ADMIN # Project administration
+    - 01-PRE-PROD # Pre-production steps
+    - 02-PROD # Production steps
+    - 03-POST-PROD # Post-production steps
+    - 04-ASSETS # All the Assets
+    - 05-SHOTS # All the Shots
+    - 06-EXPORT # Media files
+```
+
+The root folder of a project only contains other folders.
+
+The subfolder in the root folder are numbered to help sorting them and quickly find them.
 
 Here is an example of a typical project tree, without showing the details in the working directories nor any file.
 
 ```sh
 - PROJECTID # Root
-    - PROJECTID_STORYBOARD # General production step
-    - PROJECTID_EDIT # General production step
-    - PROJECTID_SCRIPT # General production step
-    - PROJECTID_ADMIN # General production step
-    - PROJECTID_ASSETS # All the Assets
-        - PROJECTID_ASSETS_Characters # A Group of Assets
+    - 00-ADMIN
+    - 01-PRE-PROD
+        - PROJECTID_SCRIPT # Pre production step
+        - PROJECTID_STORYBOARD
+    - 02-PROD
+        - PROJECTID_MOD # Common files for the mod step
+        - PROJECTID_RIG # Common files for the rig step
+        - PROJECTID_TEX # Common files for the tex step
+        - PROJECTID_ANIM # Common files for the anim step
+        - PROJECTID_LIGHT # Common files for the light step
+        - PROJECTID_COMP # Common files for the comp step
+    - 03-POST-PROD
+        - PROJECTID_EDIT # Post production step 
+    - 04-ASSETS 
+        - Characters # A Group of Assets
             - PROJECTID_A_TRISTAN # An Asset
+                - PROJECTID_A_TRISTAN_DESIGN # An asset production step
                 - PROJECTID_A_TRISTAN_MOD # An asset production step
                 - PROJECTID_A_TRISTAN_RIG # An asset production step
                 - PROJECTID_A_TRISTAN_TEX # An asset production step
             - PROJECTID_A_ISOLDE # An Asset
-        - PROJECTID_ASSETS_Props # A Group of Assets
-        - PROJECTID_ASSETS_Sets # A Group of Assets
-    - PROJECTID_SHOTS # All the Shots
+        - Props # A Group of Assets
+        - Sets # A Group of Assets
+    - 05-SHOTS
         - PROJECTID_S_01-001 # A Shot
             - PROJECTID_S_01-001_ANIM # A shot production step
             - PROJECTID_S_01-001_LIGHT # A shot production step
@@ -77,20 +104,10 @@ Here is an example of a typical project tree, without showing the details in the
         - PROJECTID_S_01-002 # A Shot
         - PROJECTID_S_01-003 # A Shot
         - PROJECTID_S_02-001 # A Shot
+    - 06-EXPORT
 ```
 
-### The Project root
-
-The root folder of a project only contains other folders and media files.
-
-The media files contained in the root folder of the project are current edits exported, and could be the animatic, the current state of the animation, the current state of the comp, etc.
-
-Ramses is able to list and play these files.
-
-!!! note
-    These files should follow the [Media naming scheme for master files](naming.md#master-media-files-and-final-exports).
-
-### Typical working folder
+## A working folder
 
 A folder containing working files is always organised the same way.
 
