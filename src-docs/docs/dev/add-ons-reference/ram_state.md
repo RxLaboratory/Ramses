@@ -16,4 +16,4 @@ Inherits: [***RamObject***](ram_object.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *string*: **stateName**<br />*string*: **stateShortName** | |
+| ***constructor*** | *string*: **stateName**<br />*string*: **stateShortName**<br />*float*: **completionRatio** | |
