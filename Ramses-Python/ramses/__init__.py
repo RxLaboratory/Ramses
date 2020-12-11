@@ -1,23 +1,8 @@
 '''
-- getLatestPubVersion, getLatestVersion, isPublished:
-    TODO: make them actual methods of RamItem
+- getLatestPubVersion, getLatestVersion, isPublished
 
 - class RamShot, getFromPath:
     TODO: complete attribute: stepStatuses, published
-
-- added function isRamsesName and getRamsesNameRegEx.
-    RegEx has limitations:
-        projectShortName shouldn't be longer than 15 characters;
-        objectShortName shouldn't be longer than 50 characters;
-        ramStep shouldn't be longer than 15 characters;
-        resourceStr shouldn't be longer than 50 characters;
-        version (prefix + number) shouldn't be longer than 15 characters;
-        extension shouldn't be longer than 50 characters.
-    TODO: see if these limitations are enough.
-
-- decomposeRamsesFileName:
-    Now it returns a lovely dictionary.
-    Remove all get functions? getStepId, getResourceStr, ...
 '''
 
 import os
@@ -50,19 +35,19 @@ def getVersionRegEx():
     for prefix in version_prefixes[0:-1]:
         regexStr = regexStr + prefix + '|'
     regexStr = regexStr + version_prefixes[-1]
-    regexStr = '^(' + regexStr + ')(\\d+)$'
+    regexStr = '^(' + regexStr + ')?(\\d+)$'
 
     regex = re.compile(regexStr, re.IGNORECASE)
     return regex
 
-def getRamsesNameRegEx(): #TODO update regex
+def getRamsesNameRegEx():
     regexStr = ''
     for prefix in version_prefixes[0:-1]:
         regexStr = regexStr + prefix + '|'
     regexStr = regexStr + version_prefixes[-1]
-    #OLD REGEX
-    regexStr = '^([a-z]{1,15}[_])(([AS][_]([a-z]|[0-9]){1,50})|G)[_][a-z]{1,15}([_]([a-z]|[0-9]|[ -]){1,50})?([_](?:' + regexStr + ')[0-9]{1,15})?([.]([.]|[a-z]){1,50})$'
-    
+
+    regexStr = '^([a-z0-9+-]{1,10})_(?:([AS])_([a-z0-9+-]{1,10})|(G))_([a-z0-9+-]{1,10})(?:_((?!(?:' + regexStr + ')?[0-9]+)[a-z0-9+\\s-]+))?(?:_(' + regexStr + ')?([0-9]+))?\\.([a-z0-9.]+)$'
+
     regex = re.compile(regexStr, re.IGNORECASE)
     return regex
 
@@ -125,140 +110,71 @@ def buildRamsesFileName( project , step , ext , ramType = 'G' , objectShortName 
     return ramsesFileName
 
 def decomposeRamsesFileName( ramsesFileName ):
-    splitRamsesFileName = ramsesFileName.split('_')
-    splitExtension = splitRamsesFileName[-1].split('.')
+    if type(ramsesFileName) != str:
+        print("The given filename is not a str.")
+        return None
 
-    lastElement = splitRamsesFileName[-1] #Working on last element, which has the extension stuck to it
-    splitRamsesFileName.pop(-1)
-    lastElement = lastElement.split('.')[0]
-    splitRamsesFileName.append(lastElement)
+    splitRamsesName = re.match(getRamsesNameRegEx(), ramsesFileName)
 
+    if splitRamsesName == None:
+        print("The given filename does not match Ramses' naming convention.")
+        return None
+
+    ramType = ''
     objectShortName = ''
-    ramStep = ''
-    optionalBlocksIndex = 4 #Optional blocks: resourceStr, versionStr. 4 for Assets and Shots, 3 for General
 
-    if splitRamsesFileName[1] in ('A', 'S'):
-        objectShortName = splitRamsesFileName[2]
-        ramStep = splitRamsesFileName[3]
-        optionalBlocksIndex = 4
+    if splitRamsesName.group(2) in ('A', 'S'):
+        ramType = splitRamsesName.group(2)
+        objectShortName = splitRamsesName.group(3)
     else:
-        ramStep = splitRamsesFileName[2]
-        optionalBlocksIndex = 3
+        ramType = splitRamsesName.group(4)
 
-    resourceStr = ''
-    versionStr = ''
-        
-    if len(splitRamsesFileName) > optionalBlocksIndex:  #It is long enough to have a comment and/or a version
-        if isVersion( splitRamsesFileName[optionalBlocksIndex] ) == True: #It has a version and no resourceStr, since the resourceStr always comes before the versionStr.
-            versionStr = splitRamsesFileName[optionalBlocksIndex]
-        else:
-            resourceStr = splitRamsesFileName[optionalBlocksIndex]
-
-            if splitRamsesFileName[optionalBlocksIndex] != splitRamsesFileName[-1]:
-                versionStr = splitRamsesFileName[-1]
-
-    state = ''
-    version = -1
-
-    if versionStr != '':
-        match = re.findall( getVersionRegEx(), versionStr )
-        state = match[0][0]
-        version = int(match[0][1])
-
-    extension = ''
-    if len(splitExtension) > 1: # If more than one item, all items are part of the extension except the first one
-        extension = '.'.join(splitExtension[1:])
+    optionalBlocks = ['', '', '', '']
+    for i in range(0, 4):
+        if splitRamsesName.group(i + 6) != None:
+            optionalBlocks[i] = splitRamsesName.group( i + 6)
 
     blocks = {
-        "projectID": splitRamsesFileName[0],
-        "ramType": splitRamsesFileName[1],
+        "projectID": splitRamsesName.group(1),
+        "ramType": ramType,
         "objectShortName": objectShortName,
-        "ramStep": ramStep,
-        "resourceStr": resourceStr,
-        "state": state,
-        "version": version,
-        "extension": extension,
+        "ramStep": splitRamsesName.group(5),
+        "resourceStr": optionalBlocks[0],
+        "state": optionalBlocks[1],
+        "version": optionalBlocks[2],
+        "extension": optionalBlocks[3],
     }
 
     return blocks
 
-def getFileProjectId( ramsesFileName ):
-    fileProjectId = ramsesFileName.split('_')[0]
-    return fileProjectId
-
-def getFileRamTypeId( ramsesFileName ):
-    fileRamTypeId = ramsesFileName.split('_')[1]
-    return fileRamTypeId
-
-def getFileObjectId( ramsesFileName ):
-    if getFileRamTypeId( ramsesFileName ) == 'G':
-        print("File is not an object")
-        return None
-    fileObjectId = ramsesFileName.split('_')[2]
-    return fileObjectId
-
-def getFileStepId( ramsesFileName ):
-    if getFileRamTypeId( ramsesFileName ) == 'G':
-        fileStepId = ramsesFileName.split('_')[2]
-    else:
-        fileStepId = ramsesFileName.split('_')[3]
-    return fileStepId
-
-def getFileResourceStr( ramsesFileName ):
-    blocks = decomposeRamsesFileName( ramsesFileName )[0]
-
-    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a resourceStr and/or a version
-        if blocks[1] == 'G' and isVersion(blocks[3]) == False :
-            return blocks[3]
-        elif blocks[1] in ('A', 'S') and isVersion(blocks[4]) == False :
-            return blocks[4]
-
-    return None
-
-def getFileVersion( ramsesFileName ):
-    blocks = decomposeRamsesFileName( ramsesFileName )[0]
-    fileVersion = 0
-    state = ''
-
-    if blocks[1] == 'G' and len(blocks) > 3 or blocks[1] in ('A', 'S') and len(blocks) > 4: #is long enough to have a resourceStr and/or a version
-        if isVersion(blocks[-1]):
-            match = re.findall( getVersionRegEx(), blocks[-1] )
-            state = match[0][0]
-            fileVersion = int(match[0][1])
-            return state, fileVersion
-
-    return None
-
-def getFileExtension( ramsesFileName ):
-    fileExtension = decomposeRamsesFileName( ramsesFileName )[-1]
-    return fileExtension
-
 def incrementRamsesFileName( ramsesFileName ):
-    separatedBlocks, extension = decomposeRamsesFileName( ramsesFileName )
-    state, fileVersion = getFileVersion( ramsesFileName )
+    separatedBlocks = decomposeRamsesFileName( ramsesFileName )
+    
+    if separatedBlocks == None:
+        print("The given filename does not match Ramses' naming convention.")
+        return None
 
-    if fileVersion == None:
-        fullBlocks = ramsesFileName.split('.')[0]
-        ramsesFileName = fullBlocks + '_wip001.' + extension
+    if separatedBlocks["version"] == '':
+        print("it has no version; creating one")
+        ramsesFileName = ramsesFileName.split('.')[0] + "_wip001." + separatedBlocks["extension"]
         return ramsesFileName
-
-    fileVersion = fileVersion + 1
+    
+    #Rebuilding name up to the version str:
     ramsesFileName = ''
+    ramsesFileName = separatedBlocks["projectID"] + "_" + separatedBlocks["ramType"] + "_"
+    if separatedBlocks["ramType"] in ('A', 'S'):
+        ramsesFileName = ramsesFileName + separatedBlocks["objectShortName"] + "_"
+    ramsesFileName = ramsesFileName + separatedBlocks["ramStep"] + "_"
+    if separatedBlocks["resourceStr"] != '':
+        ramsesFileName = ramsesFileName + separatedBlocks["resourceStr"] + "_"
+    ramsesFileName = ramsesFileName + separatedBlocks["state"]
 
-    for block in separatedBlocks[0:-1]: #rebuilds name up to the file version
-        ramsesFileName = ramsesFileName + block + '_'
-    
-    ramsesFileName = ramsesFileName + state
-    
-    if fileVersion < 10:
-        ramsesFileName = ramsesFileName + '00' + str(fileVersion)
-    elif fileVersion < 100:
-        ramsesFileName = ramsesFileName + '0' + str(fileVersion)
-    else:
-        ramsesFileName = ramsesFileName + str(fileVersion)
-    
-    if extension != None:
-        ramsesFileName = ramsesFileName + '.' + extension
+    #Creating new version str
+    version = int(separatedBlocks["version"]) + 1
+    version = str(version)
+    while len(version) < len(separatedBlocks["version"]):
+        version = "0" + version
+    ramsesFileName = ramsesFileName + version + "." + separatedBlocks["extension"]
 
     return ramsesFileName
 
@@ -307,15 +223,6 @@ class Ramses():
     def online(self):
         return self._online
     
-    def alternativeFolderPaths(self):
-        """A list of alternative absolute paths to the main Ramses folder.
-        
-        Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.
-        Returns a str list.
-        """
-        #TODO
-        pass
-
     def backupFolderPath(self):
         """A copy of the main folder where all files are stored.
         """
@@ -330,6 +237,30 @@ class Ramses():
 
     def disconnect(self):
         """Gets back to offline mode.
+        """
+        #TODO
+        pass
+
+    def getAlternativeFolderPaths(self):
+        """A list of alternative absolute paths to the main Ramses folder.
+        
+        Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.
+        """
+        #TODO
+        pass
+
+    def getSteps(self, typeOrCat = "ALL"):
+        """The list of available steps.
+
+        Use typeOrCat to filter the results.
+        One of: ALL, ASSET, SHOT, PRE-PROD, PROD, POST-PROD.
+        PROD represents a combination of SHOT and ASSET
+        """
+        #TODO
+        pass
+
+    def getUsers(self):
+        """The list of available users.
         """
         #TODO
         pass
@@ -382,18 +313,6 @@ class Ramses():
         #TODO
         pass
 
-    def steps(self):
-        """The list of available steps.
-        """
-        #TODO
-        pass
-
-    def users(self):
-        """The list of available users.
-        """
-        #TODO
-        pass
-
 class RamObject():
     """The base class for most of Ramses objects.
     
@@ -415,10 +334,8 @@ class RamUser( RamObject ):
     """The class representing users.
     
     Attributes:
-        role: enumerated value.
+        role: (Read-only) enumerated value.
             'ADMIN', 'LEAD', or 'STANDARD'
-        loggedIn: bool, readonly.
-            The user has been correctly logged in
     """
 
     def __init__(self, userName, userShortName, userFolderPath, role = 'STANDARD'):
@@ -428,28 +345,29 @@ class RamUser( RamObject ):
             userName: str.
             userShortName: str.
             useFolderPath: str.
-            role: enumerated.
         """
-
-        self.role = role
-        self.loggedIn = True
         self.name = userName
         self.shortName = userShortName
         self.folderPath = userFolderPath
+        self._role = "STANDARD"
+    
+    @property
+    def role(self):
+        return self._role
     
     def login(self):
-        """Logs the user in. Returns success."""
-
+        """Logs the user in. Returns success.
+        """
         #TODO
         pass
     
     def logout(self):
-        """Logs the user out."""
-
+        """Logs the user out.
+        """
         #TODO
         pass
 
-class RamApplication( RamObject ): #TODO ONCE PULLED
+class RamApplication( RamObject ):
     """A class representing an application used in the pipeline (like Blender, Nuke, Krita, Photoshop...).
 
     Attributes:
@@ -501,12 +419,7 @@ class RamFileType( RamObject ):
         self.defaultApplication = defaultApp
 
 class RamProject( RamObject ):
-    """
-
-    Attributes:
-    steps: list of RamStep.
-    shots: list of RamShot.
-    assets: list of RamAsset.
+    """A project handled by Ramses. Projects contains general items, assets and shots.
     """
     def __init__(self, projectName, projectShortName, projectPath):
         """
@@ -519,83 +432,46 @@ class RamProject( RamObject ):
         self.name = projectName
         self.shortName = projectShortName
         self.folderPath = projectPath
-        self.steps = []
-        self.shots = []
-        self.assets = []
 
-    def addStep(self, step):
+    def getAssets(self, groupName = ""):
+        """If groupName is an empty string, returns all assets.
         """
-
-        Args:
-            step: RamStep.
-        """
-
         #TODO
         pass
 
-    def addShot(self, shot):
-        """
-
-        Args:
-            shot: RamShot.
-        """
-
+    def getAssetGroups(self):
         #TODO
         pass
 
-    def createShot(self, shotName):
+    def getShots(self, filter = "*"):
+        """A filter to be applied to the name of the shots, using “*” as a wildcard.
         """
-
-        Args:
-            shotName: str.
-        """
-
         #TODO
         pass
 
-    def createShots(self, range, prefix = "", suffix = ""):
+    def getSteps(self, typeOrCat = "ALL"):
+        """Use typeOrCat to filter the results.
+
+        One of: ALL, ASSET, SHOT, PRE-PROD, PROD, POST-PROD.
+        PROD represents a combination of SHOT and ASSET
         """
-
-        Args:
-            range: int list.
-        """
-
-        #TODO
-        pass
-
-    def createStep(self, stepName, stepShortName):
-        """Returns RamStep.
-
-        Args:
-            stepName: str.
-            stepShortName: str.
-        """
-
-        #TODO
-        pass
-
-    def addAsset(self, asset):
-        """
-
-        Args:
-            asset: RamAsset
-        """
-
         #TODO
         pass
 
 class RamStep( RamObject ):
-    """
+    """Base class for RamAsset and RamShot. A step in the production of the shots or assets of the project.
 
     Attributes:
-        fileType: RamFileType.
-            The main file type used for working on this step
-        secondaryFileTypes: list of RamFileType
-            Other file types which may be used when working on this step
-        publishFileTypes: list of RamFileType.
-            The file types published by this step
         assignedUsers: list of RamUser.
+            Users working on this step.
+        fileType: RamFileType.
+            The main file type used for working on this step.
         leads: list of RamUser.
+            Users leading (i.e. with admin rights and validating assets) this step.
+        publishFileTypes: list of RamFileType.
+            The file types published by this step.
+        secondaryFileTypes: list of RamFileType
+            Other file types which may be used when working on this step.
     """
     def __init__(self, stepName, stepShortName):
         """
@@ -604,13 +480,13 @@ class RamStep( RamObject ):
             stepName: str.
             stepShortName: str.
         """
-        self.fileType = None
-        self.secondaryFileTypes = []
-        self.publishedFileTypes = []
-        self.assignedUsers = []
-        self.leads = []
         self.name = stepName
         self.shortName = stepShortName
+        self.assignedUsers = []
+        self.fileType = None
+        self.leads = []
+        self.publishedFileTypes = []
+        self.secondaryFileTypes = []
 
 class RamAssetStep( RamStep ):
     """A step in the production of the assets of the project.
@@ -632,7 +508,7 @@ class RamAssetStep( RamStep ):
         self.dependsOn = []
 
 class RamShotStep( RamStep ):
-    """
+    """A step in the production of the shots of the project.
 
     Attributes:
         dependsOn: list of RamStep.
@@ -803,21 +679,16 @@ class RamItem( RamObject ):
         #TODO
         pass
 
-class RamShot( RamItem ):
-    """
-
-    Attributes:
-        assets: list of RamAsset.
-            The assets used in this shot
+class RamShot( RamItem ): #TODO: getFromPath: complete attrs (published, stepStatuses)
+    """A shot.
     """
 
     def __init__(self, shotName):
-        self.assets = []
         self.shortName = shotName
         self.name = shotName
     
     @staticmethod
-    def getFromPath( filePath ):
+    def getFromPath( filePath ): #TODO: complete attrs (published, stepStatuses)
         """Returns a RamItem object built using the given file path
 
         Args:
@@ -839,17 +710,18 @@ class RamShot( RamItem ):
             print("The given file does not match Ramses' naming convention or has no extension")
             return None
         
-        blocks = decomposeRamsesFileName( fileName )[0]
+        blocks = decomposeRamsesFileName(fileName)
 
-        if blocks[1] != 'S':
+        if blocks["ramType"] != 'S':
             print("The given filepath does not point towards a shot")
             return None
 
         #Attrs from inheritances: published (bool), stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
-        shortName = blocks[2]
+        shortName = blocks["objectShortName"]
         shot = RamShot( shotName = shortName)
+        shot.name = blocks["objectShortName"]
         shot.folderPath = folderPath
-        #TODO: isPublished
+        #TODO: published
         #TODO: stepStatuses
 
         return shot
@@ -876,8 +748,14 @@ class RamAsset( RamItem ):
         #TODO
         pass
 
+    def getGroup(self):
+        """The group containing this asset.
+        """
+        #TODO
+        pass
+
 class RamState( RamObject ):
-    """Represents a state used in a status, like CHK (to be checked), OK (ok), TODO, etc.
+    """Represents a state used in a status, like "CHK" (To be checked), "OK" (ok), "TODO", etc.
 
     Attributes:
         completionRatio: float.
@@ -900,16 +778,18 @@ class RamStatus():
     """A state associated to a comment, the user who changed the state, etc.
 
     Attributes:
-        state: RamState.
-        completionRatio: float.
-            The ratio of completion of this status
-        comment: string.
-        user: RamUser.
-        date: datetime.
-            The date at which this status was created
-        version: int.
-            The version of the corresponding working file
-        published: bool
+        comment: string
+            A user comment.
+        completionRatio: float
+            The ratio of completion of this status.
+        date: datetime
+            The date at which this status was created.
+        state: RamState
+            The corresponding state.
+        user: RamUser
+            The user who created this status.
+        version: int
+            The version of the corresponding working file.
     """
 
     def __init__(self, state, user, comment = ""):
@@ -920,24 +800,52 @@ class RamStatus():
             user: RamUser.
             comment: str.
         """
-
         self.state = state
         self.completion = 0.0
         self.comment = comment
         self.user = user
         self.date = None
         self.version = 0
-        self.published = False
+    
+    @staticmethod
+    def getFromPath(filePath):
+        """Returns a RamStatus instance built using the given file path.
+
+        Args:
+            filePath: str
+        """
+        #TODO
+        pass
 
 class RamStepStatus():
     """A history of RamStatus for a given step.
-
-    Attributes:
-        history: list of RamStatus.
     """
 
     def __init__(self):
-        self.history = []
+        pass
+
+    @staticmethod
+    def getFromPath(filePath):
+        """Returns a RamStepStatus instance built using the given file path.
+
+        Args:
+            filePath: str
+        """
+        #TODO
+        pass
+
+    def getHistory(self):
+        #TODO
+        pass
+
+    def getStatus(self, status):
+        """Adds a new status to the history.
+
+        Args:
+            status: RamStatus
+        """
+        #TODO
+        pass
 
 '''
 rigStep = RamStep(stepName = "animation", stepShortName = "ANIM")
@@ -946,19 +854,28 @@ ramShot = RamShot( '001' )
 ramShot.folderPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001'
 
 ramShot.getLatestVersion( ramStep = rigStep , resourceStr = 'crowd')
-'''
 
 tests = [
     'PROJ_A_ISOLDE_RIG.blend',
     'PROJ_A_ISOLDE_RIG_resource.blend',
-    'PROJ_A_ISOLDE_RIG_pub02.blend',
-    'PROJ_A_ISOLDE_MOD_resource_wip010.tar.gz',
-    'PROJ_G_SCRIPT_resource_pub010.tar.gz',
+    'PROJ_A_ISOLDE_RIG_pub9.blend',
+    'PROJ_A_ISOLDE_MOD_resource_wip10.tar.gz',
+    'PROJ_G_SCRIPT_resource_pub009.tar.gz',
     'PROJ_G_SCRIPT_pub010.tar.gz',
-    'PROJ_G_SCRIPT.tar.gz'
+    'PROJ_G_SCRIPT_0010.tar.gz',
+    'PROJ_G_SCRIPT_0002.tar.gz',
+    'PROJ_G_SCRIPT.tar.gz',
 ]
 
 for test in tests:
-    print('-------------------\nTest start for: ' + test + '\n')
-    print(decomposeRamsesFileName(test))
-    print('\n')
+    print('-------------------\nTest start for: ' + str(test) + '\n')
+    print(incrementRamsesFileName(test))
+'''
+
+path = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/PROJ/PROJ_G_SHOTS/PROJ_S_001/PROJ_S_001_ANIM/PROJ_S_001_ANIM_crowd.blend'
+
+result = RamShot.getFromPath(path)
+print(result)
+print(result.shortName)
+print(result.name)
+print(result.folderPath)
