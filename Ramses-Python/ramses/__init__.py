@@ -1,50 +1,33 @@
 '''
-- getLatestPubVersion, getLatestVersion, isPublished
-
-- class RamShot, getFromPath:
-    TODO: complete attribute: stepStatuses, published
+TODO: complete functions doc with return types
+TODO: in constructors of all classes, check if inherited attributes are given a default value (otherwise they will not exist :) )
 '''
 
 import os
 import re
 
-forbiddenCharacters = {
-    '"' : ' ',
-    '_' : '-',
-    '[' : '-',
-    ']' : '-',
-    '{' : '-',
-    '}' : '-',
-    '(' : '-',
-    ')' : '-',
-    '\'': ' ',
-    '`' : ' ',
-    '.' : '-',
-    '/' : '-',
-    '\\' : '-',
-    ',' : ' ' 
-    }
-version_prefixes = ['v', 'wip', 'pub']
-regexStr = ''
-
-def __init__():
-    pass
-
 def getVersionRegEx():
-    regexStr = ''
-    for prefix in version_prefixes[0:-1]:
-        regexStr = regexStr + prefix + '|'
-    regexStr = regexStr + version_prefixes[-1]
+    regexStr = getVersionRegExStr()
     regexStr = '^(' + regexStr + ')?(\\d+)$'
-
     regex = re.compile(regexStr, re.IGNORECASE)
     return regex
 
-def getRamsesNameRegEx():
+def getVersionRegExStr():
+    if not Ramses.instance:
+        raise Exception("Ramses must be instanciated.")
+
+    version_prefixes = ['v','pub']
+    for state in Ramses.instance.getStates():
+        version_prefixes.append( state.shortName )
+
     regexStr = ''
     for prefix in version_prefixes[0:-1]:
         regexStr = regexStr + prefix + '|'
     regexStr = regexStr + version_prefixes[-1]
+    return regexStr
+
+def getRamsesNameRegEx():
+    regexStr = getVersionRegExStr()
 
     regexStr = '^([a-z0-9+-]{1,10})_(?:([AS])_([a-z0-9+-]{1,10})|(G))_([a-z0-9+-]{1,10})(?:_((?!(?:' + regexStr + ')?[0-9]+)[a-z0-9+\\s-]+))?(?:_(' + regexStr + ')?([0-9]+))?\\.([a-z0-9.]+)$'
 
@@ -73,6 +56,23 @@ def isRamsesName(n):
     return False
 
 def fixResourceStr( resourceStr ):
+    forbiddenCharacters = {
+        '"' : ' ',
+        '_' : '-',
+        '[' : '-',
+        ']' : '-',
+        '{' : '-',
+        '}' : '-',
+        '(' : '-',
+        ')' : '-',
+        '\'': ' ',
+        '`' : ' ',
+        '.' : '-',
+        '/' : '-',
+        '\\' : '-',
+        ',' : ' ' 
+        }
+
     fixedResourceStr = ''
     for char in resourceStr:
         if char in forbiddenCharacters:
@@ -117,7 +117,7 @@ def decomposeRamsesFileName( ramsesFileName ):
     splitRamsesName = re.match(getRamsesNameRegEx(), ramsesFileName)
 
     if splitRamsesName == None:
-        print("The given filename does not match Ramses' naming convention.")
+        print("The given filename does not match Ramses' naming convention. It was this: " + ramsesFileName)
         return None
 
     ramType = ''
@@ -202,14 +202,18 @@ class Ramses():
             connect: bool
         """
 
+        if Ramses.instance:
+            raise Exception("There cannot be more than one instance of Ramses")
+
         self.clientPort = port
         self.autoConnect = True
         self._currentProject = None
         self._currentUser = None
         self._online = False
+        Ramses.instance = self
 
         if connect:
-            self._online = self.launchClient( True )
+            self.launchClient( True )
 
     @property
     def currentProject(self):
@@ -248,6 +252,28 @@ class Ramses():
         """
         #TODO
         pass
+
+    def getProjects(self):
+        """The list of available projects.
+        
+        Returns: list of RamProject.
+        """
+        #TODO
+        pass
+
+    def getStates(self):
+        """The list of available states
+
+        Returns: list of RamState
+        """
+        # TODO get the list from the client
+        states = [
+            RamState("No", "NO", 1.0),
+            RamState("To Do", "TODO", 0.0),
+            RamState("Work in progress", "WIP", 0.2),
+            RamState("OK", "OK", 1.0),
+        ]
+        return states
 
     def getSteps(self, typeOrCat = "ALL"):
         """The list of available steps.
@@ -289,11 +315,17 @@ class Ramses():
         #TODO
         pass
 
-    def projects(self):
-        """The list of available projects. Returns list of RamProject.
+    def request(self, request):
+        """Posts a request to the connected client.
+
+        Args:
+            request: dict
+                A dict which will be stringified as JSON: the request to post.
+
+        Returns: None or dict
+            The answer parsed from JSON.
         """
-        #TODO
-        pass
+        return None
 
     def setCurrentProject(self, project):
         """
@@ -539,66 +571,38 @@ class RamItem( RamObject ):
         self.folderPath = itemFolder
         self.published = False
         self.stepStatuses = []
-    
-    def getLatestPubVersion(self, step, resource = ""): #TODO
-        """Returns the highest version number for published item
+
+    def getLatestVersion( self, step, resource = "", stateId = 'wip' ):
+        """Returns the highest version number for the given state (wip, pub…).
 
         Args:
             step: RamStep
             resource: str
+            state: str
         """
+ 
+        # If we're online, ask the client
+        if Ramses.instance.online:
+            # TODO
+            return 0
 
-        #TODO
-        pass
-
-        '''fullPath = ramsesFileName
-
-        folderPath = os.path.dirname(fullPath)
-        fileName = os.path.basename(fullPath)
-        
-        if os.path.isdir(folderPath + '/ramses_versions') == False:
-            print("ramses_versions directory has not been found")
-            return None
-        
-        ramsesName = fileName.split('.')[0]
-        extension = fileName.split('.')[1]
-
-        foundElements = os.listdir(folderPath + '/ramses_versions')
-        highestPubVersion = 0
-
-        for element in foundElements:
-            if os.path.isfile( folderPath + '/ramses_versions/' + element ) == True : #in case the user has created folders in ramses_versions
-                if element.lower().endswith('.' + extension):
-                    if element.startswith(ramsesName + '_pub'):
-                        pubVersion = getFileVersion(element)[1]
-                        if pubVersion > highestPubVersion:
-                            highestPubVersion = pubVersion
-
-        return highestPubVersion'''
-    
-    def getLatestVersion( self, step, resource = "" ): #TODO
-        """Returns the highest version number.
-
-        Args:
-            step: RamStep
-            resource: str
-        """
-
+        # Else check in the folders
         if self.folderPath == '':
             print("The given item has no folderPath.")
             return None
         if not os.path.isdir( self.folderPath ):
-            print("The given item's folder was not found.\nThis is the path that was checked:\n" + str(self.folderPath))
+            print("The given item's folder was not found.\nThis is the path that was checked:\n" + self.folderPath)
             return None
         if not isinstance(step, RamStep):
-            print("Step arg needs to be a RamStep")
-            return None
+            raise TypeError("Step must be an instance of RamStep")
+        if not isinstance(stateId, str):
+            raise TypeError("State must be a str")
 
         baseName = os.path.basename(self.folderPath) + '_' + step.shortName #Name without the resource str (added later)
-        stepFolderPath = str(self.folderPath) + '/' + baseName
+        stepFolderPath = self.folderPath + '/' + baseName
         
         if os.path.isdir(stepFolderPath) == False:
-            print("The folder for the following step: " + str(step.shortName) + " has not been found.")
+            print("The folder for the following step: " + step.shortName + " has not been found.")
             return None
         if os.path.isdir(stepFolderPath + '/ramses_versions') == False:
             print("ramses_versions directory has not been found")
@@ -608,20 +612,26 @@ class RamItem( RamObject ):
         highestFileVersion = 0
 
         for foundFile in foundFiles:
-            if os.path.isfile( stepFolderPath + '/ramses_versions/' + foundFile ) == False: #This is in case the user has created folders in ramses_versions
+            if not os.path.isfile( stepFolderPath + '/ramses_versions/' + foundFile ): #This is in case the user has created folders in ramses_versions
                 continue
 
             decomposedFoundFile = decomposeRamsesFileName(foundFile)
 
             if decomposedFoundFile == None:
                 continue
+            if not foundFile.startswith(baseName): #In case other assets have been misplaced here
+                continue
             if decomposedFoundFile["resourceStr"] != resource:
                 continue
-            if decomposedFoundFile["version"] == '': #See next condition: int('') would raise an error
+            if decomposedFoundFile["version"] == '':
+                continue
+            if decomposedFoundFile["state"] != stateId:
                 continue
             
-            if int(decomposedFoundFile["version"]) > highestFileVersion:
-                highestFileVersion = int(decomposedFoundFile["version"])
+            versionInt = int(decomposedFoundFile["version"])
+            if versionInt > highestFileVersion:
+                highestFileVersion = versionInt
+
         return highestFileVersion
 
     def getPublishedFilePaths(self, step, resource = ""):
@@ -632,6 +642,14 @@ class RamItem( RamObject ):
             resource: str
         """
         #TODO
+        print("functionStart")
+        print(self.folderPath)
+        if self.folderPath == '':
+            print("The given item has no folderPath.")
+            return None
+        if not os.path.isdir( self.folderPath ):
+            print("The given item's folder was not found.\nThis is the path that was checked:\n" + self.folderPath)
+            return None
         pass
 
     def getVersionFilePath(self, step, resource = ""):
@@ -654,6 +672,16 @@ class RamItem( RamObject ):
         #TODO
         pass
 
+    def isPublished(self, resource = ""):
+        """Checks if there is a publish in the publish folder
+
+        Args:
+            resource: str
+        """
+        #TODO
+        #returns false if self.folderPath == ''
+        pass
+
     def setStepStatus(self, status, step):
         """Adds a new status in stepStatuses for the given step.
 
@@ -671,6 +699,9 @@ class RamShot( RamItem ): #TODO: getFromPath: complete attrs (published, stepSta
     def __init__(self, shotName):
         self.shortName = shotName
         self.name = shotName
+        self.folderPath = ""
+        self.published = False
+        self.stepStatuses = []
     
     @staticmethod
     def getFromPath( filePath ): #TODO: complete attrs (published, stepStatuses)
@@ -706,8 +737,8 @@ class RamShot( RamItem ): #TODO: getFromPath: complete attrs (published, stepSta
         shot = RamShot( shotName = shortName)
         shot.name = blocks["objectShortName"]
         shot.folderPath = folderPath
-        #TODO: published
         #TODO: stepStatuses
+        #TODO: published
 
         return shot
 
@@ -719,6 +750,9 @@ class RamAsset( RamItem ):
         self.tags = []
         self.name = assetName
         self.shortName = assetShortName
+        self.folderPath = ""
+        self.published = False
+        self.stepStatuses = []
     
     @staticmethod
     def getFromPath(filePath):
@@ -747,7 +781,7 @@ class RamState( RamObject ):
             The ratio of completion of this status
     """
 
-    def __init__(self, stateName, stateShortName, completion):
+    def __init__(self, stateName, stateShortName, completion=0.0):
         """
 
         Args:
@@ -832,21 +866,6 @@ class RamStepStatus():
         #TODO
         pass
 
-testNames = [
-    'PROJ_A_ISOLDE_RIG.blend',
-    'PROJ_A_ISOLDE_RIG_resource.blend',
-    'PROJ_A_ISOLDE_RIG_pub9.blend',
-    'PROJ_A_ISOLDE_MOD_resource_wip10.tar.gz',
-    'PROJ_G_SCRIPT_resource_pub009.tar.gz',
-    'PROJ_G_SCRIPT_pub010.tar.gz',
-    'PROJ_G_SCRIPT_0010.tar.gz',
-    'PROJ_G_SCRIPT_0002.tar.gz',
-    'PROJ_G_SCRIPT.tar.gz',
-]
+# Initialization
 
-animStep = RamStep(stepName = "animation", stepShortName = "ANIM")
-
-ramShot = RamShot( '001' )
-ramShot.folderPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/05-SHOTS/Projet01_S_001'
-
-print(ramShot.getLatestVersion(animStep, resource = ''))
+Ramses.instance = None
