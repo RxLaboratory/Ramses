@@ -13,7 +13,7 @@ A history of RamStatus for a given step.
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **getFromPath**<br />▹ *RamStepStatus* | *string*: **filePath**<br /> | Returns a *RamStatus* instance built using the given file path. |
+| **getFromPath**<br />▹ *RamStepStatus* | *string*: **filePath**<br /> | Returns a *RamStepStatus* instance built using the given file path. |
 
 ## Methods
 
