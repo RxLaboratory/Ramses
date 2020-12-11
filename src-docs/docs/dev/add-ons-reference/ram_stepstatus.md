@@ -19,6 +19,6 @@ A history of RamStatus for a given step.
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *string*: **stepName**<br />*string*: **stepShortName** | |
+| ***constructor*** | | |
 | **getHistory**<br />▹ *list of [RamStatus](ram_status.md)* | | |
 | **setStatus** | *RamStatus*: **status** | Adds a new status to the history |
