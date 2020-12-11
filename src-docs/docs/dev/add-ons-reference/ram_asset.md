@@ -23,3 +23,4 @@ Inherits: [***RamObject***](ram_object.md)
 | --- | --- | --- |
 | ***constructor*** | *string*: **assetName**<br />*string*: **assetShortName** | |
 | **getTags**<br />▹ *list of string* |  | Some tags describing the asset. |
+| **getGroup**<br />▹ *string* | | The group containing this asset. |
