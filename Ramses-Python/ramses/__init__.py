@@ -745,7 +745,7 @@ class RamItem( RamObject ):
         #TODO
         pass
 
-class RamShot( RamItem ): #TODO: update getFromPath to take relativePaths into account
+class RamShot( RamItem ):
     """A shot.
     """
 
@@ -768,7 +768,7 @@ class RamShot( RamItem ): #TODO: update getFromPath to take relativePaths into a
         self.folderPath = folderPath
     
     @staticmethod
-    def getFromPath( filePath ): #TODO: relativePaths + complete attrs (stepStatuses)
+    def getFromPath( filePath ): #TODO: stepStatuses
         """Returns a RamItem object built using the given file path
 
         Args:
@@ -776,7 +776,6 @@ class RamShot( RamItem ): #TODO: update getFromPath to take relativePaths into a
                 Must point towards a file in a step subfolder, such as PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend
                 The file also needs to respect Ramses' naming convention
         """
-
         if os.path.isfile(filePath) == False:
             print("The given file could not be found")
             return None
@@ -798,14 +797,14 @@ class RamShot( RamItem ): #TODO: update getFromPath to take relativePaths into a
 
         #Attrs from inheritances: stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
         shortName = blocks["objectShortName"]
-        shot = RamShot( shotName = shortName)
-        shot.name = blocks["objectShortName"]
-        shot.folderPath = folderPath
+        folderPath = os.path.relpath(folderPath, Ramses.instance.currentProject.folderPath)
+
+        shot = RamShot( shotName = shortName, folderPath = folderPath )
         #TODO: stepStatuses
 
         return shot
 
-class RamAsset( RamItem ): #TODO: getFromPath
+class RamAsset( RamItem ):
     """A class representing an asset.
     """
 
@@ -845,11 +844,41 @@ class RamAsset( RamItem ): #TODO: getFromPath
         self.folderPath = folderPath
             
     @staticmethod
-    def getFromPath(filePath):
+    def getFromPath(filePath): #TODO: stepStatuses
         """Returns a RamAsset instance built using the given file path.
+
+        Args:
+            filePath: str
+                Must point towards a file in a step subfolder, such as PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend
+                The file also needs to respect Ramses' naming convention
         """
-        #TODO
-        pass
+        if os.path.isfile(filePath) == False:
+            print("The given file could not be found")
+            return None
+
+        folderPath = os.path.dirname(filePath) #From PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend we go to PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG
+        folderPath = os.path.dirname(folderPath) #And then we go to PROJ_A_ISOLDE
+
+        fileName = os.path.basename(filePath)
+
+        if isRamsesName(fileName) == False:
+            print("The given file does not match Ramses' naming convention or has no extension")
+            return None
+        
+        blocks = decomposeRamsesFileName(fileName)
+
+        if blocks["ramType"] != 'A':
+            print("The given filepath does not point towards an asset")
+            return None
+
+        #Attrs from inheritances: stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
+        shortName = blocks["objectShortName"]
+        folderPath = os.path.relpath(folderPath, Ramses.instance.currentProject.folderPath)
+
+        asset = RamAsset( assetName = shortName, assetShortName = shortName, folderPath = folderPath)
+        #TODO: stepStatuses
+
+        return asset
 
     def getTags(self):
         """Some tags describing the asset.

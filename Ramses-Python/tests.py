@@ -1,5 +1,6 @@
 import ramses as ram
 
+import os
 # Initialise Ramses
 ramses = ram.Ramses()
 
@@ -23,5 +24,9 @@ testNames = [
 testStep = ram.RamStep('stepLongName', 'MOD')
 testAsset = ram.RamAsset("assetLongName", "TRISTAN")
 
+testShot = ram.RamShot.getFromPath('/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/05-SHOTS/Projet01_S_001/Projet01_S_001_ANIM/Projet01_S_001_ANIM_crowd.blend')
 
-print(testAsset.getLatestVersion(testStep))
+test = ram.RamAsset.getFromPath('/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/04-ASSETS/Characters/Projet01_A_TRISTAN/Projet01_A_TRISTAN_RIG/Projet01_A_TRISTAN_RIG.blend')
+print(test.folderPath)
+
+
