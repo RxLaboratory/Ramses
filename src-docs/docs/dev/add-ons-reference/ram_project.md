@@ -16,6 +16,7 @@ Inherits: [***RamObject***](ram_object.md)
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **projectName**<br />*string*: **projectShortName**<br />*string*: **projectPath** | |
+| **getAbsolutePath**<br />▹ *str* | *string*: **relativePath** | |
 | **getAssets**<br />▹ *list of [RamAsset](ram_asset.md)* | *string*: **groupName**=`""`| If *groupName* is an empty string, returns all assets. |
 | **getAssetGroups**<br />▹ *list of string* | | |
 | **getShots**<br />▹ *list of [RamShot](ram_shot.md)* | *string*: **filter**=`"*"` | A filter to be applied to the name of the shots, using "*" as a wildcard. |
