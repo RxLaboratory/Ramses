@@ -5,7 +5,6 @@ ramses = ram.Ramses()
 
 project = ram.RamProject("testProject", "Projet01", '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01')
 ramses._currentProject = project
-print(ramses._currentProject.shortName)
 
 '''
 testNames = [
@@ -21,7 +20,8 @@ testNames = [
 ]
 '''
 
+testStep = ram.RamStep('stepLongName', 'MOD')
+testAsset = ram.RamAsset("assetLongName", "TRISTAN")
 
-testAsset = ram.RamAsset("longName", "aa")
 
-print(testAsset.getGroup())
+print(testAsset.getLatestVersion(testStep))

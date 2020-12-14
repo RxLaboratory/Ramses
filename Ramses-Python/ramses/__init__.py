@@ -486,6 +486,17 @@ class RamProject( RamObject ):
         self.shortName = projectShortName
         self.folderPath = projectPath
 
+    def getAbsolutePath(self, relativePath):
+        """
+
+        Attrs:
+            relativePath: str
+        
+        Returns: str
+        """
+        print( Ramses.instance.currentProject.folderPath + '/' + relativePath)
+        pass
+
     def getAssets(self, groupName = ""):
         """If groupName is an empty string, returns all assets.
 
@@ -592,7 +603,6 @@ class RamItem( RamObject ):
     """Base class for RamAsset and RamShot. An item of the project, either a general item, an asset or a shot.
 
     Attributes:
-        published: bool
         stepStatuses: list of RamStepStatus
     """
 
@@ -600,7 +610,6 @@ class RamItem( RamObject ):
         self.name = itemName
         self.shortName = itemShortName
         self.folderPath = itemFolder
-        self.published = False
         self.stepStatuses = []
 
     def getLatestVersion( self, step, resource = "", stateId = 'wip' ):
@@ -623,8 +632,11 @@ class RamItem( RamObject ):
         if self.folderPath == '':
             print("The given item has no folderPath.")
             return None
-        if not os.path.isdir( self.folderPath ):
-            print("The given item's folder was not found.\nThis is the path that was checked:\n" + self.folderPath)
+
+        folderPath = Ramses.instance.currentProject.folderPath + '/' + self.folderPath #Makes it absolute
+
+        if not os.path.isdir( folderPath ):
+            print("The given item's folder was not found.\nThis is the path that was checked:\n" + folderPath)
             return None
         if not isinstance(step, RamStep):
             raise TypeError("Step must be an instance of RamStep")
@@ -632,7 +644,7 @@ class RamItem( RamObject ):
             raise TypeError("State must be a str")
 
         baseName = os.path.basename(self.folderPath) + '_' + step.shortName #Name without the resource str (added later)
-        stepFolderPath = self.folderPath + '/' + baseName
+        stepFolderPath = folderPath + '/' + baseName
         
         if os.path.isdir(stepFolderPath) == False:
             print("The folder for the following step: " + step.shortName + " has not been found.")
@@ -733,14 +745,13 @@ class RamItem( RamObject ):
         #TODO
         pass
 
-class RamShot( RamItem ): #TODO: getFromPath: complete attrs (published, stepStatuses)
+class RamShot( RamItem ): #TODO: update getFromPath to take relativePaths into account
     """A shot.
     """
 
     def __init__(self, shotName, folderPath = ""):
         self.shortName = shotName
         self.name = shotName
-        self.published = False
         self.stepStatuses = []
         if folderPath == "": #Will look for the shot in the folders
             shotGroupName = Ramses.instance.currentProject.shortName + '_S_' + shotName
@@ -752,12 +763,12 @@ class RamShot( RamItem ): #TODO: getFromPath: complete attrs (published, stepSta
                 if not os.path.isdir(rootPath + '/' + element):
                     continue
                 if element == shotGroupName:
-                    folderPath = rootPath + '/' + shotGroupName
+                    folderPath = '05-SHOTS/' + shotGroupName
                     break
         self.folderPath = folderPath
     
     @staticmethod
-    def getFromPath( filePath ): #TODO: complete attrs (published, stepStatuses)
+    def getFromPath( filePath ): #TODO: relativePaths + complete attrs (stepStatuses)
         """Returns a RamItem object built using the given file path
 
         Args:
@@ -785,17 +796,16 @@ class RamShot( RamItem ): #TODO: getFromPath: complete attrs (published, stepSta
             print("The given filepath does not point towards a shot")
             return None
 
-        #Attrs from inheritances: published (bool), stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
+        #Attrs from inheritances: stepStatuses (list of RamStatus), name (str), shortName (str), folderPath (str)
         shortName = blocks["objectShortName"]
         shot = RamShot( shotName = shortName)
         shot.name = blocks["objectShortName"]
         shot.folderPath = folderPath
         #TODO: stepStatuses
-        #TODO: published
 
         return shot
 
-class RamAsset( RamItem ):
+class RamAsset( RamItem ): #TODO: getFromPath
     """A class representing an asset.
     """
 
@@ -803,7 +813,6 @@ class RamAsset( RamItem ):
         self.tags = []
         self.name = assetName
         self.shortName = assetShortName
-        self.published = False
         self.stepStatuses = []
         if folderPath == "": #Will look for the asset in the folders
             assetGroupName = Ramses.instance.currentProject.shortName + '_A_' + assetShortName
@@ -816,7 +825,7 @@ class RamAsset( RamItem ):
                 if not os.path.isdir(rootPath + '/' + element):
                     continue
                 if element == assetGroupName:
-                    folderPath = rootPath + '/' + assetGroupName
+                    folderPath = '04-ASSETS/' + assetGroupName
                     break
                 if re.match('^([a-z0-9+-]{1,10})_[ASG]_([a-z0-9+-]{1,10})$' , element , re.IGNORECASE) != None:
                     continue
@@ -831,7 +840,7 @@ class RamAsset( RamItem ):
                 
                 for asset in foundAssets:
                     if asset == assetGroupName:
-                        folderPath = rootPath + '/' + group + '/' + assetGroupName
+                        folderPath = '04-ASSETS/' + group + '/' + assetGroupName
                         break
         self.folderPath = folderPath
             

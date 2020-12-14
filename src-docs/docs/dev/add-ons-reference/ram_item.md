@@ -12,7 +12,6 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **published** | *boolean* | `false` | |
 | **stepStatuses** | *list of [RamStepStatus](ram_stepstatus.md)* | `[]` | |
 
 ## Methods
