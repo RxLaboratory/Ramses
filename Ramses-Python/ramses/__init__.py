@@ -1,5 +1,4 @@
 '''
-TODO: complete functions doc with return types
 TODO: in constructors of all classes, check if inherited attributes are given a default value (otherwise they will not exist :) )
 '''
 
@@ -229,18 +228,24 @@ class Ramses():
     
     def backupFolderPath(self):
         """A copy of the main folder where all files are stored.
+
+        Returns: str
         """
         #TODO
         pass
 
     def connect(self):
         """ Checks server or client availability and initiates the connection. Returns success.
+
+        Returns: bool
         """
         #TODO
         pass
 
     def disconnect(self):
         """Gets back to offline mode.
+
+        Returns: bool
         """
         #TODO
         pass
@@ -249,6 +254,8 @@ class Ramses():
         """A list of alternative absolute paths to the main Ramses folder.
         
         Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.
+
+        Returns: str list
         """
         #TODO
         pass
@@ -256,7 +263,7 @@ class Ramses():
     def getProjects(self):
         """The list of available projects.
         
-        Returns: list of RamProject.
+        Returns: list of RamProject
         """
         #TODO
         pass
@@ -281,30 +288,40 @@ class Ramses():
         Use typeOrCat to filter the results.
         One of: ALL, ASSET, SHOT, PRE-PROD, PROD, POST-PROD.
         PROD represents a combination of SHOT and ASSET
+
+        Returns: list of RamStep
         """
         #TODO
         pass
 
     def getUsers(self):
         """The list of available users.
+
+        Returns: list of RamUser
         """
         #TODO
         pass
 
     def folderPath(self):
         """The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files…
+
+        Returns: str
         """
         #TODO
         pass
 
     def launchClient(self, connect = True):
         """Launches the Ramses client and tries to connect to it. Returns success.
+
+        Returns: bool
         """
         #TODO
         return False
 
     def login(self, userPassword, user = currentUser):
         """Logs the user in. Launches and connect to the client if necessary. Returns success.
+
+        Returns: bool
         """
         #TODO
         pass
@@ -389,12 +406,16 @@ class RamUser( RamObject ):
     
     def login(self):
         """Logs the user in. Returns success.
+
+        Returns: bool
         """
         #TODO
         pass
     
     def logout(self):
         """Logs the user out.
+
+        Returns: bool
         """
         #TODO
         pass
@@ -467,16 +488,24 @@ class RamProject( RamObject ):
 
     def getAssets(self, groupName = ""):
         """If groupName is an empty string, returns all assets.
+
+        Returns list of RamAsset
         """
         #TODO
         pass
 
     def getAssetGroups(self):
+        """
+
+        Returns: list of str
+        """
         #TODO
         pass
 
     def getShots(self, filter = "*"):
         """A filter to be applied to the name of the shots, using “*” as a wildcard.
+
+        Returns: list of RamShot
         """
         #TODO
         pass
@@ -486,6 +515,8 @@ class RamProject( RamObject ):
 
         One of: ALL, ASSET, SHOT, PRE-PROD, PROD, POST-PROD.
         PROD represents a combination of SHOT and ASSET
+
+        Returns: list of RamStep
         """
         #TODO
         pass
@@ -579,6 +610,8 @@ class RamItem( RamObject ):
             step: RamStep
             resource: str
             state: str
+
+        Returns: int
         """
  
         # If we're online, ask the client
@@ -640,6 +673,8 @@ class RamItem( RamObject ):
         Args:
             step: RamStep
             resource: str
+        
+        Returns: list of str
         """
         #TODO
         print("functionStart")
@@ -658,6 +693,8 @@ class RamItem( RamObject ):
         Args:
             step: RamStep
             resource: str
+        
+        Returns: str
         """
         #TODO
         pass
@@ -668,6 +705,8 @@ class RamItem( RamObject ):
         Args:
             step: RamStep
             resource: str
+        
+        Returns: str
         """
         #TODO
         pass
@@ -677,6 +716,8 @@ class RamItem( RamObject ):
 
         Args:
             resource: str
+        
+        Returns: bool
         """
         #TODO
         #returns false if self.folderPath == ''
@@ -762,13 +803,17 @@ class RamAsset( RamItem ):
         pass
 
     def getTags(self):
-        """Some tags describing the asset. Returns list of str.
+        """Some tags describing the asset.
+
+        Returns: list of str
         """
         #TODO
         pass
 
     def getGroup(self):
         """The group containing this asset.
+
+        Returns: str
         """
         #TODO
         pass
@@ -854,10 +899,14 @@ class RamStepStatus():
         pass
 
     def getHistory(self):
+        """
+
+        Returns: list of RamStatus
+        """
         #TODO
         pass
 
-    def getStatus(self, status):
+    def setStatus(self, status):
         """Adds a new status to the history.
 
         Args:
