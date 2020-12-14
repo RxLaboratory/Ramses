@@ -3,6 +3,10 @@ import ramses as ram
 # Initialise Ramses
 ramses = ram.Ramses()
 
+project = ram.RamProject("testProject", "Projet01", '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01')
+ramses._currentProject = project
+print(ramses._currentProject.shortName)
+
 '''
 testNames = [
     'PROJ_A_ISOLDE_RIG.blend',
@@ -16,9 +20,8 @@ testNames = [
     'PROJ_G_SCRIPT.tar.gz',
 ]
 '''
-animStep = ram.RamStep(stepName = "animation", stepShortName = "ANIM")
 
-ramShot = ram.RamShot( '001' )
-#ramShot.folderPath = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/05-SHOTS/Projet01_S_001'
 
-ramShot.getPublishedFilePaths(step = animStep, resource = "crowd")
+testAsset = ram.RamAsset("longName", "aa")
+
+print(testAsset.getGroup())

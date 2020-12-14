@@ -737,12 +737,24 @@ class RamShot( RamItem ): #TODO: getFromPath: complete attrs (published, stepSta
     """A shot.
     """
 
-    def __init__(self, shotName):
+    def __init__(self, shotName, folderPath = ""):
         self.shortName = shotName
         self.name = shotName
-        self.folderPath = ""
         self.published = False
         self.stepStatuses = []
+        if folderPath == "": #Will look for the shot in the folders
+            shotGroupName = Ramses.instance.currentProject.shortName + '_S_' + shotName
+            rootPath = Ramses.instance.currentProject.folderPath + '/05-SHOTS'
+
+            foundElements = os.listdir(rootPath)
+
+            for element in foundElements:
+                if not os.path.isdir(rootPath + '/' + element):
+                    continue
+                if element == shotGroupName:
+                    folderPath = rootPath + '/' + shotGroupName
+                    break
+        self.folderPath = folderPath
     
     @staticmethod
     def getFromPath( filePath ): #TODO: complete attrs (published, stepStatuses)
@@ -787,14 +799,42 @@ class RamAsset( RamItem ):
     """A class representing an asset.
     """
 
-    def __init__(self, assetName, assetShortName):
+    def __init__(self, assetName, assetShortName, folderPath=""):
         self.tags = []
         self.name = assetName
         self.shortName = assetShortName
-        self.folderPath = ""
         self.published = False
         self.stepStatuses = []
-    
+        if folderPath == "": #Will look for the asset in the folders
+            assetGroupName = Ramses.instance.currentProject.shortName + '_A_' + assetShortName
+            rootPath = Ramses.instance.currentProject.folderPath + '/04-ASSETS'
+
+            foundElements = os.listdir(rootPath)
+            foundGroups = []
+
+            for element in foundElements: #Checks everything at the root and adds to foundGroups anything that looks like an asset group (Characters, Props, Sets...), for further testing
+                if not os.path.isdir(rootPath + '/' + element):
+                    continue
+                if element == assetGroupName:
+                    folderPath = rootPath + '/' + assetGroupName
+                    break
+                if re.match('^([a-z0-9+-]{1,10})_[ASG]_([a-z0-9+-]{1,10})$' , element , re.IGNORECASE) != None:
+                    continue
+
+                foundGroups.append(element)
+
+            for group in foundGroups: #Further testing
+                if folderPath != "":
+                    break
+
+                foundAssets = os.listdir ( rootPath + '/' + group )
+                
+                for asset in foundAssets:
+                    if asset == assetGroupName:
+                        folderPath = rootPath + '/' + group + '/' + assetGroupName
+                        break
+        self.folderPath = folderPath
+            
     @staticmethod
     def getFromPath(filePath):
         """Returns a RamAsset instance built using the given file path.
@@ -815,8 +855,25 @@ class RamAsset( RamItem ):
 
         Returns: str
         """
-        #TODO
-        pass
+        # If we're online, ask the client
+        if Ramses.instance.online:
+            #TODO
+            return None
+
+        if self.folderPath == '':
+            print("The given item has no folderPath.")
+            return None
+        if not os.path.isdir( self.folderPath ):
+            print("The given item's folder was not found.\nThis is the path that was checked:\n" + self.folderPath)
+            return None
+        
+        parentFolder = os.path.dirname(self.folderPath)
+        parentFolderName = os.path.basename(parentFolder)
+
+        if parentFolderName != '04-ASSETS':
+            return parentFolderName
+            
+        return None
 
 class RamState( RamObject ):
     """Represents a state used in a status, like "CHK" (To be checked), "OK" (ok), "TODO", etc.
