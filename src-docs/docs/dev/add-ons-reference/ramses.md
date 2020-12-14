@@ -25,6 +25,7 @@ The main class. One (and only one) instance globally available, instantiated dur
 | **getAlternativeFolderPaths**<br />▹ *string list* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
 | **getProjects**<br />▹ *list of RamProject* | | The list of available projects. |
 | **getStates**<br />▹ *list of RamState* | | The list of available states. |
+| **getState**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | |
 | **getSteps**<br />▹ *list of RamStep* | *enumerated value*: **typeOrCat**=`ALL` | Use *typeOrCat* to filter the results.<br />One of: `ALL`, `ASSET`, `SHOT`, `PRE-PROD`, `PROD`, `POST-PROD`.<br />`PROD` represents a combination of `SHOT` and `ASSET` |
 | **getUsers**<br />▹ *list of RamUser* | | The list of available users. |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |

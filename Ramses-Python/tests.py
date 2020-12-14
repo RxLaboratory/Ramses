@@ -1,5 +1,6 @@
 import ramses as ram
 import os
+import datetime
 
 # Initialise Ramses
 ramses = ram.Ramses()
@@ -35,5 +36,5 @@ testNames = [
 
 #Actual testing
 
-print(testAsset.getWIPFilePath(modStep))
+print(project.getAssets("Characters"))
 

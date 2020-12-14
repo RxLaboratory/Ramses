@@ -1,9 +1,6 @@
-'''
-TODO: in constructors of all classes, check if inherited attributes are given a default value (otherwise they will not exist :) )
-'''
-
 import os
 import re
+import datetime
 
 def getVersionRegEx():
     regexStr = getVersionRegExStr()
@@ -281,6 +278,12 @@ class Ramses():
         ]
         return states
 
+    def getState(self, stateShortName = "WIP"):
+        for state in self.getStates():
+            if state.shortName == stateShortName:
+                return state
+        return None
+
     def getSteps(self, typeOrCat = "ALL"):
         """The list of available steps.
 
@@ -496,11 +499,31 @@ class RamProject( RamObject ):
         print( Ramses.instance.currentProject.folderPath + '/' + relativePath)
         pass
 
-    def getAssets(self, groupName = ""):
+    def getAssets(self, groupName = ""): #TODO, WIP
         """If groupName is an empty string, returns all assets.
 
         Returns list of RamAsset
         """
+        if not isinstance(groupName, str):
+            raise TypeError("Group name must be a str")
+
+        # If we're online, ask the client
+        if Ramses.instance.online:
+            # TODO
+            return None
+
+        # Else check in the folders
+        assetsFolderPath = Ramses.instance.currentProject.folderPath + '/04-ASSETS'
+        if groupName != "":
+            assetsFolderPath = assetsFolderPath + '/' + groupName
+            if not os.path.isdir( assetsFolderPath ):
+                print("The following group of assets: " + groupName + " could not be found")
+            foundAssets = os.listdir( assetsFolderPath )
+            print(foundAssets)
+            #decompose
+            #check if it's a ramsesName
+            #clean the name (PROJECT_A_TRISTAN -> TRISTAN) ?
+        #Else: check everywhere.
         #TODO
         pass
 
@@ -603,13 +626,14 @@ class RamItem( RamObject ):
 
     Attributes:
         stepStatuses: list of RamStepStatus
+            In the form {"stepId":RamStepStatus}
     """
 
     def __init__(self, itemName, itemShortName, itemFolder = ""):
         self.name = itemName
         self.shortName = itemShortName
         self.folderPath = itemFolder
-        self.stepStatuses = []
+        self.stepStatuses = {}
 
     def getLatestVersion( self, step, resource = "", stateId = 'wip' ):
         """Returns the highest version number for the given state (wip, pub…).
@@ -813,7 +837,7 @@ class RamItem( RamObject ):
 
         return highestVersionFilePath
     
-    def getWIPFilePath(self, step, resource = ""): #TODO
+    def getWIPFilePath(self, step, resource = ""):
         """Current wip file path relative to the item root folder.
 
         Args:
@@ -860,8 +884,7 @@ class RamItem( RamObject ):
             status: RamStatus
             step: RamStep
         """
-        #TODO
-        pass
+        self.stepStatuses[step.shortName].setStatus(status)
 
 class RamShot( RamItem ):
     """A shot.
@@ -1096,10 +1119,13 @@ class RamStatus():
 
 class RamStepStatus():
     """A history of RamStatus for a given step.
+
+    Attributes:
+        currentStatus: RamState
     """
 
     def __init__(self):
-        pass
+        self.currentStatus = Ramses.instance.getState()
 
     @staticmethod
     def getFromPath(filePath):
@@ -1117,6 +1143,13 @@ class RamStepStatus():
         Returns: list of RamStatus
         """
         #TODO
+        #Get from client if online
+
+        #If offline:
+        '''Needs the concerned item, resource, and step.
+        Lists files in ramses_versions
+        For each file, checks the state (pub, wip) and its last modification time. That's the history.
+        '''
         pass
 
     def setStatus(self, status):
@@ -1125,9 +1158,11 @@ class RamStepStatus():
         Args:
             status: RamStatus
         """
-        #TODO
-        pass
+        status.date = datetime.datetime.now()
+        self.currentStatus = status
+
+        # TODO
+        # Post status to client to be added in the history
 
 # Initialization
-
 Ramses.instance = None

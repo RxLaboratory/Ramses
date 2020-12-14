@@ -12,7 +12,7 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **stepStatuses** | *list of [RamStepStatus](ram_stepstatus.md)* | `[]` | |
+| **stepStatuses** | *list of [RamStepStatus](ram_stepstatus.md)* | `{}` | In the form `{"stepId":RamStepStatus}` |
 
 ## Methods
 
