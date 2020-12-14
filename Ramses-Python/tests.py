@@ -1,11 +1,23 @@
 import ramses as ram
-
 import os
+
 # Initialise Ramses
 ramses = ram.Ramses()
 
 project = ram.RamProject("testProject", "Projet01", '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01')
 ramses._currentProject = project
+
+#Test elements
+
+blenderType = ram.RamFileType('blenderFile', 'blend', 'blend', 'blender')
+
+modStep = ram.RamStep('MODELING', 'MOD')
+modStep.fileType = blenderType
+
+rigStep = ram.RamStep('RIGGING', 'RIG')
+rigStep.fileType = blenderType
+
+testAsset = ram.RamAsset("assetLongName", "ISOLDE")
 
 '''
 testNames = [
@@ -21,12 +33,7 @@ testNames = [
 ]
 '''
 
-testStep = ram.RamStep('stepLongName', 'MOD')
-testAsset = ram.RamAsset("assetLongName", "TRISTAN")
+#Actual testing
 
-testShot = ram.RamShot.getFromPath('/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/05-SHOTS/Projet01_S_001/Projet01_S_001_ANIM/Projet01_S_001_ANIM_crowd.blend')
-
-test = ram.RamAsset.getFromPath('/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/04-ASSETS/Characters/Projet01_A_TRISTAN/Projet01_A_TRISTAN_RIG/Projet01_A_TRISTAN_RIG.blend')
-print(test.folderPath)
-
+print(testAsset.getWIPFilePath(modStep))
 

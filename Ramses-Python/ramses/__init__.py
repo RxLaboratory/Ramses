@@ -116,7 +116,6 @@ def decomposeRamsesFileName( ramsesFileName ):
     splitRamsesName = re.match(getRamsesNameRegEx(), ramsesFileName)
 
     if splitRamsesName == None:
-        print("The given filename does not match Ramses' naming convention. It was this: " + ramsesFileName)
         return None
 
     ramType = ''
@@ -638,23 +637,29 @@ class RamItem( RamObject ):
         if not os.path.isdir( folderPath ):
             print("The given item's folder was not found.\nThis is the path that was checked:\n" + folderPath)
             return None
-        if not isinstance(step, RamStep):
-            raise TypeError("Step must be an instance of RamStep")
         if not isinstance(stateId, str):
             raise TypeError("State must be a str")
 
-        baseName = os.path.basename(self.folderPath) + '_' + step.shortName #Name without the resource str (added later)
+        stepShortName = ""
+        if isinstance(step, str):
+            stepShortName = step
+        elif isinstance(step, RamStep):
+            stepShortName = step.shortName
+        else:
+            raise TypeError("Step must be a str or an instance of RamStep")
+
+        baseName = os.path.basename(self.folderPath) + '_' + stepShortName #Name without the resource str (added later)
         stepFolderPath = folderPath + '/' + baseName
-        
+
         if os.path.isdir(stepFolderPath) == False:
-            print("The folder for the following step: " + step.shortName + " has not been found.")
+            print("The folder for the following step: " + stepShortName + " has not been found.")
             return None
         if os.path.isdir(stepFolderPath + '/ramses_versions') == False:
             print("ramses_versions directory has not been found")
             return None
 
         foundFiles = os.listdir(stepFolderPath + '/ramses_versions')
-        highestFileVersion = 0
+        highestVersion = 0
 
         for foundFile in foundFiles:
             if not os.path.isfile( stepFolderPath + '/ramses_versions/' + foundFile ): #This is in case the user has created folders in ramses_versions
@@ -674,30 +679,67 @@ class RamItem( RamObject ):
                 continue
             
             versionInt = int(decomposedFoundFile["version"])
-            if versionInt > highestFileVersion:
-                highestFileVersion = versionInt
+            if versionInt > highestVersion:
+                highestVersion = versionInt
 
-        return highestFileVersion
+        return highestVersion
 
     def getPublishedFilePaths(self, step, resource = ""):
         """Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder.
 
         Args:
-            step: RamStep
+            step: RamStep or str
+                If str, it must be the step shortName (eg. 'RIG' instead of 'RIGGING')
             resource: str
         
         Returns: list of str
         """
-        #TODO
-        print("functionStart")
-        print(self.folderPath)
+        stepShortName = ""
+        if isinstance(step, str):
+            stepShortName = step
+        elif isinstance(step, RamStep):
+            stepShortName = step.shortName
+        else:
+            raise TypeError("Step must be a str or an instance of RamStep")
+
         if self.folderPath == '':
             print("The given item has no folderPath.")
             return None
-        if not os.path.isdir( self.folderPath ):
-            print("The given item's folder was not found.\nThis is the path that was checked:\n" + self.folderPath)
+
+        baseName = os.path.basename(self.folderPath)
+        folderPath = Ramses.instance.currentProject.folderPath + '/' + self.folderPath
+
+        if not os.path.isdir( folderPath ):
+            print("The given item's folder was not found.\nThis is the path that was checked:\n" + folderPath)
             return None
-        pass
+        
+        folderPath = folderPath + '/' + baseName + '_' + stepShortName
+        if not os.path.isdir( folderPath + '/ramses_publish'):
+            print("ramses_publish directory has not been found")
+            return None
+        
+        foundFiles = os.listdir(folderPath + '/ramses_publish')
+        foundFilePath = ""
+        publishFiles = []
+
+        for foundFile in foundFiles:
+            if os.path.isdir(foundFile):
+                continue
+
+            blocks = decomposeRamsesFileName(foundFile)
+
+            if blocks == None:
+                continue
+            if blocks["resourceStr"] != resource:
+                continue
+            if not foundFile.startswith(baseName):
+                continue
+
+            #Building file path relative to root of item folder
+            foundFilePath = baseName + '_' + stepShortName + '/ramses_publish/' + foundFile
+            publishFiles.append(foundFilePath)
+            
+        return publishFiles
 
     def getVersionFilePath(self, step, resource = ""):
         """Latest version file path relative to the item root folder.
@@ -708,34 +750,110 @@ class RamItem( RamObject ):
         
         Returns: str
         """
-        #TODO
-        pass
+         # If we're online, ask the client
+        if Ramses.instance.online:
+            # TODO
+            return 0
+        
+        #Else check in the folders
+        #It is basically the same as getLatestVersion. Only difference is that it does not take the stateId into account and returns the path instead of the version number.
+        if self.folderPath == '':
+            print("The given item has no folderPath.")
+            return None
+
+        folderPath = Ramses.instance.currentProject.folderPath + '/' + self.folderPath #Makes it absolute
+
+        if not os.path.isdir( folderPath ):
+            print("The given item's folder was not found.\nThis is the path that was checked:\n" + folderPath)
+            return None
+
+        stepShortName = ""
+        if isinstance(step, str):
+            stepShortName = step
+        elif isinstance(step, RamStep):
+            stepShortName = step.shortName
+        else:
+            raise TypeError("Step must be a str or an instance of RamStep")
+
+        baseName = os.path.basename(self.folderPath) + '_' + stepShortName #Name without the resource str (added later)
+        stepFolderPath = folderPath + '/' + baseName
+
+        if os.path.isdir(stepFolderPath) == False:
+            print("The folder for the following step: " + stepShortName + " has not been found.")
+            return None
+        if os.path.isdir(stepFolderPath + '/ramses_versions') == False:
+            print("ramses_versions directory has not been found")
+            return None
+
+        foundFiles = os.listdir(stepFolderPath + '/ramses_versions')
+        highestVersion = 0
+        highestVersionFileName = ""
+
+        for foundFile in foundFiles:
+            if not os.path.isfile( stepFolderPath + '/ramses_versions/' + foundFile ): #This is in case the user has created folders in ramses_versions
+                continue
+
+            decomposedFoundFile = decomposeRamsesFileName(foundFile)
+
+            if decomposedFoundFile == None:
+                continue
+            if not foundFile.startswith(baseName): #In case other assets have been misplaced here
+                continue
+            if decomposedFoundFile["resourceStr"] != resource:
+                continue
+            if decomposedFoundFile["version"] == '':
+                continue
+            
+            versionInt = int(decomposedFoundFile["version"])
+            if versionInt > highestVersion:
+                highestVersion = versionInt
+                highestVersionFileName = foundFile
+        
+        highestVersionFilePath = baseName + "/ramses_versions/" + highestVersionFileName
+
+        return highestVersionFilePath
     
-    def getWIPFilePath(self, step, resource = ""):
+    def getWIPFilePath(self, step, resource = ""): #TODO
         """Current wip file path relative to the item root folder.
 
         Args:
             step: RamStep
+                If str, it must be the step shortName (eg. 'RIG' instead of 'RIGGING')
             resource: str
         
         Returns: str
         """
-        #TODO
-        pass
+        if self.folderPath == '':
+            print("The given item has no folderPath.")
+            return None
 
-    def isPublished(self, resource = ""):
-        """Checks if there is a publish in the publish folder
+        if not isinstance(step, RamStep):
+            raise TypeError("Step must be an instance of RamStep")
+        
+        baseName = os.path.basename(self.folderPath) + '_' + step.shortName
+
+        if step.fileType == None:
+            raise Exception("The given step has no fileType; cannot build the path towards the working file (missing extension).")
+
+        filePath = baseName + '/' + baseName + '.' + step.fileType.extension
+
+        return filePath
+
+    def isPublished(self, step, resource = ""):
+        """Convenience function to check if there are published files in the publish folder.
+        Equivalent to len(self.getPublishedFilePaths(step, resource)) > 0
 
         Args:
             resource: str
         
         Returns: bool
         """
-        #TODO
-        #returns false if self.folderPath == ''
-        pass
+        result = self.getPublishedFilePaths(step, resource)
+        if result == None:
+            return False
+        return len(result) > 0
 
-    def setStepStatus(self, status, step):
+    def setStepStatus(self, status, step): #TODO
         """Adds a new status in stepStatuses for the given step.
 
         Args:
