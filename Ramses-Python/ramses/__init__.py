@@ -1,6 +1,6 @@
 import os
 import re
-import datetime
+from datetime import datetime
 
 def getVersionRegEx():
     regexStr = getVersionRegExStr()
@@ -49,6 +49,14 @@ def isRamsesName(n):
         n : name to be checked, without its path. Needs its extension
     """
     if re.match(getRamsesNameRegEx(), n): return True
+    return False
+
+def isRamsesItemFoldername(n):
+    """Returns True if the given string respects the Ramses naming convention for items' root folders.
+
+    Eg. Project01_A_ISOLDE
+    """
+    if re.match('^([a-z0-9+-]{1,10})_[ASG]_([a-z0-9+-]{1,10})$' , n , re.IGNORECASE): return True
     return False
 
 def fixResourceStr( resourceStr ):
@@ -172,6 +180,16 @@ def incrementRamsesFileName( ramsesFileName ):
     ramsesFileName = ramsesFileName + version + "." + separatedBlocks["extension"]
 
     return ramsesFileName
+
+def escapeRegEx( string ):
+    reservedChars = "[.*+-?^=!:${|}[]\\/()"
+    result = ""
+    for char in string:
+        if char in reservedChars:
+            result = result + "\\" + char
+        else:
+            result = result + char
+    return result
 
 class Ramses():
     """The main class. One (and only one) instance globally available, instantiated during init time.
@@ -446,7 +464,7 @@ class RamApplication( RamObject ):
         """
         self.name = appName
         self.shortName = appShortName
-        self.exectuableFilePath = execFilePath
+        self.executableFilePath = execFilePath
         self.exportTypes = []
         self.importTypes = []
         self.nativeTypes = []
@@ -499,7 +517,7 @@ class RamProject( RamObject ):
         print( Ramses.instance.currentProject.folderPath + '/' + relativePath)
         pass
 
-    def getAssets(self, groupName = ""): #TODO, WIP
+    def getAssets(self, groupName = ""):
         """If groupName is an empty string, returns all assets.
 
         Returns list of RamAsset
@@ -513,37 +531,120 @@ class RamProject( RamObject ):
             return None
 
         # Else check in the folders
-        assetsFolderPath = Ramses.instance.currentProject.folderPath + '/04-ASSETS'
-        if groupName != "":
-            assetsFolderPath = assetsFolderPath + '/' + groupName
-            if not os.path.isdir( assetsFolderPath ):
+        assetsFolderPath = self.folderPath + '/04-ASSETS'
+        groupsToCheck = []
+        foundAssets = []
+        foundFiles = []
+
+        if groupName == "": #List all assets and groups found at the root
+            foundFiles = os.listdir( assetsFolderPath )
+            for foundFile in foundFiles:
+                if not os.path.isdir( assetsFolderPath + '/' + foundFile): continue
+                if isRamsesItemFoldername(foundFile):
+                    if not foundFile.split('_')[1] == 'A': continue
+                    foundAssetName = foundFile.split('_')[2]
+                    foundAssetPath = "04-ASSETS/" + foundFile
+                    foundAsset = RamAsset(assetName = foundAssetName, assetShortName = foundAssetName, folderPath = foundAssetPath)
+                    foundAssets.append(foundAsset)
+                else:
+                    groupsToCheck.append(foundFile)
+        else:
+            if not os.path.isdir( assetsFolderPath + '/' + groupName):
                 print("The following group of assets: " + groupName + " could not be found")
-            foundAssets = os.listdir( assetsFolderPath )
-            print(foundAssets)
-            #decompose
-            #check if it's a ramsesName
-            #clean the name (PROJECT_A_TRISTAN -> TRISTAN) ?
-        #Else: check everywhere.
-        #TODO
-        pass
+                return None
+            groupsToCheck.append(groupName)
+        
+        for group in groupsToCheck:
+            print("Checking this group: " + group)
+            foundFiles = os.listdir( assetsFolderPath + '/' + group )
+            for foundFile in foundFiles:
+                if not os.path.isdir(assetsFolderPath + '/' + group + '/' + foundFile): continue
+                if not isRamsesItemFoldername(foundFile): continue
+                if not foundFile.split('_')[1] == 'A': continue
+                foundAssetName = foundFile.split('_')[2]
+                foundAssetPath = "04-ASSETS/" + group + "/" + foundFile
+                foundAsset = RamAsset(assetName = foundAssetName, assetShortName = foundAssetName, folderPath = foundAssetPath)
+                foundAssets.append(foundAsset)
+        
+        return foundAssets
 
     def getAssetGroups(self):
         """
 
         Returns: list of str
         """
-        #TODO
-        pass
+        # If we're online, ask the client
+        if Ramses.instance.online:
+            # TODO
+            return None
+
+        # Else check in the folders
+        assetsFolderPath = self.folderPath + '/04-ASSETS'
+        if not os.path.isdir(assetsFolderPath):
+            raise Exception("The asset folder for " + self.name + " (" + self.shortName + ") " + "could not be found.")
+
+        foundFiles = os.listdir(assetsFolderPath)
+        assetGroups = []
+
+        for foundFile in foundFiles:
+            if not os.path.isdir(assetsFolderPath + '/' + foundFile): continue
+            if isRamsesItemFoldername(foundFile): continue
+            assetGroups.append(foundFile)
+
+        return assetGroups
 
     def getShots(self, filter = "*"):
         """A filter to be applied to the name of the shots, using “*” as a wildcard.
 
         Returns: list of RamShot
         """
-        #TODO
-        pass
+        '''
+        escapeRegEx
+        transform * in regex of all the possible characters
+        '''
+        # If we're online, ask the client
+        if Ramses.instance.online:
+            # TODO
+            return None
 
-    def getSteps(self, typeOrCat = "ALL"):
+        # Else check in the folders
+        shotsFolderPath = self.folderPath + '/05-SHOTS'
+        if not os.path.isdir(shotsFolderPath):
+            raise Exception("The asset folder for " + self.name + " (" + self.shortName + ") " + "could not be found.")
+
+        if filter != "" and not "*" in filter: #User is looking for a specific shot: no need to parse through everything
+            foundShotPath = shotsFolderPath + '/' + self.shortName + '_S_' + filter
+            if not os.path.isdir( foundShotPath):
+                print("Shot " + filter + " was not found.")
+                return []
+            return [RamShot(shotName = filter, folderPath = foundShotPath)]
+
+        if "*" in filter and filter != "*": #Preparing regex for wildcards
+            filter = escapeRegEx(filter)
+            filter = filter.replace('\\*' , '([a-z0-9+-]{1,10})?')
+            regex = re.compile(filter, re.IGNORECASE)
+        
+        foundFiles = os.listdir(shotsFolderPath)
+        foundShots = []
+
+        for foundFile in foundFiles:
+            if not os.path.isdir(shotsFolderPath + '/' + foundFile): continue
+            if not isRamsesItemFoldername(foundFile): continue
+            if not foundFile.split('_')[1] == 'S': continue
+
+            foundShotName = foundFile.split('_')[2]
+            
+            if not filter in ("" , "*"):
+                if not re.match(regex, foundShotName):
+                    continue
+
+            foundShotPath = shotsFolderPath + '/' + foundFile
+            foundShot = RamShot( shotName = foundShotName , folderPath = foundShotPath )
+            foundShots.append(foundShot)
+
+        return foundShots
+
+    def getSteps(self, typeOrCat = "ALL"): #TODO
         """Use typeOrCat to filter the results.
 
         One of: ALL, ASSET, SHOT, PRE-PROD, PROD, POST-PROD.
@@ -602,6 +703,11 @@ class RamAssetStep( RamStep ):
         self.name = stepName
         self.shortName = stepShortName
         self.dependsOn = []
+        self.assignedUsers = []
+        self.fileType = None
+        self.leads = []
+        self.publishedFileTypes = []
+        self.secondaryFileTypes = []
 
 class RamShotStep( RamStep ):
     """A step in the production of the shots of the project.
@@ -620,6 +726,11 @@ class RamShotStep( RamStep ):
         self.name = stepName
         self.shortName = stepShortName
         self.dependsOn = []
+        self.assignedUsers = []
+        self.fileType = None
+        self.leads = []
+        self.publishedFileTypes = []
+        self.secondaryFileTypes = []
 
 class RamItem( RamObject ):
     """Base class for RamAsset and RamShot. An item of the project, either a general item, an asset or a shot.
@@ -917,7 +1028,7 @@ class RamShot( RamItem ):
                 Must point towards a file in a step subfolder, such as PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend
                 The file also needs to respect Ramses' naming convention
         """
-        if os.path.isfile(filePath) == False:
+        if not os.path.isfile(filePath):
             print("The given file could not be found")
             return None
 
@@ -927,7 +1038,7 @@ class RamShot( RamItem ):
         fileName = os.path.basename(filePath)
 
         if isRamsesName(fileName) == False:
-            print("The given file does not match Ramses' naming convention or has no extension")
+            print("The given file does not match Ramses' naming convention")
             return None
         
         blocks = decomposeRamsesFileName(fileName)
@@ -967,7 +1078,7 @@ class RamAsset( RamItem ):
                 if element == assetGroupName:
                     folderPath = '04-ASSETS/' + assetGroupName
                     break
-                if re.match('^([a-z0-9+-]{1,10})_[ASG]_([a-z0-9+-]{1,10})$' , element , re.IGNORECASE) != None:
+                if isRamsesItemFoldername(element):
                     continue
 
                 foundGroups.append(element)
@@ -1003,7 +1114,7 @@ class RamAsset( RamItem ):
         fileName = os.path.basename(filePath)
 
         if isRamsesName(fileName) == False:
-            print("The given file does not match Ramses' naming convention or has no extension")
+            print("The given file does not match Ramses' naming convention")
             return None
         
         blocks = decomposeRamsesFileName(fileName)
@@ -1021,7 +1132,7 @@ class RamAsset( RamItem ):
 
         return asset
 
-    def getTags(self):
+    def getTags(self): #TODO
         """Some tags describing the asset.
 
         Returns: list of str
@@ -1108,14 +1219,45 @@ class RamStatus():
         self.version = 0
     
     @staticmethod
-    def getFromPath(filePath):
+    def getFromPath(filePath): #TODO, WIP
         """Returns a RamStatus instance built using the given file path.
 
         Args:
             filePath: str
         """
-        #TODO
-        pass
+        if not isinstance(filePath, str):
+            raise TypeError("File path needs to be a str")
+        if not os.path.isfile(filePath):
+            print("The given file could not be found")
+            return None
+
+        baseName = os.path.basename(filePath)
+        blocks = decomposeRamsesFileName(baseName)
+    
+        if blocks == None:
+            print("The given file does not respect Ramses' naming convention")
+        
+        #Building RamStatus
+
+        '''ATTRIBUTES:
+            state: RamState
+            version (opt.): int 
+                (if blocks["version"] != str: int(blocks[version]); else: make a RamAsset, and then getLatestVersion?)
+            user: RamUser
+                (Ramses.instance.currentUser)
+            date (opt.): datetime
+                (modification date of file)
+            comment (opt.) : str
+                (?)
+            completion (opt.): float
+                (from RamState ?)
+        '''
+        user = Ramses.instance.currentUser
+        
+        dateTimeStamp = os.path.getmtime(filePath)
+        dateTime = datetime.fromtimestamp( dateTimeStamp )
+
+        return None
 
 class RamStepStatus():
     """A history of RamStatus for a given step.

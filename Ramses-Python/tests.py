@@ -6,9 +6,12 @@ import datetime
 ramses = ram.Ramses()
 
 project = ram.RamProject("testProject", "Projet01", '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01')
-ramses._currentProject = project
+user = ram.RamUser('user01', 'user01', '')
 
-#Test elements
+ramses._currentProject = project
+ramses._currentUser = user
+
+#---------------------
 
 blenderType = ram.RamFileType('blenderFile', 'blend', 'blend', 'blender')
 
@@ -20,7 +23,6 @@ rigStep.fileType = blenderType
 
 testAsset = ram.RamAsset("assetLongName", "ISOLDE")
 
-'''
 testNames = [
     'PROJ_A_ISOLDE_RIG.blend',
     'PROJ_A_ISOLDE_RIG_resource.blend',
@@ -32,9 +34,17 @@ testNames = [
     'PROJ_G_SCRIPT_0002.tar.gz',
     'PROJ_G_SCRIPT.tar.gz',
 ]
-'''
 
-#Actual testing
+testShotSearch = [
+    '012',
+    '*012',
+    'A-*',
+    '*-003',
+    '*test*',
+    '',
+]
 
-print(project.getAssets("Characters"))
+#---------------------
+
+status = ram.RamStatus.getFromPath( "/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/04-ASSETS/Characters/Projet01_A_TRISTAN/Projet01_A_TRISTAN_MOD/Projet01_A_TRISTAN_MOD.blend" )
 
