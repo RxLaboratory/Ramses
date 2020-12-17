@@ -1219,7 +1219,7 @@ class RamStatus():
         self.version = 0
     
     @staticmethod
-    def getFromPath(filePath): #TODO, WIP
+    def getFromPath(filePath): #TODO: get comment
         """Returns a RamStatus instance built using the given file path.
 
         Args:
@@ -1236,28 +1236,62 @@ class RamStatus():
     
         if blocks == None:
             print("The given file does not respect Ramses' naming convention")
+            return None
         
         #Building RamStatus
-
         '''ATTRIBUTES:
+            user: RamUser
             state: RamState
             version (opt.): int 
-                (if blocks["version"] != str: int(blocks[version]); else: make a RamAsset, and then getLatestVersion?)
-            user: RamUser
-                (Ramses.instance.currentUser)
-            date (opt.): datetime
-                (modification date of file)
-            comment (opt.) : str
-                (?)
             completion (opt.): float
-                (from RamState ?)
+            date (opt.): datetime
+            comment (opt.) : str
         '''
         user = Ramses.instance.currentUser
         
         dateTimeStamp = os.path.getmtime(filePath)
         dateTime = datetime.fromtimestamp( dateTimeStamp )
 
-        return None
+        version = 0
+        stateId = 'TODO'
+        completionRatio = 0.0
+
+        if blocks["version"] != '':
+            version = int(blocks["version"])
+            if blocks["state"] != '':
+                stateId = blocks["state"]
+                stateId = stateId.upper() #TODO: for Python 2.7, it should be stateId.uppercase()
+
+        elif blocks["ramType"] in ('A', 'S'): #Builds a RamItem out of the given file, to then try to get its latest version info
+            if blocks["ramType"] == 'A':
+                item = RamAsset.getFromPath(filePath)
+            else:
+                item = RamShot.getFromPath(filePath)
+
+            latestVersionFilePath = item.getVersionFilePath(step = blocks["ramStep"], resource = blocks["resourceStr"])
+
+            if not latestVersionFilePath in (None, 0): #It has at least one version
+                latestVersionFileName = os.path.basename(latestVersionFilePath)
+                latestVersionBlocks = decomposeRamsesFileName( latestVersionFileName )
+
+                version = int(latestVersionBlocks["version"])
+                if latestVersionBlocks["state"] != '':
+                    stateId = latestVersionBlocks["state"]
+                    stateId = stateId.upper() #TODO: for Python 2.7, it should be stateId.uppercase()
+
+        state = Ramses.instance.getState(stateId)
+        if state != None:
+            completionRatio = state.completionRatio
+        else:
+            state = RamState(stateName = stateId, stateShortName = stateId)
+
+        status = RamStatus(state = state, user = user)
+        status.version = version
+        status.completion = completionRatio
+        status.date = dateTime
+        #TODO: get comment?
+
+        return status
 
 class RamStepStatus():
     """A history of RamStatus for a given step.

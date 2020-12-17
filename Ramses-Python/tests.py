@@ -46,5 +46,8 @@ testShotSearch = [
 
 #---------------------
 
-status = ram.RamStatus.getFromPath( "/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/04-ASSETS/Characters/Projet01_A_TRISTAN/Projet01_A_TRISTAN_MOD/Projet01_A_TRISTAN_MOD.blend" )
+path1 = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/04-ASSETS/Characters/Projet01_A_TRISTAN/Projet01_A_TRISTAN_MOD/ramses_versions/Projet01_A_TRISTAN_MOD_wip001.blend'
+path2 = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/04-ASSETS/Characters/Projet01_A_TRISTAN/Projet01_A_TRISTAN_MOD/Projet01_A_TRISTAN_MOD.blend'
+path3 = '/home/rainbox/RAINBOX/DEV_SRC/Ramses/Project-Tree-Example/Project01/05-SHOTS/Projet01_S_001/Projet01_S_001_ANIM/Projet01_S_001_ANIM_crowd.blend'
+status = ram.RamStatus.getFromPath( path1 )
 
