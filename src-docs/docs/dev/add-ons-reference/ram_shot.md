@@ -15,7 +15,8 @@ Inherits: [***RamItem***](ram_item.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **getFromPath**<br />▹ *RamShot* | *string*: **filePath**<br /> | Returns a *RamShot* instance built using the given file path. |
+| **getFromPath**<br />▹ *RamShot* | *string*: **folderPath**<br /> | Returns a *RamShot* instance built using the given folder path. |
+| **getShotFolder**<br />▹ *string* | *string*: **filePath**<br /> | Gets the folder path for the shot the file belongs to. |
 
 ## Methods
 

@@ -15,7 +15,8 @@ Inherits: [***RamObject***](ram_object.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **getFromPath**<br />▹ *RamAsset* | *string*: **filePath**<br /> | Returns a *RamAsset* instance built using the given file path. |
+| **getFromPath**<br />▹ *RamAsset* | *string*: **folderPath**<br /> | Returns a *RamAsset* instance built using the given folder path. |
+| **getAssetFolder**<br />▹ *string* | *string*: **filePath**<br /> | Gets the folder path for the asset the file belongs to. |
 
 ## Methods
 
