@@ -2,7 +2,8 @@ import os
 import re
 from datetime import datetime
 
-def getDate(e): #used in RamItem.getStepHistory to sort the list
+def getDate(e):
+    #Used in RamItem.getStepHistory to sort the list
     return e.date
 
 def escapeRegEx( string ):
@@ -14,185 +15,6 @@ def escapeRegEx( string ):
         else:
             result = result + char
     return result
-
-def getVersionRegEx():
-    regexStr = getVersionRegExStr()
-    regexStr = '^(' + regexStr + ')?(\\d+)$'
-    regex = re.compile(regexStr, re.IGNORECASE)
-    return regex
-
-def getVersionRegExStr():
-    if not Ramses.instance:
-        raise Exception("Ramses must be instanciated.")
-
-    version_prefixes = ['v','pub']
-    for state in Ramses.instance.getStates():
-        version_prefixes.append( state.shortName )
-
-    regexStr = ''
-    for prefix in version_prefixes[0:-1]:
-        regexStr = regexStr + prefix + '|'
-    regexStr = regexStr + version_prefixes[-1]
-    return regexStr
-
-def getRamsesNameRegEx():
-    regexStr = getVersionRegExStr()
-
-    regexStr = '^([a-z0-9+-]{1,10})_(?:([AS])_([a-z0-9+-]{1,10})|(G))_([a-z0-9+-]{1,10})(?:_((?!(?:' + regexStr + ')?[0-9]+)[a-z0-9+\\s-]+))?(?:_(' + regexStr + ')?([0-9]+))?\\.([a-z0-9.]+)$'
-
-    regex = re.compile(regexStr, re.IGNORECASE)
-    return regex
-
-def isVersion(v):
-    if re.match(getVersionRegEx(), v): return True
-    return False
-
-def isRamsesName(n):
-    """Returns True if the given string respects the Ramses naming convention.
-
-    The name should look like this:
-        projShortName_ramType_objectShortName_stepShortName_resourceStr_versionPrefixVersionNumber.extension
-    in which the ramType can be one of the following letters: A (asset), S (shot), G (general)
-    and there is an objectShortName only for assets and shots;
-    and the resourceStr is optional: it only serves to differentiate the main working files and its resources
-    and the versionPrefixVersionNumber is optional
-    Will return false if there is no extension.
-
-    Args:
-        n : name to be checked, without its path. Needs its extension
-    """
-    if re.match(getRamsesNameRegEx(), n): return True
-    return False
-
-def isRamsesItemFoldername(n):
-    """Returns True if the given string respects the Ramses naming convention for items' root folders.
-
-    Eg. Project01_A_ISOLDE
-    """
-    if re.match('^([a-z0-9+-]{1,10})_[ASG]_([a-z0-9+-]{1,10})$' , n , re.IGNORECASE): return True
-    return False
-
-def fixResourceStr( resourceStr ):
-    forbiddenCharacters = {
-        '"' : ' ',
-        '_' : '-',
-        '[' : '-',
-        ']' : '-',
-        '{' : '-',
-        '}' : '-',
-        '(' : '-',
-        ')' : '-',
-        '\'': ' ',
-        '`' : ' ',
-        '.' : '-',
-        '/' : '-',
-        '\\' : '-',
-        ',' : ' ' 
-        }
-
-    fixedResourceStr = ''
-    for char in resourceStr:
-        if char in forbiddenCharacters:
-            fixedResourceStr = fixedResourceStr + forbiddenCharacters[char]
-        else:
-            fixedResourceStr = fixedResourceStr + char
-    return fixedResourceStr
-
-def buildRamsesFileName( project , step , ext , ramType = 'G' , objectShortName = '' , resourceStr = "" , version = -1 , version_prefixe = 'wip' ):
-    #PROJECT_A_OBJECT_STEP_resourceStr_wip012.extension
-    #PROJECT_G_STEP_resourceStr_wip012.extension
-
-    resourceStr = fixResourceStr( resourceStr )
-    ramsesFileName = project + '_' + ramType
-
-    if ramType in ('A', 'S'):
-        ramsesFileName = ramsesFileName + '_' + objectShortName
-
-    ramsesFileName = ramsesFileName + '_' + step
-
-    if resourceStr != '':
-        ramsesFileName = ramsesFileName + '_' + resourceStr
-
-    if version != -1:
-        ramsesFileName = ramsesFileName + '_' + version_prefixe
-        if version < 10:
-            ramsesFileName = ramsesFileName + '00' + str(version)
-        elif version < 100:
-            ramsesFileName = ramsesFileName + '0' + str(version)
-        else:
-            ramsesFileName = ramsesFileName + str(version)
-    
-    ramsesFileName = ramsesFileName + '.' + ext
-
-    return ramsesFileName
-
-def decomposeRamsesFileName( ramsesFileName ):
-    if type(ramsesFileName) != str:
-        print("The given filename is not a str.")
-        return None
-
-    splitRamsesName = re.match(getRamsesNameRegEx(), ramsesFileName)
-
-    if splitRamsesName == None:
-        return None
-
-    ramType = ''
-    objectShortName = ''
-
-    if splitRamsesName.group(2) in ('A', 'S'):
-        ramType = splitRamsesName.group(2)
-        objectShortName = splitRamsesName.group(3)
-    else:
-        ramType = splitRamsesName.group(4)
-
-    optionalBlocks = ['', '', '', '']
-    for i in range(0, 4):
-        if splitRamsesName.group(i + 6) != None:
-            optionalBlocks[i] = splitRamsesName.group( i + 6)
-
-    blocks = {
-        "projectID": splitRamsesName.group(1),
-        "ramType": ramType,
-        "objectShortName": objectShortName,
-        "ramStep": splitRamsesName.group(5),
-        "resourceStr": optionalBlocks[0],
-        "state": optionalBlocks[1],
-        "version": optionalBlocks[2],
-        "extension": optionalBlocks[3],
-    }
-
-    return blocks
-
-def incrementRamsesFileName( ramsesFileName ):
-    separatedBlocks = decomposeRamsesFileName( ramsesFileName )
-    
-    if separatedBlocks == None:
-        print("The given filename does not match Ramses' naming convention.")
-        return None
-
-    if separatedBlocks["version"] == '':
-        print("it has no version; creating one")
-        ramsesFileName = ramsesFileName.split('.')[0] + "_wip001." + separatedBlocks["extension"]
-        return ramsesFileName
-    
-    #Rebuilding name up to the version str:
-    ramsesFileName = ''
-    ramsesFileName = separatedBlocks["projectID"] + "_" + separatedBlocks["ramType"] + "_"
-    if separatedBlocks["ramType"] in ('A', 'S'):
-        ramsesFileName = ramsesFileName + separatedBlocks["objectShortName"] + "_"
-    ramsesFileName = ramsesFileName + separatedBlocks["ramStep"] + "_"
-    if separatedBlocks["resourceStr"] != '':
-        ramsesFileName = ramsesFileName + separatedBlocks["resourceStr"] + "_"
-    ramsesFileName = ramsesFileName + separatedBlocks["state"]
-
-    #Creating new version str
-    version = int(separatedBlocks["version"]) + 1
-    version = str(version)
-    while len(version) < len(separatedBlocks["version"]):
-        version = "0" + version
-    ramsesFileName = ramsesFileName + version + "." + separatedBlocks["extension"]
-
-    return ramsesFileName
 
 def log( message ):
     print(message)
@@ -213,6 +35,9 @@ class Ramses():
         online: bool
             (Read-only) True if connected to the client and the client is responding.
     """
+
+    # The prefixes used in version files which are not states
+    _versionPrefixes = ['v','pub']
 
     def __init__(self, port = 1818, connect = True):
         """
@@ -235,6 +60,8 @@ class Ramses():
         if connect:
             self.launchClient( True )
 
+    # PROPERTIES
+
     @property
     def currentProject(self):
         return self._currentProject
@@ -247,6 +74,265 @@ class Ramses():
     def online(self):
         return self._online
     
+    # LOW-LEVEL, NOT DOCUMENTED
+
+    def _getVersionRegEx(self):
+        """Low-level, undocumented. Used to get a Regex that can be used to identify versions blocks (an optional state followed by a version number, eg. wip002).
+        """
+        regexStr = self._getVersionRegExStr()
+        regexStr = '^(' + regexStr + ')?(\\d+)$'
+        regex = re.compile(regexStr, re.IGNORECASE)
+        return regex
+
+    def _getVersionRegExStr(self):
+        """Low-level, undocumented. Used to get a Regex str that can be used to identify version blocks.
+
+        A version block is composed of an optional version prefix and a version number.
+        'wip002', 'v10', '1002' are version blocks; '002wip', '10v', 'v-10' are not.\n
+        Version prefixes consist of all the available states' shortnames ( see Ramses.getStates() ) and some additional prefixes ( see Ramses._versionPrefixes ).
+        """
+        
+        prefixes = self._versionPrefixes
+
+        for state in self.getStates():
+            prefixes.append( state.shortName )
+
+        regexStr = ''
+        for prefix in prefixes[0:-1]:
+            regexStr = regexStr + prefix + '|'
+        regexStr = regexStr + prefixes[-1]
+        return regexStr
+
+    def _getRamsesNameRegEx(self):
+        """Low-level, undocumented. Used to get a Regex to check if a file matches Ramses' naming convention.
+        """
+        regexStr = self._getVersionRegExStr()
+
+        regexStr = '^([a-z0-9+-]{1,10})_(?:([AS])_([a-z0-9+-]{1,10})|(G))_([a-z0-9+-]{1,10})(?:_((?!(?:' + regexStr + ')?[0-9]+)[a-z0-9+\\s-]+))?(?:_(' + regexStr + ')?([0-9]+))?\\.([a-z0-9.]+)$'
+
+        regex = re.compile(regexStr, re.IGNORECASE)
+        return regex
+
+    def _isVersion(self, v):
+        """Low-level, undocumented. Used to check if a block is a version block.
+
+        A version block is composed of an optional version prefix and a version number.
+        'wip002', 'v10', '1002' are version blocks; '002wip', '10v', 'v-10' are not.\n
+        Version prefixes consist of all the available states' shortnames ( see Ramses.getStates() ) and some additional prefixes ( see Ramses._versionPrefixes ).
+        """
+        if re.match(self._getVersionRegEx(), v): return True
+        return False
+
+    def _isRamsesName(self, n):
+        """Low-level, undocumented. Used to check if a given file respects Ramses' naming convention.
+
+        The name should look like this:
+            projectID_ramType_objectShortName_ramStep_resourceStr_versionBlock.extension
+        Ramses names follow these rules:
+        - ramType can be one of the following letters: A (asset), S (shot), G (general).
+        - there is an objectShortName only for assets and shots.
+        - resourceStr is optional. It only serves to differentiate the main working file and its resources, that serve as secondary working files.
+        - versionBlock is optional. It's made of an optional version prefix, also named state, followed by a version number.
+            Version prefixes consist of all the available states' shortnames ( see Ramses.getStates() ) and some additional prefixes ( see Ramses._versionPrefixes ). Eg. 'wip', 'v', ...
+        For more information on Ramses' naming conventions (such as length limitation, forbidden characters...), refer to the documentation.
+
+        Args:
+            n : str
+                Name to be checked, without its path. It must have an extesnion.
+        
+        Returns: bool
+        """
+        if re.match(self._getRamsesNameRegEx(), n): return True
+        return False
+
+    def _isRamsesItemFoldername(self, n):
+        """Low-level, undocumented. Used to check if a given folder respects Ramses' naming convention for items' root folders.
+        
+        The root folder should look like this:
+            projectID_ramType_objectShortName
+
+        Returns: bool
+        """
+        if re.match('^([a-z0-9+-]{1,10})_[ASG]_([a-z0-9+-]{1,10})$' , n , re.IGNORECASE): return True
+        return False
+
+    def _fixResourceStr( self, resourceStr ):
+        """Low-level, undocumented. Used to remove all forbidden characters from a resource.
+
+        Returns: str
+        """
+        forbiddenCharacters = {
+            '"' : ' ',
+            '_' : '-',
+            '[' : '-',
+            ']' : '-',
+            '{' : '-',
+            '}' : '-',
+            '(' : '-',
+            ')' : '-',
+            '\'': ' ',
+            '`' : ' ',
+            '.' : '-',
+            '/' : '-',
+            '\\' : '-',
+            ',' : ' ' 
+            }
+
+        fixedResourceStr = ''
+        for char in resourceStr:
+            if char in forbiddenCharacters:
+                fixedResourceStr = fixedResourceStr + forbiddenCharacters[char]
+            else:
+                fixedResourceStr = fixedResourceStr + char
+        return fixedResourceStr
+
+    def _buildRamsesFileName( self, project , step , ext , ramType = 'G' , objectShortName = '' , resourceStr = "" , version = -1 , version_prefix = 'wip' ):
+        """Low-level, undocumented. Used to build a filename respecting Ramses' naming conventions.
+
+        The name will look like this:
+            projShortName_ramType_objectShortName_stepShortName_resourceStr_versionBlock.extension
+        Ramses names follow these rules:
+        - ramType can be one of the following letters: A (asset), S (shot), G (general).
+        - there is an objectShortName only for assets and shots.
+        - resourceStr is optional. It only serves to differentiate the main working file and its resources, that serve as secondary working files.
+        - versionBlock is optional. It's made of an optional version prefix ('wip', 'v', 'pub', ...) followed by a version number.
+            Version prefixes consist of all the available states' shortnames ( see Ramses.getStates() ) and some additional prefixes ( see Ramses._versionPrefixes ).
+        For more information on Ramses' naming conventions (such as length limitation, allowed characters...), refer to the documentation.
+
+        Args:
+            project: str
+            step: str
+            ext: str
+                The extension should not start with a dot as it will be automatically added ('blend' is correct; '.blend' is incorrect).
+            ramType: str
+                One of the following: 'A' (asset), 'S' (shot), 'G' (general)
+            objectShortName: str
+            resourceStr: str
+                Serves to differentiate the main working file and its resources, that serve as secondary working files.
+            version: int
+            version_prefix: str
+
+        Returns: str
+        """
+
+        resourceStr = self._fixResourceStr( resourceStr )
+        ramsesFileName = project + '_' + ramType
+
+        if ramType in ('A', 'S'):
+            ramsesFileName = ramsesFileName + '_' + objectShortName
+
+        ramsesFileName = ramsesFileName + '_' + step
+
+        if resourceStr != '':
+            ramsesFileName = ramsesFileName + '_' + resourceStr
+
+        if version != -1:
+            ramsesFileName = ramsesFileName + '_' + version_prefix
+            if version < 10:
+                ramsesFileName = ramsesFileName + '00' + str(version)
+            elif version < 100:
+                ramsesFileName = ramsesFileName + '0' + str(version)
+            else:
+                ramsesFileName = ramsesFileName + str(version)
+        
+        ramsesFileName = ramsesFileName + '.' + ext
+
+        return ramsesFileName
+
+    def _decomposeRamsesFileName( self, ramsesFileName ):
+        """Low-level, undocumented. Used on files that respect Ramses' naming convention: it separates the name into blocks (one block for the project's shortname, one for the step, one for the extension...)
+
+        A Ramses filename can have all of these blocks:
+            projectID_ramType_objectShortName_ramStep_resourceStr_versionBlock.extension
+        - ramType can be one of the following letters: A (asset), S (shot), G (general).
+        - there is an objectShortName only for assets and shots.
+        - resourceStr is optional. It only serves to differentiate the main working file and its resources, that serve as secondary working files.
+        - versionBlock is optional. It's made of two blocks: an optional version prefix, also named state, followed by a version number.
+            Version prefixes consist of all the available states' shortnames ( see Ramses.getStates() ) and some additional prefixes ( see Ramses._versionPrefixes ). Eg. 'wip', 'v', ...
+        For more information on Ramses' naming conventions (such as length limitation, forbidden characters...), refer to the documentation.
+
+        Arg:
+            ramsesFileName: str
+        
+        Returns: dict or None
+            If the file does not match Ramses' naming convention, returns None.
+            Else, returns a dictionary made of all the blocks: {"projectId", "ramType", "objectShortName", "ramStep", "resourceStr", "state", "version", "extension"}
+        """
+        if type(ramsesFileName) != str:
+            print("The given filename is not a str.")
+            return None
+
+        splitRamsesName = re.match(self._getRamsesNameRegEx(), ramsesFileName)
+
+        if splitRamsesName == None:
+            return None
+
+        ramType = ''
+        objectShortName = ''
+
+        if splitRamsesName.group(2) in ('A', 'S'):
+            ramType = splitRamsesName.group(2)
+            objectShortName = splitRamsesName.group(3)
+        else:
+            ramType = splitRamsesName.group(4)
+
+        optionalBlocks = ['', '', '', '']
+        for i in range(0, 4):
+            if splitRamsesName.group(i + 6) != None:
+                optionalBlocks[i] = splitRamsesName.group( i + 6)
+
+        blocks = {
+            "projectID": splitRamsesName.group(1),
+            "ramType": ramType,
+            "objectShortName": objectShortName,
+            "ramStep": splitRamsesName.group(5),
+            "resourceStr": optionalBlocks[0],
+            "state": optionalBlocks[1],
+            "version": optionalBlocks[2],
+            "extension": optionalBlocks[3],
+        }
+
+        return blocks
+
+    def _incrementRamsesFileName( self, ramsesFileName ):
+        """Low-level, undocumented. Used on a version file to rise the version number while respecting the padding.
+
+        If the new version goes over the previous padding (i.e if we go from v99 to v100), the new version will be written as is (v100).
+
+        Returns: str
+        """
+        separatedBlocks = self._decomposeRamsesFileName( ramsesFileName )
+        
+        if separatedBlocks == None:
+            print("The given filename does not match Ramses' naming convention.")
+            return None
+
+        if separatedBlocks["version"] == '':
+            print("it has no version; creating one")
+            ramsesFileName = ramsesFileName.split('.')[0] + "_wip001." + separatedBlocks["extension"]
+            return ramsesFileName
+        
+        #Rebuilding name up to the version str:
+        ramsesFileName = ''
+        ramsesFileName = separatedBlocks["projectID"] + "_" + separatedBlocks["ramType"] + "_"
+        if separatedBlocks["ramType"] in ('A', 'S'):
+            ramsesFileName = ramsesFileName + separatedBlocks["objectShortName"] + "_"
+        ramsesFileName = ramsesFileName + separatedBlocks["ramStep"] + "_"
+        if separatedBlocks["resourceStr"] != '':
+            ramsesFileName = ramsesFileName + separatedBlocks["resourceStr"] + "_"
+        ramsesFileName = ramsesFileName + separatedBlocks["state"]
+
+        #Creating new version str
+        version = int(separatedBlocks["version"]) + 1
+        version = str(version)
+        while len(version) < len(separatedBlocks["version"]):
+            version = "0" + version
+        ramsesFileName = ramsesFileName + version + "." + separatedBlocks["extension"]
+
+        return ramsesFileName
+
+    # PUBLIC
+
     def backupFolderPath(self):
         """A copy of the main folder where all files are stored.
 
@@ -566,7 +652,7 @@ class RamProject( RamObject ):
             foundFiles = os.listdir( assetsFolderPath )
             for foundFile in foundFiles:
                 if not os.path.isdir( assetsFolderPath + '/' + foundFile): continue
-                if isRamsesItemFoldername(foundFile):
+                if Ramses.instance._isRamsesItemFoldername(n = foundFile):
                     if not foundFile.split('_')[1] == 'A': continue
                     foundAssetName = foundFile.split('_')[2]
                     foundAssetPath = "04-ASSETS/" + foundFile
@@ -585,7 +671,7 @@ class RamProject( RamObject ):
             foundFiles = os.listdir( assetsFolderPath + '/' + group )
             for foundFile in foundFiles:
                 if not os.path.isdir(assetsFolderPath + '/' + group + '/' + foundFile): continue
-                if not isRamsesItemFoldername(foundFile): continue
+                if not Ramses.instance._isRamsesItemFoldername(foundFile): continue
                 if not foundFile.split('_')[1] == 'A': continue
                 foundAssetName = foundFile.split('_')[2]
                 foundAssetPath = "04-ASSETS/" + group + "/" + foundFile
@@ -617,7 +703,7 @@ class RamProject( RamObject ):
 
         for foundFile in foundFiles:
             if not os.path.isdir(assetsFolderPath + '/' + foundFile): continue
-            if isRamsesItemFoldername(foundFile): continue
+            if Ramses.instance._isRamsesItemFoldername(foundFile): continue
             assetGroups.append(foundFile)
 
         return assetGroups
@@ -657,7 +743,7 @@ class RamProject( RamObject ):
 
         for foundFile in foundFiles:
             if not os.path.isdir(shotsFolderPath + '/' + foundFile): continue
-            if not isRamsesItemFoldername(foundFile): continue
+            if not Ramses.instance._isRamsesItemFoldername(foundFile): continue
             if not foundFile.split('_')[1] == 'S': continue
 
             foundShotName = foundFile.split('_')[2]
@@ -855,7 +941,7 @@ class RamItem( RamObject ):
             if not os.path.isfile( stepFolderPath + '/ramses_versions/' + foundFile ): #This is in case the user has created folders in ramses_versions
                 continue
 
-            decomposedFoundFile = decomposeRamsesFileName(foundFile)
+            decomposedFoundFile = Ramses.instance._decomposeRamsesFileName(foundFile)
 
             if decomposedFoundFile == None:
                 continue
@@ -918,7 +1004,7 @@ class RamItem( RamObject ):
             if os.path.isdir(foundFile):
                 continue
 
-            blocks = decomposeRamsesFileName(foundFile)
+            blocks = Ramses.instance._decomposeRamsesFileName(foundFile)
 
             if blocks == None:
                 continue
@@ -933,7 +1019,7 @@ class RamItem( RamObject ):
             
         return publishFiles
     
-    def getStepHistory(self, step, resource=""): #TODO
+    def getStepHistory(self, step, resource=""):
         """Gets the history of statuses for a given step and resource
 
         Args:
@@ -988,12 +1074,13 @@ class RamItem( RamObject ):
                 continue
             if not foundFile.startswith(rootName):
                 continue
-            fileBlocks = decomposeRamsesFileName(foundFile)
+            fileBlocks = Ramses.instance._decomposeRamsesFileName(foundFile)
             if fileBlocks == None:
                 continue
             print(foundFile)
             RamStatusList.append(RamStatus.getFromPath(foundFilePath))
-            RamStatusList.sort(key = getDate)
+
+        RamStatusList.sort(key = getDate)
         return RamStatusList
 
     def getVersionFilePath(self, step, resource = ""):
@@ -1050,7 +1137,7 @@ class RamItem( RamObject ):
             if not os.path.isfile( stepFolderPath + '/ramses_versions/' + foundFile ): #This is in case the user has created folders in ramses_versions
                 continue
 
-            decomposedFoundFile = decomposeRamsesFileName(foundFile)
+            decomposedFoundFile = Ramses.instance._decomposeRamsesFileName(foundFile)
 
             if decomposedFoundFile == None:
                 continue
@@ -1121,7 +1208,6 @@ class RamItem( RamObject ):
             status: RamStatus
             step: RamStep
         """
-
         # Needs to be online
         pass
 
@@ -1167,7 +1253,7 @@ class RamShot( RamItem ):
 
         folderName = os.path.basename(folderPath)
 
-        if not isRamsesItemFoldername(folderName):
+        if not Ramses.instance._isRamsesItemFoldername(folderName):
             print("The given folder does not respect Ramses' naming convention")
             return None
         
@@ -1211,7 +1297,7 @@ class RamShot( RamItem ):
         folderPath = os.path.dirname(folderPath) #Goes to the root folder
         folderName = os.path.basename(folderPath)
 
-        if not isRamsesItemFoldername(folderName):
+        if not Ramses.instance._isRamsesItemFoldername(folderName):
             print("The given item's hierarchy does not respect Ramses' conventions.")
             return None
         
@@ -1245,7 +1331,7 @@ class RamAsset( RamItem ):
                 if element == assetGroupName:
                     folderPath = '04-ASSETS/' + assetGroupName
                     break
-                if isRamsesItemFoldername(element):
+                if Ramses.instance._isRamsesItemFoldername(element):
                     continue
 
                 foundGroups.append(element)
@@ -1290,7 +1376,7 @@ class RamAsset( RamItem ):
         folderPath = os.path.dirname(folderPath) #Goes to the root folder
         folderName = os.path.basename(folderPath)
 
-        if not isRamsesItemFoldername(folderName):
+        if not Ramses.instance._isRamsesItemFoldername(folderName):
             print("The given item's hierarchy does not respect Ramses' conventions.")
             return None
         
@@ -1318,7 +1404,7 @@ class RamAsset( RamItem ):
 
         folderName = os.path.basename(folderPath)
 
-        if not isRamsesItemFoldername(folderName):
+        if not Ramses.instance._isRamsesItemFoldername(folderName):
             print("The given folder does not respect Ramses' naming convention")
             return None
         
@@ -1451,7 +1537,7 @@ class RamStatus():
                 return None
 
         baseName = os.path.basename(filePath)
-        blocks = decomposeRamsesFileName(baseName)
+        blocks = Ramses.instance._decomposeRamsesFileName(baseName)
     
         if blocks == None:
             print("The given file does not respect Ramses' naming convention")
@@ -1476,7 +1562,7 @@ class RamStatus():
 
             if not latestVersionFilePath in (None, 0): #If it has at least one version
                 latestVersionFileName = os.path.basename(latestVersionFilePath)
-                latestVersionBlocks = decomposeRamsesFileName( latestVersionFileName )
+                latestVersionBlocks = Ramses.instance._decomposeRamsesFileName( latestVersionFileName )
 
                 version = int(latestVersionBlocks["version"])
                 if latestVersionBlocks["state"] != '':
