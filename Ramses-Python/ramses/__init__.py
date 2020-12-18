@@ -16,7 +16,7 @@ def escapeRegEx( string ):
             result = result + char
     return result
 
-def log( message ):
+def log( message ): #TODO
     print(message)
     return
 
@@ -333,54 +333,48 @@ class Ramses():
 
     # PUBLIC
 
-    def backupFolderPath(self):
+    def backupFolderPath(self): #TODO
         """A copy of the main folder where all files are stored.
 
         Returns: str
         """
-        #TODO
         pass
 
-    def connect(self):
+    def connect(self): #TODO
         """ Checks server or client availability and initiates the connection. Returns success.
 
         Returns: bool
         """
-        #TODO
         pass
 
-    def disconnect(self):
+    def disconnect(self): #TODO
         """Gets back to offline mode.
 
         Returns: bool
         """
-        #TODO
         pass
 
-    def getAlternativeFolderPaths(self):
+    def getAlternativeFolderPaths(self): #TODO
         """A list of alternative absolute paths to the main Ramses folder.
         
         Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.
 
         Returns: str list
         """
-        #TODO
         pass
 
-    def getProjects(self):
+    def getProjects(self): #TODO
         """The list of available projects.
         
         Returns: list of RamProject
         """
-        #TODO
         pass
 
-    def getStates(self):
+    def getStates(self): #TODO get the list from the client
         """The list of available states
 
         Returns: list of RamState
         """
-        # TODO get the list from the client
         states = [
             RamState("No", "NO", 1.0),
             RamState("To Do", "TODO", 0.0),
@@ -395,7 +389,7 @@ class Ramses():
                 return state
         return self.getState()
 
-    def getSteps(self, typeOrCat = "ALL"):
+    def getSteps(self, typeOrCat = "ALL"): #TODO
         """The list of available steps.
 
         Use typeOrCat to filter the results.
@@ -404,7 +398,6 @@ class Ramses():
 
         Returns: list of RamStep
         """
-        #TODO
         pass
 
     def getUser(self, userShortName= ""):
@@ -425,45 +418,40 @@ class Ramses():
 
         return RamUser("J. Doe", "Anonymous")
 
-    def getUsers(self):
+    def getUsers(self): #TODO
         """The list of available users.
 
         Returns: list of RamUser
         """
-        #TODO
         pass
 
-    def folderPath(self):
+    def folderPath(self): #TODO
         """The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files...
 
         Returns: str
         """
-        #TODO
         pass
 
-    def launchClient(self, connect = True):
+    def launchClient(self, connect = True): #TODO
         """Launches the Ramses client and tries to connect to it. Returns success.
 
         Returns: bool
         """
-        #TODO
         return False
 
-    def login(self, userPassword, user = currentUser):
+    def login(self, userPassword, user = currentUser): #TODO
         """Logs the user in. Launches and connect to the client if necessary. Returns success.
 
         Returns: bool
         """
-        #TODO
         pass
     
-    def logout(self):
+    def logout(self): #TODO
         """Logs the user out.
         """
-        #TODO
         pass
 
-    def request(self, request):
+    def request(self, request): #TODO
         """Posts a request to the connected client.
 
         Args:
@@ -473,24 +461,22 @@ class Ramses():
         Returns: None or dict
             The answer parsed from JSON.
         """
-        return None
+        pass
 
-    def setCurrentProject(self, project):
+    def setCurrentProject(self, project): #TODO
         """
 
         Args:
             project: RamProject
         """
-        #TODO
         pass
 
-    def setCurrentUser(self, user):
+    def setCurrentUser(self, user): #TODO
         """
 
         Args:
             user: RamUser
         """
-        #TODO
         pass
 
 class RamObject():
@@ -535,20 +521,18 @@ class RamUser( RamObject ):
     def role(self):
         return self._role
     
-    def login(self):
+    def login(self): #TODO
         """Logs the user in. Returns success.
 
         Returns: bool
         """
-        #TODO
         pass
     
-    def logout(self):
+    def logout(self): #TODO
         """Logs the user out.
 
         Returns: bool
         """
-        #TODO
         pass
 
 class RamApplication( RamObject ):
@@ -627,7 +611,7 @@ class RamProject( RamObject ):
         """
         return self.folderPath + '/' + relativePath
 
-    def getAssets(self, groupName = ""):
+    def getAssets(self, groupName = ""): #TODO if online
         """If groupName is an empty string, returns all assets.
 
         Returns list of RamAsset
@@ -680,7 +664,7 @@ class RamProject( RamObject ):
         
         return foundAssets
 
-    def getAssetGroups(self):
+    def getAssetGroups(self): #TODO if online
         """
 
         Returns: list of str
@@ -708,7 +692,7 @@ class RamProject( RamObject ):
 
         return assetGroups
 
-    def getShots(self, filter = "*"):
+    def getShots(self, filter = "*"): #TODO if online
         """A filter to be applied to the name of the shots, using "*"" as a wildcard.
 
         Returns: list of RamShot
@@ -766,7 +750,6 @@ class RamProject( RamObject ):
 
         Returns: list of RamStep
         """
-        #TODO
         pass
 
 class RamStep( RamObject ):
@@ -855,7 +838,7 @@ class RamItem( RamObject ):
         self.shortName = itemShortName
         self.folderPath = itemFolder
 
-    def getCurrentStatus(self, step, resource = ""):
+    def getCurrentStatus(self, step, resource = ""): #TODO if online
         """
 
         Args:
@@ -868,6 +851,7 @@ class RamItem( RamObject ):
         """
         if not Ramses.instance:
             raise Exception("Ramses has to be instantiated first.")
+        # If we're online, ask the client
         if Ramses.instance.online:
             # TODO ask the client
             return None
@@ -885,7 +869,7 @@ class RamItem( RamObject ):
 
         return currentStatus
 
-    def getLatestVersion( self, step, resource = "", stateId = 'wip' ):
+    def getLatestVersion( self, step, resource = "", stateId = 'wip' ): #TODO if online
         """Returns the highest version number for the given state (wip, pub...).
 
         Args:
@@ -1019,7 +1003,7 @@ class RamItem( RamObject ):
             
         return publishFiles
     
-    def getStepHistory(self, step, resource=""):
+    def getStepHistory(self, step, resource=""): #TODO if online
         """Gets the history of statuses for a given step and resource
 
         Args:
@@ -1032,6 +1016,7 @@ class RamItem( RamObject ):
         """
         if not Ramses.instance:
             raise Exception("Ramses has to be instantiated first.")
+        #If we're online, ask the client
         if Ramses.instance.online:
             # TODO ask the client
             return []
@@ -1083,7 +1068,7 @@ class RamItem( RamObject ):
         RamStatusList.sort(key = getDate)
         return RamStatusList
 
-    def getVersionFilePath(self, step, resource = ""):
+    def getVersionFilePath(self, step, resource = ""): #TODO if online
         """Latest version file path relative to the item root folder.
 
         Args:
@@ -1095,10 +1080,10 @@ class RamItem( RamObject ):
         if not Ramses.instance:
             raise Exception("Ramses has to be instantiated first.")
 
-         # If we're online, ask the client
+        # If we're online, ask the client
         if Ramses.instance.online:
-            # TODO
-            return 0
+            #TODO ask the client
+            return None
         
         #Else check in the folders
         #It is basically the same as getLatestVersion. Only difference is that it does not take the stateId into account and returns the path instead of the version number.
@@ -1425,10 +1410,9 @@ class RamAsset( RamItem ):
 
         Returns: list of str
         """
-        #TODO
         pass
 
-    def getGroup(self):
+    def getGroup(self): #TODO if online
         """The group containing this asset.
 
         Returns: str
