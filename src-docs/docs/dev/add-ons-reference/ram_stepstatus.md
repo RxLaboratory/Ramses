@@ -20,5 +20,5 @@ A history of RamStatus for a given step.
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | | |
-| **getHistory**<br />▹ *list of [RamStatus](ram_status.md)* | | |
+| **getHistory**<br />▹ *list of [RamStatus](ram_status.md)* | *string*: **filePath**=`""`<br /> | |
 | **setStatus** | *RamStatus*: **status** | Adds a new status to the history |
