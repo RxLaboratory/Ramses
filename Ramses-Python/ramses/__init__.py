@@ -2,6 +2,19 @@ import os
 import re
 from datetime import datetime
 
+def getDate(e): #used in RamStepStatus to sort the list
+    return e.date
+
+def escapeRegEx( string ):
+    reservedChars = "[.*+-?^=!:${|}[]\\/()"
+    result = ""
+    for char in string:
+        if char in reservedChars:
+            result = result + "\\" + char
+        else:
+            result = result + char
+    return result
+
 def getVersionRegEx():
     regexStr = getVersionRegExStr()
     regexStr = '^(' + regexStr + ')?(\\d+)$'
@@ -181,15 +194,9 @@ def incrementRamsesFileName( ramsesFileName ):
 
     return ramsesFileName
 
-def escapeRegEx( string ):
-    reservedChars = "[.*+-?^=!:${|}[]\\/()"
-    result = ""
-    for char in string:
-        if char in reservedChars:
-            result = result + "\\" + char
-        else:
-            result = result + char
-    return result
+def log( message ):
+    print(message)
+    return
 
 class Ramses():
     """The main class. One (and only one) instance globally available, instantiated during init time.
@@ -300,7 +307,7 @@ class Ramses():
         for state in self.getStates():
             if state.shortName == stateShortName:
                 return state
-        return None
+        return self.getState()
 
     def getSteps(self, typeOrCat = "ALL"):
         """The list of available steps.
@@ -314,6 +321,24 @@ class Ramses():
         #TODO
         pass
 
+    def getUser(self, userShortName= ""):
+        """Gets a specific user
+
+        Args:
+            userShortName: str
+                The short name of the user.
+            
+        Returns: RamUser
+        """
+
+        if userShortName == "":
+            return RamUser("J. Doe", "Anonymous")
+        
+        for user in self.getUsers():
+            if user.shortName == userShortName: return user
+
+        return RamUser("J. Doe", "Anonymous")
+
     def getUsers(self):
         """The list of available users.
 
@@ -323,7 +348,7 @@ class Ramses():
         pass
 
     def folderPath(self):
-        """The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files…
+        """The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files...
 
         Returns: str
         """
@@ -407,7 +432,7 @@ class RamUser( RamObject ):
             'ADMIN', 'LEAD', or 'STANDARD'
     """
 
-    def __init__(self, userName, userShortName, userFolderPath, role = 'STANDARD'):
+    def __init__(self, userName, userShortName, userFolderPath = "", role = 'STANDARD'):
         """
 
         Args:
@@ -514,14 +539,15 @@ class RamProject( RamObject ):
         
         Returns: str
         """
-        print( Ramses.instance.currentProject.folderPath + '/' + relativePath)
-        pass
+        return self.folderPath + '/' + relativePath
 
     def getAssets(self, groupName = ""):
         """If groupName is an empty string, returns all assets.
 
         Returns list of RamAsset
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
         if not isinstance(groupName, str):
             raise TypeError("Group name must be a str")
 
@@ -573,6 +599,9 @@ class RamProject( RamObject ):
 
         Returns: list of str
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+
         # If we're online, ask the client
         if Ramses.instance.online:
             # TODO
@@ -594,14 +623,13 @@ class RamProject( RamObject ):
         return assetGroups
 
     def getShots(self, filter = "*"):
-        """A filter to be applied to the name of the shots, using “*” as a wildcard.
+        """A filter to be applied to the name of the shots, using "*"" as a wildcard.
 
         Returns: list of RamShot
         """
-        '''
-        escapeRegEx
-        transform * in regex of all the possible characters
-        '''
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+
         # If we're online, ask the client
         if Ramses.instance.online:
             # TODO
@@ -747,7 +775,7 @@ class RamItem( RamObject ):
         self.stepStatuses = {}
 
     def getLatestVersion( self, step, resource = "", stateId = 'wip' ):
-        """Returns the highest version number for the given state (wip, pub…).
+        """Returns the highest version number for the given state (wip, pub...).
 
         Args:
             step: RamStep
@@ -756,6 +784,8 @@ class RamItem( RamObject ):
 
         Returns: int
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
  
         # If we're online, ask the client
         if Ramses.instance.online:
@@ -829,7 +859,9 @@ class RamItem( RamObject ):
         
         Returns: list of str
         """
-        stepShortName = ""
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+
         if isinstance(step, str):
             stepShortName = step
         elif isinstance(step, RamStep):
@@ -875,6 +907,19 @@ class RamItem( RamObject ):
             publishFiles.append(foundFilePath)
             
         return publishFiles
+    
+    def getStepHistory(self, step, resource = ""):
+        """
+        """
+        #TODO
+        #self.getStepStatus(step, resourceStr).getHistory()
+        pass
+
+    def getStepStatus(self, step, resource = ""):
+        """
+        """
+        #TODO
+        pass
 
     def getVersionFilePath(self, step, resource = ""):
         """Latest version file path relative to the item root folder.
@@ -885,6 +930,9 @@ class RamItem( RamObject ):
         
         Returns: str
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+
          # If we're online, ask the client
         if Ramses.instance.online:
             # TODO
@@ -896,7 +944,7 @@ class RamItem( RamObject ):
             print("The given item has no folderPath.")
             return None
 
-        folderPath = Ramses.instance.currentProject.folderPath + '/' + self.folderPath #Makes it absolute
+        folderPath = Ramses.instance.currentProject.getAbsolutePath(self.folderPath)
 
         if not os.path.isdir( folderPath ):
             print("The given item's folder was not found.\nThis is the path that was checked:\n" + folderPath)
@@ -1002,6 +1050,9 @@ class RamShot( RamItem ):
     """
 
     def __init__(self, shotName, folderPath = ""):
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+
         self.shortName = shotName
         self.name = shotName
         self.stepStatuses = []
@@ -1028,9 +1079,13 @@ class RamShot( RamItem ):
                 Must point towards a file in a step subfolder, such as PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend
                 The file also needs to respect Ramses' naming convention
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
         if not os.path.isfile(filePath):
-            print("The given file could not be found")
-            return None
+            filePath = Ramses.instance.currentProject.getAbsolutePath( filePath )
+            if not os.path.isfile(filePath):
+                print("The given file could not be found")
+                return None
 
         folderPath = os.path.dirname(filePath) #From PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend we go to PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG
         folderPath = os.path.dirname(folderPath) #And then we go to PROJ_A_ISOLDE
@@ -1061,6 +1116,8 @@ class RamAsset( RamItem ):
     """
 
     def __init__(self, assetName, assetShortName, folderPath=""):
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
         self.tags = []
         self.name = assetName
         self.shortName = assetShortName
@@ -1104,9 +1161,13 @@ class RamAsset( RamItem ):
                 Must point towards a file in a step subfolder, such as PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend
                 The file also needs to respect Ramses' naming convention
         """
-        if os.path.isfile(filePath) == False:
-            print("The given file could not be found")
-            return None
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+        if not os.path.isfile(filePath):
+            filePath = Ramses.instance.currentProject.getAbsolutePath( filePath )
+            if not os.path.isfile(filePath):
+                print("The given file could not be found")
+                return None
 
         folderPath = os.path.dirname(filePath) #From PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG\\PROJ_A_ISOLDE_RIG.blend we go to PROJ_A_ISOLDE\\PROJ_A_ISOLDE_RIG
         folderPath = os.path.dirname(folderPath) #And then we go to PROJ_A_ISOLDE
@@ -1145,6 +1206,8 @@ class RamAsset( RamItem ):
 
         Returns: str
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
         # If we're online, ask the client
         if Ramses.instance.online:
             #TODO
@@ -1203,7 +1266,7 @@ class RamStatus():
             The version of the corresponding working file.
     """
 
-    def __init__(self, state, user, comment = ""):
+    def __init__(self, state, user=None, comment = "", version=0, stateDate=None):
         """
 
         Args:
@@ -1211,25 +1274,40 @@ class RamStatus():
             user: RamUser.
             comment: str.
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+
         self.state = state
-        self.completion = 0.0
+        self.completionRatio = state.completionRatio
         self.comment = comment
+
+        # Get J. Doe
+        if not user:
+            user = Ramses.instance.getUser()
         self.user = user
-        self.date = None
-        self.version = 0
+
+        if not stateDate:
+            stateDate = datetime.datetime(year = 2020, month = 1, day = 1)
+
+        self.date = stateDate
+        self.version = version
     
     @staticmethod
-    def getFromPath(filePath): #TODO: get comment
+    def getFromPath(filePath):
         """Returns a RamStatus instance built using the given file path.
 
         Args:
             filePath: str
         """
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
         if not isinstance(filePath, str):
             raise TypeError("File path needs to be a str")
         if not os.path.isfile(filePath):
-            print("The given file could not be found")
-            return None
+            filePath = Ramses.instance.currentProject.getAbsolutePath( filePath )
+            if not os.path.isfile(filePath):
+                print("The given file could not be found")
+                return None
 
         baseName = os.path.basename(filePath)
         blocks = decomposeRamsesFileName(baseName)
@@ -1237,30 +1315,15 @@ class RamStatus():
         if blocks == None:
             print("The given file does not respect Ramses' naming convention")
             return None
-        
-        #Building RamStatus
-        '''ATTRIBUTES:
-            user: RamUser
-            state: RamState
-            version (opt.): int 
-            completion (opt.): float
-            date (opt.): datetime
-            comment (opt.) : str
-        '''
-        user = Ramses.instance.currentUser
-        
-        dateTimeStamp = os.path.getmtime(filePath)
-        dateTime = datetime.fromtimestamp( dateTimeStamp )
 
         version = 0
-        stateId = 'TODO'
-        completionRatio = 0.0
+        stateId = 'WIP'
 
-        if blocks["version"] != '':
+        if blocks["version"] != '': #The file is already a version: gets the version info directly from it
             version = int(blocks["version"])
             if blocks["state"] != '':
                 stateId = blocks["state"]
-                stateId = stateId.upper() #TODO: for Python 2.7, it should be stateId.uppercase()
+                stateId = stateId.upper()
 
         elif blocks["ramType"] in ('A', 'S'): #Builds a RamItem out of the given file, to then try to get its latest version info
             if blocks["ramType"] == 'A':
@@ -1270,26 +1333,21 @@ class RamStatus():
 
             latestVersionFilePath = item.getVersionFilePath(step = blocks["ramStep"], resource = blocks["resourceStr"])
 
-            if not latestVersionFilePath in (None, 0): #It has at least one version
+            if not latestVersionFilePath in (None, 0): #If it has at least one version
                 latestVersionFileName = os.path.basename(latestVersionFilePath)
                 latestVersionBlocks = decomposeRamsesFileName( latestVersionFileName )
 
                 version = int(latestVersionBlocks["version"])
                 if latestVersionBlocks["state"] != '':
                     stateId = latestVersionBlocks["state"]
-                    stateId = stateId.upper() #TODO: for Python 2.7, it should be stateId.uppercase()
+                    stateId = stateId.upper()
 
         state = Ramses.instance.getState(stateId)
-        if state != None:
-            completionRatio = state.completionRatio
-        else:
-            state = RamState(stateName = stateId, stateShortName = stateId)
 
-        status = RamStatus(state = state, user = user)
-        status.version = version
-        status.completion = completionRatio
-        status.date = dateTime
-        #TODO: get comment?
+        dateTimeStamp = os.path.getmtime(filePath)
+        dateTime = datetime.fromtimestamp( dateTimeStamp )
+
+        status = RamStatus(state, None, "", version, dateTime)
 
         return status
 
@@ -1301,34 +1359,130 @@ class RamStepStatus():
     """
 
     def __init__(self):
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
         self.currentStatus = Ramses.instance.getState()
 
     @staticmethod
-    def getFromPath(filePath):
+    def getFromPath(filePath): #TODO: check
         """Returns a RamStepStatus instance built using the given file path.
 
         Args:
             filePath: str
         """
-        #TODO
-        pass
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+        if not isinstance(filePath, str):
+            raise TypeError("FilePath must be a str")
+        if not os.path.isfile(filePath):
+            filePath = Ramses.instance.currentProject.getAbsolutePath( filePath )
+            if not os.path.isfile(filePath):
+                print("The given file could not be found")
+                return None
+        
+        baseName = os.path.basename(filePath)
+        blocks = decomposeRamsesFileName(baseName)
+    
+        if blocks == None:
+            print("The given file does not respect Ramses' naming convention")
+            return None
 
-    def getHistory(self):
+        # get default state
+        stateId  = 'TODO'
+
+        if blocks["state"] != '':
+            stateId = blocks["state"]
+        elif blocks["ramType"] in ('A', 'S'): #Makes a RamItem out of the given file, to see if there's a version from which to get a state.
+            if blocks["ramType"] == 'A':
+                item = RamAsset.getFromPath(filePath)
+            else:
+                item = RamShot.getFromPath(filePath)
+
+            latestVersionFilePath = item.getVersionFilePath(step = blocks["ramStep"], resource = blocks["resourceStr"])
+
+            latestVersionFileName = os.path.basename(latestVersionFilePath)
+            latestVersionBlocks = decomposeRamsesFileName( latestVersionFileName )
+
+            stateId = latestVersionBlocks["state"]
+
+        stateId = stateId.upper()
+
+        stepStatus = RamStepStatus()
+        return stepStatus
+
+    def getHistory(self, filePath = ""): #TODO
         """
+        Gets the history of statuses for this step.
+
+        Args:
+            filePath: str
+                The path to use if Ramses is used offline. Ignored when online.
 
         Returns: list of RamStatus
         """
-        #TODO
-        #Get from client if online
+        if not Ramses.instance:
+            raise Exception("Ramses has to be instantiated first.")
+        if Ramses.instance.online:
+            # TODO ask the client
+            return []
+        
+        # If offline, use filePath arg to check in the folders
+        if filePath == "" or not isinstance(filePath, str):
+            raise TypeError("The given filePath is empty or not a str.")
+        if not os.path.isfile(filePath):
+            filePath = Ramses.instance.currentProject.getAbsolutePath(filePath)
+            if not os.path.isfile(filePath):
+                print("The given file could not be found")
+                return []
 
-        #If offline:
-        '''Needs the concerned item, resource, and step.
-        Lists files in ramses_versions
-        For each file, checks the state (pub, wip) and its last modification time. That's the history.
-        '''
-        pass
+        baseName = os.path.basename(filePath)
+        blocks = decomposeRamsesFileName(baseName)
 
-    def setStatus(self, status):
+        if blocks == None:
+            print("The given file does not match Ramses' naming convention")
+            return []
+
+        #Three possibilities: the given file can be a publish, a version, or the working file itself. Checks which directory the file is in.
+        folderPath = os.path.dirname(filePath)
+        folderName = os.path.basename(folderPath)
+        versionFolderPath = ''
+
+        if folderName == 'ramses_publish':
+            folderPath = os.path.dirname(folderPath)
+        
+        if folderName != 'ramses_versions':
+            versionFolderPath = folderPath + '/ramses_versions'
+            if not os.path.isdir(versionFolderPath):
+                print("The ramses_versions directory could not be found")
+                return []
+        else: versionFolderPath = folderPath
+
+        #Lists all files in the ramses_versions dir and checks them one by one. If they match the given file, a RamStatus is created.
+        foundFiles = os.listdir(versionFolderPath)
+        RamStatusList = []
+
+        nameStart = blocks["projectID"] + '_' + blocks["ramType"]
+        if blocks["ramType"] in ('A', 'S'):
+            nameStart = nameStart + '_' + blocks["objectShortName"]
+        nameStart = nameStart + '_' + blocks["ramStep"]
+        if blocks["resourceStr"] != '':
+            nameStart = nameStart + '_' + blocks["resourceStr"]
+
+        for foundFile in foundFiles:
+            foundFilePath = versionFolderPath + '/' + foundFile
+            if not os.path.isfile(foundFilePath):
+                continue
+            if not foundFile.startswith(nameStart):
+                continue
+            fileBlocks = decomposeRamsesFileName(foundFile)
+            if fileBlocks == None:
+                continue
+
+            RamStatusList.append(RamStatus.getFromPath(foundFilePath))
+            RamStatusList.sort(key = getDate)
+        return RamStatusList
+
+    def setStatus(self, status): #TODO
         """Adds a new status to the history.
 
         Args:
