@@ -28,6 +28,7 @@ The main class. One (and only one) instance globally available, instantiated dur
 | **getState**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | |
 | **getSteps**<br />▹ *list of RamStep* | *enumerated value*: **typeOrCat**=`ALL` | Use *typeOrCat* to filter the results.<br />One of: `ALL`, `ASSET`, `SHOT`, `PRE-PROD`, `PROD`, `POST-PROD`.<br />`PROD` represents a combination of `SHOT` and `ASSET` |
 | **getUsers**<br />▹ *list of RamUser* | | The list of available users. |
+| **getUser**<br />▹ *RamUser* | *string*: **userShortName**=`""` | Gets a specific user. |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
 | **launchClient**<br />▹ *boolean* | *boolean*: **connect**=`true`| Launches the Ramses client and tries to connect to it. Returns success |
 | **login**<br />▹ *boolean* | *string*: **userPassword**<br />*RamUser*: **user**=`currentUser` | Logs the user in. Launches and connect to the client if necessary.  Returns success. |

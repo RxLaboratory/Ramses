@@ -25,4 +25,4 @@ A state associated to a comment, the user who changed the state, etc.
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *[RamState](ram_state.md)*: **state**<br />*[RamUser](ram_user.md)*: **user**<br />*string*: **comment**=`""` | |
+| ***constructor*** | *[RamState](ram_state.md)*: **state**<br />*[RamUser](ram_user.md)*: **user**=`None`<br />*string*: **comment**=`""`<br />*integer*: **version**=`0`<br />*datetime*: **stateDate**=`None` | |
