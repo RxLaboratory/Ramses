@@ -265,10 +265,19 @@
 <ul>
 <li><a href="#add-ons">Add-ons</a><ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#available-commands">Available Commands</a></li>
+<li><a href="#available-commands">Available Commands</a><ul>
+<li><a href="#save">Save</a></li>
+<li><a href="#save-new-version">Save new version</a></li>
+<li><a href="#publish">Publish</a></li>
+<li><a href="#retrieve-version">Retrieve version</a></li>
+<li><a href="#settings">Settings</a></li>
+<li><a href="#open-ramses">Open Ramses</a></li>
+</ul>
+</li>
 <li><a href="#ui-ux">UI / UX</a><ul>
 <li><a href="#integrated-commands">Integrated commands</a></li>
 <li><a href="#ui-panel">UI Panel</a></li>
+<li><a href="#settings_1">Settings</a></li>
 </ul>
 </li>
 </ul>
@@ -276,11 +285,96 @@
 </ul>
 </div>
 <h2 id="introduction">Introduction</h2>
-<p>Although the add-ons are primarily meant to be used in conjunction with the <em>Ramses Client Application</em> (which in turn may be connected to the <em>Ramses Server</em>)</p>
+<p>Although the add-ons are primarily meant to be used in conjunction with the <em>Ramses Client Application</em> (which in turn may be connected to the <em>Ramses Server</em>), they can also be used on their own. In which case not all functionnalities will be available; the differences are mentionned in this documentation.</p>
 <h2 id="available-commands">Available Commands</h2>
+<p>Some of these commands manage files in the <a href="../files/tree/"><em>Ramses Tree</em></a>, see the <a href="../files/tree/">corresponding documentation</a>.</p>
+<p>All commands except <em>open Ramses</em> and <em>Settings</em> should first:</p>
+<ul>
+<li>If the path to the <em>Client</em> executable file is valid:<ul>
+<li>Ping the <em>Daemon</em> (which answers with its version and some other information).</li>
+<li>If the ping did not work:<ul>
+<li>Set to offline</li>
+<li>Try to launch the client. If the <em>Daemon</em> is accessible:<ul>
+<li>Set to online</li>
+</ul>
+</li>
+<li>If the daemon is not accessible: warn the user</li>
+</ul>
+</li>
+<li>If the ping worked: set to online</li>
+</ul>
+</li>
+</ul>
+<h3 id="save">Save</h3>
+<p>If the file is not a working file, but a version coming from the <em>ramses_version</em> subfolder, runs <em>Save new version</em> instead of <em>Save</em>.</p>
+<ul>
+<li>Saves the current file.</li>
+<li>Copies it to the <em>ramses_versions</em> subfolder, appending the current state and version number.</li>
+</ul>
+<p>See the <a href="../files/naming/">naming scheme</a> and <a href="../files/tree/">folder structure</a> for more information.</p>
+<ul>
+<li><em>If the client is available</em>: sends the <em>update</em> command to the client, with the date, state and version of the current asset/shot.</li>
+</ul>
+<h3 id="save-new-version">Save new version</h3>
+<ul>
+<li>If the file is not a working file, but a version coming from the <em>ramses_version</em> subfolder:<ul>
+<li>Saves the current file as the working file</li>
+<li>Removes the current file (version file, keeps only the new working file) if it was not in a <em>ramses_versions</em> subfolder</li>
+</ul>
+</li>
+<li>Saves the current file.</li>
+<li>Copies it to the <em>ramses_versions</em> subfolder, appending the current state and the incremented version number.</li>
+<li><em>If the client is available</em>: sends the <em>update</em> command to the client, with the date, state and version of the current asset/shot. </li>
+</ul>
+<h3 id="publish">Publish</h3>
+<ul>
+<li>Saves the current file.</li>
+<li>Copies it to the <em>ramses_versions</em> subfolder, appending the current state and the incremented version number.</li>
+<li>Saves as a new file into the <em>published</em> subfolder.</li>
+<li><em>If the client is available</em>: sends the <em>publish</em> command to the client, with the date, state and version of the current asset/shot.</li>
+</ul>
+<h3 id="retrieve-version">Retrieve version</h3>
+<ul>
+<li>Gets a specific version back from the <em>ramses_versions</em> subfolder.</li>
+<li>Copies the file to the asset/shot folder.</li>
+<li>Opens it.</li>
+</ul>
+<p>It is only when the file will be saved that this new copied file will be removed and the working file will be overwritten to a new version.</p>
+<h3 id="settings">Settings</h3>
+<ul>
+<li>Opens the settings editor of the Add-on.</li>
+</ul>
+<h3 id="open-ramses">Open Ramses</h3>
+<ul>
+<li>Opens the <em>Ramses Client</em> if available.</li>
+<li>Try to connect to the <em>Daemon</em>.</li>
+<li>Warns the user if not available/cannot connect to the <em>Daemon</em>.</li>
+<li>If the <em>Daemon</em> is available, sets the mode to &ldquo;online&rdquo;. If not, sets to &ldquo;offline&rdquo;.</li>
+</ul>
 <h2 id="ui-ux">UI / UX</h2>
+<p>Depending on the host application, the implementation and User Interface / User Experience of the add-ons may vary, but they should follow these guidelines as closely as possible.</p>
 <h3 id="integrated-commands">Integrated commands</h3>
+<p>When possible, the commands should be integrated as seamlessly as possible in the host application, e.g. by adding or even replacing menu items for saving files, saving as., etc.</p>
+<p>Especially for the <em>save</em> command, the default <em>save</em> shortcut (generally <code>[Ctrl] + [S]</code>) should be replaced by the <em>save</em> command for <em>Ramses</em>. Other <em>save</em> command shortcuts should be added, preferably the same for all add-ons:</p>
+<ul>
+<li><em>Save</em>: <code>[Ctrl] + [S]</code></li>
+<li><em>Save new version</em>: <code>[Ctrl] + [Alt] + [S]</code></li>
+<li><em>Publish</em>: <code>[Ctrl] + [Shift] + [P]</code></li>
+</ul>
+<p>These shortcuts have been chosen to avoid conflicts in most host applications but can be changed to something else if they&rsquo;re still conflicting with something important.</p>
 <h3 id="ui-panel">UI Panel</h3>
+<p>If possible, each <em>Ramses Add-on</em> should provide a UI panel integrated into the host software, but organized similarly in all add-ons, with specific variations to respect the host software UI guidelines.</p>
+<p>The panel must display buttons for all available commands.</p>
+<p>The panel must also provide a way to quickly set the current <em>Project</em> and <em>Step</em>, and show the opened asset or shot information: state, version, date, comment&hellip; This information is retrieved from the client application if available, or from the <a href="../files/tree/"><em>Ramses Tree</em></a> if not. The panel and this information must be updated as soon as the opened file changes, or at least when the user interacts with it.</p>
+<p>If the client application is not available, the <em>Project</em> and <em>Step</em> information is displayed but cannot be changed. <em>Comment</em> is not available.</p>
+<h3 id="settings_1">Settings</h3>
+<p>If the host application provides a way to display the settings of its add-ons, the settings should be located there (and the <em>settings</em> command should open this location if possible). If it does not, tha Add-on must provide a dialog or a panel to let the user change the settings.</p>
+<p>These settings are:</p>
+<ul>
+<li>Location of the <em>Ramses Client</em> executable file (<em>.exe</em> on <em>Windows</em>, <em>.app</em> on <em>MacOS</em>, <em>.appimage</em> or binary on <em>Linux</em>)</li>
+<li>Listening port of the <em>Ramses Daemon</em></li>
+</ul>
+<p>Note: the settings are saved in a shared location between all add-ons so that they&rsquo;re configured only once. They&rsquo;re in an easy-to-edit JSON text file.</p>
               
             </div>
           </div>
