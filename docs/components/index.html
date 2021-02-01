@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Nicolas Dufresne and contributors">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Ramses components - Ramses Documentation</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../style.css" rel="stylesheet">
+  <link href="../video.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ramses components";
+    var mkdocs_page_input_path = "components/index.md";
+    var mkdocs_page_url = "/components/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ramses Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Ramses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Components</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Ramses components</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#ramses-components">Ramses Components</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#general-description">General Description</a></li>
+        
+            <li><a class="toctree-l4" href="#ramses-data">Ramses Data</a></li>
+        
+            <li><a class="toctree-l4" href="#ramses-server">Ramses Server</a></li>
+        
+            <li><a class="toctree-l4" href="#ramses-client-and-daemon">Ramses Client and Daemon</a></li>
+        
+            <li><a class="toctree-l4" href="#ramses-add-ons">Ramses Add-ons</a></li>
+        
+            <li><a class="toctree-l4" href="#ramses-tree">Ramses Tree</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Files and folders</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../files/naming/">Naming scheme</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../files/tree/">Folder structure</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Add-ons</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../addons/">Add-ons in applications</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">Files and Folders</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/files/naming/">Naming</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Scripting API</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ramses/">Ramses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_application/">RamApplication</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_asset/">RamAsset</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_assetstep/">RamAssetStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_filetype/">RamFileType</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_item/">RamItem</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_object/">RamObject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_project/">RamProject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_shot/">RamShot</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_shotstep/">RamShotStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_state/">RamState</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_status/">RamStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_step/">RamStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_stepstatus/">RamStepStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_user/">RamUser</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../credits/">Credits</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../changelog/">Changelog</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">License</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../licenses/gnu-gpl/">GNU GPLv3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../licenses/gfdl/">Documentation license</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ramses Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Components &raquo;</li>
+        
+      
+    
+    <li>Ramses components</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/components/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ramses-components">Ramses Components</h1>
+<p><em>Ramses</em> is a complete framework made of different components interacting together. This makes it very modular and scalable to any kind of production, from the freelancer working at home to the biggest studios.</p>
+<div class="toc">
+<ul>
+<li><a href="#ramses-components">Ramses Components</a><ul>
+<li><a href="#general-description">General Description</a></li>
+<li><a href="#ramses-data">Ramses Data</a></li>
+<li><a href="#ramses-server">Ramses Server</a></li>
+<li><a href="#ramses-client-and-daemon">Ramses Client and Daemon</a></li>
+<li><a href="#ramses-add-ons">Ramses Add-ons</a></li>
+<li><a href="#ramses-tree">Ramses Tree</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="general-description">General Description</h2>
+<p>The <em>Ramses</em> framework can be viewed as a hirerachical tree, going from the data stored by the <em>Ramses Server</em> up to the <a href="../addons/">creative applications add-ons</a> and the <a href="../files/naming/">files and folder structure</a> on the workstations.</p>
+<ul>
+<li><strong><em>Ramses Data</em></strong>: all the meta-data is stored by <em>Ramses</em> in an <em>SQL</em> server.</li>
+<li><strong><em>Ramses Server</em></strong>: this data is managed by a webserver, which reads and writes the data on demand from connected <em>Ramses Clients</em>.<ul>
+<li><strong><em>Ramses Client</em></strong>: the client is run on each workstation and is the central application and provides the main User Interface of <em>Ramses</em>.</li>
+<li><strong><em>Ramses Daemon</em></strong>: the daemon is run by the client itself, and is a local server which is used as a bridge between creative applications and the client itself. It handles all communications and data with the applications add-ons.<ul>
+<li><strong><em>Ramses Add-ons</em></strong>: the add-ons are scripts to be used from inside the creative applications (e.g. <em>Blender</em>, <em>Maya</em>, <em>After Effects</em>&hellip;) so that the artist does not have to leave his application to use <em>Ramses</em>.<ul>
+<li><strong><em>Ramses Tree</em></strong>: on the lowest level, <em>Ramses</em> manages the files and folder structure on the workstation (and/or clones on remote locations).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The modularity of Ramses comes from the fact that <em>children</em> modules don&rsquo;t necessarily need the <em>parent</em> module, at least for their core functionnalities. For example, you can use the <em>Ramses Client</em> without the <em>Ramses Server and Data</em>, or you can even use the <em>Ramses add-ons</em> without the <em>Ramses Client</em>.<br />
+But you can not skip levels, i.e. the <em>Ramses Add-ons</em> can not be used with the <em>Ramses Server</em> without having both the <em>Ramses Client</em> and <em>Ramses Daemon</em>.</p>
+<h2 id="ramses-data">Ramses Data</h2>
+<p>Most of the data used by <em>Ramses</em> is stored in SQL databases. When using the <em>Ramses Server</em>, the main data is stored in a remote SQL server; in its default implementation, the <em>Ramses Server</em> works with <em>MySQL</em>.</p>
+<p>The <em>Ramses Client</em> keeps a local copy of the data in a SQLite database.</p>
+<h2 id="ramses-server">Ramses Server</h2>
+<p>The <em>Ramses Server</em> is the interface between the client and the data. It is meant only to be used programmatically and it does not have any UI. It is a very standard <em>REST</em> web server written in <em>PHP</em>, exchanging data in <em>JSON</em>.</p>
+<p>This means the <em>Ramses Server</em> and its associated <em>Ramses Data</em> can be easily installed everywhere, on a workstation (with a standard web server), on a shared hosting or a private server, no matter the operating system. Installation of <em>Ramses</em> on a server is as simple as copying <em>php</em> files to the server, and adding a little information in the configuration file.</p>
+<h2 id="ramses-client-and-daemon">Ramses Client and Daemon</h2>
+<p>The client is the main <em>Ramses</em> application. It can be used without the <em>Ramses Server</em>, without losing any functionnality, apart from collaborative work. In this case, the data is stored locally. When the server is not available (e.g. loss of internet connection), the <em>Ramses Client</em> can still work offline, and synchronize the data as soon as it comes online later.</p>
+<p>The client is a native application (C++), and is available on <em>Linux</em>, <em>Windows</em> and <em>MacOS</em>, which makes it fast and lightweight. It may be available later for <em>Android</em>.</p>
+<p>The client also runs the <em>Ramses Daemon</em> which is a local server which communicates with the <em>Ramses Add-ons</em> and shares the data with them.</p>
+<h2 id="ramses-add-ons">Ramses Add-ons</h2>
+<p>The add-ons are scripts available inside the creative applications (e.g. <em>Blender</em>, <em>Maya</em>, <em>After Effects</em>&hellip;). They could be used without the client, with limited functionnalities. In this case, data is retrieved from the <em>Ramses Tree</em>.</p>
+<p>The add-ons are in charge of file management and versionning, publishing, etc.</p>
+<h2 id="ramses-tree">Ramses Tree</h2>
+<p>On the lowest level, <em>Ramses</em> handles all files and folders for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remot and backup locations.</p>
+<p>Both the Add-ons and the Client can manage the files and folders.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../files/naming/" class="btn btn-neutral float-right" title="Naming scheme">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Ramses"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../files/naming/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../video.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

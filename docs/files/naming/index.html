@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Nicolas Dufresne and contributors">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Naming scheme - Ramses Documentation</title>
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../style.css" rel="stylesheet">
+  <link href="../../video.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Naming scheme";
+    var mkdocs_page_input_path = "files/naming.md";
+    var mkdocs_page_url = "/files/naming/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Ramses Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Ramses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Components</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../components/">Ramses components</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Files and folders</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Naming scheme</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#file-and-folder-naming-scheme">File and folder naming scheme</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#short-names-id">Short names (ID)</a></li>
+        
+            <li><a class="toctree-l4" href="#naming-scheme">Naming scheme</a></li>
+        
+            <li><a class="toctree-l4" href="#master-media-files-and-final-exports">Master media files and final exports</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../tree/">Folder structure</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Add-ons</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../addons/">Add-ons in applications</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <span class="caption-text">Files and Folders</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/files/naming/">Naming</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Scripting API</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ramses/">Ramses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_application/">RamApplication</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_asset/">RamAsset</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_assetstep/">RamAssetStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_filetype/">RamFileType</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_item/">RamItem</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_object/">RamObject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_project/">RamProject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_shot/">RamShot</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_shotstep/">RamShotStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_state/">RamState</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_status/">RamStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_step/">RamStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_stepstatus/">RamStepStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_user/">RamUser</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../credits/">Credits</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../changelog/">Changelog</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">License</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../licenses/gnu-gpl/">GNU GPLv3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../licenses/gfdl/">Documentation license</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Ramses Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Files and folders &raquo;</li>
+        
+      
+    
+    <li>Naming scheme</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/files/naming.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="file-and-folder-naming-scheme">File and folder naming scheme</h1>
+<p><em>Ramses</em> uses a strict and specific naming convention. This naming scheme is based on the <em>short names</em> of the elements, which are defined by the administrator users.</p>
+<p>We provide <a href="../../dev/files/naming/">a set of regular expressions</a> to help developpers manipulate this naming scheme.</p>
+<div class="toc">
+<ul>
+<li><a href="#file-and-folder-naming-scheme">File and folder naming scheme</a><ul>
+<li><a href="#short-names-id">Short names (ID)</a></li>
+<li><a href="#naming-scheme">Naming scheme</a><ul>
+<li><a href="#blocks">Blocks</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a href="#master-media-files-and-final-exports">Master media files and final exports</a><ul>
+<li><a href="#blocks_1">Blocks</a></li>
+<li><a href="#examples_1">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="short-names-id">Short names (ID)</h2>
+<p>In <em>Ramses</em>, all elements (users, assets, shots, projects&hellip;) have two names: the actual name used in the user interface and displayed anywhere there is enough room, and a <em>short name</em> which is no longer than 10 characters (but it may be the same as the actual name). <em>Short names</em> are unique (while names may not be unique, although it&rsquo;s good practice to keep them unique too) and they are used as identifiers.</p>
+<p>While names can contain a lot of different characters, <em>short names</em> can consist only of alphanumeric characters (without any special character or accent), and the plus <code>+</code> and minus <code>-</code> characters.</p>
+<p>For the sake of readability, we are going to call these <em>short names</em>: <em><strong>ID</strong>s</em> in the rest of this document.</p>
+<h2 id="naming-scheme">Naming scheme</h2>
+<p>This is the complete naming scheme, for all files and folders:</p>
+<p><code>projectID_A|S|G(_assetID|shotID)_stepID(_resource name)(_version)(.extension)</code></p>
+<p>Explanations:</p>
+<ul>
+<li>The name is divided into blocks, separated by the underscore <code>_</code> character.</li>
+<li>Optionnal blocks are shown in parenthesis <code>()</code></li>
+<li>The vertical bar <code>|</code> characters means &ldquo;or&rdquo; and represents a choice in a list of possibilities.</li>
+</ul>
+<p><strong>A file name must include at least 3 blocks</strong>: <em>projectID</em>, <em>Type</em> (<em>A</em>, <em>S</em> or <em>G</em>), and <em>stepID</em> and can include up to 6 blocks if adding the <em>assetId</em> or <em>shotID</em>, the resource name, and the version.</p>
+<h3 id="blocks">Blocks</h3>
+<ul>
+<li><code>projectID</code> is the ID of the project.<br />
+    Between 1 and 10 characters consisting only of <code>a-z</code>, <code>0-9</code> and <code>+-</code> characters. No space allowed.</li>
+<li><code>A|S|G</code> tells if the file or folder refers to an Asset (<em>A</em>), a shot (<em>S</em>) or a general item (<em>G</em>).</li>
+<li><code>assetID</code> is the ID of the asset, if the previous block is <em>A</em>.<br />
+    Between 1 and 10 characters consisting only of <code>a-z</code>, <code>0-9</code> and <code>+-</code> characters. No space allowed.</li>
+<li><code>shotID</code> is the ID of the shot, if the previous block is <em>S</em>.<br />
+    Between 1 and 10 characters consisting only of <code>a-z</code>, <code>0-9</code> and <code>+-</code> characters. No space allowed.</li>
+<li><code>stepID</code> is the ID of the production step.<br />
+    Between 1 and 10 characters consisting only of <code>a-z</code>, <code>0-9</code> and <code>+-</code> characters. No space allowed.</li>
+<li><code>resource name</code> describes the specific resource this file or folder refers to.<br />
+    Between 1 and 20 characters consisting only of <code>a-z</code>, <code>0-9</code> and <code>+-</code> characters and may contain spaces.
+    Resource names cannot start with a status ID followed by a number (e.g. <em>v01</em> or <em>wip2</em>) nor a number alone.</li>
+<li><code>version</code> contains the status and version number.<br />
+    May start with either <code>v</code> or the ID of the status (e.g. &ldquo;wip&rdquo;, &ldquo;ok&rdquo;, etc.), and includes one or more numbers. No other character allowed.</li>
+<li><code>extension</code> is the file extension.<br />
+    The extension may include multiple dots, for example: <em>.tar.gz</em></li>
+</ul>
+<h3 id="examples">Examples</h3>
+<h2 id="master-media-files-and-final-exports">Master media files and final exports</h2>
+<p>Final masters have a specific naming scheme.</p>
+<p><code>projectID_codec(-colorspace)_widthxheight(p|i)_fps(_language)_(subtitlesst).ext</code></p>
+<h3 id="blocks_1">Blocks</h3>
+<ul>
+<li><code>projectID</code> is the ID of the project.<br />
+    Between 1 and 10 characters consisting only of <code>a-z</code>, <code>0-9</code> and <code>+-</code> characters. No space allowed.</li>
+<li><code>codec</code> is the name of the codec.
+    Between 1 and 10 characters consisting only of <code>a-z</code> and <code>0-9</code> characters. No space allowed. No dot allowed (e.g. <em>h.264</em> must be named <em>h264</em>).</li>
+<li><code>colorspace</code> represents the colorspace used if it&rsquo;s not the most common one for this codec.
+    Between 1 and 10 characters consisting only of <code>a-z</code> and <code>0-9</code> characters. No space allowed. No dot allowed.
+    Examples: <em>YUV420</em>, <em>sRGB</em>, <em>YUV444</em>, <em>sRGBA</em>&hellip;</li>
+<li><code>widthxheight</code> is the resolution of the file.</li>
+<li><code>p|i</code> tells if the video is interlaced or progressive. If omitted, the video is considered progressive.</li>
+<li><code>fps</code> is the framerate.
+    A number, which may contain a dot <code>.</code> character, and optionnaly the <code>fps</code> suffix.</li>
+<li><code>language</code> is the spoken language. Omitted if there are no dialogs nor any written text.</li>
+<li><code>subtitlesst</code> is the language code for the subtitles followed by the <em>st</em> suffix. Omitted if there are no subtitles.</li>
+<li><code>ext</code> is the file extension.
+    The extension may include multiple dots, for example: <em>.tar.gz</em></li>
+</ul>
+<h3 id="examples_1">Examples</h3>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tree/" class="btn btn-neutral float-right" title="Folder structure">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../components/" class="btn btn-neutral" title="Ramses components"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../components/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../tree/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../video.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

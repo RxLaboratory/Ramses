@@ -21,7 +21,7 @@ If a specific file or folder is not found in the *main tree*, Ramses will automa
 
 ### Remote files on Windows
 
-Ramses should be able to access files located on remote locations throught the *Samba* (*SMB*) protocol, using standard URL starting with `\\server-name`.
+Ramses should be able to access files located on remote locations using the *Samba* (*SMB*) protocol, using standard URL starting with `\\server-name`.
 
 Another way to access remote locations, which enables *FTP* and other protocols support, is to use *Windows Network Drives* to mount the remote locations. To make it easy to deploy Ramses on several devices, they should all use the same letter for the network drive.
 
@@ -52,7 +52,7 @@ Nevertheless, you can always choose another folder to store a specific project, 
 
 ## The Project Folder
 
-These are the content of the Project folder:
+These are the contents of the Project folder:
 
 ```sh
 - PROJECTID # Root
@@ -65,7 +65,7 @@ These are the content of the Project folder:
     - 06-EXPORT # Media files
 ```
 
-The root folder of a project only contains other folders.
+The root folder of a project only contains other folders and no files.
 
 The subfolder in the root folder are numbered to help sorting them and quickly find them.
 

@@ -26,9 +26,13 @@ site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
     - Ramses: index.md
+    - Components:
+        - Ramses components: components/index.md
     - Files and folders:
         - Naming scheme: files/naming.md
         - Folder structure: files/tree.md
+    - Add-ons:
+        - Add-ons in applications: addons/index.md
     - Development:
         - Files and Folders:
             - Naming: dev/files/naming.md
