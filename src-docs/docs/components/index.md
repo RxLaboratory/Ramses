@@ -40,12 +40,12 @@ The client also runs the *Ramses Daemon* which is a local server which communica
 
 ## Ramses Add-ons
 
-The add-ons are scripts available inside the creative applications (e.g. *Blender*, *Maya*, *After Effects*...). They could be used without the client, with limited functionnalities. In this case, data is retrieved from the *Ramses Tree*.
+The [add-ons](../addons/index.md) are scripts available inside the creative applications (e.g. *Blender*, *Maya*, *After Effects*...). They could be used without the client, with limited functionnalities. In this case, data is retrieved from the *Ramses Tree*.
 
 The add-ons are in charge of file management and versionning, publishing, etc.
 
 ## Ramses Tree
 
-On the lowest level, *Ramses* handles all files and folders for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remot and backup locations.
+On the lowest level, *Ramses* handles all [files](../files/naming.md) and [folders](../files/tree.md) for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remote and backup locations.
 
 Both the Add-ons and the Client can manage the files and folders.
