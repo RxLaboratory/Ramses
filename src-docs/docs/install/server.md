@@ -13,7 +13,7 @@
 
 It also needs an acces to a ***mySQL*** database.
 
-The recommended configuration is a standard AMP stack (*Apache* - *mySQL* - *PHP*), with at least 4GB of RAM if the *SQL* server is on the same computer.
+The recommended configuration is a standard *AMP* stack (*Apache* - *mySQL* - *PHP*), with at least 4GB of RAM if the *SQL* server is on the same computer.
 
 !!! note
     As *Ramses* is still in development, the only compatible SQL database is *mySQL*. We may add support for other databases in the future.
@@ -23,5 +23,7 @@ The recommended configuration is a standard AMP stack (*Apache* - *mySQL* - *PHP
 1. Create a new base on the *SQL* server, along with its user and password.
 2. Copy the *Ramses Server* files to the web server.
 3. Edit `config.php` with needed info.
-4. Load `install.php`.
-5. Delete `install.php` from the server.
+4. Go to `http://your.server/ramses/install`
+5. Delete the `install` folder from the server.
+
+The default user for Ramses is `Admin` with the password `password`. You should start by changing this name and password.
