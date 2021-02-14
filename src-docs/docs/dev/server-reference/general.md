@@ -13,7 +13,8 @@ Use this query to test if the server is available before logging in.
 
 **Examples:**
 
-Query: `http://your.server/ramses/?ping`
+Query:  
+`http://your.server/ramses/?ping`
 
 Reply:
 
@@ -55,7 +56,8 @@ The server replies with the user which has logged in. Note that the content also
 
 **Examples:**
 
-Query: `http://your.server/ramses/?login&username=Duduf&password=123456`
+Query:  
+`http://your.server/ramses/?login&username=Duduf&password=123456`
 
 Reply:
 

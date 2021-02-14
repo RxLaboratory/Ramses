@@ -19,7 +19,8 @@ Empty
 
 **Examples:**
 
-Query: `http://your.server/ramses/?updateUser&name=Nicolas Dufresne&shortName=Duduf&uuid=123&token=123`
+Query:  
+`http://your.server/ramses/?updateUser&name=Nicolas Dufresne&shortName=Duduf&uuid=123&token=123`
 
 Reply:
 
@@ -53,7 +54,8 @@ Empty
 
 **Examples:**
 
-Query: `http://your.server/ramses/?updatePassword&current=123&new=456&uuid=123&token=123`
+Query:  
+`http://your.server/ramses/?updatePassword&current=123&new=456&uuid=123&token=123`
 
 Reply:
 
@@ -87,7 +89,8 @@ The server replies an array of user information. Each user is an object with the
 
 **Examples:**
 
-Query: `http://your.server/ramses/?getUsers&token=123`
+Query:  
+`http://your.server/ramses/?getUsers&token=123`
 
 Reply:
 
@@ -113,5 +116,67 @@ Reply:
             "role": "standard",
         }
     ]
+}
+```
+
+## createUser
+
+Creates a new user in the database.
+
+**Query attributes:**
+
+- *name*: **string**. The new name.
+- *shortName*: **string**. The new shortName.
+- *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?createUser&name=Nicolas Dufresne&shortName=Duduf&uuid=123&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "createUser",
+    "success": true,
+    "message": "User \"Duduf\" created.",
+    "content": { }
+}
+```
+
+## removeUser
+
+Removes a user from the database.
+
+**Query attributes:**
+
+- *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?removeUser&uuid=123&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "removeUser",
+    "success": true,
+    "message": "User 123 removed.",
+    "content": { }
 }
 ```
