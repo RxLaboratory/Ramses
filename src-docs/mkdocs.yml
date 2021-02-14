@@ -39,7 +39,7 @@ nav:
         - Introduction: dev/index.md
         - Files and Folders:
             - Naming: dev/files/naming.md
-        - Scripting API:
+        - Scripting API (Add-onse):
             - Reference: dev/add-ons-reference/index.md
             - Ramses: dev/add-ons-reference/ramses.md
             - RamApplication: dev/add-ons-reference/ram_application.md
@@ -56,6 +56,10 @@ nav:
             - RamStep: dev/add-ons-reference/ram_step.md
             - RamStepStatus: dev/add-ons-reference/ram_stepstatus.md
             - RamUser: dev/add-ons-reference/ram_user.md
+        - Server API:
+            - Reference: dev/server-reference/index.md
+            - General queries: dev/server-reference/general.md
+            - Users queries: dev/server-reference/users.md
     - Credits: credits.md
     - Changelog: changelog.md
     - License:
