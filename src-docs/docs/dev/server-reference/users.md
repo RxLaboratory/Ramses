@@ -10,6 +10,8 @@ Logs in with a username and a (hashed) password.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
+- *role*: **string** (optionnal). The new role of the user.
+- *folderPath*: **string** (optionnal). The path for the user folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
