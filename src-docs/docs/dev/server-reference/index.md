@@ -27,7 +27,16 @@ The *JSON* objects sent by the server all have the same content:
     - [ping](general.md#ping)
     - [login](general.md#login)
 - Users
-    - [updateUser](users.md#updateUser)
-    - [updatePassword](users.md#updatePassword)
-    - [getUsers](users.md#getUsers)
+    - [updateUser](users.md#updateuser)
+    - [updatePassword](users.md#updatepassword)
+    - [getUsers](users.md#getusers)
+    - [createUser](users.md#createuser)
+    - [removeUser](users.md#removeuser)
+- Projects
+    - [createProject](projects#createproject)
+    - [getProjects](projects#getprojects)
+    - [updateProject](projects#updateproject)
+    - [removeProject](projects#removeproject)
+    - [assignStep](projects#assignstep)
+    - [unassignStep](projects#unassignstep)
 

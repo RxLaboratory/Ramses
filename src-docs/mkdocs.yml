@@ -60,6 +60,7 @@ nav:
             - Reference: dev/server-reference/index.md
             - General queries: dev/server-reference/general.md
             - Users queries: dev/server-reference/users.md
+            - Projects queries: dev/server-reference/projects.md
     - Credits: credits.md
     - Changelog: changelog.md
     - License:
