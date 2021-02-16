@@ -1,5 +1,0 @@
-- Server: check admin/lead rights
-- Users: set password to other
-- Users: set role
-- Users: add cancel ("revert") button and rename "update" to "apply"
-- When creating user: password incorrectly set ? Can't login with new user.
