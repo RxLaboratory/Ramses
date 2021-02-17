@@ -25,7 +25,7 @@ Ramses should be able to access files located on remote locations using the *Sam
 
 Another way to access remote locations, which enables *FTP* and other protocols support, is to use *Windows Network Drives* to mount the remote locations. To make it easy to deploy Ramses on several devices, they should all use the same letter for the network drive.
 
-### Remove files on Unix-like Systems (Linux, Mac OS)
+### Remote files on Unix-like Systems (Linux, Mac OS)
 
 The quickest and easiest way to use Ramses on remote folders on Unix-like systems is to automatically mount the remote locations in a specific folder. This can work for a lot of different protocols (*Samba*, *FTP(s)*, *SFTP*, *NFS*...)
 

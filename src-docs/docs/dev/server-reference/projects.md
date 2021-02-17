@@ -91,7 +91,7 @@ Reply:
 
 ## updateProject
 
-Logs in with a username and a (hashed) password.
+Updates project information.
 
 **Query attributes:**
 
@@ -128,7 +128,7 @@ Removes a project from the database.
 
 **Query attributes:**
 
-- *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
+- *uuid*: **string**. The project's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**
@@ -154,11 +154,11 @@ Reply:
 
 ## assignStep
 
-Assigns an existing step to a project
+Assigns a template step to a project
 
 **Query attributes:**
 
-- *stepUuid*: **string**. The step's Universal Unique Identifier.
+- *stepUuid*: **string**. The template step's Universal Unique Identifier.
 - *projectUuid*: **string**. The project's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
