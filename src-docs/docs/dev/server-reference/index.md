@@ -39,4 +39,13 @@ The *JSON* objects sent by the server all have the same content:
     - [removeProject](projects#removeproject)
     - [assignStep](projects#assignstep)
     - [unassignStep](projects#unassignstep)
-
+- Steps and Template Steps
+    - [createStep](steps#createstep)
+    - [getSteps](steps#getsteps)
+    - [updateStep](steps#updatestep)
+    - [removeStep](steps#removeStep)
+- States
+    - [createState](states#createstate)
+    - [getStates](states#getstates)
+    - [updateState](states#updatestate)
+    - [removeState](states#removeState)

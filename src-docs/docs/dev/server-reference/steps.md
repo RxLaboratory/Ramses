@@ -47,7 +47,7 @@ Retrieves the list of all steps.
 
 **Query attributes:**
 
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+None
 
 **Reply content:**
 

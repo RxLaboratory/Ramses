@@ -15,7 +15,7 @@ Here are these objects:
     - ![](../img/icons/shots-frames_sd.svg){: style="width:18px;"} A ***Sequence*** contain some of the *shots* of a project.
         - Shot
             - Status
-- State
+- A [***State***](states.md) is part of an asset or shot status, and defines its working state (e.g. work in progress, to do, OK, etc.)
 - Application
     - File type
 
