@@ -42,7 +42,7 @@ As any other object in *Ramses*, the users are defined by their:
 
 - ***Name***
 - ***Short Name***
-- ***User Folder*** which is by default in the *users* subfolder of the main *Ramses* folder.
+- ***User Folder*** which is by default in the *users* subfolder of the main *Ramses* folder. It contains the user's specific files, documents, tests... Anything the user wants to keep for herself or himself.
 
 The user also has these additional attributes:
 

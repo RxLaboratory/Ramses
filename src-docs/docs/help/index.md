@@ -25,24 +25,22 @@ All these objects are defined by at least:
 
 - A full name: a longer name describing the object.
 - A short name: a short version (less than 10 characters) of the name of the object, used in UI when there is not enough room and in filenames.
-- A folder: a physical location in the file structure to store its associated data.
+
+!!! warning
+    The full name can be changed as any moment during the production.
+
+    The short name can also be changed at any, as *Ramses* uses unique identifiers internally to refer to each objects, be be warned that the short names are used in the [*Ramses Tree*](../files/tree.md) so when changing the name of an object, you also need to rename/move all files and folders to the new name. This can easily be done at the start of the production but may become very difficult if the object is already used a lot.
 
 ## Object folders
 
-Folders for object can be user-defined, and there are two ways to locate them.
+Most of the folders are managed by *Ramses* inside the [*Ramses Tree*](../files/tree.md), but for some specific objects, the folder can also be user-defined. That's the case for:
 
-- *Absolute*: the path is the exact same on all workstations.
-- *Relative* (default): the path is relative to the main *Ramses* folder or to a project folder, and can vary on different workstations if these main *Ramses* or project folders are not at the same location.
+- Projects
+- Users
 
-The easiest way to let *Ramses* manage your file structure is to keep using relative paths, even for projects which can all be located inside the main *Ramses* folder.
+!!! note
+    The [*Ramses Tree*](../files/tree.md) is relative to the main *Ramses* folder. This folder can be different on each workstation, NAS or other remote locations.
+    
+    If a custom folder is defined for a project, all its child-objects folders will be relative to that new project folder.
 
 Read the [*Ramses Tree*](../files/tree.md) section of this documentation for more information.
-
-### Setting folder paths
-
-*Ramses* will automatically detect if a path if relative or absolute, based on these rules:
-
-- On Linux and MacOS, if a path starts with `/` or `~` it is aboslute, otherwise it is relative.
-- On Windows, if a path starts with a drive specification like `C:\` or with `\\` it is absolute, otherwise it is relative.
-
-When the path is relative, *Ramses* automatically locate the right parent according to the type of object (either the *Ramses* main folder, or the *users* subfolder, the *project* folder, etc.). Read the [*Ramses Tree*](../files/tree.md) section of this documentation for more information.

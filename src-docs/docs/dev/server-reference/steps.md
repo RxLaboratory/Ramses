@@ -56,7 +56,7 @@ The server replies an array of step information. Each step is an object with the
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
-- *folderPath*: **string**. The user folder path.
+- *type*: **string**. The type of the step. One of "pre", "post", "shot", "asset" or "post".
 
 **Examples:**
 
@@ -76,13 +76,13 @@ Reply:
             "name": "Rigging",
             "shortName": "RIG",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
-            "folderPath": "auto"
+            "type": "asset"
         },
         {
             "name": "Animation",
             "shortName": "ANIM",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
-            "folderPath": "auto"
+            "type": "shot"
         }
     ]
 }
@@ -98,7 +98,7 @@ Update step info in the database.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
-- *folderPath*: **string** (optionnal). The path for the step folder.
+- *type*: **string** (optionnal). The type of the step. One of "pre", "post", "shot", "asset" or "post".
 - *uuid*: **string**. The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login)
 

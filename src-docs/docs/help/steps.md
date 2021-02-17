@@ -1,1 +1,5 @@
 # Steps
+
+- name
+- shortname
+- type
