@@ -35,6 +35,7 @@ nav:
         - Users: help/users.md
         - Projects: help/projects.md
         - Steps: help/steps.md
+        - States: help/states.md
     - Ramses Tree (File & Folders):
         - Naming scheme: files/naming.md
         - Folder structure: files/tree.md
