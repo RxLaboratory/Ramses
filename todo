@@ -1,7 +1,3 @@
-- dbi steps
-- ramses steps list & create step
-- stepeditwidget
-- stepsmanagerwidget
-
-- projects management widget
-- assign steps to project
+- project steps list (un)assign steps to project
+- change step order
+- (un)assign users

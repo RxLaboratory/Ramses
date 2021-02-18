@@ -2,7 +2,11 @@
 
 The *Rx Asset Management System* is a complete framework to manage your assets, shots and generally speaking your motion pictures production pipeline.
 
-Its several [components](../components/index.md) all handle the same objects which are described precisely in this documentation.
+[TOC]
+
+## Objects
+
+*Ramses* several [components](../components/index.md) all handle the same objects which are described precisely in this documentation.
 
 Here are these objects:
 
@@ -18,6 +22,17 @@ Here are these objects:
 - ![](../img/icons/state.svg){: style="width:18px;"} A [***State***](states.md) is part of an asset or shot status, and defines its working state (e.g. work in progress, to do, OK, etc.)
 - Application
     - File type
+
+## Ramses tree
+
+The easiest way to let *Ramses* manage your files and pipeline is to just set its working folder. See the section entitled [*Ramese Tree*](../files/tree.md) for more information.
+
+You can also set alternative paths to the *Ramses* working folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.
+
+Finally, you can set a backup path too, which is a copy of the main folder where all files are stored. *Ramses* is able to update this backup folder, but will never read data from it.
+
+!!! note
+    Alternative and Backup paths are not implemented yet.
 
 ## Object general attributes
 

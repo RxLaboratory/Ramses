@@ -183,28 +183,6 @@ Reply:
 }
 ```
 
-## unassignStep
-
-Unassigns an existing step from a project
-
-**Query attributes:**
-
-- *stepUuid*: **string**. The step's Universal Unique Identifier.
-- *projectUuid*: **string**. The project's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
-
-**Reply content:**
-
-Empty
-
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?unassignStep&stepUuid=123&projectUuid=123&token=123`
-
-Reply:
-
-```json
 {
     "accepted": true,
     "query": "assignStep",

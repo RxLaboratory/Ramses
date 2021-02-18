@@ -152,3 +152,65 @@ Reply:
     "content": { }
 }
 ```
+
+## assignUser
+
+Assigns a user to a step.
+
+**Query attributes:**
+
+- *stepUuid*: **string**. The step's Universal Unique Identifier.
+- *userUuid*: **string**. The user's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?assignUser&stepUuid=123&userUuid=456&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "assignUser",
+    "success": true,
+    "message": "User assigned to step.",
+    "content": { }
+}
+```
+
+## unassignUser
+
+Unassigns a user from a step.
+
+**Query attributes:**
+
+- *stepUuid*: **string**. The step's Universal Unique Identifier.
+- *userUuid*: **string**. The user's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?unassignUser&stepUuid=123&userUuid=456&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "assignUser",
+    "success": true,
+    "message": "User unassigned from step.",
+    "content": { }
+}
+```

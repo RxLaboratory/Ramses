@@ -9,6 +9,8 @@ There are 4 different types of steps:
 -  ![](../img/icons/shot-frame_sd.svg){: style="width:18px;"} ***Shot Production*** steps are the stages where shots are built using assets (e.g. animation, lighting, compositing, etc.)
 -  ![](../img/icons/film_sl.svg){: style="width:18px;"} ***Post-Production*** includes all the steps from the edit to the delivery, where the work is made on the whole edit and not individual shots (e.g. editing, sound design, music, etc.)
 
+Each steps also stores the list of users assigned to it.
+
 !!! hint
     *Ramses* comes with a set of step templates, but they can be completely adjusted to any production needs; for example, if you consider *Character Desgin* to be a pre-production step instead of an asset production step, it's up to you to customize the templates.
 
@@ -22,4 +24,5 @@ As any other object in *Ramses*, the steps are defined by their:
 The steps also have these additional attributes:
 
 - ***Type***: either *Pre-Production*, *Asset Production*, *Shot Production* or *Post-Production*
+- ***Users***: The list of users assigned to the step.
 - ***Folder***: Each step also has its own folder inside the project file structure, to keep all common files for the given step. See the [*Ramses Tree*](../files/tree.md) for more information.

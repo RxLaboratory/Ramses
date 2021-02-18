@@ -39,12 +39,12 @@ Nevertheless, you can always choose another folder to store a specific project, 
 
 ```sh
 - Ramses Folder
-    - config # Configuration files
-    - projects # All projects
+    - Config # Configuration files
+    - Projects # All projects
         - Project01 # First project
         - Project02 # Second project
         - ...
-    - users # User files
+    - Users # User files
         - User01 # Files for a single user
         - User02
         - ...
