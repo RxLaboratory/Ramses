@@ -1,3 +1,8 @@
-- project steps list (un)assign steps to project
-- change step order
+- update steps server doc: removed getsteps
+- implement step order
+- style: fix icons in combobox
 - (un)assign users
+- switch to singleapplication
+- implement console on loginpage (using a logger singleton which connects to the daemon and dbi)
+- implement project assets list
+- implement project shots list (with add range, and add button auto-increments)
