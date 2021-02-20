@@ -13,6 +13,7 @@ These states cannot be removed from *Ramses*, but you can modify all their attri
 - ***Finished*** / ***OK*** (100%). To be used when an *asset*/*shot* is completely finished.
 - ***To do*** / ***TODO*** (0%). This *asset*/*shot* is ready to be worked on.
 - ***Stand by*** / ***STB*** (0%). Some dependencies are not satisfied to be able to work on this *asset*/*shot* yet.
+- ***Nothing to do*** / ***NO*** (100%). There's nothing to do with this *asset*/*shot* for this step. These are ignored in the calculation of the completion of the project.
 
 ## Optional predefined states
 

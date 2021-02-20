@@ -16,8 +16,8 @@ Each role defines different rights to interact with the production pipeline. Rea
 
 The *Administrator* has all rights to configure and modify *Ramses*, especially but non exclusively:
 
-- Creating, modifying, removing projects.
-- Creating, modifying, removing steps.
+- Creating, removing projects.
+- Creating, modifying, removing template steps.
 - Creating, modifying, removing users.
 
 The *Administrator* had all other rights from other roles too.
@@ -25,12 +25,23 @@ The *Administrator* had all other rights from other roles too.
 !!! Note
     Althought the *administrator* has the right to modify all users, he cannot remove himself nor change his own role. Another administrator has to do it.
 
+### Project Administrator (Proj Admin)
+
+The *Project Administrator* has the necessary rights to configure and modify projects, especially but non exclusively:
+
+- Modifying projects.
+- Creating, modifying, removing steps.
+- Assigning Users to steps.
+- Creating, modifying, removing Asset Groups.
+- Creating, modifying, removing Sequences.
+
 ### ![](../img/icons/leader-head-checker_sl.svg){: style="width:26px;"} Leader (Lead)
 
 The leader is a user who can manage projects, and has less rights than the *administrator*:
 
 - Creating, modifying, removing shots.
 - Creating, modifying, removing assets.
+- Assigning users to assets and shots.
 
 ### ![](../img/icons/user_sl.svg){: style="width:26px;"} Standard User (User)
 

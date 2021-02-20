@@ -1,8 +1,14 @@
 - update steps server doc: removed getsteps
 - implement step order
 - style: fix icons in combobox
+- add ProjectAdmin role in users
 - (un)assign users
 - switch to singleapplication
 - implement console on loginpage (using a logger singleton which connects to the daemon and dbi)
-- implement project assets list
-- implement project shots list (with add range, and add button auto-increments)
+- change remove: add a "removed" column in the tables; only for projects, remove does delete everything, with a confirmation by typing the exact name of the project
+- implement asset groups (with a list of steps and assets)
+- implement asset groups assets list
+- implement sequences
+- implement project shots list (with add range, and add button auto-increments) (shot has a duration)
+- implement status
+- implement stepstatus

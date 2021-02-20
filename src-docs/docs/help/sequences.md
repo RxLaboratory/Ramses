@@ -1,0 +1,5 @@
+# Sequences
+
+- name
+- shortName
+- shots

@@ -35,6 +35,12 @@ nav:
         - Users: help/users.md
         - Projects: help/projects.md
         - Steps: help/steps.md
+        - Asset Groups: help/assetgroups.md
+        - Assets: help/assets.md
+        - Sequences: help/sequences.md
+        - Shots: help/shots.md
+        - Status History: help/statushistory.md
+        - Status: help/status.md
         - States: help/states.md
     - Ramses Tree (File & Folders):
         - Naming scheme: files/naming.md
