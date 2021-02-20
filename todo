@@ -12,3 +12,6 @@
 - implement project shots list (with add range, and add button auto-increments) (shot has a duration)
 - implement status
 - implement stepstatus
+- implement main table
+- implement shots table 
+- implement assets table
