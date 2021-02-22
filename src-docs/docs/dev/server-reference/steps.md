@@ -3,6 +3,9 @@
 !!! note
     The API also provides an access to "template steps" which can be assigned to projects. The calls are exactly the same except you have to insert the "Template" word (e.g. use `createTemplateStep` instead of `createStep`)
 
+!!! hint
+    There is no method to retrive steps directly; steps are returned by the project method [`getProjects`](projects.md#getprojects)
+
 [TOC]
 
 ## createStep
@@ -41,55 +44,6 @@ Reply:
 }
 ```
 
-## getSteps
-
-Retrieves the list of all steps.
-
-**Query attributes:**
-
-None
-
-**Reply content:**
-
-The server replies an array of step information. Each step is an object with the following attributes:
-
-- *name*: **string**. The name of the user.
-- *shortName*: **string**. The username.
-- *uuid*: **string**. The Universal Unique Identifier of this user.
-- *type*: **string**. The type of the step. One of "pre", "post", "shot", "asset" or "post".
-
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?getSteps&token=123`
-
-Reply:
-
-```json
-{
-    "accepted": true,
-    "query": "getProjects",
-    "success": true,
-    "message": "Projects list retrieved.",
-    "content":  [
-        {
-            "name": "Rigging",
-            "shortName": "RIG",
-            "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
-            "type": "asset"
-        },
-        {
-            "name": "Animation",
-            "shortName": "ANIM",
-            "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
-            "type": "shot"
-        }
-    ]
-}
-```
-
-
-
 ## updateStep
 
 Update step info in the database.
@@ -98,7 +52,8 @@ Update step info in the database.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
-- *type*: **string** (optionnal). The type of the step. One of "pre", "post", "shot", "asset" or "post".
+- *type*: **string** (optionnal). The type of the step. One of `asset`, `shot`, `pre`, or `post`.
+- *order*: **int** (optionnal). The order of the step in the production pipeline.
 - *uuid*: **string**. The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login)
 

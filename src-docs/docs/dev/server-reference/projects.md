@@ -50,7 +50,12 @@ The server replies an array of project information. Each project is an object wi
 - *shortName*: **string**. The username.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *folderPath*: **string**. The user folder path.
-- *steps*: **array of int**. The list of steps represented by their ids associated with this project.
+- *steps*: **array of object**. The list of steps. This step object contains these properties:
+    - *name*: **string**.
+    - *shortName*: **string**.
+    - *uuid*: **string**.
+    - *type*: **string**. One of `asset`, `shot`, `pre`, or `post`.
+    - *order*: **int**. Order of the step in the pipeline.
 - *shots*: **array of int**. The list of shots represented by their ids associated with this project.
 
 **Examples:**
@@ -86,8 +91,6 @@ Reply:
     ]
 }
 ```
-
-
 
 ## updateProject
 
