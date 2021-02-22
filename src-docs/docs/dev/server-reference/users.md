@@ -10,7 +10,7 @@ Logs in with a username and a (hashed) password.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
-- *role*: **string** (optionnal). The new role of the user.
+- *role*: **string** (optionnal). The new role of the user. One of `admin`, `project`, `lead`, or `standard`.
 - *folderPath*: **string** (optionnal). The path for the user folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
@@ -87,7 +87,7 @@ The server replies an array of user information. Each user is an object with the
 - *shortName*: **string**. The username.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *folderPath*: **string**. The user folder path.
-- *role*: **string**. The userrole.
+- *role*: **string**. The userrole. One of `admin`, `project`, `lead`, or `standard`.
 
 **Examples:**
 
