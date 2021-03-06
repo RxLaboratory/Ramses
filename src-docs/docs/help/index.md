@@ -13,7 +13,7 @@ Here are these objects:
 - ![](../img/icons/user_sl.svg){: style="width:18px;"} A [***user***](users.md) is someone working on the production.
 - ![](../img/icons/cinema-movie_sl.svg){: style="width:18px;"} A [***project***](projects.md) is the first level of the production. It could represent a feature film (or one of its sequences), a short movie, a TV Series episode...
     - ![](../img/icons/step-node_sl.svg){: style="width:18px;"} A [***step***](steps.md) is one of the stages each *asset* or *shot* has to go through to be produced (e.g. modeling, animation, lighting, compositing...)
-    - ![](../img/icons/assets-properties-group_sd.svg){: style="width:18px;"} An ***Asset Group*** contains some of the *assets* of a project.
+    - ![](../img/icons/assets-properties-group_sd.svg){: style="width:18px;"} An [***Asset Group***](assetgroups.md) contains some of the *assets* of a project.
         - An ***Asset*** is produced independently from the shots and can be used in several shots.
             - A ***Step Status*** describes the status of the production of the asset for each step.
     - ![](../img/icons/shots-frames_sd.svg){: style="width:18px;"} A ***Sequence*** contain some of the *shots* of a project.

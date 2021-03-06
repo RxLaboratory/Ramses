@@ -1,5 +1,5 @@
-- change remove: add a "removed" column in the tables; only for projects, remove does delete everything, with a confirmation by typing the exact name of the project
 - server: enclose column names in ``
+
 - implement asset groups (with a list of steps and assets)
 - implement asset groups assets list
 - implement sequences
@@ -9,4 +9,16 @@
 - implement main table
 - implement shots table 
 - implement assets table
+- option to restore removed items (admin/lead only)
 - option to choose tray icon
+- implement import-export data
+
+WIP ramassetgroup
+
+- server OK -> get in projects
+- doc server OK -> get in projects
+- dbi OK -> get in projects
+- RamAssetGroup OK
+- Ramses (get with projects)
+- ui
+- doc
