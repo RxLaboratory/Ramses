@@ -6,7 +6,7 @@ Each Asset Group stores a list of [Assets](assets.md), and each [Asset](assets.m
 
 ## Attributes
 
-As any other object in *Ramses*, the steps are defined by their:
+As any other object in *Ramses*, the assset groups are defined by their:
 
 - ***Name***
 - ***Short Name***

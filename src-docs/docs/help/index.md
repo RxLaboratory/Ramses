@@ -14,11 +14,11 @@ Here are these objects:
 - ![](../img/icons/cinema-movie_sl.svg){: style="width:18px;"} A [***project***](projects.md) is the first level of the production. It could represent a feature film (or one of its sequences), a short movie, a TV Series episode...
     - ![](../img/icons/step-node_sl.svg){: style="width:18px;"} A [***step***](steps.md) is one of the stages each *asset* or *shot* has to go through to be produced (e.g. modeling, animation, lighting, compositing...)
     - ![](../img/icons/assets-properties-group_sd.svg){: style="width:18px;"} An [***Asset Group***](assetgroups.md) contains some of the *assets* of a project.
-        - An ***Asset*** is produced independently from the shots and can be used in several shots.
-            - A ***Step Status*** describes the status of the production of the asset for each step.
+        - ![](../img/icons/property-asset_sd.svg){: style="width:18px;"} An [***Asset***](assets.md) is produced independently from the shots and can be used in several shots.
+            - A ***Status*** describes the status of the production of the asset for each step.
     - ![](../img/icons/shots-frames_sd.svg){: style="width:18px;"} A ***Sequence*** contain some of the *shots* of a project.
         - A ***Shot*** is a single video used in the final edit.
-            - A ***Step Status*** describes the status of the production of the shot for each step.
+            - A ***Status*** describes the status of the production of the shot for each step.
 - ![](../img/icons/state.svg){: style="width:18px;"} A [***State***](states.md) is part of an asset or shot status, and defines its working state (e.g. work in progress, to do, OK, etc.)
 - An ***Application*** is a piece of software used to produce the *assets* or *shots*.
     - A ***File type*** is used by *applications* either for working, previewing or publishing *assets* and *shots*.
@@ -44,7 +44,7 @@ All these objects are defined by at least:
 !!! warning
     The full name can be changed as any moment during the production.
 
-    The short name can also be changed at any, as *Ramses* uses unique identifiers internally to refer to each objects, be be warned that the short names are used in the [*Ramses Tree*](../files/tree.md) so when changing the name of an object, you also need to rename/move all files and folders to the new name. This can easily be done at the start of the production but may become very difficult if the object is already used a lot.
+    The short name can also be changed at any moment, as *Ramses* uses unique identifiers internally to refer to each objects, be be warned that the short names are used in the [*Ramses Tree*](../files/tree.md) so when changing the name of an object, you also need to rename/move all files and folders to the new name. This can easily be done at the start of the production but may become very difficult if the object is already used a lot.
 
 ## Object folders
 

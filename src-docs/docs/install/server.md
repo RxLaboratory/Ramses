@@ -8,7 +8,7 @@
 
 *Ramses Server* must be installed on a computer with:
 
-- A **web server**
+- An **http web server**
 - ***PHP 7***
 
 It also needs an acces to a ***mySQL*** database.

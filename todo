@@ -1,6 +1,7 @@
 - server: enclose column names in ``
 
 - implement assets
+- add sanity: an icon and a dialog which stores all errors. reset the icon to normal with a button in the popup
 - implement sequences
 - implement project shots list (with add range, and add button auto-increments) (shot has a duration)
 - implement status
@@ -8,8 +9,24 @@
 - implement main table
 - implement shots table 
 - implement assets table
+- RamObject: change the use of deleteLater to the RamObject::removed signal
+- test remove from database then refresh client
+- test other modifications from database then refresh client
+- test using two clients simultaneously (from different virtual machines)
 - option to restore removed items (admin/lead only)
 - option to choose tray icon
 - implement import-export data
 
 WIP 
+
+RamAsset
+
+- sql db OK
+- server (get in assetgroup) OK
+- server doc OK
+- dbi OK
+- RamAsset OK
+- ramses (get in gotassetgroups -> gotassets) OK
+- asseteditwidget OK
+- assetsmanagerwidget OK
+- doc 

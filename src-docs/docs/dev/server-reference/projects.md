@@ -59,9 +59,14 @@ The server replies an array of project information. Each project is an object wi
 - *assetGroups*: **array of object**. The list of asset groups. This asset group object contains these properties:
     - *name*: **string**
     - *shortName*: **string**.
-    - *uuid*: **string**.s
-- *shots*: **array of int**. The list of shots represented by their ids associated with this project.
-
+    - *uuid*: **string**.
+    - *projectUuid*: **string**.
+    - *assets*:  **array of object**. The list of assets. This asset object contains these properties:
+        - *name*: **string**.
+        - *shortName*: **string**.
+        - *tags*: **string**. A comma-separated list of descriptive tags.
+        - *assetGroupUuid*: **string**. The UUID of the containing asset group.
+        - *uuid*: **string**.
 **Examples:**
 
 Query:  

@@ -45,9 +45,16 @@ The *JSON* objects sent by the server all have the same content:
     - [unassignStep](projects#unassignstep)
 - Steps and Template Steps
     - [createStep](steps#createstep)
-    - [getSteps](steps#getsteps)
     - [updateStep](steps#updatestep)
-    - [removeStep](steps#removeStep)
+    - [removeStep](steps#removestep)
+- Asset Groups and Template Asset Groups
+    - [createAssetGroup](assetgroups#createassetgroup)
+    - [updateAssetGroup](assetgroups#updateassetgroup)
+    - [removeAssetGroup](assetgroups#removeassetgroup)
+- Assets
+    - [createAsset](assets#createasset)
+    - [updateAsset](assets#updateasset)
+    - [removeAsset](assets#removeasset)
 - States
     - [createState](states#createstate)
     - [getStates](states#getstates)
