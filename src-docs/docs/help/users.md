@@ -25,7 +25,7 @@ The *Administrator* had all other rights from other roles too.
 !!! Note
     Althought the *administrator* has the right to modify all users, he cannot remove himself nor change his own role. Another administrator has to do it.
 
-### Project Administrator (Proj Admin)
+### ![](../img/icons/project-leader-head-admin_sl.svg){: style="width:26px;"} Project Administrator (Proj Admin)
 
 The *Project Administrator* has the necessary rights to configure and modify projects, especially but non exclusively:
 

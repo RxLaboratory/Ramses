@@ -1,7 +1,6 @@
 - server: enclose column names in ``
 
-- implement asset groups (with a list of steps and assets)
-- implement asset groups assets list
+- implement assets
 - implement sequences
 - implement project shots list (with add range, and add button auto-increments) (shot has a duration)
 - implement status
@@ -13,12 +12,4 @@
 - option to choose tray icon
 - implement import-export data
 
-WIP ramassetgroup
-
-- server OK
-- doc server OK
-- dbi OK
-- RamAssetGroup OK
-- Ramses OK
-- ui
-- doc
+WIP 

@@ -74,6 +74,7 @@ nav:
             - Users queries: dev/server-reference/users.md
             - Projects queries: dev/server-reference/projects.md
             - Steps queries: dev/server-reference/steps.md
+            - Asset Groups queries: dev/server-reference/assetgroups.md
             - States queries: dev/server-reference/states.md
     - Credits: credits.md
     - Changelog: changelog.md
