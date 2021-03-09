@@ -56,6 +56,10 @@ The server replies an array of project information. Each project is an object wi
     - *uuid*: **string**.
     - *type*: **string**. One of `asset`, `shot`, `pre`, or `post`.
     - *order*: **int**. Order of the step in the pipeline.
+- *assetGroups*: **array of object**. The list of asset groups. This asset group object contains these properties:
+    - *name*: **string**
+    - *shortName*: **string**.
+    - *uuid*: **string**.s
 - *shots*: **array of int**. The list of shots represented by their ids associated with this project.
 
 **Examples:**

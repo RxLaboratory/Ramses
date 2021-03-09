@@ -15,10 +15,10 @@
 
 WIP ramassetgroup
 
-- server OK -> get in projects
-- doc server OK -> get in projects
-- dbi OK -> get in projects
+- server OK
+- doc server OK
+- dbi OK
 - RamAssetGroup OK
-- Ramses (get with projects)
+- Ramses OK
 - ui
 - doc
