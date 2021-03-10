@@ -1,14 +1,17 @@
 - server: enclose column names in ``
 
-- implement sequences
+- remove all connections to destroyed and use removed
+- change all connections to changed and removed to use the new RamObject signal
+- factorize the objectEditWidget
 - shortName and name sanitation
-- implement project shots list (with add range, and add button auto-increments) (shot has a duration)
+- implement shots (with add range, and add button auto-increments) (shot has a duration)
+- implement moving assets from group to group
+- implement moving shots from group to group
 - implement status
 - implement stepstatus
 - implement main table
 - implement shots table 
 - implement assets table
-- RamObject: change the use of deleteLater to the RamObject::removed signal
 - test remove from database then refresh client
 - test other modifications from database then refresh client
 - test using two clients simultaneously (from different virtual machines)
@@ -18,14 +21,17 @@
 
 WIP 
 
-RamSequence
 
-- sql db OK
-- server (get in projects) OK
+RamShot
+
+- sql db
+- server (get in projects/sequences)
 - server doc
 - dbi
-- RamAsset
-- ramses (get in gotassetgroups -> gotassets)
-- asseteditwidget
-- assetsmanagerwidget
+- RamShot
+- RamSequence shot list
+- RamProject shot(uuid) & removeshot(uuid)
+- ramses (get in gotsequences -> gotshots
+- shoteditwidget
+- shotmanagerwidget
 - doc
