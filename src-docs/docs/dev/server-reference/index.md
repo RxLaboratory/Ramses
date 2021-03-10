@@ -55,6 +55,10 @@ The *JSON* objects sent by the server all have the same content:
     - [createAsset](assets#createasset)
     - [updateAsset](assets#updateasset)
     - [removeAsset](assets#removeasset)
+- Sequences
+    - [createSequence](sequences#createsequence)
+    - [updateSequence](sequences#updatesequence)
+    - [removeSequence](sequences#removesequence)
 - States
     - [createState](states#createstate)
     - [getStates](states#getstates)

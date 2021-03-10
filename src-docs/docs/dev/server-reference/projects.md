@@ -67,6 +67,12 @@ The server replies an array of project information. Each project is an object wi
         - *tags*: **string**. A comma-separated list of descriptive tags.
         - *assetGroupUuid*: **string**. The UUID of the containing asset group.
         - *uuid*: **string**.
+- *sequences*: **array of object**. The list of sequences. This sequence object contains these properties:
+    - *name*: **string**
+    - *shortName*: **string**.
+    - *uuid*: **string**.
+    - *projectUuid*: **string**.
+    - *shots*:  **array of object**. The list of assets. This asset object contains these properties:
 **Examples:**
 
 Query:  

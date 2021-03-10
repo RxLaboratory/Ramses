@@ -1,8 +1,7 @@
 - server: enclose column names in ``
 
-- implement assets
-- add sanity: an icon and a dialog which stores all errors. reset the icon to normal with a button in the popup
 - implement sequences
+- shortName and name sanitation
 - implement project shots list (with add range, and add button auto-increments) (shot has a duration)
 - implement status
 - implement stepstatus
@@ -19,14 +18,14 @@
 
 WIP 
 
-RamAsset
+RamSequence
 
 - sql db OK
-- server (get in assetgroup) OK
-- server doc OK
-- dbi OK
-- RamAsset OK
-- ramses (get in gotassetgroups -> gotassets) OK
-- asseteditwidget OK
-- assetsmanagerwidget OK
-- doc 
+- server (get in projects) OK
+- server doc
+- dbi
+- RamAsset
+- ramses (get in gotassetgroups -> gotassets)
+- asseteditwidget
+- assetsmanagerwidget
+- doc
