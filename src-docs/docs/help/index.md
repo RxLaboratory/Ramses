@@ -20,7 +20,7 @@ Here are these objects:
         - A ***Shot*** is a single video used in the final edit.
             - A ***Status*** describes the status of the production of the shot for each step.
 - ![](../img/icons/state.svg){: style="width:18px;"} A [***State***](states.md) is part of an asset or shot status, and defines its working state (e.g. work in progress, to do, OK, etc.)
-- An ***Application*** is a piece of software used to produce the *assets* or *shots*.
+- ![](../img/icons/application_sl.svg){: style="width:18px;"} An [***Application***](applications.md) is a piece of software used to produce the *assets* or *shots*.
     - ![](../img/icons/file_sl.svg){: style="width:18px;"} A [***File type***](filetypes.md) is used by *applications* either for working, previewing or publishing *assets* and *shots*.
 
 ## Ramses tree

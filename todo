@@ -4,8 +4,9 @@ Current todo, to be moved in todo file
 
 ## pipeline tools first
 
-- Application
-- step editor: step details/edit 
+- filetype : implement "preview" type
+- file association app <-> file type ; type: export/native/import (stored in three lists in RamApplication)
+- step editor: step details/edit
 - step editor: connection type
 - step editor: save db
 - status & history
@@ -18,6 +19,7 @@ Current todo, to be moved in todo file
 
 - remove all connections to destroyed and use removed
 - change all connections to changed and removed to use the new RamObject signal
+- factorize listmanagerwidget to ramobjectsmanagerwidget
 - factorize the objectEditWidget
 - shortName and name sanitation (Ramses.validateName && Ramses.validateShortName)
 - implement shots (with add range, and add button auto-increments) (shot has a duration)
@@ -39,14 +41,14 @@ WIP
 
 RamFileType
 
-- sql db OK
-- server (get in projects/sequences) OK
+- sql db
+- server (get in projects/sequences)
 - server doc
 - dbi
 - RamShot
 - RamSequence shot list
 - RamProject shot(uuid) & removeshot(uuid)
-- ramses (get in gotsequences -> gotshots
+- ramses (get in gotsequences -> gotshots) 
 - shoteditwidget
 - shotmanagerwidget
 - doc
