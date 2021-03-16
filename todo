@@ -1,5 +1,15 @@
 - server: enclose column names in ``
 
+Current todo, to be moved in todo file
+
+## pipeline tools first
+
+- Filetype
+- Application
+- step editor: step details/edit 
+- step editor: connection type
+- step editor: save db 
+
 - remove all connections to destroyed and use removed
 - change all connections to changed and removed to use the new RamObject signal
 - factorize the objectEditWidget
@@ -18,6 +28,7 @@
 - option to restore removed items (admin/lead only)
 - option to choose tray icon
 - implement import-export data
+- _dbi: use another thread
 
 WIP 
 
