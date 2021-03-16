@@ -69,3 +69,8 @@ The *JSON* objects sent by the server all have the same content:
     - [getFileTypes](filetypes#getfiletype)
     - [updateFileType](filetypes#updatefiletype)
     - [removeFileType](filetypes#removefiletype)
+- Applications
+    - [createApplication](applications#createapplication)
+    - [getApplications](applications#getapplication)
+    - [updateApplication](applications#updateapplication)
+    - [removeApplication](applications#removeapplication)

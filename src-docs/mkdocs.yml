@@ -42,6 +42,8 @@ nav:
         - Status History: help/statushistory.md
         - Status: help/status.md
         - States: help/states.md
+        - File Types: help/filetypes.md
+        - Applications: help/applications.md
     - Ramses Tree (File & Folders):
         - Naming scheme: files/naming.md
         - Folder structure: files/tree.md
@@ -77,6 +79,8 @@ nav:
             - Asset Groups queries: dev/server-reference/assetgroups.md
             - Assets queries: dev/server-reference/assets.md
             - States queries: dev/server-reference/states.md
+            - File types queries: dev/server-reference/filetypes.md
+            - Applications queries: dev/server-reference/applications.md
     - Credits: credits.md
     - Changelog: changelog.md
     - License:
