@@ -63,4 +63,9 @@ The *JSON* objects sent by the server all have the same content:
     - [createState](states#createstate)
     - [getStates](states#getstates)
     - [updateState](states#updatestate)
-    - [removeState](states#removeState)
+    - [removeState](states#removestate)
+- File Types
+    - [createFileType](filetypes#createfiletype)
+    - [getFileTypes](filetypes#getfiletype)
+    - [updateFileType](filetypes#updatefiletype)
+    - [removeFileType](filetypes#removefiletype)

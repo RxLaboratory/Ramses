@@ -4,21 +4,25 @@ Current todo, to be moved in todo file
 
 ## pipeline tools first
 
-- Filetype
 - Application
 - step editor: step details/edit 
 - step editor: connection type
-- step editor: save db 
+- step editor: save db
+- status & history
+- implement status
+- implement stepstatus
+- asset: get step path
+- asset: open
+
+## Other
 
 - remove all connections to destroyed and use removed
 - change all connections to changed and removed to use the new RamObject signal
 - factorize the objectEditWidget
-- shortName and name sanitation
+- shortName and name sanitation (Ramses.validateName && Ramses.validateShortName)
 - implement shots (with add range, and add button auto-increments) (shot has a duration)
 - implement moving assets from group to group
 - implement moving shots from group to group
-- implement status
-- implement stepstatus
 - implement main table
 - implement shots table 
 - implement assets table
@@ -33,9 +37,9 @@ Current todo, to be moved in todo file
 WIP 
 
 
-RamShot
+RamFileType
 
-- sql db
+- sql db OK
 - server (get in projects/sequences)
 - server doc
 - dbi
