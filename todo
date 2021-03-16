@@ -17,6 +17,7 @@ Current todo, to be moved in todo file
 
 ## Other
 
+- add meta to the doc
 - remove all connections to destroyed and use removed
 - change all connections to changed and removed to use the new RamObject signal
 - factorize listmanagerwidget to ramobjectsmanagerwidget

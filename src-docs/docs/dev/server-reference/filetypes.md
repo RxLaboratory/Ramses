@@ -50,6 +50,7 @@ The server replies an array of file type information. Each file type is an objec
 - *name*: **string**. The name of the file type.
 - *shortName*: **string**. The default extension.
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
+- *previewable*: **int**. Whether this file type is used for previews. 1 or 0.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
 
 **Examples:**
@@ -98,6 +99,7 @@ Update file type info in the database.
 - *shortName*: **string**. The username.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
+- *previewable*: **int**. Whether this file type is used for previews. 1 or 0.
 - *token*: **string**. The session token returned with [*login*](general.md#login)
 
 **Reply content:**
@@ -107,7 +109,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateFileType&name=Maya Ascii&shortName=.ma&extensions=ma&uuid=123&token=123`
+`http://your.server/ramses/?updateFileType&name=Maya Ascii&shortName=.ma&extensions=ma&previewable=0&uuid=123&token=123`
 
 Reply:
 
