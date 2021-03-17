@@ -4,7 +4,6 @@ Current todo, to be moved in todo file
 
 ## pipeline tools first
 
-- filetype : implement "preview" type
 - file association app <-> file type ; type: export/native/import (stored in three lists in RamApplication)
 - step editor: step details/edit
 - step editor: connection type
@@ -33,9 +32,12 @@ Current todo, to be moved in todo file
 - test other modifications from database then refresh client
 - test using two clients simultaneously (from different virtual machines)
 - option to restore removed items (admin/lead only)
-- option to choose tray icon
-- implement import-export data
+- implement offline mode
+- implement import-export data.
+    - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
+    - Client side: define a data structure (json?) // Copy the sqlite local db once a day
 - _dbi: use another thread
+- option to choose tray icon
 
 WIP 
 

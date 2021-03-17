@@ -27,6 +27,8 @@ The *JSON* objects sent by the server all have the same content:
     `remove` queries do not actually delete data from the database, but set a `removed` attribute to true, to prevent any data loss.  
     For now, the only way to permanently delete data is to edit the database by yourself (using SQL queries or MySQL workbench or phpmyadmin, etc.)
 
+    There is no query yet to restore data which has been removed, but using the `create` queries with the same name and shortname as the removed item will restore it.
+
 - General
     - [ping](general.md#ping)
     - [login](general.md#login)

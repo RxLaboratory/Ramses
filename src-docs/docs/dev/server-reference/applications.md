@@ -144,3 +144,67 @@ Reply:
     "content": { }
 }
 ```
+
+
+## assignFileType
+
+Assigns a file type to an application.
+
+**Query attributes:**
+
+- *applicationUuid*: **string**. The Applcation's Universal Unique Identifier.
+- *fileTypeUuid*: **string**. The File Type's Universal Unique Identifier.
+- *type*: **string** (optional). The type, an enumerated value in `native`, `import`, `export`. Default is `native`.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?assignFileType&applicationUuid=123&fileTypeUuid=456&type=import&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "assignFileType",
+    "success": true,
+    "message": "File type assigned to application as import type.",
+    "content": { }
+}
+```
+
+## unassignFileType
+
+Unassigns a file type from an application.
+
+**Query attributes:**
+
+- *applicationUuid*: **string**. The Applcation's Universal Unique Identifier.
+- *fileTypeUuid*: **string**. The File Type's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?unassignUser&applicationUuid=123&fileTypeUuid=456&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "unassignFileType",
+    "success": true,
+    "message": "File type unassigned from application.",
+    "content": { }
+}
+```
