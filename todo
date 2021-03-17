@@ -4,7 +4,6 @@ Current todo, to be moved in todo file
 
 ## pipeline tools first
 
-- file association app <-> file type ; type: export/native/import (stored in three lists in RamApplication)
 - step editor: step details/edit
 - step editor: connection type
 - step editor: save db

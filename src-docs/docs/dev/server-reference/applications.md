@@ -186,6 +186,7 @@ Unassigns a file type from an application.
 
 - *applicationUuid*: **string**. The Applcation's Universal Unique Identifier.
 - *fileTypeUuid*: **string**. The File Type's Universal Unique Identifier.
+- *type*: **string** (optional). The type, an enumerated value in `native`, `import`, `export`. If left empty, the file type is removed for all types.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**

@@ -13,6 +13,8 @@ Here are these objects:
 - ![](../img/icons/user_sl.svg){: style="width:18px;"} A [***user***](users.md) is someone working on the production.
 - ![](../img/icons/cinema-movie_sl.svg){: style="width:18px;"} A [***project***](projects.md) is the first level of the production. It could represent a feature film (or one of its sequences), a short movie, a TV Series episode...
     - ![](../img/icons/step-node_sl.svg){: style="width:18px;"} A [***step***](steps.md) is one of the stages each *asset* or *shot* has to go through to be produced (e.g. modeling, animation, lighting, compositing...)
+        - ![](../img/icons/application_sl.svg){: style="width:18px;"} An [***Application***](applications.md) is a piece of software used to produce the *assets* or *shots*.
+            - ![](../img/icons/file_sl.svg){: style="width:18px;"} A [***File type***](filetypes.md) is used by *applications* either for working, previewing or publishing *assets* and *shots*.
     - ![](../img/icons/assets-properties-group_sd.svg){: style="width:18px;"} An [***Asset Group***](assetgroups.md) contains some of the *assets* of a project.
         - ![](../img/icons/property-asset_sd.svg){: style="width:18px;"} An [***Asset***](assets.md) is produced independently from the shots and can be used in several shots.
             - A ***Status*** describes the status of the production of the asset for each step.
@@ -20,8 +22,6 @@ Here are these objects:
         - A ***Shot*** is a single video used in the final edit.
             - A ***Status*** describes the status of the production of the shot for each step.
 - ![](../img/icons/state.svg){: style="width:18px;"} A [***State***](states.md) is part of an asset or shot status, and defines its working state (e.g. work in progress, to do, OK, etc.)
-- ![](../img/icons/application_sl.svg){: style="width:18px;"} An [***Application***](applications.md) is a piece of software used to produce the *assets* or *shots*.
-    - ![](../img/icons/file_sl.svg){: style="width:18px;"} A [***File type***](filetypes.md) is used by *applications* either for working, previewing or publishing *assets* and *shots*.
 
 ## Ramses tree
 

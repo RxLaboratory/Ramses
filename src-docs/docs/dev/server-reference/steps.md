@@ -163,9 +163,71 @@ Reply:
 ```json
 {
     "accepted": true,
-    "query": "assignUser",
+    "query": "unassignUser",
     "success": true,
     "message": "User unassigned from step.",
+    "content": { }
+}
+```
+
+## assignApplication
+
+Assigns an application to a step.
+
+**Query attributes:**
+
+- *stepUuid*: **string**. The step's Universal Unique Identifier.
+- *applicationUuid*: **string**. The application's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?assignApplication&stepUuid=123&applicationUuid=456&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "assignApplication",
+    "success": true,
+    "message": "Application assigned to step.",
+    "content": { }
+}
+```
+
+## unassignApplication
+
+Unassigns an application from a step.
+
+**Query attributes:**
+
+- *stepUuid*: **string**. The step's Universal Unique Identifier.
+- *applicationUuid*: **string**. The application's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?unassignApplication&stepUuid=123&applicationUuid=456&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "unassignApplication",
+    "success": true,
+    "message": "Application unassigned from step.",
     "content": { }
 }
 ```

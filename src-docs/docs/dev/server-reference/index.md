@@ -49,6 +49,10 @@ The *JSON* objects sent by the server all have the same content:
     - [createStep](steps#createstep)
     - [updateStep](steps#updatestep)
     - [removeStep](steps#removestep)
+    - [assignUser](steps#assignuser)
+    - [unassignUser](steps#unassignuser)
+    - [assignApplication](steps#assignapplication)
+    - [unassignApplication](steps#unassignapplication)
 - Asset Groups and Template Asset Groups
     - [createAssetGroup](assetgroups#createassetgroup)
     - [updateAssetGroup](assetgroups#updateassetgroup)
@@ -76,3 +80,5 @@ The *JSON* objects sent by the server all have the same content:
     - [getApplications](applications#getapplication)
     - [updateApplication](applications#updateapplication)
     - [removeApplication](applications#removeapplication)
+    - [assignFileType](steps#assignfiletype)
+    - [unassignFileType](steps#unassignfiletype)
