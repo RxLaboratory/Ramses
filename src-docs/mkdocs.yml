@@ -81,6 +81,7 @@ nav:
             - States queries: dev/server-reference/states.md
             - File types queries: dev/server-reference/filetypes.md
             - Applications queries: dev/server-reference/applications.md
+            - Pipes queries: dev/server-reference/pipes.md
     - Credits: credits.md
     - Changelog: changelog.md
     - License:

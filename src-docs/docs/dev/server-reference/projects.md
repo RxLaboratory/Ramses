@@ -44,7 +44,7 @@ Retrieves the list of all projects.
 
 **Reply content:**
 
-The server replies an array of project information. Each project is an object with the following attributes:
+The server replies with an array of project information. Each project is an object with the following attributes:
 
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
@@ -54,8 +54,16 @@ The server replies an array of project information. Each project is an object wi
     - *name*: **string**.
     - *shortName*: **string**.
     - *uuid*: **string**.
+    - *projectUuid*: **string**. The UUID of the project.
     - *type*: **string**. One of `asset`, `shot`, `pre`, or `post`.
     - *order*: **int**. Order of the step in the pipeline.
+- *pipes*: **array of object**. The list of pipes connecting the steps. The pipe object contains these properties:
+    - *uuid*: **string**.
+    - *projectUuid*: **string**. The UUID of the project.
+    - *inputStepUuid*: **string**. The UUID of the input step.
+    - *outputStepUuid*: **string**. The UUID of the output step.
+    - *colorSpaceUuid*: **string**. The UUID of the color space used in the files going through this pipe.
+    - *filetypeUuid*: **string**. The UUID of the file types going through this pipe.
 - *assetGroups*: **array of object**. The list of asset groups. This asset group object contains these properties:
     - *name*: **string**
     - *shortName*: **string**.

@@ -1,11 +1,9 @@
 - server: enclose column names in ``
-
-Current todo, to be moved in todo file
-
 - move console to a dock widget
 
 ## pipeline tools first
 
+- RamPipe
 - step editor: connection type
 - step editor: save db
 - status & history
@@ -17,7 +15,6 @@ Current todo, to be moved in todo file
 ## Other
 
 - add meta to the doc
-- remove all connections to destroyed and use removed
 - change all connections to changed and removed to use the new RamObject signal
 - factorize listmanagerwidget to ramobjectsmanagerwidget
 - factorize the objectEditWidget -> use the new base class for all editors
@@ -45,8 +42,8 @@ WIP
 RamFileType
 
 - sql db
-- server (get in projects/sequences)
-- server doc
+- server (get in projects/sequences) ok
+- server doc ok
 - dbi
 - RamShot
 - RamSequence shot list
