@@ -6,6 +6,8 @@
 - pipeedit: filetype: check for duplicate when populating
 - pipeedit: filetype list not always updated
 - dockwidget: the first created is floating, do not tabify it
+- daemon
+- shots
 - status & history
 - implement status
 - implement stepstatus
@@ -15,10 +17,11 @@
 ## Other
 
 - add meta to the doc
-- change all connections to changed and removed to use the new RamObject signal
 - factorize listmanagerwidget to ramobjectsmanagerwidget
-- factorize the objectEditWidget -> use the new base class for all editors
-- shortName and name sanitation (Ramses.validateName && Ramses.validateShortName)
+- factorize the objectEditWidget -> use the new base class for all editors (and remove bigstepeditwidget)
+- use dockwidgets to edit assigned sub-objects (users and apps in steps for example)
+- use objectWidget in all lists (UserWidget, etc etc, representing the object)
+- shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
 - implement shots (with add range, and add button auto-increments) (shot has a duration)
 - implement moving assets from group to group
 - implement moving shots from group to group
