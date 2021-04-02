@@ -3,9 +3,8 @@
 
 ## pipeline tools first
 
-- RamPipe
-- step editor: connection type
-- step editor: save db
+- connect pipe changed to node view connectors
+- edit pipe in pipeline editor
 - status & history
 - implement status
 - implement stepstatus
@@ -33,7 +32,6 @@
 - implement import-export data.
     - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
     - Client side: define a data structure (json?) // Copy the sqlite local db once a day
-- _dbi: use another thread
 - option to choose tray icon
 
 WIP 
@@ -42,13 +40,13 @@ WIP
 RamFileType
 
 - sql db
-- server (get in projects/sequences) ok
-- server doc ok
+- server (get in projects/sequences)
+- server doc
 - dbi
 - RamShot
 - RamSequence shot list
 - RamProject shot(uuid) & removeshot(uuid)
-- ramses (get in gotsequences -> gotshots) 
+- ramses (get in gotsequences -> gotshots)
 - shoteditwidget
 - shotmanagerwidget
 - doc

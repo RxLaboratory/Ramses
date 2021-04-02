@@ -15,6 +15,7 @@ Here are these objects:
     - ![](../img/icons/step-node_sl.svg){: style="width:18px;"} A [***step***](steps.md) is one of the stages each *asset* or *shot* has to go through to be produced (e.g. modeling, animation, lighting, compositing...)
         - ![](../img/icons/application_sl.svg){: style="width:18px;"} An [***Application***](applications.md) is a piece of software used to produce the *assets* or *shots*.
             - ![](../img/icons/file_sl.svg){: style="width:18px;"} A [***File type***](filetypes.md) is used by *applications* either for working, previewing or publishing *assets* and *shots*.
+        - The [***Pipeline***](pipeline.md) is the way *steps* are connected together and how the depend on each other.
     - ![](../img/icons/assets-properties-group_sd.svg){: style="width:18px;"} An [***Asset Group***](assetgroups.md) contains some of the *assets* of a project.
         - ![](../img/icons/property-asset_sd.svg){: style="width:18px;"} An [***Asset***](assets.md) is produced independently from the shots and can be used in several shots.
             - A ***Status*** describes the status of the production of the asset for each step.

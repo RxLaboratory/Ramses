@@ -47,8 +47,8 @@ Update pipe info in the database.
 
 - *inputUuid*: **string** (optionnal). The UUID of the input step.
 - *outputUuid*: **string** (optionnal). The UUID of the output step.
-- *colorSpaceUuid*: **string** (optionnal). The UUID of the color space for the files going through this pipe.
-- *filetypeUuid*: **string** (optionnal). The UUID of the file type going through this pipe.
+- *colorSpaceUuid*: **string**. The UUID of the color space for the files going through this pipe.
+- *filetypeUuid*: **string**. The UUID of the file type going through this pipe.
 - *uuid*: **string**. The pipe's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 

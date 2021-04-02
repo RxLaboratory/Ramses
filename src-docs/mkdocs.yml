@@ -44,6 +44,7 @@ nav:
         - States: help/states.md
         - File Types: help/filetypes.md
         - Applications: help/applications.md
+        - Pipeline: help/pipeline.md
     - Ramses Tree (File & Folders):
         - Naming scheme: files/naming.md
         - Folder structure: files/tree.md
