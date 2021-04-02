@@ -3,6 +3,9 @@
 
 ## pipeline tools first
 
+- pipeedit: filetype: check for duplicate when populating
+- pipeedit: filetype list not always updated
+- dockwidget: the first created is floating, do not tabify it
 - status & history
 - implement status
 - implement stepstatus
