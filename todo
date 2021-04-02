@@ -3,7 +3,6 @@
 
 ## pipeline tools first
 
-- fix state colors in db/server (%encoding)
 - status & history
 - implement status
 - implement stepstatus
