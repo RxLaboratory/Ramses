@@ -3,8 +3,7 @@
 
 ## pipeline tools first
 
-- connect pipe changed to node view connectors
-- edit pipe in pipeline editor
+- fix state colors in db/server (%encoding)
 - status & history
 - implement status
 - implement stepstatus
