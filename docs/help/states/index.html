@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Nicolas Dufresne and contributors">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>States - Ramses Documentation</title>
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../style.css" rel="stylesheet">
+  <link href="../../video.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "States";
+    var mkdocs_page_input_path = "help/states.md";
+    var mkdocs_page_url = "/help/states/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Ramses Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Ramses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Components</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../components/">Ramses components</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/server/">Ramses Server</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General help</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Ramses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../projects/">Projects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../steps/">Steps</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../assetgroups/">Asset Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../assets/">Assets</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sequences/">Sequences</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../shots/">Shots</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../statushistory/">Status History</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../status/">Status</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">States</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#states">States</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#needed-states">Needed states</a></li>
+        
+            <li><a class="toctree-l4" href="#optional-predefined-states">Optional predefined states</a></li>
+        
+            <li><a class="toctree-l4" href="#attributes">Attributes</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../filetypes/">File Types</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../applications/">Applications</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pipeline/">Pipeline</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Ramses Tree (File & Folders)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../files/naming/">Naming scheme</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../files/tree/">Folder structure</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Ramses Add-ons</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../addons/">Add-ons in applications</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Files and Folders</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/files/naming/">Naming</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Scripting API (Add-ons)</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ramses/">Ramses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_application/">RamApplication</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_asset/">RamAsset</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_assetstep/">RamAssetStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_filetype/">RamFileType</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_item/">RamItem</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_object/">RamObject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_project/">RamProject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_shot/">RamShot</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_shotstep/">RamShotStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_state/">RamState</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_status/">RamStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_step/">RamStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_stepstatus/">RamStepStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/add-ons-reference/ram_user/">RamUser</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Daemon API</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/daemon-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/daemon-reference/queries/">Queries</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Server API</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/general/">General queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/users/">User queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/projects/">Project queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/steps/">Step queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/assetgroups/">Asset Group queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/assets/">Asset queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/sequences/">Sequence queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/states/">State queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/filetypes/">File type queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/applications/">Application queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/pipes/">Pipe queries</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../credits/">Credits</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../changelog/">Changelog</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">License</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../licenses/gnu-gpl/">GNU GPLv3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../licenses/gfdl/">Documentation license</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Ramses Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>General help &raquo;</li>
+        
+      
+    
+    <li>States</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/help/states.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="states"><img alt="" src="../../img/icons/check_sl.svg" style="width:32px;" /> States</h1>
+<p><em>States</em> are part of <em>assets</em> and <em>shots</em> <em>status</em>, along with comments and history. They also define a also percentage of completion of the work for the corresponding <em>step</em> on the <em>asset</em> or <em>shot</em>, which is used for production management and evaluating the global completion of a project.</p>
+<p>They can be configured globally to be used everywhere there&rsquo;s a need to show a <em>status</em>.</p>
+<p>By default, <em>Ramses</em> includes a few predefined states, and three of them cannot be removed as they are needed by <em>Ramses</em> automations.</p>
+<h2 id="needed-states">Needed states</h2>
+<p>These states cannot be removed from <em>Ramses</em>, but you can modify all their attributes except their short name.</p>
+<ul>
+<li><strong><em>Finished</em></strong> / <strong><em>OK</em></strong> (100%). To be used when an <em>asset</em>/<em>shot</em> is completely finished.</li>
+<li><strong><em>To do</em></strong> / <strong><em>TODO</em></strong> (0%). This <em>asset</em>/<em>shot</em> is ready to be worked on.</li>
+<li><strong><em>Stand by</em></strong> / <strong><em>STB</em></strong> (0%). Some dependencies are not satisfied to be able to work on this <em>asset</em>/<em>shot</em> yet.</li>
+<li><strong><em>Nothing to do</em></strong> / <strong><em>NO</em></strong> (100%). There&rsquo;s nothing to do with this <em>asset</em>/<em>shot</em> for this step. These are ignored in the calculation of the completion of the project.</li>
+</ul>
+<h2 id="optional-predefined-states">Optional predefined states</h2>
+<p>These states are provided as examples, you can modify or remove them.</p>
+<ul>
+<li><strong><em>Work in progress</em></strong> / <strong><em>WIP</em></strong> (50%)</li>
+<li><strong><em>To be rendered</em></strong> / <strong><em>RDR</em></strong> (90%)</li>
+<li><strong><em>Rendering</em></strong> / <strong><em>RDRNG</em></strong> (95%)</li>
+<li><strong><em>Could be better</em></strong> / <strong><em>CBB</em></strong> (95%)</li>
+<li><strong><em>To be checked</em></strong> / <strong><em>CHK</em></strong> (85%)</li>
+<li><strong><em>Needs a retake</em></strong> / <strong><em>RTK</em></strong> (75%)</li>
+</ul>
+<h2 id="attributes">Attributes</h2>
+<p>As any other object in <em>Ramses</em>, the steps are defined by their:</p>
+<ul>
+<li><strong><em>Name</em></strong></li>
+<li><strong><em>Short Name</em></strong></li>
+</ul>
+<p>The states also have these additional attributes:</p>
+<ul>
+<li><strong><em>Completion Ratio</em></strong>: when an <em>asset</em> or a <em>shot</em> is in this state, it should be considered completed at this percentage.</li>
+<li><strong><em>Color</em></strong>: each state has its own color which is used for displaying them in the interfaces of the <em>Ramses</em> components, and provide a quick visual feedback on the production of the <em>assets</em>, <em>shots</em>, and <em>projects</em>.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../filetypes/" class="btn btn-neutral float-right" title="File Types">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../status/" class="btn btn-neutral" title="Status"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../status/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../filetypes/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../video.js" defer></script>
+      <script src="../../meta.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

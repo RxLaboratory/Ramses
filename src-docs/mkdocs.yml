@@ -22,6 +22,7 @@ extra_css:
     - video.css
 extra_javascript:
     - video.js
+    - meta.js
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
@@ -54,7 +55,7 @@ nav:
         - Introduction: dev/index.md
         - Files and Folders:
             - Naming: dev/files/naming.md
-        - Scripting API (Add-onse):
+        - Scripting API (Add-ons):
             - Reference: dev/add-ons-reference/index.md
             - Ramses: dev/add-ons-reference/ramses.md
             - RamApplication: dev/add-ons-reference/ram_application.md
@@ -71,18 +72,22 @@ nav:
             - RamStep: dev/add-ons-reference/ram_step.md
             - RamStepStatus: dev/add-ons-reference/ram_stepstatus.md
             - RamUser: dev/add-ons-reference/ram_user.md
+        - Daemon API:
+            - Reference: dev/daemon-reference/index.md
+            - Queries: dev/daemon-reference/queries.md
         - Server API:
             - Reference: dev/server-reference/index.md
             - General queries: dev/server-reference/general.md
-            - Users queries: dev/server-reference/users.md
-            - Projects queries: dev/server-reference/projects.md
-            - Steps queries: dev/server-reference/steps.md
-            - Asset Groups queries: dev/server-reference/assetgroups.md
-            - Assets queries: dev/server-reference/assets.md
-            - States queries: dev/server-reference/states.md
-            - File types queries: dev/server-reference/filetypes.md
-            - Applications queries: dev/server-reference/applications.md
-            - Pipes queries: dev/server-reference/pipes.md
+            - User queries: dev/server-reference/users.md
+            - Project queries: dev/server-reference/projects.md
+            - Step queries: dev/server-reference/steps.md
+            - Asset Group queries: dev/server-reference/assetgroups.md
+            - Asset queries: dev/server-reference/assets.md
+            - Sequence queries: dev/server-reference/sequences.md
+            - State queries: dev/server-reference/states.md
+            - File type queries: dev/server-reference/filetypes.md
+            - Application queries: dev/server-reference/applications.md
+            - Pipe queries: dev/server-reference/pipes.md
     - Credits: credits.md
     - Changelog: changelog.md
     - License:

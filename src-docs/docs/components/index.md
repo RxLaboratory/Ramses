@@ -34,7 +34,7 @@ This means the *Ramses Server* and its associated *Ramses Data* can be easily in
 
 The client is the main *Ramses* application. It can be used without the *Ramses Server*, without losing any functionnality, apart from collaborative work. In this case, the data is stored locally. When the server is not available (e.g. loss of internet connection), the *Ramses Client* can still work offline, and synchronize the data as soon as it comes online later.
 
-The client is a native application (C++), and is available on *Linux*, *Windows* and *MacOS*, which makes it fast and lightweight. It may be available later for *Android*.
+The client is a native application (*Qt / C++*), and is available on *Linux*, *Windows* and *MacOS*, which makes it fast and lightweight. It may be available later for *Android*.
 
 The client also runs the *Ramses Daemon* which is a local server which communicates with the *Ramses Add-ons* and shares the data with them.
 

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Nicolas Dufresne and contributors">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Ramses - Ramses Documentation</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../style.css" rel="stylesheet">
+  <link href="../video.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ramses";
+    var mkdocs_page_input_path = "help/index.md";
+    var mkdocs_page_url = "/help/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ramses Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Ramses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Components</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../components/">Ramses components</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../install/server/">Ramses Server</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General help</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Ramses</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#ramses">Ramses</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#objects">Objects</a></li>
+        
+            <li><a class="toctree-l4" href="#ramses-tree">Ramses tree</a></li>
+        
+            <li><a class="toctree-l4" href="#object-general-attributes">Object general attributes</a></li>
+        
+            <li><a class="toctree-l4" href="#object-folders">Object folders</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="projects/">Projects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="steps/">Steps</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="assetgroups/">Asset Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="assets/">Assets</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="sequences/">Sequences</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="shots/">Shots</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="statushistory/">Status History</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="status/">Status</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="states/">States</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="filetypes/">File Types</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="applications/">Applications</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="pipeline/">Pipeline</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Ramses Tree (File & Folders)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../files/naming/">Naming scheme</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../files/tree/">Folder structure</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Ramses Add-ons</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../addons/">Add-ons in applications</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../dev/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Files and Folders</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/files/naming/">Naming</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Scripting API (Add-ons)</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ramses/">Ramses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_application/">RamApplication</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_asset/">RamAsset</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_assetstep/">RamAssetStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_filetype/">RamFileType</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_item/">RamItem</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_object/">RamObject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_project/">RamProject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_shot/">RamShot</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_shotstep/">RamShotStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_state/">RamState</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_status/">RamStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_step/">RamStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_stepstatus/">RamStepStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/add-ons-reference/ram_user/">RamUser</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Daemon API</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/daemon-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/daemon-reference/queries/">Queries</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Server API</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/general/">General queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/users/">User queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/projects/">Project queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/steps/">Step queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/assetgroups/">Asset Group queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/assets/">Asset queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/sequences/">Sequence queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/states/">State queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/filetypes/">File type queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/applications/">Application queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/pipes/">Pipe queries</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../credits/">Credits</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../changelog/">Changelog</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">License</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../licenses/gnu-gpl/">GNU GPLv3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../licenses/gfdl/">Documentation license</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ramses Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>General help &raquo;</li>
+        
+      
+    
+    <li>Ramses</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/help/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ramses">Ramses</h1>
+<p>The <em>Rx Asset Management System</em> is a complete framework to manage your assets, shots and generally speaking your motion pictures production pipeline.</p>
+<div class="toc">
+<ul>
+<li><a href="#ramses">Ramses</a><ul>
+<li><a href="#objects">Objects</a></li>
+<li><a href="#ramses-tree">Ramses tree</a></li>
+<li><a href="#object-general-attributes">Object general attributes</a></li>
+<li><a href="#object-folders">Object folders</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="objects">Objects</h2>
+<p><em>Ramses</em> several <a href="../components/">components</a> all handle the same objects which are described precisely in this documentation.</p>
+<p>Here are these objects:</p>
+<ul>
+<li><img alt="" src="../img/icons/user_sl.svg" style="width:18px;" /> A <a href="users/"><strong><em>user</em></strong></a> is someone working on the production.</li>
+<li><img alt="" src="../img/icons/cinema-movie_sl.svg" style="width:18px;" /> A <a href="projects/"><strong><em>project</em></strong></a> is the first level of the production. It could represent a feature film (or one of its sequences), a short movie, a TV Series episode&hellip;<ul>
+<li><img alt="" src="../img/icons/step-node_sl.svg" style="width:18px;" /> A <a href="steps/"><strong><em>step</em></strong></a> is one of the stages each <em>asset</em> or <em>shot</em> has to go through to be produced (e.g. modeling, animation, lighting, compositing&hellip;)<ul>
+<li><img alt="" src="../img/icons/application_sl.svg" style="width:18px;" /> An <a href="applications/"><strong><em>Application</em></strong></a> is a piece of software used to produce the <em>assets</em> or <em>shots</em>.<ul>
+<li><img alt="" src="../img/icons/file_sl.svg" style="width:18px;" /> A <a href="filetypes/"><strong><em>File type</em></strong></a> is used by <em>applications</em> either for working, previewing or publishing <em>assets</em> and <em>shots</em>.</li>
+</ul>
+</li>
+<li>The <a href="pipeline/"><strong><em>Pipeline</em></strong></a> is the way <em>steps</em> are connected together and how the depend on each other.</li>
+</ul>
+</li>
+<li><img alt="" src="../img/icons/assets-properties-group_sd.svg" style="width:18px;" /> An <a href="assetgroups/"><strong><em>Asset Group</em></strong></a> contains some of the <em>assets</em> of a project.<ul>
+<li><img alt="" src="../img/icons/property-asset_sd.svg" style="width:18px;" /> An <a href="assets/"><strong><em>Asset</em></strong></a> is produced independently from the shots and can be used in several shots.<ul>
+<li>A <strong><em>Status</em></strong> describes the status of the production of the asset for each step.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img alt="" src="../img/icons/shots-frames_sd.svg" style="width:18px;" /> A <strong><em>Sequence</em></strong> contain some of the <em>shots</em> of a project.<ul>
+<li>A <strong><em>Shot</em></strong> is a single video used in the final edit.<ul>
+<li>A <strong><em>Status</em></strong> describes the status of the production of the shot for each step.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img alt="" src="../img/icons/state.svg" style="width:18px;" /> A <a href="states/"><strong><em>State</em></strong></a> is part of an asset or shot status, and defines its working state (e.g. work in progress, to do, OK, etc.)</li>
+</ul>
+<h2 id="ramses-tree">Ramses tree</h2>
+<p>The easiest way to let <em>Ramses</em> manage your files and pipeline is to just set its working folder. See the section entitled <a href="../files/tree/"><em>Ramese Tree</em></a> for more information.</p>
+<p>You can also set alternative paths to the <em>Ramses</em> working folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.</p>
+<p>Finally, you can set a backup path too, which is a copy of the main folder where all files are stored. <em>Ramses</em> is able to update this backup folder, but will never read data from it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Alternative and Backup paths are not implemented yet.</p>
+</div>
+<h2 id="object-general-attributes">Object general attributes</h2>
+<p>All these objects are defined by at least:</p>
+<ul>
+<li>A full name: a longer name describing the object.</li>
+<li>A short name: a short version (less than 10 characters) of the name of the object, used in UI when there is not enough room and in filenames.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The full name can be changed as any moment during the production.</p>
+<p>The short name can also be changed at any moment, as <em>Ramses</em> uses unique identifiers internally to refer to each objects, be be warned that the short names are used in the <a href="../files/tree/"><em>Ramses Tree</em></a> so when changing the name of an object, you also need to rename/move all files and folders to the new name. This can easily be done at the start of the production but may become very difficult if the object is already used a lot.</p>
+</div>
+<h2 id="object-folders">Object folders</h2>
+<p>Most of the folders are managed by <em>Ramses</em> inside the <a href="../files/tree/"><em>Ramses Tree</em></a>, but for some specific objects, the folder can also be user-defined. That&rsquo;s the case for:</p>
+<ul>
+<li>Projects</li>
+<li>Users</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a href="../files/tree/"><em>Ramses Tree</em></a> is relative to the main <em>Ramses</em> folder. This folder can be different on each workstation, NAS or other remote locations.</p>
+<p>If a custom folder is defined for a project, all its child-objects folders will be relative to that new project folder.</p>
+</div>
+<p>Read the <a href="../files/tree/"><em>Ramses Tree</em></a> section of this documentation for more information.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="users/" class="btn btn-neutral float-right" title="Users">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../install/server/" class="btn btn-neutral" title="Ramses Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../install/server/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="users/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../video.js" defer></script>
+      <script src="../meta.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

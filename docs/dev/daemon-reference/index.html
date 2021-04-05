@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Nicolas Dufresne and contributors">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Reference - Ramses Documentation</title>
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../style.css" rel="stylesheet">
+  <link href="../../video.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Reference";
+    var mkdocs_page_input_path = "dev/daemon-reference/index.md";
+    var mkdocs_page_url = "/dev/daemon-reference/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Ramses Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Ramses</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Components</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../components/">Ramses components</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/server/">Ramses Server</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General help</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../help/">Ramses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/projects/">Projects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/steps/">Steps</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/assetgroups/">Asset Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/assets/">Assets</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/sequences/">Sequences</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/shots/">Shots</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/statushistory/">Status History</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/status/">Status</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/states/">States</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/filetypes/">File Types</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/applications/">Applications</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../help/pipeline/">Pipeline</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Ramses Tree (File & Folders)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../files/naming/">Naming scheme</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../files/tree/">Folder structure</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Ramses Add-ons</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../addons/">Add-ons in applications</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Files and Folders</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../files/naming/">Naming</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Scripting API (Add-ons)</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ramses/">Ramses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_application/">RamApplication</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_asset/">RamAsset</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_assetstep/">RamAssetStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_filetype/">RamFileType</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_item/">RamItem</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_object/">RamObject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_project/">RamProject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_shot/">RamShot</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_shotstep/">RamShotStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_state/">RamState</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_status/">RamStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_step/">RamStep</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_stepstatus/">RamStepStatus</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../add-ons-reference/ram_user/">RamUser</a>
+                </li>
+    </ul>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">Daemon API</span>
+    <ul class="subnav">
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">Reference</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#ramses-daemon-api">Ramses Daemon API</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#connecting-to-the-daemon">Connecting to the Daemon</a></li>
+        
+            <li><a class="toctree-l5" href="#communicating-with-the-daemon">Communicating with the Daemon</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="queries/">Queries</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Server API</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/">Reference</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/general/">General queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/users/">User queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/projects/">Project queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/steps/">Step queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/assetgroups/">Asset Group queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/assets/">Asset queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/sequences/">Sequence queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/states/">State queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/filetypes/">File type queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/applications/">Application queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../server-reference/pipes/">Pipe queries</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../credits/">Credits</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../changelog/">Changelog</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">License</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../licenses/gnu-gpl/">GNU GPLv3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../licenses/gfdl/">Documentation license</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Ramses Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Daemon API &raquo;</li>
+        
+      
+        
+          <li>Development &raquo;</li>
+        
+      
+    
+    <li>Reference</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/daemon-reference/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ramses-daemon-api">Ramses Daemon API</h1>
+<p>The <em>Ramses Daemon</em> is a local server used by the <em>Ramses Add-ons</em> to get and set data to the client (which in turn communicates with the <em>Ramses Server</em> to store the shared data) and the whole system.</p>
+<div class="toc">
+<ul>
+<li><a href="#ramses-daemon-api">Ramses Daemon API</a><ul>
+<li><a href="#connecting-to-the-daemon">Connecting to the Daemon</a></li>
+<li><a href="#communicating-with-the-daemon">Communicating with the Daemon</a><ul>
+<li><a href="#queries">Queries</a></li>
+<li><a href="#replies">Replies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>The <em>Ramses Daemon</em> is automatically run by the <em>Ramses client</em>, the native application which is the heart of <em>Ramses</em>.</p>
+<h2 id="connecting-to-the-daemon">Connecting to the Daemon</h2>
+<p><em>Add-ons</em> can communicate with the <em>Daemon</em> through a standard <em>TCP Socket</em>. The <em>Daemon</em> listens on port <code>18185</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> by default (but this can be adjusted in the <em>Ramses Client</em> settings), and is automatically started by the <em>Ramses client</em>. It is terminated when the <em>client</em> quits.</p>
+<p>Most of <em>Ramses</em> data can only be accessed if a user is logged-in in the <em>Ramses Client</em>, thus before communicating with the <em>Daemon</em>, a <em>Ramses Add-on</em> must check if the <em>Client</em> (and its <em>Daemon</em>) is running (or start it), and if a user is logged-in.</p>
+<p>The initial connection to the Daemon usually follows these steps:</p>
+<ol>
+<li>Check if the <em>Daemon</em> is running by sending the <code>ping</code> query.<ol>
+<li>If the <em>Daemon</em> replies, connection is ready</li>
+<li>Else, try to start the client and <code>ping</code> again.</li>
+</ol>
+</li>
+<li>Check the version of the <em>Daemon</em> which is part of the reply to the <code>ping</code>.</li>
+<li>Check if the user is logged-in; if not, show an alert and raise the <em>Ramses Client</em> window.</li>
+</ol>
+<h2 id="communicating-with-the-daemon">Communicating with the Daemon</h2>
+<h3 id="queries">Queries</h3>
+<p><em>Add-ons</em> can post queries which use the form of the attributes part of a standard <em>URL</em> query; they are a single-line string of <code>key=value</code> pairs (the value may be optional) seperated by the <code>&amp;</code> character. They should be encoded in <em>UTF-8</em>, and special characters should use a standard <em>URL percent-encoding</em>. There&rsquo;s no need to enclose strings in quotes.</p>
+<p>Example queries:</p>
+<p><code>ping</code></p>
+<p><code>setCurrentProject&amp;shortName=PROJ&amp;name=The Project</code></p>
+<h3 id="replies">Replies</h3>
+<p>The <em>Daemon</em> replies with a <em>JSON</em> object (encoded in <em>UTF-8</em>) which contains the following attributes:</p>
+<ul>
+<li><em>accepted</em>: <strong>boolean</strong>. True if the <em>Daemon</em> has recognized the query and accepted it. Will be False if the query does not exist.</li>
+<li><em>success</em>: <strong>boolean</strong>. True if the <em>Daemon</em> has successfully processed the query, False in case of any error.</li>
+<li><em>message</em>: <strong>string</strong>. A short feedback about the result, which can be shown to the user by the <em>Add-on</em>. It contains explanation about the error, if any.</li>
+<li><em>query</em>: <strong>string</strong>. The query that was made that the <em>Daemon</em> is replying to.</li>
+<li><em>content</em>: <strong>object</strong>. The actual content of the reply, which varies depending on the query. Read this reference for more details.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replies are a single-line string, but they&rsquo;re prettyfied in this documentation for the sake of readabiliy</p>
+</div>
+<p>Example Replies:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;ping&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hi, this is the Ramses Daemon.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;userName&quot;</span><span class="p">:</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;userShortName&quot;</span><span class="p">:</span> <span class="s2">&quot;J.Doe&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;logged-in&quot;</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;setCurrentProject&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Current project set to: The Project.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;The Project&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;PROJ&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/user/Ramses/PROJECTS/The Project&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;12456abc&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/05" /></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>This port was chosen in memory of Karl Marx, whose birth date was 05/05/1818.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="queries/" class="btn btn-neutral float-right" title="Queries">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../add-ons-reference/ram_user/" class="btn btn-neutral" title="RamUser"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../add-ons-reference/ram_user/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="queries/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../video.js" defer></script>
+      <script src="../../meta.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

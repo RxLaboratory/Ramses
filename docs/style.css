@@ -5,6 +5,20 @@ a:hover {
     color: #710132;
 }
 
+hr {
+    height: 3px;
+    border: none;
+    background-color: #D3D3D3;
+}
+
+footer, footer p {
+    font-size: 13px;
+}
+
+.rst-footer-buttons {
+    font-size: 15px;
+}
+
 .wy-nav-content-wrap {
     background:none;
  }
@@ -90,4 +104,16 @@ a:hover {
 .codehilite .o, .codehilite .p {
     color: #8d5e98;
     font-weight:800;
+}
+
+.post-meta::before {
+    content: "About this page";
+    margin-left:10px;
+    font-style: italic;
+}
+
+.post-meta {
+    font-size: 0.8em;
+    background-color: #f1f1f1;
+    border-radius: 10px;
 }
