@@ -80,7 +80,13 @@ The server replies with an array of project information. Each project is an obje
     - *shortName*: **string**.
     - *uuid*: **string**.
     - *projectUuid*: **string**.
-    - *shots*:  **array of object**. The list of assets. This asset object contains these properties:
+    - *shots*:  **array of object**. The list of shots. This shot object contains these properties:
+        - *name*: **string**.
+        - *shortName*: **string**.
+        - *duration*: **float**. The duration of the shot in seconds.
+        - *order*: **integer**. The order of the shot in the sequence.
+        - *sequenceUuid*: **string**. The UUID of the containing sequence.
+        - *uuid*: **string**.
 **Examples:**
 
 Query:  
