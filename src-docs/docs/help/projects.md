@@ -19,6 +19,10 @@ As any other object in *Ramses*, the projects are defined by their:
 
 - ***Name***
 - ***Short Name***
+- ***Framerate*** is the framerate of the project.
+- ***Height*** is the height of the final video, in pixels.
+- ***Width*** is the width of the final video, in pixels.
+- ***Aspect Ratio*** is the aspect ratio of the final video (which may be different than width/height if it does not use square pixels).
 - ***Project Folder*** which is by default in the *projects* subfolder of the main *Ramses* folder.
 
 The projects also have these additional attributes:

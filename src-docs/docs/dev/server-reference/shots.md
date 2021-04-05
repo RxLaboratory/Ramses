@@ -1,4 +1,4 @@
-# Queries for managing assets
+# Queries for managing shots
 
 !!! hint
     There is no method to retrieve shots directly; shots are returned by the project method [`getProjects`](projects.md#getprojects)

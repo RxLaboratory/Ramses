@@ -3,6 +3,12 @@
 
 ## pipeline tools first
 
+- shots order implementation
+- crash when removing shot
+- mutliple shots addition
+- in AssetsManager and ShotsManager: create in current sequence/asset group (filter)
+- sequencesmanager and assetgroupsmanager: remove assets and shots list
+- project: add duration, resolution, aspectratio (in server, dbi, etc)
 - pipeedit: filetype list not always updated
 - dockwidget: the first created is floating, do not tabify it
 - shots

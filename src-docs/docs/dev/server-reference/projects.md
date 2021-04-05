@@ -50,6 +50,7 @@ The server replies with an array of project information. Each project is an obje
 - *shortName*: **string**. The username.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *folderPath*: **string**. The user folder path.
+- *framerate*: **float**. The framerate of the project.
 - *steps*: **array of object**. The list of steps. This step object contains these properties:
     - *name*: **string**.
     - *shortName*: **string**.
