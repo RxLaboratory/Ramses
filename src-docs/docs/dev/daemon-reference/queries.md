@@ -66,8 +66,7 @@ Sets the current project
 ### Query attributes
 
 - *setCurrentProject*
-- *name*: **string**. The name of the project.
-- *shortName*: **string**. The short name of the project.
+- *shortName*: **string**. The short name (or the uuid) of the project.
 
 ### Reply content
 
