@@ -3,10 +3,8 @@
 
 ## pipeline tools first
 
-- pipeedit: filetype: check for duplicate when populating
 - pipeedit: filetype list not always updated
 - dockwidget: the first created is floating, do not tabify it
-- daemon
 - shots
 - status & history
 - implement status

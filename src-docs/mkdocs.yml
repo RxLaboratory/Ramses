@@ -84,6 +84,7 @@ nav:
             - Asset Group queries: dev/server-reference/assetgroups.md
             - Asset queries: dev/server-reference/assets.md
             - Sequence queries: dev/server-reference/sequences.md
+            - Shot queries: dev/server-reference/shots.md
             - State queries: dev/server-reference/states.md
             - File type queries: dev/server-reference/filetypes.md
             - Application queries: dev/server-reference/applications.md
