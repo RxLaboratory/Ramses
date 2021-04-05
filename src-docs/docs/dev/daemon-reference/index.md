@@ -55,6 +55,7 @@ Example Replies:
     "message": "Hi, this is the Ramses Daemon.",
     "content": {
         "version": "0.0.1",
+        "ramses": "Ramses",
         "userName": "John Doe",
         "userShortName": "J.Doe",
         "logged-in": true

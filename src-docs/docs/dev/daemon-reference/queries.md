@@ -15,6 +15,7 @@ Checks if the *Daemon* is running, and gets its version and current user informa
 The *Daemon* replies with its version and information about the current user.
 
 - *version*: **string**. The version of the client/daemon.
+- *ramses*: **string**. The name of the client, should be "Ramses" for the official client.
 - *userName*: **string**. The name of the user. Empty string if there's no logged-in user.
 - *userShortName*: **string**. The short name of the user. Empty string if there's no logged-in user.
 - *logged-in*:: **boolean**. True if a user is logged-in.
@@ -33,6 +34,7 @@ Reply:
     "message": "Hi, this is the Ramses Daemon.",
     "content": {
         "version": "0.0.1",
+        "ramses": "Ramses",
         "userName": "John Doe",
         "userShortName": "J.Doe",
         "logged-in": true
