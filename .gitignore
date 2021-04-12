@@ -39,3 +39,4 @@ CMakeLists.txt.user
 Utils/Hash/Duhash.exe
 .vscode/.ropeproject/config.py
 *.pyc
+.vscode/settings.json
