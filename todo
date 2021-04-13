@@ -16,13 +16,13 @@
 
 ## pipeline tools first
 
-- crash when removing shot
-- mutliple shots addition
-- in AssetsManager and ShotsManager: create in current sequence/asset group (filter)
-- sequencesmanager and assetgroupsmanager: remove assets and shots list
+- write new addon api doc
+- finish building shots list in sequenceeditwidget
+- rebuild assets list in assetgroupeditwidget
+- fix asset removal
 - project: add duration, resolution, aspectratio (in server, dbi, etc)
 - pipeedit: filetype list not always updated
-- dockwidget: the first created is floating, do not tabify it
+- dockwidget: fix bug when tabifying
 - shots
 - status & history
 - implement status
@@ -32,6 +32,9 @@
 
 ## Other
 
+- update ui when shot order & shot sequence change
+- update ui when asset containing group change
+- mutliple shots addition
 - add meta to the doc
 - factorize listmanagerwidget to ramobjectsmanagerwidget
 - factorize the objectEditWidget -> use the new base class for all editors (and remove bigstepeditwidget)
