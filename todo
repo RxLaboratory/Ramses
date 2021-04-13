@@ -1,9 +1,21 @@
 - server: enclose column names in ``
 - move console to a dock widget
+- SSL: check if avail and adjust settings page
+
+- client deployment process to write/document:
+    - Ubuntu 18.04
+    - Ubuntu 20.04
+    - Win
+    - Mac
+    - build on older ubuntu with Qt 5.9 &openssl 1.0 /// and 20.04 with Qt 5.15 & openssl 1.1
+    - package 2 deb for both ubuntu versions / openssl 1.0 / 1.1
+    - package 2 appimages for both ubuntu versions / openssl 1.0 / 1.1
+    - add openssl in dependencies for the deb package / warn it must be avail with the appimage
+    - win
+    - mac
 
 ## pipeline tools first
 
-- shots order implementation
 - crash when removing shot
 - mutliple shots addition
 - in AssetsManager and ShotsManager: create in current sequence/asset group (filter)
