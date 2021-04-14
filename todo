@@ -1,5 +1,4 @@
 - server: enclose column names in ``
-- move console to a dock widget
 - SSL: check if avail and adjust settings page
 
 - client deployment process to write/document:
@@ -16,10 +15,8 @@
 
 ## pipeline tools first
 
-- write new addon api doc
-- finish building shots list in sequenceeditwidget
-- rebuild assets list in assetgroupeditwidget
-- fix asset removal
+- write new addon api doc (add "save as template" and "open template (which saves elsewhere to not overwrite template)" and "create new")
+- step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
 - project: add duration, resolution, aspectratio (in server, dbi, etc)
 - pipeedit: filetype list not always updated
 - dockwidget: fix bug when tabifying
@@ -32,30 +29,26 @@
 
 ## Other
 
-- update ui when shot order & shot sequence change
-- update ui when asset containing group change
+- move console to a dock widget
+- sequence order
+- set offline when token is set invalid (server timeout)
 - mutliple shots addition
 - add meta to the doc
-- factorize listmanagerwidget to ramobjectsmanagerwidget
-- factorize the objectEditWidget -> use the new base class for all editors (and remove bigstepeditwidget)
-- use dockwidgets to edit assigned sub-objects (users and apps in steps for example)
-- use objectWidget in all lists (UserWidget, etc etc, representing the object)
+- factorize listmanagerwidget to ramobjectsmanagerwidget using simpleObjectsList
+- factorize the objectEditWidget -> use the new base class for all editors
 - shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
-- implement shots (with add range, and add button auto-increments) (shot has a duration)
-- implement moving assets from group to group
-- implement moving shots from group to group
 - implement main table
 - implement shots table 
 - implement assets table
-- test remove from database then refresh client
-- test other modifications from database then refresh client
-- test using two clients simultaneously (from different virtual machines)
 - option to restore removed items (admin/lead only)
 - implement offline mode
 - implement import-export data.
     - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
     - Client side: define a data structure (json?) // Copy the sqlite local db once a day
 - option to choose tray icon
+- test remove from database then refresh client
+- test other modifications from database then refresh client
+- test using two clients simultaneously (from different virtual machines)
 
 WIP 
 
