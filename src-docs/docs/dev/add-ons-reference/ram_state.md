@@ -10,10 +10,11 @@ Inherits: [***RamObject***](ram_object.md)
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **completionRatio** | *float* |  | The ratio of completion of this state. |
 
 ## Methods
 
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **stateName**<br />*string*: **stateShortName**<br />*float*: **completionRatio** | |
+| **completionRatio**<br />▹ *integer* | | The ratio of completion of this state in the range `[0, 100]`. |
+| **color**<br />▹ *array of integers* | | The color for this state, `[R, G, B]` in the range `[0, 255]`. |

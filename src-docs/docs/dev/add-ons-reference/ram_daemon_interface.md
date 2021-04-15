@@ -22,20 +22,24 @@ Read the [*Daemon API* reference](../../daemon-reference/) for more information 
 
 These methods return the reply of the *Daemon* converted from *JSON* to an object, dict, structure, or whatever best suits the language in which the add-on is implemented.
 
-| Method | Arguments | Description |
-| --- | --- | --- |
+| Method | Arguments | Description | Dev Notes |
+| --- | --- | --- | --- |
 | ***constructor*** | *integer*: **port**=`18185` | |
-| **getProjects**<br />▹ *Object / Dict* | TODO | Gets the list of available projects |
-| **getStates**<br />▹ *Object / Dict* | TODO | Gets the list of available states |
+| **daemonVersion**<br />▹ *string* |  | The current version of the *Daemon* | *TODO: change the `ping` method to store the version in a private attribute* |
+| **getAssets**<br />▹ *Object / Dict* | | Gets the list of the assets for the current project |
+| **getCurrentProject**<br />▹ *Object / Dict* | | Gets the current project | |
+| **getProjects**<br />▹ *Object / Dict* | | Gets the list of available projects |
+| **getShots**<br />▹ *Object / Dict* | | Gets the list of the shots for the current project |
+| **getStates**<br />▹ *Object / Dict* | | Gets the list of available states |
+| **getSteps**<br />▹ *Object / Dict* | | Gets the list of the steps for the current project |
 | **online**<br />▹ *boolean* | | True if the *Daemon* is available |
-| **ping**<br />▹ *Object / Dict*  | | Gets the version and current user of the *Ramses Daemon*. |
-| **publishAsset**<br />▹ *Object / Dict*  | TODO | |
-| **publishShot**<br />▹ *Object / Dict*  | TODO | | |
+| **ping**<br />▹ *Object / Dict*  | | Gets the version and current user of the *Ramses Daemon* |
+| **publishAsset**<br />▹ *Object / Dict*  | | | TODO |
+| **publishShot**<br />▹ *Object / Dict*  | | | TODO |
 | **raiseWindow** | | Raises the Ramses Client application main window |
 | **setCurrentProject**<br />▹ *Object / Dict*  | *string*: **uuid** | Sets the current project |
-| **updateShotStatus**<br />▹ *Object / Dict*  | TODO | |
-| **updateAssetStatus**<br />▹ *Object / Dict*  | TODO | |
-| **daemonVersion**<br />▹ *string* |  | The current version of the *Daemon* |
+| **updateShotStatus**<br />▹ *Object / Dict*  | | | TODO |
+| **updateAssetStatus**<br />▹ *Object / Dict*  | | | TODO |
 
 ## Implementation
 
