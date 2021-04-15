@@ -133,6 +133,9 @@ The *Daemon* replies with the project.
 
 - *shortName*: **string**. The short name of the project.
 - *name*: **string**. The name of the project.
+- *width*: **int**. The width of the project in pixels.
+- *height*: **int**. The width of the project in pixels.
+- *framerate*: **float**. The framerate of the project.
 - *folder*: **string**. The absolute path of the folder containing the project.
 
 ### Example
@@ -150,6 +153,9 @@ Reply:
     "content": {
         "shortName": "P1",
         "name": "Project 01",
+        "width": 2048,
+        "height": 858,
+        "framerate": 24.0,
         "folder": "/path/to/P1"
     }
 }
@@ -170,6 +176,9 @@ The *Daemon* replies with the list of projects.
 - *projects*: **array of objects**. The projects. Each project is an object with:
     - *shortName*: **string**. The short name of the project.
     - *name*: **string**. The name of the project.
+    - *width*: **int**. The width of the project in pixels.
+    - *height*: **int**. The width of the project in pixels.
+    - *framerate*: **float**. The framerate of the project.
     - *folder*: **string**. The absolute path of the folder containing the project.
 
 ### Example
@@ -189,11 +198,17 @@ Reply:
             {
                 "shortName": "P1",
                 "name": "Project 01",
+                "width": 2048,
+                "height": 858,
+                "framerate": 24.0,
                 "folder": "/path/to/P1"
             },
             {
                 "shortName": "P2",
                 "name": "Project 02",
+                "width": 1998,
+                "height": 1080,
+                "framerate": 60.0,
                 "folder": "/path/to/P2"
             }
         ]

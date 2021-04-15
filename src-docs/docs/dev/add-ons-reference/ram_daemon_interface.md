@@ -18,7 +18,7 @@ There should be only one instance of the *Daemon Interface*, available with the 
 
 ## Methods
 
-Read the [*Daemon API* reference](../../daemon-reference/) for more information about these methods.
+Please refer to the [*Daemon API* reference](../../daemon-reference/) for more information about these methods.
 
 These methods return the reply of the *Daemon* converted from *JSON* to an object, dict, structure, or whatever best suits the language in which the add-on is implemented.
 

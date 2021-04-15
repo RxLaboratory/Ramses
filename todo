@@ -15,17 +15,9 @@
 
 ## pipeline tools first
 
-- addon api: add open functions
-    - offline:
-        - get projects from ramses folder
-        - get current project folder from settings
-        - list assets/shots from current project
-    - online:
-        - get projects from daemon
-        - get current project from daemon
-        - list asssets/shots from daemon replyasset
-- step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
 - project: add duration, resolution, aspectratio (in server, dbi, etc) and update Daemon + AddonAPI
+- step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
+- addon api: add open function description
 - pipeedit: filetype list not always updated
 - dockwidget: fix bug when tabifying
 - shots
@@ -37,6 +29,7 @@
 
 ## Other
 
+- update json example in getProject(s) server reference
 - move console to a dock widget
 - sequence order
 - set offline when token is set invalid (server timeout)
