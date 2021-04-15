@@ -1,6 +1,6 @@
 # Add-ons
 
-Ramses comes with some add-ons to be used in your creative applications (*Blender*, *Maya*, *After Effects*...)
+Ramses comes with some add-ons to be used in your creative applications (*Blender*, *Maya*, *After Effects*...). They are basic add-ons to demonstrate some capabilities of Ramses for file versionning and asset management, and can be used as templates to develop your own add-ons working with Ramses.
 
 They will be developed one after each other, and you're welcome to contribute with your own!
 
@@ -18,7 +18,7 @@ Some of these commands manage files in the [*Ramses Tree*](../files/tree.md), se
 
 All commands except *open Ramses* and *Settings* should first:
 
-- If the path to the *Client* executable file is valid:
+- If the add-on is not set to offline by the user (in the settings) AND the path to the *Client* executable file is valid:
     - Ping the *Daemon* (which answers with its version and some other information).
     - If the ping did not work:
         - Set to offline
@@ -29,22 +29,31 @@ All commands except *open Ramses* and *Settings* should first:
 
 ### Save
 
-If the file is not a working file, but a version coming from the *ramses_version* subfolder, runs *Save new version* instead of *Save*.
+If the file is not a working file, but a version coming from the *ramses_version* subfolder (named `restore-vXX`), runs *Save new version* instead of *Save*.
 
-- Saves the current file.
-- Copies it to the *ramses_versions* subfolder, appending the current state and version number.
+- If the file is a template ("template" in the resource name, and in a temp dir)
+    - Asks for the name of the new asset/shot, its group, its sequence
+    - Creates the corresponding folder,
+    - Saves (as new version if the asset/shot already exists, with a warning)
+- Else If the file is in the *ramses_version* folder or if its resource name contains *restore-vXX*.
+    - Runs *Save new version*.
+- Else
+    - Saves the current file.
+    - Copies it to the *ramses_versions* subfolder, appending the current state and version number.
+- If *online*
+    - Send the new status of the asset/shot for this step (version, date, state, comment, completion ratio) to the *Ramses Client*.
 
 See the [naming scheme](../files/naming.md) and [folder structure](../files/tree.md) for more information.
 
-- *If the client is available*: sends the *update* command to the client, with the date, state and version of the current asset/shot.
-
 ### Save new version
 
-- If the file is not a working file, but a version coming from the *ramses_version* subfolder:
-    - Saves the current file as the working file
+- If the file is in the *ramses_version* folder or if its resource name contains *restore-vXX*.
+    - Copies the current working file into the version folder, appending the state got from the *Ramses client* if available, or else just "v", and the incremented version number.
+    - Saves the current file as the working file (in the working folder, and removing *restore-XX* from the resource name)
     - Removes the current file (version file, keeps only the new working file) if it was not in a *ramses_versions* subfolder
-- Saves the current file.
-- Copies it to the *ramses_versions* subfolder, appending the current state and the incremented version number.
+- Else
+    - Saves the current file.
+- Copies the current file to the *ramses_versions* subfolder, appending the current state and the incremented version number.
 - *If the client is available*: sends the *update* command to the client, with the date, state and version of the current asset/shot. 
 
 ### Publish
@@ -54,14 +63,30 @@ See the [naming scheme](../files/naming.md) and [folder structure](../files/tree
 - Saves as a new file into the *published* subfolder.
 - *If the client is available*: sends the *publish* command to the client, with the date, state and version of the current asset/shot.
 
-
 ### Retrieve version
 
 - Gets a specific version back from the *ramses_versions* subfolder.
-- Copies the file to the asset/shot folder.
+- Copies the file to the asset/shot folder, adds`restore-vXX` to the resource name, where `XX` is the restored version number.
 - Opens it.
 
 It is only when the file will be saved that this new copied file will be removed and the working file will be overwritten to a new version.
+
+### Publish as template
+
+- Saves the file in the corresponding step folder (in a "templates" subfolder), using a specific naming: `PROJECTID_G_stepID_template-resourceName.ext`
+- (asks for overwrite if the file exists)
+- Saves the file in a temp folder (to never overwrite a template when Ctrl+S)
+
+### Open template
+
+- Lists the available templates
+- Opens the selected one
+- Saves it in a temp folder
+
+### Import template
+
+- Lists the available templates
+- Imports the selected one
 
 ### Settings
 
@@ -96,17 +121,31 @@ If possible, each *Ramses Add-on* should provide a UI panel integrated into the 
 
 The panel must display buttons for all available commands.
 
-The panel must also provide a way to quickly set the current *Project* and *Step*, and show the opened asset or shot information: state, version, date, comment... This information is retrieved from the client application if available, or from the [*Ramses Tree*](../files/tree.md) if not. The panel and this information must be updated as soon as the opened file changes, or at least when the user interacts with it.
+The panel must also provide a way to quickly set the current *Project* and *Step*, and show the opened asset or shot information: state, version, date, comment, completion ratio... This information is retrieved from the client application if available, or from the [*Ramses Tree*](../files/tree.md) if not. The panel and this information must be updated as soon as the opened file changes, or at least when the user interacts with it.
+
+Information available in the panel:
+
+- Current user (online only)
+- Current project
+- Step
+- Current shot or asset
+    - Containing asset group or sequence (sequence available only if online)
+    - Date of latest version (read only)
+    - Current state
+    - Current resource name
+    - Current version (read only)
+    - Completion ratio
+    - Is template (read only)
 
 If the client application is not available, the *Project* and *Step* information is displayed but cannot be changed. *Comment* is not available.
 
 ### Settings
 
-If the host application provides a way to display the settings of its add-ons, the settings should be located there (and the *settings* command should open this location if possible). If it does not, tha Add-on must provide a dialog or a panel to let the user change the settings.
+If the host application provides a way to display the settings of its add-ons, the settings should be located there (and the *settings* command should open this location if possible). If it does not, the Add-on must provide a dialog or a panel to let the user change the settings.
 
 These settings are:
 
 - Location of the *Ramses Client* executable file (*.exe* on *Windows*, *.app* on *MacOS*, *.appimage* or binary on *Linux*)
 - Listening port of the *Ramses Daemon*
 
-Note: the settings are saved in a shared location between all add-ons so that they're configured only once. They're in an easy-to-edit JSON text file.
+Note: the settings are saved in a shared location (user documents folder ?) between all add-ons so that they're configured only once. They're in an easy-to-edit JSON text file.

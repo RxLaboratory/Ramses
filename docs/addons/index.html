@@ -204,67 +204,67 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/">Reference</a>
+    <a class="" href="../dev/add-ons-reference/index.md">Reference</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ramses/">Ramses</a>
+    <a class="" href="../dev/add-ons-reference/ramses.md">Ramses</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_application/">RamApplication</a>
+    <a class="" href="../dev/add-ons-reference/ram_application.md">RamApplication</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_asset/">RamAsset</a>
+    <a class="" href="../dev/add-ons-reference/ram_asset.md">RamAsset</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_assetstep/">RamAssetStep</a>
+    <a class="" href="../dev/add-ons-reference/ram_assetstep.md">RamAssetStep</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_filetype/">RamFileType</a>
+    <a class="" href="../dev/add-ons-reference/ram_filetype.md">RamFileType</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_item/">RamItem</a>
+    <a class="" href="../dev/add-ons-reference/ram_item.md">RamItem</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_object/">RamObject</a>
+    <a class="" href="../dev/add-ons-reference/ram_object.md">RamObject</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_project/">RamProject</a>
+    <a class="" href="../dev/add-ons-reference/ram_project.md">RamProject</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_shot/">RamShot</a>
+    <a class="" href="../dev/add-ons-reference/ram_shot.md">RamShot</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_shotstep/">RamShotStep</a>
+    <a class="" href="../dev/add-ons-reference/ram_shotstep.md">RamShotStep</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_state/">RamState</a>
+    <a class="" href="../dev/add-ons-reference/ram_state.md">RamState</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_status/">RamStatus</a>
+    <a class="" href="../dev/add-ons-reference/ram_status.md">RamStatus</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_step/">RamStep</a>
+    <a class="" href="../dev/add-ons-reference/ram_step.md">RamStep</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_stepstatus/">RamStepStatus</a>
+    <a class="" href="../dev/add-ons-reference/ram_stepstatus.md">RamStepStatus</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../dev/add-ons-reference/ram_user/">RamUser</a>
+    <a class="" href="../dev/add-ons-reference/ram_user.md">RamUser</a>
                 </li>
     </ul>
                 </li>
@@ -317,6 +317,10 @@
                 <li class="toctree-l3">
                     
     <a class="" href="../dev/server-reference/sequences/">Sequence queries</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../dev/server-reference/shots/">Shot queries</a>
                 </li>
                 <li class="toctree-l3">
                     
@@ -404,9 +408,9 @@
             <div class="section">
               
                 <h1 id="add-ons">Add-ons</h1>
-<p>Ramses comes with some add-ons to be used in your creative applications (<em>Blender</em>, <em>Maya</em>, <em>After Effects</em>&hellip;)</p>
+<p>Ramses comes with some add-ons to be used in your creative applications (<em>Blender</em>, <em>Maya</em>, <em>After Effects</em>&hellip;). They are basic add-ons to demonstrate some capabilities of Ramses for file versionning and asset management, and can be used as templates to develop your own add-ons working with Ramses.</p>
 <p>They will be developed one after each other, and you&rsquo;re welcome to contribute with your own!</p>
-<p>Here are some guidelines and descriptions about how these add-ons should work. We&rsquo;re trying to apply the same guidelines to all host applications for a unified experience. These add-ons should use the provided <a href="../dev/add-ons-reference/"><em>Scripting API</em></a> available at first in <em>Python</em> and <em>Adobe ExtendsScript</em>.</p>
+<p>Here are some guidelines and descriptions about how these add-ons should work. We&rsquo;re trying to apply the same guidelines to all host applications for a unified experience. These add-ons should use the provided <a href="../dev/add-ons-reference/index.md"><em>Scripting API</em></a> available at first in <em>Python</em> and <em>Adobe ExtendsScript</em>.</p>
 <div class="toc">
 <ul>
 <li><a href="#add-ons">Add-ons</a><ul>
@@ -416,6 +420,9 @@
 <li><a href="#save-new-version">Save new version</a></li>
 <li><a href="#publish">Publish</a></li>
 <li><a href="#retrieve-version">Retrieve version</a></li>
+<li><a href="#publish-as-template">Publish as template</a></li>
+<li><a href="#open-template">Open template</a></li>
+<li><a href="#import-template">Import template</a></li>
 <li><a href="#settings">Settings</a></li>
 <li><a href="#open-ramses">Open Ramses</a></li>
 </ul>
@@ -436,7 +443,7 @@
 <p>Some of these commands manage files in the <a href="../files/tree/"><em>Ramses Tree</em></a>, see the <a href="../files/tree/">corresponding documentation</a>.</p>
 <p>All commands except <em>open Ramses</em> and <em>Settings</em> should first:</p>
 <ul>
-<li>If the path to the <em>Client</em> executable file is valid:<ul>
+<li>If the add-on is not set to offline by the user (in the settings) AND the path to the <em>Client</em> executable file is valid:<ul>
 <li>Ping the <em>Daemon</em> (which answers with its version and some other information).</li>
 <li>If the ping did not work:<ul>
 <li>Set to offline</li>
@@ -452,24 +459,42 @@
 </li>
 </ul>
 <h3 id="save">Save</h3>
-<p>If the file is not a working file, but a version coming from the <em>ramses_version</em> subfolder, runs <em>Save new version</em> instead of <em>Save</em>.</p>
+<p>If the file is not a working file, but a version coming from the <em>ramses_version</em> subfolder (named <code>restore-vXX</code>), runs <em>Save new version</em> instead of <em>Save</em>.</p>
 <ul>
+<li>If the file is a template (&ldquo;template&rdquo; in the resource name, and in a temp dir)<ul>
+<li>Asks for the name of the new asset/shot, its group, its sequence</li>
+<li>Creates the corresponding folder,</li>
+<li>Saves (as new version if the asset/shot already exists, with a warning)</li>
+</ul>
+</li>
+<li>Else If the file is in the <em>ramses_version</em> folder or if its resource name contains <em>restore-vXX</em>.<ul>
+<li>Runs <em>Save new version</em>.</li>
+</ul>
+</li>
+<li>Else<ul>
 <li>Saves the current file.</li>
 <li>Copies it to the <em>ramses_versions</em> subfolder, appending the current state and version number.</li>
 </ul>
-<p>See the <a href="../files/naming/">naming scheme</a> and <a href="../files/tree/">folder structure</a> for more information.</p>
-<ul>
-<li><em>If the client is available</em>: sends the <em>update</em> command to the client, with the date, state and version of the current asset/shot.</li>
+</li>
+<li>If <em>online</em><ul>
+<li>Send the new status of the asset/shot for this step (version, date, state, comment, completion ratio) to the <em>Ramses Client</em>.</li>
 </ul>
+</li>
+</ul>
+<p>See the <a href="../files/naming/">naming scheme</a> and <a href="../files/tree/">folder structure</a> for more information.</p>
 <h3 id="save-new-version">Save new version</h3>
 <ul>
-<li>If the file is not a working file, but a version coming from the <em>ramses_version</em> subfolder:<ul>
-<li>Saves the current file as the working file</li>
+<li>If the file is in the <em>ramses_version</em> folder or if its resource name contains <em>restore-vXX</em>.<ul>
+<li>Copies the current working file into the version folder, appending the state got from the <em>Ramses client</em> if available, or else just &ldquo;v&rdquo;, and the incremented version number.</li>
+<li>Saves the current file as the working file (in the working folder, and removing <em>restore-XX</em> from the resource name)</li>
 <li>Removes the current file (version file, keeps only the new working file) if it was not in a <em>ramses_versions</em> subfolder</li>
 </ul>
 </li>
+<li>Else<ul>
 <li>Saves the current file.</li>
-<li>Copies it to the <em>ramses_versions</em> subfolder, appending the current state and the incremented version number.</li>
+</ul>
+</li>
+<li>Copies the current file to the <em>ramses_versions</em> subfolder, appending the current state and the incremented version number.</li>
 <li><em>If the client is available</em>: sends the <em>update</em> command to the client, with the date, state and version of the current asset/shot. </li>
 </ul>
 <h3 id="publish">Publish</h3>
@@ -482,10 +507,27 @@
 <h3 id="retrieve-version">Retrieve version</h3>
 <ul>
 <li>Gets a specific version back from the <em>ramses_versions</em> subfolder.</li>
-<li>Copies the file to the asset/shot folder.</li>
+<li>Copies the file to the asset/shot folder, adds<code>restore-vXX</code> to the resource name, where <code>XX</code> is the restored version number.</li>
 <li>Opens it.</li>
 </ul>
 <p>It is only when the file will be saved that this new copied file will be removed and the working file will be overwritten to a new version.</p>
+<h3 id="publish-as-template">Publish as template</h3>
+<ul>
+<li>Saves the file in the corresponding step folder (in a &ldquo;templates&rdquo; subfolder), using a specific naming: <code>PROJECTID_G_stepID_template-resourceName.ext</code></li>
+<li>(asks for overwrite if the file exists)</li>
+<li>Saves the file in a temp folder (to never overwrite a template when Ctrl+S)</li>
+</ul>
+<h3 id="open-template">Open template</h3>
+<ul>
+<li>Lists the available templates</li>
+<li>Opens the selected one</li>
+<li>Saves it in a temp folder</li>
+</ul>
+<h3 id="import-template">Import template</h3>
+<ul>
+<li>Lists the available templates</li>
+<li>Imports the selected one</li>
+</ul>
 <h3 id="settings">Settings</h3>
 <ul>
 <li>Opens the settings editor of the Add-on.</li>
@@ -511,16 +553,32 @@
 <h3 id="ui-panel">UI Panel</h3>
 <p>If possible, each <em>Ramses Add-on</em> should provide a UI panel integrated into the host software, but organized similarly in all add-ons, with specific variations to respect the host software UI guidelines.</p>
 <p>The panel must display buttons for all available commands.</p>
-<p>The panel must also provide a way to quickly set the current <em>Project</em> and <em>Step</em>, and show the opened asset or shot information: state, version, date, comment&hellip; This information is retrieved from the client application if available, or from the <a href="../files/tree/"><em>Ramses Tree</em></a> if not. The panel and this information must be updated as soon as the opened file changes, or at least when the user interacts with it.</p>
+<p>The panel must also provide a way to quickly set the current <em>Project</em> and <em>Step</em>, and show the opened asset or shot information: state, version, date, comment, completion ratio&hellip; This information is retrieved from the client application if available, or from the <a href="../files/tree/"><em>Ramses Tree</em></a> if not. The panel and this information must be updated as soon as the opened file changes, or at least when the user interacts with it.</p>
+<p>Information available in the panel:</p>
+<ul>
+<li>Current user (online only)</li>
+<li>Current project</li>
+<li>Step</li>
+<li>Current shot or asset<ul>
+<li>Containing asset group or sequence (sequence available only if online)</li>
+<li>Date of latest version (read only)</li>
+<li>Current state</li>
+<li>Current resource name</li>
+<li>Current version (read only)</li>
+<li>Completion ratio</li>
+<li>Is template (read only)</li>
+</ul>
+</li>
+</ul>
 <p>If the client application is not available, the <em>Project</em> and <em>Step</em> information is displayed but cannot be changed. <em>Comment</em> is not available.</p>
 <h3 id="settings_1">Settings</h3>
-<p>If the host application provides a way to display the settings of its add-ons, the settings should be located there (and the <em>settings</em> command should open this location if possible). If it does not, tha Add-on must provide a dialog or a panel to let the user change the settings.</p>
+<p>If the host application provides a way to display the settings of its add-ons, the settings should be located there (and the <em>settings</em> command should open this location if possible). If it does not, the Add-on must provide a dialog or a panel to let the user change the settings.</p>
 <p>These settings are:</p>
 <ul>
 <li>Location of the <em>Ramses Client</em> executable file (<em>.exe</em> on <em>Windows</em>, <em>.app</em> on <em>MacOS</em>, <em>.appimage</em> or binary on <em>Linux</em>)</li>
 <li>Listening port of the <em>Ramses Daemon</em></li>
 </ul>
-<p>Note: the settings are saved in a shared location between all add-ons so that they&rsquo;re configured only once. They&rsquo;re in an easy-to-edit JSON text file.</p>
+<p>Note: the settings are saved in a shared location (user documents folder ?) between all add-ons so that they&rsquo;re configured only once. They&rsquo;re in an easy-to-edit JSON text file.</p>
               
             </div>
           </div>
