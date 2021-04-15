@@ -58,19 +58,16 @@ nav:
         - Scripting API (Add-ons):
             - Reference: dev/add-ons-reference/index.md
             - Ramses: dev/add-ons-reference/ramses.md
-            - RamApplication: dev/add-ons-reference/ram_application.md
             - RamAsset: dev/add-ons-reference/ram_asset.md
-            - RamAssetStep: dev/add-ons-reference/ram_assetstep.md
-            - RamFileType: dev/add-ons-reference/ram_filetype.md
+            - RamDaemonInterface: dev/add-ons-reference/ram_daemon_interface.md
             - RamItem: dev/add-ons-reference/ram_item.md
             - RamObject: dev/add-ons-reference/ram_object.md
             - RamProject: dev/add-ons-reference/ram_project.md
+            - RamSettings: dev/add-ons-reference/ram_settings.md
             - RamShot: dev/add-ons-reference/ram_shot.md
-            - RamShotStep: dev/add-ons-reference/ram_shotstep.md
             - RamState: dev/add-ons-reference/ram_state.md
             - RamStatus: dev/add-ons-reference/ram_status.md
             - RamStep: dev/add-ons-reference/ram_step.md
-            - RamStepStatus: dev/add-ons-reference/ram_stepstatus.md
             - RamUser: dev/add-ons-reference/ram_user.md
         - Daemon API:
             - Reference: dev/daemon-reference/index.md

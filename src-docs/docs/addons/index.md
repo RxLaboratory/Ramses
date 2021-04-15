@@ -27,6 +27,10 @@ All commands except *open Ramses* and *Settings* should first:
         - If the daemon is not accessible: warn the user
     - If the ping worked: set to online
 
+### Open
+
+// TODO
+
 ### Save
 
 If the file is not a working file, but a version coming from the *ramses_version* subfolder (named `restore-vXX`), runs *Save new version* instead of *Save*.

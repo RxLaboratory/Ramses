@@ -15,7 +15,16 @@
 
 ## pipeline tools first
 
-- write new addon api doc (add "save as template" and "open template (which saves elsewhere to not overwrite template)" and "create new")
+- complete daemon: setCurrentProject must return all info, write other methods
+- addon api: add open functions
+    - offline:
+        - get projects from ramses folder
+        - get current project folder from settings
+        - list assets/shots from current project
+    - online:
+        - get projects from daemon
+        - get current project from daemon
+        - list asssets/shots from daemon reply
 - step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
 - project: add duration, resolution, aspectratio (in server, dbi, etc)
 - pipeedit: filetype list not always updated

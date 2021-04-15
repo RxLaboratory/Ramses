@@ -70,6 +70,8 @@ Sets the current project
 
 ### Reply content
 
+//TODO Add the list of steps
+
 The *Daemon* replies with more information about the project.
 
 - *name*: **string**. The name of the project.
