@@ -587,6 +587,9 @@
 <ul>
 <li><em>shortName</em>: <strong>string</strong>. The short name of the project.</li>
 <li><em>name</em>: <strong>string</strong>. The name of the project.</li>
+<li><em>width</em>: <strong>int</strong>. The width of the project in pixels.</li>
+<li><em>height</em>: <strong>int</strong>. The width of the project in pixels.</li>
+<li><em>framerate</em>: <strong>float</strong>. The framerate of the project.</li>
 <li><em>folder</em>: <strong>string</strong>. The absolute path of the folder containing the project.</li>
 </ul>
 <h3 id="example_3">Example</h3>
@@ -601,6 +604,9 @@
     <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;P1&quot;</span><span class="p">,</span>
         <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Project 01&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">2048</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">858</span><span class="p">,</span>
+        <span class="nt">&quot;framerate&quot;</span><span class="p">:</span> <span class="mf">24.0</span><span class="p">,</span>
         <span class="nt">&quot;folder&quot;</span><span class="p">:</span> <span class="s2">&quot;/path/to/P1&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -619,6 +625,9 @@
 <li><em>projects</em>: <strong>array of objects</strong>. The projects. Each project is an object with:<ul>
 <li><em>shortName</em>: <strong>string</strong>. The short name of the project.</li>
 <li><em>name</em>: <strong>string</strong>. The name of the project.</li>
+<li><em>width</em>: <strong>int</strong>. The width of the project in pixels.</li>
+<li><em>height</em>: <strong>int</strong>. The width of the project in pixels.</li>
+<li><em>framerate</em>: <strong>float</strong>. The framerate of the project.</li>
 <li><em>folder</em>: <strong>string</strong>. The absolute path of the folder containing the project.</li>
 </ul>
 </li>
@@ -637,11 +646,17 @@
             <span class="p">{</span>
                 <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;P1&quot;</span><span class="p">,</span>
                 <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Project 01&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">2048</span><span class="p">,</span>
+                <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">858</span><span class="p">,</span>
+                <span class="nt">&quot;framerate&quot;</span><span class="p">:</span> <span class="mf">24.0</span><span class="p">,</span>
                 <span class="nt">&quot;folder&quot;</span><span class="p">:</span> <span class="s2">&quot;/path/to/P1&quot;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;P2&quot;</span><span class="p">,</span>
                 <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Project 02&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1998</span><span class="p">,</span>
+                <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span>
+                <span class="nt">&quot;framerate&quot;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span>
                 <span class="nt">&quot;folder&quot;</span><span class="p">:</span> <span class="s2">&quot;/path/to/P2&quot;</span>
             <span class="p">}</span>
         <span class="p">]</span>
