@@ -60,14 +60,17 @@ WIP
 
 RamStatus
 
+- Server
 - [x] sql db
 - [x] server (get in projects/sequences)
 - [x] server doc
+- Client
 - [x] dbi
 - [x] RamShot
 - [x] RamSequence shot list
 - [x] RamProject shot(uuid) & removeshot(uuid)
-- [-] ramses (get in gotsequences -> gotshots) -> date
+- [x] ramses (get in gotsequences -> gotshots)
+- UI
 - [ ] shoteditwidget
 - [ ] shotmanagerwidget
 - [ ] doc
