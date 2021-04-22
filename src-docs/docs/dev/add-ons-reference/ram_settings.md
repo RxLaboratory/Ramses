@@ -31,3 +31,38 @@ There is only one instance of RamSettings, available with the [`Ramses.instance.
 | Method | Arguments | Description |
 | --- | --- | --- |
 | **save** | | Saves the current settings to the disk. |
+
+____
+
+## API Dev notes
+
+!!! note
+    These section is for the development of the API only; you should not need these when developping your add-on using the API.
+
+### Private Attributes
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| **folderNames** | *FolderNames* | | A simple class containing the common names for subfolders |
+
+#### FolderNames Attributes
+
+FolderNames is a simple class which contains common names for subfolders.
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| **preview** | *string* | "_preview" | |
+| **publish** | *string* | "_published" | |
+| **versions** | *string* | "_versions" | |
+
+### Examples
+
+```py
+ramses = Ramses.instance
+settings = ramses.settings
+theAsset = RamAsset("thing", "stuff")
+thePreviewFolder = theAsset.folderPath() + "/" + settings.folderNames.preview
+```
+____
+
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)

@@ -18,3 +18,4 @@ Inherited by: *[RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](
 | ***constructor*** | *string*: **objectName**<br />*string*: **objectShortName** | |
 | **name**<br />▹ *string* | | |
 | **shortName**<br />▹ *string* | | |
+
