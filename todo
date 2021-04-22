@@ -24,6 +24,7 @@
 
 ## Other
 
+- add opertator== in ramobject
 - pipeedit: filetype list not always updated
 - dockwidget: fix bug when tabifying
 - update json example in getProject(s) server reference
@@ -60,13 +61,13 @@ WIP
 RamStatus
 
 - [x] sql db
-- [-] server (get in projects/sequences)
-- [-] server doc
-- [ ] dbi
-- [ ] RamShot
-- [ ] RamSequence shot list
-- [ ] RamProject shot(uuid) & removeshot(uuid)
-- [ ] ramses (get in gotsequences -> gotshots)
+- [x] server (get in projects/sequences)
+- [x] server doc
+- [x] dbi
+- [x] RamShot
+- [x] RamSequence shot list
+- [x] RamProject shot(uuid) & removeshot(uuid)
+- [-] ramses (get in gotsequences -> gotshots) -> date
 - [ ] shoteditwidget
 - [ ] shotmanagerwidget
 - [ ] doc
