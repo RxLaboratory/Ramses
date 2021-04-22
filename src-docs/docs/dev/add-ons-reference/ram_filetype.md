@@ -19,7 +19,6 @@ Inherits: [***RamObject***](ram_object.md)
 | --- | --- | --- |
 | ***constructor*** | *string*: **name**,<br />*string*: **shortName**,<br />*list of strings*: **extensions** | |
 | **extensions**<br />▹ *list of string* | | The extensions which can be used for this file type, including the "." |
-
 ____
 
 ![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
