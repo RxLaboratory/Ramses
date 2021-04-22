@@ -15,13 +15,12 @@
 
 ## pipeline tools first
 
-- Bug: pipes are removed on display
+- status & history
+- implement status
+- implement stepstatus
 - step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
 - addon api: add open function description
 - addon api: when activated, check current file (and update info)
-- implement status
-- implement stepstatus
-- status & history
 
 ## Other
 
@@ -58,16 +57,16 @@
 WIP 
 
 
-RamFileType
+RamStatus
 
-- sql db
-- server (get in projects/sequences)
-- server doc
-- dbi
-- RamShot
-- RamSequence shot list
-- RamProject shot(uuid) & removeshot(uuid)
-- ramses (get in gotsequences -> gotshots)
-- shoteditwidget
-- shotmanagerwidget
-- doc
+- [x] sql db
+- [-] server (get in projects/sequences)
+- [-] server doc
+- [ ] dbi
+- [ ] RamShot
+- [ ] RamSequence shot list
+- [ ] RamProject shot(uuid) & removeshot(uuid)
+- [ ] ramses (get in gotsequences -> gotshots)
+- [ ] shoteditwidget
+- [ ] shotmanagerwidget
+- [ ] doc
