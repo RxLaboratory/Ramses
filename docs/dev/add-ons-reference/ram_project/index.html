@@ -457,6 +457,11 @@
 <td>Builds an absolute path from a path relative to the project path</td>
 </tr>
 <tr>
+<td><strong>asset</strong><br />▹ <em><a href="../ram_asset/">RamAsset</a></em></td>
+<td><em>string</em>: <strong>assetShortName</strong></td>
+<td>Gets an asset with its short name.</td>
+</tr>
+<tr>
 <td><strong>assets</strong><br />▹ <em>list of <a href="../ram_asset/">RamAsset</a></em></td>
 <td><em>string</em>: <strong>groupName</strong>=<code>""</code></td>
 <td>Available assets in this project and group. If <em>groupName</em> is an empty string, returns all assets.</td>
@@ -467,9 +472,34 @@
 <td>Available asset groups in this project</td>
 </tr>
 <tr>
-<td><strong>shots</strong><br />▹ <em>list of <a href="../ram_shot/">RamShot</a></em></td>
+<td><strong>pipes</strong><br />▹ <em>list of <a href="../ram_pipe/">RamPipe</a></em></td>
+<td></td>
+<td>Available pipes in this project</td>
+</tr>
+<tr>
+<td><strong>inputPipes</strong><br />▹ <em>list of <a href="../ram_pipe/">RamPipe</a></em></td>
+<td><em>string</em>:<strong>inputStepShortName</strong></td>
+<td>Gets all pipes using this step as input</td>
+</tr>
+<tr>
+<td><strong>outputPipes</strong><br />▹ <em>list of <a href="../ram_pipe/">RamPipe</a></em></td>
+<td><em>string</em>:<strong>outputStepShortName</strong></td>
+<td>Gets all pipes using this step as output</td>
+</tr>
+<tr>
+<td><strong>shot</strong><br />▹ <em><a href="../ram_shot/">RamShot</a></em></td>
+<td><em>string</em>: <strong>shotShortName</strong></td>
+<td>Gets a shot with its short name.</td>
+</tr>
+<tr>
+<td><strong>shots</strong><br />▹ <em><a href="../ram_shot/">RamShot</a></em></td>
 <td></td>
 <td>Available shots in this project</td>
+</tr>
+<tr>
+<td><strong>step</strong><br />▹ <em><a href="../ram_step/">RamStep</a></em></td>
+<td><em>string</em>: <strong>stepShortName</strong></td>
+<td>Gets a step with its short name.</td>
 </tr>
 <tr>
 <td><strong>steps</strong><br />▹ <em>list of <a href="../ram_step/">RamStep</a></em></td>
@@ -478,6 +508,8 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p>
               
             </div>
           </div>
