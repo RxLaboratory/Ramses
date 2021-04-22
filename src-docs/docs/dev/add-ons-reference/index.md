@@ -17,13 +17,15 @@ This is the comprehensive list of available classes.
 | Class | Inheritance | Description |
 | ---- | ---- | ---- |
 | [Ramses](ramses.md) | | The main class. One (and only one) instance globally available, instantiated during init time. |
-| [RamAsset](ram_asset.md) | [RamObject](ram_item.md) | An asset. |
+| [RamAsset](ram_asset.md) | [RamItem](ram_item.md) | An asset. |
 | [RamDaemonInterface](ram_daemon_interface.md) | | The Class used to communicate with the Ramses Daemon |
+| [RamFileType](ram_filetype.md) | | A File type (name and possible extensions) |
 | [RamItem](ram_item.md) | [RamObject](ram_object.md) | The base class for Shots and Assets. |
 | [RamObject](ram_object.md) | | The base class for most of Ramses objects. |
+| [RamPipe](ram_pipe.md) | | A pipe which connects two steps together in the production pipeline |
 | [RamProject](ram_project.md) | [RamObject](ram_object.md) | A project handled by Ramses. Projects contains general items, assets and shots. |
 | [RamSettings](ram_settings.md) | | Gets and saves settings used by Ramses. | 
-| [RamShot](ram_shot.md) | [RamObject](ram_item.md) | A shot. |
+| [RamShot](ram_shot.md) | [RamItem](ram_item.md) | A shot. |
 | [RamState](ram_state.md) | [RamObject](ram_object.md) | The state of a step (like "Waiting for approval", "Approved", etc.). |
 | [RamStatus](ram_status.md) | | A state associated to a comment, the user who changed the state, etc. |
 | [RamStep](ram_step.md) | [RamObject](ram_object.md) | A step in the production of the shots or assets of the project. |

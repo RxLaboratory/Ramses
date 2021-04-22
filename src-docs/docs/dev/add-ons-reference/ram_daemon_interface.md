@@ -29,6 +29,7 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **getAssets**<br />▹ *Object / Dict* | | Gets the list of the assets for the current project |
 | **getCurrentProject**<br />▹ *Object / Dict* | | Gets the current project | |
 | **getProjects**<br />▹ *Object / Dict* | | Gets the list of available projects |
+| **getPipes**<br />▹ *Object / Dict* | | Gets the list of pipes for the current project | TODO |
 | **getShots**<br />▹ *Object / Dict* | | Gets the list of the shots for the current project |
 | **getStates**<br />▹ *Object / Dict* | | Gets the list of available states |
 | **getSteps**<br />▹ *Object / Dict* | | Gets the list of the steps for the current project |
@@ -50,3 +51,7 @@ In Python, the methods from this class return a `dict` as constructed from the *
 ### JavaScript / ExtendScript
 
 In JS, the methods from this class return a standard JS object as constructed from the *JSON* reply of the *Daemon* using the standard `json2` library.
+
+____
+
+![META](authors:Nicolas "Duduf" Dufresne;medias:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
