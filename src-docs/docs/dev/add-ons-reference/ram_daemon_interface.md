@@ -16,6 +16,38 @@ There should be only one instance of the *Daemon Interface*, available with the 
 | **port** | *integer* | `18185` | Listening port of the *Ramses Daemon*. Set by [RamSettings](ram_settings.md) |
 | **address** | *string* | `"localhost"` | The IP or host name of the *Ramses Daemon*. Should never be changed unless you know what you're doing. By default, the *Daemon* only listens to *localhost / 127.0.01* |
 
+## Static Methods
+
+| Method | Arguments | Description | Dev Notes |
+| --- | --- | --- | --- |
+| **ckeckReply**<br />▹ *boolean* | *dict*: **reply** | Checks if the reply returned by a *RamDaemonInterface* instance is accepted, successful and has some content. |  |
+
+### Examples
+
+- `checkReply`
+
+```py
+# Python
+daemon = Ramses.instance.daemonInterface()
+reply = daemon.getProjects() # Call from the instance
+if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
+    doSomething(reply['content'])
+else:
+    print (reply['message'])
+```
+
+```js
+// JavaScript
+var daemon = Ramses.instance.daemonInterface();
+var reply = daemon.getProjects(); // Call from the instance
+if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
+    doSomething(reply['content']);
+}
+else {
+    alert (reply['message']);
+}
+```
+
 ## Methods
 
 Please refer to the [*Daemon API* reference](../../daemon-reference/) for more information about these methods.
