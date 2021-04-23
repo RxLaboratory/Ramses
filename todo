@@ -1,5 +1,5 @@
-- server: enclose column names in ``
-- SSL: check if avail and adjust settings page
+- REFACTOR: server: enclose column names in `` & other improvements in SQL queries (refer to setAssetStatus)
+- FEATURE: SSL: check if avail and adjust settings page
 
 - client deployment process to write/document:
     - Ubuntu 18.04
@@ -15,50 +15,54 @@
 
 ## pipeline tools first
 
-- status & history
-- implement status
-- implement stepstatus
-- step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
-- addon api: add open function description
-- addon api: when activated, check current file (and update info)
+- FEATURE: [-] status & history
+    - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
+    - [ ] Finish the RamStatusWidget (color, date, version, comment, published)
+    - [ ] Check version in files, alert when changing status if version is found but does not correspond
+    - [ ] When creating an asset or a shot, create a "STB" or "TODO" (depending on dependencies) status in all histories
+    - [ ] Add a "Ramses" admin user (which can't be removed) for automated tasks
+    - [ ] Make sure TODO, STB, OK can't be removed
+    - [ ] Implement automations (if published & right file format available -> set next step to TODO)
+    - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
+- FEATURE: step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
+- DOC: addon api: add open function description
+- DOC & FEATURE: addon api: when activated, check current file (and update info)
 
 ## Other
 
-- add opertator== in ramobject
-- pipeedit: filetype list not always updated
-- dockwidget: fix bug when tabifying
-- update json example in getProject(s) server reference
-- move console to a dock widget
+- REFACTOR: add opertator== in ramobject which compares uuids
+- REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget
+- BUG: pipeedit: filetype list not always updated
+- BUG: dockwidget: fix bug when tabifying
+- DOC: update json example in getProject(s) server reference
+- UI: move console to a dock widget
 - sequence order
 - set offline when token is set invalid (server timeout)
-- mutliple shots addition
-- add meta to the doc
-- factorize listmanagerwidget to ramobjectsmanagerwidget using simpleObjectsList
-- factorize the objectEditWidget -> use the new base class for all editors
+- FEATURE: mutliple shots addition
+- DOC: add meta to the doc
+- REFACTOR: factorize listmanagerwidget to ramobjectsmanagerwidget using simpleObjectsList
+- REFACTOR: factorize the objectEditWidget -> use the new base class for all editors
     - useredit
     - templatestep
     - template asset group
     - states
     - filetypes
-- Pipe editor: when creating a pipe, select it after creation
-- shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
-- implement main table
-- implement shots table 
-- implement assets table
-- option to restore removed items (admin/lead only)
-- implement offline mode
-- implement import-export data.
+- FEATURE: Pipe editor: when creating a pipe, select it after creation
+- FEATURE: shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
+- FEATURE: implement main table
+- FEATURE: implement shots table 
+- FEATURE: implement assets table
+- FEATURE: option to restore removed items (admin/lead only)
+- FEATURE: implement offline mode
+- FEATURE: implement import-export data.
     - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
     - Client side: define a data structure (json?) // Copy the sqlite local db once a day
-- option to choose tray icon
-- test remove from database then refresh client
-- test other modifications from database then refresh client
-- test using two clients simultaneously (from different virtual machines)
+- FEATURE: option to choose tray icon
+- TESTS: test remove from database then refresh client
+- TESTS: test other modifications from database then refresh client
+- TESTS: test using two clients simultaneously (from different virtual machines)
 
 WIP 
-
-
-RamStatus
 
 - Server
 - [x] sql db
