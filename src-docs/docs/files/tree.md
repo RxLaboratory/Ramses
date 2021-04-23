@@ -46,7 +46,9 @@ Nevertheless, you can always choose another folder to store a specific project, 
         - ...
     - Users # User files
         - User01 # Files for a single user
+            - Config # Configuration files for this user
         - User02
+            - Config
         - ...
 ```
 
@@ -117,7 +119,7 @@ Here is an example for the modelling step of the asset called *Tristan*.
 - PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
     - PROJECTID_A_TRISTAN_MOD.blend # The main file for modelling Tristan (on Blender)
     - PROJECTID_A_TRISTAN_MOD_Sculpt.blend # Another resource
-    - ramses_versions # The versionning folder, handled by Ramses.
+    - _versions # The versionning folder, handled by Ramses.
         - PROJECTID_A_TRISTAN_MOD_wip001.blend # A WIP version
         - PROJECTID_A_TRISTAN_MOD_wip002.blend
         - PROJECTID_A_TRISTAN_MOD_chk003.blend # The version which has to be checked by the lead
@@ -125,10 +127,10 @@ Here is an example for the modelling step of the asset called *Tristan*.
         - PROJECTID_A_TRISTAN_MOD_pub005.blend # The version which has been published
         - PROJECTID_A_TRISTAN_MOD_Sculpt_v001.blend # The first version of a resource
         - PROJECTID_A_TRISTAN_MOD_Sculpt_v002.blend # The second version of a resource
-    - published
+    - _publish
         - PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
         - PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
-    - preview
+    - _preview
         - PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
         - PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
 ```

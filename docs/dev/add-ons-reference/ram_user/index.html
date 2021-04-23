@@ -251,6 +251,8 @@
     
         <ul>
         
+            <li><a class="toctree-l5" href="#constants-enumerated-values">Constants (enumerated values)</a></li>
+        
             <li><a class="toctree-l5" href="#attributes">Attributes</a></li>
         
             <li><a class="toctree-l5" href="#methods">Methods</a></li>
@@ -411,12 +413,50 @@
 <div class="toc">
 <ul>
 <li><a href="#ramuser">RamUser</a><ul>
+<li><a href="#constants-enumerated-values">Constants (enumerated values)</a><ul>
+<li><a href="#userrole">UserRole</a></li>
+</ul>
+</li>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<h2 id="constants-enumerated-values">Constants (enumerated values)</h2>
+<h3 id="userrole">UserRole</h3>
+<p>The role of the user (i.e. its administration rights).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UserRole.<strong>ADMIN</strong></td>
+<td><code>3</code></td>
+<td></td>
+</tr>
+<tr>
+<td>UserRole.<strong>PROJECT_ADMIN</strong></td>
+<td><code>2</code></td>
+<td></td>
+</tr>
+<tr>
+<td>UserRole.<strong>LEAD</strong></td>
+<td><code>1</code></td>
+<td></td>
+</tr>
+<tr>
+<td>UserRole.<strong>STANDARD</strong></td>
+<td><code>0</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="attributes">Attributes</h2>
 <table>
 <thead>
@@ -448,7 +488,7 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>string</em>: <strong>userName</strong><br /><em>string</em>: <strong>userShortName</strong><br /><em>string</em>: <strong>userFolderPath</strong>=<code>""</code></td>
+<td><em>string</em>: <strong>userName</strong>,<br /><em>string</em>: <strong>userShortName</strong>,<br /><em>string</em>: <strong>userFolderPath</strong>=<code>""</code>,<br /><em>UserRole</em>: <strong>role</strong>=<code>UserRole.STANDARD</code></td>
 <td></td>
 </tr>
 <tr>
@@ -464,7 +504,7 @@
 <tr>
 <td><strong>role</strong><br />▹ <em>enumerated value</em></td>
 <td></td>
-<td>One of <code>RamUser.ADMIN</code>, <code>RamUser.PROJECT_ADMIN</code>, <code>RamUser.LEAD</code> or <code>RamUser.STANDARD</code></td>
+<td>One of <code>UserRole.ADMIN</code>, <code>UserRole.PROJECT_ADMIN</code>, <code>UserRole.LEAD</code> or <code>UserRole.STANDARD</code></td>
 </tr>
 </tbody>
 </table>

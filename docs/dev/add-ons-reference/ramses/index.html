@@ -199,7 +199,7 @@
     
         <ul>
         
-            <li><a class="toctree-l5" href="#attributes">Attributes</a></li>
+            <li><a class="toctree-l5" href="#static-attributes">Static Attributes</a></li>
         
             <li><a class="toctree-l5" href="#methods">Methods</a></li>
         
@@ -406,17 +406,20 @@
             <div class="section">
               
                 <h1 id="ramses">Ramses</h1>
-<p>The main class. One (and only one) instance globally available, instantiated during init time.</p>
+<p>The main class. One (and only one) instance globally available (Ramses is a <em>singleton</em>), instantiated during init time.</p>
 <div class="toc">
 <ul>
 <li><a href="#ramses">Ramses</a><ul>
-<li><a href="#attributes">Attributes</a></li>
+<li><a href="#static-attributes">Static Attributes</a><ul>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
 <li><a href="#methods">Methods</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<h2 id="attributes">Attributes</h2>
+<h2 id="static-attributes">Static Attributes</h2>
 <table>
 <thead>
 <tr>
@@ -428,13 +431,32 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>instance</strong></td>
+<td><em>Ramses</em></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>The unique <em>Ramses</em> instance</td>
 </tr>
 </tbody>
 </table>
+<h3 id="examples">Examples</h3>
+<div class="codehilite"><pre><span></span><span class="c1"># Python</span>
+
+<span class="c1"># import the Ramses class</span>
+<span class="kn">from</span> <span class="nn">ramses</span> <span class="kn">import</span> <span class="n">Ramses</span>
+<span class="c1"># Get the instance, which has already been initiated during import</span>
+<span class="n">ramses</span> <span class="o">=</span> <span class="n">Ramses</span><span class="o">.</span><span class="n">instance</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1">// ExtendScript</span>
+
+<span class="c1">// include the Ramses lib</span>
+<span class="err">#</span><span class="nx">include</span> <span class="nx">ramses</span><span class="p">.</span><span class="nx">jsxinc</span>
+<span class="c1">// Get the instance, which has already been initiated in include</span>
+<span class="kd">var</span> <span class="nx">ramses</span> <span class="o">=</span> <span class="nx">Ramses</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
+</pre></div>
+
+
 <h2 id="methods">Methods</h2>
 <table>
 <thead>

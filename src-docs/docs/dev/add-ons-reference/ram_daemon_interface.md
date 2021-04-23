@@ -60,6 +60,7 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **daemonVersion**<br />▹ *string* |  | The current version of the *Daemon* | *TODO: change the `ping` method to store the version in a private attribute* |
 | **getAssets**<br />▹ *Object / Dict* | | Gets the list of the assets for the current project |
 | **getCurrentProject**<br />▹ *Object / Dict* | | Gets the current project | |
+| **getCurrentUser**<br />▹ *Object / Dict* | | Gets the current user | |
 | **getProjects**<br />▹ *Object / Dict* | | Gets the list of available projects |
 | **getPipes**<br />▹ *Object / Dict* | | Gets the list of pipes for the current project | TODO |
 | **getShots**<br />▹ *Object / Dict* | | Gets the list of the shots for the current project |

@@ -247,6 +247,8 @@
     
         <ul>
         
+            <li><a class="toctree-l5" href="#constants-enumerated-values">Constants (enumerated values)</a></li>
+        
             <li><a class="toctree-l5" href="#attributes">Attributes</a></li>
         
             <li><a class="toctree-l5" href="#methods">Methods</a></li>
@@ -411,12 +413,60 @@
 <div class="toc">
 <ul>
 <li><a href="#ramstep">RamStep</a><ul>
+<li><a href="#constants-enumerated-values">Constants (enumerated values)</a><ul>
+<li><a href="#steptype">StepType</a></li>
+</ul>
+</li>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<h2 id="constants-enumerated-values">Constants (enumerated values)</h2>
+<h3 id="steptype">StepType</h3>
+<p>The type of the step. Usually used to filter available steps.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StepType.<strong>PRE_PRODUCTION</strong></td>
+<td><code>'PRE_PRODUCTION'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>StepType.<strong>ASSET_PRODUCTION</strong></td>
+<td><code>'ASSET_PRODUCTION'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>StepType.<strong>SHOT_PRODUCTION</strong></td>
+<td><code>'SHOT_PRODUCTION'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>StepType.<strong>POST_PRODUCTION</strong></td>
+<td><code>'POST_PRODUCTION'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>StepType.<strong>PRODUCTION</strong></td>
+<td><code>'PRODUCTION'</code></td>
+<td>Use for <em>ASSET</em> AND <em>SHOT</em> production.</td>
+</tr>
+<tr>
+<td>StepType.<strong>ALL</strong></td>
+<td><code>'ALL'</code></td>
+<td>Use for all steps.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="attributes">Attributes</h2>
 <table>
 <thead>
@@ -462,9 +512,9 @@
 <td>The path to the template files of this step, relative to the common folder</td>
 </tr>
 <tr>
-<td><strong>type</strong><br />▹ <em>enumerated value</em></td>
+<td><strong>stepType</strong><br />▹ <em>enumerated value</em></td>
 <td></td>
-<td>The type of this step, one of <code>RamStep.PRE_PRODUCTION</code>, <code>RamStep.SHOT_PRODUCTION</code>, <code>RamStep.ASSET_PRODUCTION</code>, <code>RamStep.POST_PRODUCTION</code></td>
+<td>The type of this step, one of <code>StepType.PRE_PRODUCTION</code>, <code>RamStep.SHOT_PRODUCTION</code>, <code>RamStep.ASSET_PRODUCTION</code>, <code>StepType.POST_PRODUCTION</code></td>
 </tr>
 </tbody>
 </table>

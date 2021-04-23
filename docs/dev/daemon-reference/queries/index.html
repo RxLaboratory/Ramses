@@ -273,6 +273,8 @@
         
             <li><a class="toctree-l5" href="#getcurrentproject">getCurrentProject</a></li>
         
+            <li><a class="toctree-l5" href="#getcurrentuser">getCurrentUser</a></li>
+        
             <li><a class="toctree-l5" href="#getpipes">getPipes</a></li>
         
             <li><a class="toctree-l5" href="#getprojects">getProjects</a></li>
@@ -449,40 +451,46 @@
 <li><a href="#example_3">Example</a></li>
 </ul>
 </li>
-<li><a href="#getpipes">getPipes</a><ul>
+<li><a href="#getcurrentuser">getCurrentUser</a><ul>
 <li><a href="#query-attributes_4">Query attributes</a></li>
 <li><a href="#reply-content_4">Reply content</a></li>
 <li><a href="#example_4">Example</a></li>
 </ul>
 </li>
-<li><a href="#getprojects">getProjects</a><ul>
+<li><a href="#getpipes">getPipes</a><ul>
 <li><a href="#query-attributes_5">Query attributes</a></li>
 <li><a href="#reply-content_5">Reply content</a></li>
 <li><a href="#example_5">Example</a></li>
 </ul>
 </li>
-<li><a href="#getshots">getShots</a><ul>
+<li><a href="#getprojects">getProjects</a><ul>
 <li><a href="#query-attributes_6">Query attributes</a></li>
 <li><a href="#reply-content_6">Reply content</a></li>
 <li><a href="#example_6">Example</a></li>
 </ul>
 </li>
-<li><a href="#getstates">getStates</a><ul>
+<li><a href="#getshots">getShots</a><ul>
 <li><a href="#query-attributes_7">Query attributes</a></li>
 <li><a href="#reply-content_7">Reply content</a></li>
 <li><a href="#example_7">Example</a></li>
 </ul>
 </li>
-<li><a href="#getsteps">getSteps</a><ul>
+<li><a href="#getstates">getStates</a><ul>
 <li><a href="#query-attributes_8">Query attributes</a></li>
 <li><a href="#reply-content_8">Reply content</a></li>
 <li><a href="#example_8">Example</a></li>
 </ul>
 </li>
-<li><a href="#setcurrentproject">setCurrentProject</a><ul>
+<li><a href="#getsteps">getSteps</a><ul>
 <li><a href="#query-attributes_9">Query attributes</a></li>
 <li><a href="#reply-content_9">Reply content</a></li>
 <li><a href="#example_9">Example</a></li>
+</ul>
+</li>
+<li><a href="#setcurrentproject">setCurrentProject</a><ul>
+<li><a href="#query-attributes_10">Query attributes</a></li>
+<li><a href="#reply-content_10">Reply content</a></li>
+<li><a href="#example_10">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -629,13 +637,46 @@
 </pre></div>
 
 
+<h2 id="getcurrentuser">getCurrentUser</h2>
+<p>Returns the current user.</p>
+<h3 id="query-attributes_4">Query attributes</h3>
+<ul>
+<li><em>getCurrentUser</em></li>
+</ul>
+<h3 id="reply-content_4">Reply content</h3>
+<p>The <em>Daemon</em> replies with the user.</p>
+<ul>
+<li><em>shortName</em>: <strong>string</strong>. The short name of the user.</li>
+<li><em>name</em>: <strong>string</strong>. The name of the user.</li>
+<li><em>role</em>: <strong>string</strong>. The role of the user, one of <code>'STANDARD'</code>, <code>'LEAD'</code>,<code>'PROJECT_ADMIN'</code>,<code>'ADMIN'</code>.</li>
+<li><em>folderPath</em>: <strong>string</strong>. The absolute path to the user folder.</li>
+</ul>
+<h3 id="example_4">Example</h3>
+<p>Query:<br />
+<code>getCurrentUser</code></p>
+<p>Reply:  </p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;getCurrentUser&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Current user is: John Doe.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;LEAD&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;folderPath&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/john/Ramses/Users/John&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h2 id="getpipes">getPipes</h2>
 <p>Returns the list of pipes for the current project.</p>
-<h3 id="query-attributes_4">Query attributes</h3>
+<h3 id="query-attributes_5">Query attributes</h3>
 <ul>
 <li><em>getPipes</em></li>
 </ul>
-<h3 id="reply-content_4">Reply content</h3>
+<h3 id="reply-content_5">Reply content</h3>
 <p>The <em>Daemon</em> replies with the list of Pipes.</p>
 <ul>
 <li><em>pipes</em>: <strong>array of objects</strong>. The pipes. Each pipe is an object with:<ul>
@@ -650,7 +691,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="example_4">Example</h3>
+<h3 id="example_5">Example</h3>
 <p>Query:<br />
 <code>getPipes</code></p>
 <p>Reply:  </p>
@@ -687,11 +728,11 @@
 
 <h2 id="getprojects">getProjects</h2>
 <p>Returns the list of available projects.</p>
-<h3 id="query-attributes_5">Query attributes</h3>
+<h3 id="query-attributes_6">Query attributes</h3>
 <ul>
 <li><em>getProjects</em></li>
 </ul>
-<h3 id="reply-content_5">Reply content</h3>
+<h3 id="reply-content_6">Reply content</h3>
 <p>The <em>Daemon</em> replies with the list of projects.</p>
 <ul>
 <li><em>projects</em>: <strong>array of objects</strong>. The projects. Each project is an object with:<ul>
@@ -704,7 +745,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="example_5">Example</h3>
+<h3 id="example_6">Example</h3>
 <p>Query:<br />
 <code>getProjects</code></p>
 <p>Reply:  </p>
@@ -739,11 +780,11 @@
 
 <h2 id="getshots">getShots</h2>
 <p>Returns the list of assets for the current project.</p>
-<h3 id="query-attributes_6">Query attributes</h3>
+<h3 id="query-attributes_7">Query attributes</h3>
 <ul>
 <li><em>getShots</em></li>
 </ul>
-<h3 id="reply-content_6">Reply content</h3>
+<h3 id="reply-content_7">Reply content</h3>
 <p>The <em>Daemon</em> replies with the list of Shots.</p>
 <ul>
 <li><em>shots</em>: <strong>array of objects</strong>. The shots. Each shot is an object with:<ul>
@@ -754,7 +795,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="example_6">Example</h3>
+<h3 id="example_7">Example</h3>
 <p>Query:<br />
 <code>getShots</code></p>
 <p>Reply:  </p>
@@ -785,11 +826,11 @@
 
 <h2 id="getstates">getStates</h2>
 <p>Returns the list of available states.</p>
-<h3 id="query-attributes_7">Query attributes</h3>
+<h3 id="query-attributes_8">Query attributes</h3>
 <ul>
 <li><em>getStates</em></li>
 </ul>
-<h3 id="reply-content_7">Reply content</h3>
+<h3 id="reply-content_8">Reply content</h3>
 <p>The <em>Daemon</em> replies with the list of States.</p>
 <ul>
 <li><em>states</em>: <strong>array of objects</strong>. The states. Each states is an object with:<ul>
@@ -800,7 +841,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="example_7">Example</h3>
+<h3 id="example_8">Example</h3>
 <p>Query:<br />
 <code>getStates</code></p>
 <p>Reply:  </p>
@@ -837,11 +878,11 @@
 
 <h2 id="getsteps">getSteps</h2>
 <p>Returns the list of available steps for the current project.</p>
-<h3 id="query-attributes_8">Query attributes</h3>
+<h3 id="query-attributes_9">Query attributes</h3>
 <ul>
 <li><em>getSteps</em></li>
 </ul>
-<h3 id="reply-content_8">Reply content</h3>
+<h3 id="reply-content_9">Reply content</h3>
 <p>The <em>Daemon</em> replies with the list of Steps.</p>
 <ul>
 <li><em>steps</em>: <strong>array of objects</strong>. The steps. Each step is an object with:<ul>
@@ -852,7 +893,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="example_8">Example</h3>
+<h3 id="example_9">Example</h3>
 <p>Query:<br />
 <code>getSteps</code></p>
 <p>Reply:  </p>
@@ -883,12 +924,12 @@
 
 <h2 id="setcurrentproject">setCurrentProject</h2>
 <p>Sets the current project</p>
-<h3 id="query-attributes_9">Query attributes</h3>
+<h3 id="query-attributes_10">Query attributes</h3>
 <ul>
 <li><em>setCurrentProject</em></li>
 <li><em>shortName</em>: <strong>string</strong>. The short name (or the uuid) of the project.</li>
 </ul>
-<h3 id="reply-content_9">Reply content</h3>
+<h3 id="reply-content_10">Reply content</h3>
 <p>The <em>Daemon</em> replies with more information about the project.</p>
 <ul>
 <li><em>name</em>: <strong>string</strong>. The name of the project.</li>
@@ -896,7 +937,7 @@
 <li><em>path</em>: <strong>string</strong>. The absolute path to the project.</li>
 <li><em>uuid</em>: <strong>boolean</strong>. The internal unique identifier of the project.</li>
 </ul>
-<h3 id="example_9">Example</h3>
+<h3 id="example_10">Example</h3>
 <p>Query:<br />
 <code>setCurrentProject&amp;name=The Project&amp;shortName=PROJ</code></p>
 <p>Reply:  </p>

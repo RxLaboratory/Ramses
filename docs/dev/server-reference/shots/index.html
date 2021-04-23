@@ -315,6 +315,8 @@
         
             <li><a class="toctree-l5" href="#removeshot">removeShot</a></li>
         
+            <li><a class="toctree-l5" href="#setshotstatus">setShotStatus</a></li>
+        
         </ul>
     
 
@@ -421,6 +423,7 @@
 <li><a href="#updateshot">updateShot</a></li>
 <li><a href="#moveshot">moveShot</a></li>
 <li><a href="#removeshot">removeShot</a></li>
+<li><a href="#setshotstatus">setShotStatus</a></li>
 </ul>
 </li>
 </ul>
@@ -522,6 +525,36 @@
     <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;removeShot&quot;</span><span class="p">,</span>
     <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Shot removed.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="setshotstatus">setShotStatus</h2>
+<p>Sets a new status for a shot</p>
+<p><strong>Query attributes:</strong></p>
+<ul>
+<li><em>uuid</em>: <strong>string</strong>. The status&rsquo; Universal Unique Identifier.</li>
+<li><em>shotUuid</em>: <strong>string</strong>. The shot&rsquo;s Universal Unique Identifier.</li>
+<li><em>completionRation</em>: <strong>int</strong> (optionnal). The current completion ratio in the range [0, 100].</li>
+<li><em>userUuid</em>: <strong>string</strong> (optionnal). The uuid of the user setting the status. Will use the currently connected user if not provided.</li>
+<li><em>stateUuid</em>: <strong>string</strong>. The uuid of the associated state.</li>
+<li><em>comment</em>: <strong>string</strong> (optionnal). A comment.</li>
+<li><em>version</em>: <strong>int</strong> (optionnal). The current version.</li>
+<li><em>stepUuid</em>: <strong>string</strong>. The uuid of the associated step.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+</ul>
+<p><strong>Reply content:</strong></p>
+<p>Empty</p>
+<p><strong>Examples:</strong></p>
+<p>Query:<br />
+<code>http://your.server/ramses/?setAssetStatus&amp;uuid=123&amp;shotUuid=123&amp;completionRatio=50&amp;userUuid=123&amp;stateUuid=123&amp;comment=A nice comment&amp;version=12&amp;stepUuid=123&amp;token=123</code></p>
+<p>Reply:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;setShotStatus&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Shot status updated.&quot;</span><span class="p">,</span>
     <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

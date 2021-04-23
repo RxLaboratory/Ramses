@@ -110,6 +110,12 @@
             
     <li class="toctree-l3"><a href="#sequences">Sequences</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l4" href="#attributes">Attributes</a></li>
+        
+        </ul>
+    
 
     </ul>
                 </li>
@@ -393,12 +399,28 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="sequences">Sequences</h1>
+                <h1 id="sequences"><img alt="" src="../../img/icons/sequences.svg" style="width:32px;" /> Sequences</h1>
+<p><em>Sequences</em> are a way to group <em>Shots</em>. A project contains at least one <em>Sequence</em>.</p>
+<p>You can use projects and sequences in many different ways:</p>
 <ul>
-<li>name</li>
-<li>shortName</li>
-<li>shots</li>
+<li>Series (or a single season) can be a single project, each episode would then be a sequence. This works well for short episodes without too many shots.</li>
+<li>You can subdivide a long project, like a feature film, into sequences.</li>
+<li>For a short project, you could use a single sequence to make things simpler.</li>
 </ul>
+<p>Each Sequence stores a list of <a href="../shots/">Shots</a>, and each <a href="../shots/">Shot</a> belong to one and only one Sequence.</p>
+<p>To the contrary of <em><a href="../assets/">Assets</a></em> and <em><a href="../assetgroups/">Asset Groups</a></em>, sequence don&rsquo;t have their own folder. All shots are always stored in the same folder (read <em><a href="../../files/tree/">Ramses Tree</a></em> for more information).</p>
+<h2 id="attributes">Attributes</h2>
+<p>As any other object in <em>Ramses</em>, the sequences are defined by their:</p>
+<ul>
+<li><strong><em>Name</em></strong></li>
+<li><strong><em>Short Name</em></strong></li>
+</ul>
+<p>The sequences also have these additional attributes:</p>
+<ul>
+<li><strong><em>Shots</em></strong>: The list of shots stored by this sequence.</li>
+</ul>
+<hr />
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p>
               
             </div>
           </div>

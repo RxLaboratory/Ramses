@@ -209,6 +209,8 @@
         
             <li><a class="toctree-l5" href="#attributes">Attributes</a></li>
         
+            <li><a class="toctree-l5" href="#static-methods">Static Methods</a></li>
+        
             <li><a class="toctree-l5" href="#methods">Methods</a></li>
         
             <li><a class="toctree-l5" href="#implementation">Implementation</a></li>
@@ -418,6 +420,10 @@
 <ul>
 <li><a href="#ramdaemoninterface">RamDaemonInterface</a><ul>
 <li><a href="#attributes">Attributes</a></li>
+<li><a href="#static-methods">Static Methods</a><ul>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
 <li><a href="#methods">Methods</a></li>
 <li><a href="#implementation">Implementation</a><ul>
 <li><a href="#python">Python</a></li>
@@ -453,6 +459,51 @@
 </tr>
 </tbody>
 </table>
+<h2 id="static-methods">Static Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+<th>Dev Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ckeckReply</strong><br />▹ <em>boolean</em></td>
+<td><em>dict</em>: <strong>reply</strong></td>
+<td>Checks if the reply returned by a <em>RamDaemonInterface</em> instance is accepted, successful and has some content.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<ul>
+<li><code>checkReply</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="c1"># Python</span>
+<span class="n">daemon</span> <span class="o">=</span> <span class="n">Ramses</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">daemonInterface</span><span class="p">()</span>
+<span class="n">reply</span> <span class="o">=</span> <span class="n">daemon</span><span class="o">.</span><span class="n">getProjects</span><span class="p">()</span> <span class="c1"># Call from the instance</span>
+<span class="k">if</span> <span class="n">RamDaemonInterface</span><span class="o">.</span><span class="n">checkReply</span><span class="p">(</span><span class="n">reply</span><span class="p">):</span> <span class="c1"># Call from the class, it&#39;s a static method</span>
+    <span class="n">doSomething</span><span class="p">(</span><span class="n">reply</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">reply</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1">// JavaScript</span>
+<span class="kd">var</span> <span class="nx">daemon</span> <span class="o">=</span> <span class="nx">Ramses</span><span class="p">.</span><span class="nx">instance</span><span class="p">.</span><span class="nx">daemonInterface</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">reply</span> <span class="o">=</span> <span class="nx">daemon</span><span class="p">.</span><span class="nx">getProjects</span><span class="p">();</span> <span class="c1">// Call from the instance</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">RamDaemonInterface</span><span class="p">.</span><span class="nx">checkReply</span><span class="p">(</span><span class="nx">reply</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">// Call from the class, it&#39;s a static method</span>
+    <span class="nx">doSomething</span><span class="p">(</span><span class="nx">reply</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="nx">alert</span> <span class="p">(</span><span class="nx">reply</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h2 id="methods">Methods</h2>
 <p>Please refer to the <a href="../../daemon-reference/"><em>Daemon API</em> reference</a> for more information about these methods.</p>
 <p>These methods return the reply of the <em>Daemon</em> converted from <em>JSON</em> to an object, dict, structure, or whatever best suits the language in which the add-on is implemented.</p>
@@ -488,6 +539,12 @@
 <td><strong>getCurrentProject</strong><br />▹ <em>Object / Dict</em></td>
 <td></td>
 <td>Gets the current project</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>getCurrentUser</strong><br />▹ <em>Object / Dict</em></td>
+<td></td>
+<td>Gets the current user</td>
 <td></td>
 </tr>
 <tr>

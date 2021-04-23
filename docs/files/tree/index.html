@@ -449,7 +449,9 @@
         - ...
     - Users <span class="c1"># User files</span>
         - User01 <span class="c1"># Files for a single user</span>
+            - Config <span class="c1"># Configuration files for this user</span>
         - User02
+            - Config
         - ...
 </pre></div>
 
@@ -512,7 +514,7 @@
 <div class="codehilite"><pre><span></span>- PROJECTID_A_TRISTAN_MOD <span class="c1"># The working folder, subfolder of the asset folder.</span>
     - PROJECTID_A_TRISTAN_MOD.blend <span class="c1"># The main file for modelling Tristan (on Blender)</span>
     - PROJECTID_A_TRISTAN_MOD_Sculpt.blend <span class="c1"># Another resource</span>
-    - ramses_versions <span class="c1"># The versionning folder, handled by Ramses.</span>
+    - _versions <span class="c1"># The versionning folder, handled by Ramses.</span>
         - PROJECTID_A_TRISTAN_MOD_wip001.blend <span class="c1"># A WIP version</span>
         - PROJECTID_A_TRISTAN_MOD_wip002.blend
         - PROJECTID_A_TRISTAN_MOD_chk003.blend <span class="c1"># The version which has to be checked by the lead</span>
@@ -520,10 +522,10 @@
         - PROJECTID_A_TRISTAN_MOD_pub005.blend <span class="c1"># The version which has been published</span>
         - PROJECTID_A_TRISTAN_MOD_Sculpt_v001.blend <span class="c1"># The first version of a resource</span>
         - PROJECTID_A_TRISTAN_MOD_Sculpt_v002.blend <span class="c1"># The second version of a resource</span>
-    - published
+    - _publish
         - PROJECTID_A_TRISTAN_MOD.blend <span class="c1"># The working file as it was when publishing</span>
         - PROJECTID_A_TRISTAN_MOD.abc <span class="c1"># The published export (an *Alembic* file)</span>
-    - preview
+    - _preview
         - PROJECTID_A_TRISTAN_MOD.jpg <span class="c1"># A file for previewing the modelling</span>
         - PROJECTID_A_TRISTAN_MOD.mp4 <span class="c1"># A file for previewing the modelling</span>
 </pre></div>

@@ -1,13 +1,34 @@
 # Ramses
 
-The main class. One (and only one) instance globally available, instantiated during init time.
+The main class. One (and only one) instance globally available (Ramses is a *singleton*), instantiated during init time.
 
 [TOC]
 
-## Attributes
+## Static Attributes
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
+| **instance** | *Ramses* | | The unique *Ramses* instance |
+
+### Examples
+
+```py
+# Python
+
+# import the Ramses class
+from ramses import Ramses
+# Get the instance, which has already been initiated during import
+ramses = Ramses.instance
+```
+
+```js
+// ExtendScript
+
+// include the Ramses lib
+#include ramses.jsxinc
+// Get the instance, which has already been initiated in include
+var ramses = Ramses.instance;
+```
 
 ## Methods
 
