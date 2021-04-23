@@ -204,11 +204,19 @@
                 </li>
                 <li class="toctree-l3">
                     
+    <a class="" href="../ram_filetype/">RamFileType</a>
+                </li>
+                <li class="toctree-l3">
+                    
     <a class="" href="../ram_item/">RamItem</a>
                 </li>
                 <li class="toctree-l3">
                     
     <a class="" href="../ram_object/">RamObject</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../ram_pipe/">RamPipe</a>
                 </li>
                 <li class="toctree-l3">
                     
@@ -226,6 +234,8 @@
             <li><a class="toctree-l5" href="#attributes">Attributes</a></li>
         
             <li><a class="toctree-l5" href="#methods">Methods</a></li>
+        
+            <li><a class="toctree-l5" href="#api-dev-notes">API Dev notes</a></li>
         
         </ul>
     
@@ -413,6 +423,14 @@
 <li><a href="#ramsettings">RamSettings</a><ul>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#api-dev-notes">API Dev notes</a><ul>
+<li><a href="#private-attributes">Private Attributes</a><ul>
+<li><a href="#foldernames-attributes">FolderNames Attributes</a></li>
+</ul>
+</li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -477,6 +495,73 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="api-dev-notes">API Dev notes</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
+</div>
+<h3 id="private-attributes">Private Attributes</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>folderNames</strong></td>
+<td><em>FolderNames</em></td>
+<td></td>
+<td>A simple class containing the common names for subfolders</td>
+</tr>
+</tbody>
+</table>
+<h4 id="foldernames-attributes">FolderNames Attributes</h4>
+<p>FolderNames is a simple class which contains common names for subfolders.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>preview</strong></td>
+<td><em>string</em></td>
+<td>&rdquo;_preview&rdquo;</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>publish</strong></td>
+<td><em>string</em></td>
+<td>&rdquo;_published&rdquo;</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>versions</strong></td>
+<td><em>string</em></td>
+<td>&rdquo;_versions&rdquo;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<div class="codehilite"><pre><span></span><span class="n">ramses</span> <span class="o">=</span> <span class="n">Ramses</span><span class="o">.</span><span class="n">instance</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="n">ramses</span><span class="o">.</span><span class="n">settings</span>
+<span class="n">theAsset</span> <span class="o">=</span> <span class="n">RamAsset</span><span class="p">(</span><span class="s2">&quot;thing&quot;</span><span class="p">,</span> <span class="s2">&quot;stuff&quot;</span><span class="p">)</span>
+<span class="n">thePreviewFolder</span> <span class="o">=</span> <span class="n">theAsset</span><span class="o">.</span><span class="n">folderPath</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">settings</span><span class="o">.</span><span class="n">folderNames</span><span class="o">.</span><span class="n">preview</span>
+</pre></div>
+
+
+<hr />
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p>
               
             </div>
           </div>

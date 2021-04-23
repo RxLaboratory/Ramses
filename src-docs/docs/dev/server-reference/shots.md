@@ -134,3 +134,40 @@ Reply:
     "content": { }
 }
 ```
+
+## setShotStatus
+
+Sets a new status for a shot
+
+**Query attributes:**
+
+- *uuid*: **string**. The status' Universal Unique Identifier.
+- *shotUuid*: **string**. The shot's Universal Unique Identifier.
+- *completionRation*: **int** (optionnal). The current completion ratio in the range [0, 100].
+- *userUuid*: **string** (optionnal). The uuid of the user setting the status. Will use the currently connected user if not provided.
+- *stateUuid*: **string**. The uuid of the associated state.
+- *comment*: **string** (optionnal). A comment.
+- *version*: **int** (optionnal). The current version.
+- *stepUuid*: **string**. The uuid of the associated step.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?setAssetStatus&uuid=123&shotUuid=123&completionRatio=50&userUuid=123&stateUuid=123&comment=A nice comment&version=12&stepUuid=123&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "setShotStatus",
+    "success": true,
+    "message": "Shot status updated.",
+    "content": { }
+}
+```

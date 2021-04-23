@@ -8,7 +8,7 @@
   
   <meta name="author" content="Nicolas Dufresne and contributors">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Ramses - Ramses Documentation</title>
+  <title>RamPipe - Ramses Documentation</title>
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ramses";
-    var mkdocs_page_input_path = "dev/add-ons-reference/ramses.md";
-    var mkdocs_page_url = "/dev/add-ons-reference/ramses/";
+    var mkdocs_page_name = "RamPipe";
+    var mkdocs_page_input_path = "dev/add-ons-reference/ram_pipe.md";
+    var mkdocs_page_url = "/dev/add-ons-reference/ram_pipe/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -190,23 +190,9 @@
                     
     <a class="" href="../">Reference</a>
                 </li>
-                <li class="toctree-l3 current">
+                <li class="toctree-l3">
                     
-    <a class="current" href="./">Ramses</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l4"><a href="#ramses">Ramses</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l5" href="#attributes">Attributes</a></li>
-        
-            <li><a class="toctree-l5" href="#methods">Methods</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../ramses/">Ramses</a>
                 </li>
                 <li class="toctree-l3">
                     
@@ -228,9 +214,25 @@
                     
     <a class="" href="../ram_object/">RamObject</a>
                 </li>
-                <li class="toctree-l3">
+                <li class="toctree-l3 current">
                     
-    <a class="" href="../ram_pipe/">RamPipe</a>
+    <a class="current" href="./">RamPipe</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#rampipe">RamPipe</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#attributes">Attributes</a></li>
+        
+            <li><a class="toctree-l5" href="#methods">Methods</a></li>
+        
+            <li><a class="toctree-l5" href="#api-dev-notes">API Dev notes</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="toctree-l3">
                     
@@ -392,10 +394,10 @@
         
       
     
-    <li>Ramses</li>
+    <li>RamPipe</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/add-ons-reference/ramses.md"
+        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/add-ons-reference/ram_pipe.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -405,13 +407,19 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="ramses">Ramses</h1>
-<p>The main class. One (and only one) instance globally available, instantiated during init time.</p>
+                <h1 id="rampipe">RamPipe</h1>
+<p>A pipe which connects two steps together in the production pipeline.</p>
+<p>The pipe goes from the output step (which exports data into a specific file type) to the input step (which imports that data).</p>
 <div class="toc">
 <ul>
-<li><a href="#ramses">Ramses</a><ul>
+<li><a href="#rampipe">RamPipe</a><ul>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#api-dev-notes">API Dev notes</a><ul>
+<li><a href="#private-static-methods">Private Static Methods</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -447,96 +455,69 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>integer</em>: <strong>port</strong>=<code>18185</code><br /><em>boolean</em>: <strong>connect</strong>=<code>true</code></td>
-<td>If connect is true, will launch the client if needed and then tries to connect to it.</td>
-</tr>
-<tr>
-<td><strong>alternativeFolderPaths</strong><br />▹ <em>string list</em></td>
-<td></td>
-<td>A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.</td>
-</tr>
-<tr>
-<td><strong>backupFolderPath</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>A copy of the main folder where all files are stored.</td>
-</tr>
-<tr>
-<td><strong>connect</strong><br />▹ <em>boolean</em></td>
-<td></td>
-<td>Checks <em>Daemon</em> availability and initiates the connection. Returns success.</td>
-</tr>
-<tr>
-<td><strong>currentProject</strong><br />▹ <em>RamProject</em> or <em>None</em></td>
-<td></td>
-<td>The current project.</td>
-</tr>
-<tr>
-<td><strong>currentStep</strong><br />▹ <em>RamStep</em> or <em>None</em></td>
-<td></td>
-<td>The current step.</td>
-</tr>
-<tr>
-<td><strong>currentUser</strong><br />▹ <em>RamUser</em> or <em>None</em></td>
-<td></td>
-<td>The current user.</td>
-</tr>
-<tr>
-<td><strong>daemonInterface</strong><br />▹ <em>RamDaemonInterface</em></td>
-<td></td>
-<td>The <em>Daemon</em> interface.</td>
-</tr>
-<tr>
-<td><strong>disconnect</strong><br />▹ <em>boolean</em></td>
-<td></td>
-<td>Gets back to offline mode.</td>
-</tr>
-<tr>
-<td><strong>folderPath</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files&hellip;</td>
-</tr>
-<tr>
-<td><strong>projects</strong><br />▹ <em>list of RamProject</em></td>
-<td></td>
-<td>The list of available projects.</td>
-</tr>
-<tr>
-<td><strong>project</strong><br />▹ <em>RamProject</em></td>
-<td><em>string</em>: <strong>projectShortName</strong></td>
-<td>Gets a specific project.</td>
-</tr>
-<tr>
-<td><strong>states</strong><br />▹ <em>list of RamState</em></td>
-<td></td>
-<td>The list of available states.</td>
-</tr>
-<tr>
-<td><strong>state</strong><br />▹ <em>RamState</em></td>
-<td><em>string</em>: <strong>stateShortName</strong>=<code>WIP</code></td>
-<td>Gets a specific state.</td>
-</tr>
-<tr>
-<td><strong>online</strong><br />▹ <em>boolean</em></td>
-<td></td>
-<td>True if connected to the <em>Daemon</em> and the <em>Daemon</em> is responding.</td>
-</tr>
-<tr>
-<td><strong>showClient</strong></td>
-<td></td>
-<td>Raises the <em>Ramses Client</em> window, launches the client if it is not already running.</td>
-</tr>
-<tr>
-<td><strong>settings</strong></td>
-<td><a href="../ram_settings/"><em>RamSettings</em></a></td>
+<td><em>string</em>: <strong>inputStepShortName</strong>,<br /><em>string</em>: <strong>outputStepShortName</strong>,<br /><em><a href="../ram_filetype/">RamFileType</a></em>: <strong>fileType</strong></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>version</strong><br />▹ <em>string</em></td>
+<td><strong>inputStepShortName</strong><br />▹ <em>string</em></td>
 <td></td>
-<td>The current version of this API</td>
+<td>The short name of the input step</td>
+</tr>
+<tr>
+<td><strong>outputStepShortName</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The short name of the output step</td>
+</tr>
+<tr>
+<td><strong>fileType</strong><br />▹ <em><a href="../ram_filetype/">RamFileType</a></em></td>
+<td></td>
+<td>The file type used through the pipe</td>
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="api-dev-notes">API Dev notes</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
+</div>
+<h3 id="private-static-methods">Private Static Methods</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>createFromDaemonObj</strong><br />▹ <em>RamPipe</em></td>
+<td><em>dict</em>: <strong>daemonReplyObj</strong></td>
+<td>Use this method to construct a RamPipe with an object got from the Daemon</td>
+</tr>
+<tr>
+<td><strong>listFromDaemonReply</strong><br />▹ <em>list of RamPipe</em></td>
+<td><em>list</em>: <strong>daemonReplyContent</strong></td>
+<td>Use this method to construct the list of <em>RamPipe</em> got from the Daemon reply content using <a href="../ram_daemon_interface/"><code>RamDaemonInterface.getPipes()</code></a><br />This methods just loops through all objects in the list given as an argument, and use <code>createFromDaemonObj(obj)</code> on them.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<div class="codehilite"><pre><span></span><span class="c1"># Python</span>
+
+<span class="n">ramses</span> <span class="o">=</span> <span class="n">Ramses</span><span class="o">.</span><span class="n">instance</span>
+<span class="n">daemonReply</span> <span class="o">=</span> <span class="n">ramses</span><span class="o">.</span><span class="n">daemonInterface</span><span class="p">()</span><span class="o">.</span><span class="n">getPipes</span><span class="p">()</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">daemonReply</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+
+<span class="n">pipes</span> <span class="o">=</span> <span class="n">RamPipe</span><span class="o">.</span><span class="n">listFromDaemonReply</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="c1"># A list of RamPipe</span>
+
+<span class="n">aPipe</span> <span class="o">=</span> <span class="n">pipes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># The first RamPipe</span>
+</pre></div>
+
+
+<hr />
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p>
               
             </div>
           </div>
@@ -544,10 +525,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ram_asset/" class="btn btn-neutral float-right" title="RamAsset">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../ram_project/" class="btn btn-neutral float-right" title="RamProject">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../" class="btn btn-neutral" title="Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ram_object/" class="btn btn-neutral" title="RamObject"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -577,10 +558,10 @@
           <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../ram_object/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../ram_asset/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../ram_project/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

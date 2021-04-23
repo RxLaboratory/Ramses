@@ -15,20 +15,18 @@
 
 ## pipeline tools first
 
-- project: add duration, resolution, aspectratio (in server, dbi, etc) and update Daemon + AddonAPI
-- step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
-- addon api: add open function description
-- pipeedit: filetype list not always updated
-- dockwidget: fix bug when tabifying
-- shots
 - status & history
 - implement status
 - implement stepstatus
-- asset: get step path
-- asset: open
+- step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
+- addon api: add open function description
+- addon api: when activated, check current file (and update info)
 
 ## Other
 
+- add opertator== in ramobject
+- pipeedit: filetype list not always updated
+- dockwidget: fix bug when tabifying
 - update json example in getProject(s) server reference
 - move console to a dock widget
 - sequence order
@@ -37,6 +35,12 @@
 - add meta to the doc
 - factorize listmanagerwidget to ramobjectsmanagerwidget using simpleObjectsList
 - factorize the objectEditWidget -> use the new base class for all editors
+    - useredit
+    - templatestep
+    - template asset group
+    - states
+    - filetypes
+- Pipe editor: when creating a pipe, select it after creation
 - shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
 - implement main table
 - implement shots table 
@@ -54,16 +58,19 @@
 WIP 
 
 
-RamFileType
+RamStatus
 
-- sql db
-- server (get in projects/sequences)
-- server doc
-- dbi
-- RamShot
-- RamSequence shot list
-- RamProject shot(uuid) & removeshot(uuid)
-- ramses (get in gotsequences -> gotshots)
-- shoteditwidget
-- shotmanagerwidget
-- doc
+- Server
+- [x] sql db
+- [x] server (get in projects/sequences)
+- [x] server doc
+- Client
+- [x] dbi
+- [x] RamShot
+- [x] RamSequence shot list
+- [x] RamProject shot(uuid) & removeshot(uuid)
+- [x] ramses (get in gotsequences -> gotshots)
+- UI
+- [ ] shoteditwidget
+- [ ] shotmanagerwidget
+- [ ] doc

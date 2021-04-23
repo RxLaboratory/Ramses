@@ -2,272 +2,282 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://rainboxlab.org/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/components/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/install/server/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/users/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/projects/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/steps/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/assetgroups/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/assets/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/sequences/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/shots/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/statushistory/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/status/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/states/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/filetypes/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/applications/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/help/pipeline/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/files/naming/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/files/tree/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/addons/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/files/naming/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ramses/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_asset/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_daemon_interface/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://rainboxlab.org/dev/add-ons-reference/ram_filetype/</loc>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_item/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_object/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://rainboxlab.org/dev/add-ons-reference/ram_pipe/</loc>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_project/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_settings/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_shot/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_state/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_status/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_step/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/add-ons-reference/ram_user/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/daemon-reference/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/daemon-reference/queries/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/general/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/users/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/projects/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/steps/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/assetgroups/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/assets/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/sequences/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/shots/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/states/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/filetypes/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/applications/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/dev/server-reference/pipes/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/credits/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/changelog/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/licenses/gnu-gpl/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rainboxlab.org/licenses/gfdl/</loc>
-     <lastmod>2021-04-15</lastmod>
+     <lastmod>2021-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

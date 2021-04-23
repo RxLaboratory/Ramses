@@ -8,7 +8,7 @@
   
   <meta name="author" content="Nicolas Dufresne and contributors">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Ramses - Ramses Documentation</title>
+  <title>RamFileType - Ramses Documentation</title>
   <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ramses";
-    var mkdocs_page_input_path = "dev/add-ons-reference/ramses.md";
-    var mkdocs_page_url = "/dev/add-ons-reference/ramses/";
+    var mkdocs_page_name = "RamFileType";
+    var mkdocs_page_input_path = "dev/add-ons-reference/ram_filetype.md";
+    var mkdocs_page_url = "/dev/add-ons-reference/ram_filetype/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -190,12 +190,24 @@
                     
     <a class="" href="../">Reference</a>
                 </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../ramses/">Ramses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../ram_asset/">RamAsset</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../ram_daemon_interface/">RamDaemonInterface</a>
+                </li>
                 <li class="toctree-l3 current">
                     
-    <a class="current" href="./">Ramses</a>
+    <a class="current" href="./">RamFileType</a>
     <ul class="subnav">
             
-    <li class="toctree-l4"><a href="#ramses">Ramses</a></li>
+    <li class="toctree-l4"><a href="#ramfiletype">RamFileType</a></li>
     
         <ul>
         
@@ -207,18 +219,6 @@
     
 
     </ul>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../ram_asset/">RamAsset</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../ram_daemon_interface/">RamDaemonInterface</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../ram_filetype/">RamFileType</a>
                 </li>
                 <li class="toctree-l3">
                     
@@ -392,10 +392,10 @@
         
       
     
-    <li>Ramses</li>
+    <li>RamFileType</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/add-ons-reference/ramses.md"
+        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/add-ons-reference/ram_filetype.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -405,11 +405,13 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="ramses">Ramses</h1>
-<p>The main class. One (and only one) instance globally available, instantiated during init time.</p>
+                <h1 id="ramfiletype">RamFileType</h1>
+<p>A File type.</p>
+<p>File types are typically used with <em><a href="../ram_pipe/">RamPipe</a></em>.</p>
+<p>Inherits: <a href="../ram_object/"><strong><em>RamObject</em></strong></a></p>
 <div class="toc">
 <ul>
-<li><a href="#ramses">Ramses</a><ul>
+<li><a href="#ramfiletype">RamFileType</a><ul>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
 </ul>
@@ -447,96 +449,22 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>integer</em>: <strong>port</strong>=<code>18185</code><br /><em>boolean</em>: <strong>connect</strong>=<code>true</code></td>
-<td>If connect is true, will launch the client if needed and then tries to connect to it.</td>
-</tr>
-<tr>
-<td><strong>alternativeFolderPaths</strong><br />▹ <em>string list</em></td>
-<td></td>
-<td>A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.</td>
-</tr>
-<tr>
-<td><strong>backupFolderPath</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>A copy of the main folder where all files are stored.</td>
-</tr>
-<tr>
-<td><strong>connect</strong><br />▹ <em>boolean</em></td>
-<td></td>
-<td>Checks <em>Daemon</em> availability and initiates the connection. Returns success.</td>
-</tr>
-<tr>
-<td><strong>currentProject</strong><br />▹ <em>RamProject</em> or <em>None</em></td>
-<td></td>
-<td>The current project.</td>
-</tr>
-<tr>
-<td><strong>currentStep</strong><br />▹ <em>RamStep</em> or <em>None</em></td>
-<td></td>
-<td>The current step.</td>
-</tr>
-<tr>
-<td><strong>currentUser</strong><br />▹ <em>RamUser</em> or <em>None</em></td>
-<td></td>
-<td>The current user.</td>
-</tr>
-<tr>
-<td><strong>daemonInterface</strong><br />▹ <em>RamDaemonInterface</em></td>
-<td></td>
-<td>The <em>Daemon</em> interface.</td>
-</tr>
-<tr>
-<td><strong>disconnect</strong><br />▹ <em>boolean</em></td>
-<td></td>
-<td>Gets back to offline mode.</td>
-</tr>
-<tr>
-<td><strong>folderPath</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files&hellip;</td>
-</tr>
-<tr>
-<td><strong>projects</strong><br />▹ <em>list of RamProject</em></td>
-<td></td>
-<td>The list of available projects.</td>
-</tr>
-<tr>
-<td><strong>project</strong><br />▹ <em>RamProject</em></td>
-<td><em>string</em>: <strong>projectShortName</strong></td>
-<td>Gets a specific project.</td>
-</tr>
-<tr>
-<td><strong>states</strong><br />▹ <em>list of RamState</em></td>
-<td></td>
-<td>The list of available states.</td>
-</tr>
-<tr>
-<td><strong>state</strong><br />▹ <em>RamState</em></td>
-<td><em>string</em>: <strong>stateShortName</strong>=<code>WIP</code></td>
-<td>Gets a specific state.</td>
-</tr>
-<tr>
-<td><strong>online</strong><br />▹ <em>boolean</em></td>
-<td></td>
-<td>True if connected to the <em>Daemon</em> and the <em>Daemon</em> is responding.</td>
-</tr>
-<tr>
-<td><strong>showClient</strong></td>
-<td></td>
-<td>Raises the <em>Ramses Client</em> window, launches the client if it is not already running.</td>
-</tr>
-<tr>
-<td><strong>settings</strong></td>
-<td><a href="../ram_settings/"><em>RamSettings</em></a></td>
+<td><em>string</em>: <strong>name</strong>,<br /><em>string</em>: <strong>shortName</strong>,<br /><em>list of strings</em>: <strong>extensions</strong></td>
 <td></td>
 </tr>
 <tr>
-<td><strong>version</strong><br />▹ <em>string</em></td>
+<td><strong>extensions</strong><br />▹ <em>list of string</em></td>
 <td></td>
-<td>The current version of this API</td>
+<td>The extensions which can be used for this file type, including the &ldquo;.&rdquo;</td>
+</tr>
+<tr>
+<td>____</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p>
               
             </div>
           </div>
@@ -544,10 +472,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ram_asset/" class="btn btn-neutral float-right" title="RamAsset">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../ram_item/" class="btn btn-neutral float-right" title="RamItem">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../" class="btn btn-neutral" title="Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ram_daemon_interface/" class="btn btn-neutral" title="RamDaemonInterface"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -577,10 +505,10 @@
           <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../ram_daemon_interface/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../ram_asset/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../ram_item/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
