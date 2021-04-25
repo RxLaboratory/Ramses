@@ -16,6 +16,7 @@
 ## pipeline tools first
 
 - FEATURE: [-] status & history
+    - [ ] Finish ObjectListWidget: remove button on RamObjectWidget...
     - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
     - [ ] Finish the RamStatusWidget (color, date, version, comment, published)
     - [ ] Check version in files, alert when changing status if version is found but does not correspond
@@ -30,6 +31,7 @@
 
 ## Other
 
+- REFACTOR: factorize stylesheet creation to be used per widget
 - REFACTOR: add opertator== in ramobject which compares uuids
 - REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget
 - BUG: pipeedit: filetype list not always updated
