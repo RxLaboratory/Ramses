@@ -88,6 +88,7 @@ nav:
             - File type queries: dev/server-reference/filetypes.md
             - Application queries: dev/server-reference/applications.md
             - Pipe queries: dev/server-reference/pipes.md
+            - Status queries: dev/server-reference/status.md
     - Credits: credits.md
     - Changelog: changelog.md
     - License:

@@ -61,6 +61,7 @@ The *JSON* objects sent by the server all have the same content:
     - [createAsset](assets#createasset)
     - [updateAsset](assets#updateasset)
     - [removeAsset](assets#removeasset)
+    - [setAssetStatus](assets#setassetstatus)
 - Sequences
     - [createSequence](sequences#createsequence)
     - [updateSequence](sequences#updatesequence)
@@ -70,6 +71,7 @@ The *JSON* objects sent by the server all have the same content:
     - [updateShot](shots#updateshot)
     - [moveShot](shots#movehot)
     - [removeShot](shots#removeshot)
+    - [setShotStatus](shots#setshotstatus)
 - States
     - [createState](states#createstate)
     - [getStates](states#getstates)
@@ -91,3 +93,6 @@ The *JSON* objects sent by the server all have the same content:
     - [createPipe](pipes#createpipe)
     - [updatePipe](pipes#updatepipe)
     - [removePipe](pipes#removepipe)
+- Status
+    - [updateStatus](status#updatestatus)
+    - [removeStatus](status#updatestatus)
