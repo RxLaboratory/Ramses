@@ -15,7 +15,6 @@
 
 ## pipeline tools first
 
-- FEATURE: search bar in ObjectListEditWidget
 - FEATURE: filters in ObjectListEditWidget
 - FEATURE: [-] status & history
     - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
@@ -33,22 +32,26 @@
 
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
-        - [x] users in project
-        - [ ] shots in seq
-        - [ ] assets in asset groups
-        - [ ] users in steps
-        - [ ] apps in steps
-        - [ ] projects in ramses
+        - [x] states in ramses
+        - [x] users in ramses
+        - [ ] filetypes in ramses
+        - [ ] applications in ramses 
+            - [ ] filetypes in applications
         - [ ] template steps in ramses
         - [ ] templateassetgroups in ramses
-        - [ ] states in ramses
-        - [ ] filetypes in ramses
-        - [ ] filetypes in applications
-        - [ ] applications in ramses 
-        - [ ] steps in project 
-        - [ ] assetgroups in project 
-        - [ ] assets in project (linked to assetgroups) 
-        - [ ] shots in project (linked to sequences)
+        - [ ] projects in ramses
+            - [x] sequences in project
+                - [x] shots in seq
+                - [ ] shots in project (uberlist)
+            - [ ] assetgroups in project 
+                - [ ] assets in asset groups
+                - [ ] assets in project (uberlist)
+            - [ ] steps in project
+                - [ ] users in steps
+                - [ ] users in project (uberlist)
+                - [ ] apps in steps
+                - [ ] apps in project (uberlist)
+            - [ ] pipes in project
     - ObjectListWidget -> RamObjectListWidget
     - SimpleObjectsList -> ObjectListEditWidget
     - ListManagerWidget -> ObjectListManagerWidget
