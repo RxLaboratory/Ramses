@@ -16,6 +16,10 @@
 ## pipeline tools first
 
 - FEATURE: filters in ObjectListEditWidget
+- FEATURE: Asset & Shot table
+    - [ ] StatusEditTable(RamObjectList *items)  
+    Vheader: RamObjectList items  
+    Hheader: RamObjectLists steps
 - FEATURE: [-] status & history
     - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
     - [ ] Check version in files, alert when changing status if version is found but does not correspond
