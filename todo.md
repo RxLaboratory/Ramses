@@ -6,7 +6,7 @@
     - Ubuntu 20.04
     - Win
     - Mac
-    - build on older ubuntu with Qt 5.9 &openssl 1.0 /// and 20.04 with Qt 5.15 & openssl 1.1
+    - build on older ubuntu with Qt 5.9 &openssl 1.0 /// and 20.04 with Qt 5.12(test!!) & openssl 1.1 (use 20.10 or 21.04?)
     - package 2 deb for both ubuntu versions / openssl 1.0 / 1.1
     - package 2 appimages for both ubuntu versions / openssl 1.0 / 1.1
     - add openssl in dependencies for the deb package / warn it must be avail with the appimage
@@ -15,7 +15,10 @@
 
 ## pipeline tools first
 
-- FEATURE: filters in ObjectListEditWidget
+- FEATURE: ajouter currentStatus (RamItem) dans le demon
+- FEATURE: implémenter getAssetGroups dans le démon
+- FEATURE: filter in daemon.getShots(QString filter)
+- FEATURE: filters in ObjectListEditWidget with objectuberlist
 - FEATURE: Asset & Shot table
     - [ ] StatusEditTable(RamObjectList *items)  
     Vheader: RamObjectList items  
@@ -34,33 +37,32 @@
 
 ## Other
 
+- REFACTOR / FIX: option for remove in objectlist to be remove or unassign!!! > check > same in ramobjectwidget!!!
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
         - [x] states in ramses
         - [x] users in ramses
-        - [ ] filetypes in ramses
-        - [ ] applications in ramses 
-            - [ ] filetypes in applications
-        - [ ] template steps in ramses
-        - [ ] templateassetgroups in ramses
-        - [ ] projects in ramses
+        - [x] filetypes in ramses
+        - [x] applications in ramses 
+            - [x] filetypes in applications
+        - [x] template steps in ramses
+        - [x] templateassetgroups in ramses
+        - [x] projects in ramses
             - [x] sequences in project
                 - [x] shots in seq
                 - [ ] shots in project (uberlist)
+                    - [ ] StatusHistory: `QMap<stepuuid, RamObjectList*>`
             - [ ] assetgroups in project 
                 - [ ] assets in asset groups
                 - [ ] assets in project (uberlist)
+                    - [ ] StatusHistory: `QMap<stepuuid, RamObjectList*>`
             - [ ] steps in project
                 - [ ] users in steps
                 - [ ] users in project (uberlist)
                 - [ ] apps in steps
                 - [ ] apps in project (uberlist)
             - [ ] pipes in project
-    - ObjectListWidget -> RamObjectListWidget
-    - SimpleObjectsList -> ObjectListEditWidget
-    - ListManagerWidget -> ObjectListManagerWidget
 - REFACTOR: factorize stylesheet creation to be used per widget
-- REFACTOR: add opertator== in ramobject which compares uuids
 - REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget
 - BUG: pipeedit: filetype list not always updated
 - BUG: dockwidget: fix bug when tabifying
@@ -70,18 +72,12 @@
 - set offline when token is set invalid (server timeout)
 - FEATURE: mutliple shots addition
 - DOC: add meta to the doc
-- REFACTOR: factorize listmanagerwidget to ramobjectsmanagerwidget using simpleObjectsList
-- REFACTOR: factorize the objectEditWidget -> use the new base class for all editors
-    - templatestep
-    - template asset group
-    - states
-    - filetypes
 - FEATURE: Pipe editor: when creating a pipe, select it after creation
 - FEATURE: shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
-- FEATURE: implement main table
 - FEATURE: implement shots table 
 - FEATURE: implement assets table
-- FEATURE: option to restore removed items (admin/lead only)
+- FEATURE: implement main table
+- FEATURE: option to restore removed items (admin/lead only) (or permanently delete)
 - FEATURE: implement offline mode
 - FEATURE: implement import-export data.
     - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
