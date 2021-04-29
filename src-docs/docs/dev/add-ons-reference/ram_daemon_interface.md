@@ -59,11 +59,13 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | ***constructor*** | *integer*: **port**=`18185` | |
 | **daemonVersion**<br />▹ *string* |  | The current version of the *Daemon* | *TODO: change the `ping` method to store the version in a private attribute* |
 | **getAssets**<br />▹ *Object / Dict* | | Gets the list of the assets for the current project |
+| **getAssetGroups***<br />▹ *Object / Dict* | | Gets the list of the asset groups for the current project | TODO Daemon |
 | **getCurrentProject**<br />▹ *Object / Dict* | | Gets the current project | |
+| **getCurrentStatus**<br />▹ *Object / Dict* | *string*: **itemShortName**,<br />*string* : **itemName**,<br />*string*: **itemType**=`"SHOT"` | Gets the list of status (one per step) for the item. `itemType` must be one of: `"SHOT"` or `"ASSET"` | TODO Daemon |
 | **getCurrentUser**<br />▹ *Object / Dict* | | Gets the current user | |
 | **getProjects**<br />▹ *Object / Dict* | | Gets the list of available projects |
 | **getPipes**<br />▹ *Object / Dict* | | Gets the list of pipes for the current project | TODO |
-| **getShots**<br />▹ *Object / Dict* | | Gets the list of the shots for the current project |
+| **getShots**<br />▹ *Object / Dict* | *string*: **filter**=`""` | Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard `"*"` | TODO Daemon |
 | **getStates**<br />▹ *Object / Dict* | | Gets the list of available states |
 | **getSteps**<br />▹ *Object / Dict* | | Gets the list of the steps for the current project |
 | **online**<br />▹ *boolean* | | True if the *Daemon* is available |
@@ -71,7 +73,7 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **publishAsset**<br />▹ *Object / Dict*  | | | TODO |
 | **publishShot**<br />▹ *Object / Dict*  | | | TODO |
 | **raiseWindow** | | Raises the Ramses Client application main window |
-| **setCurrentProject**<br />▹ *Object / Dict*  | *string*: **uuid** | Sets the current project |
+| **setCurrentProject**<br />▹ *Object / Dict*  | *string*: **shortName** | Sets the current project |
 | **updateShotStatus**<br />▹ *Object / Dict*  | | | TODO |
 | **updateAssetStatus**<br />▹ *Object / Dict*  | | | TODO |
 
@@ -87,4 +89,4 @@ In JS, the methods from this class return a standard JS object as constructed fr
 
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;medias:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
+![META](authors:Nicolas "Duduf" Dufresne;medias:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29)

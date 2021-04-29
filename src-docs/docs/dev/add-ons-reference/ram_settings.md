@@ -43,7 +43,8 @@ ____
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **folderNames** | *FolderNames* | | A simple class containing the common names for subfolders |
+| **folderNames** | *FolderNames* | | A simple class containing the common names for subfolders. |
+| **defaultStates** | *list of [RamState](ram_state.md)* | | The list of states to use if the *Daemon* is not available. |
 
 #### FolderNames Attributes
 
@@ -54,6 +55,8 @@ FolderNames is a simple class which contains common names for subfolders.
 | **preview** | *string* | "_preview" | |
 | **publish** | *string* | "_published" | |
 | **versions** | *string* | "_versions" | |
+| **userConfig** | *string* | "Config" | |
+| **stepTemplates** | *string* | "Templates" | |
 
 ### Examples
 

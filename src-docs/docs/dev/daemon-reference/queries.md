@@ -119,6 +119,57 @@ Reply:
 }
 ```
 
+## getAssetGroups
+
+Returns the list of asset groups for the current project.
+
+### Query attributes
+
+- *getAssetGroups*
+
+### Reply content
+
+The *Daemon* replies with the list of asset groups.
+
+- *assetGroups*: **array of objects**. The asset groups. Each asset group is an object with:
+    - *shortName*: **string**. The short name of the asset.
+    - *name*: **string**. The name of the asset.
+    - *folder*: **string**. The absolute path of the folder containing the asset.
+
+### Example
+
+Query:  
+`getAssetGroups`
+
+Reply:  
+```json
+{
+    "accepted": true,
+    "query": "getAgetAssetGroupsssets",
+    "success": true,
+    "message": "Asset group list retrived.",
+    "content": {
+        "assets": [
+            {
+                "shortName": "CHAR",
+                "name": "Characters",
+                "folder": "/path/to/CHAR"
+            },
+            {
+                "shortName": "PROPS",
+                "name": "Props",
+                "folder": "/path/to/PROPS"
+            },
+            {
+                "shortName": "SETS",
+                "name": "Sets",
+                "folder": "/path/to/SETS"
+            }
+        ]
+    }
+}
+```
+
 ## getCurrentProject
 
 Returns the current project.
@@ -157,6 +208,68 @@ Reply:
         "height": 858,
         "framerate": 24.0,
         "folder": "/path/to/P1"
+    }
+}
+```
+
+## getCurrentStatus
+
+Returns the current status list (one per step) for a given item (shot or asset).
+
+### Query attributes
+
+- *getCurrentStatus*
+- *shortName*: **string**. The item short name.
+- *name*: **string**. The item name.
+- *type*: **string**. One of `"ASSET"` or `"SHOT"`.
+
+### Reply content
+
+The *Daemon* replies with the list of status.
+
+- *status*: **array of objects**. The status. Each status is an object with:
+    - *step*: **string**. The short name of the associated step.
+    - *comment*: **string**. The comment.
+    - *completionRatio: **int**. The completion ratio, in the range [0,100].
+    - *date*: **string**. The date and time, in the format "yyyy-MM-dd hh:mm:ss".
+    - *state*: **string**. The state short name.
+    - *user*: **string**. The user short name.
+    - *version*: **int**. The version.
+
+### Example
+
+Query:  
+`getCurrentStatus&shortName=TRI&name=Tristan&type=ASSET`
+
+Reply:  
+```json
+{
+    "accepted": true,
+    "query": "getCurrentUser",
+    "success": true,
+    "message": "Current user is: John Doe.",
+    "content": {
+        "status": [
+            {
+                "step": "RIG",
+                "comment": "Working on it!",
+                "completionRatio": 75,
+                "date": "2021-04-12 10:55:23",
+                "state": "WIP",
+                "user": "Duduf",
+                "version": 12
+            },
+            {
+                "step": "MOD",
+                "comment": "Finished",
+                "completionRatio": 100,
+                "date": "2021-04-12 10:55:23",
+                "state": "OK",
+                "user": "Duduf",
+                "version": 5
+            }
+            
+        ]
     }
 }
 ```
@@ -319,6 +432,7 @@ Returns the list of assets for the current project.
 ### Query attributes
 
 - *getShots*
+- *filter*: **string**. The filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard `*`
 
 ### Reply content
 
@@ -333,7 +447,7 @@ The *Daemon* replies with the list of Shots.
 ### Example
 
 Query:  
-`getShots`
+`getShots&filter=Seq01-*`
 
 Reply:  
 ```json
@@ -345,13 +459,13 @@ Reply:
     "content": {
         "shots": [
             {
-                "shortName": "S1",
+                "shortName": "Seq01-S1",
                 "name": "Shot 01",
                 "folder": "/path/to/S1",
                 "duration": 1.25
             },
             {
-                "shortName": "S2",
+                "shortName": "Seq01-S2",
                 "name": "Shot 02",
                 "folder": "/path/to/S2",
                 "duration": 2.4

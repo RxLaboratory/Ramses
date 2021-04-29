@@ -32,3 +32,22 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 | **isPublished**<br />▹ *bool* | *RamStep*: **step**<br />*string*: **resource** = `""` | Convenience function to check if there are published files in the publish folder. Equivalent to `len(self.publishedFilePaths(step, resource)) > 0` |
 | **setStatus** | *RamStatus*: **status**<br />*[RamStep](ram_step.md)*: **step** | Sets the current status for the given step |
 | **status**<br />▹ *RamStatus* | *[RamStep](ram_step.md)*: **step** | Gets the current status for the given step |
+
+____
+
+## API Dev notes
+
+!!! note
+    These section is for the development of the API only; you should not need these when developping your add-on using the API.
+
+### Notes about the methods
+
+#### folderPath()
+
+The folderPath methods checks if the folder is already available in the private attribute `_folderPath`. If so, it is simply returned.
+
+If `_folderPath` is an empty string, it has to be set before it is returned: the path has to be built from the step short name, the item short name, and the project folder (given by the *Ramses* instance if it is available).
+
+____
+
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29)

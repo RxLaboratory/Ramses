@@ -81,28 +81,34 @@ Here is an example of a typical project tree, without showing the details in the
         - PROJECTID_STORYBOARD
     - 02-PROD
         - PROJECTID_MOD # Common files for the mod step
+            - PROJECTID_MOD_Templates # Template files for the mod step
         - PROJECTID_RIG # Common files for the rig step
-        - PROJECTID_TEX # Common files for the tex step
-        - PROJECTID_ANIM # Common files for the anim step
-        - PROJECTID_LIGHT # Common files for the light step
-        - PROJECTID_COMP # Common files for the comp step
+            - PROJECTID_RIG_Templates # Template files for the rig step
+        - PROJECTID_TEX
+            - PROJECTID_TEX_Templates
+        - PROJECTID_ANIM 
+            - PROJECTID_ANIM_Templates
+        - PROJECTID_LIGHT
+            - PROJECTID_LIGHT_Templates
+        - PROJECTID_COMP
+            - PROJECTID_COMP_Templates
     - 03-POST-PROD
         - PROJECTID_EDIT # Post production step 
     - 04-ASSETS 
         - Characters # A Group of Assets
             - PROJECTID_A_TRISTAN # An Asset
                 - PROJECTID_A_TRISTAN_DESIGN # An asset production step
-                - PROJECTID_A_TRISTAN_MOD # An asset production step
-                - PROJECTID_A_TRISTAN_RIG # An asset production step
-                - PROJECTID_A_TRISTAN_TEX # An asset production step
+                - PROJECTID_A_TRISTAN_MOD
+                - PROJECTID_A_TRISTAN_RIG
+                - PROJECTID_A_TRISTAN_TEX
             - PROJECTID_A_ISOLDE # An Asset
         - Props # A Group of Assets
         - Sets # A Group of Assets
     - 05-SHOTS
         - PROJECTID_S_01-001 # A Shot
             - PROJECTID_S_01-001_ANIM # A shot production step
-            - PROJECTID_S_01-001_LIGHT # A shot production step
-            - PROJECTID_S_01-001_COMP # A shot production step
+            - PROJECTID_S_01-001_LIGHT
+            - PROJECTID_S_01-001_COMP
         - PROJECTID_S_01-002 # A Shot
         - PROJECTID_S_01-003 # A Shot
         - PROJECTID_S_02-001 # A Shot
