@@ -219,6 +219,8 @@
         
             <li><a class="toctree-l5" href="#methods">Methods</a></li>
         
+            <li><a class="toctree-l5" href="#api-dev-notes">API Dev notes</a></li>
+        
         </ul>
     
 
@@ -332,6 +334,10 @@
                     
     <a class="" href="../../server-reference/pipes/">Pipe queries</a>
                 </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../server-reference/status/">Status queries</a>
+                </li>
     </ul>
                 </li>
     </ul>
@@ -414,6 +420,13 @@
 <li><a href="#ramitem">RamItem</a><ul>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#api-dev-notes">API Dev notes</a><ul>
+<li><a href="#notes-about-the-methods">Notes about the methods</a><ul>
+<li><a href="#folderpath">folderPath()</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -524,6 +537,18 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="api-dev-notes">API Dev notes</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
+</div>
+<h3 id="notes-about-the-methods">Notes about the methods</h3>
+<h4 id="folderpath">folderPath()</h4>
+<p>The folderPath methods checks if the folder is already available in the private attribute <code>_folderPath</code>. If so, it is simply returned.</p>
+<p>If <code>_folderPath</code> is an empty string, it has to be set before it is returned: the path has to be built from the step short name, the item short name, and the project folder (given by the <em>Ramses</em> instance if it is available).</p>
+<hr />
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p>
               
             </div>
           </div>

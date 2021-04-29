@@ -241,6 +241,8 @@
         
             <li><a class="toctree-l5" href="#methods">Methods</a></li>
         
+            <li><a class="toctree-l5" href="#api-dev-notes">API Dev notes</a></li>
+        
         </ul>
     
 
@@ -334,6 +336,10 @@
                     
     <a class="" href="../../server-reference/pipes/">Pipe queries</a>
                 </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../server-reference/status/">Status queries</a>
+                </li>
     </ul>
                 </li>
     </ul>
@@ -416,6 +422,13 @@
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#static-methods">Static Methods</a></li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#api-dev-notes">API Dev notes</a><ul>
+<li><a href="#notes-about-the-methods">Notes about the methods</a><ul>
+<li><a href="#duration">duration()</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -468,7 +481,7 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>string</em>: <strong>shotName</strong><br /><em>string</em>: <strong>shotShortName</strong></td>
+<td><em>string</em>: <strong>shotName</strong>,<br /><em>string</em>: <strong>shotShortName</strong>,<br /><em>string</em>: <strong>shotFolderPath</strong>,<br /><em>float</em>: <strong>duration</strong>=<code>0.0</code></td>
 <td></td>
 </tr>
 <tr>
@@ -478,6 +491,18 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="api-dev-notes">API Dev notes</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
+</div>
+<h3 id="notes-about-the-methods">Notes about the methods</h3>
+<h4 id="duration">duration()</h4>
+<p>The duration is not available when the <em>Daemon</em> is offline. In this case, the method should return <code>0.0</code>.<br />
+The implementation is simple: the duration is stored in the private <code>_duration</code> attrbibute by the constructor: the duration should be passed to the constructor when the shot is constructed from the <em>Daemon</em> data.</p>
+<hr />
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p>
               
             </div>
           </div>

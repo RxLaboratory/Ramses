@@ -336,6 +336,10 @@
                     
     <a class="" href="../../dev/server-reference/pipes/">Pipe queries</a>
                 </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../dev/server-reference/status/">Status queries</a>
+                </li>
     </ul>
                 </li>
     </ul>
@@ -479,28 +483,34 @@
         - PROJECTID_STORYBOARD
     - <span class="m">02</span>-PROD
         - PROJECTID_MOD <span class="c1"># Common files for the mod step</span>
+            - PROJECTID_MOD_Templates <span class="c1"># Template files for the mod step</span>
         - PROJECTID_RIG <span class="c1"># Common files for the rig step</span>
-        - PROJECTID_TEX <span class="c1"># Common files for the tex step</span>
-        - PROJECTID_ANIM <span class="c1"># Common files for the anim step</span>
-        - PROJECTID_LIGHT <span class="c1"># Common files for the light step</span>
-        - PROJECTID_COMP <span class="c1"># Common files for the comp step</span>
+            - PROJECTID_RIG_Templates <span class="c1"># Template files for the rig step</span>
+        - PROJECTID_TEX
+            - PROJECTID_TEX_Templates
+        - PROJECTID_ANIM 
+            - PROJECTID_ANIM_Templates
+        - PROJECTID_LIGHT
+            - PROJECTID_LIGHT_Templates
+        - PROJECTID_COMP
+            - PROJECTID_COMP_Templates
     - <span class="m">03</span>-POST-PROD
         - PROJECTID_EDIT <span class="c1"># Post production step </span>
     - <span class="m">04</span>-ASSETS 
         - Characters <span class="c1"># A Group of Assets</span>
             - PROJECTID_A_TRISTAN <span class="c1"># An Asset</span>
                 - PROJECTID_A_TRISTAN_DESIGN <span class="c1"># An asset production step</span>
-                - PROJECTID_A_TRISTAN_MOD <span class="c1"># An asset production step</span>
-                - PROJECTID_A_TRISTAN_RIG <span class="c1"># An asset production step</span>
-                - PROJECTID_A_TRISTAN_TEX <span class="c1"># An asset production step</span>
+                - PROJECTID_A_TRISTAN_MOD
+                - PROJECTID_A_TRISTAN_RIG
+                - PROJECTID_A_TRISTAN_TEX
             - PROJECTID_A_ISOLDE <span class="c1"># An Asset</span>
         - Props <span class="c1"># A Group of Assets</span>
         - Sets <span class="c1"># A Group of Assets</span>
     - <span class="m">05</span>-SHOTS
         - PROJECTID_S_01-001 <span class="c1"># A Shot</span>
             - PROJECTID_S_01-001_ANIM <span class="c1"># A shot production step</span>
-            - PROJECTID_S_01-001_LIGHT <span class="c1"># A shot production step</span>
-            - PROJECTID_S_01-001_COMP <span class="c1"># A shot production step</span>
+            - PROJECTID_S_01-001_LIGHT
+            - PROJECTID_S_01-001_COMP
         - PROJECTID_S_01-002 <span class="c1"># A Shot</span>
         - PROJECTID_S_01-003 <span class="c1"># A Shot</span>
         - PROJECTID_S_02-001 <span class="c1"># A Shot</span>

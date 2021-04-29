@@ -336,6 +336,10 @@
                     
     <a class="" href="../../server-reference/pipes/">Pipe queries</a>
                 </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../server-reference/status/">Status queries</a>
+                </li>
     </ul>
                 </li>
     </ul>
@@ -536,10 +540,22 @@
 <td></td>
 </tr>
 <tr>
+<td><strong>getAssetGroups</strong><em><br />▹ </em>Object / Dict*</td>
+<td></td>
+<td>Gets the list of the asset groups for the current project</td>
+<td>TODO Daemon</td>
+</tr>
+<tr>
 <td><strong>getCurrentProject</strong><br />▹ <em>Object / Dict</em></td>
 <td></td>
 <td>Gets the current project</td>
 <td></td>
+</tr>
+<tr>
+<td><strong>getCurrentStatus</strong><br />▹ <em>Object / Dict</em></td>
+<td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>itemType</strong>=<code>"SHOT"</code></td>
+<td>Gets the list of status (one per step) for the item. <code>itemType</code> must be one of: <code>"SHOT"</code> or <code>"ASSET"</code></td>
+<td>TODO Daemon</td>
 </tr>
 <tr>
 <td><strong>getCurrentUser</strong><br />▹ <em>Object / Dict</em></td>
@@ -561,9 +577,9 @@
 </tr>
 <tr>
 <td><strong>getShots</strong><br />▹ <em>Object / Dict</em></td>
-<td></td>
-<td>Gets the list of the shots for the current project</td>
-<td></td>
+<td><em>string</em>: <strong>filter</strong>=<code>""</code></td>
+<td>Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard <code>"*"</code></td>
+<td>TODO Daemon</td>
 </tr>
 <tr>
 <td><strong>getStates</strong><br />▹ <em>Object / Dict</em></td>
@@ -609,7 +625,7 @@
 </tr>
 <tr>
 <td><strong>setCurrentProject</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>: <strong>uuid</strong></td>
+<td><em>string</em>: <strong>shortName</strong></td>
 <td>Sets the current project</td>
 <td></td>
 </tr>
@@ -633,7 +649,7 @@
 <h3 id="javascript-extendscript">JavaScript / ExtendScript</h3>
 <p>In JS, the methods from this class return a standard JS object as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json2</code> library.</p>
 <hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;medias:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;medias:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p>
               
             </div>
           </div>

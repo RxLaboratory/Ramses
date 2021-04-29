@@ -55,7 +55,7 @@ If `_folderPath` is an empty string, it has to be set before it is returned: the
 
 If the private attribute `_type` is not an empty string, it is returned.
 
-Otherwise, the type can be retrived from the parent folder of the folder returned by `commonFolderPath()` (if it's not also an empty string). See the [Ramses Tree](../../files.md) for more info about the way this parent folder is named.
+Otherwise, the type can be retrived from the parent folder of the folder returned by `commonFolderPath()` (if it's not also an empty string). See the [Ramses Tree](../../files/tree.md) for more info about the way this parent folder is named.
 
 If found, the type is stored in the private attribute `_type` and then returned.
 ____
