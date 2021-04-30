@@ -37,6 +37,7 @@
 
 ## Other
 
+- REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
 - REFACTOR / FIX: option for remove in objectlist to be remove or unassign!!! > check > same in ramobjectwidget!!!
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
@@ -65,7 +66,6 @@
 - REFACTOR: factorize stylesheet creation to be used per widget
 - REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget
 - BUG: pipeedit: filetype list not always updated
-- BUG: dockwidget: fix bug when tabifying
 - DOC: update json example in getProject(s) server reference
 - UI: move console to a dock widget
 - sequence order
