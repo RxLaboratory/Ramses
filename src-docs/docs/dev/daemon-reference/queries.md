@@ -230,7 +230,7 @@ The *Daemon* replies with the list of status.
 - *status*: **array of objects**. The status. Each status is an object with:
     - *step*: **string**. The short name of the associated step.
     - *comment*: **string**. The comment.
-    - *completionRatio: **int**. The completion ratio, in the range [0,100].
+    - *completionRatio*: **int**. The completion ratio, in the range [0,100].
     - *date*: **string**. The date and time, in the format "yyyy-MM-dd hh:mm:ss".
     - *state*: **string**. The state short name.
     - *user*: **string**. The user short name.
