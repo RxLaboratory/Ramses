@@ -9,6 +9,10 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
 | **instance** | *Ramses* | | The unique *Ramses* instance |
+| **version** | *string* | Current version | The version of the API |
+| **apiReferenceUrl** | *string* | This page URL | A link to this API documentation |
+| **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | A link to the [Ramses add-ons](../../../addons/) documentation |
+| **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | A link to the [Ramses documentation](../../../) |
 
 ### Examples
 
@@ -34,10 +38,10 @@ var ramses = Ramses.instance;
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *integer*: **port**=`18185`<br />*boolean*: **connect**=`true` | If connect is true, will launch the client if needed and then tries to connect to it. |
+| ***constructor*** | *integer*: **port**=`18185`,<br />*boolean*: **connect**=`true` | If connect is true, will launch the client if needed and then tries to connect to it. |
 | **alternativeFolderPaths**<br />▹ *string list* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
 | **backupFolderPath**<br />▹ *string* | | A copy of the main folder where all files are stored. |
-| **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. Returns success. |
+| **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. <br />Returns success. |
 | **currentProject**<br />▹ *RamProject* or *None* | | The current project. |
 | **currentStep**<br />▹ *RamStep* or *None* | | The current step. |
 | **currentUser**<br />▹ *RamUser* or *None* | | The current user. |
