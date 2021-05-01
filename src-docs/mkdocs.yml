@@ -6,14 +6,13 @@ site_description: The Ramses comprehensive documentation
 site_author: Nicolas Dufresne and contributors
 copyright: 'Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
 theme:
-    name: readthedocs
-    custom_dir: theme/
+    name: null
+    custom_dir: 'cinder'
 markdown_extensions:
     - smarty
     - footnotes
     - tables
     - admonition
-    - codehilite
     - fenced_code
     - toc
     - attr_list
@@ -27,30 +26,30 @@ site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
     - Ramses: index.md
-    - Components:
-        - Ramses components: components/index.md
-    - Installation:
-        - Ramses Server: install/server.md
-    - General help:
-        - Ramses: help/index.md
-        - Users: help/users.md
-        - Projects: help/projects.md
-        - Steps: help/steps.md
-        - Asset Groups: help/assetgroups.md
-        - Assets: help/assets.md
-        - Sequences: help/sequences.md
-        - Shots: help/shots.md
-        - Status History: help/statushistory.md
-        - Status: help/status.md
-        - States: help/states.md
-        - File Types: help/filetypes.md
-        - Applications: help/applications.md
-        - Pipeline: help/pipeline.md
-    - Ramses Tree (File & Folders):
-        - Naming scheme: files/naming.md
-        - Folder structure: files/tree.md
-    - Ramses Add-ons:
-        - Add-ons in applications: addons/index.md
+    - Help:
+        - Machinery:
+            - Ramses: help/index.md
+            - Users: help/users.md
+            - Projects: help/projects.md
+            - Steps: help/steps.md
+            - Asset Groups: help/assetgroups.md
+            - Assets: help/assets.md
+            - Sequences: help/sequences.md
+            - Shots: help/shots.md
+            - Status History: help/statushistory.md
+            - Status: help/status.md
+            - States: help/states.md
+            - File Types: help/filetypes.md
+            - Applications: help/applications.md
+            - Pipeline: help/pipeline.md
+        - Ramses Components:
+            - General Description: components/index.md
+            - Ramses Server:
+                - Installation: install/server.md
+            - Ramses Tree:
+                - Naming scheme: files/naming.md
+                - Folder structure: files/tree.md
+            - Ramses Add-ons: addons/index.md
     - Development:
         - Introduction: dev/index.md
         - Files and Folders:
@@ -89,8 +88,9 @@ nav:
             - Application queries: dev/server-reference/applications.md
             - Pipe queries: dev/server-reference/pipes.md
             - Status queries: dev/server-reference/status.md
-    - Credits: credits.md
-    - Changelog: changelog.md
-    - License:
-        - GNU GPLv3: licenses/gnu-gpl.md
-        - Documentation license: licenses/gfdl.md
+    - About:
+        - Credits: credits.md
+        - Changelog: changelog.md
+        - Licenses:
+            - GNU GPLv3: licenses/gnu-gpl.md
+            - Documentation license: licenses/gfdl.md
