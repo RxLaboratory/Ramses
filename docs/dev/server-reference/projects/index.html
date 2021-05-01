@@ -1,423 +1,574 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="Nicolas Dufresne and contributors">
-  <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Project queries - Ramses Documentation</title>
-  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../../style.css" rel="stylesheet">
-  <link href="../../../video.css" rel="stylesheet">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Project queries";
-    var mkdocs_page_input_path = "dev/server-reference/projects.md";
-    var mkdocs_page_url = "/dev/server-reference/projects/";
-  </script>
-  
-  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ramses comprehensive documentation">
+    <meta name="author" content="Nicolas Dufresne and contributors">
+    <link rel="canonical" href="https://ramses-docs.rainboxlab.org/dev/server-reference/projects/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Project queries - Ramses Documentation</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/zenburn.min.css">
+        
+    
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="../../../video.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body>
 
-  <div class="wy-grid-for-nav">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
 
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> Ramses Documentation</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../..">Ramses</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Components</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../../components/">Ramses components</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Installation</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../../install/server/">Ramses Server</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">General help</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../../help/">Ramses</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/users/">Users</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/projects/">Projects</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/steps/">Steps</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/assetgroups/">Asset Groups</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/assets/">Assets</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/sequences/">Sequences</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/shots/">Shots</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/statushistory/">Status History</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/status/">Status</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/states/">States</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/filetypes/">File Types</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/applications/">Applications</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../help/pipeline/">Pipeline</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Ramses Tree (File & Folders)</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../../files/naming/">Naming scheme</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../files/tree/">Folder structure</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Ramses Add-ons</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../../addons/">Add-ons in applications</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Development</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Files and Folders</span>
-    <ul class="subnav">
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../files/naming/">Naming</a>
-                </li>
-    </ul>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Scripting API (Add-ons)</span>
-    <ul class="subnav">
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/">Reference</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ramses/">Ramses</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_asset/">RamAsset</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_filetype/">RamFileType</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_item/">RamItem</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_object/">RamObject</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_pipe/">RamPipe</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_project/">RamProject</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_settings/">RamSettings</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_shot/">RamShot</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_state/">RamState</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_status/">RamStatus</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_step/">RamStep</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../add-ons-reference/ram_user/">RamUser</a>
-                </li>
-    </ul>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Daemon API</span>
-    <ul class="subnav">
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../daemon-reference/">Reference</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../../daemon-reference/queries/">Queries</a>
-                </li>
-    </ul>
-                </li>
-                <li class=" current">
-                    
-    <span class="caption-text">Server API</span>
-    <ul class="subnav">
-                <li class="toctree-l3">
-                    
-    <a class="" href="../">Reference</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../general/">General queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../users/">User queries</a>
-                </li>
-                <li class="toctree-l3 current">
-                    
-    <a class="current" href="./">Project queries</a>
-    <ul class="subnav">
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             
-    <li class="toctree-l4"><a href="#queries-for-managing-projects">Queries for managing projects</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l5" href="#createproject">createProject</a></li>
-        
-            <li><a class="toctree-l5" href="#getproject">getProject</a></li>
-        
-            <li><a class="toctree-l5" href="#getprojects">getProjects</a></li>
-        
-            <li><a class="toctree-l5" href="#updateproject">updateProject</a></li>
-        
-            <li><a class="toctree-l5" href="#removeproject">removeProject</a></li>
-        
-            <li><a class="toctree-l5" href="#assignstep">assignStep</a></li>
-        
-        </ul>
-    
 
-    </ul>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../steps/">Step queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../assetgroups/">Asset Group queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../assets/">Asset queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../sequences/">Sequence queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../shots/">Shot queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../states/">State queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../filetypes/">File type queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../applications/">Application queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../pipes/">Pipe queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../status/">Status queries</a>
-                </li>
-    </ul>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../../credits/">Credits</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../../changelog/">Changelog</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">License</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../../licenses/gnu-gpl/">GNU GPLv3</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../../licenses/gfdl/">Documentation license</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
+            <!-- Main title -->
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+            
+              <a class="navbar-brand" href="../../..">Ramses Documentation</a>
+            
+        </div>
 
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">Ramses Documentation</a>
-      </nav>
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Ramses</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Machinery</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../help/">Ramses</a>
+</li>
 
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../../..">Docs</a> &raquo;</li>
-    
-      
         
-          <li>Server API &raquo;</li>
+            
+<li >
+    <a href="../../../help/users/">Users</a>
+</li>
+
         
-      
+            
+<li >
+    <a href="../../../help/projects/">Projects</a>
+</li>
+
         
-          <li>Development &raquo;</li>
+            
+<li >
+    <a href="../../../help/steps/">Steps</a>
+</li>
+
         
-      
-    
-    <li>Project queries</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/server-reference/projects.md"
-          class="icon icon-github"> Edit on GitHub</a>
-      
-    </li>
-  </ul>
-  <hr/>
+            
+<li >
+    <a href="../../../help/assetgroups/">Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/assets/">Assets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/sequences/">Sequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/shots/">Shots</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/statushistory/">Status History</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/status/">Status</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/states/">States</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/filetypes/">File Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/applications/">Applications</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/pipeline/">Pipeline</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Components</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/">General Description</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Server</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../install/server/">Installation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Tree</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../files/naming/">Naming scheme</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../files/tree/">Folder structure</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+<li >
+    <a href="../../../addons/">Ramses Add-ons</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Files and Folders</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../files/naming/">Naming</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Scripting API (Add-ons)</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../add-ons-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ramses/">Ramses</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_asset/">RamAsset</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_filetype/">RamFileType</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_object/">RamObject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_pipe/">RamPipe</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_project/">RamProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_settings/">RamSettings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_shot/">RamShot</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_state/">RamState</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_status/">RamStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_step/">RamStep</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_user/">RamUser</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Daemon API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../daemon-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/queries/">Queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Server API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../users/">User queries</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../assetgroups/">Asset Group queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../assets/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sequences/">Sequence queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../shots/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../states/">State queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../applications/">Application queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../status/">Status queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../credits/">Credits</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../changelog/">Changelog</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Licenses</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../licenses/gnu-gpl/">GNU GPLv3</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../licenses/gfdl/">Documentation license</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../users/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../steps/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/server-reference/projects.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
 </div>
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="queries-for-managing-projects">Queries for managing projects</h1>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#queries-for-managing-projects">Queries for managing projects</a></li>
+            <li class="second-level"><a href="#createproject">createProject</a></li>
+                
+            <li class="second-level"><a href="#getproject">getProject</a></li>
+                
+            <li class="second-level"><a href="#getprojects">getProjects</a></li>
+                
+            <li class="second-level"><a href="#updateproject">updateProject</a></li>
+                
+            <li class="second-level"><a href="#removeproject">removeProject</a></li>
+                
+            <li class="second-level"><a href="#assignstep">assignStep</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="queries-for-managing-projects">Queries for managing projects</h1>
 <div class="toc">
 <ul>
 <li><a href="#queries-for-managing-projects">Queries for managing projects</a><ul>
@@ -446,16 +597,14 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;createProject&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Project \&quot;Mytho\&quot; created.&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;createProject&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Project \&quot;Mytho\&quot; created.&quot;,
+    &quot;content&quot;: { }
+}
+</code></pre>
 <h2 id="getproject">getProject</h2>
 <p>Retrieves a single project.</p>
 <p><strong>Query attributes:</strong></p>
@@ -528,27 +677,25 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProject&amp;uuid=123abc&amp;token=123</code></p>
 <p>Reply:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;getProject&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Project retrieved&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Mythomen&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;Mytho&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;123abc&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;folderPath&quot;</span><span class="p">:</span> <span class="s2">&quot;PROJECTS/MYTHO&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;framerate&quot;</span><span class="p">:</span> <span class="mf">25.0</span><span class="p">,</span>
-            <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1920</span><span class="p">,</span>
-            <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span>
-            <span class="nt">&quot;aspectRatio&quot;</span><span class="p">:</span> <span class="mf">1.78</span><span class="p">,</span>
-            <span class="nt">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uuid123&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid456&quot;</span><span class="p">],</span>
-            <span class="nt">&quot;shots&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uuidshot123&quot;</span><span class="p">,</span> <span class="s2">&quot;uuidshot456&quot;</span><span class="p">]</span>
-        <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;getProject&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Project retrieved&quot;,
+    &quot;content&quot;: {
+            &quot;name&quot;: &quot;Mythomen&quot;,
+            &quot;shortName&quot;: &quot;Mytho&quot;,
+            &quot;uuid&quot;: &quot;123abc&quot;,
+            &quot;folderPath&quot;: &quot;PROJECTS/MYTHO&quot;,
+            &quot;framerate&quot;: 25.0,
+            &quot;width&quot;: 1920,
+            &quot;height&quot;: 1080,
+            &quot;aspectRatio&quot;: 1.78,
+            &quot;steps&quot;: [&quot;uuid123&quot;, &quot;uuid456&quot;],
+            &quot;shots&quot;: [&quot;uuidshot123&quot;, &quot;uuidshot456&quot;]
+        }
+}
+</code></pre>
 <h2 id="getprojects">getProjects</h2>
 <p>Retrieves the list of all projects.</p>
 <p><strong>Query attributes:</strong></p>
@@ -620,41 +767,39 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProjects&amp;token=123</code></p>
 <p>Reply:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;getProjects&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Projects list retrieved.&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;content&quot;</span><span class="p">:</span>  <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Mythomen&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;Mytho&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;folderPath&quot;</span><span class="p">:</span> <span class="s2">&quot;PROJECTS/MYTHO&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;framerate&quot;</span><span class="p">:</span> <span class="mf">25.0</span><span class="p">,</span>
-            <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1920</span><span class="p">,</span>
-            <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span>
-            <span class="nt">&quot;aspectRatio&quot;</span><span class="p">:</span> <span class="mf">1.78</span><span class="p">,</span>
-            <span class="nt">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uuid123&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid456&quot;</span><span class="p">],</span>
-            <span class="nt">&quot;shots&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uuidshot123&quot;</span><span class="p">,</span> <span class="s2">&quot;uuidshot456&quot;</span><span class="p">]</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Purpleboy&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;shortName&quot;</span><span class="p">:</span> <span class="s2">&quot;PPB&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;folderPath&quot;</span><span class="p">:</span> <span class="s2">&quot;PROJECTS/PPB&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;framerate&quot;</span><span class="p">:</span> <span class="mf">24.0</span><span class="p">,</span>
-            <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">2048</span><span class="p">,</span>
-            <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">858</span><span class="p">,</span>
-            <span class="nt">&quot;aspectRatio&quot;</span><span class="p">:</span> <span class="mf">2.39</span><span class="p">,</span>
-            <span class="nt">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uuid123&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid456&quot;</span><span class="p">],</span>
-            <span class="nt">&quot;shots&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uuidshot789&quot;</span><span class="p">,</span> <span class="s2">&quot;uuidshot001&quot;</span><span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;getProjects&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Projects list retrieved.&quot;,
+    &quot;content&quot;:  [
+        {
+            &quot;name&quot;: &quot;Mythomen&quot;,
+            &quot;shortName&quot;: &quot;Mytho&quot;,
+            &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
+            &quot;folderPath&quot;: &quot;PROJECTS/MYTHO&quot;,
+            &quot;framerate&quot;: 25.0,
+            &quot;width&quot;: 1920,
+            &quot;height&quot;: 1080,
+            &quot;aspectRatio&quot;: 1.78,
+            &quot;steps&quot;: [&quot;uuid123&quot;, &quot;uuid456&quot;],
+            &quot;shots&quot;: [&quot;uuidshot123&quot;, &quot;uuidshot456&quot;]
+        },
+        {
+            &quot;name&quot;: &quot;Purpleboy&quot;,
+            &quot;shortName&quot;: &quot;PPB&quot;,
+            &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
+            &quot;folderPath&quot;: &quot;PROJECTS/PPB&quot;,
+            &quot;framerate&quot;: 24.0,
+            &quot;width&quot;: 2048,
+            &quot;height&quot;: 858,
+            &quot;aspectRatio&quot;: 2.39,
+            &quot;steps&quot;: [&quot;uuid123&quot;, &quot;uuid456&quot;],
+            &quot;shots&quot;: [&quot;uuidshot789&quot;, &quot;uuidshot001&quot;]
+        }
+    ]
+}
+</code></pre>
 <h2 id="updateproject">updateProject</h2>
 <p>Updates project information.</p>
 <p><strong>Query attributes:</strong></p>
@@ -671,16 +816,14 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;updateProject&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Project \&quot;Mytho\&quot; updated.&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;updateProject&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Project \&quot;Mytho\&quot; updated.&quot;,
+    &quot;content&quot;: { }
+}
+</code></pre>
 <h2 id="removeproject">removeProject</h2>
 <p>Removes a project from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -694,16 +837,14 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeProject&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;removeProject&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Project uuid123 removed.&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;removeProject&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Project uuid123 removed.&quot;,
+    &quot;content&quot;: { }
+}
+</code></pre>
 <h2 id="assignstep">assignStep</h2>
 <p>Assigns a template step to a project</p>
 <p><strong>Query attributes:</strong></p>
@@ -718,16 +859,14 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignStep&amp;stepUuid=123&amp;projectUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;assignStep&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Step uuid123 associated with project uuid456.&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;assignStep&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Step uuid123 associated with project uuid456.&quot;,
+    &quot;content&quot;: { }
+}
+</code></pre>
 <p>{
     &ldquo;accepted&rdquo;: true,
     &ldquo;query&rdquo;: &ldquo;assignStep&rdquo;,
@@ -735,59 +874,100 @@
     &ldquo;message&rdquo;: &ldquo;Step uuid123 removed from project uuid456.&rdquo;,
     &ldquo;content&rdquo;: { }
 }
-```</p>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../steps/" class="btn btn-neutral float-right" title="Step queries">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../users/" class="btn btn-neutral" title="User queries"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+```</p></div>
+        
+        
     </div>
-  
 
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
     
-      <p>Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a></p>
-    
-  </div>
+      <footer class="col-md-12 text-center">
+          
+<div class="footer-meta"></div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-      
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../video.js"></script>
+    <script src="../../../meta.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
         </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../users/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../steps/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 </div>
-    <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme.js" defer></script>
-      <script src="../../../video.js" defer></script>
-      <script src="../../../meta.js" defer></script>
-      <script src="../../../search/main.js" defer></script>
+    </body>
 
-</body>
 </html>

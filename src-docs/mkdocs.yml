@@ -1,5 +1,5 @@
 site_name: Ramses Documentation
-site_url: https://rainboxlab.org
+site_url: https://ramses-docs.rainboxlab.org
 repo_url: https://github.com/Rainbox-dev/Ramses/
 edit_uri: edit/master/src-docs/docs/
 site_description: The Ramses comprehensive documentation
@@ -8,6 +8,7 @@ copyright: 'Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laborato
 theme:
     name: null
     custom_dir: 'cinder'
+    colorscheme: zenburn
 markdown_extensions:
     - smarty
     - footnotes
