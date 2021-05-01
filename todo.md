@@ -37,7 +37,12 @@
 
 ## Other
 
+<<<<<<< Updated upstream
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
+=======
+- REFACTOR: a single request when refreshing everything / returns the list of projects, but without data. And then, setCurrentProject gets the single project data
+- REFACTOR: itemhistory as an uberlist of statushistory (one per step)
+>>>>>>> Stashed changes
 - REFACTOR / FIX: option for remove in objectlist to be remove or unassign!!! > check > same in ramobjectwidget!!!
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
