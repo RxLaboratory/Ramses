@@ -60,6 +60,7 @@ nav:
             - Ramses: dev/add-ons-reference/ramses.md
             - RamAsset: dev/add-ons-reference/ram_asset.md
             - RamDaemonInterface: dev/add-ons-reference/ram_daemon_interface.md
+            - RamFileManager: dev/add-ons-reference/ram_file_manager.md
             - RamFileType: dev/add-ons-reference/ram_filetype.md
             - RamItem: dev/add-ons-reference/ram_item.md
             - RamObject: dev/add-ons-reference/ram_object.md

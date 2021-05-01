@@ -9,7 +9,6 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
 | **instance** | *Ramses* | | The unique *Ramses* instance |
-| **version** | *string* | Current version | The version of the API |
 | **apiReferenceUrl** | *string* | This page URL | A link to this API documentation |
 | **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | A link to the [Ramses add-ons](../../../addons/) documentation |
 | **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | A link to the [Ramses documentation](../../../) |
