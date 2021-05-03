@@ -2,12 +2,19 @@
 
 The low-level Class used to communicate with the Ramses Daemon. This is a simple wrapper for the [*Daemon API*](../../daemon-reference/).
 
+One (and only one) instance globally available (RamDaemonInterface is a *singleton*), by calling `RamDaemonInterface.instance()` or `Ramses.instance().daemonInterface()`.
+
 !!! note
     You should not need this class as all communications are automatically handled by the other classes.
 
-There should be only one instance of the *Daemon Interface*, available with the [`Ramses.instance.daemonInterface()`](ramses.md) method.
-
 [TOC]
+
+## Static Methods
+
+| Method | Arguments | Description | Dev Notes |
+| --- | --- | --- | --- |
+| **instance**<br />▹ *RamDaemonInterface* | | Returns the *RamDaemonInterface* unique instance. |
+| **ckeckReply**<br />▹ *boolean* | *dict*: **reply** | Checks if the reply returned by a *RamDaemonInterface* instance is accepted, successful and has some content. |  |
 
 ## Attributes
 
@@ -16,19 +23,13 @@ There should be only one instance of the *Daemon Interface*, available with the 
 | **port** | *integer* | `18185` | Listening port of the *Ramses Daemon*. Set by [RamSettings](ram_settings.md) |
 | **address** | *string* | `"localhost"` | The IP or host name of the *Ramses Daemon*. Should never be changed unless you know what you're doing. By default, the *Daemon* only listens to *localhost / 127.0.01* |
 
-## Static Methods
-
-| Method | Arguments | Description | Dev Notes |
-| --- | --- | --- | --- |
-| **ckeckReply**<br />▹ *boolean* | *dict*: **reply** | Checks if the reply returned by a *RamDaemonInterface* instance is accepted, successful and has some content. |  |
-
 ### Examples
 
 - `checkReply`
 
 ```py
 # Python
-daemon = Ramses.instance.daemonInterface()
+daemon = RamDaemonInterface.instance()
 reply = daemon.getProjects() # Call from the instance
 if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
     doSomething(reply['content'])
@@ -38,7 +39,7 @@ else:
 
 ```js
 // JavaScript
-var daemon = Ramses.instance.daemonInterface();
+var daemon = RamDaemonInterface.instance();
 var reply = daemon.getProjects(); // Call from the instance
 if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
     doSomething(reply['content']);

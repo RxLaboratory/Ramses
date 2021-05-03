@@ -2,6 +2,8 @@
 
 Gets and saves settings used by Ramses.
 
+One (and only one) instance globally available (RamSettings is a *singleton*), by calling `RamSettings.instance()` or `Ramses.instance().settings()`.
+
 To get a setting, just get the corresponding attribute.
 
 To change a setting temporarily, just set the corresponding attribute. If you want the change to be permanent (i.e. keep the setting for the next sessions), call the `save()` method.
@@ -12,9 +14,13 @@ By default, settings are saved in a `ramses_addons_settings.json` file, in the u
 - Windows: `%appdata%/RxLaboratory/Ramses/Config`
 - MacOS: ?
 
-There is only one instance of RamSettings, available with the [`Ramses.instance.settings()`](ramses.md) method
-
 [TOC]
+
+## Static Methods
+
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **instance**<br />▹ *RamSettings* | | Returns the *RamSettings* unique instance. |
 
 ## Attributes
 

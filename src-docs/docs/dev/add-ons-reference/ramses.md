@@ -1,6 +1,6 @@
 # Ramses
 
-The main class. One (and only one) instance globally available (Ramses is a *singleton*), instantiated during init time.
+The main class. One (and only one) instance globally available (Ramses is a *singleton*), by calling `Ramses.instance()`.
 
 [TOC]
 
@@ -8,10 +8,15 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **instance** | *Ramses* | | The unique *Ramses* instance |
 | **apiReferenceUrl** | *string* | This page URL | A link to this API documentation |
 | **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | A link to the [Ramses add-ons](../../../addons/) documentation |
 | **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | A link to the [Ramses documentation](../../../) |
+
+## Static Methods
+
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **instance**<br />▹ *Ramses* | | Returns the *Ramses* unique instance. |
 
 ### Examples
 
@@ -20,8 +25,8 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 
 # import the Ramses class
 from ramses import Ramses
-# Get the instance, which has already been initiated during import
-ramses = Ramses.instance
+# Get the instance
+ramses = Ramses.instance()
 ```
 
 ```js
@@ -29,15 +34,14 @@ ramses = Ramses.instance
 
 // include the Ramses lib
 #include ramses.jsxinc
-// Get the instance, which has already been initiated in include
-var ramses = Ramses.instance;
+// Get the instance
+var ramses = Ramses.instance();
 ```
 
 ## Methods
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *integer*: **port**=`18185`,<br />*boolean*: **connect**=`true` | If connect is true, will launch the client if needed and then tries to connect to it. |
 | **alternativeFolderPaths**<br />▹ *string list* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
 | **backupFolderPath**<br />▹ *string* | | A copy of the main folder where all files are stored. |
 | **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. <br />Returns success. |
