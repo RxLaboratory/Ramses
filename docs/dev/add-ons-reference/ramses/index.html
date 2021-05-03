@@ -560,6 +560,8 @@
         <li class="first-level active"><a href="#ramses">Ramses</a></li>
             <li class="second-level"><a href="#static-attributes">Static Attributes</a></li>
                 
+            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                
                 <li class="third-level"><a href="#examples">Examples</a></li>
             <li class="second-level"><a href="#methods">Methods</a></li>
                 
@@ -568,11 +570,12 @@
         <div class="col-md-9" role="main">
 
 <h1 id="ramses">Ramses</h1>
-<p>The main class. One (and only one) instance globally available (Ramses is a <em>singleton</em>), instantiated during init time.</p>
+<p>The main class. One (and only one) instance globally available (Ramses is a <em>singleton</em>), by calling <code>Ramses.instance()</code>.</p>
 <div class="toc">
 <ul>
 <li><a href="#ramses">Ramses</a><ul>
-<li><a href="#static-attributes">Static Attributes</a><ul>
+<li><a href="#static-attributes">Static Attributes</a></li>
+<li><a href="#static-methods">Static Methods</a><ul>
 <li><a href="#examples">Examples</a></li>
 </ul>
 </li>
@@ -593,12 +596,6 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>instance</strong></td>
-<td><em>Ramses</em></td>
-<td></td>
-<td>The unique <em>Ramses</em> instance</td>
-</tr>
-<tr>
 <td><strong>apiReferenceUrl</strong></td>
 <td><em>string</em></td>
 <td>This page URL</td>
@@ -618,20 +615,37 @@
 </tr>
 </tbody>
 </table>
+<h2 id="static-methods">Static Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>instance</strong><br />▹ <em>Ramses</em></td>
+<td></td>
+<td>Returns the <em>Ramses</em> unique instance.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="examples">Examples</h3>
 <pre><code class="language-py"># Python
 
 # import the Ramses class
 from ramses import Ramses
-# Get the instance, which has already been initiated during import
-ramses = Ramses.instance
+# Get the instance
+ramses = Ramses.instance()
 </code></pre>
 <pre><code class="language-js">// ExtendScript
 
 // include the Ramses lib
 #include ramses.jsxinc
-// Get the instance, which has already been initiated in include
-var ramses = Ramses.instance;
+// Get the instance
+var ramses = Ramses.instance();
 </code></pre>
 <h2 id="methods">Methods</h2>
 <table>
@@ -643,11 +657,6 @@ var ramses = Ramses.instance;
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong><em>constructor</em></strong></td>
-<td><em>integer</em>: <strong>port</strong>=<code>18185</code>,<br /><em>boolean</em>: <strong>connect</strong>=<code>true</code></td>
-<td>If connect is true, will launch the client if needed and then tries to connect to it.</td>
-</tr>
 <tr>
 <td><strong>alternativeFolderPaths</strong><br />▹ <em>string list</em></td>
 <td></td>

@@ -30,15 +30,11 @@ All commands except *open Ramses* and *Settings* should first:
 
 If the file is not a working file, but a version coming from the *ramses_version* subfolder (named `restore-vXX`), runs *Save new version* instead of *Save*.
 
-- If the file is a template ("template" in the resource name, and in a temp dir)
-    - Asks for the name of the new asset/shot, its group, its sequence
-    - Creates the corresponding folder,
-    - Saves (as new version if the asset/shot already exists, with a warning)
-- Else If the file is in the *ramses_version* folder or if its resource name contains *restore-vXX*.
-    - Runs *Save new version*.
+- If the file is in the *_versions* folder or if its resource name contains *restore-vXX*.
+    - Increments the existing WIP file, saves over it, and increments again.
 - Else
     - Saves the current file.
-    - Copies it to the *ramses_versions* subfolder, appending the current state and version number.
+    - Backs up the file in the *_versions* subfolder.
 - If *online*
     - Send the new status of the asset/shot for this step (version, date, state, comment, completion ratio) to the *Ramses Client*.
 

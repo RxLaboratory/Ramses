@@ -560,7 +560,10 @@
         <li class="first-level active"><a href="#scripting-api-reference">Scripting API reference</a></li>
             <li class="second-level"><a href="#classes">Classes</a></li>
                 
-            <li class="second-level"><a href="#implementation">Implementation</a></li>
+            <li class="second-level"><a href="#examples">Examples</a></li>
+                
+                <li class="third-level"><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
+            <li class="second-level"><a href="#implementation-notes">Implementation Notes</a></li>
                 
                 <li class="third-level"><a href="#include-import">Include / Import</a></li>
                 <li class="third-level"><a href="#enumerated-values">Enumerated Values</a></li>
@@ -575,7 +578,11 @@
 <ul>
 <li><a href="#scripting-api-reference">Scripting API reference</a><ul>
 <li><a href="#classes">Classes</a></li>
-<li><a href="#implementation">Implementation</a><ul>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
+</ul>
+</li>
+<li><a href="#implementation-notes">Implementation Notes</a><ul>
 <li><a href="#include-import">Include / Import</a><ul>
 <li><a href="#python">Python</a></li>
 <li><a href="#adobe-extendscript">Adobe ExtendScript</a></li>
@@ -682,7 +689,64 @@
 </tr>
 </tbody>
 </table>
-<h2 id="implementation">Implementation</h2>
+<h2 id="examples">Examples</h2>
+<p>Here are a few examples showing how this API can be used.</p>
+<h3 id="save-command-for-maya-python">Save command for <em>Maya</em> (Python)</h3>
+<p>This example shows how to use the <a href="ram_file_manager/">RamFileManager</a> class to implement a save command in <em>Maya</em> with automatic backup in the <em>_versions</em> subfolder.</p>
+<pre><code class="language-python">import maya.cmds as cmds
+import ramses as ram
+
+ramses = ram.Ramses.instance()
+settings = ram.RamSettings.instance()
+
+def ramSave():
+    # The current maya file
+    currentFilePath = cmds.file( q=True, sn=True )
+    ram.log(&quot;Saving file: &quot; + currentFilePath)
+
+    # Check if the Daemon is available, if Ramses is set to be used &quot;online&quot;
+    if settings.online:
+        if not ramses.connect():
+            cmds.confirmDialog(
+                title=&quot;No User&quot;,
+                message=&quot;You must log in Ramses first!&quot;,
+                button=[&quot;OK&quot;],
+                icon=&quot;warning&quot;
+                )
+            ramses.showClient()
+            cmds.error( &quot;User not available: You must log in Ramses first!&quot; )
+            return
+
+    # Get the save path (Ramses will check if the current file has to be renamed to respect the Ramses Tree and Naming Scheme)
+    saveFilePath = ram.RamFileManager.getSaveFilePath( currentFilePath )
+    if not saveFilePath: # Ramses may return None if the current file name does not respeect the Ramses Naming Scheme
+        cmds.warning( ram.Log.MalformedName )
+        # Set file to be renamed
+        cmds.file( renameToSave = True )
+        cmds.inViewMessage( msg='Malformed Ramses file name! &lt;hl&gt;Please save with a correct name first&lt;/hl&gt;.', pos='midCenter', fade=True )
+        return
+
+    # If the current Maya file is inside a preview/publish/version subfolder, we're going to increment
+    # to be sure not to lose the previous working file.
+    increment = False
+    if ram.RamFileManager.inReservedFolder( currentFilePath ):
+        increment = True
+        cmds.warning( &quot;Incremented and Saved as &quot; + saveFilePath )
+
+    # Set the save name and save
+    cmds.file( rename = saveFilePath )
+    cmds.file( save=True, options=&quot;v=1;&quot; )
+    # Backup / Increment
+    backupFilePath = ram.RamFileManager.copyToVersion( saveFilePath, increment=increment )
+    backupFileName = os.path.basename( backupFilePath )
+    decomposedFileName = ram.RamFileManager.decomposeRamsesFileName( backupFileName )
+    newVersion = str( decomposedFileName['version'] )
+    ram.log( &quot;Scene saved! Current version is: &quot; + newVersion )
+    cmds.inViewMessage( msg='Scene saved! &lt;hl&gt;v' + newVersion + '&lt;/hl&gt;', pos='midCenter', fade=True )
+
+ramSave()
+</code></pre>
+<h2 id="implementation-notes">Implementation Notes</h2>
 <p>Some of the elements described in this documentation have to be interpreted depending on the language used in the implementations of the Ramses API and may vary a bit.</p>
 <h3 id="include-import">Include / Import</h3>
 <h4 id="python">Python</h4>

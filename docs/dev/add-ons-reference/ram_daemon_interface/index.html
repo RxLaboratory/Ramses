@@ -558,9 +558,9 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#ramdaemoninterface">RamDaemonInterface</a></li>
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
-                
             <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                
+            <li class="second-level"><a href="#attributes">Attributes</a></li>
                 
                 <li class="third-level"><a href="#examples">Examples</a></li>
             <li class="second-level"><a href="#methods">Methods</a></li>
@@ -575,16 +575,16 @@
 
 <h1 id="ramdaemoninterface">RamDaemonInterface</h1>
 <p>The low-level Class used to communicate with the Ramses Daemon. This is a simple wrapper for the <a href="../../daemon-reference/"><em>Daemon API</em></a>.</p>
+<p>One (and only one) instance globally available (RamDaemonInterface is a <em>singleton</em>), by calling <code>RamDaemonInterface.instance()</code> or <code>Ramses.instance().daemonInterface()</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You should not need this class as all communications are automatically handled by the other classes.</p>
 </div>
-<p>There should be only one instance of the <em>Daemon Interface</em>, available with the <a href="../ramses/"><code>Ramses.instance.daemonInterface()</code></a> method.</p>
 <div class="toc">
 <ul>
 <li><a href="#ramdaemoninterface">RamDaemonInterface</a><ul>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#static-methods">Static Methods</a><ul>
+<li><a href="#static-methods">Static Methods</a></li>
+<li><a href="#attributes">Attributes</a><ul>
 <li><a href="#examples">Examples</a></li>
 </ul>
 </li>
@@ -598,6 +598,31 @@
 </li>
 </ul>
 </div>
+<h2 id="static-methods">Static Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+<th>Dev Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>instance</strong><br />▹ <em>RamDaemonInterface</em></td>
+<td></td>
+<td>Returns the <em>RamDaemonInterface</em> unique instance.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ckeckReply</strong><br />▹ <em>boolean</em></td>
+<td><em>dict</em>: <strong>reply</strong></td>
+<td>Checks if the reply returned by a <em>RamDaemonInterface</em> instance is accepted, successful and has some content.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="attributes">Attributes</h2>
 <table>
 <thead>
@@ -623,31 +648,12 @@
 </tr>
 </tbody>
 </table>
-<h2 id="static-methods">Static Methods</h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Arguments</th>
-<th>Description</th>
-<th>Dev Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>ckeckReply</strong><br />▹ <em>boolean</em></td>
-<td><em>dict</em>: <strong>reply</strong></td>
-<td>Checks if the reply returned by a <em>RamDaemonInterface</em> instance is accepted, successful and has some content.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="examples">Examples</h3>
 <ul>
 <li><code>checkReply</code></li>
 </ul>
 <pre><code class="language-py"># Python
-daemon = Ramses.instance.daemonInterface()
+daemon = RamDaemonInterface.instance()
 reply = daemon.getProjects() # Call from the instance
 if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
     doSomething(reply['content'])
@@ -655,7 +661,7 @@ else:
     print (reply['message'])
 </code></pre>
 <pre><code class="language-js">// JavaScript
-var daemon = Ramses.instance.daemonInterface();
+var daemon = RamDaemonInterface.instance();
 var reply = daemon.getProjects(); // Call from the instance
 if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
     doSomething(reply['content']);

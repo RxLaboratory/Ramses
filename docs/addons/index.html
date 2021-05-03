@@ -618,18 +618,9 @@
 <p>Some of these commands manage files in the <a href="../files/tree/"><em>Ramses Tree</em></a>, see the <a href="../files/tree/">corresponding documentation</a>.</p>
 <p>All commands except <em>open Ramses</em> and <em>Settings</em> should first:</p>
 <ul>
-<li>If the add-on is not set to offline by the user (in the settings) AND the path to the <em>Client</em> executable file is valid:<ul>
-<li>Ping the <em>Daemon</em> (which answers with its version and some other information).</li>
-<li>If the ping did not work:<ul>
-<li>Set to offline</li>
-<li>Try to launch the client. If the <em>Daemon</em> is accessible:<ul>
-<li>Set to online</li>
-</ul>
-</li>
-<li>If the daemon is not accessible: warn the user</li>
-</ul>
-</li>
-<li>If the ping worked: set to online</li>
+<li>If the add-on is not set to offline by the user (in the settings):<ul>
+<li>If the path to the <em>Client</em> executable file is invalid: warn the user and stop.</li>
+<li>If the user is not connected, warn the user and stop</li>
 </ul>
 </li>
 </ul>
@@ -638,19 +629,13 @@
 <h3 id="save">Save</h3>
 <p>If the file is not a working file, but a version coming from the <em>ramses_version</em> subfolder (named <code>restore-vXX</code>), runs <em>Save new version</em> instead of <em>Save</em>.</p>
 <ul>
-<li>If the file is a template (&ldquo;template&rdquo; in the resource name, and in a temp dir)<ul>
-<li>Asks for the name of the new asset/shot, its group, its sequence</li>
-<li>Creates the corresponding folder,</li>
-<li>Saves (as new version if the asset/shot already exists, with a warning)</li>
-</ul>
-</li>
-<li>Else If the file is in the <em>ramses_version</em> folder or if its resource name contains <em>restore-vXX</em>.<ul>
-<li>Runs <em>Save new version</em>.</li>
+<li>If the file is in the <em>_versions</em> folder or if its resource name contains <em>restore-vXX</em>.<ul>
+<li>Increments the existing WIP file, saves over it, and increments again.</li>
 </ul>
 </li>
 <li>Else<ul>
 <li>Saves the current file.</li>
-<li>Copies it to the <em>ramses_versions</em> subfolder, appending the current state and version number.</li>
+<li>Backs up the file in the <em>_versions</em> subfolder.</li>
 </ul>
 </li>
 <li>If <em>online</em><ul>

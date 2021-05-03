@@ -558,6 +558,8 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#ramsettings">RamSettings</a></li>
+            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                
             <li class="second-level"><a href="#attributes">Attributes</a></li>
                 
             <li class="second-level"><a href="#methods">Methods</a></li>
@@ -572,6 +574,7 @@
 
 <h1 id="ramsettings">RamSettings</h1>
 <p>Gets and saves settings used by Ramses.</p>
+<p>One (and only one) instance globally available (RamSettings is a <em>singleton</em>), by calling <code>RamSettings.instance()</code> or <code>Ramses.instance().settings()</code>.</p>
 <p>To get a setting, just get the corresponding attribute.</p>
 <p>To change a setting temporarily, just set the corresponding attribute. If you want the change to be permanent (i.e. keep the setting for the next sessions), call the <code>save()</code> method.</p>
 <p>By default, settings are saved in a <code>ramses_addons_settings.json</code> file, in the user&rsquo;s OS specific settings folder:</p>
@@ -580,10 +583,10 @@
 <li>Windows: <code>%appdata%/RxLaboratory/Ramses/Config</code></li>
 <li>MacOS: ?</li>
 </ul>
-<p>There is only one instance of RamSettings, available with the <a href="../ramses/"><code>Ramses.instance.settings()</code></a> method</p>
 <div class="toc">
 <ul>
 <li><a href="#ramsettings">RamSettings</a><ul>
+<li><a href="#static-methods">Static Methods</a></li>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
 <li><a href="#api-dev-notes">API Dev notes</a><ul>
@@ -598,6 +601,23 @@
 </li>
 </ul>
 </div>
+<h2 id="static-methods">Static Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>instance</strong><br />▹ <em>RamSettings</em></td>
+<td></td>
+<td>Returns the <em>RamSettings</em> unique instance.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="attributes">Attributes</h2>
 <table>
 <thead>
@@ -610,7 +630,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>autoConnect</strong></td>
+<td><strong>online</strong></td>
 <td><em>boolean</em></td>
 <td><code>true</code></td>
 <td>Wether to always try to (re)connect to the <em>Daemon</em> if offline.</td>
