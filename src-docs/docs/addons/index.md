@@ -18,14 +18,9 @@ Some of these commands manage files in the [*Ramses Tree*](../files/tree.md), se
 
 All commands except *open Ramses* and *Settings* should first:
 
-- If the add-on is not set to offline by the user (in the settings) AND the path to the *Client* executable file is valid:
-    - Ping the *Daemon* (which answers with its version and some other information).
-    - If the ping did not work:
-        - Set to offline
-        - Try to launch the client. If the *Daemon* is accessible:
-            - Set to online
-        - If the daemon is not accessible: warn the user
-    - If the ping worked: set to online
+- If the add-on is not set to offline by the user (in the settings):
+    - If the path to the *Client* executable file is invalid: warn the user and stop.
+    - If the user is not connected, warn the user and stop
 
 ### Open
 
