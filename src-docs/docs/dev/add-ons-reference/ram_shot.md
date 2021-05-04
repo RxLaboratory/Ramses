@@ -4,13 +4,6 @@ A shot.
 
 Inherits: [***RamItem***](ram_item.md)
 
-[TOC]
-
-## Attributes
-
-| Attribute | Type | Default | Description |
-| --- | --- | --- | --- |
-
 ## Static Methods
 
 | Method | Arguments | Description |
@@ -21,7 +14,7 @@ Inherits: [***RamItem***](ram_item.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *string*: **shotName**,<br />*string*: **shotShortName**,<br />*string*: **shotFolder**,<br />*float*: **duration**=`0.0`,<br />*list of int*: **color**=`[67, 67, 67]` | |
+| ***constructor*** | *string*: **shotName**,<br />*string*: **shotShortName**,<br />*string*: **shotFolder**,<br />*float*: **duration**=`0.0` | |
 | **duration**<br />▹ *float* | | The shot duration, in seconds |
 
 ____
