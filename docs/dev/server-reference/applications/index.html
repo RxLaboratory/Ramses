@@ -658,7 +658,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createFileType&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createApplication&quot;,
     &quot;success&quot;: true,
@@ -666,7 +666,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="getapplications">getApplications</h2>
 <p>Retrieves the list of all applications.</p>
 <p><strong>Query attributes:</strong></p>
@@ -683,7 +682,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getApplications&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getApplications&quot;,
     &quot;success&quot;: true,
@@ -704,7 +703,6 @@
     ]
 }
 </code></pre>
-
 <h2 id="updateapplication">updateApplication</h2>
 <p>Update application info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -721,7 +719,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateApplication&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateApplication&quot;,
     &quot;success&quot;: true,
@@ -729,7 +727,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeapplication">removeApplication</h2>
 <p>Removes an application from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -743,7 +740,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeApplication&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeApplication&quot;,
     &quot;success&quot;: true,
@@ -751,7 +748,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignfiletype">assignFileType</h2>
 <p>Assigns a file type to an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -767,7 +763,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignFileType&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;type=import&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignFileType&quot;,
     &quot;success&quot;: true,
@@ -775,7 +771,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="unassignfiletype">unassignFileType</h2>
 <p>Unassigns a file type from an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -791,7 +786,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?unassignUser&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignFileType&quot;,
     &quot;success&quot;: true,

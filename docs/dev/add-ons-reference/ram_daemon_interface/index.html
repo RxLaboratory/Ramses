@@ -708,13 +708,13 @@
 <td><strong>getAsset</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific asset. The name is optional, as short names <em>should</em> be unique.</td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getAssetGroups</strong><em><br />▹ </em>Object / Dict*</td>
 <td></td>
 <td>Gets the list of the asset groups for the current project</td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getCurrentProject</strong><br />▹ <em>Object / Dict</em></td>
@@ -726,13 +726,13 @@
 <td><strong>getCurrentStatus</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
 <td>Gets the status for the specific step for the item. <code>itemType</code> must be one of: <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code></td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getCurrentStatuses</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
 <td>Gets the list of status (one per step) for the item. <code>itemType</code> must be one of: <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code></td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getCurrentUser</strong><br />▹ <em>Object / Dict</em></td>
@@ -750,7 +750,7 @@
 <td><strong>getProject</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific project. The name is optional, as short names <em>should</em> be unique.</td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getPipes</strong><br />▹ <em>Object / Dict</em></td>
@@ -762,13 +762,13 @@
 <td><strong>getShots</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>: <strong>filter</strong>=<code>""</code></td>
 <td>Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard <code>"*"</code></td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getShot</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific shot. The name is optional, as short names <em>should</em> be unique.</td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getStates</strong><br />▹ <em>Object / Dict</em></td>
@@ -780,7 +780,7 @@
 <td><strong>getState</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific state. The name is optional, as short names <em>should</em> be unique.</td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>getSteps</strong><br />▹ <em>Object / Dict</em></td>
@@ -792,7 +792,7 @@
 <td><strong>getStep</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific step. The name is optional, as short names <em>should</em> be unique.</td>
-<td>TODO Daemon</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>online</strong><br />▹ <em>boolean</em></td>
@@ -845,7 +845,7 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 daemon = RamDaemonInterface.instance()
 reply = daemon.getProjects() # Call from the instance
 if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
@@ -853,8 +853,7 @@ if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static me
 else:
     print (reply['message'])
 </code></pre>
-
-<pre><code class="js">// JavaScript
+<pre><code class="language-js">// JavaScript
 var daemon = RamDaemonInterface.instance();
 var reply = daemon.getProjects(); // Call from the instance
 if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
@@ -864,7 +863,6 @@ else {
     alert (reply['message']);
 }
 </code></pre>
-
 <h2 id="implementation">Implementation</h2>
 <h3 id="python">Python</h3>
 <p>In Python, the methods from this class return a <code>dict</code> as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json.loads( str )</code> method.</p>
