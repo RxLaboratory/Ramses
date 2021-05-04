@@ -80,18 +80,18 @@ Here is an example of a typical project tree, without showing the details in the
         - PROJECTID_SCRIPT # Pre production step
         - PROJECTID_STORYBOARD
     - 02-PROD
-        - PROJECTID_MOD # Common files for the mod step
-            - PROJECTID_MOD_Templates # Template files for the mod step
-        - PROJECTID_RIG # Common files for the rig step
-            - PROJECTID_RIG_Templates # Template files for the rig step
-        - PROJECTID_TEX
-            - PROJECTID_TEX_Templates
-        - PROJECTID_ANIM 
-            - PROJECTID_ANIM_Templates
-        - PROJECTID_LIGHT
-            - PROJECTID_LIGHT_Templates
-        - PROJECTID_COMP
-            - PROJECTID_COMP_Templates
+        - PROJECTID_A_MOD # Common files for the mod step (which works on Assets)
+            - PROJECTID_A_MOD_Templates # Template files for the mod step
+        - PROJECTID_A_RIG # Common files for the rig step
+            - PROJECTID_A_RIG_Templates # Template files for the rig step
+        - PROJECTID_A_TEX
+            - PROJECTID_A_TEX_Templates
+        - PROJECTID_S_ANIM # Common files for the anim step (which works on Shots)
+            - PROJECTID_S_ANIM_Templates
+        - PROJECTID_S_LIGHT
+            - PROJECTID_S_LIGHT_Templates
+        - PROJECTID_S_COMP
+            - PROJECTID_S_COMP_Templates
     - 03-POST-PROD
         - PROJECTID_EDIT # Post production step 
     - 04-ASSETS 

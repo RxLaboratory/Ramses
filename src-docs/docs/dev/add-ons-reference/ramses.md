@@ -17,6 +17,7 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | Method | Arguments | Description |
 | --- | --- | --- |
 | **instance**<br />▹ *Ramses* | | Returns the *Ramses* unique instance. |
+| **version**<br />▹ *string* | | The current version of this API |
 
 ### Examples
 
@@ -48,8 +49,8 @@ var ramses = Ramses.instance();
 | **currentProject**<br />▹ *RamProject* or *None* | | The current project. |
 | **currentStep**<br />▹ *RamStep* or *None* | | The current step. |
 | **currentUser**<br />▹ *RamUser* or *None* | | The current user. |
-| **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface. |
-| **disconnect**<br />▹ *boolean* | | Gets back to offline mode. |
+| **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
+| **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
 | **projects**<br />▹ *list of RamProject* | | The list of available projects. |
 | **project**<br />▹ *RamProject* | *string*: **projectShortName** | Gets a specific project. |
@@ -57,5 +58,30 @@ var ramses = Ramses.instance();
 | **state**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
 | **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
 | **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
-| **settings** | [*RamSettings*](ram_settings.md) |  | The settings. |
-| **version**<br />▹ *string* |  | The current version of this API |
+| **settings** | [*RamSettings*](ram_settings.md) |  | The settings unique instance. Same as `RamSettings.instance()` |
+
+____
+
+## API Dev notes
+
+!!! note
+    These section is for the development of the API only; you should not need these when developping your add-on using the API.
+
+### (Im)mutable data
+
+The data returned by the methods can be either [mutable or immutable](implementation.md#accessing-the-data).
+
+| Method | Type of the returned data |
+| --- | --- |
+| **alternativeFolderPaths** | <i class="fa fa-lock"></i> Immutable |
+| **backupFolderPath** | <i class="fa fa-lock"></i> Immutable |
+| **currentProject** | <i class="fa fa-pen"></i> Mutable |
+| **currentStep** | <i class="fa fa-pen"></i> Mutable |
+| **currentUser** | <i class="fa fa-pen"></i> Mutable |
+| **folderPath** | <i class="fa fa-lock"></i> Immutable |
+| **projects** | <i class="fa fa-pen"></i> Mutable |
+| **project** | <i class="fa fa-pen"></i> Mutable |
+| **states** | <i class="fa fa-pen"></i> Mutable |
+| **state** | <i class="fa fa-pen"></i> Mutable |
+
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29)

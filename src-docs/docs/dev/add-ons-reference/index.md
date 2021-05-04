@@ -10,12 +10,16 @@ As this document is referring to different scripting languages, it uses general 
 
 *(TODO: ADD THE LINK TO THE GITHUB REPOS OF THE APIs / LINK TO GET THEM ON RXLAB.ORG)*
 
+!!! hint
+    Some of the elements described in this documentation have to be interpreted differently depending on the language used in the implementations of the *Ramses Add-ons API* and may vary a bit. Read the examples below to see the differences between a few scripting languages.
+
 ## Classes
 
-This is the comprehensive list of available classes.
+This is the comprehensive list of available classes. In the *Ramses Add-ons API*, everything is contained in these classes.
 
 | Class | Inheritance | Description |
 | ---- | ---- | ---- |
+| [Logger](logger.md) | | A simple class used to log messages to the console. |
 | [Ramses](ramses.md) | | The main class. One (and only one) instance globally available, instantiated during init time. |
 | [RamAsset](ram_asset.md) | [RamItem](ram_item.md) | An asset. |
 | [RamDaemonInterface](ram_daemon_interface.md) | | The Class used to communicate with the Ramses Daemon |
@@ -32,9 +36,105 @@ This is the comprehensive list of available classes.
 | [RamStep](ram_step.md) | [RamObject](ram_object.md) | A step in the production of the shots or assets of the project. |
 | [RamUser](ram_user.md) | [RamObject](ram_object.md) | The class representing users. |
 
+# Global Methods
+
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **log** | *string*: **message**,<br />*LogLevel*: **level**=`LogLevel.Info`| Logs a message to the console. The level must be one of `LogLevel.DataReceived`, `LogLevel.DataSent`, `LogLevel.Debug`, `LogLevel.Info`, `LogLevel.Critical`, `LogLevel.Fatal` |
+
 ## Examples
 
 Here are a few examples showing how this API can be used.
+
+### Include / Import the API
+
+```py
+# Python
+# Use your usual preferred way to import the module.
+
+from ramses import *
+
+# The unique `Ramses` instance is available as `Ramses.instance()`.
+myRamses = Ramses.instance()
+theSettings = myRamses.settings
+myShot = RamShot.getFromPath("path/to/the/shot")
+aNewStatus = RamStatus(
+    myRamses.state("WIP"),
+    myRamses.currentUser(),
+    "A comment"
+    )
+myShot.setStatus(aNewStatus, myRamses.currentStep())
+
+# or (this is the recommended way)
+
+import ramses as ram
+
+myRamses = ram.Ramses.instance()
+theSettings = myRamses.settings()
+myShot = ram.RamShot.getFromPath("path/to/the/shot")
+aNewStatus = ram.RamStatus(
+    myRamses.state("WIP"),
+    myRamses.currentUser(),
+    "A comment"
+    )
+myShot.setStatus(aNewStatus, myRamses.currentStep())
+```
+
+```js
+// ExtendScript
+// Just include the file the usual way.
+
+#include ramses.jsxinc
+
+// The unique `Ramses` instance is available as `Ramses.instance()`.
+var myRamses = Ramses.instance();
+var theSettings = myRamses.settings();
+var myShot = RamShot.getFromPath("path/to/the/shot");
+var aNewStatus = new RamStatus(
+    myRamses.state("WIP"),
+    myRamses.currentUser(),
+    "A comment"
+    );
+myShot.setStatus(aNewStatus, myRamses.currentStep());
+```
+
+### Enumerated values (constants)
+
+Enumerated values (a.k.a. Constants) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they’re grouped together by type (for exemple Color.RED, or Shape.RECTANGLE). The value itself can be of any type (array, string, number…).
+
+In this documentation they're written like this: `ValueType.VALUE`, i.e. `ItemType.SHOT` or `ItemType.ASSET`, and they're used the same way in the actual code.
+
+```py
+# Python
+
+from ramses import RamItem, ItemType
+
+# Get an item from a specific file path
+anItem = RamItem.getFromPath( somePath )
+
+if anItem is not None:
+    # We want it only if it's a shot,
+    # We can use the enum ItemType to compare the value.
+    if anItem.itemType() == ItemType.SHOT:
+        doSomething()
+```
+
+```js
+// ExtendScript
+
+#include ramses.jsxinc
+
+// Get an item from a specific file path
+var anItem = RamItem.getFromPath( somePath );
+
+if (anItem != null)
+{
+    // We want it only if it's a shot,
+    // We can use the enum ItemType to compare the value.
+    if ( anItem.itemType() == ItemType.SHOT )
+        doSomething();
+}
+```
 
 ### Save command for *Maya* (Python)
 
@@ -95,114 +195,4 @@ def ramSave():
 ramSave()
 ```
 
-## Implementation Notes
-
-Some of the elements described in this documentation have to be interpreted depending on the language used in the implementations of the Ramses API and may vary a bit.
-
-### Include / Import
-
-#### Python
-
-Use your usual preferred way to import the module.
-
-Then, the unique `Ramses` instance is available as `Ramses.instance`.
-
-```py
-from ramses import *
-
-myRamses = Ramses.instance
-theSettings = myRamses.settings
-myShot = RamShot.getFromPath("path/to/the/shot")
-aNewStatus = RamStatus(
-    myRamses.state("WIP"),
-    myRamses.currentUser(),
-    "A comment"
-    )
-myShot.setStatus(aNewStatus, myRamses.currentStep())
-
-# or
-
-import ramses as ram
-
-myRamses = ram.Ramses.instance
-theSettings = myRamses.settings()
-myShot = ram.RamShot.getFromPath("path/to/the/shot")
-aNewStatus = ram.RamStatus(
-    myRamses.state("WIP"),
-    myRamses.currentUser(),
-    "A comment"
-    )
-myShot.setStatus(aNewStatus, myRamses.currentStep())
-```
-
-#### Adobe ExtendScript
-
-Just include the file the usual way.
-
-Then, the unique `Ramses` instance is available as `Ramses.instance`.
-
-```js
-#include ramses.jsxinc
-
-var myRamses = Ramses.instance;
-var theSettings = myRamses.settings();
-var myShot = RamShot.getFromPath("path/to/the/shot");
-var aNewStatus = new RamStatus(
-    myRamses.state("WIP"),
-    myRamses.currentUser(),
-    "A comment"
-    );
-myShot.setStatus(aNewStatus, myRamses.currentStep());
-```
-
-### Enumerated Values
-
-*Enumerated values* (a.k.a. *Constants*) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they're grouped together by type (for exemple `color.RED`, or `shape.RECTANGLE`). The value itself can be of any type (array, string, number...). In the previous examples, one could have `color.RED is [255,0,0]`.
-
-#### Python
-
-*Enumerated values* are public static attributes of a containing class. They're declared like this:
-
-```py
-class Group():
-    VALUE_1 = 0
-    VALUE_2 = 1
-    VALUE_3 = 2
-
-# Example:
-class Color():
-    RED = [255,0,0]
-    GREEN = [0,255,0]
-    BLUE = [0,0,255]
-```
-
-And they're used like this:
-
-`myVar = Group.VALUE_1`
-
-`myColor = Color.RED`
-
-#### JavaScript / Adobe ExtendScript
-
-*Enumerated values* are attributes in simple objects. They're declared like this:
-
-```js
-var Group = {
-    VALUE_1: 0
-    VALUE_2: 1
-    VALUE_3: 2
-};
-
-// Example:
-var Color = {
-    RED: [255,0,0]
-    GREEN: [0,255,0]
-    BLUE: [0,0,255]
-};
-```
-
-And they're used like this:
-
-`var myVar = Group.VALUE_1;`
-
-`var myColor = Color.RED;`
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04)

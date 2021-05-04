@@ -9,6 +9,8 @@ theme:
     name: null
     custom_dir: 'cinder'
     colorscheme: zenburn
+extra:
+    collapse_toc: true
 markdown_extensions:
     - smarty
     - footnotes
@@ -57,6 +59,7 @@ nav:
             - Naming: dev/files/naming.md
         - Scripting API (Add-ons):
             - Reference: dev/add-ons-reference/index.md
+            - Constants: dev/add-ons-reference/enum.md
             - Ramses: dev/add-ons-reference/ramses.md
             - RamAsset: dev/add-ons-reference/ram_asset.md
             - RamDaemonInterface: dev/add-ons-reference/ram_daemon_interface.md
@@ -72,6 +75,7 @@ nav:
             - RamStatus: dev/add-ons-reference/ram_status.md
             - RamStep: dev/add-ons-reference/ram_step.md
             - RamUser: dev/add-ons-reference/ram_user.md
+            - Dev Notes: dev/add-ons-reference/implementation.md
         - Daemon API:
             - Reference: dev/daemon-reference/index.md
             - Queries: dev/daemon-reference/queries.md
