@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../server-reference/general/">General queries</a>
+    <a href="../../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/steps/">Step queries</a>
+    <a href="../../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../server-reference/assets/">Asset queries</a>
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
 </li>
 
         
@@ -560,10 +614,9 @@
         <li class="first-level active"><a href="#ramdaemoninterface">RamDaemonInterface</a></li>
             <li class="second-level"><a href="#static-methods">Static Methods</a></li>
                 
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
-                
-                <li class="third-level"><a href="#examples">Examples</a></li>
             <li class="second-level"><a href="#methods">Methods</a></li>
+                
+            <li class="second-level"><a href="#examples">Examples</a></li>
                 
             <li class="second-level"><a href="#implementation">Implementation</a></li>
                 
@@ -584,11 +637,8 @@
 <ul>
 <li><a href="#ramdaemoninterface">RamDaemonInterface</a><ul>
 <li><a href="#static-methods">Static Methods</a></li>
-<li><a href="#attributes">Attributes</a><ul>
-<li><a href="#examples">Examples</a></li>
-</ul>
-</li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#examples">Examples</a></li>
 <li><a href="#implementation">Implementation</a><ul>
 <li><a href="#python">Python</a></li>
 <li><a href="#javascript-extendscript">JavaScript / ExtendScript</a></li>
@@ -623,53 +673,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="attributes">Attributes</h2>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>port</strong></td>
-<td><em>integer</em></td>
-<td><code>18185</code></td>
-<td>Listening port of the <em>Ramses Daemon</em>. Set by <a href="../ram_settings/">RamSettings</a></td>
-</tr>
-<tr>
-<td><strong>address</strong></td>
-<td><em>string</em></td>
-<td><code>"localhost"</code></td>
-<td>The IP or host name of the <em>Ramses Daemon</em>. Should never be changed unless you know what you&rsquo;re doing. By default, the <em>Daemon</em> only listens to <em>localhost / 127.0.01</em></td>
-</tr>
-</tbody>
-</table>
-<h3 id="examples">Examples</h3>
-<ul>
-<li><code>checkReply</code></li>
-</ul>
-<pre><code class="language-py"># Python
-daemon = RamDaemonInterface.instance()
-reply = daemon.getProjects() # Call from the instance
-if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
-    doSomething(reply['content'])
-else:
-    print (reply['message'])
-</code></pre>
-<pre><code class="language-js">// JavaScript
-var daemon = RamDaemonInterface.instance();
-var reply = daemon.getProjects(); // Call from the instance
-if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
-    doSomething(reply['content']);
-}
-else {
-    alert (reply['message']);
-}
-</code></pre>
 <h2 id="methods">Methods</h2>
 <p>Please refer to the <a href="../../daemon-reference/"><em>Daemon API</em> reference</a> for more information about these methods.</p>
 <p>These methods return the reply of the <em>Daemon</em> converted from <em>JSON</em> to an object, dict, structure, or whatever best suits the language in which the add-on is implemented.</p>
@@ -702,6 +705,12 @@ else {
 <td></td>
 </tr>
 <tr>
+<td><strong>getAsset</strong><br />▹ <em>Object / Dict</em></td>
+<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>Gets a specific asset. The name is optional, as short names <em>should</em> be unique.</td>
+<td>TODO Daemon</td>
+</tr>
+<tr>
 <td><strong>getAssetGroups</strong><em><br />▹ </em>Object / Dict*</td>
 <td></td>
 <td>Gets the list of the asset groups for the current project</td>
@@ -715,8 +724,14 @@ else {
 </tr>
 <tr>
 <td><strong>getCurrentStatus</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>itemType</strong>=<code>"SHOT"</code></td>
-<td>Gets the list of status (one per step) for the item. <code>itemType</code> must be one of: <code>"SHOT"</code> or <code>"ASSET"</code></td>
+<td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
+<td>Gets the status for the specific step for the item. <code>itemType</code> must be one of: <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code></td>
+<td>TODO Daemon</td>
+</tr>
+<tr>
+<td><strong>getCurrentStatuses</strong><br />▹ <em>Object / Dict</em></td>
+<td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
+<td>Gets the list of status (one per step) for the item. <code>itemType</code> must be one of: <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code></td>
 <td>TODO Daemon</td>
 </tr>
 <tr>
@@ -732,6 +747,12 @@ else {
 <td></td>
 </tr>
 <tr>
+<td><strong>getProject</strong><br />▹ <em>Object / Dict</em></td>
+<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>Gets a specific project. The name is optional, as short names <em>should</em> be unique.</td>
+<td>TODO Daemon</td>
+</tr>
+<tr>
 <td><strong>getPipes</strong><br />▹ <em>Object / Dict</em></td>
 <td></td>
 <td>Gets the list of pipes for the current project</td>
@@ -744,16 +765,34 @@ else {
 <td>TODO Daemon</td>
 </tr>
 <tr>
+<td><strong>getShot</strong><br />▹ <em>Object / Dict</em></td>
+<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>Gets a specific shot. The name is optional, as short names <em>should</em> be unique.</td>
+<td>TODO Daemon</td>
+</tr>
+<tr>
 <td><strong>getStates</strong><br />▹ <em>Object / Dict</em></td>
 <td></td>
 <td>Gets the list of available states</td>
 <td></td>
 </tr>
 <tr>
+<td><strong>getState</strong><br />▹ <em>Object / Dict</em></td>
+<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>Gets a specific state. The name is optional, as short names <em>should</em> be unique.</td>
+<td>TODO Daemon</td>
+</tr>
+<tr>
 <td><strong>getSteps</strong><br />▹ <em>Object / Dict</em></td>
 <td></td>
 <td>Gets the list of the steps for the current project</td>
 <td></td>
+</tr>
+<tr>
+<td><strong>getStep</strong><br />▹ <em>Object / Dict</em></td>
+<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>Gets a specific step. The name is optional, as short names <em>should</em> be unique.</td>
+<td>TODO Daemon</td>
 </tr>
 <tr>
 <td><strong>online</strong><br />▹ <em>boolean</em></td>
@@ -805,6 +844,27 @@ else {
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<pre><code class="py"># Python
+daemon = RamDaemonInterface.instance()
+reply = daemon.getProjects() # Call from the instance
+if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
+    doSomething(reply['content'])
+else:
+    print (reply['message'])
+</code></pre>
+
+<pre><code class="js">// JavaScript
+var daemon = RamDaemonInterface.instance();
+var reply = daemon.getProjects(); // Call from the instance
+if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
+    doSomething(reply['content']);
+}
+else {
+    alert (reply['message']);
+}
+</code></pre>
+
 <h2 id="implementation">Implementation</h2>
 <h3 id="python">Python</h3>
 <p>In Python, the methods from this class return a <code>dict</code> as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json.loads( str )</code> method.</p>

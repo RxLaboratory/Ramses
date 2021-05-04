@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../../add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../general/">General queries</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">User queries</a>
+    <a href="../applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../steps/">Step queries</a>
+    <a href="../assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../assets/">Asset queries</a>
+    <a href="../filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Step queries</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">User queries</a>
 </li>
 
         
@@ -535,12 +589,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../general/">
+                        <a rel="prev" href="../steps/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../projects/">
+                        <a rel="next" href="../../../credits/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -602,7 +656,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateUser&amp;name=Nicolas Dufresne&amp;shortName=Duduf&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
     &quot;success&quot;: true,
@@ -610,6 +664,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="updatepassword">updatePassword</h2>
 <p>Changes the password of a specific user</p>
 <p><strong>Query attributes:</strong></p>
@@ -629,7 +684,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updatePassword&amp;current=123&amp;new=456&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
     &quot;success&quot;: true,
@@ -637,6 +692,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getusers">getUsers</h2>
 <p>Retrieves the list of all users.</p>
 <p><strong>Query attributes:</strong></p>
@@ -656,7 +712,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getUsers&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getUsers&quot;,
     &quot;success&quot;: true,
@@ -679,6 +735,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="createuser">createUser</h2>
 <p>Creates a new user in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -694,7 +751,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createUser&amp;name=Nicolas Dufresne&amp;shortName=Duduf&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createUser&quot;,
     &quot;success&quot;: true,
@@ -702,6 +759,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeuser">removeUser</h2>
 <p>Removes a user from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -715,7 +773,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeUser&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeUser&quot;,
     &quot;success&quot;: true,

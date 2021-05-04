@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../../add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../general/">General queries</a>
+    <a href="../applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../steps/">Step queries</a>
+    <a href="../assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../assets/">Asset queries</a>
+    <a href="../filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../users/">User queries</a>
 </li>
 
         
@@ -607,7 +661,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createShot&amp;name=s001&amp;shortName=001&amp;sequenceUuid=123&amp;duration=2.12&amp;order=12&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createShot&quot;,
     &quot;success&quot;: true,
@@ -615,6 +669,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="updateshot">updateShot</h2>
 <p>Update shot info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -632,7 +687,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateShot&amp;name=S003&amp;shortName=003&amp;sequenceUuid=123&amp;duration=3.36&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateShot&quot;,
     &quot;success&quot;: true,
@@ -640,6 +695,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="moveshot">moveShot</h2>
 <p>Moves a shot in the list.</p>
 <p><strong>Query attributes:</strong></p>
@@ -654,7 +710,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?moveShot&amp;order=6&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;moveShot&quot;,
     &quot;success&quot;: true,
@@ -662,6 +718,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeshot">removeShot</h2>
 <p>Removes a shot from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -675,7 +732,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeShot&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeShot&quot;,
     &quot;success&quot;: true,
@@ -683,6 +740,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="setshotstatus">setShotStatus</h2>
 <p>Sets a new status for a shot</p>
 <p><strong>Query attributes:</strong></p>
@@ -703,7 +761,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?setAssetStatus&amp;uuid=123&amp;shotUuid=123&amp;completionRatio=50&amp;userUuid=123&amp;stateUuid=123&amp;comment=A nice comment&amp;version=12&amp;stepUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setShotStatus&quot;,
     &quot;success&quot;: true,

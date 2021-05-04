@@ -273,6 +273,12 @@
 
         
             
+<li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
 <li class="active">
     <a href="./">Ramses</a>
 </li>
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../server-reference/general/">General queries</a>
+    <a href="../../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/steps/">Step queries</a>
+    <a href="../../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../server-reference/assets/">Asset queries</a>
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
 </li>
 
         
@@ -535,7 +589,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../">
+                        <a rel="prev" href="../enum/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -565,6 +619,9 @@
                 <li class="third-level"><a href="#examples">Examples</a></li>
             <li class="second-level"><a href="#methods">Methods</a></li>
                 
+            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                
+                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -580,6 +637,10 @@
 </ul>
 </li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#api-dev-notes">API Dev notes</a><ul>
+<li><a href="#immutable-data">(Im)mutable data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -630,23 +691,30 @@
 <td></td>
 <td>Returns the <em>Ramses</em> unique instance.</td>
 </tr>
+<tr>
+<td><strong>version</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The current version of this API</td>
+</tr>
 </tbody>
 </table>
 <h3 id="examples">Examples</h3>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 # import the Ramses class
 from ramses import Ramses
 # Get the instance
 ramses = Ramses.instance()
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 // include the Ramses lib
 #include ramses.jsxinc
 // Get the instance
 var ramses = Ramses.instance();
 </code></pre>
+
 <h2 id="methods">Methods</h2>
 <table>
 <thead>
@@ -690,12 +758,12 @@ var ramses = Ramses.instance();
 <tr>
 <td><strong>daemonInterface</strong><br />▹ <em>RamDaemonInterface</em></td>
 <td></td>
-<td>The <em>Daemon</em> interface.</td>
+<td>The <em>Daemon</em> interface unique instance. Same as <code>RamDaemonInterface.instance()</code></td>
 </tr>
 <tr>
 <td><strong>disconnect</strong><br />▹ <em>boolean</em></td>
 <td></td>
-<td>Gets back to offline mode.</td>
+<td>Gets back to offline mode (stops all communications with the <em>Daemon</em>).</td>
 </tr>
 <tr>
 <td><strong>folderPath</strong><br />▹ <em>string</em></td>
@@ -737,13 +805,67 @@ var ramses = Ramses.instance();
 <td><a href="../ram_settings/"><em>RamSettings</em></a></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+<hr />
+<h2 id="api-dev-notes">API Dev notes</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
+</div>
+<h3 id="immutable-data">(Im)mutable data</h3>
+<p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
+<table>
+<thead>
 <tr>
-<td><strong>version</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>The current version of this API</td>
+<th>Method</th>
+<th>Type of the returned data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>alternativeFolderPaths</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>backupFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>currentProject</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>currentStep</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>currentUser</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>folderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>projects</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>project</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>states</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>state</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
 </tr>
 </tbody>
-</table></div>
+</table>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p></div>
         
         
     </div>

@@ -78,22 +78,29 @@ nav:
             - Dev Notes: dev/add-ons-reference/implementation.md
         - Daemon API:
             - Reference: dev/daemon-reference/index.md
-            - Queries: dev/daemon-reference/queries.md
+            - General queries: dev/daemon-reference/general_q.md
+            - Asset queries: dev/daemon-reference/asset_q.md
+            - Pipe queries: dev/daemon-reference/pipe_q.md
+            - Project queries: dev/daemon-reference/project_q.md
+            - Shot queries: dev/daemon-reference/shot_q.md
+            - State and Status queries: dev/daemon-reference/state_q.md
+            - Step queries: dev/daemon-reference/step_q.md
+            - User queries: dev/daemon-reference/user_q.md
         - Server API:
             - Reference: dev/server-reference/index.md
-            - General queries: dev/server-reference/general.md
-            - User queries: dev/server-reference/users.md
-            - Project queries: dev/server-reference/projects.md
-            - Step queries: dev/server-reference/steps.md
-            - Asset Group queries: dev/server-reference/assetgroups.md
+            - Application queries: dev/server-reference/applications.md
             - Asset queries: dev/server-reference/assets.md
+            - Asset Group queries: dev/server-reference/assetgroups.md
+            - File type queries: dev/server-reference/filetypes.md
+            - General queries: dev/server-reference/general.md
+            - Pipe queries: dev/server-reference/pipes.md
+            - Project queries: dev/server-reference/projects.md
             - Sequence queries: dev/server-reference/sequences.md
             - Shot queries: dev/server-reference/shots.md
             - State queries: dev/server-reference/states.md
-            - File type queries: dev/server-reference/filetypes.md
-            - Application queries: dev/server-reference/applications.md
-            - Pipe queries: dev/server-reference/pipes.md
             - Status queries: dev/server-reference/status.md
+            - Step queries: dev/server-reference/steps.md
+            - User queries: dev/server-reference/users.md
     - About:
         - Credits: credits.md
         - Changelog: changelog.md

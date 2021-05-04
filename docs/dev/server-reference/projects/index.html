@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../../add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../general/">General queries</a>
+    <a href="../applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../users/">User queries</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../steps/">Step queries</a>
+    <a href="../assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../assets/">Asset queries</a>
+    <a href="../filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../users/">User queries</a>
 </li>
 
         
@@ -535,12 +589,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../users/">
+                        <a rel="prev" href="../pipes/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../steps/">
+                        <a rel="next" href="../sequences/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -603,7 +657,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createProject&quot;,
     &quot;success&quot;: true,
@@ -611,6 +665,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getproject">getProject</h2>
 <p>Retrieves a single project.</p>
 <p><strong>Query attributes:</strong></p>
@@ -683,7 +738,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProject&amp;uuid=123abc&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProject&quot;,
     &quot;success&quot;: true,
@@ -702,6 +757,7 @@
         }
 }
 </code></pre>
+
 <h2 id="getprojects">getProjects</h2>
 <p>Retrieves the list of all projects.</p>
 <p><strong>Query attributes:</strong></p>
@@ -773,7 +829,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProjects&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProjects&quot;,
     &quot;success&quot;: true,
@@ -806,6 +862,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="updateproject">updateProject</h2>
 <p>Updates project information.</p>
 <p><strong>Query attributes:</strong></p>
@@ -822,7 +879,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateProject&quot;,
     &quot;success&quot;: true,
@@ -830,6 +887,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeproject">removeProject</h2>
 <p>Removes a project from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -843,7 +901,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeProject&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeProject&quot;,
     &quot;success&quot;: true,
@@ -851,6 +909,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignstep">assignStep</h2>
 <p>Assigns a template step to a project</p>
 <p><strong>Query attributes:</strong></p>
@@ -865,7 +924,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignStep&amp;stepUuid=123&amp;projectUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignStep&quot;,
     &quot;success&quot;: true,
@@ -873,6 +932,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <p>{
     &ldquo;accepted&rdquo;: true,
     &ldquo;query&rdquo;: &ldquo;assignStep&rdquo;,

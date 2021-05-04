@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../daemon-reference/queries/">Queries</a>
+    <a href="../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../server-reference/general/">General queries</a>
+    <a href="../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../server-reference/steps/">Step queries</a>
+    <a href="../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../server-reference/assets/">Asset queries</a>
+    <a href="../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/users/">User queries</a>
 </li>
 
         
@@ -540,7 +594,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="ramses/">
+                        <a rel="next" href="enum/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -560,13 +614,12 @@
         <li class="first-level active"><a href="#scripting-api-reference">Scripting API reference</a></li>
             <li class="second-level"><a href="#classes">Classes</a></li>
                 
+        <li class="first-level "><a href="#global-methods">Global Methods</a></li>
             <li class="second-level"><a href="#examples">Examples</a></li>
                 
+                <li class="third-level"><a href="#include-import-the-api">Include / Import the API</a></li>
+                <li class="third-level"><a href="#enumerated-values-constants">Enumerated values (constants)</a></li>
                 <li class="third-level"><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
-            <li class="second-level"><a href="#implementation-notes">Implementation Notes</a></li>
-                
-                <li class="third-level"><a href="#include-import">Include / Import</a></li>
-                <li class="third-level"><a href="#enumerated-values">Enumerated Values</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -578,21 +631,13 @@
 <ul>
 <li><a href="#scripting-api-reference">Scripting API reference</a><ul>
 <li><a href="#classes">Classes</a></li>
+</ul>
+</li>
+<li><a href="#global-methods">Global Methods</a><ul>
 <li><a href="#examples">Examples</a><ul>
+<li><a href="#include-import-the-api">Include / Import the API</a></li>
+<li><a href="#enumerated-values-constants">Enumerated values (constants)</a></li>
 <li><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
-</ul>
-</li>
-<li><a href="#implementation-notes">Implementation Notes</a><ul>
-<li><a href="#include-import">Include / Import</a><ul>
-<li><a href="#python">Python</a></li>
-<li><a href="#adobe-extendscript">Adobe ExtendScript</a></li>
-</ul>
-</li>
-<li><a href="#enumerated-values">Enumerated Values</a><ul>
-<li><a href="#python_1">Python</a></li>
-<li><a href="#javascript-adobe-extendscript">JavaScript / Adobe ExtendScript</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -601,8 +646,12 @@
 </div>
 <p>As this document is referring to different scripting languages, it uses general terms which may be different than what is actually used in specific languages.</p>
 <p><em>(TODO: ADD THE LINK TO THE GITHUB REPOS OF THE APIs / LINK TO GET THEM ON RXLAB.ORG)</em></p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Some of the elements described in this documentation have to be interpreted differently depending on the language used in the implementations of the <em>Ramses Add-ons API</em> and may vary a bit. Read the examples below to see the differences between a few scripting languages.</p>
+</div>
 <h2 id="classes">Classes</h2>
-<p>This is the comprehensive list of available classes.</p>
+<p>This is the comprehensive list of available classes. In the <em>Ramses Add-ons API</em>, everything is contained in these classes.</p>
 <table>
 <thead>
 <tr>
@@ -689,11 +738,110 @@
 </tr>
 </tbody>
 </table>
+<h1 id="global-methods">Global Methods</h1>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>log</strong></td>
+<td><em>string</em>: <strong>message</strong>,<br /><em>LogLevel</em>: <strong>level</strong>=<code>LogLevel.Info</code></td>
+<td>Logs a message to the console. The level must be one of <code>LogLevel.DataReceived</code>, <code>LogLevel.DataSent</code>, <code>LogLevel.Debug</code>, <code>LogLevel.Info</code>, <code>LogLevel.Critical</code>, <code>LogLevel.Fatal</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="examples">Examples</h2>
 <p>Here are a few examples showing how this API can be used.</p>
+<h3 id="include-import-the-api">Include / Import the API</h3>
+<pre><code class="py"># Python
+# Use your usual preferred way to import the module.
+
+from ramses import *
+
+# The unique `Ramses` instance is available as `Ramses.instance()`.
+myRamses = Ramses.instance()
+theSettings = myRamses.settings
+myShot = RamShot.getFromPath(&quot;path/to/the/shot&quot;)
+aNewStatus = RamStatus(
+    myRamses.state(&quot;WIP&quot;),
+    myRamses.currentUser(),
+    &quot;A comment&quot;
+    )
+myShot.setStatus(aNewStatus, myRamses.currentStep())
+
+# or (this is the recommended way)
+
+import ramses as ram
+
+myRamses = ram.Ramses.instance()
+theSettings = myRamses.settings()
+myShot = ram.RamShot.getFromPath(&quot;path/to/the/shot&quot;)
+aNewStatus = ram.RamStatus(
+    myRamses.state(&quot;WIP&quot;),
+    myRamses.currentUser(),
+    &quot;A comment&quot;
+    )
+myShot.setStatus(aNewStatus, myRamses.currentStep())
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+// Just include the file the usual way.
+
+#include ramses.jsxinc
+
+// The unique `Ramses` instance is available as `Ramses.instance()`.
+var myRamses = Ramses.instance();
+var theSettings = myRamses.settings();
+var myShot = RamShot.getFromPath(&quot;path/to/the/shot&quot;);
+var aNewStatus = new RamStatus(
+    myRamses.state(&quot;WIP&quot;),
+    myRamses.currentUser(),
+    &quot;A comment&quot;
+    );
+myShot.setStatus(aNewStatus, myRamses.currentStep());
+</code></pre>
+
+<h3 id="enumerated-values-constants">Enumerated values (constants)</h3>
+<p>Enumerated values (a.k.a. Constants) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they’re grouped together by type (for exemple Color.RED, or Shape.RECTANGLE). The value itself can be of any type (array, string, number…).</p>
+<p>In this documentation they&rsquo;re written like this: <code>ValueType.VALUE</code>, i.e. <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code>, and they&rsquo;re used the same way in the actual code.</p>
+<pre><code class="py"># Python
+
+from ramses import RamItem, ItemType
+
+# Get an item from a specific file path
+anItem = RamItem.getFromPath( somePath )
+
+if anItem is not None:
+    # We want it only if it's a shot,
+    # We can use the enum ItemType to compare the value.
+    if anItem.itemType() == ItemType.SHOT:
+        doSomething()
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+
+#include ramses.jsxinc
+
+// Get an item from a specific file path
+var anItem = RamItem.getFromPath( somePath );
+
+if (anItem != null)
+{
+    // We want it only if it's a shot,
+    // We can use the enum ItemType to compare the value.
+    if ( anItem.itemType() == ItemType.SHOT )
+        doSomething();
+}
+</code></pre>
+
 <h3 id="save-command-for-maya-python">Save command for <em>Maya</em> (Python)</h3>
 <p>This example shows how to use the <a href="ram_file_manager/">RamFileManager</a> class to implement a save command in <em>Maya</em> with automatic backup in the <em>_versions</em> subfolder.</p>
-<pre><code class="language-python">import maya.cmds as cmds
+<pre><code class="python">import maya.cmds as cmds
 import ramses as ram
 
 ramses = ram.Ramses.instance()
@@ -746,89 +894,8 @@ def ramSave():
 
 ramSave()
 </code></pre>
-<h2 id="implementation-notes">Implementation Notes</h2>
-<p>Some of the elements described in this documentation have to be interpreted depending on the language used in the implementations of the Ramses API and may vary a bit.</p>
-<h3 id="include-import">Include / Import</h3>
-<h4 id="python">Python</h4>
-<p>Use your usual preferred way to import the module.</p>
-<p>Then, the unique <code>Ramses</code> instance is available as <code>Ramses.instance</code>.</p>
-<pre><code class="language-py">from ramses import *
 
-myRamses = Ramses.instance
-theSettings = myRamses.settings
-myShot = RamShot.getFromPath(&quot;path/to/the/shot&quot;)
-aNewStatus = RamStatus(
-    myRamses.state(&quot;WIP&quot;),
-    myRamses.currentUser(),
-    &quot;A comment&quot;
-    )
-myShot.setStatus(aNewStatus, myRamses.currentStep())
-
-# or
-
-import ramses as ram
-
-myRamses = ram.Ramses.instance
-theSettings = myRamses.settings()
-myShot = ram.RamShot.getFromPath(&quot;path/to/the/shot&quot;)
-aNewStatus = ram.RamStatus(
-    myRamses.state(&quot;WIP&quot;),
-    myRamses.currentUser(),
-    &quot;A comment&quot;
-    )
-myShot.setStatus(aNewStatus, myRamses.currentStep())
-</code></pre>
-<h4 id="adobe-extendscript">Adobe ExtendScript</h4>
-<p>Just include the file the usual way.</p>
-<p>Then, the unique <code>Ramses</code> instance is available as <code>Ramses.instance</code>.</p>
-<pre><code class="language-js">#include ramses.jsxinc
-
-var myRamses = Ramses.instance;
-var theSettings = myRamses.settings();
-var myShot = RamShot.getFromPath(&quot;path/to/the/shot&quot;);
-var aNewStatus = new RamStatus(
-    myRamses.state(&quot;WIP&quot;),
-    myRamses.currentUser(),
-    &quot;A comment&quot;
-    );
-myShot.setStatus(aNewStatus, myRamses.currentStep());
-</code></pre>
-<h3 id="enumerated-values">Enumerated Values</h3>
-<p><em>Enumerated values</em> (a.k.a. <em>Constants</em>) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they&rsquo;re grouped together by type (for exemple <code>color.RED</code>, or <code>shape.RECTANGLE</code>). The value itself can be of any type (array, string, number&hellip;). In the previous examples, one could have <code>color.RED is [255,0,0]</code>.</p>
-<h4 id="python_1">Python</h4>
-<p><em>Enumerated values</em> are public static attributes of a containing class. They&rsquo;re declared like this:</p>
-<pre><code class="language-py">class Group():
-    VALUE_1 = 0
-    VALUE_2 = 1
-    VALUE_3 = 2
-
-# Example:
-class Color():
-    RED = [255,0,0]
-    GREEN = [0,255,0]
-    BLUE = [0,0,255]
-</code></pre>
-<p>And they&rsquo;re used like this:</p>
-<p><code>myVar = Group.VALUE_1</code></p>
-<p><code>myColor = Color.RED</code></p>
-<h4 id="javascript-adobe-extendscript">JavaScript / Adobe ExtendScript</h4>
-<p><em>Enumerated values</em> are attributes in simple objects. They&rsquo;re declared like this:</p>
-<pre><code class="language-js">var Group = {
-    VALUE_1: 0
-    VALUE_2: 1
-    VALUE_3: 2
-};
-
-// Example:
-var Color = {
-    RED: [255,0,0]
-    GREEN: [0,255,0]
-    BLUE: [0,0,255]
-};
-</code></pre>
-<p>And they&rsquo;re used like this:</p>
-<p><code>var myVar = Group.VALUE_1;</code></p>
-<p><code>var myColor = Color.RED;</code></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
         
         
     </div>

@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../../dev/add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../../dev/add-ons-reference/ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../../dev/add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../dev/daemon-reference/queries/">Queries</a>
+    <a href="../../dev/daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../dev/server-reference/general/">General queries</a>
+    <a href="../../dev/server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../dev/server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../dev/server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../dev/server-reference/steps/">Step queries</a>
+    <a href="../../dev/server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../dev/server-reference/assets/">Asset queries</a>
+    <a href="../../dev/server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../dev/server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../dev/server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../dev/server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../dev/server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/server-reference/users/">User queries</a>
 </li>
 
         
@@ -608,7 +662,7 @@
 <p>The easiest way to use Ramses to manage all your projects is to define a root folder for all Ramses projects, where Ramses will create a subfolder for each project.</p>
 <p>This Ramses folder is also used to store user specific files, some configuration files, etc.</p>
 <p>Nevertheless, you can always choose another folder to store a specific project, outside of the Ramses Folder.</p>
-<pre><code class="language-sh">- Ramses Folder
+<pre><code class="sh">- Ramses Folder
     - Config # Configuration files
     - Projects # All projects
         - Project01 # First project
@@ -621,9 +675,10 @@
             - Config
         - ...
 </code></pre>
+
 <h2 id="the-project-folder">The Project Folder</h2>
 <p>These are the contents of the Project folder:</p>
-<pre><code class="language-sh">- PROJECTID # Root
+<pre><code class="sh">- PROJECTID # Root
     - 00-ADMIN # Project administration
     - 01-PRE-PROD # Pre-production steps
     - 02-PROD # Production steps
@@ -632,27 +687,28 @@
     - 05-SHOTS # All the Shots
     - 06-EXPORT # Media files
 </code></pre>
+
 <p>The root folder of a project only contains other folders and no files.</p>
 <p>The subfolder in the root folder are numbered to help sorting them and quickly find them.</p>
 <p>Here is an example of a typical project tree, without showing the details in the working directories nor any file.</p>
-<pre><code class="language-sh">- PROJECTID # Root
+<pre><code class="sh">- PROJECTID # Root
     - 00-ADMIN
     - 01-PRE-PROD
         - PROJECTID_SCRIPT # Pre production step
         - PROJECTID_STORYBOARD
     - 02-PROD
-        - PROJECTID_MOD # Common files for the mod step
-            - PROJECTID_MOD_Templates # Template files for the mod step
-        - PROJECTID_RIG # Common files for the rig step
-            - PROJECTID_RIG_Templates # Template files for the rig step
-        - PROJECTID_TEX
-            - PROJECTID_TEX_Templates
-        - PROJECTID_ANIM 
-            - PROJECTID_ANIM_Templates
-        - PROJECTID_LIGHT
-            - PROJECTID_LIGHT_Templates
-        - PROJECTID_COMP
-            - PROJECTID_COMP_Templates
+        - PROJECTID_A_MOD # Common files for the mod step (which works on Assets)
+            - PROJECTID_A_MOD_Templates # Template files for the mod step
+        - PROJECTID_A_RIG # Common files for the rig step
+            - PROJECTID_A_RIG_Templates # Template files for the rig step
+        - PROJECTID_A_TEX
+            - PROJECTID_A_TEX_Templates
+        - PROJECTID_S_ANIM # Common files for the anim step (which works on Shots)
+            - PROJECTID_S_ANIM_Templates
+        - PROJECTID_S_LIGHT
+            - PROJECTID_S_LIGHT_Templates
+        - PROJECTID_S_COMP
+            - PROJECTID_S_COMP_Templates
     - 03-POST-PROD
         - PROJECTID_EDIT # Post production step 
     - 04-ASSETS 
@@ -675,10 +731,11 @@
         - PROJECTID_S_02-001 # A Shot
     - 06-EXPORT
 </code></pre>
+
 <h2 id="a-working-folder">A working folder</h2>
 <p>A folder containing working files is always organised the same way.</p>
 <p>Here is an example for the modelling step of the asset called <em>Tristan</em>.</p>
-<pre><code class="language-sh">- PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
+<pre><code class="sh">- PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
     - PROJECTID_A_TRISTAN_MOD.blend # The main file for modelling Tristan (on Blender)
     - PROJECTID_A_TRISTAN_MOD_Sculpt.blend # Another resource
     - _versions # The versionning folder, handled by Ramses.
@@ -696,6 +753,7 @@
         - PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
         - PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
 </code></pre>
+
 <p>The <em>ramses_versions</em> subfolder contains the versionning and history of the work.</p>
 <p>The <em>published</em> subfolder contains the published and exported files to be used by other steps.</p>
 <p>The <em>preview</em> subfolder contains the files for previewing the current work, like videos or images. These files may be used by Ramses to generate thumbnails. Ramses is also able to list, preview, and play these files (if their format is standard and supported).</p>

@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../server-reference/general/">General queries</a>
+    <a href="../../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/steps/">Step queries</a>
+    <a href="../../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../server-reference/assets/">Asset queries</a>
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
 </li>
 
         
@@ -630,6 +684,24 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>addonsHelpUrl</strong></td>
+<td><em>string</em></td>
+<td>The URL to <a href="../../../addons/">this page</a></td>
+<td>Read-only. A link to the <a href="../../../addons/">Ramses add-ons</a> documentation</td>
+</tr>
+<tr>
+<td><strong>apiReferenceUrl</strong></td>
+<td><em>string</em></td>
+<td>This page URL</td>
+<td>Read-only. A link to this API documentation</td>
+</tr>
+<tr>
+<td><strong>generalHelpUrl</strong></td>
+<td><em>string</em></td>
+<td>The URL to <a href="../../../">this documentation</a></td>
+<td>Read-only. A link to the <a href="../../../">Ramses documentation</a></td>
+</tr>
+<tr>
 <td><strong>online</strong></td>
 <td><em>boolean</em></td>
 <td><code>true</code></td>
@@ -652,6 +724,12 @@
 <td><em>LogLevel</em></td>
 <td><code>LogLevel.Info</code></td>
 <td>Changes the quantity of messages in the log. One of: <code>LogLevel.DataReceived</code>, <code>LogLevel.DataSent</code>, <code>LogLevel.Debug</code>, <code>LogLevel.Info</code>, <code>LogLevel.Critical</code>, <code>LogLevel.Fatal</code></td>
+</tr>
+<tr>
+<td><strong>version</strong></td>
+<td><em>string</em></td>
+<td>The current API version</td>
+<td>Read-only.</td>
 </tr>
 </tbody>
 </table>
@@ -758,11 +836,12 @@
 </tbody>
 </table>
 <h3 id="examples">Examples</h3>
-<pre><code class="language-py">ramses = Ramses.instance
+<pre><code class="py">ramses = Ramses.instance
 settings = ramses.settings
 theAsset = RamAsset(&quot;thing&quot;, &quot;stuff&quot;)
 thePreviewFolder = theAsset.folderPath() + &quot;/&quot; + settings.folderNames.preview
 </code></pre>
+
 <hr />
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p></div>
         

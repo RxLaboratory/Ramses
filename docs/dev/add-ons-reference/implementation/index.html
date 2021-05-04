@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ramses comprehensive documentation">
+    <meta name="author" content="Nicolas Dufresne and contributors">
+    <link rel="canonical" href="https://ramses-docs.rainboxlab.org/dev/add-ons-reference/implementation/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Dev Notes - Ramses Documentation</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/zenburn.min.css">
+        
+    
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="../../../video.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">Ramses Documentation</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Ramses</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Machinery</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../help/">Ramses</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/users/">Users</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/projects/">Projects</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/steps/">Steps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/assetgroups/">Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/assets/">Assets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/sequences/">Sequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/shots/">Shots</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/statushistory/">Status History</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/status/">Status</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/states/">States</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/filetypes/">File Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/applications/">Applications</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../help/pipeline/">Pipeline</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Components</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/">General Description</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Server</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../install/server/">Installation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Tree</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../files/naming/">Naming scheme</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../files/tree/">Folder structure</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+<li >
+    <a href="../../../addons/">Ramses Add-ons</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Files and Folders</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../files/naming/">Naming</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Scripting API (Add-ons)</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ramses/">Ramses</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_asset/">RamAsset</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_daemon_interface/">RamDaemonInterface</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_file_manager/">RamFileManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_filetype/">RamFileType</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_object/">RamObject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_pipe/">RamPipe</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_project/">RamProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_settings/">RamSettings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_shot/">RamShot</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_state/">RamState</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_status/">RamStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_step/">RamStep</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_user/">RamUser</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Dev Notes</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Daemon API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../daemon-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Server API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../server-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/applications/">Application queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/assets/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/assetgroups/">Asset Group queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/sequences/">Sequence queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/shots/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/states/">State queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../credits/">Credits</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../changelog/">Changelog</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Licenses</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../licenses/gnu-gpl/">GNU GPLv3</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../licenses/gfdl/">Documentation license</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../ram_user/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../daemon-reference/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/add-ons-reference/implementation.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#implementation-api-dev-notes">Implementation / API Dev notes</a></li>
+            <li class="second-level"><a href="#enumerated-values">Enumerated Values</a></li>
+                
+            <li class="second-level"><a href="#accessing-the-data">Accessing the data</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="implementation-api-dev-notes">Implementation / API Dev notes</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section is for the development of the low-level API only; you should not need these notes when developping your own add-on using the API.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Some of the elements described in this documentation have to be interpreted depending on the language used in the implementations of the Ramses API and may vary a bit.</p>
+</div>
+<h2 id="enumerated-values">Enumerated Values</h2>
+<p><em>Enumerated values</em> (a.k.a. <em>Constants</em>) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they&rsquo;re grouped together by type (for exemple <code>color.RED</code>, or <code>shape.RECTANGLE</code>). The value itself can be of any type (array, string, number&hellip;).</p>
+<pre><code class="py"># Python
+
+# Enumerated values are public static attributes of a containing class. They're declared like this:
+class Group():
+    VALUE_1 = 0
+    VALUE_2 = 1
+    VALUE_3 = 2
+
+# Example:
+class Color():
+    RED = [255,0,0]
+    GREEN = [0,255,0]
+    BLUE = [0,0,255]
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+
+// Enumerated values are attributes in simple objects. They're declared like this:
+var Group = {
+    VALUE_1: 0,
+    VALUE_2: 1,
+    VALUE_3: 2
+};
+
+// Example:
+var Color = {
+    RED: [255,0,0],
+    GREEN: [0,255,0],
+    BLUE: [0,0,255]
+};
+</code></pre>
+
+<h2 id="accessing-the-data">Accessing the data</h2>
+<p>In All &ldquo;<em>RamClasses</em>&rdquo;, most of the data is retrieved with methods (instead of accessing it directly from an attribute). This allows the API to get the data from three different locations:</p>
+<ul>
+<li>already stored in a private attribute of the class instance (set by a previous call to the method or by the constructor).</li>
+<li>from the <em>Daemon</em>, if and only if <code>Ramses.instance().online</code> is <code>true</code>.</li>
+<li>from reading the <em>Ramses Tree</em>, the file structure, by retrieving available information from the file names (or eventually file meta-data).</li>
+</ul>
+<p>The priority for each method of retrieval changes according to the type of data, which can be either <em>mutable</em> or <em>immutable</em>.</p>
+<ul>
+<li>
+<p>Mutable data are data which may change regularly and which can&rsquo;t be stored (like the current status). In this case, they&rsquo;re retrieved by following these priorities:</p>
+<ol>
+<li>Got from the <em>Daemon</em> if available: set the private attribute before returning the data.</li>
+<li>Got from the <em>Ramses Tree</em>: set the private attribute before returning the data.</li>
+<li>If nothing was found, return the stored data from the corresponding private attribute.</li>
+</ol>
+</li>
+<li>
+<p>Immutable data are data which should not change during a single session (like paths). In this case, <em>Ramses</em> can store and return them without having to check again each time the method is called.</p>
+<ol>
+<li>If the private attribute contains the data, it is returned.</li>
+<li>Got from the <em>Daemon</em> if available: set the private attribute before returning the data.</li>
+<li>Got from the <em>Ramses Tree</em> if available: set the private attribute before returning the data.</li>
+</ol>
+</li>
+</ul>
+<p>Here are example concepts in Python and ExtendScript, like what&rsquo;s done in the provided implementations of the <em>Ramses Add-ons</em> API.</p>
+<pre><code class="py"># Python
+
+class RamClass( object ):
+
+    # The data can be passed to the constructor.
+    # It may or may not have default values.
+    def __init__(self, someImmutableData='', someMutableData=''): 
+        self.__someImmutableData = someImmutableData
+        self.__someMutableData = someMutableData
+
+    def someMutableData( self ):
+        if Ramses.instance().online():
+            # If the Daemon is available, try to get the data there
+            theData = Ramses.instance().getData()
+            # Only if we've got the data, store and return it
+            if theData is not None:
+                self.__someMutableData = theData
+                return self.__someMutableData
+
+        # Try to get from the Ramses Tree
+        theData = AnotherClass.getDataFromPath( somePath )
+        # If we've got the data, store it
+        if theData is not None:
+            self.__someMutableData = theData
+
+        # Last resort return
+        return self.__someMutableData
+
+    def someImmutableData( self ):
+        # We start by checking if we already have some data
+        if self.__someImmutableData != '':
+            # Stop here. This improves performance with immutable data.
+            return self.__someImmutableData
+
+        # Now we can get the Data from the Daemon or the Ramses Tree
+        if Ramses.instance().online():
+            theData = Ramses.instance().getData()
+            if theData is not None:
+                self.__someMutableData = theData
+                return self.__someMutableData
+
+        theData = AnotherClass.getDataFromPath( somePath )
+        if theData is not None:
+            self.__someMutableData = theData
+
+        return self.__someMutableData
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+
+function RamClass( someImmutableData='', someMutableData='' )
+{
+    // The data can be passed to the constructor.
+    // It may or may not have default values.
+    this.__someImmutableData = someImmutableData;
+    this.__someMutableData = someMutableData;
+}
+
+RamClass.prototype.someMutableData = function ()
+{
+    if ( Ramses.instance().online() )
+    {
+        // If the Daemon is available, try to get the data there
+        var theData = Ramses.instance().getData();
+        // Only if we've got the data, store and return it
+        if ( theData != null )
+        {
+            this.__someMutableData = theData;
+            return this.__someMutableData;
+        }
+    }      
+
+    // Try to get from the Ramses Tree
+    var theData = AnotherClass.getDataFromPath( somePath );
+    // If we've got the data, store it
+    if ( theData != null )
+        this.__someMutableData = theData;
+
+    // Last resort return
+    return this.__someMutableData;
+}
+
+RamClass.prototype.someImmutableData = function ()
+{
+    // We start by checking if we already have some data
+    if (self.__someImmutableData != '')
+    {
+        // Stop here. This improves performance with immutable data.
+        return self.__someImmutableData;
+    }
+
+    // Now we can get the Data from the Daemon or the Ramses Tree
+    if ( Ramses.instance().online() )
+    {
+        var theData = Ramses.instance().getData();
+        if ( theData != null )
+        {
+            this.__someMutableData = theData;
+            return this.__someMutableData;
+        }
+    }
+
+    var theData = AnotherClass.getDataFromPath( somePath );
+    if ( theData != null )
+        this.__someMutableData = theData;
+
+    return this.__someMutableData;
+}
+
+</code></pre>
+
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+<div class="footer-meta"></div>
+
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../video.js"></script>
+    <script src="../../../meta.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

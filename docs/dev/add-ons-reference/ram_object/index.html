@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../server-reference/general/">General queries</a>
+    <a href="../../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/steps/">Step queries</a>
+    <a href="../../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../server-reference/assets/">Asset queries</a>
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
 </li>
 
         
@@ -562,6 +616,14 @@
                 
             <li class="second-level"><a href="#methods">Methods</a></li>
                 
+            <li class="second-level"><a href="#special">Special</a></li>
+                
+                <li class="third-level"><a href="#convert-to-string">Convert to string</a></li>
+                <li class="third-level"><a href="#comparing-objects">Comparing objects</a></li>
+            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                
+                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
+                <li class="third-level"><a href="#implementation">Implementation</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -574,6 +636,20 @@
 <li><a href="#ramobject">RamObject</a><ul>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#special">Special</a><ul>
+<li><a href="#convert-to-string">Convert to string</a></li>
+<li><a href="#comparing-objects">Comparing objects</a></li>
+</ul>
+</li>
+<li><a href="#api-dev-notes">API Dev notes</a><ul>
+<li><a href="#immutable-data">(Im)mutable data</a></li>
+<li><a href="#implementation">Implementation</a><ul>
+<li><a href="#converting-objects-to-string">Converting objects to string</a></li>
+<li><a href="#object-comparison">Object comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -623,7 +699,141 @@
 <td></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+<h2 id="special">Special</h2>
+<h3 id="convert-to-string">Convert to string</h3>
+<p><em>RamObject</em>s can be converted to string the usual way.</p>
+<pre><code class="py"># Python
+
+obj = RamObject( &quot;Name&quot;, &quot;ShortName&quot; )
+
+print( obj ) # implicit conversion
+print( str(obj) ) # explicit conversion
+
+# Both will print:
+&gt;&gt;&gt; ShortName | Name
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+
+var obj = new RamObject( &quot;Name&quot;, &quot;ShortName&quot; );
+
+$.writeln( obj.toString() );
+
+// Prints:
+// ShortName | Name
+
+</code></pre>
+
+<h3 id="comparing-objects">Comparing objects</h3>
+<p><em>RamObjects</em> can be compared to check if two objects are the same (comparing the values, not the object instances).</p>
+<p>Two objects are considered the same <strong>if and only if</strong> their short names are the same. Names will not be compared, which means <strong>object short names in ramses have to be unique</strong>.</p>
+<pre><code class="py"># Python
+
+obj = RamObject( &quot;Name&quot;, &quot;ShortName&quot; )
+other = RamObject( &quot;Other Object&quot;, &quot;otheShortName&quot; )
+same = RamObject( &quot;Same Object&quot;, &quot;ShortName&quot; )
+
+# RamObject can be compared as any other value
+
+obj == other # False
+obj == same # True
+
+# It can be used with the `in` operator too
+objList = [ obj, other ]
+same in objList # True
+
+# But RamObject is not hashable, so it cannot be used in a `set` or as a key in a `dict`
+
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+
+var obj = RamObject( &quot;Name&quot;, &quot;ShortName&quot; );
+var other = RamObject( &quot;Other Object&quot;, &quot;otheShortName&quot; );
+var same = RamObject( &quot;Same Object&quot;, &quot;ShortName&quot; );
+
+// RamObject can be compared with the is() method
+
+obj.is(other) // false
+obj.is(same) // true
+
+</code></pre>
+
+<h2 id="api-dev-notes">API Dev notes</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
+</div>
+<h3 id="immutable-data">(Im)mutable data</h3>
+<p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type of the returned data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>name</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>shortName</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+</tbody>
+</table>
+<h3 id="implementation">Implementation</h3>
+<h4 id="converting-objects-to-string">Converting objects to string</h4>
+<pre><code class="py"># Python
+
+# Overload the __str__() method
+
+class RamObject:
+    def __str__( self ):
+        return self._shortName + &quot; | &quot; + self._name
+
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+
+// Overload the toString() method
+
+function RamObject() {};
+
+RamObject.prototype.toString = function ()
+{
+    return this._shortName + &quot; | &quot; + this._name;
+}
+</code></pre>
+
+<h4 id="object-comparison">Object comparison</h4>
+<pre><code class="py"># Python
+
+# Overload the __eq__() method
+
+class RamObject:
+    def __eq__( self, other ):
+        return self._shortName == other._shortName
+
+</code></pre>
+
+<pre><code class="js">// ExtendScript
+
+// Implements an is() method
+
+function RamObject() {};
+
+RamObject.prototype.is = function ( other )
+{
+    return this._shortName == other._shortName;
+}
+</code></pre>
+
+<hr />
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
         
         
     </div>

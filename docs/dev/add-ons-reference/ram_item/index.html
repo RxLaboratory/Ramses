@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../server-reference/general/">General queries</a>
+    <a href="../../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/steps/">Step queries</a>
+    <a href="../../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../server-reference/assets/">Asset queries</a>
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
 </li>
 
         
@@ -558,13 +612,13 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#ramitem">RamItem</a></li>
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
-                
             <li class="second-level"><a href="#methods">Methods</a></li>
+                
+            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
                 
             <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
                 
-                <li class="third-level"><a href="#notes-about-the-methods">Notes about the methods</a></li>
+                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -573,41 +627,6 @@
 <p>Base class for <a href="../ram_asset/"><em>RamAsset</em></a> and <a href="../ram_shot/"><em>RamShot</em></a>. An item of the project, either an asset or a shot.</p>
 <p>Inherits: <a href="../ram_object/"><strong><em>RamObject</em></strong></a></p>
 <p>Inherited by: <em><a href="../ram_shot/">RamShot</a>, <a href="../ram_asset/">RamAsset</a></em></p>
-<div class="toc">
-<ul>
-<li><a href="#ramitem">RamItem</a><ul>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#api-dev-notes">API Dev notes</a><ul>
-<li><a href="#notes-about-the-methods">Notes about the methods</a><ul>
-<li><a href="#folderpath">folderPath()</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="attributes">Attributes</h2>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h2 id="methods">Methods</h2>
 <table>
 <thead>
@@ -620,7 +639,7 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>string</em>: <strong>itemName</strong><br /><em>string</em>: <strong>itemShortName</strong><br /><em>string</em>: <strong>itemFolder</strong>=<code>""</code></td>
+<td><em>string</em>: <strong>itemName</strong>,<br /><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em>: <strong>itemFolder</strong>=<code>""</code>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.GENERAL</code></td>
 <td></td>
 </tr>
 <tr>
@@ -631,7 +650,17 @@
 <tr>
 <td><strong>folderPath</strong><br />▹ <em>string</em></td>
 <td><em>RamStep or string</em>: <strong>step</strong> = <code>""</code></td>
-<td>The absolute path to the folder containing the asset, or to the step subfolder if provided</td>
+<td>The absolute path to the folder containing the item, or to the step subfolder if provided</td>
+</tr>
+<tr>
+<td><strong>isPublished</strong><br />▹ <em>bool</em></td>
+<td><em>RamStep</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
+<td>Convenience function to check if there are published files in the publish folder. Equivalent to <code>len(self.publishedFilePaths(step, resource)) &gt; 0</code></td>
+</tr>
+<tr>
+<td><strong>itemType</strong><br />▹ <em>ItemType</em></td>
+<td></td>
+<td>The type of this item. One of <code>ItemType.SHOT</code>, <code>ItemType.ASSET</code>, <code>ItemType.GENERAL</code></td>
 </tr>
 <tr>
 <td><strong>latestVersion</strong><br />▹ <em>integer</em></td>
@@ -659,6 +688,21 @@
 <td>Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder.</td>
 </tr>
 <tr>
+<td><strong>setStatus</strong></td>
+<td><em>RamStatus</em>: <strong>status</strong><br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>Sets the current status for the given step</td>
+</tr>
+<tr>
+<td><strong>status</strong><br />▹ <em>RamStatus</em></td>
+<td><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>Gets the current status for the given step</td>
+</tr>
+<tr>
+<td><strong>steps</strong><br />▹ <em>list of RamStep</em></td>
+<td></td>
+<td>Gets the list of steps concerning this item.</td>
+</tr>
+<tr>
 <td><strong>versionFolderPath</strong><br />▹ <em>string</em></td>
 <td><em>RamStep</em>: <strong>step</strong></td>
 <td>Path to the version folder relative to the item root folder</td>
@@ -678,20 +722,22 @@
 <td><em>RamStep</em> or <em>string</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
 <td>Current wip file path relative to the item root folder</td>
 </tr>
+</tbody>
+</table>
+<h2 id="static-methods">Static Methods</h2>
+<table>
+<thead>
 <tr>
-<td><strong>isPublished</strong><br />▹ <em>bool</em></td>
-<td><em>RamStep</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
-<td>Convenience function to check if there are published files in the publish folder. Equivalent to <code>len(self.publishedFilePaths(step, resource)) &gt; 0</code></td>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td><strong>setStatus</strong></td>
-<td><em>RamStatus</em>: <strong>status</strong><br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>Sets the current status for the given step</td>
-</tr>
-<tr>
-<td><strong>status</strong><br />▹ <em>RamStatus</em></td>
-<td><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>Gets the current status for the given step</td>
+<td><strong>getFromPath</strong><br />▹ <em>RamShot</em> or <em>RamAsset</em> or <em>RamItem</em> or <em>None</em></td>
+<td><em>string</em>: <strong>fileOrFolderPath</strong><br /></td>
+<td>Returns either a <em>RamShot</em>, <em>RamAsset</em> or <em>RamItem</em> instance built using the given folder path. The path can be any file or folder path from the asset (a version file, a preview file, etc).<br />The type (shot, asset or general item) can be checked with <code>RamItem.itemType()</code></td>
 </tr>
 </tbody>
 </table>
@@ -701,12 +747,71 @@
 <p class="admonition-title">Note</p>
 <p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
 </div>
-<h3 id="notes-about-the-methods">Notes about the methods</h3>
-<h4 id="folderpath">folderPath()</h4>
-<p>The folderPath methods checks if the folder is already available in the private attribute <code>_folderPath</code>. If so, it is simply returned.</p>
-<p>If <code>_folderPath</code> is an empty string, it has to be set before it is returned: the path has to be built from the step short name, the item short name, and the project folder (given by the <em>Ramses</em> instance if it is available).</p>
-<hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p></div>
+<h3 id="immutable-data">(Im)mutable data</h3>
+<p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type of the returned data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>folderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>isPublished</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>latestVersion</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>previewFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>previewFilePaths</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>publishedFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>publishedFilePaths</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>status</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>versionFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>versionFilePath</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+<tr>
+<td><strong>wipFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>wipFilePath</strong></td>
+<td><i class="fa fa-pen"></i> Mutable</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
         
         
     </div>

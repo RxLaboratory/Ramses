@@ -19,7 +19,6 @@ This is the comprehensive list of available classes. In the *Ramses Add-ons API*
 
 | Class | Inheritance | Description |
 | ---- | ---- | ---- |
-| [Logger](logger.md) | | A simple class used to log messages to the console. |
 | [Ramses](ramses.md) | | The main class. One (and only one) instance globally available, instantiated during init time. |
 | [RamAsset](ram_asset.md) | [RamItem](ram_item.md) | An asset. |
 | [RamDaemonInterface](ram_daemon_interface.md) | | The Class used to communicate with the Ramses Daemon |

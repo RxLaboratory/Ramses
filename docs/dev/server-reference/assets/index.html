@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../../add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../general/">General queries</a>
+    <a href="../applications/">Application queries</a>
 </li>
 
         
             
-<li >
-    <a href="../users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../steps/">Step queries</a>
+<li class="active">
+    <a href="./">Asset queries</a>
 </li>
 
         
@@ -429,8 +471,26 @@
 
         
             
-<li class="active">
-    <a href="./">Asset queries</a>
+<li >
+    <a href="../filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../users/">User queries</a>
 </li>
 
         
@@ -535,12 +589,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../assetgroups/">
+                        <a rel="prev" href="../applications/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../sequences/">
+                        <a rel="next" href="../assetgroups/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -603,7 +657,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createAsset&amp;name=Tristan&amp;shortName=TRI&amp;tags=Main, Warrior&amp;assetGroupUuid=456&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createAsset&quot;,
     &quot;success&quot;: true,
@@ -611,6 +665,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="updateasset">updateAsset</h2>
 <p>Update asset info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -628,7 +683,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateAsset&amp;name=Tristan&amp;shortName=TRI&amp;tags=Main, Warrior&amp;assetGroupUuid=456&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateAsset&quot;,
     &quot;success&quot;: true,
@@ -636,6 +691,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeasset">removeAsset</h2>
 <p>Removes an asset group from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -649,7 +705,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeAssetGroup&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeAsset&quot;,
     &quot;success&quot;: true,
@@ -657,6 +713,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="setassetstatus">setAssetStatus</h2>
 <p>Sets a new status for an asset</p>
 <p><strong>Query attributes:</strong></p>
@@ -677,7 +734,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?setAssetStatus&amp;uuid=123&amp;assetUuid=123&amp;completionRatio=50&amp;userUuid=123&amp;stateUuid=123&amp;comment=A nice comment&amp;version=12&amp;stepUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setAssetStatus&quot;,
     &quot;success&quot;: true,

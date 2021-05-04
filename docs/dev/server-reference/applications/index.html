@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../../add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -399,26 +453,14 @@
 
         
             
-<li >
-    <a href="../general/">General queries</a>
+<li class="active">
+    <a href="./">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../steps/">Step queries</a>
+    <a href="../assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../assets/">Asset queries</a>
+    <a href="../filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../users/">User queries</a>
 </li>
 
         
@@ -535,12 +589,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../filetypes/">
+                        <a rel="prev" href="../">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../pipes/">
+                        <a rel="next" href="../assets/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -604,7 +658,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createFileType&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createApplication&quot;,
     &quot;success&quot;: true,
@@ -612,6 +666,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getapplications">getApplications</h2>
 <p>Retrieves the list of all applications.</p>
 <p><strong>Query attributes:</strong></p>
@@ -628,7 +683,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getApplications&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getApplications&quot;,
     &quot;success&quot;: true,
@@ -649,6 +704,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="updateapplication">updateApplication</h2>
 <p>Update application info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -665,7 +721,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateApplication&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateApplication&quot;,
     &quot;success&quot;: true,
@@ -673,6 +729,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeapplication">removeApplication</h2>
 <p>Removes an application from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -686,7 +743,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeApplication&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeApplication&quot;,
     &quot;success&quot;: true,
@@ -694,6 +751,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignfiletype">assignFileType</h2>
 <p>Assigns a file type to an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -709,7 +767,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignFileType&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;type=import&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignFileType&quot;,
     &quot;success&quot;: true,
@@ -717,6 +775,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="unassignfiletype">unassignFileType</h2>
 <p>Unassigns a file type from an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -732,7 +791,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?unassignUser&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignFileType&quot;,
     &quot;success&quot;: true,

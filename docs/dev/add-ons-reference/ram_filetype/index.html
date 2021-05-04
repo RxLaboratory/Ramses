@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../server-reference/general/">General queries</a>
+    <a href="../../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/steps/">Step queries</a>
+    <a href="../../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../server-reference/assets/">Asset queries</a>
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
 </li>
 
         
@@ -562,6 +616,9 @@
                 
             <li class="second-level"><a href="#methods">Methods</a></li>
                 
+            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                
+                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -575,6 +632,10 @@
 <li><a href="#ramfiletype">RamFileType</a><ul>
 <li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#api-dev-notes">API Dev notes</a><ul>
+<li><a href="#immutable-data">(Im)mutable data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -618,10 +679,27 @@
 <td></td>
 <td>The extensions which can be used for this file type, including the &ldquo;.&rdquo;</td>
 </tr>
+</tbody>
+</table>
+<hr />
+<h2 id="api-dev-notes">API Dev notes</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
+</div>
+<h3 id="immutable-data">(Im)mutable data</h3>
+<p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
+<table>
+<thead>
 <tr>
-<td>____</td>
-<td></td>
-<td></td>
+<th>Method</th>
+<th>Type of the returned data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>extensions</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
 </tr>
 </tbody>
 </table>

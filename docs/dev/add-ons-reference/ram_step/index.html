@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../../server-reference/general/">General queries</a>
+    <a href="../../server-reference/applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../../server-reference/users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/steps/">Step queries</a>
+    <a href="../../server-reference/assets/">Asset queries</a>
 </li>
 
         
@@ -430,7 +472,25 @@
         
             
 <li >
-    <a href="../../server-reference/assets/">Asset queries</a>
+    <a href="../../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/projects/">Project queries</a>
 </li>
 
         
@@ -454,25 +514,19 @@
         
             
 <li >
-    <a href="../../server-reference/filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../server-reference/pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
     <a href="../../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server-reference/users/">User queries</a>
 </li>
 
         
@@ -558,16 +612,11 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#ramstep">RamStep</a></li>
-            <li class="second-level"><a href="#constants-enumerated-values">Constants (enumerated values)</a></li>
-                
-                <li class="third-level"><a href="#steptype">StepType</a></li>
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
-                
             <li class="second-level"><a href="#methods">Methods</a></li>
                 
             <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
                 
-                <li class="third-level"><a href="#notes-about-the-methods">Notes about the methods</a></li>
+                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -575,90 +624,6 @@
 <h1 id="ramstep">RamStep</h1>
 <p>A step in the production of the shots or assets of the project.</p>
 <p>Inherits: <a href="../ram_object/"><strong><em>RamObject</em></strong></a></p>
-<div class="toc">
-<ul>
-<li><a href="#ramstep">RamStep</a><ul>
-<li><a href="#constants-enumerated-values">Constants (enumerated values)</a><ul>
-<li><a href="#steptype">StepType</a></li>
-</ul>
-</li>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#api-dev-notes">API Dev notes</a><ul>
-<li><a href="#notes-about-the-methods">Notes about the methods</a><ul>
-<li><a href="#commonfolderpath">commonFolderPath()</a></li>
-<li><a href="#steptype_1">stepType()</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="constants-enumerated-values">Constants (enumerated values)</h2>
-<h3 id="steptype">StepType</h3>
-<p>The type of the step. Usually used to filter available steps.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>StepType.<strong>PRE_PRODUCTION</strong></td>
-<td><code>'PRE_PRODUCTION'</code></td>
-<td></td>
-</tr>
-<tr>
-<td>StepType.<strong>ASSET_PRODUCTION</strong></td>
-<td><code>'ASSET_PRODUCTION'</code></td>
-<td></td>
-</tr>
-<tr>
-<td>StepType.<strong>SHOT_PRODUCTION</strong></td>
-<td><code>'SHOT_PRODUCTION'</code></td>
-<td></td>
-</tr>
-<tr>
-<td>StepType.<strong>POST_PRODUCTION</strong></td>
-<td><code>'POST_PRODUCTION'</code></td>
-<td></td>
-</tr>
-<tr>
-<td>StepType.<strong>PRODUCTION</strong></td>
-<td><code>'PRODUCTION'</code></td>
-<td>Use for <em>ASSET</em> AND <em>SHOT</em> production.</td>
-</tr>
-<tr>
-<td>StepType.<strong>ALL</strong></td>
-<td><code>'ALL'</code></td>
-<td>Use for all steps.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="attributes">Attributes</h2>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h2 id="methods">Methods</h2>
 <table>
 <thead>
@@ -680,14 +645,14 @@
 <td>The absolute path to the folder containing the common files for this step</td>
 </tr>
 <tr>
-<td><strong>templatesFolderPath</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>The path to the template files of this step, relative to the common folder</td>
-</tr>
-<tr>
 <td><strong>stepType</strong><br />▹ <em>enumerated value</em></td>
 <td></td>
 <td>The type of this step, one of <code>StepType.PRE_PRODUCTION</code>, <code>StepType.SHOT_PRODUCTION</code>, <code>StepType.ASSET_PRODUCTION</code>, <code>StepType.POST_PRODUCTION</code></td>
+</tr>
+<tr>
+<td><strong>templatesFolderPath</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The path to the template files of this step, relative to the common folder</td>
 </tr>
 </tbody>
 </table>
@@ -697,16 +662,31 @@
 <p class="admonition-title">Note</p>
 <p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
 </div>
-<h3 id="notes-about-the-methods">Notes about the methods</h3>
-<h4 id="commonfolderpath">commonFolderPath()</h4>
-<p>The commonFolderPath methods checks if the folder is already available in the private attribute <code>_folderPath</code>. If so, it is simply returned.</p>
-<p>If <code>_folderPath</code> is an empty string, it has to be set before it is returned: the path has to be built from the project folder (given by the <em>Ramses</em> instance if it is available), the step type, the step short name.</p>
-<h4 id="steptype_1">stepType()</h4>
-<p>If the private attribute <code>_type</code> is not an empty string, it is returned.</p>
-<p>Otherwise, the type can be retrived from the parent folder of the folder returned by <code>commonFolderPath()</code> (if it&rsquo;s not also an empty string). See the <a href="../../../files/tree/">Ramses Tree</a> for more info about the way this parent folder is named.</p>
-<p>If found, the type is stored in the private attribute <code>_type</code> and then returned.</p>
-<hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p></div>
+<h3 id="immutable-data">(Im)mutable data</h3>
+<p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type of the returned data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>commonFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>stepType</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>templatesFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
         
         
     </div>

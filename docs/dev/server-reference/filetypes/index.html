@@ -274,6 +274,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ramses/">Ramses</a>
 </li>
 
@@ -362,6 +368,12 @@
 </li>
 
         
+            
+<li >
+    <a href="../../add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -379,7 +391,49 @@
         
             
 <li >
-    <a href="../../daemon-reference/queries/">Queries</a>
+    <a href="../../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/user_q/">User queries</a>
 </li>
 
         
@@ -400,25 +454,13 @@
         
             
 <li >
-    <a href="../general/">General queries</a>
+    <a href="../applications/">Application queries</a>
 </li>
 
         
             
 <li >
-    <a href="../users/">User queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../steps/">Step queries</a>
+    <a href="../assets/">Asset queries</a>
 </li>
 
         
@@ -429,8 +471,26 @@
 
         
             
+<li class="active">
+    <a href="./">File type queries</a>
+</li>
+
+        
+            
 <li >
-    <a href="../assets/">Asset queries</a>
+    <a href="../general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../projects/">Project queries</a>
 </li>
 
         
@@ -453,26 +513,20 @@
 
         
             
-<li class="active">
-    <a href="./">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="../pipes/">Pipe queries</a>
-</li>
-
-        
-            
 <li >
     <a href="../status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../users/">User queries</a>
 </li>
 
         
@@ -535,12 +589,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../states/">
+                        <a rel="prev" href="../assetgroups/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../applications/">
+                        <a rel="next" href="../general/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -598,7 +652,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createFileType&amp;name=Maya Ascii&amp;shortName=.ma&amp;extensions=ma&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createFileType&quot;,
     &quot;success&quot;: true,
@@ -606,6 +660,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getfiletypes">getFileTypes</h2>
 <p>Retrieves the list of all file types.</p>
 <p><strong>Query attributes:</strong></p>
@@ -623,7 +678,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getFileTypes&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getFileTypes&quot;,
     &quot;success&quot;: true,
@@ -650,6 +705,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="updatefiletype">updateFileType</h2>
 <p>Update file type info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -667,7 +723,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateFileType&amp;name=Maya Ascii&amp;shortName=.ma&amp;extensions=ma&amp;previewable=0&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateFileType&quot;,
     &quot;success&quot;: true,
@@ -675,6 +731,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removefiletype">removeFileType</h2>
 <p>Removes a file type from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -688,7 +745,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeFileType&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeFileType&quot;,
     &quot;success&quot;: true,
