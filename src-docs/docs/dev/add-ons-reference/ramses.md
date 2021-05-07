@@ -19,25 +19,11 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **instance**<br />▹ *Ramses* | | Returns the *Ramses* unique instance. |
 | **version**<br />▹ *string* | | The current version of this API |
 
-### Examples
+## Attributes
 
-```py
-# Python
-
-# import the Ramses class
-from ramses import Ramses
-# Get the instance
-ramses = Ramses.instance()
-```
-
-```js
-// ExtendScript
-
-// include the Ramses lib
-#include ramses.jsxinc
-// Get the instance
-var ramses = Ramses.instance();
-```
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| **publishScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own methods to this list so they're run when the user publishes the current file from the host application. |
 
 ## Methods
 
@@ -57,8 +43,47 @@ var ramses = Ramses.instance();
 | **states**<br />▹ *list of RamState* | | The list of available states. |
 | **state**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
 | **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
+| **publish** | | Runs the scripts in `Ramses.instance().publishScripts`. |
 | **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
 | **settings** | [*RamSettings*](ram_settings.md) |  | The settings unique instance. Same as `RamSettings.instance()` |
+
+## Examples
+
+```py
+# Python
+
+# import ramses
+import ramses as ram
+# Get the instance
+ramses = ram.Ramses.instance()
+
+# A simple method
+def published():
+    ram.log("Hello, I've been published!")
+
+# Adds the method to the scripts which will be run when the add-on publishes a file
+ramses.publishScripts.append( published )
+
+# The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
+# If you're developping another addon, you have to call Ramses.publish() to run them
+ramses.publish()
+```
+
+```js
+// ExtendScript
+
+// include the Ramses lib
+#include ramses.jsxinc
+// Get the instance
+var ramses = Ramses.instance();
+
+// Adds the method to the scripts which will be run when the add-on publishes a file
+ramses.publishScripts.push( published )
+
+// The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
+// If you're developping another addon, you have to call Ramses.publish() to run them
+ramses.publish()
+```
 
 ____
 
