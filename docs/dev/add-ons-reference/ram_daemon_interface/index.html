@@ -675,7 +675,7 @@
 </table>
 <h2 id="methods">Methods</h2>
 <p>Please refer to the <a href="../../daemon-reference/"><em>Daemon API</em> reference</a> for more information about these methods.</p>
-<p>These methods return the reply of the <em>Daemon</em> converted from <em>JSON</em> to an object, dict, structure, or whatever best suits the language in which the add-on is implemented.</p>
+<p>These methods return the reply of the <em>Daemon</em> converted from <em>JSON</em> to an object, dict, structure, or whatever best suits the language in which the add-on is implemented. This returned object can be converted to a <a href="../ram_object/">RamObject</a> instance using the corresponding <code>RamObject.fromDict()</code> static method.</p>
 <table>
 <thead>
 <tr>
@@ -869,7 +869,7 @@ else {
 <h3 id="javascript-extendscript">JavaScript / ExtendScript</h3>
 <p>In JS, the methods from this class return a standard JS object as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json2</code> library.</p>
 <hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;medias:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;medias:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
         
         
     </div>

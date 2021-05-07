@@ -21,7 +21,7 @@ One (and only one) instance globally available (RamDaemonInterface is a *singlet
 
 Please refer to the [*Daemon API* reference](../../daemon-reference/) for more information about these methods.
 
-These methods return the reply of the *Daemon* converted from *JSON* to an object, dict, structure, or whatever best suits the language in which the add-on is implemented.
+These methods return the reply of the *Daemon* converted from *JSON* to an object, dict, structure, or whatever best suits the language in which the add-on is implemented. This returned object can be converted to a [RamObject](ram_object.md) instance using the corresponding `RamObject.fromDict()` static method.
 
 | Method | Arguments | Description | Dev Notes |
 | --- | --- | --- | --- |
@@ -88,4 +88,4 @@ In JS, the methods from this class return a standard JS object as constructed fr
 
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;medias:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29)
+![META](authors:Nicolas "Duduf" Dufresne;medias:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

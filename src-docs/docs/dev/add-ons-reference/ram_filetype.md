@@ -6,13 +6,6 @@ File types are typically used with *[RamPipe](ram_pipe.md)*.
 
 Inherits: [***RamObject***](ram_object.md)
 
-[TOC]
-
-## Attributes
-
-| Attribute | Type | Default | Description |
-| --- | --- | --- | --- |
-
 ## Methods
 
 | Method | Arguments | Description |
@@ -35,4 +28,4 @@ The data returned by the methods can be either [mutable or immutable](implementa
 | --- | --- |
 | **extensions** | <i class="fa fa-lock"></i> Immutable |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

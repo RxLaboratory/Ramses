@@ -612,7 +612,7 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#ramobject">RamObject</a></li>
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
+            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
                 
             <li class="second-level"><a href="#methods">Methods</a></li>
                 
@@ -631,45 +631,20 @@
 <h1 id="ramobject">RamObject</h1>
 <p>The base class for most of Ramses objects.</p>
 <p>Inherited by: <em><a href="../ram_item/">RamItem</a>, <a href="../ram_project/">RamProject</a>, <a href="../ram_state/">RamState</a>, <a href="../ram_step/">RamStep</a>, <a href="../ram_user/">RamUser</a></em></p>
-<div class="toc">
-<ul>
-<li><a href="#ramobject">RamObject</a><ul>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#special">Special</a><ul>
-<li><a href="#convert-to-string">Convert to string</a></li>
-<li><a href="#comparing-objects">Comparing objects</a></li>
-</ul>
-</li>
-<li><a href="#api-dev-notes">API Dev notes</a><ul>
-<li><a href="#immutable-data">(Im)mutable data</a></li>
-<li><a href="#implementation">Implementation</a><ul>
-<li><a href="#converting-objects-to-string">Converting objects to string</a></li>
-<li><a href="#object-comparison">Object comparison</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="attributes">Attributes</h2>
+<h2 id="static-methods">Static Methods</h2>
 <table>
 <thead>
 <tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Default</th>
+<th>Method</th>
+<th>Arguments</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><strong>fromDict</strong><br />▹ <em>RamObject</em></td>
+<td><em>object</em> or <em>dict</em>: <strong>objectDict</strong><br /></td>
+<td>Returns a <em>RamObject</em> instance built using the given object/dict, as the ones returned by <a href="../ram_daemon_interface/">RamDaemonInterface</a>.<br />This method is reimplemented in inherited classes to return an inherited instance.</td>
 </tr>
 </tbody>
 </table>
@@ -825,7 +800,7 @@ RamObject.prototype.is = function ( other )
 }
 </code></pre>
 <hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
         
         
     </div>

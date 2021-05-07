@@ -4,8 +4,6 @@ A class representing an asset.
 
 Inherits: [***RamItem***](ram_item.md)
 
-[TOC]
-
 ## Attributes
 
 | Attribute | Type | Default | Description |
@@ -41,4 +39,4 @@ The data returned by the methods can be either [mutable or immutable](implementa
 | **group** | <i class="fa fa-lock"></i> Immutable |
 | **tags** | <i class="fa fa-pen"></i> Mutable |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

@@ -4,12 +4,11 @@ The base class for most of Ramses objects.
 
 Inherited by: *[RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](ram_state.md), [RamStep](ram_step.md), [RamUser](ram_user.md)*
 
-[TOC]
+## Static Methods
 
-## Attributes
-
-| Attribute | Type | Default | Description |
-| --- | --- | --- | --- |
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **fromDict**<br />▹ *RamObject* | *object* or *dict*: **objectDict**<br /> | Returns a *RamObject* instance built using the given object/dict, as the ones returned by [RamDaemonInterface](ram_daemon_interface.md).<br />This method is reimplemented in inherited classes to return an inherited instance. |
 
 ## Methods
 
@@ -159,4 +158,4 @@ RamObject.prototype.is = function ( other )
 
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)
