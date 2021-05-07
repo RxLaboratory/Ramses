@@ -24,6 +24,7 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
 | **publishScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own methods to this list so they're run when the user publishes the current file from the host application. |
+| **statusScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().updateStatus()` is called.<br />If you're using one of the provided Add-ons, you can add your own methods to this list so they're run when the user changes the current status of an asset / shot from the host application. |
 
 ## Methods
 
@@ -46,6 +47,7 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **publish** | | Runs the scripts in `Ramses.instance().publishScripts`. |
 | **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
 | **settings** | [*RamSettings*](ram_settings.md) |  | The settings unique instance. Same as `RamSettings.instance()` |
+| **updateStatus** | |  |  Runs the scripts in `Ramses.instance().statusScripts`. |
 
 ## Examples
 
