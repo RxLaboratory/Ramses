@@ -4,18 +4,11 @@ A shot.
 
 Inherits: [***RamItem***](ram_item.md)
 
-[TOC]
-
-## Attributes
-
-| Attribute | Type | Default | Description |
-| --- | --- | --- | --- |
-
 ## Static Methods
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **getFromPath**<br />▹ *RamShot* | *string*: **folderPath**<br /> | Returns a *RamShot* instance built using the given folder path. The path can be any file or folder path from the asset (a version file, a preview file, etc) |
+| **fromPath**<br />▹ *RamShot* | *string*: **folderPath**<br /> | Returns a *RamShot* instance built using the given folder path. The path can be any file or folder path from the asset (a version file, a preview file, etc) |
 
 ## Methods
 
@@ -39,4 +32,4 @@ The data returned by the methods can be either [mutable or immutable](implementa
 | --- | --- |
 | **duration** | <i class="fa fa-pen"></i> Mutable |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

@@ -14,8 +14,6 @@ By default, settings are saved in a `ramses_addons_settings.json` file, in the u
 - Windows: `%appdata%/RxLaboratory/Ramses/Config`
 - MacOS: ?
 
-[TOC]
-
 ## Static Methods
 
 | Method | Arguments | Description |
@@ -56,6 +54,7 @@ ____
 | --- | --- | --- | --- |
 | **folderNames** | *FolderNames* | | A simple class containing the common names for subfolders. |
 | **defaultStates** | *list of [RamState](ram_state.md)* | | The list of states to use if the *Daemon* is not available. |
+| **defaultState** | *[RamState](ram_state.md)* | | The state to use as default (WIP). |
 
 #### FolderNames Attributes
 
@@ -79,4 +78,4 @@ thePreviewFolder = theAsset.folderPath() + "/" + settings.folderNames.preview
 ```
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

@@ -13,15 +13,19 @@ Read the sections about the *[Ramses Tree](../../files/tree.md)* and *[Naming Sc
 | **buildPath**<br />▹ *boolean* | *list of string*: **folders** | Builds a path with a list of folder names or subpaths, adding the `"/"` only if needed. Paths never include any trailing `"/"` |
 | **buildRamsesFileName**<br />▹ *string* | *string*: **project**,<br />*string*: **step**,<br />*string*: **ext**,<br />*string*: **ramType**=`"G"`,<br />*string*: **objectShortName**=`""`,<br />*string*: **resourceStr**=`""`,<br />*int*: **version,**=`-1`,<br />*string*: **version_prefix**=`""` | Builds a filename respecting Ramses' naming conventions. |
 | **composeRamsesFileName**<br />▹ *string* | *object or dict*: **ramsesFileNameDict**,<br />*boolean*: **increment**=`false` | Builds a filename from a dict or object similar as the one returned by `decomposeRamsesFileName()`. |
+| **copyToPublish**<br />▹ *string* | *string*: **filePath** | Copies the given file inside the corresponding `_published` subfolder.<br />Returns the path to the new file. |
 | **copyToVersion**<br />▹ *string* | *string*: **filePath**,<br />*boolean*: **increment**=`false`,<br />*string*: **dafaultStateShortName**=`"v"` | Copies the given file inside the corresponding `_versions` subfolder, optionnaly incrementing the version number.<br />Use *defaultStateShortName* to change the state to be used if not found in the current or previous version.<br />Returns the path to the new file. |
 | **decomposeRamsesFileName**<br />▹ *dict* or *None* | *string*: **ramsesFileName** | Used on files that respect Ramses' naming convention: it separates the name into blocks (one block for the project's shortname, one for the step, one for the extension...). |
 | **getLatestVersion**<br />▹ *list of int and string* | *string*: **filePath**,<br />*string*: **dafaultStateShortName**=`"v"` | Gets the latest version number and state for the given file, which can be located either in the main folder or one of the *_versions*, *_preview* or *_published* subfolder.<br />Use *defaultStateShortName* to change the state to be used if not found in the current or previous version.<br />Returns a list with the version number as first item, and the state as second item. |
+| **getProjectShortName**<br />▹ *string* | *string*: **path** | Gets and returns the short name of the project this path belongs to. |
 | **getSaveFilePath**<br />▹ *string* | *string*: **filePath** | Gets and returns the path to be used to save the file given as argument, with a name respecting the [*Ramses Naming Scheme*](../../files/naming.md). If the file is in a *_versions*, *_preview* or *_published* folder, the save file is located in the parent folder. |
+| **getPublishFolder**<br />▹ *string* | *string*: **filePath** | Gets the *_published_* folder path for any given file. |
 | **getVersionFolder**<br />▹ *string* | *string*: **filePath** | Gets the *_versions* folder path for any given file. |
 | **inPreviewFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_preview* folder. |
 | **inPublishFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_published* folder. |
 | **inReservedFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_published* or *_versions* or *_preview* folder. |
 | **inVersionsFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_versions* folder. |
+| **isProjectFolder**<br />▹ *boolean* | *string*: **folderPath** | Checks if a given folder is the project root folder. |
 
 ### decomposeRamsesFileName( )
 

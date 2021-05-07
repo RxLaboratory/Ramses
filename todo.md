@@ -15,6 +15,7 @@
 
 ## pipeline tools first
 
+- BUGFIX: states reinit to 50% on load
 - FEATURE: ajouter currentStatus (RamItem) dans le demon
 - FEATURE: implémenter getAssetGroups dans le démon
 - FEATURE: filter in daemon.getShots(QString filter)

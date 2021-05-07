@@ -49,8 +49,8 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **publishShot**<br />▹ *Object / Dict*  | | | TODO |
 | **raiseWindow** | | Raises the Ramses Client application main window |
 | **setCurrentProject**<br />▹ *Object / Dict*  | *string*: **shortName** | Sets the current project |
-| **updateShotStatus**<br />▹ *Object / Dict*  | | | TODO |
-| **updateAssetStatus**<br />▹ *Object / Dict*  | | | TODO |
+| **setAssetStatus**<br />▹ *Object / Dict*  | | | TODO |
+| **setShotStatus**<br />▹ *Object / Dict*  | | | TODO |
 
 ## Examples
 

@@ -13,7 +13,7 @@ Inherits: [***RamItem***](ram_item.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **getFromPath**<br />▹ *RamAsset* | *string*: **folderPath**<br /> | Returns a *RamAsset* instance built using the given path. The path can be any file or folder path from the asset (a version file, a preview file, etc) |
+| **fromPath**<br />▹ *RamAsset* | *string*: **folderPath**<br /> | Returns a *RamAsset* instance built using the given path. The path can be any file or folder path from the asset (a version file, a preview file, etc) |
 
 ## Methods
 
