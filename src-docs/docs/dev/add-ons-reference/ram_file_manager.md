@@ -21,12 +21,14 @@ Read the sections about the *[Ramses Tree](../../files/tree.md)* and *[Naming Sc
 | **getProjectShortName**<br />▹ *string* | *string*: **path** | Gets and returns the short name of the project this path belongs to. |
 | **getSaveFilePath**<br />▹ *string* | *string*: **filePath** | Gets and returns the path to be used to save the file given as argument, with a name respecting the [*Ramses Naming Scheme*](../../files/naming.md). If the file is in a *_versions*, *_preview* or *_published* folder, the save file is located in the parent folder. |
 | **getPublishFolder**<br />▹ *string* | *string*: **filePath** | Gets the *_published_* folder path for any given file. |
+| **getVersionFilePaths**<br />▹ *string* | *string*: **filePath** | Gets the corresponding version files from the *_versions* folder path for any given file. |
 | **getVersionFolder**<br />▹ *string* | *string*: **filePath** | Gets the *_versions* folder path for any given file. |
 | **inPreviewFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_preview* folder. |
 | **inPublishFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_published* folder. |
 | **inReservedFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_published* or *_versions* or *_preview* folder. |
 | **inVersionsFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_versions* folder. |
 | **isProjectFolder**<br />▹ *boolean* | *string*: **folderPath** | Checks if a given folder is the project root folder. |
+| **restoreVersionFile** | *string*: **filePath** | Restores an older version. |
 
 ### decomposeRamsesFileName( )
 

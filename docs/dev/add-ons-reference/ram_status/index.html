@@ -624,16 +624,6 @@
 
 <h1 id="ramstatus">RamStatus</h1>
 <p>A state associated to a comment, the user who changed the state, etc.</p>
-<div class="toc">
-<ul>
-<li><a href="#ramstatus">RamStatus</a><ul>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#static-methods">Static Methods</a></li>
-<li><a href="#methods">Methods</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <h2 id="attributes">Attributes</h2>
 <table>
 <thead>
@@ -694,7 +684,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>getFromPath</strong><br />▹ <em>RamStatus</em></td>
+<td><strong>fromPath</strong><br />▹ <em>RamStatus</em></td>
 <td><em>string</em>: <strong>filePath</strong><br /></td>
 <td>Returns a <em>RamStatus</em> instance built using the given file path.</td>
 </tr>
@@ -712,11 +702,12 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em><a href="../ram_state/">RamState</a></em>: <strong>state</strong><br /><em><a href="../ram_user/">RamUser</a></em>: <strong>user</strong>=<code>None</code><br /><em>string</em>: <strong>comment</strong>=<code>""</code><br /><em>integer</em>: <strong>version</strong>=<code>0</code><br /><em>datetime</em>: <strong>stateDate</strong>=<code>None</code><br /><em>float</em>: <strong>completionRation</strong>=<code>None</code></td>
+<td><em><a href="../ram_state/">RamState</a></em>: <strong>state</strong>,<br /><em>string</em>: <strong>comment</strong>=<code>""</code>,<br /><em>float</em>: <strong>completionRation</strong>=<code>None</code>,<br /><em>integer</em>: <strong>version</strong>=<code>0</code>,<br /><em><a href="../ram_user/">RamUser</a></em>: <strong>user</strong>=<code>None</code>,<br /><em>datetime</em>: <strong>stateDate</strong>=<code>None</code></td>
 <td></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
         
         
     </div>

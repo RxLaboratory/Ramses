@@ -666,6 +666,11 @@
 <td>Builds a filename from a dict or object similar as the one returned by <code>decomposeRamsesFileName()</code>.</td>
 </tr>
 <tr>
+<td><strong>copyToPublish</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Copies the given file inside the corresponding <code>_published</code> subfolder.<br />Returns the path to the new file.</td>
+</tr>
+<tr>
 <td><strong>copyToVersion</strong><br />▹ <em>string</em></td>
 <td><em>string</em>: <strong>filePath</strong>,<br /><em>boolean</em>: <strong>increment</strong>=<code>false</code>,<br /><em>string</em>: <strong>dafaultStateShortName</strong>=<code>"v"</code></td>
 <td>Copies the given file inside the corresponding <code>_versions</code> subfolder, optionnaly incrementing the version number.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />Returns the path to the new file.</td>
@@ -677,13 +682,33 @@
 </tr>
 <tr>
 <td><strong>getLatestVersion</strong><br />▹ <em>list of int and string</em></td>
-<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>dafaultStateShortName</strong>=<code>"v"</code></td>
-<td>Gets the latest version number and state for the given file, which can be located either in the main folder or one of the <em>_versions</em>, <em>_preview</em> or <em>_published</em> subfolder.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />Returns a list with the version number as first item, and the state as second item.</td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>dafaultStateShortName</strong>=<code>"v"</code>,<br /><em>boolean</em>: <strong>previous</strong>=<code>false</code></td>
+<td>Gets the latest version number and state for the given file, which can be located either in the main folder or one of the <em>_versions</em>, <em>_preview</em> or <em>_published</em> subfolder.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />If <em>previous</em> is true, will return the version immediately before the latest one.<br />Returns a list with the version number as first item, the state as second item, and the date as the third item.</td>
+</tr>
+<tr>
+<td><strong>getLatestVersionFilePath</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>boolean</em>: <strong>previous</strong>=<code>false</code></td>
+<td>Gets the latest version file path for the given file, which can be located either in the main folder or one of the <em>_versions</em>, <em>_preview</em> or <em>_published</em> subfolder.<br />If <em>previous</em> is true, will return the version immediately before the latest one.</td>
+</tr>
+<tr>
+<td><strong>getProjectShortName</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>path</strong></td>
+<td>Gets and returns the short name of the project this path belongs to.</td>
 </tr>
 <tr>
 <td><strong>getSaveFilePath</strong><br />▹ <em>string</em></td>
 <td><em>string</em>: <strong>filePath</strong></td>
 <td>Gets and returns the path to be used to save the file given as argument, with a name respecting the <a href="../../../files/naming/"><em>Ramses Naming Scheme</em></a>. If the file is in a <em>_versions</em>, <em>_preview</em> or <em>_published</em> folder, the save file is located in the parent folder.</td>
+</tr>
+<tr>
+<td><strong>getPublishFolder</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the <em><em>published</em></em> folder path for any given file.</td>
+</tr>
+<tr>
+<td><strong>getVersionFilePaths</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the corresponding version files from the <em>_versions</em> folder path for any given file.</td>
 </tr>
 <tr>
 <td><strong>getVersionFolder</strong><br />▹ <em>string</em></td>
@@ -709,6 +734,16 @@
 <td><strong>inVersionsFolder</strong><br />▹ <em>boolean</em></td>
 <td><em>string</em>: <strong>filePath</strong></td>
 <td>Checks if a given file is located in a <em>_versions</em> folder.</td>
+</tr>
+<tr>
+<td><strong>isProjectFolder</strong><br />▹ <em>boolean</em></td>
+<td><em>string</em>: <strong>folderPath</strong></td>
+<td>Checks if a given folder is the project root folder.</td>
+</tr>
+<tr>
+<td><strong>restoreVersionFile</strong></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Restores an older version.</td>
 </tr>
 </tbody>
 </table>

@@ -618,8 +618,7 @@
                 
                 <li class="third-level"><a href="#open">Open</a></li>
                 <li class="third-level"><a href="#save">Save</a></li>
-                <li class="third-level"><a href="#save-new-version">Save new version</a></li>
-                <li class="third-level"><a href="#publish">Publish</a></li>
+                <li class="third-level"><a href="#save-new-version-publish">Save new version &amp; Publish</a></li>
                 <li class="third-level"><a href="#retrieve-version">Retrieve version</a></li>
                 <li class="third-level"><a href="#publish-as-template">Publish as template</a></li>
                 <li class="third-level"><a href="#open-template">Open template</a></li>
@@ -646,8 +645,7 @@
 <li><a href="#available-commands">Available Commands</a><ul>
 <li><a href="#open">Open</a></li>
 <li><a href="#save">Save</a></li>
-<li><a href="#save-new-version">Save new version</a></li>
-<li><a href="#publish">Publish</a></li>
+<li><a href="#save-new-version-publish">Save new version &amp; Publish</a></li>
 <li><a href="#retrieve-version">Retrieve version</a></li>
 <li><a href="#publish-as-template">Publish as template</a></li>
 <li><a href="#open-template">Open template</a></li>
@@ -689,7 +687,7 @@
 </li>
 <li>Else<ul>
 <li>Saves the current file.</li>
-<li>Backs up the file in the <em>_versions</em> subfolder.</li>
+<li>Backs up the file in the <em>_versions</em> subfolder. Version is automatically incremented if the auto-increment timeout has expired (defined in the settings).</li>
 </ul>
 </li>
 <li>If <em>online</em><ul>
@@ -698,27 +696,24 @@
 </li>
 </ul>
 <p>See the <a href="../files/naming/">naming scheme</a> and <a href="../files/tree/">folder structure</a> for more information.</p>
-<h3 id="save-new-version">Save new version</h3>
+<h3 id="save-new-version-publish">Save new version &amp; Publish</h3>
 <ul>
 <li>If the file is in the <em>ramses_version</em> folder or if its resource name contains <em>restore-vXX</em>.<ul>
 <li>Copies the current working file into the version folder, appending the state got from the <em>Ramses client</em> if available, or else just &ldquo;v&rdquo;, and the incremented version number.</li>
 <li>Saves the current file as the working file (in the working folder, and removing <em>restore-XX</em> from the resource name)</li>
-<li>Removes the current file (version file, keeps only the new working file) if it was not in a <em>ramses_versions</em> subfolder</li>
+<li>Removes the current file (version file, keeps only the new working file) if it was a restored version</li>
 </ul>
 </li>
 <li>Else<ul>
 <li>Saves the current file.</li>
 </ul>
 </li>
-<li>Copies the current file to the <em>ramses_versions</em> subfolder, appending the current state and the incremented version number.</li>
-<li><em>If the client is available</em>: sends the <em>update</em> command to the client, with the date, state and version of the current asset/shot. </li>
+<li>Copies the current file to the <em>_versions</em> subfolder, appending the current state and the incremented version number.</li>
+<li>If the file is published<ul>
+<li>Copies the current file to the <em>_published</em> subfolder.</li>
 </ul>
-<h3 id="publish">Publish</h3>
-<ul>
-<li>Saves the current file.</li>
-<li>Copies it to the <em>ramses_versions</em> subfolder, appending the current state and the incremented version number.</li>
-<li>Saves as a new file into the <em>published</em> subfolder.</li>
-<li><em>If the client is available</em>: sends the <em>publish</em> command to the client, with the date, state and version of the current asset/shot.</li>
+</li>
+<li><em>If the client is available</em>: sends the <em>update</em> command to the client, with the date, state and version of the current asset/shot, and publish information. </li>
 </ul>
 <h3 id="retrieve-version">Retrieve version</h3>
 <ul>
