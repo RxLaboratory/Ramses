@@ -37,11 +37,14 @@
 
 ## Other
 
+- BUGFIX: Crash when changing shot sequence in shoteditwidget
 - BUGFIX: shot being updated on editwidget load (and potential crash)
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
+- REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget (derived from a new objectListComboBox ?)
 - REFACTOR: a single request when refreshing everything / returns the list of projects, but without data. And then, setCurrentProject gets the single project data
 - REFACTOR: itemhistory as an uberlist of statushistory (one per step)
 - REFACTOR / FIX: option for remove in objectlist to be remove or unassign!!! > check > same in ramobjectwidget!!!
+- UI: Display widgets display more info when reiszed
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
         - [x] states in ramses
@@ -54,7 +57,8 @@
         - [x] projects in ramses
             - [x] sequences in project
                 - [x] shots in seq
-                - [ ] shots in project (uberlist) WIP sequences is the uberlist
+                - [x] shots in project (uberlist) WIP sequences is the uberlist
+                    - [ ] Status in shoteditwidget
                     - [ ] StatusHistory: `QMap<stepuuid, RamObjectList*>`
             - [ ] assetgroups in project 
                 - [ ] assets in asset groups
@@ -67,7 +71,7 @@
                 - [ ] apps in project (uberlist)
             - [ ] pipes in project
 - REFACTOR: factorize stylesheet creation to be used per widget
-- REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget
+- UI: ShotEditWidget & AssetEditWidget: tabs for status / files
 - BUG: pipeedit: filetype list not always updated
 - DOC: update json example in getProject(s) server reference
 - UI: move console to a dock widget
