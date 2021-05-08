@@ -15,6 +15,7 @@
 
 ## pipeline tools first
 
+- BUGFIX: states reinit to 50% on load
 - FEATURE: ajouter currentStatus (RamItem) dans le demon
 - FEATURE: implémenter getAssetGroups dans le démon
 - FEATURE: filter in daemon.getShots(QString filter)
@@ -37,7 +38,10 @@
 
 ## Other
 
+- DOC: update API DOC (items, ramfilemanager...)
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
+- REFACTOR: a single request when refreshing everything / returns the list of projects, but without data. And then, setCurrentProject gets the single project data
+- REFACTOR: itemhistory as an uberlist of statushistory (one per step)
 - REFACTOR / FIX: option for remove in objectlist to be remove or unassign!!! > check > same in ramobjectwidget!!!
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList

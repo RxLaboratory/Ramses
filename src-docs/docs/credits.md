@@ -2,13 +2,14 @@
 
 ## Development
 
-### Lead developpers
+### Lead developper
 
 - Nicolas "Duduf" Dufresne
 
 ### Developpers and code contributors
 
-- Lisa Lainé
+- Lisa Lainé (Python API)
+- Jean-Philippe Luchez (Python API)
 
 ### Translations
 
@@ -23,3 +24,5 @@
 ### Pictures and Media Files
 
 ## Funding
+
+All the backers from the [RxOT Crowdfunding Campaign](https://www.indiegogo.com/projects/rxopentools-seize-the-means-of-film-production#/)

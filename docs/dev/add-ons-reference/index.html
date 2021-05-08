@@ -1,432 +1,643 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="Nicolas Dufresne and contributors">
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Reference - Ramses Documentation</title>
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../style.css" rel="stylesheet">
-  <link href="../../video.css" rel="stylesheet">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Reference";
-    var mkdocs_page_input_path = "dev/add-ons-reference/index.md";
-    var mkdocs_page_url = "/dev/add-ons-reference/";
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ramses comprehensive documentation">
+    <meta name="author" content="Nicolas Dufresne and contributors">
+    <link rel="canonical" href="https://ramses-docs.rainboxlab.org/dev/add-ons-reference/">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Reference - Ramses Documentation</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/zenburn.min.css">
+        
+    
+    <link href="../../style.css" rel="stylesheet">
+    <link href="../../video.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body>
 
-  <div class="wy-grid-for-nav">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
 
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> Ramses Documentation</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../..">Ramses</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Components</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../components/">Ramses components</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Installation</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../install/server/">Ramses Server</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">General help</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../help/">Ramses</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/users/">Users</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/projects/">Projects</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/steps/">Steps</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/assetgroups/">Asset Groups</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/assets/">Assets</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/sequences/">Sequences</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/shots/">Shots</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/statushistory/">Status History</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/status/">Status</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/states/">States</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/filetypes/">File Types</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/applications/">Applications</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../help/pipeline/">Pipeline</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Ramses Tree (File & Folders)</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../files/naming/">Naming scheme</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../files/tree/">Folder structure</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Ramses Add-ons</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../addons/">Add-ons in applications</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Development</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Files and Folders</span>
-    <ul class="subnav">
-                <li class="toctree-l3">
-                    
-    <a class="" href="../files/naming/">Naming</a>
-                </li>
-    </ul>
-                </li>
-                <li class=" current">
-                    
-    <span class="caption-text">Scripting API (Add-ons)</span>
-    <ul class="subnav">
-                <li class="toctree-l3 current">
-                    
-    <a class="current" href="./">Reference</a>
-    <ul class="subnav">
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             
-    <li class="toctree-l4"><a href="#scripting-api-reference">Scripting API reference</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l5" href="#classes">Classes</a></li>
-        
-            <li><a class="toctree-l5" href="#implementation">Implementation</a></li>
-        
-        </ul>
-    
 
-    </ul>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ramses/">Ramses</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_asset/">RamAsset</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_daemon_interface/">RamDaemonInterface</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_filetype/">RamFileType</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_item/">RamItem</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_object/">RamObject</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_pipe/">RamPipe</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_project/">RamProject</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_settings/">RamSettings</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_shot/">RamShot</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_state/">RamState</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_status/">RamStatus</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_step/">RamStep</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="ram_user/">RamUser</a>
-                </li>
-    </ul>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Daemon API</span>
-    <ul class="subnav">
-                <li class="toctree-l3">
-                    
-    <a class="" href="../daemon-reference/">Reference</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../daemon-reference/queries/">Queries</a>
-                </li>
-    </ul>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Server API</span>
-    <ul class="subnav">
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/">Reference</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/general/">General queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/users/">User queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/projects/">Project queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/steps/">Step queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/assetgroups/">Asset Group queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/assets/">Asset queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/sequences/">Sequence queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/shots/">Shot queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/states/">State queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/filetypes/">File type queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/applications/">Application queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/pipes/">Pipe queries</a>
-                </li>
-                <li class="toctree-l3">
-                    
-    <a class="" href="../server-reference/status/">Status queries</a>
-                </li>
-    </ul>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../credits/">Credits</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../changelog/">Changelog</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">License</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../licenses/gnu-gpl/">GNU GPLv3</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../licenses/gfdl/">Documentation license</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
+            <!-- Main title -->
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+            
+              <a class="navbar-brand" href="../..">Ramses Documentation</a>
+            
+        </div>
 
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">Ramses Documentation</a>
-      </nav>
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Ramses</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Machinery</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../help/">Ramses</a>
+</li>
 
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
-    
-      
         
-          <li>Scripting API (Add-ons) &raquo;</li>
+            
+<li >
+    <a href="../../help/users/">Users</a>
+</li>
+
         
-      
+            
+<li >
+    <a href="../../help/projects/">Projects</a>
+</li>
+
         
-          <li>Development &raquo;</li>
+            
+<li >
+    <a href="../../help/steps/">Steps</a>
+</li>
+
         
-      
-    
-    <li>Reference</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/add-ons-reference/index.md"
-          class="icon icon-github"> Edit on GitHub</a>
-      
-    </li>
-  </ul>
-  <hr/>
+            
+<li >
+    <a href="../../help/assetgroups/">Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/assets/">Assets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/sequences/">Sequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/shots/">Shots</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/statushistory/">Status History</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/status/">Status</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/states/">States</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/filetypes/">File Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/applications/">Applications</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../help/pipeline/">Pipeline</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Components</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../components/">General Description</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Server</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../install/server/">Installation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Tree</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../files/naming/">Naming scheme</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../files/tree/">Folder structure</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+<li >
+    <a href="../../addons/">Ramses Add-ons</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Files and Folders</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../files/naming/">Naming</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Scripting API (Add-ons)</a>
+    <ul class="dropdown-menu">
+        
+            
+<li class="active">
+    <a href="./">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="enum/">Constants</a>
+</li>
+
+        
+            
+<li >
+    <a href="ramses/">Ramses</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_asset/">RamAsset</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_daemon_interface/">RamDaemonInterface</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_file_manager/">RamFileManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_filetype/">RamFileType</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_object/">RamObject</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_pipe/">RamPipe</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_project/">RamProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_settings/">RamSettings</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_shot/">RamShot</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_state/">RamState</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_status/">RamStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_step/">RamStep</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_user/">RamUser</a>
+</li>
+
+        
+            
+<li >
+    <a href="implementation/">Dev Notes</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Daemon API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../daemon-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/user_q/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Server API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../server-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/applications/">Application queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/assets/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/assetgroups/">Asset Group queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/projects/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/sequences/">Sequence queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/shots/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/states/">State queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../server-reference/users/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../credits/">Credits</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../changelog/">Changelog</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Licenses</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../licenses/gnu-gpl/">GNU GPLv3</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../licenses/gfdl/">Documentation license</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../files/naming/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="enum/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/dev/add-ons-reference/index.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
 </div>
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="scripting-api-reference">Scripting API reference</h1>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#scripting-api-reference">Scripting API reference</a></li>
+            <li class="second-level"><a href="#classes">Classes</a></li>
+                
+        <li class="first-level "><a href="#global-methods">Global Methods</a></li>
+            <li class="second-level"><a href="#examples">Examples</a></li>
+                
+                <li class="third-level"><a href="#include-import-the-api">Include / Import the API</a></li>
+                <li class="third-level"><a href="#enumerated-values-constants">Enumerated values (constants)</a></li>
+                <li class="third-level"><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="scripting-api-reference">Scripting API reference</h1>
 <p><a href="https://rainboxlab.org"><em>Rainbox Laboratory</em></a> provides a reference implementation of the API in <em>Python</em> and <em>Adobe ExtendScript</em>.</p>
 <p>Other APIs may be developped, in which case all these APIs on all programming/scripting language should implement this reference, with the same classes, attributes and methods.</p>
 <div class="toc">
 <ul>
 <li><a href="#scripting-api-reference">Scripting API reference</a><ul>
 <li><a href="#classes">Classes</a></li>
-<li><a href="#implementation">Implementation</a><ul>
-<li><a href="#include-import">Include / Import</a><ul>
-<li><a href="#python">Python</a></li>
-<li><a href="#adobe-extendscript">Adobe ExtendScript</a></li>
 </ul>
 </li>
-<li><a href="#enumerated-values">Enumerated Values</a><ul>
-<li><a href="#python_1">Python</a></li>
-<li><a href="#javascript-adobe-extendscript">JavaScript / Adobe ExtendScript</a></li>
-</ul>
-</li>
+<li><a href="#global-methods">Global Methods</a><ul>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#include-import-the-api">Include / Import the API</a></li>
+<li><a href="#enumerated-values-constants">Enumerated values (constants)</a></li>
+<li><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
 </ul>
 </li>
 </ul>
@@ -435,8 +646,12 @@
 </div>
 <p>As this document is referring to different scripting languages, it uses general terms which may be different than what is actually used in specific languages.</p>
 <p><em>(TODO: ADD THE LINK TO THE GITHUB REPOS OF THE APIs / LINK TO GET THEM ON RXLAB.ORG)</em></p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Some of the elements described in this documentation have to be interpreted differently depending on the language used in the implementations of the <em>Ramses Add-ons API</em> and may vary a bit. Read the examples below to see the differences between a few scripting languages.</p>
+</div>
 <h2 id="classes">Classes</h2>
-<p>This is the comprehensive list of available classes.</p>
+<p>This is the comprehensive list of available classes. In the <em>Ramses Add-ons API</em>, everything is contained in these classes.</p>
 <table>
 <thead>
 <tr>
@@ -460,6 +675,11 @@
 <td><a href="ram_daemon_interface/">RamDaemonInterface</a></td>
 <td></td>
 <td>The Class used to communicate with the Ramses Daemon</td>
+</tr>
+<tr>
+<td><a href="ram_file_manager/">RamFileManager</a></td>
+<td></td>
+<td>Generic tools to handle files and the <a href="../../files/naming/">Ramses Naming Scheme</a></td>
 </tr>
 <tr>
 <td><a href="ram_filetype/">RamFileType</a></td>
@@ -518,149 +738,252 @@
 </tr>
 </tbody>
 </table>
-<h2 id="implementation">Implementation</h2>
-<p>Some of the elements described in this documentation have to be interpreted depending on the language used in the implementations of the Ramses API and may vary a bit.</p>
-<h3 id="include-import">Include / Import</h3>
-<h4 id="python">Python</h4>
-<p>Use your usual preferred way to import the module.</p>
-<p>Then, the unique <code>Ramses</code> instance is available as <code>Ramses.instance</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">ramses</span> <span class="kn">import</span> <span class="o">*</span>
+<h1 id="global-methods">Global Methods</h1>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>log</strong></td>
+<td><em>string</em>: <strong>message</strong>,<br /><em>LogLevel</em>: <strong>level</strong>=<code>LogLevel.Info</code></td>
+<td>Logs a message to the console. The level must be one of <code>LogLevel.DataReceived</code>, <code>LogLevel.DataSent</code>, <code>LogLevel.Debug</code>, <code>LogLevel.Info</code>, <code>LogLevel.Critical</code>, <code>LogLevel.Fatal</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>Here are a few examples showing how this API can be used.</p>
+<h3 id="include-import-the-api">Include / Import the API</h3>
+<pre><code class="language-py"># Python
+# Use your usual preferred way to import the module.
 
-<span class="n">myRamses</span> <span class="o">=</span> <span class="n">Ramses</span><span class="o">.</span><span class="n">instance</span>
-<span class="n">theSettings</span> <span class="o">=</span> <span class="n">myRamses</span><span class="o">.</span><span class="n">settings</span>
-<span class="n">myShot</span> <span class="o">=</span> <span class="n">RamShot</span><span class="o">.</span><span class="n">getFromPath</span><span class="p">(</span><span class="s2">&quot;path/to/the/shot&quot;</span><span class="p">)</span>
-<span class="n">aNewStatus</span> <span class="o">=</span> <span class="n">RamStatus</span><span class="p">(</span>
-    <span class="n">myRamses</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;WIP&quot;</span><span class="p">),</span>
-    <span class="n">myRamses</span><span class="o">.</span><span class="n">currentUser</span><span class="p">(),</span>
-    <span class="s2">&quot;A comment&quot;</span>
-    <span class="p">)</span>
-<span class="n">myShot</span><span class="o">.</span><span class="n">setStatus</span><span class="p">(</span><span class="n">aNewStatus</span><span class="p">,</span> <span class="n">myRamses</span><span class="o">.</span><span class="n">currentStep</span><span class="p">())</span>
+from ramses import *
 
-<span class="c1"># or</span>
+# The unique `Ramses` instance is available as `Ramses.instance()`.
+myRamses = Ramses.instance()
+theSettings = myRamses.settings
+myShot = RamShot.getFromPath(&quot;path/to/the/shot&quot;)
+aNewStatus = RamStatus(
+    myRamses.state(&quot;WIP&quot;),
+    myRamses.currentUser(),
+    &quot;A comment&quot;
+    )
+myShot.setStatus(aNewStatus, myRamses.currentStep())
 
-<span class="kn">import</span> <span class="nn">ramses</span> <span class="kn">as</span> <span class="nn">ram</span>
+# or (this is the recommended way)
 
-<span class="n">myRamses</span> <span class="o">=</span> <span class="n">ram</span><span class="o">.</span><span class="n">Ramses</span><span class="o">.</span><span class="n">instance</span>
-<span class="n">theSettings</span> <span class="o">=</span> <span class="n">myRamses</span><span class="o">.</span><span class="n">settings</span><span class="p">()</span>
-<span class="n">myShot</span> <span class="o">=</span> <span class="n">ram</span><span class="o">.</span><span class="n">RamShot</span><span class="o">.</span><span class="n">getFromPath</span><span class="p">(</span><span class="s2">&quot;path/to/the/shot&quot;</span><span class="p">)</span>
-<span class="n">aNewStatus</span> <span class="o">=</span> <span class="n">ram</span><span class="o">.</span><span class="n">RamStatus</span><span class="p">(</span>
-    <span class="n">myRamses</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;WIP&quot;</span><span class="p">),</span>
-    <span class="n">myRamses</span><span class="o">.</span><span class="n">currentUser</span><span class="p">(),</span>
-    <span class="s2">&quot;A comment&quot;</span>
-    <span class="p">)</span>
-<span class="n">myShot</span><span class="o">.</span><span class="n">setStatus</span><span class="p">(</span><span class="n">aNewStatus</span><span class="p">,</span> <span class="n">myRamses</span><span class="o">.</span><span class="n">currentStep</span><span class="p">())</span>
-</pre></div>
+import ramses as ram
 
+myRamses = ram.Ramses.instance()
+theSettings = myRamses.settings()
+myShot = ram.RamShot.getFromPath(&quot;path/to/the/shot&quot;)
+aNewStatus = ram.RamStatus(
+    myRamses.state(&quot;WIP&quot;),
+    myRamses.currentUser(),
+    &quot;A comment&quot;
+    )
+myShot.setStatus(aNewStatus, myRamses.currentStep())
+</code></pre>
+<pre><code class="language-js">// ExtendScript
+// Just include the file the usual way.
 
-<h4 id="adobe-extendscript">Adobe ExtendScript</h4>
-<p>Just include the file the usual way.</p>
-<p>Then, the unique <code>Ramses</code> instance is available as <code>Ramses.instance</code>.</p>
-<div class="codehilite"><pre><span></span><span class="err">#</span><span class="nx">include</span> <span class="nx">ramses</span><span class="p">.</span><span class="nx">jsxinc</span>
+#include ramses.jsxinc
 
-<span class="kd">var</span> <span class="nx">myRamses</span> <span class="o">=</span> <span class="nx">Ramses</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">theSettings</span> <span class="o">=</span> <span class="nx">myRamses</span><span class="p">.</span><span class="nx">settings</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">myShot</span> <span class="o">=</span> <span class="nx">RamShot</span><span class="p">.</span><span class="nx">getFromPath</span><span class="p">(</span><span class="s2">&quot;path/to/the/shot&quot;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">aNewStatus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RamStatus</span><span class="p">(</span>
-    <span class="nx">myRamses</span><span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s2">&quot;WIP&quot;</span><span class="p">),</span>
-    <span class="nx">myRamses</span><span class="p">.</span><span class="nx">currentUser</span><span class="p">(),</span>
-    <span class="s2">&quot;A comment&quot;</span>
-    <span class="p">);</span>
-<span class="nx">myShot</span><span class="p">.</span><span class="nx">setStatus</span><span class="p">(</span><span class="nx">aNewStatus</span><span class="p">,</span> <span class="nx">myRamses</span><span class="p">.</span><span class="nx">currentStep</span><span class="p">());</span>
-</pre></div>
+// The unique `Ramses` instance is available as `Ramses.instance()`.
+var myRamses = Ramses.instance();
+var theSettings = myRamses.settings();
+var myShot = RamShot.getFromPath(&quot;path/to/the/shot&quot;);
+var aNewStatus = new RamStatus(
+    myRamses.state(&quot;WIP&quot;),
+    myRamses.currentUser(),
+    &quot;A comment&quot;
+    );
+myShot.setStatus(aNewStatus, myRamses.currentStep());
+</code></pre>
+<h3 id="enumerated-values-constants">Enumerated values (constants)</h3>
+<p>Enumerated values (a.k.a. Constants) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they’re grouped together by type (for exemple Color.RED, or Shape.RECTANGLE). The value itself can be of any type (array, string, number…).</p>
+<p>In this documentation they&rsquo;re written like this: <code>ValueType.VALUE</code>, i.e. <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code>, and they&rsquo;re used the same way in the actual code.</p>
+<pre><code class="language-py"># Python
 
+from ramses import RamItem, ItemType
 
-<h3 id="enumerated-values">Enumerated Values</h3>
-<p><em>Enumerated values</em> (a.k.a. <em>Constants</em>) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they&rsquo;re grouped together by type (for exemple <code>color.RED</code>, or <code>shape.RECTANGLE</code>). The value itself can be of any type (array, string, number&hellip;). In the previous examples, one could have <code>color.RED is [255,0,0]</code>.</p>
-<h4 id="python_1">Python</h4>
-<p><em>Enumerated values</em> are public static attributes of a containing class. They&rsquo;re declared like this:</p>
-<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Group</span><span class="p">():</span>
-    <span class="n">VALUE_1</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">VALUE_2</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">VALUE_3</span> <span class="o">=</span> <span class="mi">2</span>
+# Get an item from a specific file path
+anItem = RamItem.getFromPath( somePath )
 
-<span class="c1"># Example:</span>
-<span class="k">class</span> <span class="nc">Color</span><span class="p">():</span>
-    <span class="n">RED</span> <span class="o">=</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">GREEN</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">BLUE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">]</span>
-</pre></div>
+if anItem is not None:
+    # We want it only if it's a shot,
+    # We can use the enum ItemType to compare the value.
+    if anItem.itemType() == ItemType.SHOT:
+        doSomething()
+</code></pre>
+<pre><code class="language-js">// ExtendScript
 
+#include ramses.jsxinc
 
-<p>And they&rsquo;re used like this:</p>
-<p><code>myVar = Group.VALUE_1</code></p>
-<p><code>myColor = Color.RED</code></p>
-<h4 id="javascript-adobe-extendscript">JavaScript / Adobe ExtendScript</h4>
-<p><em>Enumerated values</em> are attributes in simple objects. They&rsquo;re declared like this:</p>
-<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">Group</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">VALUE_1</span><span class="o">:</span> <span class="mi">0</span>
-    <span class="nx">VALUE_2</span><span class="o">:</span> <span class="mi">1</span>
-    <span class="nx">VALUE_3</span><span class="o">:</span> <span class="mi">2</span>
-<span class="p">};</span>
+// Get an item from a specific file path
+var anItem = RamItem.getFromPath( somePath );
 
-<span class="c1">// Example:</span>
-<span class="kd">var</span> <span class="nx">Color</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">RED</span><span class="o">:</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nx">GREEN</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nx">BLUE</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">]</span>
-<span class="p">};</span>
-</pre></div>
+if (anItem != null)
+{
+    // We want it only if it's a shot,
+    // We can use the enum ItemType to compare the value.
+    if ( anItem.itemType() == ItemType.SHOT )
+        doSomething();
+}
+</code></pre>
+<h3 id="save-command-for-maya-python">Save command for <em>Maya</em> (Python)</h3>
+<p>This example shows how to use the <a href="ram_file_manager/">RamFileManager</a> class to implement a save command in <em>Maya</em> with automatic backup in the <em>_versions</em> subfolder.</p>
+<pre><code class="language-python">import maya.cmds as cmds
+import ramses as ram
 
+ramses = ram.Ramses.instance()
+settings = ram.RamSettings.instance()
 
-<p>And they&rsquo;re used like this:</p>
-<p><code>var myVar = Group.VALUE_1;</code></p>
-<p><code>var myColor = Color.RED;</code></p>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="ramses/" class="btn btn-neutral float-right" title="Ramses">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../files/naming/" class="btn btn-neutral" title="Naming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+def ramSave():
+    # The current maya file
+    currentFilePath = cmds.file( q=True, sn=True )
+    ram.log(&quot;Saving file: &quot; + currentFilePath)
+
+    # Check if the Daemon is available, if Ramses is set to be used &quot;online&quot;
+    if settings.online:
+        if not ramses.connect():
+            cmds.confirmDialog(
+                title=&quot;No User&quot;,
+                message=&quot;You must log in Ramses first!&quot;,
+                button=[&quot;OK&quot;],
+                icon=&quot;warning&quot;
+                )
+            ramses.showClient()
+            cmds.error( &quot;User not available: You must log in Ramses first!&quot; )
+            return
+
+    # Get the save path (Ramses will check if the current file has to be renamed to respect the Ramses Tree and Naming Scheme)
+    saveFilePath = ram.RamFileManager.getSaveFilePath( currentFilePath )
+    if not saveFilePath: # Ramses may return None if the current file name does not respeect the Ramses Naming Scheme
+        cmds.warning( ram.Log.MalformedName )
+        # Set file to be renamed
+        cmds.file( renameToSave = True )
+        cmds.inViewMessage( msg='Malformed Ramses file name! &lt;hl&gt;Please save with a correct name first&lt;/hl&gt;.', pos='midCenter', fade=True )
+        return
+
+    # If the current Maya file is inside a preview/publish/version subfolder, we're going to increment
+    # to be sure not to lose the previous working file.
+    increment = False
+    if ram.RamFileManager.inReservedFolder( currentFilePath ):
+        increment = True
+        cmds.warning( &quot;Incremented and Saved as &quot; + saveFilePath )
+
+    # Set the save name and save
+    cmds.file( rename = saveFilePath )
+    cmds.file( save=True, options=&quot;v=1;&quot; )
+    # Backup / Increment
+    backupFilePath = ram.RamFileManager.copyToVersion( saveFilePath, increment=increment )
+    backupFileName = os.path.basename( backupFilePath )
+    decomposedFileName = ram.RamFileManager.decomposeRamsesFileName( backupFileName )
+    newVersion = str( decomposedFileName['version'] )
+    ram.log( &quot;Scene saved! Current version is: &quot; + newVersion )
+    cmds.inViewMessage( msg='Scene saved! &lt;hl&gt;v' + newVersion + '&lt;/hl&gt;', pos='midCenter', fade=True )
+
+ramSave()
+</code></pre>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
+        
+        
     </div>
-  
 
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
     
-      <p>Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a></p>
-    
-  </div>
+      <footer class="col-md-12 text-center">
+          
+<div class="footer-meta"></div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-      
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../video.js"></script>
+    <script src="../../meta.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
         </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/Rainbox-dev/Ramses/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../files/naming/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="ramses/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../video.js" defer></script>
-      <script src="../../meta.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+    </body>
 
-</body>
 </html>

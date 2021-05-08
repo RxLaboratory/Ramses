@@ -11,109 +11,74 @@ hr {
     background-color: #D3D3D3;
 }
 
-footer, footer p {
-    font-size: 13px;
-}
-
-.rst-footer-buttons {
-    font-size: 15px;
-}
-
-.wy-nav-content-wrap {
-    background:none;
- }
-
-.wy-side-nav-search {
-    background-color: #710132;
-}
-
-.wy-nav-side {
-    background-color: #333333;
-    box-shadow: 1px 4px 7px #131313;
-}
-
-.wy-body-for-nav {
+body {
     background-color: #434343;
+    font-size: 1.3em;
 }
 
-.wy-nav-content {
+.navbar-default {
+    border-bottom: 0;
+    background-color: #333;
+}
+
+.bs-sidebar {
     background-color: #e3e3e3;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
+    box-shadow: 1px 4px 7px #232323;
+    border-radius: 10px;
+    border: none;
+}
+
+.bs-sidenav {
+    background: none;
+}
+
+.col-md-9 {
+    background-color: #e3e3e3;
+    padding-bottom: 0;
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 1px 4px 7px #131313;
 }
 
-.wy-side-nav-search input[type="text"] {
-    border-color: #710132;
+pre {
+    background: none;
+    border: none;
 }
 
-.wy-menu-vertical li a {
-    color: #a526c4;
+pre code {
+    border-radius: 10px;
 }
 
-.wy-menu-vertical li ul li {
-    padding-left: 10px;
+ul.nav li.second-level {
+    font-weight: bold;
 }
 
-.wy-menu-vertical li ul li ul li a {
-    color: #939393 !important;
-}
-
-.wy-menu-vertical li.toctree-l3.current > a {
-    background-color: #e3e3e3;
-}
-
-.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
-    background-color: #e3e3e3;
-}
-
-.wy-menu-vertical span {
-    color: #a526c4;
-}
-
-.codehilite {
-    background-color: #b3b3b3;
-    padding:10px;
-    overflow-inline: auto;
-    margin-bottom: 25px;
-    margin-top:-15px;
-}
-
-.codehilite .c1 {
-    color: #278d4b;
-    font-weight:800;
-}
-
-.codehilite .s2 {
-    color: #527bbd;
-}
-
-.codehilite .kd {
-    color: #8c267c;
-    font-weight:800;
-}
-
-.codehilite .k {
-    color: #8c267c;
-    font-weight:600;
-}
-
-.codehilite .o, .codehilite .p {
-    color: #8d5e98;
-    font-weight:800;
-}
-
-.post-meta::before {
-    content: "About this page";
-    margin-left:10px;
-    font-style: italic;
+ul.nav li.active {
+    background-color: #f1f1f1;
 }
 
 .post-meta {
     font-size: 0.8em;
-    background-color: #f1f1f1;
+    background-color: #535353;
+    color: #c3c3c3;
     border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 1px;
+    margin-bottom: 5px;
+}
+
+.post-meta a {
+    color: #fff;
+}
+
+.post-meta li::marker {
+    content: "▹\00a0";
+}
+
+.meta-wrapper {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
 }

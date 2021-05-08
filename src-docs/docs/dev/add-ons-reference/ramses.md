@@ -1,6 +1,6 @@
 # Ramses
 
-The main class. One (and only one) instance globally available (Ramses is a *singleton*), instantiated during init time.
+The main class. One (and only one) instance globally available (Ramses is a *singleton*), by calling `Ramses.instance()`.
 
 [TOC]
 
@@ -8,17 +8,67 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **instance** | *Ramses* | | The unique *Ramses* instance |
+| **apiReferenceUrl** | *string* | This page URL | A link to this API documentation |
+| **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | A link to the [Ramses add-ons](../../../addons/) documentation |
+| **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | A link to the [Ramses documentation](../../../) |
 
-### Examples
+## Static Methods
+
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **instance**<br />▹ *Ramses* | | Returns the *Ramses* unique instance. |
+| **version**<br />▹ *string* | | The current version of this API |
+
+## Attributes
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| **publishScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own methods to this list so they're run when the user publishes the current file from the host application. |
+| **statusScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().updateStatus()` is called.<br />If you're using one of the provided Add-ons, you can add your own methods to this list so they're run when the user changes the current status of an asset / shot from the host application. |
+
+## Methods
+
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **alternativeFolderPaths**<br />▹ *string list* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
+| **backupFolderPath**<br />▹ *string* | | A copy of the main folder where all files are stored. |
+| **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. <br />Returns success. |
+| **currentProject**<br />▹ *RamProject* or *None* | | The current project. |
+| **currentStep**<br />▹ *RamStep* or *None* | | The current step. |
+| **currentUser**<br />▹ *RamUser* or *None* | | The current user. |
+| **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
+| **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
+| **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
+| **projects**<br />▹ *list of RamProject* | | The list of available projects. |
+| **project**<br />▹ *RamProject* | *string*: **projectShortName** | Gets a specific project. |
+| **states**<br />▹ *list of RamState* | | The list of available states. |
+| **state**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
+| **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
+| **publish** | | Runs the scripts in `Ramses.instance().publishScripts`. |
+| **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
+| **settings** | [*RamSettings*](ram_settings.md) |  | The settings unique instance. Same as `RamSettings.instance()` |
+| **updateStatus** | |  |  Runs the scripts in `Ramses.instance().statusScripts`. |
+
+## Examples
 
 ```py
 # Python
 
-# import the Ramses class
-from ramses import Ramses
-# Get the instance, which has already been initiated during import
-ramses = Ramses.instance
+# import ramses
+import ramses as ram
+# Get the instance
+ramses = ram.Ramses.instance()
+
+# A simple method
+def published():
+    ram.log("Hello, I've been published!")
+
+# Adds the method to the scripts which will be run when the add-on publishes a file
+ramses.publishScripts.append( published )
+
+# The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
+# If you're developping another addon, you have to call Ramses.publish() to run them
+ramses.publish()
 ```
 
 ```js
@@ -26,29 +76,39 @@ ramses = Ramses.instance
 
 // include the Ramses lib
 #include ramses.jsxinc
-// Get the instance, which has already been initiated in include
-var ramses = Ramses.instance;
+// Get the instance
+var ramses = Ramses.instance();
+
+// Adds the method to the scripts which will be run when the add-on publishes a file
+ramses.publishScripts.push( published )
+
+// The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
+// If you're developping another addon, you have to call Ramses.publish() to run them
+ramses.publish()
 ```
 
-## Methods
+____
 
-| Method | Arguments | Description |
-| --- | --- | --- |
-| ***constructor*** | *integer*: **port**=`18185`<br />*boolean*: **connect**=`true` | If connect is true, will launch the client if needed and then tries to connect to it. |
-| **alternativeFolderPaths**<br />▹ *string list* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
-| **backupFolderPath**<br />▹ *string* | | A copy of the main folder where all files are stored. |
-| **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. Returns success. |
-| **currentProject**<br />▹ *RamProject* or *None* | | The current project. |
-| **currentStep**<br />▹ *RamStep* or *None* | | The current step. |
-| **currentUser**<br />▹ *RamUser* or *None* | | The current user. |
-| **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface. |
-| **disconnect**<br />▹ *boolean* | | Gets back to offline mode. |
-| **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
-| **projects**<br />▹ *list of RamProject* | | The list of available projects. |
-| **project**<br />▹ *RamProject* | *string*: **projectShortName** | Gets a specific project. |
-| **states**<br />▹ *list of RamState* | | The list of available states. |
-| **state**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
-| **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
-| **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
-| **settings** | [*RamSettings*](ram_settings.md) |  | The settings. |
-| **version**<br />▹ *string* |  | The current version of this API |
+## API Dev notes
+
+!!! note
+    These section is for the development of the API only; you should not need these when developping your add-on using the API.
+
+### (Im)mutable data
+
+The data returned by the methods can be either [mutable or immutable](implementation.md#accessing-the-data).
+
+| Method | Type of the returned data |
+| --- | --- |
+| **alternativeFolderPaths** | <i class="fa fa-lock"></i> Immutable |
+| **backupFolderPath** | <i class="fa fa-lock"></i> Immutable |
+| **currentProject** | <i class="fa fa-pen"></i> Mutable |
+| **currentStep** | <i class="fa fa-pen"></i> Mutable |
+| **currentUser** | <i class="fa fa-pen"></i> Mutable |
+| **folderPath** | <i class="fa fa-lock"></i> Immutable |
+| **projects** | <i class="fa fa-pen"></i> Mutable |
+| **project** | <i class="fa fa-pen"></i> Mutable |
+| **states** | <i class="fa fa-pen"></i> Mutable |
+| **state** | <i class="fa fa-pen"></i> Mutable |
+
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29)

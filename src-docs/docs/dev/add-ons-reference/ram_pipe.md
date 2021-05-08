@@ -4,13 +4,6 @@ A pipe which connects two steps together in the production pipeline.
 
 The pipe goes from the output step (which exports data into a specific file type) to the input step (which imports that data).
 
-[TOC]
-
-## Attributes
-
-| Attribute | Type | Default | Description |
-| --- | --- | --- | --- |
-
 ## Methods
 
 | Method | Arguments | Description |
@@ -50,4 +43,4 @@ aPipe = pipes[0] # The first RamPipe
 
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

@@ -18,14 +18,9 @@ Some of these commands manage files in the [*Ramses Tree*](../files/tree.md), se
 
 All commands except *open Ramses* and *Settings* should first:
 
-- If the add-on is not set to offline by the user (in the settings) AND the path to the *Client* executable file is valid:
-    - Ping the *Daemon* (which answers with its version and some other information).
-    - If the ping did not work:
-        - Set to offline
-        - Try to launch the client. If the *Daemon* is accessible:
-            - Set to online
-        - If the daemon is not accessible: warn the user
-    - If the ping worked: set to online
+- If the add-on is not set to offline by the user (in the settings):
+    - If the path to the *Client* executable file is invalid: warn the user and stop.
+    - If the user is not connected, warn the user and stop
 
 ### Open
 
@@ -35,37 +30,28 @@ All commands except *open Ramses* and *Settings* should first:
 
 If the file is not a working file, but a version coming from the *ramses_version* subfolder (named `restore-vXX`), runs *Save new version* instead of *Save*.
 
-- If the file is a template ("template" in the resource name, and in a temp dir)
-    - Asks for the name of the new asset/shot, its group, its sequence
-    - Creates the corresponding folder,
-    - Saves (as new version if the asset/shot already exists, with a warning)
-- Else If the file is in the *ramses_version* folder or if its resource name contains *restore-vXX*.
-    - Runs *Save new version*.
+- If the file is in the *_versions* folder or if its resource name contains *restore-vXX*.
+    - Increments the existing WIP file, saves over it, and increments again.
 - Else
     - Saves the current file.
-    - Copies it to the *ramses_versions* subfolder, appending the current state and version number.
+    - Backs up the file in the *_versions* subfolder. Version is automatically incremented if the auto-increment timeout has expired (defined in the settings).
 - If *online*
     - Send the new status of the asset/shot for this step (version, date, state, comment, completion ratio) to the *Ramses Client*.
 
 See the [naming scheme](../files/naming.md) and [folder structure](../files/tree.md) for more information.
 
-### Save new version
+### Save new version & Publish
 
 - If the file is in the *ramses_version* folder or if its resource name contains *restore-vXX*.
     - Copies the current working file into the version folder, appending the state got from the *Ramses client* if available, or else just "v", and the incremented version number.
     - Saves the current file as the working file (in the working folder, and removing *restore-XX* from the resource name)
-    - Removes the current file (version file, keeps only the new working file) if it was not in a *ramses_versions* subfolder
+    - Removes the current file (version file, keeps only the new working file) if it was a restored version
 - Else
     - Saves the current file.
-- Copies the current file to the *ramses_versions* subfolder, appending the current state and the incremented version number.
-- *If the client is available*: sends the *update* command to the client, with the date, state and version of the current asset/shot. 
-
-### Publish
-
-- Saves the current file.
-- Copies it to the *ramses_versions* subfolder, appending the current state and the incremented version number.
-- Saves as a new file into the *published* subfolder.
-- *If the client is available*: sends the *publish* command to the client, with the date, state and version of the current asset/shot.
+- Copies the current file to the *_versions* subfolder, appending the current state and the incremented version number.
+- If the file is published
+    - Copies the current file to the *_published* subfolder.
+- *If the client is available*: sends the *update* command to the client, with the date, state and version of the current asset/shot, and publish information. 
 
 ### Retrieve version
 

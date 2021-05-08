@@ -2,42 +2,52 @@
 
 Gets and saves settings used by Ramses.
 
+One (and only one) instance globally available (RamSettings is a *singleton*), by calling `RamSettings.instance()` or `Ramses.instance().settings()`.
+
 To get a setting, just get the corresponding attribute.
 
 To change a setting temporarily, just set the corresponding attribute. If you want the change to be permanent (i.e. keep the setting for the next sessions), call the `save()` method.
 
 By default, settings are saved in a `ramses_addons_settings.json` file, in the user's OS specific settings folder:
 
-- Linux: `~/.config/RxLaboratory/Ramses/`
-- Windows: `%appdata%/RxLaboratory/Ramses/`
+- Linux: `~/.config/RxLaboratory/Ramses/Config`
+- Windows: `%appdata%/RxLaboratory/Ramses/Config`
 - MacOS: ?
 
-There is only one instance of RamSettings, available with the [`Ramses.instance.settings()`](ramses.md) method
+## Static Methods
 
-[TOC]
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **instance**<br />▹ *RamSettings* | | Returns the *RamSettings* unique instance. |
 
 ## Attributes
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **autoConnect** | *boolean* | `true` | Wether to always try to (re)connect to the *Daemon* if offline. |
+| **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | Read-only. A link to the [Ramses add-ons](../../../addons/) documentation |
+| **apiReferenceUrl** | *string* | This page URL | Read-only. A link to this API documentation |
+| **autoIncrementTimeout** | *int* | `120` | Timeout before auto incrementing a file, in minutes. |
+| **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | Read-only. A link to the [Ramses documentation](../../../) |
+| **online** | *boolean* | `true` | Wether to always try to (re)connect to the *Daemon* if offline. |
 | **ramsesClientPath** | *string* | os-specific | Location of the Ramses Client executable file (.exe on Windows, .app on MacOS, .appimage or binary on Linux) |
 | **ramsesClientPort** | *integer* | `18185` | Listening port of the Ramses Daemon |
-| **folderPath** | *string* | os-specific | Read-only. The folder path to the settings |
-| **filePath** | *string* | os-specific | Read-only. The file path to the settings |
+| **logLevel** | *LogLevel* | `LogLevel.Info` | Changes the quantity of messages in the log. One of: `LogLevel.DataReceived`, `LogLevel.DataSent`, `LogLevel.Debug`, `LogLevel.Info`, `LogLevel.Critical`, `LogLevel.Fatal` |
+| **version** | *string* | The current API version | Read-only. |
 
 ## Methods
 
 | Method | Arguments | Description |
 | --- | --- | --- |
 | **save** | | Saves the current settings to the disk. |
+| **folderPath**<br />▹ *string* | |The folder path to the settings |
+| **filePath**<br />▹ *string* | | The file path to the settings |
 
 ____
 
 ## API Dev notes
 
 !!! note
-    These section is for the development of the API only; you should not need these when developping your add-on using the API.
+    This section is for the development of the API only; you should not need these when developping your add-on using the API.
 
 ### Private Attributes
 
@@ -45,6 +55,7 @@ ____
 | --- | --- | --- | --- |
 | **folderNames** | *FolderNames* | | A simple class containing the common names for subfolders. |
 | **defaultStates** | *list of [RamState](ram_state.md)* | | The list of states to use if the *Daemon* is not available. |
+| **defaultState** | *[RamState](ram_state.md)* | | The state to use as default ("WIP"). |
 
 #### FolderNames Attributes
 
@@ -68,4 +79,4 @@ thePreviewFolder = theAsset.folderPath() + "/" + settings.folderNames.preview
 ```
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

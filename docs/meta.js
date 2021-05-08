@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('img[alt="META"]').each(function () {
         //get meta
         var metas = $(this).attr('src').split(";");
-        var metaBlock = '<div class="post-meta"><ul>';
+        var metaBlock = '<div class="post-meta"><div class="meta-wrapper"><ul>';
         var copyright = "";
         var authors = "";
         var authorsList = "";
@@ -29,7 +29,7 @@ $(document).ready(function () {
             }
             else if (key == "copyright")
             {
-                copyright += "<li>This page content (text and media): <strong>Copyright © " + val + " RxLaboratory</strong>";
+                copyright += "<li>This page content (text and media):<br /><strong>Copyright © " + val + " RxLaboratory</strong>";
             }
             else if (key == "license")
             {
@@ -77,7 +77,7 @@ $(document).ready(function () {
             metaBlock += copyright;
             if (authorsList != "")
             {
-                metaBlock += ", " + authorsList;
+                metaBlock += ",<br/>" + authorsList;
                 if (mediasList != "") metaBlock += ", ";
             }
             if (mediasList != "") metaBlock += mediasList;
@@ -86,8 +86,8 @@ $(document).ready(function () {
         if (license != "") metaBlock += license;
         if (updated != "") metaBlock += updated;
 
-        metaBlock += "</ul></div>";
+        metaBlock += "</ul></dev></div>";
 
-        $(this).replaceWith(metaBlock);
+        $('.footer-meta').replaceWith(metaBlock);
     });
 });
