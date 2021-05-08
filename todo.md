@@ -15,7 +15,6 @@
 
 ## pipeline tools first
 
-- BUGFIX: states reinit to 50% on load
 - FEATURE: ajouter currentStatus (RamItem) dans le demon
 - FEATURE: implémenter getAssetGroups dans le démon
 - FEATURE: filter in daemon.getShots(QString filter)
@@ -38,7 +37,7 @@
 
 ## Other
 
-- DOC: update API DOC (items, ramfilemanager...)
+- BUGFIX: shot being updated on editwidget load (and potential crash)
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
 - REFACTOR: a single request when refreshing everything / returns the list of projects, but without data. And then, setCurrentProject gets the single project data
 - REFACTOR: itemhistory as an uberlist of statushistory (one per step)
@@ -55,11 +54,11 @@
         - [x] projects in ramses
             - [x] sequences in project
                 - [x] shots in seq
-                - [ ] shots in project (uberlist)
+                - [ ] shots in project (uberlist) WIP sequences is the uberlist
                     - [ ] StatusHistory: `QMap<stepuuid, RamObjectList*>`
             - [ ] assetgroups in project 
                 - [ ] assets in asset groups
-                - [ ] assets in project (uberlist)
+                - [ ] assets in project (uberlist assetgroups)
                     - [ ] StatusHistory: `QMap<stepuuid, RamObjectList*>`
             - [ ] steps in project
                 - [ ] users in steps
