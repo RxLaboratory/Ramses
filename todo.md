@@ -41,7 +41,6 @@
 - BUGFIX: shot being updated on editwidget load (and potential crash)
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
 - REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget (derived from a new objectListComboBox ?)
-- REFACTOR: a single request when refreshing everything / returns the list of projects, but without data. And then, setCurrentProject gets the single project data
 - REFACTOR: itemhistory as an uberlist of statushistory (one per step)
 - REFACTOR / FIX: option for remove in objectlist to be remove or unassign!!! > check > same in ramobjectwidget!!!
 - UI: Display widgets display more info when reiszed

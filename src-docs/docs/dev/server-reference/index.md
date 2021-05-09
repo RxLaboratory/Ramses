@@ -6,6 +6,7 @@ Queries are made by building a *URI* containing all information, and the server 
 
 1. *ping* to check if the server is available and check its version.
 2. *login* to authenticate yourself and get a session token.
+3. *init* to get the main data (user list, project list...).
 
 For the examples in this documentation, we assume the ramses server is available at `http://your.server/ramses/`.
 
@@ -32,6 +33,7 @@ The *JSON* objects sent by the server all have the same content:
 - General
     - [ping](general.md#ping)
     - [login](general.md#login)
+    - [init](general.md#init)
 - Users
     - [updateUser](users.md#updateuser)
     - [updatePassword](users.md#updatepassword)

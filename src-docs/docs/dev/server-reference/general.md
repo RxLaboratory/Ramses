@@ -77,3 +77,48 @@ Reply:
     }
 }
 ```
+
+## init
+
+This special requests is used to retrieve all useful information when initializing the *Ramses Client*. It groups together in a single request the data which can be retrieved individually by `getUsers`, `getTemplateSteps`, `getTemplateAssetGroups`, `getStates`, `getFileTypes`, `getApplications` and `getProjects`. The project data contains only general project information (resolution, framerate...) but not the project content (shots, assets...). Use `getProject` to retrieve a specific project content.
+
+**Query attributes:**
+
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+The server replies with all the data. Read the documentation for the corresponding individual requests for more details.
+
+- *users*: **array**.
+- *templateSteps*: **array**.
+- *templateAssetGroups*: **array**.
+- *states*: **array**.
+- *fileTypes*: **array**.
+- *applications*: **array**.
+- *projects*: **array**.
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?init&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "login",
+    "success": true,
+    "message": "Server Ready!",
+    "content": {
+        "users": [ ... ],
+        "templateSteps": [ ... ],
+        "templateAssetGroups": [ ... ],
+        "states": [ ... ],
+        "fileTypes": [ ... ],
+        "applications": [ ... ],
+        "projects": [ ... ]
+    }
+}
+```
