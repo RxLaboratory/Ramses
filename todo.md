@@ -15,10 +15,6 @@
 
 ## pipeline tools first
 
-- FEATURE: ajouter currentStatus (RamItem) dans le demon
-- FEATURE: implémenter getAssetGroups dans le démon
-- FEATURE: filter in daemon.getShots(QString filter)
-- FEATURE: filters in ObjectListEditWidget with objectuberlist
 - FEATURE: Asset & Shot table
     - [ ] StatusEditTable(RamObjectList *items)  
     Vheader: RamObjectList items  
@@ -38,11 +34,9 @@
 ## Other
 
 - BUGFIX: Crash when changing shot sequence in shoteditwidget
-- BUGFIX: shot being updated on editwidget load (and potential crash)
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
 - REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget (derived from a new objectListComboBox ?)
 - REFACTOR: itemhistory as an uberlist of statushistory (one per step)
-- REFACTOR / FIX: option for remove in objectlist to be remove or unassign!!! > check > same in ramobjectwidget!!!
 - UI: Display widgets display more info when reiszed
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
@@ -58,11 +52,12 @@
                 - [x] shots in seq
                 - [x] shots in project (uberlist) WIP sequences is the uberlist
                     - [ ] Status in shoteditwidget
-                    - [ ] StatusHistory: `QMap<stepuuid, RamObjectList*>`
+                    - [x] StatusHistory: RamObjectUberList
             - [ ] assetgroups in project 
                 - [ ] assets in asset groups
                 - [ ] assets in project (uberlist assetgroups)
-                    - [ ] StatusHistory: `QMap<stepuuid, RamObjectList*>`
+                    - [x] status in asseteditwidget
+                    - [x] StatusHistory: RamObjectUberList
             - [ ] steps in project
                 - [ ] users in steps
                 - [ ] users in project (uberlist)
