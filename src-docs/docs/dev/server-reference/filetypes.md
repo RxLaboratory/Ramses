@@ -41,7 +41,7 @@ Retrieves the list of all file types.
 
 **Query attributes:**
 
-None
+- *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**
 

@@ -616,8 +616,11 @@
                 
             <li class="second-level"><a href="#static-methods">Static Methods</a></li>
                 
-                <li class="third-level"><a href="#examples">Examples</a></li>
+            <li class="second-level"><a href="#attributes">Attributes</a></li>
+                
             <li class="second-level"><a href="#methods">Methods</a></li>
+                
+            <li class="second-level"><a href="#examples">Examples</a></li>
                 
             <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
                 
@@ -632,11 +635,10 @@
 <ul>
 <li><a href="#ramses">Ramses</a><ul>
 <li><a href="#static-attributes">Static Attributes</a></li>
-<li><a href="#static-methods">Static Methods</a><ul>
-<li><a href="#examples">Examples</a></li>
-</ul>
-</li>
+<li><a href="#static-methods">Static Methods</a></li>
+<li><a href="#attributes">Attributes</a></li>
 <li><a href="#methods">Methods</a></li>
+<li><a href="#examples">Examples</a></li>
 <li><a href="#api-dev-notes">API Dev notes</a><ul>
 <li><a href="#immutable-data">(Im)mutable data</a></li>
 </ul>
@@ -698,23 +700,31 @@
 </tr>
 </tbody>
 </table>
-<h3 id="examples">Examples</h3>
-<pre><code class="py"># Python
-
-# import the Ramses class
-from ramses import Ramses
-# Get the instance
-ramses = Ramses.instance()
-</code></pre>
-
-<pre><code class="js">// ExtendScript
-
-// include the Ramses lib
-#include ramses.jsxinc
-// Get the instance
-var ramses = Ramses.instance();
-</code></pre>
-
+<h2 id="attributes">Attributes</h2>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>publishScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own methods to this list so they&rsquo;re run when the user publishes the current file from the host application.</td>
+</tr>
+<tr>
+<td><strong>statusScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own methods to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="methods">Methods</h2>
 <table>
 <thead>
@@ -796,6 +806,11 @@ var ramses = Ramses.instance();
 <td>True if connected to the <em>Daemon</em> and the <em>Daemon</em> is responding.</td>
 </tr>
 <tr>
+<td><strong>publish</strong></td>
+<td></td>
+<td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.</td>
+</tr>
+<tr>
 <td><strong>showClient</strong></td>
 <td></td>
 <td>Raises the <em>Ramses Client</em> window, launches the client if it is not already running.</td>
@@ -805,8 +820,46 @@ var ramses = Ramses.instance();
 <td><a href="../ram_settings/"><em>RamSettings</em></a></td>
 <td></td>
 </tr>
+<tr>
+<td><strong>updateStatus</strong></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-py"># Python
+
+# import ramses
+import ramses as ram
+# Get the instance
+ramses = ram.Ramses.instance()
+
+# A simple method
+def published():
+    ram.log(&quot;Hello, I've been published!&quot;)
+
+# Adds the method to the scripts which will be run when the add-on publishes a file
+ramses.publishScripts.append( published )
+
+# The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
+# If you're developping another addon, you have to call Ramses.publish() to run them
+ramses.publish()
+</code></pre>
+<pre><code class="language-js">// ExtendScript
+
+// include the Ramses lib
+#include ramses.jsxinc
+// Get the instance
+var ramses = Ramses.instance();
+
+// Adds the method to the scripts which will be run when the add-on publishes a file
+ramses.publishScripts.push( published )
+
+// The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
+// If you're developping another addon, you have to call Ramses.publish() to run them
+ramses.publish()
+</code></pre>
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">

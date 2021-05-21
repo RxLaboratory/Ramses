@@ -2,8 +2,6 @@
 
 A state associated to a comment, the user who changed the state, etc.
 
-[TOC]
-
 ## Attributes
 
 | Attribute | Type | Default | Description |
@@ -19,10 +17,12 @@ A state associated to a comment, the user who changed the state, etc.
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **getFromPath**<br />▹ *RamStatus* | *string*: **filePath**<br /> | Returns a *RamStatus* instance built using the given file path. |
+| **fromPath**<br />▹ *RamStatus* | *string*: **filePath**<br /> | Returns a *RamStatus* instance built using the given file path. |
 
 ## Methods
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *[RamState](ram_state.md)*: **state**<br />*[RamUser](ram_user.md)*: **user**=`None`<br />*string*: **comment**=`""`<br />*integer*: **version**=`0`<br />*datetime*: **stateDate**=`None`<br />*float*: **completionRation**=`None` | |
+| ***constructor*** | *[RamState](ram_state.md)*: **state**,<br />*string*: **comment**=`""`,<br />*float*: **completionRation**=`None`,<br />*integer*: **version**=`0`,<br />*[RamUser](ram_user.md)*: **user**=`None`,<br />*datetime*: **stateDate**=`None` | |
+
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

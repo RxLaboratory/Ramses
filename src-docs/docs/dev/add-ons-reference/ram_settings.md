@@ -14,8 +14,6 @@ By default, settings are saved in a `ramses_addons_settings.json` file, in the u
 - Windows: `%appdata%/RxLaboratory/Ramses/Config`
 - MacOS: ?
 
-[TOC]
-
 ## Static Methods
 
 | Method | Arguments | Description |
@@ -28,6 +26,7 @@ By default, settings are saved in a `ramses_addons_settings.json` file, in the u
 | --- | --- | --- | --- |
 | **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | Read-only. A link to the [Ramses add-ons](../../../addons/) documentation |
 | **apiReferenceUrl** | *string* | This page URL | Read-only. A link to this API documentation |
+| **autoIncrementTimeout** | *int* | `120` | Timeout before auto incrementing a file, in minutes. |
 | **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | Read-only. A link to the [Ramses documentation](../../../) |
 | **online** | *boolean* | `true` | Wether to always try to (re)connect to the *Daemon* if offline. |
 | **ramsesClientPath** | *string* | os-specific | Location of the Ramses Client executable file (.exe on Windows, .app on MacOS, .appimage or binary on Linux) |
@@ -56,6 +55,7 @@ ____
 | --- | --- | --- | --- |
 | **folderNames** | *FolderNames* | | A simple class containing the common names for subfolders. |
 | **defaultStates** | *list of [RamState](ram_state.md)* | | The list of states to use if the *Daemon* is not available. |
+| **defaultState** | *[RamState](ram_state.md)* | | The state to use as default ("WIP"). |
 
 #### FolderNames Attributes
 
@@ -79,4 +79,4 @@ thePreviewFolder = theAsset.folderPath() + "/" + settings.folderNames.preview
 ```
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)

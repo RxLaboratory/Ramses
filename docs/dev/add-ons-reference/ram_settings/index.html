@@ -637,24 +637,6 @@
 <li>Windows: <code>%appdata%/RxLaboratory/Ramses/Config</code></li>
 <li>MacOS: ?</li>
 </ul>
-<div class="toc">
-<ul>
-<li><a href="#ramsettings">RamSettings</a><ul>
-<li><a href="#static-methods">Static Methods</a></li>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#api-dev-notes">API Dev notes</a><ul>
-<li><a href="#private-attributes">Private Attributes</a><ul>
-<li><a href="#foldernames-attributes">FolderNames Attributes</a></li>
-</ul>
-</li>
-<li><a href="#examples">Examples</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
 <h2 id="static-methods">Static Methods</h2>
 <table>
 <thead>
@@ -694,6 +676,12 @@
 <td><em>string</em></td>
 <td>This page URL</td>
 <td>Read-only. A link to this API documentation</td>
+</tr>
+<tr>
+<td><strong>autoIncrementTimeout</strong></td>
+<td><em>int</em></td>
+<td><code>120</code></td>
+<td>Timeout before auto incrementing a file, in minutes.</td>
 </tr>
 <tr>
 <td><strong>generalHelpUrl</strong></td>
@@ -789,6 +777,12 @@
 <td></td>
 <td>The list of states to use if the <em>Daemon</em> is not available.</td>
 </tr>
+<tr>
+<td><strong>defaultState</strong></td>
+<td><em><a href="../ram_state/">RamState</a></em></td>
+<td></td>
+<td>The state to use as default (&ldquo;WIP&rdquo;).</td>
+</tr>
 </tbody>
 </table>
 <h4 id="foldernames-attributes">FolderNames Attributes</h4>
@@ -836,14 +830,13 @@
 </tbody>
 </table>
 <h3 id="examples">Examples</h3>
-<pre><code class="py">ramses = Ramses.instance
+<pre><code class="language-py">ramses = Ramses.instance
 settings = ramses.settings
 theAsset = RamAsset(&quot;thing&quot;, &quot;stuff&quot;)
 thePreviewFolder = theAsset.folderPath() + &quot;/&quot; + settings.folderNames.preview
 </code></pre>
-
 <hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/22" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
         
         
     </div>
