@@ -37,33 +37,14 @@
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
 - REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget (derived from a new objectListComboBox ?)
 - REFACTOR: itemhistory as an uberlist of statushistory (one per step)
-- UI: Display widgets display more info when reiszed
+- UI: Display widgets display more info when resized
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
-        - [x] states in ramses
-        - [x] users in ramses
-        - [x] filetypes in ramses
-        - [x] applications in ramses 
-            - [x] filetypes in applications
-        - [x] template steps in ramses
-        - [x] templateassetgroups in ramses
-        - [x] projects in ramses
-            - [x] sequences in project
-                - [x] shots in seq
-                - [x] shots in project (uberlist) WIP sequences is the uberlist
-                    - [ ] Status in shoteditwidget
-                    - [x] StatusHistory: RamObjectUberList
-            - [ ] assetgroups in project 
-                - [ ] assets in asset groups
-                - [ ] assets in project (uberlist assetgroups)
-                    - [x] status in asseteditwidget
-                    - [x] StatusHistory: RamObjectUberList
-            - [ ] steps in project
-                - [ ] users in steps
-                - [ ] users in project (uberlist)
-                - [ ] apps in steps
-                - [ ] apps in project (uberlist)
-            - [ ] pipes in project
+        - [ ] steps in project
+            - [ ] users in steps
+            - [ ] users in project (uberlist)
+            - [ ] apps in steps
+            - [ ] apps in project (uberlist)
 - REFACTOR: factorize stylesheet creation to be used per widget
 - UI: ShotEditWidget & AssetEditWidget: tabs for status / files
 - BUG: pipeedit: filetype list not always updated
