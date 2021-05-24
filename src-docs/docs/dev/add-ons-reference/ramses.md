@@ -108,7 +108,7 @@ The data returned by the methods can be either [mutable or immutable](implementa
 | **folderPath** | <i class="fa fa-lock"></i> Immutable |
 | **projects** | <i class="fa fa-pen"></i> Mutable |
 | **project** | <i class="fa fa-pen"></i> Mutable |
-| **states** | <i class="fa fa-pen"></i> Mutable |
+| **states** | <i class="fa fa-lock"></i> Immutable |
 | **state** | <i class="fa fa-pen"></i> Mutable |
 
 ![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29)

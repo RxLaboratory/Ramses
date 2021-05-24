@@ -9,9 +9,18 @@ Ramses uses [specific file and folder naming conventions](../../files/naming.md)
 
 ## Short Names (IDs)
 
-    /[a-z0-9+-]{1,10}/gi
+    /^[a-zA-Z0-9+-]{1,10}$/gi
 
-*Short names*, or *ID*s are made exclusively of `a-z`, `0-1` and `+-` characters, and cannot be more than 10 characters.
+*Short names*, or *ID*s are made exclusively of `a-z`, `A-Z, `0-1` and `+-` characters, and cannot be more than 10 characters.
+
+## Names
+
+    /^[ a-zA-Z0-9+-]{1,256}$/gi
+
+*Names* made exclusively of `a-z`, `A-Z`, `0-1`, `+-` and the space characters, and cannot be more than 256 characters.
+
+!!! warning
+    *Names* should never be used in file names, as it may generate paths which may be very long.
 
 ## Status and versions
 

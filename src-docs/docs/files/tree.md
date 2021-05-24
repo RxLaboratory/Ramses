@@ -77,23 +77,23 @@ Here is an example of a typical project tree, without showing the details in the
 - PROJECTID # Root
     - 00-ADMIN
     - 01-PRE-PROD
-        - PROJECTID_SCRIPT # Pre production step
-        - PROJECTID_STORYBOARD
+        - PROJECTID_G_SCRIPT # Pre production step
+        - PROJECTID_G_STORYBOARD
     - 02-PROD
-        - PROJECTID_A_MOD # Common files for the mod step (which works on Assets)
-            - PROJECTID_A_MOD_Templates # Template files for the mod step
-        - PROJECTID_A_RIG # Common files for the rig step
-            - PROJECTID_A_RIG_Templates # Template files for the rig step
-        - PROJECTID_A_TEX
-            - PROJECTID_A_TEX_Templates
-        - PROJECTID_S_ANIM # Common files for the anim step (which works on Shots)
-            - PROJECTID_S_ANIM_Templates
-        - PROJECTID_S_LIGHT
-            - PROJECTID_S_LIGHT_Templates
-        - PROJECTID_S_COMP
-            - PROJECTID_S_COMP_Templates
+        - PROJECTID_G_MOD # Common files for the mod step (which works on Assets)
+            - PROJECTID_G_MOD_Templates # Template files for the mod step
+        - PROJECTID_G_RIG # Common files for the rig step
+            - PROJECTID_G_RIG_Templates # Template files for the rig step
+        - PROJECTID_G_TEX
+            - PROJECTID_G_TEX_Templates
+        - PROJECTID_G_ANIM # Common files for the anim step (which works on Shots)
+            - PROJECTID_G_ANIM_Templates
+        - PROJECTID_G_LIGHT
+            - PROJECTID_G_LIGHT_Templates
+        - PROJECTID_G_COMP
+            - PROJECTID_G_COMP_Templates
     - 03-POST-PROD
-        - PROJECTID_EDIT # Post production step 
+        - PROJECTID_G_EDIT # Post production step 
     - 04-ASSETS 
         - Characters # A Group of Assets
             - PROJECTID_A_TRISTAN # An Asset
