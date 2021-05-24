@@ -13,6 +13,10 @@
     - win
     - mac
 
+## Addons
+
+- [ ] Update addon doc from ramses-py
+
 ## pipeline tools first
 
 - FEATURE: Asset & Shot table
