@@ -1,5 +1,37 @@
 # General queries
 
+## getRamsesFolderPath
+
+Returns the general Ramses folder, containing projects and config files...
+
+### Query attributes
+
+- *getRamsesFolderPath*
+
+### Reply content
+
+The *Daemon* replies with the path to the folder.
+
+- *folder*: **string**. The folder.
+
+### Example
+
+Query:  
+`getRamsesFolderPath`
+
+Reply:  
+```json
+{
+    "accepted": true,
+    "query": "getAsset",
+    "success": true,
+    "message": "Asset retrived.",
+    "content": {
+            "folder": "/home/duduf/Ramses"
+        }
+}
+```
+
 ## ping
 
 Checks if the *Daemon* is running, and gets its version and current user information.

@@ -36,6 +36,7 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **getCurrentUser**<br />▹ *Object / Dict* | | Gets the current user | |
 | **getProjects**<br />▹ *Object / Dict* | | Gets the list of available projects |
 | **getProject**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific project. The name is optional, as short names *should* be unique. | |
+| **getRamsesFolderPath**<br />▹ *Object / Dict* | | Gets the main Ramses folder containing projects, config files, user files... | |
 | **getPipes**<br />▹ *Object / Dict* | | Gets the list of pipes for the current project | TODO |
 | **getShots**<br />▹ *Object / Dict* | *string*: **filter**=`""` | Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard `"*"` | |
 | **getShot**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific shot. The name is optional, as short names *should* be unique. | |

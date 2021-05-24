@@ -31,6 +31,7 @@ By default, settings are saved in a `ramses_addons_settings.json` file, in the u
 | **online** | *boolean* | `true` | Wether to always try to (re)connect to the *Daemon* if offline. |
 | **ramsesClientPath** | *string* | os-specific | Location of the Ramses Client executable file (.exe on Windows, .app on MacOS, .appimage or binary on Linux) |
 | **ramsesClientPort** | *integer* | `18185` | Listening port of the Ramses Daemon |
+| **ramsesFolderPath** | *string* | `"~/Ramses"` | The folder containing all Ramses files (settings, projects, etc) |
 | **logLevel** | *LogLevel* | `LogLevel.Info` | Changes the quantity of messages in the log. One of: `LogLevel.DataReceived`, `LogLevel.DataSent`, `LogLevel.Debug`, `LogLevel.Info`, `LogLevel.Critical`, `LogLevel.Fatal` |
 | **version** | *string* | The current API version | Read-only. |
 
