@@ -8,6 +8,7 @@ Inherits: [***RamItem***](ram_item.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
+| **fromDict**<br />▹ *RamShot* | *dict or object*: **shotDict** | Builds a *RamShot* from a dict or object like the one returned by the *[RamDaemonInterface](ram_daemon_interface.md)* |
 | **fromPath**<br />▹ *RamShot* | *string*: **folderPath**<br /> | Returns a *RamShot* instance built using the given folder path. The path can be any file or folder path from the asset (a version file, a preview file, etc) |
 
 ## Methods
@@ -32,4 +33,4 @@ The data returned by the methods can be either [mutable or immutable](implementa
 | --- | --- |
 | **duration** | <i class="fa fa-pen"></i> Mutable |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)

@@ -34,4 +34,4 @@ The data returned by the methods can be either [mutable or immutable](implementa
 | --- | --- |
 | **extensions** | <i class="fa fa-lock"></i> Immutable |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)

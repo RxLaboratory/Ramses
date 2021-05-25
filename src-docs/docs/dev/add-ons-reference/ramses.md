@@ -2,7 +2,12 @@
 
 The main class. One (and only one) instance globally available (Ramses is a *singleton*), by calling `Ramses.instance()`.
 
-[TOC]
+## Static Methods
+
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **instance**<br />▹ *Ramses* | | Returns the *Ramses* unique instance. |
+| **version**<br />▹ *string* | | The current version of this API |
 
 ## Static Attributes
 
@@ -11,13 +16,6 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **apiReferenceUrl** | *string* | This page URL | A link to this API documentation |
 | **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | A link to the [Ramses add-ons](../../../addons/) documentation |
 | **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | A link to the [Ramses documentation](../../../) |
-
-## Static Methods
-
-| Method | Arguments | Description |
-| --- | --- | --- |
-| **instance**<br />▹ *Ramses* | | Returns the *Ramses* unique instance. |
-| **version**<br />▹ *string* | | The current version of this API |
 
 ## Attributes
 
@@ -30,12 +28,12 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **alternativeFolderPaths**<br />▹ *string list* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
-| **backupFolderPath**<br />▹ *string* | | A copy of the main folder where all files are stored. |
+| **alternativeFolderPaths**<br />▹ *list* of *string* | | A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available. |
+| **backupFolderPath**<br />▹ *list* of *string* | | A copy of the main folder where all files are stored. |
 | **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. <br />Returns success. |
-| **currentProject**<br />▹ *RamProject* or *None* | | The current project. |
+| **currentProject**<br />▹ *[RamProject](ram_project.md)* or *None* | | The current project. |
 | **currentStep**<br />▹ *RamStep* or *None* | | The current step. |
-| **currentUser**<br />▹ *RamUser* or *None* | | The current user. |
+| **currentUser**<br />▹ *[RamUser](ram_user.md)* or *None* | | The current user. |
 | **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
@@ -94,6 +92,13 @@ ____
 !!! note
     These section is for the development of the API only; you should not need these when developping your add-on using the API.
 
+### Private attributes
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| **defaultStates** | *list of [RamState](ram_state.md)* | | The list of states to use if the *Daemon* is not available. |
+| **defaultState** | *[RamState](ram_state.md)* | | The state to use as default ("WIP"). |
+
 ### (Im)mutable data
 
 The data returned by the methods can be either [mutable or immutable](implementation.md#accessing-the-data).
@@ -111,4 +116,4 @@ The data returned by the methods can be either [mutable or immutable](implementa
 | **states** | <i class="fa fa-lock"></i> Immutable |
 | **state** | <i class="fa fa-pen"></i> Mutable |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)

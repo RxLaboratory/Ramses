@@ -8,7 +8,8 @@ Inherited by: *[RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **fromDict**<br />▹ *RamObject* | *object* or *dict*: **objectDict**<br /> | Returns a *RamObject* instance built using the given object/dict, as the ones returned by [RamDaemonInterface](ram_daemon_interface.md).<br />This method is reimplemented in inherited classes to return an inherited instance. |
+| **fromDict**<br />▹ *RamObject* | *object* or *dict*: **objectDict** | Returns a *RamObject* instance built using the given object/dict, as the ones returned by [RamDaemonInterface](ram_daemon_interface.md).<br />This method is reimplemented in inherited classes to return an inherited instance. |
+| **getObjectShortName**<br />▹ *string* | *object* or *string*: **object** | Convenience method. Returns the object's short name or the string itself; use this to parse arguments in methods which need to use the shortname but can get either an object or a string as an argument. |
 
 ## Methods
 
@@ -158,4 +159,4 @@ RamObject.prototype.is = function ( other )
 
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)

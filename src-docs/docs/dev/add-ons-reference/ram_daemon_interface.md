@@ -7,14 +7,12 @@ One (and only one) instance globally available (RamDaemonInterface is a *singlet
 !!! note
     You should not need this class as all communications are automatically handled by the other classes.
 
-[TOC]
-
 ## Static Methods
 
 | Method | Arguments | Description | Dev Notes |
 | --- | --- | --- | --- |
 | **instance**<br />▹ *RamDaemonInterface* | | Returns the *RamDaemonInterface* unique instance. |
-| **ckeckReply**<br />▹ *boolean* | *dict*: **reply** | Checks if the reply returned by a *RamDaemonInterface* instance is accepted, successful and has some content. |  |
+| **checkReply**<br />▹ *boolean* | *dict*: **reply** | Checks if the reply returned by a *RamDaemonInterface* instance is accepted, successful and has some content. |  |
 
 
 ## Methods
@@ -89,4 +87,4 @@ In JS, the methods from this class return a standard JS object as constructed fr
 
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;medias:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)
+![META](authors:Nicolas "Duduf" Dufresne;medias:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)

@@ -22,17 +22,25 @@ By default, settings are saved in a `ramses_addons_settings.json` file, in the u
 
 ## Attributes
 
+To retrieve the default values after the settings have been changed, access them with the attributes which names start with `default`.
+
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
 | **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | Read-only. A link to the [Ramses add-ons](../../../addons/) documentation |
 | **apiReferenceUrl** | *string* | This page URL | Read-only. A link to this API documentation |
 | **autoIncrementTimeout** | *int* | `120` | Timeout before auto incrementing a file, in minutes. |
+| **defaultAutoIncrementTimeout** | *int* | `120` |
+| **defaultOnline** | *boolean* | `true` |
+| **defaultRamsesClientPath** | *string* | os-specific |
+| **defaultRamsesClientPort** | *integer* | `18185` |
+| **defaultRamsesFolderPath** | *string* | `"~/Ramses"` |
+| **defaultLogLevel** | *LogLevel* | `LogLevel.Info` |
 | **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | Read-only. A link to the [Ramses documentation](../../../) |
+| **logLevel** | *LogLevel* | `LogLevel.Info` | Changes the quantity of messages in the log. One of: `LogLevel.DataReceived`, `LogLevel.DataSent`, `LogLevel.Debug`, `LogLevel.Info`, `LogLevel.Critical`, `LogLevel.Fatal` |
 | **online** | *boolean* | `true` | Wether to always try to (re)connect to the *Daemon* if offline. |
 | **ramsesClientPath** | *string* | os-specific | Location of the Ramses Client executable file (.exe on Windows, .app on MacOS, .appimage or binary on Linux) |
 | **ramsesClientPort** | *integer* | `18185` | Listening port of the Ramses Daemon |
 | **ramsesFolderPath** | *string* | `"~/Ramses"` | The folder containing all Ramses files (settings, projects, etc) |
-| **logLevel** | *LogLevel* | `LogLevel.Info` | Changes the quantity of messages in the log. One of: `LogLevel.DataReceived`, `LogLevel.DataSent`, `LogLevel.Debug`, `LogLevel.Info`, `LogLevel.Critical`, `LogLevel.Fatal` |
 | **version** | *string* | The current API version | Read-only. |
 
 ## Methods
@@ -55,8 +63,6 @@ ____
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
 | **folderNames** | *FolderNames* | | A simple class containing the common names for subfolders. |
-| **defaultStates** | *list of [RamState](ram_state.md)* | | The list of states to use if the *Daemon* is not available. |
-| **defaultState** | *[RamState](ram_state.md)* | | The state to use as default ("WIP"). |
 
 #### FolderNames Attributes
 
@@ -80,4 +86,4 @@ thePreviewFolder = theAsset.folderPath() + "/" + settings.folderNames.preview
 ```
 ____
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)
