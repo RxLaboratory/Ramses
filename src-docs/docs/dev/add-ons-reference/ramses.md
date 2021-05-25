@@ -37,8 +37,9 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
-| **projects**<br />▹ *list of RamProject* | | The list of available projects. |
 | **project**<br />▹ *RamProject* | *string*: **projectShortName** | Gets a specific project. |
+| **projects**<br />▹ *list of RamProject* | | The list of available projects. |
+| **projectsPath**<br />▹ *string* | | The path to the folder containing projects. |
 | **states**<br />▹ *list of RamState* | | The list of available states. |
 | **state**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
 | **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
@@ -46,6 +47,7 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
 | **settings** | [*RamSettings*](ram_settings.md) |  | The settings unique instance. Same as `RamSettings.instance()` |
 | **updateStatus** | |  |  Runs the scripts in `Ramses.instance().statusScripts`. |
+| **usersPath**<br />▹ *string* | |  |  The path to the folder containing users. |
 
 ## Examples
 
