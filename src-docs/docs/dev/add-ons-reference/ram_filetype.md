@@ -6,6 +6,12 @@ File types are typically used with *[RamPipe](ram_pipe.md)*.
 
 Inherits: [***RamObject***](ram_object.md)
 
+## Static Methods
+
+| Method | Arguments | Description |
+| --- | --- | --- |
+| **fromDict**<br />▹ *RamFileType* | *dict or object*: **fileTypeDict** | Builds a RamFileType from a dict or object like the one returned by the *[RamDaemonInterface](ram_daemon_interface.md)* |
+
 ## Methods
 
 | Method | Arguments | Description |
