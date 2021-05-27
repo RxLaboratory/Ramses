@@ -9,18 +9,23 @@ Ramses uses [specific file and folder naming conventions](../../files/naming.md)
 
 ## Short Names (IDs)
 
-    /^[a-zA-Z0-9+-]{1,10}$/gi
+    /^(?!(?:PUB|WIP|V)?[0-9]+)[a-zA-Z0-9+-]{1,10}$/gi
 
 *Short names*, or *ID*s are made exclusively of `a-z`, `A-Z, `0-1` and `+-` characters, and cannot be more than 10 characters.
 
+The negative part of the regular expression, `(?!(?:PUB|WIP|V)?[0-9]+)`, is used to differenciate regular blocks (name, short name, etc.) from versions.
+
 ## Names
 
-    /^[ a-zA-Z0-9+-]{1,256}$/gi
+    /^(?!(?:PUB|WIP|V)?[0-9]+)[ a-zA-Z0-9+-]{1,256}$/gi
 
 *Names* made exclusively of `a-z`, `A-Z`, `0-1`, `+-` and the space characters, and cannot be more than 256 characters.
 
 !!! warning
     *Names* should never be used in file names, as it may generate paths which may be very long.
+
+The negative part of the regular expression, `(?!(?:PUB|WIP|V)?[0-9]+)`, is used to differenciate regular blocks (name, short name, etc.) from versions.
+
 
 ## Status and versions
 
@@ -30,6 +35,16 @@ The first matching group contains the status (and may be empty), and the second 
 
 !!! note
     The string in the first matching group should be dynamically built using the list of available status *ID*s (*short names*). By default, it should at least contain the three strings shown in this example: *WIP*, *PUB*, and *V*.
+
+## Extract version from a file name
+
+    /(?:(_(v|wip|pub)?([0-9]+)))(?:\.[a-z0-9.]+)?$/gi
+
+This regular expressions matches everything including the last underscore, the version block and the file extension if any.
+
+The first group contains the underscore and the version block; it can be used to be replaced by an empty string in file names to quickly remove the version block from the name.
+
+The second and third groups contain the state and the version.
 
 ## Resource names
 
@@ -41,7 +56,7 @@ Resource names can be made of `a-z`, `0-9`, `+-` and white spaces but must not s
 
 This is the regular expression for validating, matching and decomposing file names.
 
-    /^([a-z0-9+-]{1,10})_(?:([AS])_([a-z0-9+-]{1,10})|(G))_([a-z0-9+-]{1,10})(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+))?(?:_(PUB|WIP|V)?([0-9]+))?\.([a-z0-9.]+)$/gi
+    /^([a-z0-9+-]{1,10})_(?:([ASG])_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-]{1,10}))(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-]{1,10}))?(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+))?(?:_(PUB|WIP|V)?([0-9]+))?(?:\.([a-z0-9.]+))?$/gi
 
 
 Here is the list of matching groups:

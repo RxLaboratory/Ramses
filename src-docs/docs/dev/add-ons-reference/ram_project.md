@@ -36,7 +36,7 @@ Inherits: [***RamObject***](ram_object.md)
 | **shots**<br />▹ *[RamShot](ram_shot.md)* | | Available shots in this project |
 | **shotsPath**<br />▹ *str* | | The path to the shots of this project. When calling this method, the folder will created if it does not exist yet. |
 | **step**<br />▹ *[RamStep](ram_step.md)* | *string*: **stepShortName** | Gets a step with its short name. | 
-| **steps**<br />▹ *list of [RamStep](ram_step.md)* | *enumerated value*: **type**=`RamStep.ALL` | Available steps in this project. Use *type* to filter the results.<br />One of: `StepType.ALL`, `StepType.ASSET_PODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.PRE_PRODUCTION`, `StepType.PRODUCTION`, `StepType.POST_PRODUCTION`.<br />`StepType.PRODUCTION` represents a combination of `SHOT` and `ASSET`. |
+| **steps**<br />▹ *list of [RamStep](ram_step.md)* | *enumerated value*: **type**=`RamStep.ALL`,<br />*deepSearch*: **boolean**=`false` | Available steps in this project. Use *type* to filter the results.<br />One of: `StepType.ALL`, `StepType.ASSET_PODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.PRE_PRODUCTION`, `StepType.PRODUCTION`, `StepType.POST_PRODUCTION`.<br />`StepType.PRODUCTION` represents a combination of `SHOT` and `ASSET`.<br />When offline, *deepSearch* will also look for existing steps in the *Assets* and *Shots* folder of the project, but this can take a long time if there are many assets and shots. |
 | **width**<br />▹ *int* | | The project's width, in pixels. |
 
 ____
