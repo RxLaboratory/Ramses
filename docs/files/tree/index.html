@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../addons/">Ramses Add-ons</a>
+    <a href="../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../dev/add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../dev/add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,20 +630,75 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#folder-structure-the-ramses-tree">Folder Structure: the Ramses Tree</a></li>
-            <li class="second-level"><a href="#introduction">Introduction</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#folder-structure-the-ramses-tree">Folder Structure: the Ramses Tree</a></li>
+                <li class="second-level"><a href="#introduction">Introduction</a></li>
+                    
+                    <li class="third-level"><a href="#remote-files-on-windows">Remote files on Windows</a></li>
+                    <li class="third-level"><a href="#remote-files-on-unix-like-systems-linux-mac-os">Remote files on Unix-like Systems (Linux, Mac OS)</a></li>
+                <li class="second-level"><a href="#the-ramses-folder">The Ramses Folder</a></li>
+                    
+                <li class="second-level"><a href="#the-project-folder">The Project Folder</a></li>
+                    
+                <li class="second-level"><a href="#a-working-folder">A working folder</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-                <li class="third-level"><a href="#remote-files-on-windows">Remote files on Windows</a></li>
-                <li class="third-level"><a href="#remote-files-on-unix-like-systems-linux-mac-os">Remote files on Unix-like Systems (Linux, Mac OS)</a></li>
-            <li class="second-level"><a href="#the-ramses-folder">The Ramses Folder</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#the-project-folder">The Project Folder</a></li>
+                    <li class="second-level active"><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#a-working-folder">A working folder</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-    </ul>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -662,7 +738,7 @@
 <p>The easiest way to use Ramses to manage all your projects is to define a root folder for all Ramses projects, where Ramses will create a subfolder for each project.</p>
 <p>This Ramses folder is also used to store user specific files, some configuration files, etc.</p>
 <p>Nevertheless, you can always choose another folder to store a specific project, outside of the Ramses Folder.</p>
-<pre><code class="language-sh">- Ramses Folder
+<pre><code class="sh">- Ramses Folder
     - Config # Configuration files
     - Projects # All projects
         - Project01 # First project
@@ -675,9 +751,10 @@
             - Config
         - ...
 </code></pre>
+
 <h2 id="the-project-folder">The Project Folder</h2>
 <p>These are the contents of the Project folder:</p>
-<pre><code class="language-sh">- PROJECTID # Root
+<pre><code class="sh">- PROJECTID # Root
     - 00-ADMIN # Project administration
     - 01-PRE-PROD # Pre-production steps
     - 02-PROD # Production steps
@@ -686,29 +763,30 @@
     - 05-SHOTS # All the Shots
     - 06-EXPORT # Media files
 </code></pre>
+
 <p>The root folder of a project only contains other folders and no files.</p>
 <p>The subfolder in the root folder are numbered to help sorting them and quickly find them.</p>
 <p>Here is an example of a typical project tree, without showing the details in the working directories nor any file.</p>
-<pre><code class="language-sh">- PROJECTID # Root
+<pre><code class="sh">- PROJECTID # Root
     - 00-ADMIN
     - 01-PRE-PROD
-        - PROJECTID_SCRIPT # Pre production step
-        - PROJECTID_STORYBOARD
+        - PROJECTID_G_SCRIPT # Pre production step
+        - PROJECTID_G_STORYBOARD
     - 02-PROD
-        - PROJECTID_A_MOD # Common files for the mod step (which works on Assets)
-            - PROJECTID_A_MOD_Templates # Template files for the mod step
-        - PROJECTID_A_RIG # Common files for the rig step
-            - PROJECTID_A_RIG_Templates # Template files for the rig step
-        - PROJECTID_A_TEX
-            - PROJECTID_A_TEX_Templates
-        - PROJECTID_S_ANIM # Common files for the anim step (which works on Shots)
-            - PROJECTID_S_ANIM_Templates
-        - PROJECTID_S_LIGHT
-            - PROJECTID_S_LIGHT_Templates
-        - PROJECTID_S_COMP
-            - PROJECTID_S_COMP_Templates
+        - PROJECTID_G_MOD # Common files for the mod step (which works on Assets)
+            - PROJECTID_G_MOD_Templates # Template files for the mod step
+        - PROJECTID_G_RIG # Common files for the rig step
+            - PROJECTID_G_RIG_Templates # Template files for the rig step
+        - PROJECTID_G_TEX
+            - PROJECTID_G_TEX_Templates
+        - PROJECTID_G_ANIM # Common files for the anim step (which works on Shots)
+            - PROJECTID_G_ANIM_Templates
+        - PROJECTID_G_LIGHT
+            - PROJECTID_G_LIGHT_Templates
+        - PROJECTID_G_COMP
+            - PROJECTID_G_COMP_Templates
     - 03-POST-PROD
-        - PROJECTID_EDIT # Post production step 
+        - PROJECTID_G_EDIT # Post production step 
     - 04-ASSETS 
         - Characters # A Group of Assets
             - PROJECTID_A_TRISTAN # An Asset
@@ -729,10 +807,11 @@
         - PROJECTID_S_02-001 # A Shot
     - 06-EXPORT
 </code></pre>
+
 <h2 id="a-working-folder">A working folder</h2>
 <p>A folder containing working files is always organised the same way.</p>
 <p>Here is an example for the modelling step of the asset called <em>Tristan</em>.</p>
-<pre><code class="language-sh">- PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
+<pre><code class="sh">- PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
     - PROJECTID_A_TRISTAN_MOD.blend # The main file for modelling Tristan (on Blender)
     - PROJECTID_A_TRISTAN_MOD_Sculpt.blend # Another resource
     - _versions # The versionning folder, handled by Ramses.
@@ -750,6 +829,7 @@
         - PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
         - PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
 </code></pre>
+
 <p>The <em>ramses_versions</em> subfolder contains the versionning and history of the work.</p>
 <p>The <em>published</em> subfolder contains the published and exported files to be used by other steps.</p>
 <p>The <em>preview</em> subfolder contains the files for previewing the current work, like videos or images. These files may be used by Ramses to generate thumbnails. Ramses is also able to list, preview, and play these files (if their format is standard and supported).</p>

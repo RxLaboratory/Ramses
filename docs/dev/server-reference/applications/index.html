@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,22 +630,77 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#queries-for-managing-applications">Queries for managing applications</a></li>
-            <li class="second-level"><a href="#createapplication">createApplication</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#queries-for-managing-applications">Queries for managing applications</a></li>
+                <li class="second-level"><a href="#createapplication">createApplication</a></li>
+                    
+                <li class="second-level"><a href="#getapplications">getApplications</a></li>
+                    
+                <li class="second-level"><a href="#updateapplication">updateApplication</a></li>
+                    
+                <li class="second-level"><a href="#removeapplication">removeApplication</a></li>
+                    
+                <li class="second-level"><a href="#assignfiletype">assignFileType</a></li>
+                    
+                <li class="second-level"><a href="#unassignfiletype">unassignFileType</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#getapplications">getApplications</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#updateapplication">updateApplication</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#removeapplication">removeApplication</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-            <li class="second-level"><a href="#assignfiletype">assignFileType</a></li>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
                 
-            <li class="second-level"><a href="#unassignfiletype">unassignFileType</a></li>
+                    <li class="second-level "><a href="">Files and Folders</a></li>
                 
-    </ul>
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -658,7 +734,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createFileType&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createApplication&quot;,
     &quot;success&quot;: true,
@@ -666,6 +742,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getapplications">getApplications</h2>
 <p>Retrieves the list of all applications.</p>
 <p><strong>Query attributes:</strong></p>
@@ -682,7 +759,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getApplications&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getApplications&quot;,
     &quot;success&quot;: true,
@@ -703,6 +780,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="updateapplication">updateApplication</h2>
 <p>Update application info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -719,7 +797,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateApplication&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateApplication&quot;,
     &quot;success&quot;: true,
@@ -727,6 +805,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeapplication">removeApplication</h2>
 <p>Removes an application from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -740,7 +819,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeApplication&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeApplication&quot;,
     &quot;success&quot;: true,
@@ -748,6 +827,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignfiletype">assignFileType</h2>
 <p>Assigns a file type to an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -763,7 +843,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignFileType&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;type=import&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignFileType&quot;,
     &quot;success&quot;: true,
@@ -771,6 +851,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="unassignfiletype">unassignFileType</h2>
 <p>Unassigns a file type from an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -786,7 +867,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?unassignUser&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignFileType&quot;,
     &quot;success&quot;: true,

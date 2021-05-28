@@ -5,6 +5,10 @@ a:hover {
     color: #710132;
 }
 
+img {
+    max-width: 100%;
+}
+
 hr {
     height: 3px;
     border: none;
@@ -23,9 +27,30 @@ body {
 
 .bs-sidebar {
     background-color: #e3e3e3;
+    background-size: 100% 1.2em;
+    
+    background-size: 10px 10px;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0, 0, 0, 0) 1px);
+    
     box-shadow: 1px 4px 7px #232323;
     border-radius: 10px;
     border: none;
+}
+
+@media (min-width: 992px) {
+    #side-menu {
+        position: fixed;
+        top: 80px;
+        height: calc(100% - 100px);
+        overflow-y: hidden;
+    }
+
+    .bs-sidebar.affix {
+        position: relative;
+        top: 0;
+        max-height: calc(50% - 20px);
+        overflow-y: auto;
+    }
 }
 
 .bs-sidenav {
@@ -55,6 +80,10 @@ ul.nav li.second-level {
 
 ul.nav li.active {
     background-color: #f1f1f1;
+}
+
+ul.nav li p {
+    margin-left: 10px;
 }
 
 .post-meta {

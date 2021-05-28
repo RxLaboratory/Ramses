@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,20 +630,75 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramdaemoninterface">RamDaemonInterface</a></li>
-            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramdaemoninterface">RamDaemonInterface</a></li>
+                <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    
+                <li class="second-level"><a href="#methods">Methods</a></li>
+                    
+                <li class="second-level"><a href="#examples">Examples</a></li>
+                    
+                <li class="second-level"><a href="#implementation">Implementation</a></li>
+                    
+                    <li class="third-level"><a href="#python">Python</a></li>
+                    <li class="third-level"><a href="#javascript-extendscript">JavaScript / ExtendScript</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#methods">Methods</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#examples">Examples</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#implementation">Implementation</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-                <li class="third-level"><a href="#python">Python</a></li>
-                <li class="third-level"><a href="#javascript-extendscript">JavaScript / ExtendScript</a></li>
-    </ul>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -632,21 +708,6 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You should not need this class as all communications are automatically handled by the other classes.</p>
-</div>
-<div class="toc">
-<ul>
-<li><a href="#ramdaemoninterface">RamDaemonInterface</a><ul>
-<li><a href="#static-methods">Static Methods</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#examples">Examples</a></li>
-<li><a href="#implementation">Implementation</a><ul>
-<li><a href="#python">Python</a></li>
-<li><a href="#javascript-extendscript">JavaScript / ExtendScript</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 </div>
 <h2 id="static-methods">Static Methods</h2>
 <table>
@@ -666,7 +727,7 @@
 <td></td>
 </tr>
 <tr>
-<td><strong>ckeckReply</strong><br />▹ <em>boolean</em></td>
+<td><strong>checkReply</strong><br />▹ <em>boolean</em></td>
 <td><em>dict</em>: <strong>reply</strong></td>
 <td>Checks if the reply returned by a <em>RamDaemonInterface</em> instance is accepted, successful and has some content.</td>
 <td></td>
@@ -750,6 +811,12 @@
 <td><strong>getProject</strong><br />▹ <em>Object / Dict</em></td>
 <td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific project. The name is optional, as short names <em>should</em> be unique.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>getRamsesFolderPath</strong><br />▹ <em>Object / Dict</em></td>
+<td></td>
+<td>Gets the main Ramses folder containing projects, config files, user files&hellip;</td>
 <td></td>
 </tr>
 <tr>
@@ -845,7 +912,7 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 daemon = RamDaemonInterface.instance()
 reply = daemon.getProjects() # Call from the instance
 if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
@@ -853,7 +920,8 @@ if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static me
 else:
     print (reply['message'])
 </code></pre>
-<pre><code class="language-js">// JavaScript
+
+<pre><code class="js">// JavaScript
 var daemon = RamDaemonInterface.instance();
 var reply = daemon.getProjects(); // Call from the instance
 if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
@@ -863,13 +931,14 @@ else {
     alert (reply['message']);
 }
 </code></pre>
+
 <h2 id="implementation">Implementation</h2>
 <h3 id="python">Python</h3>
 <p>In Python, the methods from this class return a <code>dict</code> as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json.loads( str )</code> method.</p>
 <h3 id="javascript-extendscript">JavaScript / ExtendScript</h3>
 <p>In JS, the methods from this class return a standard JS object as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json2</code> library.</p>
 <hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;medias:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;medias:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
         
         
     </div>

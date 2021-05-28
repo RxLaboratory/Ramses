@@ -25,6 +25,7 @@ This is the comprehensive list of available classes. In the *Ramses Add-ons API*
 | [RamFileManager](ram_file_manager.md) | | Generic tools to handle files and the [Ramses Naming Scheme](../../files/naming.md) |
 | [RamFileType](ram_filetype.md) | | A File type (name and possible extensions) |
 | [RamItem](ram_item.md) | [RamObject](ram_object.md) | The base class for Shots and Assets. |
+| [RamMetaDataManager](ram_metadata_manager.md) | | A Class to get/set metadata from files. |
 | [RamObject](ram_object.md) | | The base class for most of Ramses objects. |
 | [RamPipe](ram_pipe.md) | | A pipe which connects two steps together in the production pipeline |
 | [RamProject](ram_project.md) | [RamObject](ram_object.md) | A project handled by Ramses. Projects contains general items, assets and shots. |
@@ -194,4 +195,4 @@ def ramSave():
 ramSave()
 ```
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/28)

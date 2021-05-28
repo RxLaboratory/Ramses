@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,20 +630,75 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramsettings">RamSettings</a></li>
-            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramsettings">RamSettings</a></li>
+                <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    
+                <li class="second-level"><a href="#attributes">Attributes</a></li>
+                    
+                <li class="second-level"><a href="#methods">Methods</a></li>
+                    
+                <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    
+                    <li class="third-level"><a href="#private-attributes">Private Attributes</a></li>
+                    <li class="third-level"><a href="#examples">Examples</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#methods">Methods</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-                <li class="third-level"><a href="#private-attributes">Private Attributes</a></li>
-                <li class="third-level"><a href="#examples">Examples</a></li>
-    </ul>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -655,6 +731,7 @@
 </tbody>
 </table>
 <h2 id="attributes">Attributes</h2>
+<p>To retrieve the default values after the settings have been changed, access them with the attributes which names start with <code>default</code>.</p>
 <table>
 <thead>
 <tr>
@@ -684,10 +761,52 @@
 <td>Timeout before auto incrementing a file, in minutes.</td>
 </tr>
 <tr>
+<td><strong>defaultAutoIncrementTimeout</strong></td>
+<td><em>int</em></td>
+<td><code>120</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>defaultOnline</strong></td>
+<td><em>boolean</em></td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>defaultRamsesClientPath</strong></td>
+<td><em>string</em></td>
+<td>os-specific</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>defaultRamsesClientPort</strong></td>
+<td><em>integer</em></td>
+<td><code>18185</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>defaultRamsesFolderPath</strong></td>
+<td><em>string</em></td>
+<td><code>"~/Ramses"</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>defaultLogLevel</strong></td>
+<td><em>LogLevel</em></td>
+<td><code>LogLevel.Info</code></td>
+<td></td>
+</tr>
+<tr>
 <td><strong>generalHelpUrl</strong></td>
 <td><em>string</em></td>
 <td>The URL to <a href="../../../">this documentation</a></td>
 <td>Read-only. A link to the <a href="../../../">Ramses documentation</a></td>
+</tr>
+<tr>
+<td><strong>logLevel</strong></td>
+<td><em>LogLevel</em></td>
+<td><code>LogLevel.Info</code></td>
+<td>Changes the quantity of messages in the log. One of: <code>LogLevel.DataReceived</code>, <code>LogLevel.DataSent</code>, <code>LogLevel.Debug</code>, <code>LogLevel.Info</code>, <code>LogLevel.Critical</code>, <code>LogLevel.Fatal</code></td>
 </tr>
 <tr>
 <td><strong>online</strong></td>
@@ -708,10 +827,10 @@
 <td>Listening port of the Ramses Daemon</td>
 </tr>
 <tr>
-<td><strong>logLevel</strong></td>
-<td><em>LogLevel</em></td>
-<td><code>LogLevel.Info</code></td>
-<td>Changes the quantity of messages in the log. One of: <code>LogLevel.DataReceived</code>, <code>LogLevel.DataSent</code>, <code>LogLevel.Debug</code>, <code>LogLevel.Info</code>, <code>LogLevel.Critical</code>, <code>LogLevel.Fatal</code></td>
+<td><strong>ramsesFolderPath</strong></td>
+<td><em>string</em></td>
+<td><code>"~/Ramses"</code></td>
+<td>The folder containing all Ramses files (settings, projects, etc)</td>
 </tr>
 <tr>
 <td><strong>version</strong></td>
@@ -771,18 +890,6 @@
 <td></td>
 <td>A simple class containing the common names for subfolders.</td>
 </tr>
-<tr>
-<td><strong>defaultStates</strong></td>
-<td><em>list of <a href="../ram_state/">RamState</a></em></td>
-<td></td>
-<td>The list of states to use if the <em>Daemon</em> is not available.</td>
-</tr>
-<tr>
-<td><strong>defaultState</strong></td>
-<td><em><a href="../ram_state/">RamState</a></em></td>
-<td></td>
-<td>The state to use as default (&ldquo;WIP&rdquo;).</td>
-</tr>
 </tbody>
 </table>
 <h4 id="foldernames-attributes">FolderNames Attributes</h4>
@@ -830,13 +937,14 @@
 </tbody>
 </table>
 <h3 id="examples">Examples</h3>
-<pre><code class="language-py">ramses = Ramses.instance
+<pre><code class="py">ramses = Ramses.instance
 settings = ramses.settings
 theAsset = RamAsset(&quot;thing&quot;, &quot;stuff&quot;)
 thePreviewFolder = theAsset.folderPath() + &quot;/&quot; + settings.folderNames.preview
 </code></pre>
+
 <hr />
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
         
         
     </div>

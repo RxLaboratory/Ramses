@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,21 +630,100 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramstep">RamStep</a></li>
-            <li class="second-level"><a href="#methods">Methods</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramstep">RamStep</a></li>
+                <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    
+                <li class="second-level"><a href="#methods">Methods</a></li>
+                    
+                <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    
+                    <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
-    </ul>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="ramstep">RamStep</h1>
 <p>A step in the production of the shots or assets of the project.</p>
 <p>Inherits: <a href="../ram_object/"><strong><em>RamObject</em></strong></a></p>
+<h2 id="static-methods">Static Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>fromDict</strong><br />▹ <em>RamStep</em></td>
+<td><em>dict or object</em>: <strong>stepDict</strong></td>
+<td>Builds a <em>RamStep</em> from a dict or object like the one returned by the <em><a href="../ram_daemon_interface/">RamDaemonInterface</a></em></td>
+</tr>
+<tr>
+<td><strong>fromPath</strong><br />▹ <em>RamStep</em></td>
+<td><em>string</em>: <strong>path</strong><br /></td>
+<td>Returns a <em>RamStep</em> instance built using the given file path.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="methods">Methods</h2>
 <table>
 <thead>
@@ -640,19 +740,19 @@
 <td>At least the folder or the type must be provided, but one is enough as the other info can be gotten from the <a href="../../../files/tree/"><em>Ramses Tree</em></a></td>
 </tr>
 <tr>
-<td><strong>commonFolderPath</strong><br />▹ <em>string</em></td>
+<td><strong>folderPath</strong><br />▹ <em>string</em></td>
 <td></td>
 <td>The absolute path to the folder containing the common files for this step</td>
 </tr>
 <tr>
-<td><strong>stepType</strong><br />▹ <em>enumerated value</em></td>
+<td><strong>stepType</strong><br />▹ <em>StepType</em></td>
 <td></td>
 <td>The type of this step, one of <code>StepType.PRE_PRODUCTION</code>, <code>StepType.SHOT_PRODUCTION</code>, <code>StepType.ASSET_PRODUCTION</code>, <code>StepType.POST_PRODUCTION</code></td>
 </tr>
 <tr>
 <td><strong>templatesFolderPath</strong><br />▹ <em>string</em></td>
 <td></td>
-<td>The path to the template files of this step, relative to the common folder</td>
+<td>The absolute path to the folder containing the template files for this step</td>
 </tr>
 </tbody>
 </table>
@@ -686,7 +786,7 @@
 </tr>
 </tbody>
 </table>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
         
         
     </div>

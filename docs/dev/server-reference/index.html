@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../addons/">Ramses Add-ons</a>
+    <a href="../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,14 +630,69 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramses-server-api">Ramses Server API</a></li>
-            <li class="second-level"><a href="#server-replies">Server Replies</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramses-server-api">Ramses Server API</a></li>
+                <li class="second-level"><a href="#server-replies">Server Replies</a></li>
+                    
+                <li class="second-level"><a href="#queries">Queries</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#queries">Queries</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-    </ul>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -626,6 +702,7 @@
 <ol>
 <li><em>ping</em> to check if the server is available and check its version.</li>
 <li><em>login</em> to authenticate yourself and get a session token.</li>
+<li><em>init</em> to get the main data (user list, project list&hellip;).</li>
 </ol>
 <p>For the examples in this documentation, we assume the ramses server is available at <code>http://your.server/ramses/</code>.</p>
 <p>For the sake of readability, the <em>JSON</em> replies are formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.</p>
@@ -649,6 +726,7 @@ For now, the only way to permanently delete data is to edit the database by your
 <li>General<ul>
 <li><a href="general/#ping">ping</a></li>
 <li><a href="general/#login">login</a></li>
+<li><a href="general/#init">init</a></li>
 </ul>
 </li>
 <li>Users<ul>

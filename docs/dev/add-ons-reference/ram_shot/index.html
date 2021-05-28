@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,17 +630,72 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramshot">RamShot</a></li>
-            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramshot">RamShot</a></li>
+                <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    
+                <li class="second-level"><a href="#methods">Methods</a></li>
+                    
+                <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    
+                    <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#methods">Methods</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
-    </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -636,6 +712,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><strong>fromDict</strong><br />▹ <em>RamShot</em></td>
+<td><em>dict or object</em>: <strong>shotDict</strong></td>
+<td>Builds a <em>RamShot</em> from a dict or object like the one returned by the <em><a href="../ram_daemon_interface/">RamDaemonInterface</a></em></td>
+</tr>
 <tr>
 <td><strong>fromPath</strong><br />▹ <em>RamShot</em></td>
 <td><em>string</em>: <strong>folderPath</strong><br /></td>
@@ -655,7 +736,7 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>string</em>: <strong>shotName</strong>,<br /><em>string</em>: <strong>shotShortName</strong>,<br /><em>string</em>: <strong>shotFolder</strong>,<br /><em>float</em>: <strong>duration</strong>=<code>0.0</code>,<br /><em>list of int</em>: <strong>color</strong>=<code>[67, 67, 67]</code></td>
+<td><em>string</em>: <strong>shotName</strong>,<br /><em>string</em>: <strong>shotShortName</strong>,<br /><em>string</em>: <strong>shotFolder</strong>,<br /><em>float</em>: <strong>duration</strong>=<code>0.0</code></td>
 <td></td>
 </tr>
 <tr>
@@ -687,7 +768,7 @@
 </tr>
 </tbody>
 </table>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
         
         
     </div>

@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../addons/">Ramses Add-ons</a>
+    <a href="../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,18 +630,73 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#scripting-api-reference">Scripting API reference</a></li>
-            <li class="second-level"><a href="#classes">Classes</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#scripting-api-reference">Scripting API reference</a></li>
+                <li class="second-level"><a href="#classes">Classes</a></li>
+                    
+            <li class="first-level "><a href="#global-methods">Global Methods</a></li>
+                <li class="second-level"><a href="#examples">Examples</a></li>
+                    
+                    <li class="third-level"><a href="#include-import-the-api">Include / Import the API</a></li>
+                    <li class="third-level"><a href="#enumerated-values-constants">Enumerated values (constants)</a></li>
+                    <li class="third-level"><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-        <li class="first-level "><a href="#global-methods">Global Methods</a></li>
-            <li class="second-level"><a href="#examples">Examples</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-                <li class="third-level"><a href="#include-import-the-api">Include / Import the API</a></li>
-                <li class="third-level"><a href="#enumerated-values-constants">Enumerated values (constants)</a></li>
-                <li class="third-level"><a href="#save-command-for-maya-python">Save command for Maya (Python)</a></li>
-    </ul>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -692,6 +768,11 @@
 <td>The base class for Shots and Assets.</td>
 </tr>
 <tr>
+<td><a href="ram_metadata_manager/">RamMetaDataManager</a></td>
+<td></td>
+<td>A Class to get/set metadata from files.</td>
+</tr>
+<tr>
 <td><a href="ram_object/">RamObject</a></td>
 <td></td>
 <td>The base class for most of Ramses objects.</td>
@@ -758,7 +839,7 @@
 <h2 id="examples">Examples</h2>
 <p>Here are a few examples showing how this API can be used.</p>
 <h3 id="include-import-the-api">Include / Import the API</h3>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 # Use your usual preferred way to import the module.
 
 from ramses import *
@@ -788,7 +869,8 @@ aNewStatus = ram.RamStatus(
     )
 myShot.setStatus(aNewStatus, myRamses.currentStep())
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 // Just include the file the usual way.
 
 #include ramses.jsxinc
@@ -804,10 +886,11 @@ var aNewStatus = new RamStatus(
     );
 myShot.setStatus(aNewStatus, myRamses.currentStep());
 </code></pre>
+
 <h3 id="enumerated-values-constants">Enumerated values (constants)</h3>
 <p>Enumerated values (a.k.a. Constants) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they’re grouped together by type (for exemple Color.RED, or Shape.RECTANGLE). The value itself can be of any type (array, string, number…).</p>
 <p>In this documentation they&rsquo;re written like this: <code>ValueType.VALUE</code>, i.e. <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code>, and they&rsquo;re used the same way in the actual code.</p>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 from ramses import RamItem, ItemType
 
@@ -820,7 +903,8 @@ if anItem is not None:
     if anItem.itemType() == ItemType.SHOT:
         doSomething()
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 #include ramses.jsxinc
 
@@ -835,9 +919,10 @@ if (anItem != null)
         doSomething();
 }
 </code></pre>
+
 <h3 id="save-command-for-maya-python">Save command for <em>Maya</em> (Python)</h3>
 <p>This example shows how to use the <a href="ram_file_manager/">RamFileManager</a> class to implement a save command in <em>Maya</em> with automatic backup in the <em>_versions</em> subfolder.</p>
-<pre><code class="language-python">import maya.cmds as cmds
+<pre><code class="python">import maya.cmds as cmds
 import ramses as ram
 
 ramses = ram.Ramses.instance()
@@ -890,7 +975,8 @@ def ramSave():
 
 ramSave()
 </code></pre>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
+
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/28" /></p></div>
         
         
     </div>

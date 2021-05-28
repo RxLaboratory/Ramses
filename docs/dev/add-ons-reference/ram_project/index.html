@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,52 +630,98 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramproject">RamProject</a></li>
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramproject">RamProject</a></li>
+                <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    
+                <li class="second-level"><a href="#methods">Methods</a></li>
+                    
+                <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    
+                    <li class="third-level"><a href="#private-methods">Private methods</a></li>
+                    <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#methods">Methods</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
-    </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="ramproject">RamProject</h1>
 <p>A project handled by Ramses. Projects contains general items, assets and shots.</p>
 <p>Inherits: <a href="../ram_object/"><strong><em>RamObject</em></strong></a></p>
-<div class="toc">
-<ul>
-<li><a href="#ramproject">RamProject</a><ul>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#api-dev-notes">API Dev notes</a><ul>
-<li><a href="#immutable-data">(Im)mutable data</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="attributes">Attributes</h2>
+<h2 id="static-methods">Static Methods</h2>
 <table>
 <thead>
 <tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Default</th>
+<th>Method</th>
+<th>Arguments</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><strong>fromDict</strong><br />▹ <em>RamProject</em></td>
+<td><em>dict or object</em>: <strong>projectDict</strong></td>
+<td>Builds a <em>RamProject</em> from a dict or object like the one returned by the <em><a href="../ram_daemon_interface/">RamDaemonInterface</a></em></td>
+</tr>
+<tr>
+<td><strong>fromPath</strong><br />▹ <em>RamProject</em></td>
+<td><em>string</em>: <strong>path</strong><br /></td>
+<td>Returns a <em>RamProject</em> instance built using the given path. The path can be any file or folder path from the project</td>
 </tr>
 </tbody>
 </table>
@@ -707,6 +774,11 @@
 <td><strong>exportPath</strong><br />▹ <em>str</em></td>
 <td></td>
 <td>The path to the exported medias of this project. When calling this method, the folder will created if it does not exist yet.</td>
+</tr>
+<tr>
+<td><strong>folderPath</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The project&rsquo;s root folder.</td>
 </tr>
 <tr>
 <td><strong>framerate</strong><br />▹ <em>float</em></td>
@@ -770,8 +842,8 @@
 </tr>
 <tr>
 <td><strong>steps</strong><br />▹ <em>list of <a href="../ram_step/">RamStep</a></em></td>
-<td><em>enumerated value</em>: <strong>type</strong>=<code>RamStep.ALL</code></td>
-<td>Available steps in this project. Use <em>type</em> to filter the results.<br />One of: <code>RamStep.ALL</code>, <code>RamStep.ASSET_PODUCTION</code>, <code>RamStep.SHOT_PRODUCTION</code>, <code>RamStep.PRE_PRODUCTION</code>, <code>RamStep.PRODUCTION</code>, <code>RamStep.POST_PRODUCTION</code>.<br /><code>RamStep.PRODUCTION</code> represents a combination of <code>SHOT</code> and <code>ASSET</code></td>
+<td><em>enumerated value</em>: <strong>type</strong>=<code>RamStep.ALL</code>,<br /><em>boolean</em>: <strong>deepSearch</strong>=<code>false</code></td>
+<td>Available steps in this project. Use <em>type</em> to filter the results.<br />One of: <code>StepType.ALL</code>, <code>StepType.ASSET_PODUCTION</code>, <code>StepType.SHOT_PRODUCTION</code>, <code>StepType.PRE_PRODUCTION</code>, <code>StepType.PRODUCTION</code>, <code>StepType.POST_PRODUCTION</code>.<br /><code>StepType.PRODUCTION</code> represents a combination of <code>SHOT</code> and <code>ASSET</code>.<br />When offline, <em>deepSearch</em> will also look for existing steps in the <em>Assets</em> and <em>Shots</em> folder of the project, but this can take a long time if there are many assets and shots.</td>
 </tr>
 <tr>
 <td><strong>width</strong><br />▹ <em>int</em></td>
@@ -786,6 +858,23 @@
 <p class="admonition-title">Note</p>
 <p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
 </div>
+<h3 id="private-methods">Private methods</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>_getAssetsInFolder</strong><br />▹ <em>list</em> of <em><a href="../ram_asset/">RamAsset</a></em></td>
+<td><em>string</em>: <strong>folderPath</strong>,<br /><em>string</em>: <strong>groupName</strong>=<code>""</code></td>
+<td>Recursively gets all assets contained in the given folder.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="immutable-data">(Im)mutable data</h3>
 <p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
 <p>If a method is not listed here, it means the corresponding data is never stored in a class attribute, and must always be got from the Daemon or the tree.</p>
@@ -811,7 +900,7 @@
 </tr>
 </tbody>
 </table>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
         
         
     </div>

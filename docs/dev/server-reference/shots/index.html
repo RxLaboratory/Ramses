@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,20 +630,75 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#queries-for-managing-shots">Queries for managing shots</a></li>
-            <li class="second-level"><a href="#createshot">createShot</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#queries-for-managing-shots">Queries for managing shots</a></li>
+                <li class="second-level"><a href="#createshot">createShot</a></li>
+                    
+                <li class="second-level"><a href="#updateshot">updateShot</a></li>
+                    
+                <li class="second-level"><a href="#moveshot">moveShot</a></li>
+                    
+                <li class="second-level"><a href="#removeshot">removeShot</a></li>
+                    
+                <li class="second-level"><a href="#setshotstatus">setShotStatus</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#updateshot">updateShot</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#moveshot">moveShot</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#removeshot">removeShot</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-            <li class="second-level"><a href="#setshotstatus">setShotStatus</a></li>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
                 
-    </ul>
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -661,7 +737,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createShot&amp;name=s001&amp;shortName=001&amp;sequenceUuid=123&amp;duration=2.12&amp;order=12&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createShot&quot;,
     &quot;success&quot;: true,
@@ -669,6 +745,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="updateshot">updateShot</h2>
 <p>Update shot info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -686,7 +763,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateShot&amp;name=S003&amp;shortName=003&amp;sequenceUuid=123&amp;duration=3.36&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateShot&quot;,
     &quot;success&quot;: true,
@@ -694,6 +771,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="moveshot">moveShot</h2>
 <p>Moves a shot in the list.</p>
 <p><strong>Query attributes:</strong></p>
@@ -708,7 +786,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?moveShot&amp;order=6&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;moveShot&quot;,
     &quot;success&quot;: true,
@@ -716,6 +794,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeshot">removeShot</h2>
 <p>Removes a shot from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -729,7 +808,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeShot&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeShot&quot;,
     &quot;success&quot;: true,
@@ -737,6 +816,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="setshotstatus">setShotStatus</h2>
 <p>Sets a new status for a shot</p>
 <p><strong>Query attributes:</strong></p>
@@ -757,7 +837,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?setAssetStatus&amp;uuid=123&amp;shotUuid=123&amp;completionRatio=50&amp;userUuid=123&amp;stateUuid=123&amp;comment=A nice comment&amp;version=12&amp;stepUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setShotStatus&quot;,
     &quot;success&quot;: true,

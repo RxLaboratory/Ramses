@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,18 +630,73 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#queries-for-managing-file-types">Queries for managing file types</a></li>
-            <li class="second-level"><a href="#createfiletype">createFileType</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#queries-for-managing-file-types">Queries for managing file types</a></li>
+                <li class="second-level"><a href="#createfiletype">createFileType</a></li>
+                    
+                <li class="second-level"><a href="#getfiletypes">getFileTypes</a></li>
+                    
+                <li class="second-level"><a href="#updatefiletype">updateFileType</a></li>
+                    
+                <li class="second-level"><a href="#removefiletype">removeFileType</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#getfiletypes">getFileTypes</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#updatefiletype">updateFileType</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#removefiletype">removeFileType</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-    </ul>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -652,7 +728,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createFileType&amp;name=Maya Ascii&amp;shortName=.ma&amp;extensions=ma&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createFileType&quot;,
     &quot;success&quot;: true,
@@ -660,10 +736,13 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getfiletypes">getFileTypes</h2>
 <p>Retrieves the list of all file types.</p>
 <p><strong>Query attributes:</strong></p>
-<p>None</p>
+<ul>
+<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+</ul>
 <p><strong>Reply content:</strong></p>
 <p>The server replies an array of file type information. Each file type is an object with the following attributes:</p>
 <ul>
@@ -677,7 +756,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getFileTypes&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getFileTypes&quot;,
     &quot;success&quot;: true,
@@ -704,6 +783,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="updatefiletype">updateFileType</h2>
 <p>Update file type info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -721,7 +801,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateFileType&amp;name=Maya Ascii&amp;shortName=.ma&amp;extensions=ma&amp;previewable=0&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateFileType&quot;,
     &quot;success&quot;: true,
@@ -729,6 +809,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removefiletype">removeFileType</h2>
 <p>Removes a file type from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -742,7 +823,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeFileType&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeFileType&quot;,
     &quot;success&quot;: true,

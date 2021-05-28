@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li class="active">
     <a href="./">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -594,7 +615,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../ram_object/">
+                        <a rel="next" href="../ram_metadata_manager/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -609,17 +630,72 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramitem">RamItem</a></li>
-            <li class="second-level"><a href="#methods">Methods</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramitem">RamItem</a></li>
+                <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    
+                <li class="second-level"><a href="#methods">Methods</a></li>
+                    
+                <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    
+                    <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
-    </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -627,103 +703,6 @@
 <p>Base class for <a href="../ram_asset/"><em>RamAsset</em></a> and <a href="../ram_shot/"><em>RamShot</em></a>. An item of the project, either an asset or a shot.</p>
 <p>Inherits: <a href="../ram_object/"><strong><em>RamObject</em></strong></a></p>
 <p>Inherited by: <em><a href="../ram_shot/">RamShot</a>, <a href="../ram_asset/">RamAsset</a></em></p>
-<h2 id="methods">Methods</h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong><em>constructor</em></strong></td>
-<td><em>string</em>: <strong>itemName</strong>,<br /><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em>: <strong>itemFolder</strong>=<code>""</code>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.GENERAL</code>,<br /><em>string</em>: <strong>projectShortName</strong>=<code>""</code></td>
-<td>If <code>projectShortName</code> is not provided, it will be detected from the item folder (which can also be auto-detected in most cases)</td>
-</tr>
-<tr>
-<td><strong>currentStatus</strong><br />▹ <em>RamStatus</em></td>
-<td><em>RamStep</em> or <em>string</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
-<td>The current status for the given step</td>
-</tr>
-<tr>
-<td><strong>folderPath</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>The absolute path to the folder containing the item</td>
-</tr>
-<tr>
-<td><strong>isPublished</strong><br />▹ <em>bool</em></td>
-<td><em>RamStep</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
-<td>Convenience function to check if there are published files in the publish folder. Equivalent to <code>len(self.publishedFilePaths(step, resource)) &gt; 0</code></td>
-</tr>
-<tr>
-<td><strong>itemType</strong><br />▹ <em>ItemType</em></td>
-<td></td>
-<td>The type of this item. One of <code>ItemType.SHOT</code>, <code>ItemType.ASSET</code>, <code>ItemType.GENERAL</code></td>
-</tr>
-<tr>
-<td><strong>latestVersion</strong><br />▹ <em>integer</em></td>
-<td><em>RamStep</em> or <em>string</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code><br /><em>string</em>: <strong>stateId</strong> = <code>wip</code></td>
-<td>Returns the highest version number for the given state (wip, pub&hellip;).</td>
-</tr>
-<tr>
-<td><strong>previewFolderPath</strong><br />▹ <em>string</em></td>
-<td><em>RamStep</em> or <em>string</em>: <strong>step</strong></td>
-<td>Gets the path to the preview folder. Paths are relative to the root of the item folder.</td>
-</tr>
-<tr>
-<td><strong>previewFilePaths</strong><br />▹ <em>list of string</em></td>
-<td><em>RamStep</em> or <em>string</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
-<td>Gets the list of file paths in the preview folder. Paths are relative to the root of the item folder.</td>
-</tr>
-<tr>
-<td><strong>projectShortName</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>Gets the short name of the project this item belongs to.</td>
-</tr>
-<tr>
-<td><strong>publishedFolderPath</strong><br />▹ <em>string</em></td>
-<td><em>RamStep</em> or <em>string</em>: <strong>step</strong></td>
-<td>Gets the path to the publish folder. Paths are relative to the root of the item folder.</td>
-</tr>
-<tr>
-<td><strong>publishedFilePaths</strong><br />▹ <em>list of string</em></td>
-<td><em>RamStep</em> or <em>string</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
-<td>Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder.</td>
-</tr>
-<tr>
-<td><strong>setStatus</strong></td>
-<td><em>RamStatus</em>: <strong>status</strong><br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>Sets the current status for the given step</td>
-</tr>
-<tr>
-<td><strong>status</strong><br />▹ <em>RamStatus</em></td>
-<td><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>Gets the current status for the given step</td>
-</tr>
-<tr>
-<td><strong>stepFolderPath</strong><br />▹ <em>string</em></td>
-<td><em>RamStep or string</em>: <strong>step</strong></td>
-<td>The subfolder for the given step</td>
-</tr>
-<tr>
-<td><strong>steps</strong><br />▹ <em>list of RamStep</em></td>
-<td></td>
-<td>Gets the list of steps concerning this item.</td>
-</tr>
-<tr>
-<td><strong>versionFolderPath</strong><br />▹ <em>string</em></td>
-<td><em>RamStep</em>: <strong>step</strong></td>
-<td>Path to the version folder relative to the item root folder</td>
-</tr>
-<tr>
-<td><strong>versionFilePath</strong><br />▹ <em>string</em></td>
-<td><em>RamStep</em>: <strong>step</strong><br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
-<td>Latest version file path</td>
-</tr>
-</tbody>
-</table>
 <h2 id="static-methods">Static Methods</h2>
 <table>
 <thead>
@@ -738,6 +717,98 @@
 <td><strong>fromPath</strong><br />▹ <em>RamShot</em> or <em>RamAsset</em> or <em>RamItem</em> or <em>None</em></td>
 <td><em>string</em>: <strong>fileOrFolderPath</strong><br /></td>
 <td>Returns either a <em>RamShot</em>, <em>RamAsset</em> or <em>RamItem</em> instance built using the given folder path. The path can be any file or folder path from the asset (a version file, a preview file, etc).<br />The type (shot, asset or general item) can be checked with <code>RamItem.itemType()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>constructor</em></strong></td>
+<td><em>string</em>: <strong>itemName</strong>,<br /><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em>: <strong>itemFolder</strong>=<code>""</code>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.GENERAL</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>currentStatus</strong><br />▹ <em>RamStatus</em></td>
+<td><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code>,<br /><em>string</em>: <strong>resource</strong> = <code>""</code></td>
+<td>The current status for the given step</td>
+</tr>
+<tr>
+<td><strong>folderPath</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The absolute path to the folder containing the item</td>
+</tr>
+<tr>
+<td><strong>isPublished</strong><br />▹ <em>bool</em></td>
+<td><em>string</em>: <strong>resource</strong> = <code>""</code>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Convenience function to check if there are published files in the publish folder. Equivalent to <code>len(self.publishFilePaths(step, resource)) &gt; 0</code></td>
+</tr>
+<tr>
+<td><strong>itemType</strong><br />▹ <em>ItemType</em></td>
+<td></td>
+<td>The type of this item. One of <code>ItemType.SHOT</code>, <code>ItemType.ASSET</code>, <code>ItemType.GENERAL</code></td>
+</tr>
+<tr>
+<td><strong>latestVersion</strong><br />▹ <em>integer</em></td>
+<td><em>string</em>: <strong>resource</strong> = <code>""</code>,<br /><em>string</em>: <strong>state</strong> = <code>""</code>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>*=<code>""</code></td>
+<td>Returns the highest version number for the given state (wip, pub&hellip;).</td>
+</tr>
+<tr>
+<td><strong>latestVersionFilePath</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>resource</strong> = <code>""</code>,<br /><em>string</em>: <strong>state</strong> = <code>""</code>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Latest version file path</td>
+</tr>
+<tr>
+<td><strong>previewFolderPath</strong><br />▹ <em>string</em></td>
+<td><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Gets the path to the preview folder. Paths are relative to the root of the item folder.</td>
+</tr>
+<tr>
+<td><strong>previewFilePaths</strong><br />▹ <em>list of string</em></td>
+<td><em>string</em>: <strong>resource</strong> = <code>""</code>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Gets the list of file paths in the preview folder. Paths are relative to the root of the item folder.</td>
+</tr>
+<tr>
+<td><strong>publishFolderPath</strong><br />▹ <em>string</em></td>
+<td><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Gets the path to the publish folder. Paths are relative to the root of the item folder.</td>
+</tr>
+<tr>
+<td><strong>publishFilePaths</strong><br />▹ <em>list of string</em></td>
+<td><em>string</em>: <strong>resource</strong> = <code>""</code>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder.</td>
+</tr>
+<tr>
+<td><strong>setStatus</strong></td>
+<td><em>RamStatus</em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong></td>
+<td>Sets the current status for the given step</td>
+</tr>
+<tr>
+<td><strong>status</strong><br />▹ <em>RamStatus</em></td>
+<td><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>Gets the current status for the given step</td>
+</tr>
+<tr>
+<td><strong>stepFolderPath</strong><br />▹ <em>string</em></td>
+<td><em><a href="../ram_step/">RamStep</a> or string</em>: <strong>step</strong>*=<code>""</code></td>
+<td>The subfolder for the given step</td>
+</tr>
+<tr>
+<td><strong>steps</strong><br />▹ <em>list of <a href="../ram_step/">RamStep</a></em></td>
+<td></td>
+<td>Gets the list of steps concerning this item.</td>
+</tr>
+<tr>
+<td><strong>versionFolderPath</strong><br />▹ <em>string</em></td>
+<td><em>RamStep</em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Path to the version folder relative to the item root folder</td>
 </tr>
 </tbody>
 </table>

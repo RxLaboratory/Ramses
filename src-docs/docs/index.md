@@ -30,7 +30,9 @@ See the source on [GitHub](https://github.com/Rainbox-dev/Ramses/).
 - **_Ramses Tree_: Files and Folders**
     - [**Naming scheme**](files/naming.md)
     - [**Folder structure**](files/tree.md)
-- [***Ramses Add-ons***](addons/index.md)
+- **Ramses Add-ons**
+    - [**General Information**](addons/index.md)
+    - [**Autodesk Maya**](addons/maya.md)
 - **Development**
     - [**Introduction**](dev/index.md)
     - [**Files and folders**](dev/files/naming.md)

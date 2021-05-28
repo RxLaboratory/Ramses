@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,44 +630,106 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramses">Ramses</a></li>
-            <li class="second-level"><a href="#static-attributes">Static Attributes</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramses">Ramses</a></li>
+                <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    
+                <li class="second-level"><a href="#static-attributes">Static Attributes</a></li>
+                    
+                <li class="second-level"><a href="#attributes">Attributes</a></li>
+                    
+                <li class="second-level"><a href="#methods">Methods</a></li>
+                    
+                <li class="second-level"><a href="#examples">Examples</a></li>
+                    
+                <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    
+                    <li class="third-level"><a href="#private-attributes">Private attributes</a></li>
+                    <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#static-methods">Static Methods</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#attributes">Attributes</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#methods">Methods</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-            <li class="second-level"><a href="#examples">Examples</a></li>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
                 
-            <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    <li class="second-level "><a href="">Files and Folders</a></li>
                 
-                <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
-    </ul>
+                    <li class="second-level active"><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="ramses">Ramses</h1>
 <p>The main class. One (and only one) instance globally available (Ramses is a <em>singleton</em>), by calling <code>Ramses.instance()</code>.</p>
-<div class="toc">
-<ul>
-<li><a href="#ramses">Ramses</a><ul>
-<li><a href="#static-attributes">Static Attributes</a></li>
-<li><a href="#static-methods">Static Methods</a></li>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#examples">Examples</a></li>
-<li><a href="#api-dev-notes">API Dev notes</a><ul>
-<li><a href="#immutable-data">(Im)mutable data</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
+<h2 id="static-methods">Static Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>instance</strong><br />▹ <em>Ramses</em></td>
+<td></td>
+<td>Returns the <em>Ramses</em> unique instance.</td>
+</tr>
+<tr>
+<td><strong>version</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The current version of this API</td>
+</tr>
+</tbody>
+</table>
 <h2 id="static-attributes">Static Attributes</h2>
 <table>
 <thead>
@@ -675,28 +758,6 @@
 <td><em>string</em></td>
 <td>The URL to <a href="../../../">this documentation</a></td>
 <td>A link to the <a href="../../../">Ramses documentation</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="static-methods">Static Methods</h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>instance</strong><br />▹ <em>Ramses</em></td>
-<td></td>
-<td>Returns the <em>Ramses</em> unique instance.</td>
-</tr>
-<tr>
-<td><strong>version</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>The current version of this API</td>
 </tr>
 </tbody>
 </table>
@@ -736,12 +797,12 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>alternativeFolderPaths</strong><br />▹ <em>string list</em></td>
+<td><strong>alternativeFolderPaths</strong><br />▹ <em>list</em> of <em>string</em></td>
 <td></td>
 <td>A list of alternative absolute paths to the main Ramses folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.</td>
 </tr>
 <tr>
-<td><strong>backupFolderPath</strong><br />▹ <em>string</em></td>
+<td><strong>backupFolderPath</strong><br />▹ <em>list</em> of <em>string</em></td>
 <td></td>
 <td>A copy of the main folder where all files are stored.</td>
 </tr>
@@ -751,7 +812,7 @@
 <td>Checks <em>Daemon</em> availability and initiates the connection. <br />Returns success.</td>
 </tr>
 <tr>
-<td><strong>currentProject</strong><br />▹ <em>RamProject</em> or <em>None</em></td>
+<td><strong>currentProject</strong><br />▹ <em><a href="../ram_project/">RamProject</a></em> or <em>None</em></td>
 <td></td>
 <td>The current project.</td>
 </tr>
@@ -761,7 +822,7 @@
 <td>The current step.</td>
 </tr>
 <tr>
-<td><strong>currentUser</strong><br />▹ <em>RamUser</em> or <em>None</em></td>
+<td><strong>currentUser</strong><br />▹ <em><a href="../ram_user/">RamUser</a></em> or <em>None</em></td>
 <td></td>
 <td>The current user.</td>
 </tr>
@@ -781,14 +842,19 @@
 <td>The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files&hellip;</td>
 </tr>
 <tr>
+<td><strong>project</strong><br />▹ <em>RamProject</em></td>
+<td><em>string</em>: <strong>projectShortName</strong></td>
+<td>Gets a specific project.</td>
+</tr>
+<tr>
 <td><strong>projects</strong><br />▹ <em>list of RamProject</em></td>
 <td></td>
 <td>The list of available projects.</td>
 </tr>
 <tr>
-<td><strong>project</strong><br />▹ <em>RamProject</em></td>
-<td><em>string</em>: <strong>projectShortName</strong></td>
-<td>Gets a specific project.</td>
+<td><strong>projectsPath</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The path to the folder containing projects.</td>
 </tr>
 <tr>
 <td><strong>states</strong><br />▹ <em>list of RamState</em></td>
@@ -825,10 +891,15 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><strong>usersPath</strong><br />▹ <em>string</em></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 # import ramses
 import ramses as ram
@@ -846,7 +917,8 @@ ramses.publishScripts.append( published )
 # If you're developping another addon, you have to call Ramses.publish() to run them
 ramses.publish()
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 // include the Ramses lib
 #include ramses.jsxinc
@@ -860,12 +932,38 @@ ramses.publishScripts.push( published )
 // If you're developping another addon, you have to call Ramses.publish() to run them
 ramses.publish()
 </code></pre>
+
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These section is for the development of the API only; you should not need these when developping your add-on using the API.</p>
 </div>
+<h3 id="private-attributes">Private attributes</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>defaultStates</strong></td>
+<td><em>list of <a href="../ram_state/">RamState</a></em></td>
+<td></td>
+<td>The list of states to use if the <em>Daemon</em> is not available.</td>
+</tr>
+<tr>
+<td><strong>defaultState</strong></td>
+<td><em><a href="../ram_state/">RamState</a></em></td>
+<td></td>
+<td>The state to use as default (&ldquo;WIP&rdquo;).</td>
+</tr>
+</tbody>
+</table>
 <h3 id="immutable-data">(Im)mutable data</h3>
 <p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
 <table>
@@ -910,7 +1008,7 @@ ramses.publish()
 </tr>
 <tr>
 <td><strong>states</strong></td>
-<td><i class="fa fa-pen"></i> Mutable</td>
+<td><i class="fa fa-lock"></i> Immutable</td>
 </tr>
 <tr>
 <td><strong>state</strong></td>
@@ -918,7 +1016,7 @@ ramses.publish()
 </tr>
 </tbody>
 </table>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/29" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
         
         
     </div>

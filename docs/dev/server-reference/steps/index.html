@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,24 +630,79 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#queries-for-managing-steps">Queries for managing steps</a></li>
-            <li class="second-level"><a href="#createstep">createStep</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#queries-for-managing-steps">Queries for managing steps</a></li>
+                <li class="second-level"><a href="#createstep">createStep</a></li>
+                    
+                <li class="second-level"><a href="#updatestep">updateStep</a></li>
+                    
+                <li class="second-level"><a href="#removestep">removeStep</a></li>
+                    
+                <li class="second-level"><a href="#assignuser">assignUser</a></li>
+                    
+                <li class="second-level"><a href="#unassignuser">unassignUser</a></li>
+                    
+                <li class="second-level"><a href="#assignapplication">assignApplication</a></li>
+                    
+                <li class="second-level"><a href="#unassignapplication">unassignApplication</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#updatestep">updateStep</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#removestep">removeStep</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#assignuser">assignUser</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-            <li class="second-level"><a href="#unassignuser">unassignUser</a></li>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
                 
-            <li class="second-level"><a href="#assignapplication">assignApplication</a></li>
+                    <li class="second-level "><a href="">Files and Folders</a></li>
                 
-            <li class="second-level"><a href="#unassignapplication">unassignApplication</a></li>
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
                 
-    </ul>
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -673,7 +749,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createStep&amp;name=Rigging&amp;shortName=RIG&amp;projectUuid=456&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createStep&quot;,
     &quot;success&quot;: true,
@@ -681,6 +757,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="updatestep">updateStep</h2>
 <p>Update step info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -698,7 +775,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateStep&amp;name=Rigging&amp;shortName=RIG&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateStep&quot;,
     &quot;success&quot;: true,
@@ -706,6 +783,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removestep">removeStep</h2>
 <p>Removes a step from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -719,7 +797,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeStep&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeStep&quot;,
     &quot;success&quot;: true,
@@ -727,6 +805,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignuser">assignUser</h2>
 <p>Assigns a user to a step.</p>
 <p><strong>Query attributes:</strong></p>
@@ -741,7 +820,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignUser&amp;stepUuid=123&amp;userUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignUser&quot;,
     &quot;success&quot;: true,
@@ -749,6 +828,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="unassignuser">unassignUser</h2>
 <p>Unassigns a user from a step.</p>
 <p><strong>Query attributes:</strong></p>
@@ -763,7 +843,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?unassignUser&amp;stepUuid=123&amp;userUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignUser&quot;,
     &quot;success&quot;: true,
@@ -771,6 +851,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignapplication">assignApplication</h2>
 <p>Assigns an application to a step.</p>
 <p><strong>Query attributes:</strong></p>
@@ -785,7 +866,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignApplication&amp;stepUuid=123&amp;applicationUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignApplication&quot;,
     &quot;success&quot;: true,
@@ -793,6 +874,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="unassignapplication">unassignApplication</h2>
 <p>Unassigns an application from a step.</p>
 <p><strong>Query attributes:</strong></p>
@@ -807,7 +889,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?unassignApplication&amp;stepUuid=123&amp;applicationUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignApplication&quot;,
     &quot;success&quot;: true,

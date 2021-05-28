@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,22 +630,77 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#queries-for-managing-projects">Queries for managing projects</a></li>
-            <li class="second-level"><a href="#createproject">createProject</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#queries-for-managing-projects">Queries for managing projects</a></li>
+                <li class="second-level"><a href="#createproject">createProject</a></li>
+                    
+                <li class="second-level"><a href="#getproject">getProject</a></li>
+                    
+                <li class="second-level"><a href="#getprojects">getProjects</a></li>
+                    
+                <li class="second-level"><a href="#updateproject">updateProject</a></li>
+                    
+                <li class="second-level"><a href="#removeproject">removeProject</a></li>
+                    
+                <li class="second-level"><a href="#assignstep">assignStep</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#getproject">getProject</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#getprojects">getProjects</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#updateproject">updateProject</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-            <li class="second-level"><a href="#removeproject">removeProject</a></li>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
                 
-            <li class="second-level"><a href="#assignstep">assignStep</a></li>
+                    <li class="second-level "><a href="">Files and Folders</a></li>
                 
-    </ul>
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -657,7 +733,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createProject&quot;,
     &quot;success&quot;: true,
@@ -665,6 +741,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getproject">getProject</h2>
 <p>Retrieves a single project.</p>
 <p><strong>Query attributes:</strong></p>
@@ -737,7 +814,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProject&amp;uuid=123abc&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProject&quot;,
     &quot;success&quot;: true,
@@ -756,6 +833,7 @@
         }
 }
 </code></pre>
+
 <h2 id="getprojects">getProjects</h2>
 <p>Retrieves the list of all projects.</p>
 <p><strong>Query attributes:</strong></p>
@@ -827,7 +905,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProjects&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProjects&quot;,
     &quot;success&quot;: true,
@@ -860,6 +938,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="updateproject">updateProject</h2>
 <p>Updates project information.</p>
 <p><strong>Query attributes:</strong></p>
@@ -876,7 +955,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateProject&quot;,
     &quot;success&quot;: true,
@@ -884,6 +963,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeproject">removeProject</h2>
 <p>Removes a project from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -897,7 +977,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeProject&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeProject&quot;,
     &quot;success&quot;: true,
@@ -905,6 +985,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignstep">assignStep</h2>
 <p>Assigns a template step to a project</p>
 <p><strong>Query attributes:</strong></p>
@@ -919,7 +1000,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignStep&amp;stepUuid=123&amp;projectUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignStep&quot;,
     &quot;success&quot;: true,
@@ -927,6 +1008,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <p>{
     &ldquo;accepted&rdquo;: true,
     &ldquo;query&rdquo;: &ldquo;assignStep&rdquo;,

@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,20 +630,75 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#queries-for-managing-users">Queries for managing users</a></li>
-            <li class="second-level"><a href="#updateuser">updateUser</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#queries-for-managing-users">Queries for managing users</a></li>
+                <li class="second-level"><a href="#updateuser">updateUser</a></li>
+                    
+                <li class="second-level"><a href="#updatepassword">updatePassword</a></li>
+                    
+                <li class="second-level"><a href="#getusers">getUsers</a></li>
+                    
+                <li class="second-level"><a href="#createuser">createUser</a></li>
+                    
+                <li class="second-level"><a href="#removeuser">removeUser</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#updatepassword">updatePassword</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-            <li class="second-level"><a href="#getusers">getUsers</a></li>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
                 
-            <li class="second-level"><a href="#createuser">createUser</a></li>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
                 
-            <li class="second-level"><a href="#removeuser">removeUser</a></li>
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
                 
-    </ul>
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -656,7 +732,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateUser&amp;name=Nicolas Dufresne&amp;shortName=Duduf&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
     &quot;success&quot;: true,
@@ -664,6 +740,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="updatepassword">updatePassword</h2>
 <p>Changes the password of a specific user</p>
 <p><strong>Query attributes:</strong></p>
@@ -683,7 +760,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updatePassword&amp;current=123&amp;new=456&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
     &quot;success&quot;: true,
@@ -691,6 +768,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getusers">getUsers</h2>
 <p>Retrieves the list of all users.</p>
 <p><strong>Query attributes:</strong></p>
@@ -710,7 +788,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getUsers&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getUsers&quot;,
     &quot;success&quot;: true,
@@ -733,6 +811,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="createuser">createUser</h2>
 <p>Creates a new user in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -748,7 +827,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createUser&amp;name=Nicolas Dufresne&amp;shortName=Duduf&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createUser&quot;,
     &quot;success&quot;: true,
@@ -756,6 +835,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeuser">removeUser</h2>
 <p>Removes a user from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -769,7 +849,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeUser&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeUser&quot;,
     &quot;success&quot;: true,

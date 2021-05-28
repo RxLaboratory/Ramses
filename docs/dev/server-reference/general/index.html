@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../../../addons/">Ramses Add-ons</a>
+    <a href="../../../addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,14 +630,71 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#general-queries">General queries</a></li>
-            <li class="second-level"><a href="#ping">ping</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#general-queries">General queries</a></li>
+                <li class="second-level"><a href="#ping">ping</a></li>
+                    
+                <li class="second-level"><a href="#login">login</a></li>
+                    
+                <li class="second-level"><a href="#init">init</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#login">login</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-    </ul>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level active"><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -626,6 +704,7 @@
 <li><a href="#general-queries">General queries</a><ul>
 <li><a href="#ping">ping</a></li>
 <li><a href="#login">login</a></li>
+<li><a href="#init">init</a></li>
 </ul>
 </li>
 </ul>
@@ -641,7 +720,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?ping</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;ping&quot;,
     &quot;success&quot;: true,
@@ -652,6 +731,7 @@
     }
 }
 </code></pre>
+
 <h2 id="login">login</h2>
 <p>Logs in with a username and a (hashed) password.</p>
 <p><strong>Query attributes:</strong></p>
@@ -677,7 +757,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?login&amp;username=Duduf&amp;password=123456</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;login&quot;,
     &quot;success&quot;: true,
@@ -689,6 +769,44 @@
         &quot;folderPath&quot;: &quot;/home/duduf&quot;,
         &quot;role&quot;: &quot;admin&quot;,
         &quot;token&quot;: &quot;2f5d2e3d4e3af1a9d459c5731247abd1ee9a7123&quot;
+    }
+}
+</code></pre>
+
+<h2 id="init">init</h2>
+<p>This special requests is used to retrieve all useful information when initializing the <em>Ramses Client</em>. It groups together in a single request the data which can be retrieved individually by <code>getUsers</code>, <code>getTemplateSteps</code>, <code>getTemplateAssetGroups</code>, <code>getStates</code>, <code>getFileTypes</code>, <code>getApplications</code> and <code>getProjects</code>. The project data contains only general project information (resolution, framerate&hellip;) but not the project content (shots, assets&hellip;). Use <code>getProject</code> to retrieve a specific project content.</p>
+<p><strong>Query attributes:</strong></p>
+<ul>
+<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="./#login"><em>login</em></a>.</li>
+</ul>
+<p><strong>Reply content:</strong></p>
+<p>The server replies with all the data. Read the documentation for the corresponding individual requests for more details.</p>
+<ul>
+<li><em>users</em>: <strong>array</strong>.</li>
+<li><em>templateSteps</em>: <strong>array</strong>.</li>
+<li><em>templateAssetGroups</em>: <strong>array</strong>.</li>
+<li><em>states</em>: <strong>array</strong>.</li>
+<li><em>fileTypes</em>: <strong>array</strong>.</li>
+<li><em>applications</em>: <strong>array</strong>.</li>
+<li><em>projects</em>: <strong>array</strong>.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<p>Query:<br />
+<code>http://your.server/ramses/?init&amp;token=123</code></p>
+<p>Reply:</p>
+<pre><code class="json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;login&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Server Ready!&quot;,
+    &quot;content&quot;: {
+        &quot;users&quot;: [ ... ],
+        &quot;templateSteps&quot;: [ ... ],
+        &quot;templateAssetGroups&quot;: [ ... ],
+        &quot;states&quot;: [ ... ],
+        &quot;fileTypes&quot;: [ ... ],
+        &quot;applications&quot;: [ ... ],
+        &quot;projects&quot;: [ ... ]
     }
 }
 </code></pre></div>

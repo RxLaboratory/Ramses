@@ -222,9 +222,24 @@
 
         
             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="addons/">Ramses Add-ons</a>
+    <a href="addons/">General Information</a>
 </li>
+
+        
+            
+<li >
+    <a href="addons/maya/">Autodesk Maya</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
     </ul>
@@ -311,6 +326,12 @@
             
 <li >
     <a href="dev/add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="dev/add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
 </li>
 
         
@@ -609,17 +630,72 @@
     <div class="container">
         
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#ramses-the-rainbox-asset-management-system">Ramses - The Rainbox Asset Management System</a></li>
-            <li class="second-level"><a href="#table-of-contents">Table of Contents</a></li>
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramses-the-rainbox-asset-management-system">Ramses - The Rainbox Asset Management System</a></li>
+                <li class="second-level"><a href="#table-of-contents">Table of Contents</a></li>
+                    
+                <li class="second-level"><a href="#license">License</a></li>
+                    
+                    <li class="third-level"><a href="#software">Software</a></li>
+                    <li class="third-level"><a href="#icons-and-other-graphical-elements">Icons and other graphical elements</a></li>
+                    <li class="third-level"><a href="#this-documentation">This Documentation</a></li>
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li class="active">
+                <a href=".">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Help</p>
                 
-            <li class="second-level"><a href="#license">License</a></li>
+                    <li class="second-level "><a href="">Machinery</a></li>
                 
-                <li class="third-level"><a href="#software">Software</a></li>
-                <li class="third-level"><a href="#icons-and-other-graphical-elements">Icons and other graphical elements</a></li>
-                <li class="third-level"><a href="#this-documentation">This Documentation</a></li>
-    </ul>
+                    <li class="second-level "><a href="">Ramses Components</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>Development</p>
+                
+                    <li class="second-level "><a href="dev/">Introduction</a></li>
+                
+                    <li class="second-level "><a href="">Files and Folders</a></li>
+                
+                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
+                
+                    <li class="second-level "><a href="">Daemon API</a></li>
+                
+                    <li class="second-level "><a href="">Server API</a></li>
+                
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <p>About</p>
+                
+                    <li class="second-level "><a href="credits/">Credits</a></li>
+                
+                    <li class="second-level "><a href="changelog/">Changelog</a></li>
+                
+                    <li class="second-level "><a href="">Licenses</a></li>
+                
+            </li>
+        
+        
+        </ul>
+    </div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -670,7 +746,11 @@
 <li><a href="files/tree/"><strong>Folder structure</strong></a></li>
 </ul>
 </li>
-<li><a href="addons/"><strong><em>Ramses Add-ons</em></strong></a></li>
+<li><strong>Ramses Add-ons</strong><ul>
+<li><a href="addons/"><strong>General Information</strong></a></li>
+<li><a href="addons/maya/"><strong>Autodesk Maya</strong></a></li>
+</ul>
+</li>
 <li><strong>Development</strong><ul>
 <li><a href="dev/"><strong>Introduction</strong></a></li>
 <li><a href="dev/files/naming/"><strong>Files and folders</strong></a></li>
@@ -803,6 +883,6 @@ A copy of the license is included in the section entitled &ldquo;<a href="licens
 </html>
 
 <!--
-MkDocs version : 1.1.2
-Build Date UTC : 2021-05-07 18:11:48.880104+00:00
+MkDocs version : 1.0.4
+Build Date UTC : 2021-05-28 18:25:11
 -->
