@@ -18,7 +18,7 @@ For the sake of readability, we are going to call these *short names*: _**ID**s_
 
 This is the complete naming scheme, for all files and folders:
 
-`projectID_A|S|G(_assetID|shotID)_stepID(_resource name)(_version)(.extension)`
+`projectID_A|S|G(_assetID|shotID)_stepID(_resource name)(_stateVersion)(.extension)`
 
 Explanations:
 
@@ -42,8 +42,8 @@ Explanations:
 - `resource name` describes the specific resource this file or folder refers to.  
     Between 1 and 20 characters consisting only of `a-z`, `0-9` and `+-` characters and may contain spaces.
     Resource names cannot start with a status ID followed by a number (e.g. *v01* or *wip2*) nor a number alone.
-- `version` contains the status and version number.  
-    May start with either `v` or the ID of the status (e.g. "wip", "ok", etc.), and includes one or more numbers. No other character allowed.
+- `stateVersion` contains the state and version number.  
+    The state is either the default `v` or the ID of the state (e.g. "wip", "ok", etc.), and the version includes one or more numbers. No other character allowed.
 - `extension` is the file extension.  
     The extension may include multiple dots, for example: *.tar.gz*
 

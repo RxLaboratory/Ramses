@@ -25,13 +25,18 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 | **latestVersionFilePath**<br />▹ *string* | *string*: **resource** = `""`,<br />*string*: **state** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Latest version file path |
 | **previewFolderPath**<br />▹ *string* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the path to the preview folder. Paths are relative to the root of the item folder. |
 | **previewFilePaths**<br />▹ *list of string* | *string*: **resource** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the list of file paths in the preview folder. Paths are relative to the root of the item folder. |
+| **project**<br />▹ *[RamProject](ram_project.md)* | | Gets the project this item belongs too. To improve performance, if only the shortName is needed, prefer using `projectShortName()` |
+| **projectShortName**<br />▹ *string* | | Gets the short name of the project this item belongs too. |
 | **publishFolderPath**<br />▹ *string* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the path to the publish folder. Paths are relative to the root of the item folder. |
 | **publishFilePaths**<br />▹ *list of string* | *string*: **resource** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder. |
-| **setStatus** | *RamStatus*: **status**,<br />*[RamStep](ram_step.md)* or *string*: **step** | Sets the current status for the given step |
-| **status**<br />▹ *RamStatus* | *[RamStep](ram_step.md)*: **step** | Gets the current status for the given step |
+| **setStatus** | *[RamStatus](ram_status.md)*: **status**,<br />*[RamStep](ram_step.md)* or *string*: **step** | Sets the current status for the given step |
+| **status**<br />▹ *[RamStatus](ram_status.md)* | *[RamStep](ram_step.md)*: **step** | Gets the current status for the given step |
+| **stepFilePath**<br />▹ *string* | *string*: **resource** = `""`,<br />*string*: **extension**=`""`,<br/>*[RamStep](ram_step.md) or string*: **step***=`""` | Gets the file used for this step with the given file extension. |
+| **stepFilePaths**<br />▹ *list* of *string* | *[RamStep](ram_step.md) or string*: **step***=`""` | Gets the files used for this step (there may be several files, one per resource) |
 | **stepFolderPath**<br />▹ *string* | *[RamStep](ram_step.md) or string*: **step***=`""` | The subfolder for the given step |
 | **steps**<br />▹ *list of [RamStep](ram_step.md)* | | Gets the list of steps concerning this item. |
-| **versionFolderPath**<br />▹ *string* | *RamStep* or *string*: **step**=`""` | Path to the version folder relative to the item root folder |
+| **versionFilePaths**<br />▹ *string* | *string*: **resource** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets all version files for the given resource. |
+| **versionFolderPath**<br />▹ *string* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Path to the version folder relative to the item root folder |
 
 ____
 

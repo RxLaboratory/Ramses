@@ -105,7 +105,7 @@ Once the callbacks have been registered, they are automatically called when the 
 You can also explicitly call them by calling these three methods:
 
 - [`Ramses.updateStatus( item, status )`](../dev/add-ons-reference/ramses.md)
-- [`Ramses.import( item, step, filePath )`](../dev/add-ons-reference/ramses.md)
+- [`Ramses.importItem( item, step, filePath )`](../dev/add-ons-reference/ramses.md)
 - [`Ramses.publish( item, filePath, publishFolderPath )`](../dev/add-ons-reference/ramses.md)
 
 Read the [Scripting API Reference](../dev/add-ons-reference/ramses.md) for more information.

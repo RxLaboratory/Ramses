@@ -38,7 +38,7 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
-| **import** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*[*RamStep*](ram_step.md)*: **step**<br />*string*: **filePath** | Runs the scripts in `Ramses.instance().importScripts`. |
+| **importItem** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*[*RamStep*](ram_step.md)*: **step**<br />*string*: **filePath** | Runs the scripts in `Ramses.instance().importScripts`. |
 | **project**<br />▹ *[RamProject](ram_project.md)* | *string*: **projectShortName** | Gets a specific project. |
 | **projects**<br />▹ *list of [RamProject](ram_project.md)* | | The list of available projects. |
 | **projectsPath**<br />▹ *string* | | The path to the folder containing projects. |
