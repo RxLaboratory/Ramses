@@ -4,8 +4,6 @@
 
 Other APIs may be developped, in which case all these APIs on all programming/scripting language should implement this reference, with the same classes, attributes and methods.
 
-[TOC]
-
 As this document is referring to different scripting languages, it uses general terms which may be different than what is actually used in specific languages.
 
 *(TODO: ADD THE LINK TO THE GITHUB REPOS OF THE APIs / LINK TO GET THEM ON RXLAB.ORG)*

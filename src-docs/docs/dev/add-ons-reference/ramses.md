@@ -21,8 +21,9 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **publishScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own methods to this list so they're run when the user publishes the current file from the host application. |
-| **statusScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().updateStatus()` is called.<br />If you're using one of the provided Add-ons, you can add your own methods to this list so they're run when the user changes the current status of an asset / shot from the host application. |
+| **publishScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user publishes the current file from the host application.<br />The callback must be a method which takes two arguments: the *[RamItem](ram_item.md)*/*[RamShot](ram_shot.md)*/*[RamAsset](ram_asset.md)* being published, the file path (a string) of the document being published, which should be the active document in the host application, and the publish folder path (a string). |
+| **statusScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().updateStatus()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user changes the current status of an asset / shot from the host application.<br />The callback must be a method which takes two arguments: the *[RamItem](ram_item.md)*/*[RamShot](ram_shot.md)*/*[RamAsset](ram_asset.md)* being updated, and the new *[RamStatus](ram_status.md)*|
+| **importScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().import()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user asks to import an item.<br />The callback must be a method which takes three arguments: the *[RamItem](ram_item.md)*/*[RamShot](ram_shot.md)*/*[RamAsset](ram_asset.md)* being imported, the [*RamStep*](ram_step.md), and the associated file path (a string). |
 
 ## Methods
 
@@ -32,22 +33,23 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **backupFolderPath**<br />▹ *list* of *string* | | A copy of the main folder where all files are stored. |
 | **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. <br />Returns success. |
 | **currentProject**<br />▹ *[RamProject](ram_project.md)* or *None* | | The current project. |
-| **currentStep**<br />▹ *RamStep* or *None* | | The current step. |
+| **currentStep**<br />▹ *[RamStep](ram_step.md)* or *None* | | The current step. |
 | **currentUser**<br />▹ *[RamUser](ram_user.md)* or *None* | | The current user. |
 | **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
-| **project**<br />▹ *RamProject* | *string*: **projectShortName** | Gets a specific project. |
-| **projects**<br />▹ *list of RamProject* | | The list of available projects. |
+| **import** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*[*RamStep*](ram_step.md)*: **step**<br />*string*: **filePath** | Runs the scripts in `Ramses.instance().importScripts`. |
+| **project**<br />▹ *[RamProject](ram_project.md)* | *string*: **projectShortName** | Gets a specific project. |
+| **projects**<br />▹ *list of [RamProject](ram_project.md)* | | The list of available projects. |
 | **projectsPath**<br />▹ *string* | | The path to the folder containing projects. |
-| **states**<br />▹ *list of RamState* | | The list of available states. |
-| **state**<br />▹ *RamState* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
+| **states**<br />▹ *list of [RamState](ram_state.md)* | | The list of available states. |
+| **state**<br />▹ *[RamState](ram_state.md)* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
 | **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
-| **publish** | | Runs the scripts in `Ramses.instance().publishScripts`. |
+| **publish** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*string*: **filePath**,<br />*string*: **publishFolderPath** | Runs the scripts in `Ramses.instance().publishScripts`. |
 | **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
-| **settings** | [*RamSettings*](ram_settings.md) |  | The settings unique instance. Same as `RamSettings.instance()` |
-| **updateStatus** | |  |  Runs the scripts in `Ramses.instance().statusScripts`. |
-| **usersPath**<br />▹ *string* | |  |  The path to the folder containing users. |
+| **settings** | [*RamSettings*](ram_settings.md) | The settings unique instance. Same as `RamSettings.instance()` |
+| **updateStatus** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*[RamStatus](ram_status.md)*: **status** |  Runs the scripts in `Ramses.instance().statusScripts`. |
+| **usersPath**<br />▹ *string* | |  The path to the folder containing users. |
 
 ## Examples
 
