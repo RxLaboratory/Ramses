@@ -776,13 +776,19 @@
 <td><strong>publishScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own methods to this list so they&rsquo;re run when the user publishes the current file from the host application.</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user publishes the current file from the host application.<br />The callback must be a method which takes three arguments: the <em><a href="../ram_item/">RamItem</a></em>/<em><a href="../ram_shot/">RamShot</a></em>/<em><a href="../ram_asset/">RamAsset</a></em> being published, the file path (a string) of the document being published, which should be the active document in the host application, and the <em><a href="../ram_step/"><em>RamStep</em></a></em> (which may be <em>None</em>/<em>undefined</em> in case of a general item).</td>
 </tr>
 <tr>
 <td><strong>statusScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own methods to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.<br />The callback must be a method which takes three arguments: the <em><a href="../ram_item/">RamItem</a></em>/<em><a href="../ram_shot/">RamShot</a></em>/<em><a href="../ram_asset/">RamAsset</a></em> being updated, the new <em><a href="../ram_status/">RamStatus</a></em>, and the corresponding <em><a href="../ram_step/">RamStep</a></em> (which may be <em>None</em>/<em>undefined</em> in case of a general item)</td>
+</tr>
+<tr>
+<td><strong>importScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().import()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.<br />The callback must be a method which takes three arguments: the <em><a href="../ram_item/">RamItem</a></em>/<em><a href="../ram_shot/">RamShot</a></em>/<em><a href="../ram_asset/">RamAsset</a></em> being imported, the associated file path (a string), and the <em><a href="../ram_step/"><em>RamStep</em></a></em> (which may be <em>None</em>/<em>undefined</em> in case of a general item).</td>
 </tr>
 </tbody>
 </table>
@@ -817,7 +823,7 @@
 <td>The current project.</td>
 </tr>
 <tr>
-<td><strong>currentStep</strong><br />▹ <em>RamStep</em> or <em>None</em></td>
+<td><strong>currentStep</strong><br />▹ <em><a href="../ram_step/">RamStep</a></em> or <em>None</em></td>
 <td></td>
 <td>The current step.</td>
 </tr>
@@ -842,12 +848,17 @@
 <td>The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files&hellip;</td>
 </tr>
 <tr>
-<td><strong>project</strong><br />▹ <em>RamProject</em></td>
+<td><strong>importItem</strong></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em><a href="../ram_step/"><em>RamStep</em></a></em>: <strong>step</strong></td>
+<td>Runs the scripts in <code>Ramses.instance().importScripts</code>.</td>
+</tr>
+<tr>
+<td><strong>project</strong><br />▹ <em><a href="../ram_project/">RamProject</a></em></td>
 <td><em>string</em>: <strong>projectShortName</strong></td>
 <td>Gets a specific project.</td>
 </tr>
 <tr>
-<td><strong>projects</strong><br />▹ <em>list of RamProject</em></td>
+<td><strong>projects</strong><br />▹ <em>list of <a href="../ram_project/">RamProject</a></em></td>
 <td></td>
 <td>The list of available projects.</td>
 </tr>
@@ -857,12 +868,12 @@
 <td>The path to the folder containing projects.</td>
 </tr>
 <tr>
-<td><strong>states</strong><br />▹ <em>list of RamState</em></td>
+<td><strong>states</strong><br />▹ <em>list of <a href="../ram_state/">RamState</a></em></td>
 <td></td>
 <td>The list of available states.</td>
 </tr>
 <tr>
-<td><strong>state</strong><br />▹ <em>RamState</em></td>
+<td><strong>state</strong><br />▹ <em><a href="../ram_state/">RamState</a></em></td>
 <td><em>string</em>: <strong>stateShortName</strong>=<code>WIP</code></td>
 <td>Gets a specific state.</td>
 </tr>
@@ -873,7 +884,7 @@
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><a href="../ram_step/">RamStep</a><em>: </em><em>step</em>*=<code>None</code></td>
 <td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.</td>
 </tr>
 <tr>
@@ -884,22 +895,22 @@
 <tr>
 <td><strong>settings</strong></td>
 <td><a href="../ram_settings/"><em>RamSettings</em></a></td>
-<td></td>
+<td>The settings unique instance. Same as <code>RamSettings.instance()</code></td>
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>
-<td></td>
-<td></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code></td>
+<td>Runs the scripts in <code>Ramses.instance().statusScripts</code>.</td>
 </tr>
 <tr>
 <td><strong>usersPath</strong><br />▹ <em>string</em></td>
 <td></td>
-<td></td>
+<td>The path to the folder containing users.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 # import ramses
 import ramses as ram
@@ -917,8 +928,7 @@ ramses.publishScripts.append( published )
 # If you're developping another addon, you have to call Ramses.publish() to run them
 ramses.publish()
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 // include the Ramses lib
 #include ramses.jsxinc
@@ -932,7 +942,6 @@ ramses.publishScripts.push( published )
 // If you're developping another addon, you have to call Ramses.publish() to run them
 ramses.publish()
 </code></pre>
-
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">

@@ -757,6 +757,11 @@
 <td></td>
 </tr>
 <tr>
+<td><strong>Log.NotAnItem</strong></td>
+<td><code>"This file does not seem to be a valid Ramses Item, sorry."</code></td>
+<td></td>
+</tr>
+<tr>
 <td><strong>Log.NoUser</strong></td>
 <td><code>"There's no current user. You may need to log in."</code></td>
 <td></td>
@@ -894,7 +899,7 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 from ramses import RamItem, ItemType
 
@@ -907,8 +912,7 @@ if anItem is not None:
     if anItem.itemType() == ItemType.SHOT:
         doSomething()
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 #include ramses.jsxinc
 

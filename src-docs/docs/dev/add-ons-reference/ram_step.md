@@ -17,7 +17,8 @@ Inherits: [***RamObject***](ram_object.md)
 | --- | --- | --- |
 | ***constructor*** | *string*: **stepName**,<br />*string*: **stepShortName**,<br />*string*: **stepFolderPath**=`""`,<br />*StepType*: **stepType**=`""` | At least the folder or the type must be provided, but one is enough as the other info can be gotten from the [*Ramses Tree*](../../files/tree.md) |
 | **folderPath**<br />▹ *string* | | The absolute path to the folder containing the common files for this step |
-| **stepType**<br />▹ *StepType* | | The type of this step, one of `StepType.PRE_PRODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.ASSET_PRODUCTION`, `StepType.POST_PRODUCTION`|
+| **project**<br />▹ *[RamProject](ram_project.md)* | | Gets the project this step belongs too. To improve performance, if only the shortName is needed, prefer using `projectShortName()` |
+| **projectShortName**<br />▹ *string* | | Gets the short name of the project this step belongs too. || **stepType**<br />▹ *StepType* | | The type of this step, one of `StepType.PRE_PRODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.ASSET_PRODUCTION`, `StepType.POST_PRODUCTION`|
 | **templatesFolderPath**<br />▹ *string* | | The absolute path to the folder containing the template files for this step |
 
 ____

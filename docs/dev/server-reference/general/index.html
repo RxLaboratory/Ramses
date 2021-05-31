@@ -720,7 +720,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?ping</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;ping&quot;,
     &quot;success&quot;: true,
@@ -731,7 +731,6 @@
     }
 }
 </code></pre>
-
 <h2 id="login">login</h2>
 <p>Logs in with a username and a (hashed) password.</p>
 <p><strong>Query attributes:</strong></p>
@@ -757,7 +756,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?login&amp;username=Duduf&amp;password=123456</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;login&quot;,
     &quot;success&quot;: true,
@@ -772,7 +771,6 @@
     }
 }
 </code></pre>
-
 <h2 id="init">init</h2>
 <p>This special requests is used to retrieve all useful information when initializing the <em>Ramses Client</em>. It groups together in a single request the data which can be retrieved individually by <code>getUsers</code>, <code>getTemplateSteps</code>, <code>getTemplateAssetGroups</code>, <code>getStates</code>, <code>getFileTypes</code>, <code>getApplications</code> and <code>getProjects</code>. The project data contains only general project information (resolution, framerate&hellip;) but not the project content (shots, assets&hellip;). Use <code>getProject</code> to retrieve a specific project content.</p>
 <p><strong>Query attributes:</strong></p>
@@ -794,7 +792,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?init&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;login&quot;,
     &quot;success&quot;: true,

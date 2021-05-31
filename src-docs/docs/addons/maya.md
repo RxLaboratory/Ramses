@@ -136,24 +136,24 @@ import ramses as ram
 # Get the ramses instance
 ramses = ram.Ramses.instance()
 
-def publishAsset(item, filePath, publishFolderPath):
+def publishAsset(item, filePath, step):
     """Callback used to publish Assets only"""
     # The item must be a RamAsset
     if item.itemType() != ram.ItemType.ASSET:
         return
     
-    # Now we can do what we need using the RamAsset object, the filePath and publisFolderPath strings
-    doSomething( item.shortName(), item.group(), filePath, publishFolderPath)
+    # Now we can do what we need using the RamAsset object, the filePath and the Step
+    doSomething( item.shortName(), item.group(), filePath, step.shortName())
     # etc.
 
-def publishShot(item, filePath, publishFolderPath):
+def publishShot(item, filePath, step):
     """Callback used to publish Shots only"""
     # The item must be a RamAsset
     if item.itemType() != ram.ItemType.SHOT:
         return
     
-    # Now we can do what we need using the RamShot object, the filePath and publisFolderPath strings
-    doSomething( item.shortName(), item.duration(), filePath, publishFolderPath)
+    # Now we can do what we need using the RamShot object, the filePath and the Step
+    doSomething( item.shortName(), item.duration(), filePath, step.shortName())
     # etc.
 
 # Finally, we just need to add the callbacks to the publish list
@@ -172,14 +172,14 @@ import ramses as ram
 # Get the ramses instance
 ramses = ram.Ramses.instance()
 
-def updateAsset(item, status):
+def updateAsset(item, status, step):
     """Callback used to update Assets only"""
     # The item must be a RamAsset
     if item.itemType() != ram.ItemType.ASSET:
         return
     
-    # Now we can do what we need using the RamAsset object and the RamStatus object
-    doSomething( item.shortName(), item.group(), status.completionRatio, status.user)
+    # Now we can do what we need using the RamAsset object, the RamStatus object and the RamStep object
+    doSomething( item.shortName(), item.group(), status.completionRatio, status.user, step.shortName())
     # etc.
 
 def updateShot(item, filePath, publishFolderPath):
@@ -188,8 +188,8 @@ def updateShot(item, filePath, publishFolderPath):
     if item.itemType() != ram.ItemType.SHOT:
         return
     
-    # Now we can do what we need using the RamAsset object and the RamStatus object
-    doSomething( item.shortName(), item.group(), status.completionRatio, status.user)
+    # Now we can do what we need using the RamAsset object, the RamStatus object and the RamStep object
+    doSomething( item.shortName(), item.group(), status.completionRatio, status.user, step.shortName())
     # etc.
 
 # Finally, we just need to add the callbacks to the status list
@@ -208,7 +208,7 @@ import ramses as ram
 # Get the ramses instance
 ramses = ram.Ramses.instance()
 
-def importAsset(item, step, filePath):
+def importAsset(item, filePath, step):
     """Callback used to import Assets only"""
     # The item must be a RamAsset
     if item.itemType() != ram.ItemType.ASSET:

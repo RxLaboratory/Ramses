@@ -22,6 +22,7 @@ A list of messages to be logged / shown to the user.
 | --- | --- | --- |
 | **Log.MalformedName** | `"Cannot work on this file as it does not respect the Ramses' naming scheme, sorry."` | |
 | **Log.NoProject** | `"There's no current project. Select a project first."` | |
+|  **Log.NotAnItem** | `"This file does not seem to be a valid Ramses Item, sorry."` | |
 | **Log.NoUser** | `"There's no current user. You may need to log in."` | |
 | **Log.PathNotFound** | `"The file or folder path could not be found."` | |
 | **Log.StateNotFound** | `"State not found."` | |

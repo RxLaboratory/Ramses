@@ -776,6 +776,16 @@
 <td>Gets the list of file paths in the preview folder. Paths are relative to the root of the item folder.</td>
 </tr>
 <tr>
+<td><strong>project</strong><br />▹ <em><a href="../ram_project/">RamProject</a></em></td>
+<td></td>
+<td>Gets the project this item belongs too. To improve performance, if only the shortName is needed, prefer using <code>projectShortName()</code></td>
+</tr>
+<tr>
+<td><strong>projectShortName</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>Gets the short name of the project this item belongs too.</td>
+</tr>
+<tr>
 <td><strong>publishFolderPath</strong><br />▹ <em>string</em></td>
 <td><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
 <td>Gets the path to the publish folder. Paths are relative to the root of the item folder.</td>
@@ -787,13 +797,23 @@
 </tr>
 <tr>
 <td><strong>setStatus</strong></td>
-<td><em>RamStatus</em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong></td>
+<td><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong></td>
 <td>Sets the current status for the given step</td>
 </tr>
 <tr>
-<td><strong>status</strong><br />▹ <em>RamStatus</em></td>
+<td><strong>status</strong><br />▹ <em><a href="../ram_status/">RamStatus</a></em></td>
 <td><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
 <td>Gets the current status for the given step</td>
+</tr>
+<tr>
+<td><strong>stepFilePath</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>resource</strong> = <code>""</code>,<br /><em>string</em>: <strong>extension</strong>=<code>""</code>,<br/><em><a href="../ram_step/">RamStep</a> or string</em>: <strong>step</strong>*=<code>""</code></td>
+<td>Gets the file used for this step with the given file extension.</td>
+</tr>
+<tr>
+<td><strong>stepFilePaths</strong><br />▹ <em>list</em> of <em>string</em></td>
+<td><em><a href="../ram_step/">RamStep</a> or string</em>: <strong>step</strong>*=<code>""</code></td>
+<td>Gets the files used for this step (there may be several files, one per resource)</td>
 </tr>
 <tr>
 <td><strong>stepFolderPath</strong><br />▹ <em>string</em></td>
@@ -806,8 +826,13 @@
 <td>Gets the list of steps concerning this item.</td>
 </tr>
 <tr>
+<td><strong>versionFilePaths</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>resource</strong> = <code>""</code>,<br /><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td>Gets all version files for the given resource.</td>
+</tr>
+<tr>
 <td><strong>versionFolderPath</strong><br />▹ <em>string</em></td>
-<td><em>RamStep</em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
+<td><em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong>=<code>""</code></td>
 <td>Path to the version folder relative to the item root folder</td>
 </tr>
 </tbody>
