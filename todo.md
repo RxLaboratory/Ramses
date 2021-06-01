@@ -13,10 +13,6 @@
     - win
     - mac
 
-## Addons
-
-- [ ] Update addon doc from ramses-py
-
 ## pipeline tools first
 
 - FEATURE: Asset & Shot table
@@ -37,6 +33,8 @@
 
 ## Other
 
+- FEATURE: if user is not admin, list only projects he's assigned to
+- BUGFIX: Crash on reload
 - BUGFIX: Crash when changing shot sequence in shoteditwidget
 - REFACTOR: create a objectListComboBox (project selector, filters, sequencebox in shots, asstgroups in assets)
 - REFACTOR: replace the step combobox in StatusHistoryWidget by a new StepSelectorWidget (derived from a new objectListComboBox ?)
@@ -44,10 +42,10 @@
 - UI: Display widgets display more info when resized
 - REFACTOR:
     - QList<RamObject*> -> RamObjectList
-        - [ ] steps in project
-            - [ ] users in steps
+        - [x] steps in project
+            - [x] users in steps
             - [ ] users in project (uberlist)
-            - [ ] apps in steps
+            - [x] apps in steps
             - [ ] apps in project (uberlist)
 - REFACTOR: factorize stylesheet creation to be used per widget
 - UI: ShotEditWidget & AssetEditWidget: tabs for status / files
