@@ -849,7 +849,7 @@
 </tr>
 <tr>
 <td><strong>importItem</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em><a href="../ram_step/"><em>RamStep</em></a></em>: <strong>step</strong></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
 <td>Runs the scripts in <code>Ramses.instance().importScripts</code>.</td>
 </tr>
 <tr>
@@ -884,7 +884,7 @@
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><a href="../ram_step/">RamStep</a><em>: </em><em>step</em>*=<code>None</code></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
 <td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.</td>
 </tr>
 <tr>
@@ -899,7 +899,7 @@
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
 <td>Runs the scripts in <code>Ramses.instance().statusScripts</code>.</td>
 </tr>
 <tr>
@@ -918,7 +918,7 @@ import ramses as ram
 ramses = ram.Ramses.instance()
 
 # A simple method
-def published():
+def published(item, filePath, step):
     ram.log(&quot;Hello, I've been published!&quot;)
 
 # Adds the method to the scripts which will be run when the add-on publishes a file
@@ -926,7 +926,7 @@ ramses.publishScripts.append( published )
 
 # The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 # If you're developping another addon, you have to call Ramses.publish() to run them
-ramses.publish()
+ramses.publish(currentItem, 'a path', 'STEP')
 </code></pre>
 <pre><code class="language-js">// ExtendScript
 
@@ -935,12 +935,18 @@ ramses.publish()
 // Get the instance
 var ramses = Ramses.instance();
 
+// A simple method
+function published(item, filePath, step)
+{
+    ram.log(&quot;Hello, I've been published!&quot;)
+}
+
 // Adds the method to the scripts which will be run when the add-on publishes a file
 ramses.publishScripts.push( published )
 
 // The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 // If you're developping another addon, you have to call Ramses.publish() to run them
-ramses.publish()
+ramses.publish(currentItem, 'a path', 'STEP')
 </code></pre>
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>

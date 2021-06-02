@@ -38,17 +38,17 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
-| **importItem** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*string*: **filePath**,<br />*[*RamStep*](ram_step.md)*: **step** | Runs the scripts in `Ramses.instance().importScripts`. |
+| **importItem** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*string*: **filePath**,,<br />*string*: **stepShortName**=`""` | Runs the scripts in `Ramses.instance().importScripts`. |
 | **project**<br />▹ *[RamProject](ram_project.md)* | *string*: **projectShortName** | Gets a specific project. |
 | **projects**<br />▹ *list of [RamProject](ram_project.md)* | | The list of available projects. |
 | **projectsPath**<br />▹ *string* | | The path to the folder containing projects. |
 | **states**<br />▹ *list of [RamState](ram_state.md)* | | The list of available states. |
 | **state**<br />▹ *[RamState](ram_state.md)* | *string*: **stateShortName**=`WIP` | Gets a specific state. |
 | **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
-| **publish** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*string*: **filePath**,<br />[RamStep](ram_step.md)*: **step**=`None` | Runs the scripts in `Ramses.instance().publishScripts`. |
+| **publish** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*string*: **filePath**,,<br />*string*: **stepShortName**=`""` | Runs the scripts in `Ramses.instance().publishScripts`. |
 | **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
 | **settings** | [*RamSettings*](ram_settings.md) | The settings unique instance. Same as `RamSettings.instance()` |
-| **updateStatus** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*[RamStatus](ram_status.md)*: **status**,<br />*[RamStep](ram_step.md)*: **step**=`None` |  Runs the scripts in `Ramses.instance().statusScripts`. |
+| **updateStatus** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*[RamStatus](ram_status.md)*: **status**,<br />*string*: **stepShortName**=`""` |  Runs the scripts in `Ramses.instance().statusScripts`. |
 | **usersPath**<br />▹ *string* | |  The path to the folder containing users. |
 
 ## Examples
@@ -62,7 +62,7 @@ import ramses as ram
 ramses = ram.Ramses.instance()
 
 # A simple method
-def published():
+def published(item, filePath, step):
     ram.log("Hello, I've been published!")
 
 # Adds the method to the scripts which will be run when the add-on publishes a file
@@ -70,7 +70,7 @@ ramses.publishScripts.append( published )
 
 # The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 # If you're developping another addon, you have to call Ramses.publish() to run them
-ramses.publish()
+ramses.publish(currentItem, 'a path', 'STEP')
 ```
 
 ```js
@@ -81,12 +81,18 @@ ramses.publish()
 // Get the instance
 var ramses = Ramses.instance();
 
+// A simple method
+function published(item, filePath, step)
+{
+    ram.log("Hello, I've been published!")
+}
+
 // Adds the method to the scripts which will be run when the add-on publishes a file
 ramses.publishScripts.push( published )
 
 // The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 // If you're developping another addon, you have to call Ramses.publish() to run them
-ramses.publish()
+ramses.publish(currentItem, 'a path', 'STEP')
 ```
 
 ____

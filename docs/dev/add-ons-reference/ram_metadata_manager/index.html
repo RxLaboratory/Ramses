@@ -701,11 +701,11 @@
 <p><em>Ramses</em> will use a single sidecar file named <code>_ramses_data.json</code> (storing data in <em>json</em>) for all files located in a given folder;<br />
 thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is not copied when a file is copied/moved: it does not make sense for <em>Ramses</em> to have the same metadata when a file is moved.</p>
 <h2 id="the-meta-data-structure">The Meta-Data structure</h2>
-<p>The Meta-Data used by <em>Ramses</em> contains these attributes.</p>
+<p>The Meta-Data used by <em>Ramses</em> contains at least these attributes.</p>
 <table>
 <thead>
 <tr>
-<th>Key</th>
+<th>Key Name</th>
 <th>Type</th>
 <th>Default Value</th>
 <th>Description</th>
@@ -713,10 +713,22 @@ thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is n
 </thead>
 <tbody>
 <tr>
-<td><strong>comment</strong></td>
+<td><a href="../enum/"><strong><code>MetaDataKeys.COMMENT</code></strong></a></td>
 <td><em>string</em></td>
 <td><code>""</code></td>
 <td>A comment associated to the file</td>
+</tr>
+<tr>
+<td><a href="../enum/"><strong><code>MetaDataKeys.VERSION</code></strong></a></td>
+<td><em>int</em></td>
+<td><code>-1</code></td>
+<td>A version associated to the file</td>
+</tr>
+<tr>
+<td><a href="../enum/"><strong><code>MetaDataKeys.VERSION_FILE</code></strong></a></td>
+<td><em>string</em></td>
+<td><code>""</code></td>
+<td>A version file associated to the file</td>
 </tr>
 </tbody>
 </table>
@@ -736,9 +748,14 @@ thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is n
 <td>Gets the comment associated to the file.</td>
 </tr>
 <tr>
-<td><strong>setComment</strong><br />▹ <em>string</em></td>
-<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>comment</strong></td>
-<td>Sets the comment associated to a file.</td>
+<td><strong>getFileMetaData</strong><br />▹ <em>object</em> or <em>dict</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the meta-data of the given file.</td>
+</tr>
+<tr>
+<td><strong>getMetaData</strong><br />▹ <em>object</em> or <em>dict</em></td>
+<td><em>string</em>: <strong>folderPath</strong></td>
+<td>Gets the meta-data of all the files for the given folder.<br />Each file name is used as a key in the returned object.</td>
 </tr>
 <tr>
 <td><strong>getMetaDataFile</strong><br />▹ <em>string</em></td>
@@ -746,19 +763,49 @@ thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is n
 <td>Gets the path of the file containing the metadata for the given file or folder.</td>
 </tr>
 <tr>
-<td><strong>getFileMetaData</strong><br />▹ <em>object</em> or <em>dict</em></td>
-<td><em>string</em>: <strong>filePath</strong></td>
-<td>Gets the meta-data of the given file.</td>
+<td><strong>getValue</strong><br />▹ <em>any</em></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>key</strong></td>
+<td>Gets the value of a specific key for the file.</td>
 </tr>
 <tr>
-<td><strong>getMetaData</strong><br />▹ <em>object</em> or <em>dict</em></td>
-<td><em>string</em>: <strong>path</strong></td>
-<td>Gets the meta-data of all the files for the given folder.<br />Each file name is used as a key in the returned object.</td>
+<td><strong>getVersion</strong><br />▹ <em>int</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the version associated to the file.</td>
+</tr>
+<tr>
+<td><strong>getVersionFilePath</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the version file associated to the file.</td>
+</tr>
+<tr>
+<td><strong>setComment</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>comment</strong></td>
+<td>Sets the comment associated to a file.</td>
+</tr>
+<tr>
+<td><strong>setFileMetaData</strong><br /></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>object</em> or <em>dict</em>: <strong>fileData</strong></td>
+<td>Writes the given meta-data to the meta-data file associated to this file.</td>
 </tr>
 <tr>
 <td><strong>setMetaData</strong><br /></td>
 <td><em>string</em>: <strong>path</strong>,<br /><em>object</em> or <em>dict</em>: <strong>data</strong></td>
 <td>Writes the given meta-data to the meta-data file associated to this folder.</td>
+</tr>
+<tr>
+<td><strong>setValue</strong></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>key</strong>,<br /><em>any</em>: <strong>value</strong></td>
+<td>Sets the value of a specific key for the file.</td>
+</tr>
+<tr>
+<td><strong>setVersion</strong></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>int</em>: <strong>version</strong></td>
+<td>Sets the version associated to the file.</td>
+</tr>
+<tr>
+<td><strong>setVersionFilePath</strong></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>filePath</strong></td>
+<td>Sets the version file associated to the file.</td>
 </tr>
 </tbody>
 </table>
