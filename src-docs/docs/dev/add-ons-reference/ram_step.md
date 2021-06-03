@@ -20,6 +20,8 @@ Inherits: [***RamObject***](ram_object.md)
 | **project**<br />▹ *[RamProject](ram_project.md)* | | Gets the project this step belongs too. To improve performance, if only the shortName is needed, prefer using `projectShortName()` |
 | **projectShortName**<br />▹ *string* | | Gets the short name of the project this step belongs too. || **stepType**<br />▹ *StepType* | | The type of this step, one of `StepType.PRE_PRODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.ASSET_PRODUCTION`, `StepType.POST_PRODUCTION`|
 | **templatesFolderPath**<br />▹ *string* | | The absolute path to the folder containing the template files for this step |
+| **templatesPublishFilePaths**<br />▹ *list* of *string* | | The list of published files for the templates |
+| **templatesPublishPath**<br />▹ *string* | | The absolute path to the folder where templates are published |
 
 ____
 
