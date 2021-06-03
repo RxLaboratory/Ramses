@@ -47,7 +47,8 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **online**<br />▹ *boolean* | | True if connected to the *Daemon* and the *Daemon* is responding. |
 | **publish** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*string*: **filePath**,,<br />*string*: **stepShortName**=`""` | Runs the scripts in `Ramses.instance().publishScripts`. |
 | **showClient** | | Raises the *Ramses Client* window, launches the client if it is not already running. |
-| **settings** | [*RamSettings*](ram_settings.md) | The settings unique instance. Same as `RamSettings.instance()` |
+| **setCurrentProject** | *[RamProject](ram_project.md)*: **project** | Sets the current project. |
+| **settings**<br />▹ [*RamSettings*](ram_settings.md) | | The settings unique instance. Same as `RamSettings.instance()` |
 | **updateStatus** | *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />*[RamStatus](ram_status.md)*: **status**,<br />*string*: **stepShortName**=`""` |  Runs the scripts in `Ramses.instance().statusScripts`. |
 | **usersPath**<br />▹ *string* | |  The path to the folder containing users. |
 

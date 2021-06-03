@@ -747,11 +747,6 @@
 <td>Tries to get the maximum information from a path, traversing up the directory tree to read information. Returns a dict similar to <code>decomposeRamsesFileName()</code>.</td>
 </tr>
 <tr>
-<td><strong>getFileWithResource</strong><br />▹ <em>list of string</em></td>
-<td><em>string</em>: <strong>folder</strong>,<br /><em>string</em>: <strong>resource</strong></td>
-<td>Gets the list of file paths corresponding to the given resource found in the folder</td>
-</tr>
-<tr>
 <td><strong>getLatestVersion</strong><br />▹ <em>list of int and string</em></td>
 <td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>dafaultStateShortName</strong>=<code>"v"</code>,<br /><em>boolean</em>: <strong>previous</strong>=<code>false</code></td>
 <td>Gets the latest version number and state for the given file, which can be located either in the main folder or one of the <em>_versions</em>, <em>_preview</em> or <em>_published</em> subfolder.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />If <em>previous</em> is true, will return the version immediately before the latest one.<br />Returns a list with the version number as first item, the state as second item, and the date as the third item.</td>
@@ -770,6 +765,11 @@
 <td><strong>getPublishFolder</strong><br />▹ <em>string</em></td>
 <td><em>string</em>: <strong>filePath</strong></td>
 <td>Gets the <em><em>published</em></em> folder path for any given file.</td>
+</tr>
+<tr>
+<td><strong>getRamsesFiles</strong><br />▹ <em>list</em> of <em>string</em></td>
+<td><em>string</em>: <strong>folderPath</strong>, <br /><em>string</em>: <strong>resource</strong>=<code>None</code></td>
+<td>Gets all the files respecting the <em>Ramses</em> naming scheme inside the folder, optionally corresponding to the given resource only.</td>
 </tr>
 <tr>
 <td><strong>getSaveFilePath</strong><br />▹ <em>string</em></td>
@@ -815,6 +815,11 @@
 <td><strong>isProjectFolder</strong><br />▹ <em>boolean</em></td>
 <td><em>string</em>: <strong>folderPath</strong></td>
 <td>Checks if a given folder is the project root folder.</td>
+</tr>
+<tr>
+<td><strong>isRamsesName</strong><br />▹ <em>boolean</em></td>
+<td><em>string</em>: <strong>fileName</strong></td>
+<td>Checks if the given name respects the <em>Ramses</em> naming scheme.</td>
 </tr>
 <tr>
 <td><strong>isShotStep</strong><br />▹ <em>boolean</em></td>
