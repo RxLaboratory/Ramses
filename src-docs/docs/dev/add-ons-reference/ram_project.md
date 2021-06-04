@@ -21,7 +21,7 @@ Inherits: [***RamObject***](ram_object.md)
 | **asset**<br />▹ *[RamAsset](ram_asset.md)* | *string*: **assetShortName** | Gets an asset with its short name. |
 | **assetGroups**<br />▹ *list of string* | | Available asset groups in this project |
 | **assets**<br />▹ *list of [RamAsset](ram_asset.md)* | *string*: **groupName**=`""` | Available assets in this project and group. If *groupName* is an empty string, returns all assets. |
-| **assetsPath**<br />▹ *str* | | The path to the assets of this project. When calling this method, the folder will created if it does not exist yet. |
+| **assetsPath**<br />▹ *str* | *string*: **assetGroup**=`""`| The path to the assets (including the asset group if provided) of this project. When calling this method, the folder will created if it does not exist yet. |
 | **exportPath**<br />▹ *str* | | The path to the exported medias of this project. When calling this method, the folder will created if it does not exist yet. |
 | **folderPath**<br />▹ *string* | | The project's root folder. |
 | **framerate**<br />▹ *float* | | The project's framerate, in frames per second. |

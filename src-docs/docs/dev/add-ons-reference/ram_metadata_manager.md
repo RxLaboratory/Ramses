@@ -31,7 +31,7 @@ The Meta-Data used by *Ramses* contains at least these attributes.
 | **setMetaData**<br /> | *string*: **path**,<br />*object* or *dict*: **data** | Writes the given meta-data to the meta-data file associated to this folder. |
 | **setValue** | *string*: **filePath**,<br />*string*: **key**,<br />*any*: **value** | Sets the value of a specific key for the file. |
 | **setVersion** | *string*: **filePath**,<br />*int*: **version** | Sets the version associated to the file. |
-| **setVersionFilePath** | *string*: **filePath**,<br />*string*: **filePath** | Sets the version file associated to the file. |
+| **setVersionFilePath** | *string*: **filePath**,<br />*string*: **versionFilePath** | Sets the version file associated to the file. |
 
 
 ![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/28)
