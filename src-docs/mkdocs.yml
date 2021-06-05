@@ -25,6 +25,7 @@ extra_css:
 extra_javascript:
     - video.js
     - meta.js
+    - collapser.js
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
@@ -45,14 +46,14 @@ nav:
             - File Types: help/filetypes.md
             - Applications: help/applications.md
             - Pipeline: help/pipeline.md
-        - Ramses Components:
+        - Components:
             - General Description: components/index.md
-            - Ramses Server:
+            - Server:
                 - Installation: install/server.md
-            - Ramses Tree:
+            - Tree:
                 - Naming scheme: files/naming.md
                 - Folder structure: files/tree.md
-            - Ramses Add-ons:
+            - Add-ons:
                 - General Information: addons/index.md
                 - Autodesk Maya: addons/maya.md
     - Development:

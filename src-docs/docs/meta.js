@@ -89,5 +89,7 @@ $(document).ready(function () {
         metaBlock += "</ul></dev></div>";
 
         $('.footer-meta').replaceWith(metaBlock);
+
+        this.style.display = "none";
     });
 });

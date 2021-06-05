@@ -176,7 +176,7 @@
                         
                             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Ramses Components</a>
+    <a tabindex="-1" href="">Components</a>
     <ul class="dropdown-menu">
         
             
@@ -187,7 +187,7 @@
         
             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Ramses Server</a>
+    <a tabindex="-1" href="">Server</a>
     <ul class="dropdown-menu">
         
             
@@ -202,7 +202,7 @@
         
             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Ramses Tree</a>
+    <a tabindex="-1" href="">Tree</a>
     <ul class="dropdown-menu">
         
             
@@ -223,7 +223,7 @@
         
             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <a tabindex="-1" href="">Add-ons</a>
     <ul class="dropdown-menu">
         
             
@@ -641,59 +641,398 @@
                     <li class="third-level"><a href="#example">Example</a></li>
         </ul>
     </div>
-    <div class="bs-sidebar hidden-print  affix well" role="complementary">
+    <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
         <!-- Main navigation -->
         <ul class="nav bs-sidenav">
         
         
             <li >
-                <a href="../../..">Ramses</a>
+                <a href="../../../../../..">Ramses</a>
             </li>
         
         
         
             <li class="first-level">
-                <p>Help</p>
-                
-                    <li class="second-level "><a href="">Machinery</a></li>
-                
-                    <li class="second-level "><a href="">Ramses Components</a></li>
-                
+                <button  type="button" class="collapse-button ">Help</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Machinery</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/">Ramses</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/users/">Users</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/projects/">Projects</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/steps/">Steps</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/assetgroups/">Asset Groups</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/assets/">Assets</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/sequences/">Sequences</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/shots/">Shots</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/statushistory/">Status History</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/status/">Status</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/states/">States</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/filetypes/">File Types</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/applications/">Applications</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../help/pipeline/">Pipeline</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Components</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/">General Description</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Server</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../../install/server/">Installation</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Tree</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../../files/naming/">Naming scheme</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../files/tree/">Folder structure</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Add-ons</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../../addons/">General Information</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../addons/maya/">Autodesk Maya</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
             </li>
         
         
         
             <li class="first-level">
-                <p>Development</p>
-                
-                    <li class="second-level "><a href="dev/">Introduction</a></li>
-                
-                    <li class="second-level "><a href="">Files and Folders</a></li>
-                
-                    <li class="second-level "><a href="">Scripting API (Add-ons)</a></li>
-                
-                    <li class="second-level active"><a href="">Daemon API</a></li>
-                
-                    <li class="second-level "><a href="">Server API</a></li>
-                
+                <button  type="button" class="collapse-button active-collapse-button">Development</button>
+                <ul class="collapsible-content collapsible-content-active">
+                    
+                        
+                        <li class="second-level "><a href="../../">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Files and Folders</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../files/naming/">Naming</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Scripting API (Add-ons)</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/enum/">Constants</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ramses/">Ramses</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_asset/">RamAsset</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_file_manager/">RamFileManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_filetype/">RamFileType</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_item/">RamItem</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_object/">RamObject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_pipe/">RamPipe</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_project/">RamProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_settings/">RamSettings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_shot/">RamShot</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_state/">RamState</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_status/">RamStatus</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_step/">RamStep</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_user/">RamUser</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/implementation/">Dev Notes</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button active-collapse-button">Daemon API</button>
+                            <ul class="collapsible-content collapsible-content-active">
+                                
+                                    
+                                    <li class="third-level "><a href="../">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../general_q/">General queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../asset_q/">Asset queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level active"><a href="./">Pipe queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../project_q/">Project queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../shot_q/">Shot queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../state_q/">State and Status queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../step_q/">Step queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../user_q/">User queries</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Server API</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/applications/">Application queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/assets/">Asset queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/assetgroups/">Asset Group queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/filetypes/">File type queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/general/">General queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/pipes/">Pipe queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/projects/">Project queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/sequences/">Sequence queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/shots/">Shot queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/states/">State queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/status/">Status queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/steps/">Step queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server-reference/users/">User queries</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
             </li>
         
         
         
             <li class="first-level">
-                <p>About</p>
-                
-                    <li class="second-level "><a href="credits/">Credits</a></li>
-                
-                    <li class="second-level "><a href="changelog/">Changelog</a></li>
-                
-                    <li class="second-level "><a href="">Licenses</a></li>
-                
+                <button  type="button" class="collapse-button ">About</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../credits/">Credits</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../changelog/">Changelog</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Licenses</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gnu-gpl/">GNU GPLv3</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gfdl/">Documentation license</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
             </li>
         
         
         </ul>
     </div>
+    <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
 
@@ -759,7 +1098,7 @@
     
       <footer class="col-md-12 text-center">
           
-<div class="footer-meta"></div>
+<div></div>
 
       </footer>
     
@@ -777,6 +1116,7 @@
     <script src="../../../js/base.js"></script>
     <script src="../../../video.js"></script>
     <script src="../../../meta.js"></script>
+    <script src="../../../collapser.js"></script>
     <script src="../../../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

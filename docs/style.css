@@ -35,7 +35,75 @@ body {
     box-shadow: 1px 4px 7px #232323;
     border-radius: 10px;
     border: none;
+
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #b3b3b3 rgba(0,0,0,0); /* Firefox */
 }
+
+ /* width */
+.bs-sidebar::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+.bs-sidebar::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);
+  }
+  
+  /* Handle */
+.bs-sidebar::-webkit-scrollbar-thumb {
+    background: #b3b3b3;
+  }
+  
+  /* Handle on hover */
+  .bs-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #333;
+  } 
+
+.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a {
+    border-right: 7px solid;
+}
+
+.collapsible-content {
+    padding: 0 30px;
+    overflow: hidden;
+    background: #f1f1f1;
+    list-style-type: none;
+    max-height: 0;
+    transition: max-height 0.2s cubic-bezier(0, 1, 0, 1);
+}
+
+.collapsible-content-active {
+    max-height: 1000px;
+    transition: max-height 0.2s ease-in-out;
+}
+
+.collapse-button {
+    background: none;
+    border: none;
+    padding-left:20px;
+    font-weight: bold;
+    color:#333;
+    width:100%;
+    text-align: left;
+}
+
+.collapse-button:before {
+    content: '\025B6';
+    font-size: 8px;
+    float: left;
+    color: #838383;
+    margin-right:5px;
+    padding-top:4px;
+}
+
+.active-collapse-button::before {
+    content: '\025BC';   
+}
+
+.active-collapse-button, .collapse-button:hover {
+    background: #f1f1f1;
+  }
 
 @media (min-width: 992px) {
     #side-menu {
@@ -87,13 +155,14 @@ ul.nav li p {
 }
 
 .post-meta {
-    font-size: 0.8em;
+    font-size: 0.9em;
     background-color: #535353;
     color: #c3c3c3;
     border-radius: 10px;
     padding-top: 10px;
     padding-bottom: 1px;
     margin-bottom: 5px;
+    max-width:263px;
 }
 
 .post-meta a {
@@ -104,10 +173,6 @@ ul.nav li p {
     content: "▹\00a0";
 }
 
-.meta-wrapper {
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-
+.post-meta ul {
+    padding-left:20px;
 }
