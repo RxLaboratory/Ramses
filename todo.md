@@ -33,6 +33,8 @@
 
 ## Other
 
+- FIX: when clearing RamObjectListWidget disconnect all objects, not just the lists (cf ItemTableWidget)
+- PERFs: in ItemTableWidget and RamObjectListWidget use QTableWidgetItem data to store obj uuid, and remove all casts from widgets
 - FEATURE: if user is not admin, list only projects he's assigned to
 - BUGFIX: Crash on reload
 - BUGFIX: Crash when changing shot sequence in shoteditwidget
