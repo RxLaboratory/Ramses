@@ -16,9 +16,16 @@
 ## pipeline tools first
 
 - FEATURE: Asset & Shot table
-    - [ ] StatusEditTable(RamObjectList *items)  
-    Vheader: RamObjectList items  
-    Hheader: RamObjectLists steps
+    - [WIP] StatusEditTable(RamObjectList *items)  
+        - Finish status connections
+        - Filters (step (mine), asset group/sequence)
+        - Search (in the header of the item column)
+        - improve item widgets with more details
+        - add buttons in status widgets for history & add new.
+        - implement the "new/change status" popup (using the status editor from the history widget)
+        - implement middle click in status history widget
+        - remove status editor at the bottom of the status history widget
+        - show + button in status history widget
 - FEATURE: [-] status & history
     - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
     - [ ] Check version in files, alert when changing status if version is found but does not correspond
@@ -33,6 +40,7 @@
 
 ## Other
 
+- SERVER: add property "dont remove" to some states and the ramuser
 - FIX: when clearing RamObjectListWidget disconnect all objects, not just the lists (cf ItemTableWidget)
 - PERFs: in ItemTableWidget and RamObjectListWidget use QTableWidgetItem data to store obj uuid, and remove all casts from widgets
 - FEATURE: if user is not admin, list only projects he's assigned to

@@ -24,6 +24,7 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | **publishScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user publishes the current file from the host application.<br />The callback must be a method which takes three arguments: the *[RamItem](ram_item.md)*/*[RamShot](ram_shot.md)*/*[RamAsset](ram_asset.md)* being published, the file path (a string) of the document being published, which should be the active document in the host application, and the *[*RamStep*](ram_step.md)* (which may be *None*/*undefined* in case of a general item). |
 | **statusScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().updateStatus()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user changes the current status of an asset / shot from the host application.<br />The callback must be a method which takes three arguments: the *[RamItem](ram_item.md)*/*[RamShot](ram_shot.md)*/*[RamAsset](ram_asset.md)* being updated, the new *[RamStatus](ram_status.md)*, and the corresponding *[RamStep](ram_step.md)* (which may be *None*/*undefined* in case of a general item) |
 | **importScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().import()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user asks to import an item.<br />The callback must be a method which takes three arguments: the *[RamItem](ram_item.md)*/*[RamShot](ram_shot.md)*/*[RamAsset](ram_asset.md)* being imported, the associated file path (a string), and the *[*RamStep*](ram_step.md)* (which may be *None*/*undefined* in case of a general item). |
+| **userScripts** | *dict* or *object* | `{}` | This *dict* or *object* is here for your convenience, to make it easy to register and call any method from anywhere you've imported Ramses without having to import the file containing the method. Just register with `Ramses.instance().userScripts["TheFunctionName"] = aFunction` and call the method with `Ramses.instance().userScripts["TheFunctionName"](some, args)`. |
 
 ## Methods
 
@@ -66,12 +67,22 @@ ramses = ram.Ramses.instance()
 def published(item, filePath, step):
     ram.log("Hello, I've been published!")
 
+# Another one
+def aFunction( arg1, arg2):
+    ram.log("I'm doing something")
+
 # Adds the method to the scripts which will be run when the add-on publishes a file
 ramses.publishScripts.append( published )
+
+# Let's store a function in the userScripts to make it available everywhere
+ramses.userScripts["MyFunction"] = aFunction
 
 # The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 # If you're developping another addon, you have to call Ramses.publish() to run them
 ramses.publish(currentItem, 'a path', 'STEP')
+
+# From anywhere in the app where the Ramses module has been imported, you can call 'aFunction' with
+ramses.userScripts["MyFunction"](some, arg)
 ```
 
 ```js
@@ -85,15 +96,27 @@ var ramses = Ramses.instance();
 // A simple method
 function published(item, filePath, step)
 {
-    ram.log("Hello, I've been published!")
+    ram.log("Hello, I've been published!");
+}
+
+// Another one
+function aFunction( arg1, arg2)
+{
+    ram.log("I'm doing something");
 }
 
 // Adds the method to the scripts which will be run when the add-on publishes a file
-ramses.publishScripts.push( published )
+ramses.publishScripts.push( published );
+
+// Let's store a function in the userScripts to make it available everywhere
+ramses.userScripts["MyFunction"] = aFunction;
 
 // The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 // If you're developping another addon, you have to call Ramses.publish() to run them
-ramses.publish(currentItem, 'a path', 'STEP')
+ramses.publish(currentItem, 'a path', 'STEP');
+
+// From anywhere in the app, you can call 'aFunction' with
+ramses.userScripts["MyFunction"](some, arg);
 ```
 
 ____
