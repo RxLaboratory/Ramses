@@ -88,7 +88,7 @@ WIP
 
 - Server
 - [x] sql db
-- [x] server (get in projects/sequences)
+- [x] server (get in projects/sequences) -> assign, unassign (cf applications filetype), et get in projects (idem, cf applications)
 - [x] server doc
 - Client
 - [x] dbi
