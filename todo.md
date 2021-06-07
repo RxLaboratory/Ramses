@@ -17,15 +17,18 @@
 
 - FEATURE: Asset & Shot table
     - [WIP] StatusEditTable(RamObjectList *items)  
-        - Finish status connections
-        - Filters (step (mine), asset group/sequence)
-        - Search (in the header of the item column)
+        - [WIP] Filters (step (mine), asset group/sequence)
+        - Search
         - improve item widgets with more details
         - add buttons in status widgets for history & add new.
         - implement the "new/change status" popup (using the status editor from the history widget)
         - implement middle click in status history widget
         - remove status editor at the bottom of the status history widget
         - show + button in status history widget
+- [WIP] FEATURE: Pipes
+    - Set files as a RamObjectList: several types per pipe
+        - A new RamObject derived class: RamPipeFile with: shortName, filetype, colorspace
+        - Keep the RamPipeFiles in the project
 - FEATURE: [-] status & history
     - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
     - [ ] Check version in files, alert when changing status if version is found but does not correspond
