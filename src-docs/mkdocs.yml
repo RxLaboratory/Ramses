@@ -72,6 +72,7 @@ nav:
             - RamMetaDataManager: dev/add-ons-reference/ram_metadata_manager.md
             - RamObject: dev/add-ons-reference/ram_object.md
             - RamPipe: dev/add-ons-reference/ram_pipe.md
+            - RamPipeFile: dev/add-ons-reference/ram_pipefile.md
             - RamProject: dev/add-ons-reference/ram_project.md
             - RamSettings: dev/add-ons-reference/ram_settings.md
             - RamShot: dev/add-ons-reference/ram_shot.md

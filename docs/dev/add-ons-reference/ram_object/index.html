@@ -349,6 +349,12 @@
         
             
 <li >
+    <a href="../ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
     <a href="../ram_project/">RamProject</a>
 </li>
 
@@ -854,6 +860,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../ram_project/">RamProject</a></li>
                                     
                                 
@@ -1098,7 +1108,7 @@
 <h2 id="special">Special</h2>
 <h3 id="convert-to-string">Convert to string</h3>
 <p><em>RamObject</em>s can be converted to string the usual way.</p>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 obj = RamObject( &quot;Name&quot;, &quot;ShortName&quot; )
 
@@ -1108,7 +1118,8 @@ print( str(obj) ) # explicit conversion
 # Both will print:
 &gt;&gt;&gt; ShortName | Name
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 var obj = new RamObject( &quot;Name&quot;, &quot;ShortName&quot; );
 
@@ -1118,10 +1129,11 @@ $.writeln( obj.toString() );
 // ShortName | Name
 
 </code></pre>
+
 <h3 id="comparing-objects">Comparing objects</h3>
 <p><em>RamObjects</em> can be compared to check if two objects are the same (comparing the values, not the object instances).</p>
 <p>Two objects are considered the same <strong>if and only if</strong> their short names are the same. Names will not be compared, which means <strong>object short names in ramses have to be unique</strong>.</p>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 obj = RamObject( &quot;Name&quot;, &quot;ShortName&quot; )
 other = RamObject( &quot;Other Object&quot;, &quot;otheShortName&quot; )
@@ -1139,7 +1151,8 @@ same in objList # True
 # But RamObject is not hashable, so it cannot be used in a `set` or as a key in a `dict`
 
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 var obj = RamObject( &quot;Name&quot;, &quot;ShortName&quot; );
 var other = RamObject( &quot;Other Object&quot;, &quot;otheShortName&quot; );
@@ -1151,6 +1164,7 @@ obj.is(other) // false
 obj.is(same) // true
 
 </code></pre>
+
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1178,7 +1192,7 @@ obj.is(same) // true
 </table>
 <h3 id="implementation">Implementation</h3>
 <h4 id="converting-objects-to-string">Converting objects to string</h4>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 # Overload the __str__() method
 
@@ -1187,7 +1201,8 @@ class RamObject:
         return self._shortName + &quot; | &quot; + self._name
 
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 // Overload the toString() method
 
@@ -1198,8 +1213,9 @@ RamObject.prototype.toString = function ()
     return this._shortName + &quot; | &quot; + this._name;
 }
 </code></pre>
+
 <h4 id="object-comparison">Object comparison</h4>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 # Overload the __eq__() method
 
@@ -1208,7 +1224,8 @@ class RamObject:
         return self._shortName == other._shortName
 
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 // Implements an is() method
 
@@ -1219,6 +1236,7 @@ RamObject.prototype.is = function ( other )
     return this._shortName == other._shortName;
 }
 </code></pre>
+
 <hr />
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
         

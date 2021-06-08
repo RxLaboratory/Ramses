@@ -15,10 +15,13 @@ The *Daemon* replies with the list of Pipes.
 - *pipes*: **array of objects**. The pipes. Each pipe is an object with:
     - *inputStepShortName*: **string**. The short name of the input step.
     - *outputStepShortName*: **string**. The short name of the output step.
-    - *fileType*: **object**. The file type, an object with:
-        - *name*: **string**. The name of the file type
-        - *shortName*: **string**. The short name of the file type.
-        - *extensions*: *array of string*. The extensions, including the leading `.`.
+    - *pipeFiles*: **list** of **object**. The pipe files, objects with:
+        - *colorSpace*: **string**. The short name of the color space
+        - *shortName*: **string**. The short name pipe file.
+        - *fileType*: **object**. The file type, an object with:
+            - *name*: **string**
+            - *shortName*: **string**
+            - *extensions*: **list** of **string**
 
 ### Example
 
@@ -37,20 +40,50 @@ Reply:
             {
                 "inputStepShortName": "TEX",
                 "outputStepShortName": "MOD",
-                "fileType": {
-                    "name": "Alembic geometry data",
-                    "shortName": "abc",
-                    "extensions": [".abc"]
+                "pipeFiles": [
+                    {
+                        "colorSpace": "",
+                        "shortName": "Preview",
+                        "fileType": {
+                            "name": "JPEG Image",
+                            "shortName": "jpg",
+                            "extensions": [".jpg", ".jpeg"]
+                            }
+                    },
+                    {
+                        "colorSpace": "",
+                        "shortName": "Publish",
+                        "fileType": {
+                            "name": "Maya Binary",
+                            "shortName": "mb",
+                            "extensions": [".mb"]
+                            }
                     }
+                ]
             },
             {
                 "inputStepShortName": "STORY",
                 "outputStepShortName": "CD",
-                "fileType": {
-                    "name": "JPEG Image",
-                    "shortName": "jpg",
-                    "extensions": [".jpg", ".jpeg"]
+                "pipeFiles": [
+                    {
+                        "colorSpace": "",
+                        "shortName": "Preview",
+                        "fileType": {
+                            "name": "JPEG Image",
+                            "shortName": "jpg",
+                            "extensions": [".jpg", ".jpeg"]
+                            }
+                    },
+                    {
+                        "colorSpace": "",
+                        "shortName": "Publish",
+                        "fileType": {
+                            "name": "Adobe PDF",
+                            "shortName": "pdf",
+                            "extensions": [".pdf"]
+                            }
                     }
+                ]
             }
         ]
     }

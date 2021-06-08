@@ -349,6 +349,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ram_project/">RamProject</a>
 </li>
 
@@ -847,6 +853,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../add-ons-reference/ram_project/">RamProject</a></li>
                                     
                                 
@@ -1049,10 +1059,15 @@
 <li><em>pipes</em>: <strong>array of objects</strong>. The pipes. Each pipe is an object with:<ul>
 <li><em>inputStepShortName</em>: <strong>string</strong>. The short name of the input step.</li>
 <li><em>outputStepShortName</em>: <strong>string</strong>. The short name of the output step.</li>
+<li><em>pipeFiles</em>: <strong>list</strong> of <strong>object</strong>. The pipe files, objects with:<ul>
+<li><em>colorSpace</em>: <strong>string</strong>. The short name of the color space</li>
+<li><em>shortName</em>: <strong>string</strong>. The short name pipe file.</li>
 <li><em>fileType</em>: <strong>object</strong>. The file type, an object with:<ul>
-<li><em>name</em>: <strong>string</strong>. The name of the file type</li>
-<li><em>shortName</em>: <strong>string</strong>. The short name of the file type.</li>
-<li><em>extensions</em>: <em>array of string</em>. The extensions, including the leading <code>.</code>.</li>
+<li><em>name</em>: <strong>string</strong></li>
+<li><em>shortName</em>: <strong>string</strong></li>
+<li><em>extensions</em>: <strong>list</strong> of <strong>string</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1062,7 +1077,7 @@
 <p>Query:<br />
 <code>getPipes</code></p>
 <p>Reply:  </p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getPipes&quot;,
     &quot;success&quot;: true,
@@ -1072,20 +1087,50 @@
             {
                 &quot;inputStepShortName&quot;: &quot;TEX&quot;,
                 &quot;outputStepShortName&quot;: &quot;MOD&quot;,
-                &quot;fileType&quot;: {
-                    &quot;name&quot;: &quot;Alembic geometry data&quot;,
-                    &quot;shortName&quot;: &quot;abc&quot;,
-                    &quot;extensions&quot;: [&quot;.abc&quot;]
+                &quot;pipeFiles&quot;: [
+                    {
+                        &quot;colorSpace&quot;: &quot;&quot;,
+                        &quot;shortName&quot;: &quot;Preview&quot;,
+                        &quot;fileType&quot;: {
+                            &quot;name&quot;: &quot;JPEG Image&quot;,
+                            &quot;shortName&quot;: &quot;jpg&quot;,
+                            &quot;extensions&quot;: [&quot;.jpg&quot;, &quot;.jpeg&quot;]
+                            }
+                    },
+                    {
+                        &quot;colorSpace&quot;: &quot;&quot;,
+                        &quot;shortName&quot;: &quot;Publish&quot;,
+                        &quot;fileType&quot;: {
+                            &quot;name&quot;: &quot;Maya Binary&quot;,
+                            &quot;shortName&quot;: &quot;mb&quot;,
+                            &quot;extensions&quot;: [&quot;.mb&quot;]
+                            }
                     }
+                ]
             },
             {
                 &quot;inputStepShortName&quot;: &quot;STORY&quot;,
                 &quot;outputStepShortName&quot;: &quot;CD&quot;,
-                &quot;fileType&quot;: {
-                    &quot;name&quot;: &quot;JPEG Image&quot;,
-                    &quot;shortName&quot;: &quot;jpg&quot;,
-                    &quot;extensions&quot;: [&quot;.jpg&quot;, &quot;.jpeg&quot;]
+                &quot;pipeFiles&quot;: [
+                    {
+                        &quot;colorSpace&quot;: &quot;&quot;,
+                        &quot;shortName&quot;: &quot;Preview&quot;,
+                        &quot;fileType&quot;: {
+                            &quot;name&quot;: &quot;JPEG Image&quot;,
+                            &quot;shortName&quot;: &quot;jpg&quot;,
+                            &quot;extensions&quot;: [&quot;.jpg&quot;, &quot;.jpeg&quot;]
+                            }
+                    },
+                    {
+                        &quot;colorSpace&quot;: &quot;&quot;,
+                        &quot;shortName&quot;: &quot;Publish&quot;,
+                        &quot;fileType&quot;: {
+                            &quot;name&quot;: &quot;Adobe PDF&quot;,
+                            &quot;shortName&quot;: &quot;pdf&quot;,
+                            &quot;extensions&quot;: [&quot;.pdf&quot;]
+                            }
                     }
+                ]
             }
         ]
     }

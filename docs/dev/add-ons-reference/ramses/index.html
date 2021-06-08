@@ -349,6 +349,12 @@
         
             
 <li >
+    <a href="../ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
     <a href="../ram_project/">RamProject</a>
 </li>
 
@@ -642,6 +648,8 @@
                     
                 <li class="second-level"><a href="#methods">Methods</a></li>
                     
+                <li class="second-level"><a href="#callbacks">Callbacks</a></li>
+                    
                 <li class="second-level"><a href="#examples">Examples</a></li>
                     
                 <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
@@ -853,6 +861,10 @@
                                 
                                     
                                     <li class="third-level "><a href="../ram_pipe/">RamPipe</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../ram_pipefile/">RamPipeFile</a></li>
                                     
                                 
                                     
@@ -1101,6 +1113,7 @@
 </tbody>
 </table>
 <h2 id="attributes">Attributes</h2>
+<p>Read the section entitled <em>Callbacks</em> below (and see the <em>Examples</em>) for more information about the methods you can add to these lists.</p>
 <table>
 <thead>
 <tr>
@@ -1115,19 +1128,25 @@
 <td><strong>publishScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user publishes the current file from the host application.<br />The callback must be a method which takes three arguments: the <em><a href="../ram_item/">RamItem</a></em>/<em><a href="../ram_shot/">RamShot</a></em>/<em><a href="../ram_asset/">RamAsset</a></em> being published, the file path (a string) of the document being published, which should be the active document in the host application, and the <em><a href="../ram_step/"><em>RamStep</em></a></em> (which may be <em>None</em>/<em>undefined</em> in case of a general item).</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user publishes the current file from the host application.</td>
 </tr>
 <tr>
 <td><strong>statusScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.<br />The callback must be a method which takes three arguments: the <em><a href="../ram_item/">RamItem</a></em>/<em><a href="../ram_shot/">RamShot</a></em>/<em><a href="../ram_asset/">RamAsset</a></em> being updated, the new <em><a href="../ram_status/">RamStatus</a></em>, and the corresponding <em><a href="../ram_step/">RamStep</a></em> (which may be <em>None</em>/<em>undefined</em> in case of a general item)</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.</td>
 </tr>
 <tr>
 <td><strong>importScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().import()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.<br />The callback must be a method which takes three arguments: the <em><a href="../ram_item/">RamItem</a></em>/<em><a href="../ram_shot/">RamShot</a></em>/<em><a href="../ram_asset/">RamAsset</a></em> being imported, the associated file path (a string), and the <em><a href="../ram_step/"><em>RamStep</em></a></em> (which may be <em>None</em>/<em>undefined</em> in case of a general item).</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().import()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.</td>
+</tr>
+<tr>
+<td><strong>userScripts</strong></td>
+<td><em>dict</em> or <em>object</em></td>
+<td><code>{}</code></td>
+<td>This <em>dict</em> or <em>object</em> is here for your convenience, to make it easy to register and call any method from anywhere you&rsquo;ve imported Ramses without having to import the file containing the method. Just register with <code>Ramses.instance().userScripts["TheFunctionName"] = aFunction</code> and call the method with <code>Ramses.instance().userScripts["TheFunctionName"](some, args)</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -1189,7 +1208,7 @@
 <tr>
 <td><strong>importItem</strong></td>
 <td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
-<td>Runs the scripts in <code>Ramses.instance().importScripts</code>.</td>
+<td>Runs the scripts in <code>Ramses.instance().importScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
 <td><strong>project</strong><br />▹ <em><a href="../ram_project/">RamProject</a></em></td>
@@ -1223,8 +1242,8 @@
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
-<td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.</td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
 <td><strong>showClient</strong></td>
@@ -1243,8 +1262,8 @@
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
-<td>Runs the scripts in <code>Ramses.instance().statusScripts</code>.</td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>Runs the scripts in <code>Ramses.instance().statusScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
 <td><strong>usersPath</strong><br />▹ <em>string</em></td>
@@ -1253,8 +1272,39 @@
 </tr>
 </tbody>
 </table>
+<h2 id="callbacks">Callbacks</h2>
+<p>The callbacks are the methods you can add to these lists: <code>Ramses.publishScripts</code>, <code>Ramses.statusScripts</code>, <code>Ramses.importScripts</code>, <code>Ramses.userScripts</code>.</p>
+<p>When using one of the provided <a href="../../../addons/">Ramses Add-ons</a>, these callbacks will be called automatically when the user publishes an item, changes the status, or wants to import a file. This makes it very easy to extend these add-ons by just adding your own methods.</p>
+<p>If you&rsquo;re developping your own add-on from scratch, it may be useful to add your methods to these lists to call them easily anyway; use <code>Ramses.publish()</code>, <code>Ramses.importItem()</code>, and <code>Ramses.updateStatus()</code>.</p>
+<p><em>Ramses</em> will pass a few arguments depending on the context to theses methods, which they&rsquo;ll have to handle. The table below describes the callbacks.</p>
+<table>
+<thead>
+<tr>
+<th>Callback</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>importItem</strong></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>list</em> of <em>string</em>: <strong>filePaths</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>- <code>item</code> is the item from which the user wants to import a file.<br />- <code>filePaths</code> is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />- <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.</td>
+</tr>
+<tr>
+<td><strong>publish</strong></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>- <code>item</code> is the item from which the user wants to publish a file.<br />- <code>filePath</code> is the absolute path to the folder where the user wants to publish.<br />- <code>step</code> is the step from which the user is publishing. You can check <code>step.outputPipes()</code> to know which file types to publish.</td>
+</tr>
+<tr>
+<td><strong>updateStatus</strong></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>- <code>item</code> is the item which is being updated.<br />- <code>status</code> is the new status.<br />- <code>step</code> is the step being updated.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="examples">Examples</h2>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 # import ramses
 import ramses as ram
@@ -1265,14 +1315,25 @@ ramses = ram.Ramses.instance()
 def published(item, filePath, step):
     ram.log(&quot;Hello, I've been published!&quot;)
 
+# Another one
+def aFunction( arg1, arg2):
+    ram.log(&quot;I'm doing something&quot;)
+
 # Adds the method to the scripts which will be run when the add-on publishes a file
 ramses.publishScripts.append( published )
+
+# Let's store a function in the userScripts to make it available everywhere
+ramses.userScripts[&quot;MyFunction&quot;] = aFunction
 
 # The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 # If you're developping another addon, you have to call Ramses.publish() to run them
 ramses.publish(currentItem, 'a path', 'STEP')
+
+# From anywhere in the app where the Ramses module has been imported, you can call 'aFunction' with
+ramses.userScripts[&quot;MyFunction&quot;](some, arg)
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 // include the Ramses lib
 #include ramses.jsxinc
@@ -1282,16 +1343,29 @@ var ramses = Ramses.instance();
 // A simple method
 function published(item, filePath, step)
 {
-    ram.log(&quot;Hello, I've been published!&quot;)
+    ram.log(&quot;Hello, I've been published!&quot;);
+}
+
+// Another one
+function aFunction( arg1, arg2)
+{
+    ram.log(&quot;I'm doing something&quot;);
 }
 
 // Adds the method to the scripts which will be run when the add-on publishes a file
-ramses.publishScripts.push( published )
+ramses.publishScripts.push( published );
+
+// Let's store a function in the userScripts to make it available everywhere
+ramses.userScripts[&quot;MyFunction&quot;] = aFunction;
 
 // The provided Ramses add-ons for Blender, Maya, etc. automatically trigger these scripts.
 // If you're developping another addon, you have to call Ramses.publish() to run them
-ramses.publish(currentItem, 'a path', 'STEP')
+ramses.publish(currentItem, 'a path', 'STEP');
+
+// From anywhere in the app, you can call 'aFunction' with
+ramses.userScripts[&quot;MyFunction&quot;](some, arg);
 </code></pre>
+
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">

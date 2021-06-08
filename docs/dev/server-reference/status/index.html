@@ -349,6 +349,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ram_project/">RamProject</a>
 </li>
 
@@ -846,6 +852,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../add-ons-reference/ram_project/">RamProject</a></li>
                                     
                                 
@@ -1073,7 +1083,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateStatus&amp;uuid=123&amp;stateUuid=456&amp;comment=The new commment&amp;version=12&amp;completionRatio=50&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateStatus&quot;,
     &quot;success&quot;: true,
@@ -1081,6 +1091,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removestatus">removeStatus</h2>
 <p>Removes a status from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1094,7 +1105,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeStatus&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeStatus&quot;,
     &quot;success&quot;: true,

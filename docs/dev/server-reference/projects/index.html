@@ -349,6 +349,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ram_project/">RamProject</a>
 </li>
 
@@ -854,6 +860,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../add-ons-reference/ram_project/">RamProject</a></li>
                                     
                                 
@@ -1072,7 +1082,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createProject&quot;,
     &quot;success&quot;: true,
@@ -1080,6 +1090,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="getproject">getProject</h2>
 <p>Retrieves a single project.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1152,7 +1163,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProject&amp;uuid=123abc&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProject&quot;,
     &quot;success&quot;: true,
@@ -1171,6 +1182,7 @@
         }
 }
 </code></pre>
+
 <h2 id="getprojects">getProjects</h2>
 <p>Retrieves the list of all projects.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1242,7 +1254,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getProjects&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProjects&quot;,
     &quot;success&quot;: true,
@@ -1275,6 +1287,7 @@
     ]
 }
 </code></pre>
+
 <h2 id="updateproject">updateProject</h2>
 <p>Updates project information.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1291,7 +1304,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateProject&amp;name=Mythomen&amp;shortName=Mytho&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateProject&quot;,
     &quot;success&quot;: true,
@@ -1299,6 +1312,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removeproject">removeProject</h2>
 <p>Removes a project from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1312,7 +1326,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeProject&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeProject&quot;,
     &quot;success&quot;: true,
@@ -1320,6 +1334,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignstep">assignStep</h2>
 <p>Assigns a template step to a project</p>
 <p><strong>Query attributes:</strong></p>
@@ -1334,7 +1349,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignStep&amp;stepUuid=123&amp;projectUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignStep&quot;,
     &quot;success&quot;: true,
@@ -1342,6 +1357,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <p>{
     &ldquo;accepted&rdquo;: true,
     &ldquo;query&rdquo;: &ldquo;assignStep&rdquo;,

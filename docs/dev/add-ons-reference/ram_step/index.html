@@ -349,6 +349,12 @@
         
             
 <li >
+    <a href="../ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
     <a href="../ram_project/">RamProject</a>
 </li>
 
@@ -849,6 +855,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../ram_project/">RamProject</a></li>
                                     
                                 
@@ -1084,6 +1094,16 @@
 <td>The absolute path to the folder containing the common files for this step</td>
 </tr>
 <tr>
+<td><strong>inputPipes</strong><br />▹ <em>list</em> of <em><a href="../ram_pipe/">RamPipe</a></em></td>
+<td></td>
+<td>The pipes comming into this step.</td>
+</tr>
+<tr>
+<td><strong>outputPipes</strong><br />▹ <em>list</em> of <em><a href="../ram_pipe/">RamPipe</a></em></td>
+<td></td>
+<td>The pipes going out of this step.</td>
+</tr>
+<tr>
 <td><strong>project</strong><br />▹ <em><a href="../ram_project/">RamProject</a></em></td>
 <td></td>
 <td>Gets the project this step belongs too. To improve performance, if only the shortName is needed, prefer using <code>projectShortName()</code></td>
@@ -1128,6 +1148,14 @@
 <tbody>
 <tr>
 <td><strong>commonFolderPath</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>inputPipes</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>outputPipes</strong></td>
 <td><i class="fa fa-lock"></i> Immutable</td>
 </tr>
 <tr>

@@ -349,6 +349,12 @@
         
             
 <li >
+    <a href="../ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
     <a href="../ram_project/">RamProject</a>
 </li>
 
@@ -615,7 +621,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../ram_project/">
+                        <a rel="next" href="../ram_pipefile/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -638,6 +644,9 @@
                     
                 <li class="second-level"><a href="#methods">Methods</a></li>
                     
+                <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
+                    
+                    <li class="third-level"><a href="#immutable-data">(Im)mutable data</a></li>
         </ul>
     </div>
     <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
@@ -846,6 +855,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../ram_project/">RamProject</a></li>
                                     
                                 
@@ -1037,7 +1050,7 @@
 
 <h1 id="rampipe">RamPipe</h1>
 <p>A pipe which connects two steps together in the production pipeline.</p>
-<p>The pipe goes from the output step (which exports data into a specific file type) to the input step (which imports that data).</p>
+<p>The pipe goes from the output step (which exports data into specific file types represented by the <a href="../ram_pipefile/"><code>RamPipeFile</code></a> class) to the input step (which imports that data).</p>
 <h2 id="static-methods">Static Methods</h2>
 <table>
 <thead>
@@ -1067,13 +1080,8 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>string</em>: <strong>inputStepShortName</strong>,<br /><em>string</em>: <strong>outputStepShortName</strong>,<br /><em><a href="../ram_filetype/">RamFileType</a></em>: <strong>fileType</strong></td>
+<td><em>string</em>: <strong>inputStepShortName</strong>,<br /><em>string</em>: <strong>outputStepShortName</strong>,<br /><em>list</em> of <em><a href="../ram_pipefile/">RamPipeFile</a></em>: <strong>pipeFiles</strong></td>
 <td></td>
-</tr>
-<tr>
-<td><strong>colorSpace</strong><br />▹ <em>string</em></td>
-<td></td>
-<td>The color space used through the pipe</td>
 </tr>
 <tr>
 <td><strong>inputStepShortName</strong><br />▹ <em>string</em></td>
@@ -1086,13 +1094,39 @@
 <td>The short name of the output step</td>
 </tr>
 <tr>
-<td><strong>fileType</strong><br />▹ <em><a href="../ram_filetype/">RamFileType</a></em></td>
+<td><strong>pipeFiles</strong><br />▹ <em>list</em> of <em><a href="../ram_pipefile/">RamPipeFile</a></em></td>
 <td></td>
-<td>The file type used through the pipe</td>
+<td>The list of pipe files used through this step</td>
 </tr>
 </tbody>
 </table>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/07" /></p></div>
+<hr />
+<h2 id="api-dev-notes">API Dev notes</h2>
+<h3 id="immutable-data">(Im)mutable data</h3>
+<p>The data returned by the methods can be either <a href="../implementation/#accessing-the-data">mutable or immutable</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type of the returned data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>inputStepShortName</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>outputStepShortName</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>pipeFiles</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/08" /></p></div>
         
         
     </div>

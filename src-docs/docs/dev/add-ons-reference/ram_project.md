@@ -26,8 +26,6 @@ Inherits: [***RamObject***](ram_object.md)
 | **folderPath**<br />▹ *string* | | The project's root folder. |
 | **framerate**<br />▹ *float* | | The project's framerate, in frames per second. |
 | **height**<br />▹ *int* | | The project's height, in pixels. |
-| **inputPipes**<br />▹ *list of [RamPipe](ram_pipe.md)* | *string*:**inputStepShortName** | Gets all pipes using this step as input |
-| **outputPipes**<br />▹ *list of [RamPipe](ram_pipe.md)* | *string*:**outputStepShortName** | Gets all pipes using this step as output |
 | **pipes**<br />▹ *list of [RamPipe](ram_pipe.md)* | | Available pipes in this project |
 | **postProdPath**<br />▹ *str* | | The path to the post-production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **preProdPath**<br />▹ *str* | | The path to the pre-production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
@@ -62,6 +60,7 @@ If a method is not listed here, it means the corresponding data is never stored 
 | --- | --- |
 | **framerate** | <i class="fa fa-lock"></i> Immutable |
 | **height** | <i class="fa fa-lock"></i> Immutable |
+| **pipes** | <i class="fa fa-lock"></i> Immutable |
 | **width** | <i class="fa fa-lock"></i> Immutable |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/08)
