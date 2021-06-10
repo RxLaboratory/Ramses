@@ -1068,6 +1068,12 @@ thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is n
 <td>A comment associated to the file</td>
 </tr>
 <tr>
+<td><a href="../enum/"><strong><code>MetaDataKeys.PIPE_TYPE</code></strong></a></td>
+<td><em>int</em></td>
+<td><code>""</code></td>
+<td>The type of the pipe associated to the file</td>
+</tr>
+<tr>
 <td><a href="../enum/"><strong><code>MetaDataKeys.VERSION</code></strong></a></td>
 <td><em>int</em></td>
 <td><code>-1</code></td>
@@ -1112,6 +1118,11 @@ thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is n
 <td>Gets the path of the file containing the metadata for the given file or folder.</td>
 </tr>
 <tr>
+<td><strong>getPipeType</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the type of the pipe which created this file (if it has previously been set by the addon using <code>setPipeType()</code>).</td>
+</tr>
+<tr>
 <td><strong>getValue</strong><br />▹ <em>any</em></td>
 <td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>key</strong></td>
 <td>Gets the value of a specific key for the file.</td>
@@ -1142,6 +1153,11 @@ thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is n
 <td>Writes the given meta-data to the meta-data file associated to this folder.</td>
 </tr>
 <tr>
+<td><strong>setPipeType</strong><br /></td>
+<td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>pipeType</strong></td>
+<td>Sets the pipe which created the file. The value should be the short name of the pipe.</td>
+</tr>
+<tr>
 <td><strong>setValue</strong></td>
 <td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>key</strong>,<br /><em>any</em>: <strong>value</strong></td>
 <td>Sets the value of a specific key for the file.</td>
@@ -1158,7 +1174,7 @@ thus the metadata used by <em>Ramses</em> is set on a per-folder basis, and is n
 </tr>
 </tbody>
 </table>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/28" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10" /></p></div>
         
         
     </div>

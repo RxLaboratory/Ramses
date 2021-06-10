@@ -1171,6 +1171,11 @@
 <td>Checks if the given name respects the <em>Ramses</em> naming scheme.</td>
 </tr>
 <tr>
+<td><strong>isRestoredFilePath</strong><br />▹ <em>boolean</em></td>
+<td><em>string</em>: <strong>filePAth</strong></td>
+<td>Checks if the file is a working file which has been restored from a previous version (contains <code>"+restored-vXX+"</code> in its resource name).</td>
+</tr>
+<tr>
 <td><strong>isShotStep</strong><br />▹ <em>boolean</em></td>
 <td><em>string</em>: <strong>shotShortName</strong>,<br /><em>string</em>: <strong>shotsPath</strong></td>
 <td>Checks using the information found in <code>shotsPath</code> (which should be the shots folder of a given project) if the given short name corresponds to a shot production step.</td>
@@ -1206,7 +1211,7 @@
 </ul>
 <p>If the file does not match Ramses&rsquo; naming convention, returns None.<br />
 Else, returns a dictionary made of all the blocks:</p>
-<pre><code class="py">{
+<pre><code class="language-py">{
     &quot;project&quot;,
     &quot;type&quot;,
     &quot;object&quot;,
@@ -1217,7 +1222,6 @@ Else, returns a dictionary made of all the blocks:</p>
     &quot;extension&quot;
 }
 </code></pre>
-
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">
@@ -1241,7 +1245,7 @@ Else, returns a dictionary made of all the blocks:</p>
 </tr>
 </tbody>
 </table>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25" /></p></div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10" /></p></div>
         
         
     </div>

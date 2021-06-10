@@ -646,6 +646,8 @@
                     
                 <li class="second-level"><a href="#loglevel">LogLevel</a></li>
                     
+                <li class="second-level"><a href="#metadatakeys">MetaDataKeys</a></li>
+                    
                 <li class="second-level"><a href="#steptype">StepType</a></li>
                     
                 <li class="second-level"><a href="#userrole">UserRole</a></li>
@@ -1171,6 +1173,39 @@
 </tr>
 </tbody>
 </table>
+<h2 id="metadatakeys">MetaDataKeys</h2>
+<p>The available predefined keys to store file metadata.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Actual value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MetaDataKeys.COMMENT</strong></td>
+<td><code>"comment"</code></td>
+<td>A comment associated to the file</td>
+</tr>
+<tr>
+<td><strong>MetaDataKeys.PIPE_TYPE</strong></td>
+<td><code>"pipeFileShortName"</code></td>
+<td>The type of the pipe associated to the file</td>
+</tr>
+<tr>
+<td><strong>MetaDataKeys.VERSION</strong></td>
+<td><code>"version"</code></td>
+<td>A version associated to the file</td>
+</tr>
+<tr>
+<td><strong>MetaDataKeys.VERSION_FILE</strong></td>
+<td><code>"versionFilePath"</code></td>
+<td>A version file associated to the file</td>
+</tr>
+</tbody>
+</table>
 <h2 id="steptype">StepType</h2>
 <p>The type of a step. Usually used to filter available steps.</p>
 <table>
@@ -1248,7 +1283,7 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 from ramses import RamItem, ItemType
 
@@ -1261,8 +1296,7 @@ if anItem is not None:
     if anItem.itemType() == ItemType.SHOT:
         doSomething()
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 #include ramses.jsxinc
 
@@ -1276,7 +1310,8 @@ if (anItem != null)
     if ( anItem.itemType() == ItemType.SHOT )
         doSomething();
 }
-</code></pre></div>
+</code></pre>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10" /></p></div>
         
         
     </div>

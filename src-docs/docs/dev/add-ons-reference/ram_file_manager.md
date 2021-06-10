@@ -30,6 +30,7 @@ Read the sections about the *[Ramses Tree](../../files/tree.md)* and *[Naming Sc
 | **isAssetStep**<br />▹ *boolean* | *string*: **stepShortName**,<br />*string*: **assetsPath** | Checks using the information found in `assetsPath` (which should be the assets folder of a given project) if the given short name corresponds to an asset production step. |
 | **isProjectFolder**<br />▹ *boolean* | *string*: **folderPath** | Checks if a given folder is the project root folder. |
 | **isRamsesName**<br />▹ *boolean* | *string*: **fileName** | Checks if the given name respects the *Ramses* naming scheme. |
+| **isRestoredFilePath**<br />▹ *boolean* | *string*: **filePAth** | Checks if the file is a working file which has been restored from a previous version (contains `"+restored-vXX+"` in its resource name). |
 | **isShotStep**<br />▹ *boolean* | *string*: **shotShortName**,<br />*string*: **shotsPath** | Checks using the information found in `shotsPath` (which should be the shots folder of a given project) if the given short name corresponds to a shot production step. |
 | **restoreVersionFile** | *string*: **filePath** | Restores an older version. |
 | **validateName**<br />▹ *boolean* | *string*: **name** | Checks if this name respects the Ramses naming scheme. |
@@ -78,4 +79,4 @@ ____
 | --- | --- | --- |
 | **_isRamsesItemFoldername**<br />▹ *boolean* | *string*: **n** | Checks if a given folder respects Ramses' naming convention for items' root folders.<br />The root folder should look like this:<br />`"projectID_itemType_objectID"` |
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10)

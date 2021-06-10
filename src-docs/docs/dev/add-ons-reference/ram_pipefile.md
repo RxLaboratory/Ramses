@@ -13,8 +13,10 @@ A file which goes through a [`RamPipe`](ram_pipe.md).
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **shortName**,<br />*[RamFileType](ram_filetype.md)*: **fileType**,<br/>*string*: **colorSpace**=`""` | |
-| **colorSpace**<br />▹ *string* | | The color space used through the pipe |
-| **fileType**<br />▹ *[RamFileType](ram_filetype.md)* | | The file type used through the pipe |
+| **check**<br />▹ *boolean* | *string*: **filePath** | Checks if the given file can go through this pipe. |
+| **colorSpace**<br />▹ *string* | | The color space used through the pipe. |
+| **getFiles**<br />▹ *list* of *string* | *string*: **folderPath** | Gets all the files which can go through this pipe in the given folder. |
+| **fileType**<br />▹ *[RamFileType](ram_filetype.md)* | | The file type used through the pipe. |
 
 ____
 

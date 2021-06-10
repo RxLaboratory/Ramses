@@ -2,7 +2,7 @@
 
 *Ramses* is a complete framework made of different components interacting together. This makes it very modular and scalable to any kind of production, from the freelancer working at home to the biggest studios.
 
-[TOC]
+![](/img/LAB_Ramses_Doc_Schemas.png)
 
 ## General Description
 
@@ -49,3 +49,5 @@ The add-ons are in charge of file management and versionning, publishing, etc.
 On the lowest level, *Ramses* handles all [files](../files/naming.md) and [folders](../files/tree.md) for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remote and backup locations.
 
 Both the Add-ons and the Client can manage the files and folders.
+
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10)

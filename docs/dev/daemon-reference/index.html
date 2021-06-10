@@ -1064,7 +1064,7 @@
 </div>
 <p>The <em>Ramses Daemon</em> is automatically run by the <em>Ramses client</em>, the native application which is the heart of <em>Ramses</em>.</p>
 <h2 id="connecting-to-the-daemon">Connecting to the Daemon</h2>
-<p><em>Add-ons</em> can communicate with the <em>Daemon</em> through a standard <em>TCP Socket</em>. The <em>Daemon</em> listens on port <code>18185</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> by default (but this can be adjusted in the <em>Ramses Client</em> settings), and is automatically started by the <em>Ramses client</em>. It is terminated when the <em>client</em> quits.</p>
+<p><em>Add-ons</em> can communicate with the <em>Daemon</em> through a standard <em>TCP Socket</em>. The <em>Daemon</em> listens on port <code>18185</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> by default (but this can be adjusted in the <em>Ramses Client</em> settings), and is automatically started by the <em>Ramses client</em>. It is terminated when the <em>client</em> quits.</p>
 <p>Most of <em>Ramses</em> data can only be accessed if a user is logged-in in the <em>Ramses Client</em>, thus before communicating with the <em>Daemon</em>, a <em>Ramses Add-on</em> must check if the <em>Client</em> (and its <em>Daemon</em>) is running (or start it), and if a user is logged-in.</p>
 <p>The initial connection to the Daemon usually follows these steps:</p>
 <ol>
@@ -1096,7 +1096,7 @@
 <p>Replies are a single-line string, but they&rsquo;re prettyfied in this documentation for the sake of readabiliy</p>
 </div>
 <p>Example Replies:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;ping&quot;,
     &quot;success&quot;: true,
@@ -1110,8 +1110,7 @@
     }
 }
 </code></pre>
-
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setCurrentProject&quot;,
     &quot;success&quot;: true,
@@ -1124,13 +1123,12 @@
     }
 }
 </code></pre>
-
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/04/05" /></p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>This port was chosen in memory of Karl Marx, whose birth date was 05/05/1818.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>This port was chosen in memory of Karl Marx, whose birth date was 05/05/1818.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div></div>

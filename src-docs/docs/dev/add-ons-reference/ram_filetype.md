@@ -17,6 +17,7 @@ Inherits: [***RamObject***](ram_object.md)
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **name**,<br />*string*: **shortName**,<br />*list of strings*: **extensions** | |
+| **check**<br />▹ *boolean* | *string*: **filePath** | Checks if the given file is of this type. |
 | **extensions**<br />▹ *list of string* | | The extensions which can be used for this file type, including the "." |
 
 ____

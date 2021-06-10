@@ -42,6 +42,17 @@ The API itself should not log any `LogLevel.Info`, this level is reserved for th
 | **LogLevel.Critical** | `2` | An non-blocking error |
 | **LogLevel.Fatal** | `3` | A fatal error |
 
+## MetaDataKeys
+
+The available predefined keys to store file metadata.
+
+| Name | Actual value | Description |
+| --- | --- | --- |
+| **MetaDataKeys.COMMENT** | `"comment"` | A comment associated to the file |
+| **MetaDataKeys.PIPE_TYPE** | `"pipeFileShortName"` | The type of the pipe associated to the file |
+| **MetaDataKeys.VERSION** | `"version"` | A version associated to the file |
+| **MetaDataKeys.VERSION_FILE** | `"versionFilePath"` | A version file associated to the file |
+
 ## StepType
 
 The type of a step. Usually used to filter available steps.
@@ -99,3 +110,5 @@ if (anItem != null)
         doSomething();
 }
 ```
+
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10)

@@ -1086,7 +1086,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createShot&amp;name=s001&amp;shortName=001&amp;sequenceUuid=123&amp;duration=2.12&amp;order=12&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createShot&quot;,
     &quot;success&quot;: true,
@@ -1094,7 +1094,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="updateshot">updateShot</h2>
 <p>Update shot info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1112,7 +1111,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateShot&amp;name=S003&amp;shortName=003&amp;sequenceUuid=123&amp;duration=3.36&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateShot&quot;,
     &quot;success&quot;: true,
@@ -1120,7 +1119,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="moveshot">moveShot</h2>
 <p>Moves a shot in the list.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1135,7 +1133,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?moveShot&amp;order=6&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;moveShot&quot;,
     &quot;success&quot;: true,
@@ -1143,7 +1141,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeshot">removeShot</h2>
 <p>Removes a shot from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1157,7 +1154,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeShot&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeShot&quot;,
     &quot;success&quot;: true,
@@ -1165,7 +1162,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="setshotstatus">setShotStatus</h2>
 <p>Sets a new status for a shot</p>
 <p><strong>Query attributes:</strong></p>
@@ -1186,7 +1182,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?setAssetStatus&amp;uuid=123&amp;shotUuid=123&amp;completionRatio=50&amp;userUuid=123&amp;stateUuid=123&amp;comment=A nice comment&amp;version=12&amp;stepUuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setShotStatus&quot;,
     &quot;success&quot;: true,
