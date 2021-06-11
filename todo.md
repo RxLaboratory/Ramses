@@ -43,6 +43,9 @@
 
 ## Other
 
+- FIX: Pipes very long to load  
+    Not due to the pipeline editor (test again)  
+    Maybe from the ramobjectlist?
 - SERVER: add property "dont remove" to some states and the ramuser
 - FIX: when clearing RamObjectListWidget disconnect all objects, not just the lists (cf ItemTableWidget)
 - PERFs: in ItemTableWidget and RamObjectListWidget use QTableWidgetItem data to store obj uuid, and remove all casts from widgets
