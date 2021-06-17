@@ -3,9 +3,7 @@
 Pipes are the connections between *[Steps](steps.md)* which form the pipeline.
 
 !!! hint
-    There is no method to retrieve pipes directly; pipes are returned by the project method [`getProjects`](projects.md#getprojects)
-
-[TOC]
+    There is no method to retrieve pipes directly; pipes are returned by the project method [`getProject`](projects.md#getproject)
 
 ## createPipe
 
@@ -99,6 +97,68 @@ Reply:
     "query": "removePipe",
     "success": true,
     "message": "Pipe removed.",
+    "content": { }
+}
+```
+
+## assignPipeFile
+
+Assigns a pipe file type to a pipe.
+
+**Query attributes:**
+
+- *pipeFileUuid*: **string**. The PipeFile's Universal Unique Identifier.
+- *pipeUuid*: **string**. The Pipe's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?assignPipeFile&pipeFileUuid=123&pipeUuid=456&&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "assignPipeFile",
+    "success": true,
+    "message": "New File assigned to pipe.",
+    "content": { }
+}
+```
+
+## unassingPipeFile
+
+Unassigns a pipe file type from a pipe.
+
+**Query attributes:**
+
+- *pipeFileUuid*: **string**. The PipeFile's Universal Unique Identifier.
+- *pipeUuid*: **string**. The Pipe's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?unassingPipeFile&pipeFileUuid=123&pipeUuid=456&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "unassignFileType",
+    "success": true,
+    "message": "File removed from pipe.",
     "content": { }
 }
 ```

@@ -98,6 +98,7 @@ nav:
             - File type queries: dev/server-reference/filetypes.md
             - General queries: dev/server-reference/general.md
             - Pipe queries: dev/server-reference/pipes.md
+            - PipeFiles queries: dev/server-reference/pipefiles.md
             - Project queries: dev/server-reference/projects.md
             - Sequence queries: dev/server-reference/sequences.md
             - Shot queries: dev/server-reference/shots.md

@@ -91,6 +91,10 @@ The *JSON* objects sent by the server all have the same content:
     - [removeApplication](applications#removeapplication)
     - [assignFileType](steps#assignfiletype)
     - [unassignFileType](steps#unassignfiletype)
+- PipeFiles
+    - [createPipeFile](pipefiless#createpipefile)
+    - [updatePipeFile](pipefiless#updatepipefile)
+    - [removePipeFile](pipefiless#removepipefile)
 - Pipes
     - [createPipe](pipes#createpipe)
     - [updatePipe](pipes#updatepipe)

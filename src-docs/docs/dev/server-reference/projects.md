@@ -55,7 +55,13 @@ The server replies with a project object with the following attributes:
 - *width*: **integer**. The width of the project in pixels.
 - *height*: **integer**. The height of the project in pixels.
 - *aspectRatio*: **float**. The aspectRatio of the project.
-- *steps*: **array of object**. The list of steps. This step object contains these properties:
+- *pipeFiles*: **array of object**. The list of files used through the pipes. This pipeFile object containes these properties:
+    - *uuid*: **string**.
+    - *shortName*: **string**.
+    - *fileTypeUuid*: **string**.
+    - *colorSpaceUuid*: **string**.
+    - *projectUuid*: **string**.
+- *steps*: **array: of object**. The list of steps. This step object contains these properties:
     - *name*: **string**.
     - *shortName*: **string**.
     - *uuid*: **string**.
@@ -67,8 +73,7 @@ The server replies with a project object with the following attributes:
     - *projectUuid*: **string**. The UUID of the project.
     - *inputStepUuid*: **string**. The UUID of the input step.
     - *outputStepUuid*: **string**. The UUID of the output step.
-    - *colorSpaceUuid*: **string**. The UUID of the color space used in the files going through this pipe.
-    - *filetypeUuid*: **string**. The UUID of the file types going through this pipe.
+    - *pipeFiles*: **array of string**. The list of UUIDs of the pipe file types going through this pipe.
 - *assetGroups*: **array of object**. The list of asset groups. This asset group object contains these properties:
     - *name*: **string**
     - *shortName*: **string**.
@@ -92,6 +97,7 @@ The server replies with a project object with the following attributes:
         - *order*: **integer**. The order of the shot in the sequence.
         - *sequenceUuid*: **string**. The UUID of the containing sequence.
         - *uuid*: **string**.
+
 **Examples:**
 
 Query:  
@@ -140,44 +146,6 @@ The server replies with an array of project information. Each project is an obje
 - *width*: **integer**. The width of the project in pixels.
 - *height*: **integer**. The height of the project in pixels.
 - *aspectRatio*: **float**. The aspectRatio of the project.
-- *steps*: **array of object**. The list of steps. This step object contains these properties:
-    - *name*: **string**.
-    - *shortName*: **string**.
-    - *uuid*: **string**.
-    - *projectUuid*: **string**. The UUID of the project.
-    - *type*: **string**. One of `asset`, `shot`, `pre`, or `post`.
-    - *order*: **int**. Order of the step in the pipeline.
-- *pipes*: **array of object**. The list of pipes connecting the steps. The pipe object contains these properties:
-    - *uuid*: **string**.
-    - *projectUuid*: **string**. The UUID of the project.
-    - *inputStepUuid*: **string**. The UUID of the input step.
-    - *outputStepUuid*: **string**. The UUID of the output step.
-    - *colorSpaceUuid*: **string**. The UUID of the color space used in the files going through this pipe.
-    - *filetypeUuid*: **string**. The UUID of the file types going through this pipe.
-- *assetGroups*: **array of object**. The list of asset groups. This asset group object contains these properties:
-    - *name*: **string**
-    - *shortName*: **string**.
-    - *uuid*: **string**.
-    - *projectUuid*: **string**.
-    - *assets*:  **array of object**. The list of assets. This asset object contains these properties:
-        - *name*: **string**.
-        - *shortName*: **string**.
-        - *tags*: **string**. A comma-separated list of descriptive tags.
-        - *assetGroupUuid*: **string**. The UUID of the containing asset group.
-        - *uuid*: **string**.
-- *sequences*: **array of object**. The list of sequences. This sequence object contains these properties:
-    - *name*: **string**
-    - *shortName*: **string**.
-    - *uuid*: **string**.
-    - *projectUuid*: **string**.
-    - *shots*:  **array of object**. The list of shots. This shot object contains these properties:
-        - *name*: **string**.
-        - *shortName*: **string**.
-        - *duration*: **float**. The duration of the shot in seconds.
-        - *order*: **integer**. The order of the shot in the sequence.
-        - *sequenceUuid*: **string**. The UUID of the containing sequence.
-        - *uuid*: **string**.
-**Examples:**
 
 Query:  
 `http://your.server/ramses/?getProjects&token=123`
@@ -199,9 +167,7 @@ Reply:
             "framerate": 25.0,
             "width": 1920,
             "height": 1080,
-            "aspectRatio": 1.78,
-            "steps": ["uuid123", "uuid456"],
-            "shots": ["uuidshot123", "uuidshot456"]
+            "aspectRatio": 1.78
         },
         {
             "name": "Purpleboy",
@@ -211,9 +177,7 @@ Reply:
             "framerate": 24.0,
             "width": 2048,
             "height": 858,
-            "aspectRatio": 2.39,
-            "steps": ["uuid123", "uuid456"],
-            "shots": ["uuidshot789", "uuidshot001"]
+            "aspectRatio": 2.39
         }
     ]
 }

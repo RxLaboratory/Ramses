@@ -15,20 +15,16 @@
 
 ## pipeline tools first
 
+- FIX: Adding shots to sequences: not shown in the shotlistmanager nor the table
+- FIX: When status updated, title hidden
 - FEATURE: Asset & Shot table
     - [WIP] StatusEditTable(RamObjectList *items)  
-        - [WIP] Filters (step (mine), asset group/sequence)
-        - Search
-        - improve item widgets with more details
         - add buttons in status widgets for history & add new.
         - implement the "new/change status" popup (using the status editor from the history widget)
-        - implement middle click in status history widget
+        - implement middle click in status history widget (in all lists actually)
         - remove status editor at the bottom of the status history widget
         - show + button in status history widget
-- [WIP] FEATURE: Pipes
-    - Set files as a RamObjectList: several types per pipe
-        - A new RamObject derived class: RamPipeFile with: shortName, filetype, colorspace
-        - Keep the RamPipeFiles in the project
+- FEATURE: add comment field on every object
 - FEATURE: [-] status & history
     - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
     - [ ] Check version in files, alert when changing status if version is found but does not correspond
@@ -37,15 +33,18 @@
     - [ ] Make sure TODO, STB, OK can't be removed
     - [ ] Implement automations (if published & right file format available -> set next step to TODO)
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
+- FEATURE: Step order
 - FEATURE: step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
 - DOC: addon api: add open function description
 - DOC & FEATURE: addon api: when activated, check current file (and update info)
 
 ## Other
 
-- FIX: Pipes very long to load  
-    Not due to the pipeline editor (test again)  
-    Maybe from the ramobjectlist?
+- FEATURE: Tools tab with
+    - File tools:
+        - Clean Tree: Remove non tracked asset/shot dirs, etc (collect in a trash)
+        - Create assets/shots from tree
+- REFACTOR: ramloader with new uuid accessors
 - SERVER: add property "dont remove" to some states and the ramuser
 - FIX: when clearing RamObjectListWidget disconnect all objects, not just the lists (cf ItemTableWidget)
 - PERFs: in ItemTableWidget and RamObjectListWidget use QTableWidgetItem data to store obj uuid, and remove all casts from widgets
@@ -90,16 +89,24 @@
 WIP 
 
 - Server
+
 - [x] sql db
-- [x] server (get in projects/sequences) -> assign, unassign (cf applications filetype), et get in projects (idem, cf applications)
-- [x] server doc
+- [x] server fix unassign
+- [x] server doc WIP
+
 - Client
+
 - [x] dbi
 - [x] RamShot
 - [x] RamSequence shot list
 - [x] RamProject shot(uuid) & removeshot(uuid)
 - [x] ramses (get in gotsequences -> gotshots)
+
 - UI
+
 - [ ] shoteditwidget
 - [ ] shotmanagerwidget
 - [ ] doc
+
+- Daemon -> get pipes
+- pipelinewidget (pipe changed et newpipe) (pour le titre des connexions)
