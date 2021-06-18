@@ -13,13 +13,23 @@
     - win
     - mac
 
+## Model View
+
+- update calls to preview RamObjectList to use model
+- remove RamObjectUberList, not needed anymore (will use filters in all views)
+- update ramloader
+- re-build RamObjectListComboBox
+- re-build RamObjectListWidget and editors
+- re-build filters
+- re-build search
+- re-build sort
+- re-build tables from a new RamItemListModel based on RamObjectListModel
+
 ## pipeline tools first
 
-- FIX: Adding shots to sequences: not shown in the shotlistmanager nor the table
-- FIX: When status updated, title hidden
 - FEATURE: Asset & Shot table
     - [WIP] StatusEditTable(RamObjectList *items)  
-        - add buttons in status widgets for history & add new.
+        - Ability to sort steps and shots
         - implement the "new/change status" popup (using the status editor from the history widget)
         - implement middle click in status history widget (in all lists actually)
         - remove status editor at the bottom of the status history widget
@@ -40,6 +50,9 @@
 
 ## Other
 
+- PERFS: itemtable: add hidden rows&cols in bg
+- FIX: project admin: create step & asset groups from template
+- REFACTOR: Use SIGNAL and SLOT macros for all connections, to make debugging easier
 - FEATURE: Tools tab with
     - File tools:
         - Clean Tree: Remove non tracked asset/shot dirs, etc (collect in a trash)
