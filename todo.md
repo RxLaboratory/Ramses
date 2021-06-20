@@ -15,15 +15,20 @@
 
 ## Model View
 
-- update calls to preview RamObjectList to use model
-- remove RamObjectUberList, not needed anymore (will use filters in all views)
-- update ramloader
-- re-build RamObjectListComboBox
-- re-build RamObjectListWidget and editors
+- remove all display widgets
+- deactivate tables & pipeline editor
+- deactivate projec settings
+
+- rebuild/check admin pages one by one
+
+- re-build RamObjectListWidget WIP
+- re-build ObjectListEditWidjet
+- re-build ObjectListManagerWidget
 - re-build filters
 - re-build search
 - re-build sort
 - re-build tables from a new RamItemListModel based on RamObjectListModel
+- objectlistComboBox: use a proxy to add the item "all" ?
 
 ## pipeline tools first
 
@@ -50,6 +55,7 @@
 
 ## Other
 
+- REFACTOR: path metohds in each objects, not in Ramses
 - PERFS: itemtable: add hidden rows&cols in bg
 - FIX: project admin: create step & asset groups from template
 - REFACTOR: Use SIGNAL and SLOT macros for all connections, to make debugging easier
