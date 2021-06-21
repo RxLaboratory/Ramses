@@ -15,20 +15,20 @@
 
 ## Model View
 
-- remove all display widgets
-- deactivate tables & pipeline editor
-- deactivate projec settings
-
 - rebuild/check admin pages one by one
 
-- re-build RamObjectListWidget WIP
-- re-build ObjectListEditWidjet
-- re-build ObjectListManagerWidget
-- re-build filters
-- re-build search
-- re-build sort
+- rebuild create from template
+
+- fix project selector
+- statebox should be a ramobjectlistcombobox
+
+- re-build filters -> just the box
+
+- re-build sort & change order (steps, shots, sequences)
+
 - re-build tables from a new RamItemListModel based on RamObjectListModel
-- objectlistComboBox: use a proxy to add the item "all" ?
+
+- objectlistComboBox as filter: use a proxy to add the item "all" ?
 
 ## pipeline tools first
 
