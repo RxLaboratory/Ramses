@@ -15,18 +15,13 @@
 
 ## Model View
 
-- rebuild/check admin pages one by one
-
-- rebuild create from template
-
-- fix project selector
-- statebox should be a ramobjectlistcombobox
-
-- re-build filters -> just the box
-
-- re-build sort & change order (steps, shots, sequences)
+- pipeline refactor -> use new edit widgets from objects
 
 - re-build tables from a new RamItemListModel based on RamObjectListModel
+
+- statebox should be a ramobjectlistcombobox
+
+- re-build sort & change order (steps, shots, sequences)
 
 - objectlistComboBox as filter: use a proxy to add the item "all" ?
 
@@ -55,8 +50,10 @@
 
 ## Other
 
+- UI: Pipeline editor
+    - snap button with a magnet icon
+    - add button to show/hide scrollbars
 - REFACTOR: path metohds in each objects, not in Ramses
-- PERFS: itemtable: add hidden rows&cols in bg
 - FIX: project admin: create step & asset groups from template
 - REFACTOR: Use SIGNAL and SLOT macros for all connections, to make debugging easier
 - FEATURE: Tools tab with

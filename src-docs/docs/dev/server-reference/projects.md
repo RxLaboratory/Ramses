@@ -79,24 +79,24 @@ The server replies with a project object with the following attributes:
     - *shortName*: **string**.
     - *uuid*: **string**.
     - *projectUuid*: **string**.
-    - *assets*:  **array of object**. The list of assets. This asset object contains these properties:
-        - *name*: **string**.
-        - *shortName*: **string**.
-        - *tags*: **string**. A comma-separated list of descriptive tags.
-        - *assetGroupUuid*: **string**. The UUID of the containing asset group.
-        - *uuid*: **string**.
+- *assets*:  **array of object**. The list of assets. This asset object contains these properties:
+    - *name*: **string**.
+    - *shortName*: **string**.
+    - *tags*: **string**. A comma-separated list of descriptive tags.
+    - *assetGroupUuid*: **string**. The UUID of the containing asset group.
+    - *uuid*: **string**.
 - *sequences*: **array of object**. The list of sequences. This sequence object contains these properties:
     - *name*: **string**
     - *shortName*: **string**.
     - *uuid*: **string**.
     - *projectUuid*: **string**.
-    - *shots*:  **array of object**. The list of shots. This shot object contains these properties:
-        - *name*: **string**.
-        - *shortName*: **string**.
-        - *duration*: **float**. The duration of the shot in seconds.
-        - *order*: **integer**. The order of the shot in the sequence.
-        - *sequenceUuid*: **string**. The UUID of the containing sequence.
-        - *uuid*: **string**.
+- *shots*:  **array of object**. The list of shots. This shot object contains these properties:
+    - *name*: **string**.
+    - *shortName*: **string**.
+    - *duration*: **float**. The duration of the shot in seconds.
+    - *order*: **integer**. The order of the shot in the sequence.
+    - *sequenceUuid*: **string**. The UUID of the containing sequence.
+    - *uuid*: **string**.
 
 **Examples:**
 
