@@ -15,24 +15,10 @@
 
 ## Model View
 
-- remove dots in shortnames if at first
-- remove dots in extensions in filetypes
-- template steps not removed from list in piplineeditor ?
-- delegate :
-    - asset grouop: show num assets
-    - sequence: shoz num shots & duration
-    - assets: show tags & group
-    - shots: show duration
-- filetype editor: shortname -> main extension
-- all editors: shortname -> ID
-
-- pipeline refactor -> use new edit widgets from objects
-
-- re-build tables from a new RamItemListModel based on RamObjectListModel
-
-- statebox should be a ramobjectlistcombobox
 
 - re-build sort & change order (steps, shots, sequences)
+
+- statebox should be a ramobjectlistcombobox
 
 - objectlistComboBox as filter: use a proxy to add the item "all" ?
 
@@ -40,20 +26,18 @@
 
 - FEATURE: Asset & Shot table
     - [WIP] StatusEditTable(RamObjectList *items)  
-        - Ability to sort steps and shots
-        - implement the "new/change status" popup (using the status editor from the history widget)
-        - implement middle click in status history widget (in all lists actually)
-        - remove status editor at the bottom of the status history widget
-        - show + button in status history widget
+        - Ability to sort steps and shots (in project editor only for steps)
+        - add state filtering (in header of step columns?)
 - FEATURE: add comment field on every object
 - FEATURE: [-] status & history
     - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
     - [ ] Check version in files, alert when changing status if version is found but does not correspond
-    - [ ] When creating an asset or a shot, create a "STB" or "TODO" (depending on dependencies) status in all histories
+    - [ ] When creating an asset or a shot, create a "STB" or "TODO" (depending on dependencies) status in all histories ?
     - [ ] Add a "Ramses" admin user (which can't be removed) for automated tasks
     - [ ] Make sure TODO, STB, OK can't be removed
     - [ ] Implement automations (if published & right file format available -> set next step to TODO)
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
+    - [ ] Add prop: assigned user (and use filters in tables)
 - FEATURE: Step order
 - FEATURE: step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
 - DOC: addon api: add open function description
