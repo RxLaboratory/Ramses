@@ -15,6 +15,17 @@
 
 ## Model View
 
+- remove dots in shortnames if at first
+- remove dots in extensions in filetypes
+- template steps not removed from list in piplineeditor ?
+- delegate :
+    - asset grouop: show num assets
+    - sequence: shoz num shots & duration
+    - assets: show tags & group
+    - shots: show duration
+- filetype editor: shortname -> main extension
+- all editors: shortname -> ID
+
 - pipeline refactor -> use new edit widgets from objects
 
 - re-build tables from a new RamItemListModel based on RamObjectListModel
