@@ -48,6 +48,7 @@ Update shot info in the database.
 
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
+- *comment*: **string**. The new comment.
 - *sequenceUuid*: **string** (optional). The UUID of the sequence to reassign the shot to.
 - *duration*: **float** (optional). The new duration of the shot, in seconds.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
@@ -60,7 +61,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateShot&name=S003&shortName=003&sequenceUuid=123&duration=3.36&uuid=123&token=123`
+`http://your.server/ramses/?updateShot&name=S003&shortName=003&sequenceUuid=123&duration=3.36&uuid=123&comment=A comment&token=123`
 
 Reply:
 
@@ -74,9 +75,40 @@ Reply:
 }
 ```
 
+## setShotOrder
+
+Moves a shot in the list. This method changes only the order value of the given shot.
+
+**Query attributes:**
+
+- *order*: **intenger**. The new order for the shot.
+- *uuid*: **string**. The shot's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?moveShot&order=6&uuid=123&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "setShotOrder",
+    "success": true,
+    "message": "Shot moved.",
+    "content": { }
+}
+```
+
 ## moveShot
 
-Moves a shot in the list.
+Moves a shot in the list. This method will update the order of all the other shots of the same project accordingly.
 
 **Query attributes:**
 

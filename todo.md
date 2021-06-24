@@ -13,15 +13,6 @@
     - win
     - mac
 
-## Model View
-
-
-- re-build sort & change order (steps, shots, sequences)
-
-- statebox should be a ramobjectlistcombobox
-
-- objectlistComboBox as filter: use a proxy to add the item "all" ?
-
 ## pipeline tools first
 
 - FEATURE: Asset & Shot table

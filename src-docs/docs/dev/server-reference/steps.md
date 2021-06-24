@@ -52,6 +52,7 @@ Update step info in the database.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
+- *comment*: **string**. The new comment.
 - *type*: **string** (optionnal). The type of the step. One of `asset`, `shot`, `pre`, or `post`.
 - *order*: **int** (optionnal). The order of the step in the production pipeline.
 - *uuid*: **string**. The user's Universal Unique Identifier.
@@ -64,7 +65,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateStep&name=Rigging&shortName=RIG&uuid=123&token=123`
+`http://your.server/ramses/?updateStep&name=Rigging&shortName=RIG&comment=A comment&uuid=123&token=123`
 
 Reply:
 
@@ -74,6 +75,68 @@ Reply:
     "query": "updateStep",
     "success": true,
     "message": "Step \"RIG\" updated.",
+    "content": { }
+}
+```
+
+## setStepOrder
+
+Moves a step in the list. This method changes only the order value of the given step.
+
+**Query attributes:**
+
+- *order*: **intenger**. The new order for the shot.
+- *uuid*: **string**. The shot's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?setStepOrder&order=6&uuid=123&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "setStepOrder",
+    "success": true,
+    "message": "Step moved.",
+    "content": { }
+}
+```
+
+## moveStep
+
+Moves a step in the list. This method will update the order of all the other steps of the same project accordingly.
+
+**Query attributes:**
+
+- *order*: **intenger**. The new order for the shot.
+- *uuid*: **string**. The shot's Universal Unique Identifier.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Examples:**
+
+Query:  
+`http://your.server/ramses/?moveStep&order=6&uuid=123&token=123`
+
+Reply:
+
+```json
+{
+    "accepted": true,
+    "query": "moveStep",
+    "success": true,
+    "message": "Step moved.",
     "content": { }
 }
 ```

@@ -50,6 +50,8 @@ The *JSON* objects sent by the server all have the same content:
 - Steps and Template Steps
     - [createStep](steps#createstep)
     - [updateStep](steps#updatestep)
+    - [setSteporder](steps#setsteporder)
+    - [moveStep](steps#movestep)
     - [removeStep](steps#removestep)
     - [assignUser](steps#assignuser)
     - [unassignUser](steps#unassignuser)
@@ -71,6 +73,7 @@ The *JSON* objects sent by the server all have the same content:
 - Shots
     - [createShot](shots#createshot)
     - [updateShot](shots#updateshot)
+    - [setShotOrder](shots#setshotorder)
     - [moveShot](shots#movehot)
     - [removeShot](shots#removeshot)
     - [setShotStatus](shots#setshotstatus)

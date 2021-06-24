@@ -97,6 +97,7 @@ Update file type info in the database.
 
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
+- *comment*: **string**. The new comment.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
 - *previewable*: **int**. Whether this file type is used for previews. 1 or 0.
@@ -109,7 +110,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateFileType&name=Maya Ascii&shortName=.ma&extensions=ma&previewable=0&uuid=123&token=123`
+`http://your.server/ramses/?updateFileType&name=Maya Ascii&shortName=.ma&extensions=ma&comment=A comment&previewable=0&uuid=123&token=123`
 
 Reply:
 

@@ -47,6 +47,7 @@ Updates pipe file info in the database.
 
 - *uuid*: **string**. The UUID of the pipe file.
 - *shortName*: **string** (optional). The short name of the pipe file.
+- *comment*: **string**. The new comment.
 - *fileTypeUuid*: **string** (optional). The UUID of the associated file type.
 - *colorSpaceUuid*: **string** (optional). The UUID of the associated color space.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
@@ -58,7 +59,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updatePipeFile&shortName=newPipeFile&fileTypeUuid=456&colorSpaceUuid=789&token=123`
+`http://your.server/ramses/?updatePipeFile&shortName=newPipeFile&fileTypeUuid=456&comment=A comment&colorSpaceUuid=789&token=123`
 
 Reply:
 

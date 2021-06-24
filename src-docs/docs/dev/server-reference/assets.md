@@ -47,6 +47,7 @@ Update asset info in the database.
 
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
+- *comment*: **string**. The new comment.
 - *assetGroupUuid*: **string**. The UUID of the asset group to assign the asset to.
 - *tags*: **string**. A comma separated list of tags.
 - *uuid*: **string** (optional). The asset's Universal Unique Identifier.
@@ -59,7 +60,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateAsset&name=Tristan&shortName=TRI&tags=Main, Warrior&assetGroupUuid=456&uuid=123&token=123`
+`http://your.server/ramses/?updateAsset&name=Tristan&shortName=TRI&tags=Main, Warrior&assetGroupUuid=456&comment=A comment&uuid=123&token=123`
 
 Reply:
 

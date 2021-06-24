@@ -52,6 +52,7 @@ Update asset group info in the database.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
+- *comment*: **string**. The new comment.
 - *uuid*: **string**. The asset group's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login)
 
@@ -62,7 +63,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateAssetGroup&name=Rigging&shortName=RIG&uuid=123&token=123`
+`http://your.server/ramses/?updateAssetGroup&name=Rigging&shortName=RIG&comment=A comment&uuid=123&token=123`
 
 Reply:
 

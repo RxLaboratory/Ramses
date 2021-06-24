@@ -99,6 +99,7 @@ Update state info in the database.
 
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
+- *comment*: **string**. The new comment.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *color*: **string** (optional). The color to use to display the state, hexadecimal web color preceded with a `#`.
 - *completionRatio*: **int** (optional). The completion ratio in percentage.
@@ -111,7 +112,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateState&name=Work in progress&shortName=WIP&uuid=123&token=123`
+`http://your.server/ramses/?updateState&name=Work in progress&shortName=WIP&comment=A Comment&uuid=123&token=123`
 
 Reply:
 

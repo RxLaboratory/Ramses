@@ -90,6 +90,7 @@ Update application info in the database.
 
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
+- *comment*: **string**. The new comment.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
 - *executableFilePath*: **string**. The path to the executable binary of the application. Don't forget to encode `/` and `\` in the URL!
 - *token*: **string**. The session token returned with [*login*](general.md#login)
@@ -101,7 +102,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateApplication&name=Autodesk Maya&shortName=Maya&executableFilePath=%2Fusr%2Fbin%2Fmaya&uuid=123&token=123`
+`http://your.server/ramses/?updateApplication&name=Autodesk Maya&shortName=Maya&executableFilePath=%2Fusr%2Fbin%2Fmaya&comment=A comment&uuid=123&token=123`
 
 Reply:
 

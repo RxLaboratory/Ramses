@@ -191,6 +191,7 @@ Updates project information.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
+- *comment*: **string**. The new comment.
 - *folderPath*: **string** (optionnal). The path for the project folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login)
@@ -202,7 +203,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateProject&name=Mythomen&shortName=Mytho&uuid=123&token=123`
+`http://your.server/ramses/?updateProject&name=Mythomen&comment=A comment&shortName=Mytho&uuid=123&token=123`
 
 Reply:
 

@@ -13,6 +13,7 @@ Creates a new squence in the database and assigns it to a project.
 
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
+- *comment*: **string**. The new comment.
 - *projectUuid*: **string**. The UUID of the project to assign the sequence to.
 - *uuid*: **string** (optionnal). The asset group's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
@@ -24,7 +25,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?createSequence&name=Sequence 01&shortName=SEQ01&projectUuid=456&uuid=123&token=123`
+`http://your.server/ramses/?createSequence&name=Sequence 01&shortName=SEQ01&comment=A comment&projectUuid=456&uuid=123&token=123`
 
 Reply:
 

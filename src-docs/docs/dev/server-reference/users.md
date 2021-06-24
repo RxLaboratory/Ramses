@@ -10,6 +10,7 @@ Logs in with a username and a (hashed) password.
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
+- *comment*: **string**. The new comment.
 - *role*: **string** (optionnal). The new role of the user. One of `admin`, `project`, `lead`, or `standard`.
 - *folderPath*: **string** (optionnal). The path for the user folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
@@ -22,7 +23,7 @@ Empty
 **Examples:**
 
 Query:  
-`http://your.server/ramses/?updateUser&name=Nicolas Dufresne&shortName=Duduf&uuid=123&token=123`
+`http://your.server/ramses/?updateUser&name=Nicolas Dufresne&shortName=Duduf&comment=A comment&uuid=123&token=123`
 
 Reply:
 
