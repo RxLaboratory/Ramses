@@ -12,14 +12,19 @@
 
 ## pipeline tools first
 
+- update ramstatus: published & assigned user
+    - [ ] server doc (setstatus, project return, update status)
+
 - FEATURE: [-] status & history
-    - [ ] Add a "published" info: a checkbox, but check in files too if published files are found and the version corresponds
-    - [ ] Check version in files, alert when changing status if version is found but does not correspond
+    - [ ] auto check version
+    - [ ] auto check published
     - [ ] When creating an asset or a shot, create a "STB" or "TODO" (depending on dependencies) status in all histories ?
     - [ ] Make sure TODO, STB, OK can't be removed
     - [ ] Implement automations (if published & right file format available -> set next step to TODO)
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
-    - [ ] Add prop: assigned user (and use filters in tables)
+    - [ ] new filter in tables for only status assigned to the user
+    - [ ] new filter in tables by states
+    - [ ] Custom filter in user box to get only users assigned to the step (use ramobject filteruuid as a qstringlist)
 - FEATURE: list assets in shots
 - FEATURE: sequence order
 - FEATURE: step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
@@ -28,6 +33,7 @@
 
 ## Other
 
+- SERVER: ability to use "and" and "or" words, and probably others (replace empty spaces by %20? Or something else to encode and/or, etc)...
 - SERVER: add property "dont remove" to some states and the ramuser
 - FEATURE: if user is not admin, list only projects he's assigned to
 - FEATURE: Tools tab with
@@ -51,7 +57,6 @@
     - add button to show/hide scrollbars
 - UI: move console to a dock widget
 - set offline when token is set invalid (server timeout)
-- REFACTOR: path metohds in each objects, not in Ramses
 - REFACTOR: factorize stylesheet creation to be used per widget
 - DOC: update json example in getProject(s) server reference
 - SERVER DOC: comment in getters
