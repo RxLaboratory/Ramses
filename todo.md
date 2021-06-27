@@ -19,7 +19,7 @@
 - FEATURE: [-] status & history
     - [ ] A RamObjectListMenu which inherits QMenu, with a "checkable" option
     - [ ] Show preview image (shot, asset, status)
-    - [ ] Files tabs in status: main, versions, preview, published with filters by resource
+    - [ ] Files tabs in status: main, versions, preview, published, with filters by resource. Open button (and double click), and create new from template.
     - [ ] batch change
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
     - [ ] new filter in tables for only status assigned to the user
