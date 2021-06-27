@@ -14,13 +14,13 @@
 
 - update ramstatus: published & assigned user
     - [ ] server doc (setstatus, project return, update status)
+    - SERVER DOC: comment in getters
 
 - FEATURE: [-] status & history
     - [ ] auto check version
     - [ ] auto check published
     - [ ] When creating an asset or a shot, create a "STB" or "TODO" (depending on dependencies) status in all histories ?
     - [ ] Make sure TODO, STB, OK can't be removed
-    - [ ] Implement automations (if published & right file format available -> set next step to TODO)
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
     - [ ] new filter in tables for only status assigned to the user
     - [ ] new filter in tables by states
@@ -33,8 +33,8 @@
 
 ## Other
 
-- SERVER: ability to use "and" and "or" words, and probably others (replace empty spaces by %20? Or something else to encode and/or, etc)...
 - SERVER: add property "dont remove" to some states and the ramuser
+- FEATURE: Implement automations (if published & right file format available -> set next step to TODO)
 - FEATURE: if user is not admin, list only projects he's assigned to
 - FEATURE: Tools tab with
     - File tools:
@@ -42,7 +42,6 @@
         - Create assets/shots from tree
 - FEATURE: SSL: check if avail and adjust settings page
 - FEATURE: shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
-- FEATURE: implement main table
 - FEATURE: option to restore removed items (admin/lead only) (or permanently delete)
 - FEATURE: implement offline mode
 - FEATURE: implement import-export data.
@@ -59,7 +58,7 @@
 - set offline when token is set invalid (server timeout)
 - REFACTOR: factorize stylesheet creation to be used per widget
 - DOC: update json example in getProject(s) server reference
-- SERVER DOC: comment in getters
+- SERVER: post in content as JSON?
 - DOC: add meta to the doc
 - TESTS: test remove from database then refresh client
 - TESTS: test other modifications from database then refresh client
