@@ -17,10 +17,10 @@
     - SERVER DOC: comment in getters
 
 - FEATURE: [-] status & history
-    - [ ] auto check version
-    - [ ] auto check published
-    - [ ] When creating an asset or a shot, create a "STB" or "TODO" (depending on dependencies) status in all histories ?
-    - [ ] Make sure TODO, STB, OK can't be removed
+    - [ ] A RamObjectListMenu which inherits QMenu, with a "checkable" option
+    - [ ] Show preview image (shot, asset, status)
+    - [ ] Files tabs in status: main, versions, preview, published with filters by resource
+    - [ ] batch change
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
     - [ ] new filter in tables for only status assigned to the user
     - [ ] new filter in tables by states
@@ -33,7 +33,6 @@
 
 ## Other
 
-- SERVER: add property "dont remove" to some states and the ramuser
 - FEATURE: Implement automations (if published & right file format available -> set next step to TODO)
 - FEATURE: if user is not admin, list only projects he's assigned to
 - FEATURE: Tools tab with
@@ -60,6 +59,7 @@
 - DOC: update json example in getProject(s) server reference
 - SERVER: post in content as JSON?
 - DOC: add meta to the doc
+- TESTS: User rights
 - TESTS: test remove from database then refresh client
 - TESTS: test other modifications from database then refresh client
 - TESTS: test using two clients simultaneously (from different virtual machines)
