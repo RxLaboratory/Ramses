@@ -10,7 +10,7 @@
     - win
     - mac
 
-## pipeline tools first
+## priority
 
 - update ramstatus: published & assigned user
     - [ ] server doc (setstatus, project return, update status)
@@ -20,19 +20,32 @@
     - [ ] A RamObjectListMenu which inherits QMenu, with a "checkable" option
     - [ ] Show preview image (shot, asset, status)
     - [ ] Files tabs in status: main, versions, preview, published, with filters by resource. Open button (and double click), and create new from template.
-    - [ ] batch change
-    - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)
-    - [ ] new filter in tables for only status assigned to the user
-    - [ ] new filter in tables by states
-    - [ ] Custom filter in user box to get only users assigned to the step (use ramobject filteruuid as a qstringlist)
+    - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)   
 - FEATURE: list assets in shots
 - FEATURE: sequence order
-- FEATURE: step: use template file (store in step folder as "PROJECTID_G_stepID_template.ext", open with corresponding app (add versionning later).)
-- DOC: addon api: add open function description
-- DOC & FEATURE: addon api: when activated, check current file (and update info)
+- FEATURE: schedule & time tracking
+    - [ ] Implement step color
+    - [ ] Implement server-side default estimations for (template)steps
+    - [ ] Server side: a userschedule table with columns userId, stepId, date, comment
+    - [ ] Implement RamObject: RamScheduleItem
+    - [ ] Implement status estimations (with default values computed from step rules)
+    - [ ] Implement time tracking per status
+    - [ ] Implement Schedule page
+        - Option to set hours per day
+        - Option to set working days (mon, tue, etc)
+        - Count how many users are needed according to project deadline
+        - Count how many days have to be assigned
 
 ## Other
 
+- FEATURE: User Area
+    - Day schedule
+    - What's changed (notifications)
+- FEATURE: [-] status & history
+    - [ ] batch change
+    - [ ] new filter in tables for only status assigned to the user
+    - [ ] new filter in tables by states
+    - [ ] Custom filter in user box to get only users assigned to the step (use ramobject filteruuid as a qstringlist)
 - FEATURE: Implement automations (if published & right file format available -> set next step to TODO)
 - FEATURE: if user is not admin, list only projects he's assigned to
 - FEATURE: Tools tab with
@@ -59,6 +72,7 @@
 - DOC: update json example in getProject(s) server reference
 - SERVER: post in content as JSON?
 - DOC: add meta to the doc
+- DOC: addon api: add open function description
 - TESTS: User rights
 - TESTS: test remove from database then refresh client
 - TESTS: test other modifications from database then refresh client
