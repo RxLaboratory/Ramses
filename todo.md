@@ -16,9 +16,13 @@
     - [ ] server doc (setstatus, project return, update status)
     - SERVER DOC: comment in getters
 
-- FEATURE: [-] status & history
-    - [ ] A RamObjectListMenu which inherits QMenu, with a "checkable" option
-    - [ ] File tabs in statuseditwidget: main, versions, preview, published, with filters by resource. Open button (and double click), and create new from template.
+- tooltip appearance
+- add status tips & tooltips on controls
+
+- FEATURE: [-] status & history 
+    - [ ] File tabs in statuseditwidget: main, preview, published
+    - [ ] Delete shortcut in objectlisteditwidget
+    - [ ] Add a folder widget in status editor
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)   
 - FEATURE: list assets in shots
 - FEATURE: sequence order
@@ -35,12 +39,20 @@
         - Count how many users are needed according to project deadline
         - Count how many days have to be assigned
 
+- Build installer, add folder to PATH, add startup entry
+
 ## Other
 
+- FEATURE: RamFileType
+    - Select an icon
+    - method: RamFileType::fromFile(QString path)
+- FEATURE: Folder monitoring
+    - Auto version / backup
 - FEATURE: User Area
     - Day schedule
     - What's changed (notifications)
 - FEATURE: [-] status & history
+    - [ ] A RamObjectListMenu which inherits QMenu, with a "checkable" option
     - [ ] batch change
     - [ ] new filter in tables for only status assigned to the user
     - [ ] new filter in tables by states
@@ -51,13 +63,15 @@
     - File tools:
         - Clean Tree: Remove non tracked asset/shot dirs, etc (collect in a trash)
         - Create assets/shots from tree
+        - Empty trash (using optionnal date filter)
+    - Data tools
+        - Import / Export data
+            - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
+            - Client side: define a data structure (json?) // Copy the sqlite local db once a day
+        - List and manage/restore/delete removed objects
 - FEATURE: SSL: check if avail and adjust settings page
 - FEATURE: shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
-- FEATURE: option to restore removed items (admin/lead only) (or permanently delete)
 - FEATURE: implement offline mode
-- FEATURE: implement import-export data.
-    - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
-    - Client side: define a data structure (json?) // Copy the sqlite local db once a day
 - FEATURE: option to choose tray icon
 - FEATURE: mutliple shots addition
 - UI: Asset & Shot table
@@ -68,8 +82,9 @@
 - UI: move console to a dock widget
 - set offline when token is set invalid (server timeout)
 - REFACTOR: factorize stylesheet creation to be used per widget
-- DOC: update json example in getProject(s) server reference
 - SERVER: post in content as JSON?
+- DOC: update json example in getProject(s) server reference
+- DOC: Tree: _trash folders
 - DOC: add meta to the doc
 - DOC: addon api: add open function description
 - TESTS: User rights
