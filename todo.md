@@ -18,7 +18,6 @@
 
 - FEATURE: [-] status & history
     - [ ] A RamObjectListMenu which inherits QMenu, with a "checkable" option
-    - [ ] Show preview image (shot, asset, status)
     - [ ] File tabs in statuseditwidget: main, versions, preview, published, with filters by resource. Open button (and double click), and create new from template.
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)   
 - FEATURE: list assets in shots
