@@ -16,8 +16,6 @@
     - [ ] server doc (setstatus, project return, update status)
     - SERVER DOC: comment in getters
 
-- FEATURE: [-] status & history 
-    - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)   
 - FEATURE: list assets in shots
 - FEATURE: sequence order
 - FEATURE: schedule & time tracking
@@ -84,6 +82,7 @@
 - DOC: Tree: _trash folders
 - DOC: add meta to the doc
 - DOC: addon api: add open function description
+- DOC: addon api: add RamStatus.published / daemon.setStatus add published arg
 - TESTS: User rights
 - TESTS: test remove from database then refresh client
 - TESTS: test other modifications from database then refresh client
