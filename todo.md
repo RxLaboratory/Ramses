@@ -16,13 +16,7 @@
     - [ ] server doc (setstatus, project return, update status)
     - SERVER DOC: comment in getters
 
-- tooltip appearance
-- add status tips & tooltips on controls
-
 - FEATURE: [-] status & history 
-    - [ ] File tabs in statuseditwidget: main, preview, published
-    - [ ] Delete shortcut in objectlisteditwidget
-    - [ ] Add a folder widget in status editor
     - [ ] Implement Daemon status methods (updateShotStatus, updateAssetStatus, publishAsset, publishShot)   
 - FEATURE: list assets in shots
 - FEATURE: sequence order
@@ -43,9 +37,8 @@
 
 ## Other
 
-- FEATURE: RamFileType
-    - Select an icon
-    - method: RamFileType::fromFile(QString path)
+- FEATURE:
+    - RamApplication: set icon
 - FEATURE: Folder monitoring
     - Auto version / backup
 - FEATURE: User Area
@@ -74,6 +67,9 @@
 - FEATURE: implement offline mode
 - FEATURE: option to choose tray icon
 - FEATURE: mutliple shots addition
+- UI: tooltip appearance
+- UI: add status tips & tooltips on controls
+- UI: move all folder display to the bottom of edit widgets
 - UI: Asset & Shot table
     - add state filtering (in header of step columns?)
 - UI: Pipeline editor
@@ -84,6 +80,7 @@
 - REFACTOR: factorize stylesheet creation to be used per widget
 - SERVER: post in content as JSON?
 - DOC: update json example in getProject(s) server reference
+- DOC: don't forget shortcuts (pipe, del, ctrl+f)
 - DOC: Tree: _trash folders
 - DOC: add meta to the doc
 - DOC: addon api: add open function description
