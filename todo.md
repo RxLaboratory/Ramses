@@ -13,10 +13,10 @@
 ## priority
 
 - update ramstatus: published & assigned user
-    - [ ] server doc (setstatus, project return, update status)
+    - [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets)
     - SERVER DOC: comment in getters
 
-- FEATURE: list assets in shots
+- FEATURE: shotasset assign list grouped by assetgroup
 - FEATURE: sequence order
 - FEATURE: schedule & time tracking
     - [ ] Implement step color
