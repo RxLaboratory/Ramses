@@ -13,15 +13,11 @@
 ## priority
 
 - update ramstatus: published & assigned user
-    - [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets)
+    - [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets, setSequenceOrder)
     - SERVER DOC: comment in getters
 
-- FEATURE: shotasset assign list grouped by assetgroup
-- FEATURE: sequence order
 - FEATURE: schedule & time tracking
-    - [ ] Implement step color
-    - [ ] Implement server-side default estimations for (template)steps
-    - [ ] Server side: a userschedule table with columns userId, stepId, date, comment
+    - [ ] Server side: a schedule table with columns userId, stepId, date, comment
     - [ ] Implement RamObject: RamScheduleItem
     - [ ] Implement status estimations (with default values computed from step rules)
     - [ ] Implement time tracking per status
@@ -35,21 +31,23 @@
 
 ## Other
 
-- FEATURE:
-    - RamApplication: set icon
+- FEATURE: General
+    - RamApplication: set tray icon (dark/light/color)
+    - shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
+    - SSL: check if avail and adjust settings page
+    - if user is not admin, list only projects he's assigned to
 - FEATURE: Folder monitoring
     - Auto version / backup
 - FEATURE: User Area
     - Day schedule
     - What's changed (notifications)
-- FEATURE: [-] status & history
-    - [ ] A RamObjectListMenu which inherits QMenu, with a "checkable" option
+- FEATURE: status & history
     - [ ] batch change
     - [ ] new filter in tables for only status assigned to the user
     - [ ] new filter in tables by states
     - [ ] Custom filter in user box to get only users assigned to the step (use ramobject filteruuid as a qstringlist)
-- FEATURE: Implement automations (if published & right file format available -> set next step to TODO)
-- FEATURE: if user is not admin, list only projects he's assigned to
+- FEATURE: Pipeline
+    - Implement automations (if published & right file format available -> set next step to TODO)
 - FEATURE: Tools tab with
     - File tools:
         - Clean Tree: Remove non tracked asset/shot dirs, etc (collect in a trash)
@@ -60,11 +58,13 @@
             - Server side: https://www.tutorialspoint.com/php/perform_mysql_backup_php.htm // do it regularly ? option in config.php , protect sql dumps folder with htaccess (create it in install.php)
             - Client side: define a data structure (json?) // Copy the sqlite local db once a day
         - List and manage/restore/delete removed objects
-- FEATURE: SSL: check if avail and adjust settings page
-- FEATURE: shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
 - FEATURE: implement offline mode
-- FEATURE: option to choose tray icon
-- FEATURE: mutliple shots addition
+- FEATURE: Shot list:
+    - set/update shot list from final cut XML
+    - set/update shot list from csv
+    - export shot list to csv
+    - export shot list to final cut XML
+    - mutliple shots addition
 - UI: tooltip appearance
 - UI: add status tips & tooltips on controls
 - UI: move all folder display to the bottom of edit widgets
