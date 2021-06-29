@@ -17,12 +17,12 @@
     - SERVER DOC: comment in getters
 
 - FEATURE: schedule & time tracking
+    - Tables: option to hide time spent/lateness OR hide completion ratio
     - [ ] Server side: a schedule table with columns userId, stepId, date, comment
-    - [ ] Implement RamObject: RamScheduleItem
+    - [ ] Implement RamObject: RamScheduleItem (user+step+date+comment)
     - [ ] Implement status estimations (with default values computed from step rules)
     - [ ] Implement time tracking per status
     - [ ] Implement Schedule page
-        - Option to set hours per day
         - Option to set working days (mon, tue, etc)
         - Count how many users are needed according to project deadline
         - Count how many days have to be assigned
@@ -31,6 +31,9 @@
 
 ## Other
 
+- UI:
+    - Fuzzy logic for lateness color in status
+    - Fuzzy logic for completion color in steps
 - FEATURE: General
     - RamApplication: set tray icon (dark/light/color)
     - shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
