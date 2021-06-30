@@ -17,20 +17,32 @@
     - SERVER DOC: comment in getters
 
 - FEATURE: schedule & time tracking
-    - Tables: option to hide time spent/lateness OR hide completion ratio
-    - [ ] Server side: a schedule table with columns userId, stepId, date, comment
-    - [ ] Implement RamObject: RamScheduleItem (user+step+date+comment)
-    - [ ] Implement status estimations (with default values computed from step rules)
-    - [ ] Implement time tracking per status
     - [ ] Implement Schedule page
-        - Option to set working days (mon, tue, etc)
+        - export new db structure
+        - schedule icon
+        - Server / dbi: batch methods for updating/creating schedule entries
+        - Color today
+        - Draw icons on steps (dark/light depending on bg using qpixmap set alpha and fill)
+        - filter users
+        - filter day of week
+        - actions to scroll to today, go to deadline, go to next/prev month / show month on title bar
+        - actions to set end to deadline, set start to today, set start to first
+        - set start/end should scroll to start/end
         - Count how many users are needed according to project deadline
         - Count how many days have to be assigned
+        - Add comment on entries
+
+- Add RamObjectList project.users synced with steps
+- Add RamObjectList project.schedule synced with users
+- Add project.completionRatio & latenessRatio
+- compute latenessRatio both from actual timespent and schedule (mean? add an option?)
 
 - Build installer, add folder to PATH, add startup entry
 
 ## Other
 
+- PERFS:
+    - RamSchedule from RamObjectList with a QMap<QDateTime, RamScheduleEntry> ?
 - UI:
     - Fuzzy logic for lateness color in status
     - Fuzzy logic for completion color in steps
@@ -45,7 +57,6 @@
     - Day schedule
     - What's changed (notifications)
 - FEATURE: status & history
-    - [ ] batch change
     - [ ] new filter in tables for only status assigned to the user
     - [ ] new filter in tables by states
     - [ ] Custom filter in user box to get only users assigned to the step (use ramobject filteruuid as a qstringlist)
