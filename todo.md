@@ -18,24 +18,18 @@
     - server doc: request in post as json or form-encoded, except the query
 
 - FEATURE: schedule & time tracking
-    - [ ] Implement Schedule page
-        - Color today
-        - Draw icons on steps (dark/light depending on bg using qpixmap set alpha and fill)
-        - filter users
-        - filter day of week
-        - actions to scroll to today, go to deadline, go to next/prev month / show month on title bar
-        - actions to set end to deadline, set start to today, set start to first
-        - set start/end should scroll to start/end
-        - Count how many users are needed according to project deadline
-        - Count how many days have to be assigned
-        - Add comment on entries
+    - stats widget, with project on top (a custom widget with paintEvent) & remaining time
+    - stats delegate
+    - Count how many days have to be assigned
+    - Add comment on entries
+    - remaining time on schedule
 
-- Add RamObjectList project.users synced with steps
-- Add RamObjectList project.schedule synced with users
-- Add project.completionRatio & latenessRatio
+- Add RamObjectList project.users synced with schedule
+- remove users from steps
 - compute latenessRatio both from actual timespent and schedule (mean? add an option?)
 
 - Build installer, add folder to PATH, add startup entry
+- Finish / Test Maya addon
 
 ## Other
 
