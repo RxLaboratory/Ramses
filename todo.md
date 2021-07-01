@@ -15,12 +15,10 @@
 - update ramstatus: published & assigned user
     - [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets, setSequenceOrder)
     - SERVER DOC: comment in getters
+    - server doc: request in post as json or form-encoded, except the query
 
 - FEATURE: schedule & time tracking
     - [ ] Implement Schedule page
-        - export new db structure
-        - schedule icon
-        - Server / dbi: batch methods for updating/creating schedule entries
         - Color today
         - Draw icons on steps (dark/light depending on bg using qpixmap set alpha and fill)
         - filter users
@@ -43,6 +41,7 @@
 
 - PERFS:
     - RamSchedule from RamObjectList with a QMap<QDateTime, RamScheduleEntry> ?
+    - Batch queries for Item table (same as schedule batch methods)
 - UI:
     - Fuzzy logic for lateness color in status
     - Fuzzy logic for completion color in steps
@@ -90,7 +89,6 @@
 - UI: move console to a dock widget
 - set offline when token is set invalid (server timeout)
 - REFACTOR: factorize stylesheet creation to be used per widget
-- SERVER: post in content as JSON?
 - DOC: update json example in getProject(s) server reference
 - DOC: don't forget shortcuts (pipe, del, ctrl+f)
 - DOC: Tree: _trash folders
