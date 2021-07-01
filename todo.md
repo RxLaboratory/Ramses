@@ -18,6 +18,8 @@
     - server doc: request in post as json or form-encoded, except the query
 
 - FEATURE: schedule & time tracking
+    - stats icon
+    - console as a dockwidget
     - stats widget, with project on top (a custom widget with paintEvent) & remaining time
     - stats delegate
     - Count how many days have to be assigned
