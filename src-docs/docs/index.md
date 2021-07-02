@@ -1,50 +1,113 @@
 # Ramses - The Rainbox Asset Management System
 
-Ramses is still under active development, and this documentation is still being written.
-
-See the source on [GitHub](https://github.com/Rainbox-dev/Ramses/).
+!!! warning
+    Ramses is still under active development, and this documentation is still being written.  
+    The first public Beta version will be available very soon.
 
 ![](/img/LAB_Ramses_Doc_Schemas.png)
+
+## What's this?
+
+*Ramses*, the Rx Asset Management System, is a complete framework to help you, your team, your studio, track the production of your films.
+
+It is meant to be used both by freelancers, small or big teams.
+
+Let's have a look at a few key features.
+
+### ▹ Free and open source
+
+*Ramses* is licensed under the GNU General Public License v3, which means **you're free** to do anything you'd like with it, use it the way you want, modify it, and share your modifications.
+
+### ▹ Modular and scalable
+
+*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software improve your workflow and versionning, you could use only on of the [*Ramses Add-ons*](addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](#) and maybe connect it to the [*Ramses Server*](#) to stay connected with your team.
+
+Of course, each of these components can work together and share information for **a seamless integration into your workflow**.
+
+### ▹ Planning
+
+![](img/client/schedule.png)
+
+*Ramses* helps you easily **plan your production**, and estimate how long you'll need to produce your project.
+
+For each shot and asset of the project, you'll be able to (automatically) estimate how long it will take to produce, and *Ramses* will keep track of all estimations for you so you can plan accordingly.
+
+### ▹ Production Tracking
+
+![](img/client/assettracking.png)
+
+At any time, *Ramses* can tell you where you are in the production, how late (or not) you are, and warn you if something's going wrong.
+
+You can **always keep a close (or overall) look at the production**, and check which assets and shots are longer or shorter to produce, and the state in which they are at any time.
+
+### ▹ Pipeline automation
+
+![](img/client/pipeline.png)
+
+In combination with the *Ramses Add-ons*, *Ramses* is able to **automate your pipeline**, managing the **versionning** of the files, the exports, imports and all these manual tasks a robot could do for you.
+
+With a nice and modern nodal view, it's easy to design your pipeline, connecting each step and setting how the data should go from one step to the other. All this information will be used both by the *Ramses* production tracking algorithms and the *Add-ons* to help you **focus on your real work: creation**.
+
+### ▹ (Very) Easy-to-use
+
+A tool like *Ramses* is here to help, not to give you a headake.
+
+All user interface components have been carefully crafted to be beautiful, but most of all to be **intuitive and practical**. Everything has to be clear, precise, and meaningful.
+
+Of course, there's this comprehensive documentation if you have any doubt...
+
+### ▹ And also...
+
+- Why would one want to track one's production from a web browser? *Ramses* comes with its own **native application for _Linux_, _Mac OS_ and _Windows_**. It's designed to by very light and unintrusive, fast and responsive.  
+It ususally takes about ten times less memory than a usual web-browser with a single tab opened.
+
+- *Ramses* is **extensible**. Although it already comes with some add-ons for your creative software, if you have specific needs, you can use the provided [*Python* and *Adobe ExtendScript* API](dev/add-ons-reference/index.md), to implement your own *add-ons* which fully integrate with both *Ramses* and your creative applications. The [*Daemon*](dev/daemon-reference/index.md) and the [*Server*](dev/server-reference/index.md) API are also fully documented. And, after all, *Ramses* is open source!
+
+- *Ramses* can **manage all your files**: the idea is that you won't ever need to search for any file through the system's explorer.
+
+![](img/client/home.png)
 
 ## Table of Contents
 
 - Introduction (this page)
-- [**_Ramses_ Components**](components/index.md)
-- **Installation**
-    - [**_Ramses_ Server**](install/server.md)
-- **General Help**
-    - [**_Ramses_**](help/index.md)
-    - [**Users**](help/users.md)
-    - [**Projects**](help/projects.md)
-    - [**Steps**](help/steps.md)
-    - [**Asset Groups**](help/assetgroups.md)
-    - [**Assets**](help/assets.md)
-    - [**Sequences**](help/sequences.md)
-    - [**Shots**](help/shots.md)
-    - [**Status History**](help/statushistory.md)
-    - [**Status**](help/status.md)
-    - [**States**](help/states.md)
-    - [**File Types**](help/filetypes.md)
-    - [**Applications**](help/applications.md)
-    - [**Pipeline**](help/pipeline.md)
-- **_Ramses Tree_: Files and Folders**
-    - [**Naming scheme**](files/naming.md)
-    - [**Folder structure**](files/tree.md)
-- **Ramses Add-ons**
-    - [**General Information**](addons/index.md)
-    - [**Autodesk Maya**](addons/maya.md)
-- **Development**
-    - [**Introduction**](dev/index.md)
-    - [**Files and folders**](dev/files/naming.md)
-    - [**Scripting API (Add-ons)**](dev/add-ons-reference/index.md)
-    - [**Daemon API**](dev/daemon-reference/index.md)
-    - [**Server API**](dev/server-reference/index.md)
-- [**Credits**](credits.md)
-- [**Changelog**](changelog.md)
-- **Licenses**
-    - [**GNU GPL v3**](licenses/gnu-gpl.md)
-    - [**GNU Free Documentation**](licenses/gfdl.md)
-
+- **The Pipeline**
+    - [Administration](#)
+    - [User Management](#)
+    - [Pipeline](#)
+    - [Production management](#)
+    - [Panning and time tracking](#)
+- **Ramses Components**
+    - [Introduction](components/index.md)
+    - The Ramses server
+        - [Installation](install/server.md)
+        - [Administration](#)
+    - The Ramses application (client)
+        - [Installation and settings](#)
+        - [Administration]
+        - [Project settings](#)
+        - [The pipeline](#)
+        - [Assets and shots production management](#)
+        - [Schedule and statistics](#)
+    - Ramses Add-ons
+        - [General information](addons/index.md)
+        - [Add-on for Autodesk Maya](addons/maya.md)
+        - [Add-on for Autodesk Maya - The Rubika Flavor](#)
+    - The Ramses Tree
+        - [Naming scheme](files/naming.md)
+        - [Folder Structure](files/tree.md)
+- **Extending Ramses, Development**
+    - [Introduction](dev/index.md)
+    - [Files and folders](dev/files/naming.md)
+    - [The Scripting API (Add-ons)](dev/add-ons-reference/index.md)
+    - [The Ramses Daemon API](dev/daemon-reference/index.md)
+    - [The Ramses Server API](dev/server-reference/index.md)
+- **Miscellaneous**
+    - [Credits](credits.md)
+    - [Changelog](changelog.md)
+    - Licenses
+        - [Software: GNU GPLv3](licenses/gnu-gpl.md)
+        - [Documentation: GNU FDL](licenses/gfdl.md)
+        - [Medias: CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 ## License
 
 ### Software
