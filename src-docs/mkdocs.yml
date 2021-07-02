@@ -1,5 +1,5 @@
 site_name: Ramses
-site_url: https://ramses-docs.rainboxlab.org
+site_url: https://ramses.rxlab.guide
 repo_url: https://github.com/Rainbox-dev/Ramses/
 edit_uri: edit/master/src-docs/docs/
 site_description: The Ramses comprehensive documentation
@@ -30,29 +30,33 @@ site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
     - Ramses: index.md
-    - The Pipeline :
-        - Ramses: help/index.md
-        - Users: help/users.md
-        - Projects: help/projects.md
-        - Steps: help/steps.md
-        - Asset Groups: help/assetgroups.md
-        - Assets: help/assets.md
-        - Sequences: help/sequences.md
-        - Shots: help/shots.md
-        - Status History: help/statushistory.md
-        - Status: help/status.md
-        - States: help/states.md
-        - File Types: help/filetypes.md
-        - Applications: help/applications.md
-        - Pipeline: help/pipeline.md
+    - Pipeline & Management:
+        - Introduction: pipeline/index.md
+        - Administration: pipeline/administration.md
+        - User Management: pipeline/users.md
+        - Pipeline: pipeline/pipeline.md
+        - Production tracking: pipeline/production.md
+        - Planning: pipeline/planning.md
     - Components:
         - Introduction: components/index.md
         - Ramses Server:
             - Installation: install/server.md
+            - Administration: .
+        - Ramses Application:
+            - Installation and settings: .
+            - Administration: .
+            - Project settings: .
+            - The pipeline: .
+            - Assets and shots production management: .
+            - Schedule and statistics: .
         - Ramses Add-ons:
             - General Information: addons/index.md
-            - Autodesk Maya: addons/maya.md
+            - Autodesk Maya:
+                - Ramses Add-on: addons/maya.md
+                - Extensibility: addons/maya.md
+                - Rubika Flavor: addons/maya.md
         - Ramses Tree:
+            - Introduction: .
             - Naming scheme: files/naming.md
             - Folder structure: files/tree.md
     - Development:

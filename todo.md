@@ -16,6 +16,9 @@
 
 ## priority
 
+- doc: general TOC above page TOC
+- doc: check padding and margins on duik doc
+
 - [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets, setSequenceOrder)
 - SERVER DOC: comment in getters
 - server doc: request in post as json or form-encoded, except the query

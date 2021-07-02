@@ -1,7 +1,7 @@
 # Ramses - The Rainbox Asset Management System
 
 !!! warning
-    Ramses is still under active development, and this documentation is still being written.  
+    **Ramses is still under active development**, and this documentation is still being written.  
     The first public Beta version will be available very soon.
 
 ![](/img/LAB_Ramses_Doc_Schemas.png)
@@ -24,6 +24,8 @@ Let's have a look at a few key features.
 
 Of course, each of these components can work together and share information for **a seamless integration into your workflow**.
 
+[***▸ Read more***](#)
+
 ### ▹ Planning
 
 ![](img/client/schedule.png)
@@ -31,6 +33,8 @@ Of course, each of these components can work together and share information for 
 *Ramses* helps you easily **plan your production**, and estimate how long you'll need to produce your project.
 
 For each shot and asset of the project, you'll be able to (automatically) estimate how long it will take to produce, and *Ramses* will keep track of all estimations for you so you can plan accordingly.
+
+[***▸ Read more***](#)
 
 ### ▹ Production Tracking
 
@@ -40,6 +44,8 @@ At any time, *Ramses* can tell you where you are in the production, how late (or
 
 You can **always keep a close (or overall) look at the production**, and check which assets and shots are longer or shorter to produce, and the state in which they are at any time.
 
+[***▸ Read more***](#)
+
 ### ▹ Pipeline automation
 
 ![](img/client/pipeline.png)
@@ -48,13 +54,15 @@ In combination with the *Ramses Add-ons*, *Ramses* is able to **automate your pi
 
 With a nice and modern nodal view, it's easy to design your pipeline, connecting each step and setting how the data should go from one step to the other. All this information will be used both by the *Ramses* production tracking algorithms and the *Add-ons* to help you **focus on your real work: creation**.
 
+[***▸ Read more***](#)
+
 ### ▹ (Very) Easy-to-use
 
 A tool like *Ramses* is here to help, not to give you a headake.
 
 All user interface components have been carefully crafted to be beautiful, but most of all to be **intuitive and practical**. Everything has to be clear, precise, and meaningful.
 
-Of course, there's this comprehensive documentation if you have any doubt...
+Of course, there's this comprehensive documentation if you have any doubt..
 
 ### ▹ And also...
 
@@ -63,19 +71,22 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 
 - *Ramses* is **extensible**. Although it already comes with some add-ons for your creative software, if you have specific needs, you can use the provided [*Python* and *Adobe ExtendScript* API](dev/add-ons-reference/index.md), to implement your own *add-ons* which fully integrate with both *Ramses* and your creative applications. The [*Daemon*](dev/daemon-reference/index.md) and the [*Server*](dev/server-reference/index.md) API are also fully documented. And, after all, *Ramses* is open source!
 
-- *Ramses* can **manage all your files**: the idea is that you won't ever need to search for any file through the system's explorer.
+- *Ramses* can [**manage all your files**](#): the idea is that you won't ever need to search for any file through the system's explorer.
+
+- **_Ramses_ is (far from) not finished**. And probably never will: it is going to evolve, and there are a lot of other planned features and improvements on their way!
 
 ![](img/client/home.png)
 
 ## Table of Contents
 
 - Introduction (this page)
-- **The Pipeline**
-    - [Administration](#)
-    - [User Management](#)
-    - [Pipeline](#)
-    - [Production management](#)
-    - [Panning and time tracking](#)
+- **The Pipeline & Production Management**
+    - [Introduction](pipeline/index.md)
+    - [Administration](pipeline/administration.md)
+    - [User Management](pipeline/users.md)
+    - [Pipeline](pipeline/pipeline.md)
+    - [Production tracking](pipeline/production.md)
+    - [Planning](pipeline/planning.md)
 - **Ramses Components**
     - [Introduction](components/index.md)
     - The Ramses server
@@ -83,7 +94,7 @@ It ususally takes about ten times less memory than a usual web-browser with a si
         - [Administration](#)
     - The Ramses application (client)
         - [Installation and settings](#)
-        - [Administration]
+        - [Administration](#)
         - [Project settings](#)
         - [The pipeline](#)
         - [Assets and shots production management](#)
@@ -93,6 +104,7 @@ It ususally takes about ten times less memory than a usual web-browser with a si
         - [Add-on for Autodesk Maya](addons/maya.md)
         - [Add-on for Autodesk Maya - The Rubika Flavor](#)
     - The Ramses Tree
+        - [Introduction](#)
         - [Naming scheme](files/naming.md)
         - [Folder Structure](files/tree.md)
 - **Extending Ramses, Development**
@@ -140,4 +152,4 @@ A copy of the license is included in the section entitled "[Documentation Licens
 
 ![GNU](img/licenses/gnu.png){: style="height:75px;"} ![GFDL](img/licenses/gfdl-logo.png){: style="height:50px;"}
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/02)
