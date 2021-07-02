@@ -10,34 +10,28 @@
     - win
     - mac
 
+## Notes
+
+- SI Rules for units: https://physics.nist.gov/cuu/Units/checklist.html
+
 ## priority
 
-- update ramstatus: published & assigned user
-    - [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets, setSequenceOrder)
-    - SERVER DOC: comment in getters
-    - server doc: request in post as json or form-encoded, except the query
-
-- FEATURE: schedule & time tracking
-    - stats icon
-    - console as a dockwidget
-    - stats widget, with project on top (a custom widget with paintEvent) & remaining time
-    - stats delegate
-    - Count how many days have to be assigned
-    - Add comment on entries
-    - remaining time on schedule
-
-- Add RamObjectList project.users synced with schedule
-- remove users from steps
-- compute latenessRatio both from actual timespent and schedule (mean? add an option?)
+- [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets, setSequenceOrder)
+- SERVER DOC: comment in getters
+- server doc: request in post as json or form-encoded, except the query
 
 - Build installer, add folder to PATH, add startup entry
 - Finish / Test Maya addon
 
 ## Other
 
+- REFACTOR:
+    - Move common stuff from delegates to a RamDelegate
+    - Add a few static methods to draw progress, etc
 - PERFS:
     - RamSchedule from RamObjectList with a QMap<QDateTime, RamScheduleEntry> ?
     - Batch queries for Item table (same as schedule batch methods)
+    - Remove (lots of) signals to calls ; data should be computed as soon as updated, not on draw
 - UI:
     - Fuzzy logic for lateness color in status
     - Fuzzy logic for completion color in steps
@@ -46,6 +40,7 @@
     - shortName and name sanitation (Ramses.validateName && Ramses.validateShortName, and server side too)
     - SSL: check if avail and adjust settings page
     - if user is not admin, list only projects he's assigned to
+    - compute latenessRatio both from actual timespent and schedule (mean? add an option?)
 - FEATURE: Folder monitoring
     - Auto version / backup
 - FEATURE: User Area
