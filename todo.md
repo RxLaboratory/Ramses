@@ -17,7 +17,6 @@
 ## priority
 
 - doc: general TOC above page TOC
-- doc: check padding and margins on duik doc
 
 - [ ] server doc (setstatus, project return, update status, assignAsset, unassignAsset, project shotassets, setSequenceOrder)
 - SERVER DOC: comment in getters
@@ -29,6 +28,8 @@
 ## second priority
 
 - improve server security: see https://stackoverflow.com/questions/10916284/how-to-encrypt-decrypt-data-in-php for crypting names
+- add email info for users
+- store ip/computers, send email confirmation when new.
 
 ## Other
 
