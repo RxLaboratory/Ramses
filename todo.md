@@ -26,6 +26,10 @@
 - Build installer, add folder to PATH, add startup entry
 - Finish / Test Maya addon
 
+## second priority
+
+- improve server security: see https://stackoverflow.com/questions/10916284/how-to-encrypt-decrypt-data-in-php for crypting names and improving password hash ; also improve password hash on client side
+
 ## Other
 
 - REFACTOR:
