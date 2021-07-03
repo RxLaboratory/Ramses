@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/03)
+
 # Ramses - The Rainbox Asset Management System
 
 !!! warning
@@ -50,7 +52,12 @@ You can **always keep a close (or overall) look at the production**, and check w
 
 ![](img/client/pipeline.png)
 
-In combination with the *Ramses Add-ons*, *Ramses* is able to **automate your pipeline**, managing the **versionning** of the files, the exports, imports and all these manual tasks a robot could do for you.
+In combination with the *Ramses Add-ons* which integrate *Ramses* in your favorite creative software, *Ramses* is able to **automate your pipeline**, managing the **versionning** of the files, the exports, imports and all these manual tasks a robot could do for you.
+
+<figure>
+  <img src="img/maya/shelf.png"/>
+  <figcaption>An example: the Autodesk Maya shelf of the Ramses Add-on.</figcaption>
+</figure>
 
 With a nice and modern nodal view, it's easy to design your pipeline, connecting each step and setting how the data should go from one step to the other. All this information will be used both by the *Ramses* production tracking algorithms and the *Add-ons* to help you **focus on your real work: creation**.
 
@@ -58,7 +65,7 @@ With a nice and modern nodal view, it's easy to design your pipeline, connecting
 
 ### ▹ (Very) Easy-to-use
 
-A tool like *Ramses* is here to help, not to give you a headake.
+A tool like *Ramses* is here to help, not to give you a headache.
 
 All user interface components have been carefully crafted to be beautiful, but most of all to be **intuitive and practical**. Everything has to be clear, precise, and meaningful.
 
@@ -73,7 +80,41 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 
 - *Ramses* can [**manage all your files**](#): the idea is that you won't ever need to search for any file through the system's explorer.
 
-- **_Ramses_ is (far from) not finished**. And probably never will: it is going to evolve, and there are a lot of other planned features and improvements on their way!
+### ▹ The future
+
+**_Ramses_ is (far from) not finished**. And probably never will: it is going to evolve, and there are a lot of other planned features and improvements on their way!
+
+Here are some of the features which are not available yet but which will be available in the future.
+
+- **Full _SSL_ encryption** when connecting to the server. *SSL* may already be available on *Linux* and will be available on *Windows* and *Mac OS* shortly. If *Ramses*' beta versions can already be tested without it, it is a mandatory feature for the release versions, as the security of your data is non-negociable.
+- The **Dashboard** will be an area where each user accesses all its important data and schedule. It comes with notifications so you won't miss any change concerning your assets, shots and steps.
+- The **Offline mode** for the *Ramses Client Application* will make it easier to use for one-man bands; you will be able to use *Ramses* without having to install the server. This also means you'll still be able to use *Ramses* even if you're not connected to the network, when you're in a train or on top of a mountain.
+- **Project Planning**: a simple but indispensable tool to easily plan the production of the project, at the very beginning of the production. With this planning tool you will be able to set the important dates of the production, the deadlines for each step, all in an easy-to-use and visual panel.
+- **Status automation**: when a character is rigged, it means it's ready to be animated. Status automation will automatically update the states of all the items according to the pipeline design, and your custom rules.
+- **Data export and import**: if you're planning important software update, or for your backups at the end of a production, it may be useful to export and re-import your data.
+- **File tools** will provide automatic ways to manage your files, create new assets and shots from already existing files, clean the tree, backup, remove temporary data, batch rename files and folders...
+- **Editing tools** to manage your shots from your edits. Automatically set shot duration, order and other metadata by just importing your edit.
+- A lot of **UI improvements** and tweaks are planned too, and work will be done to improve the performance of the *Ramses Client Application* even further.
+- **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
+
+There's also a lot of ongoing work to extend the supported creative applications through *Ramses* Add-ons. This table shows what's planned, what's already available, what will be available soon.
+
+| Application | Scripting Language | Status | Comment |
+| --- | --- | --- | --- |
+| [API](dev/add-ons-reference/index.md) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
+| [API](dev/add-ons-reference/index.md) | ExtendScript | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | For Adobe Creative Cloud |
+| [API](dev/add-ons-reference/index.md) | UXP | ![icon](img/icons/red_circle.png){: style="width:16px;"} | For Adobe Creative Cloud<br/>*UXP* is a new scripting environment for Adobe Software. *Ramses* won't officially support it until it is mature enough, which is not the case as of July 2020. This being said, the *ExtendScript* API may be compatible with *UXP*. |
+| Adobe After Effects | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
+| Adobe Illustrator | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |
+| Adobe Photoshop | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
+| [Autodesk Maya](addons/maya.md) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
+| Autodesk Maya<br/>[Rubika Flavor](#) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
+| Blender | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
+| Inkscape | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |
+| Krita | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
+
+Legend:  
+![icon](img/icons/green_tick.png){: style="width:16px;"} Available | ![icon](img/icons/blue_circle.png){: style="width:16px;"} In development | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} Planned | ![icon](img/icons/red_circle.png){: style="width:16px;"} Not supported
 
 ![](img/client/home.png)
 
@@ -90,7 +131,8 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 - **Ramses Components**
     - [Introduction](components/index.md)
     - The Ramses server
-        - [Installation](install/server.md)
+        - [Introduction](components/server/index.md)
+        - [Installation](components/server/install.md)
         - [Administration](#)
     - The Ramses application (client)
         - [Installation and settings](#)
@@ -152,4 +194,3 @@ A copy of the license is included in the section entitled "[Documentation Licens
 
 ![GNU](img/licenses/gnu.png){: style="height:75px;"} ![GFDL](img/licenses/gfdl-logo.png){: style="height:50px;"}
 
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/02)

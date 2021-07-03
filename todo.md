@@ -75,7 +75,6 @@
     - export shot list to csv
     - export shot list to final cut XML
     - mutliple shots addition
-- UI: tooltip appearance
 - UI: add status tips & tooltips on controls
 - UI: move all folder display to the bottom of edit widgets
 - UI: Asset & Shot table

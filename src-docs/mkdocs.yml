@@ -40,8 +40,10 @@ nav:
     - Components:
         - Introduction: components/index.md
         - Ramses Server:
-            - Installation: install/server.md
-            - Administration: .
+            - Introduction: components/server/index.md
+            - A web server: components/server/web-server.md
+            - Installation: components/server/install.md
+            - Administration: components/server/admin.md
         - Ramses Application:
             - Installation and settings: .
             - Administration: .
