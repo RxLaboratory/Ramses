@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
     
-    <title>Ramses Add-on - Ramses</title>
+    <title>Maya Add-on - Ramses</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -228,7 +228,7 @@
         
             
 <li class="active">
-    <a href="./">Ramses Add-on</a>
+    <a href="./">Maya Add-on</a>
 </li>
 
         
@@ -240,7 +240,7 @@
         
             
 <li >
-    <a href="../../../addons/maya.md">Rubika Flavor</a>
+    <a href="../maya-rubika/">Rubika Flavor</a>
 </li>
 
         
@@ -265,13 +265,13 @@
         
             
 <li >
-    <a href="../../../files/naming/">Naming scheme</a>
+    <a href="../../../files/naming.md">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/tree/">Folder structure</a>
+    <a href="../../../files/tree.md">Folder structure</a>
 </li>
 
         
@@ -676,27 +676,6 @@
         
         
         <div class="col-md-3"><div id="side-menu">
-    <div class="bs-sidebar hidden-print affix well" role="complementary">
-        <ul class="nav bs-sidenav">
-            <li class="first-level active"><a href="#ramses-maya-add-on">Ramses Maya Add-on</a></li>
-                <li class="second-level"><a href="#installation">Installation</a></li>
-                    
-                <li class="second-level"><a href="#features">Features</a></li>
-                    
-                <li class="second-level"><a href="#save">Save</a></li>
-                    
-                <li class="second-level"><a href="#comment">Comment</a></li>
-                    
-                <li class="second-level"><a href="#settings">Settings</a></li>
-                    
-                    <li class="third-level"><a href="#versionning">Versionning</a></li>
-                    <li class="third-level"><a href="#folders">Folders</a></li>
-                    <li class="third-level"><a href="#ramses-application">Ramses Application</a></li>
-                    <li class="third-level"><a href="#development">Development</a></li>
-                <li class="second-level"><a href="#commands">Commands</a></li>
-                    
-        </ul>
-    </div>
     <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
         <!-- Main navigation -->
         <ul class="nav bs-sidenav">
@@ -821,11 +800,11 @@
                                         <button  type="button" class="collapse-button active-collapse-button">Autodesk Maya</button>
                                         <ul class="collapsible-content collapsible-content-active">
                                             
-                                                <li class="fourth-level active"><a href="./">Ramses Add-on</a></li>
+                                                <li class="fourth-level active"><a href="./">Maya Add-on</a></li>
                                             
                                                 <li class="fourth-level "><a href="../maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya.md">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../maya-rubika/">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -845,11 +824,11 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/naming/">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../../../files/naming.md">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/tree/">Folder structure</a></li>
+                                    <li class="third-level "><a href="../../../files/tree.md">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1125,6 +1104,41 @@
         
         </ul>
     </div>
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramses-maya-add-on">Ramses Maya Add-on</a></li>
+                <li class="second-level"><a href="#installation">Installation</a></li>
+                    
+                <li class="second-level"><a href="#features">Features</a></li>
+                    
+                <li class="second-level"><a href="#save">Save</a></li>
+                    
+                <li class="second-level"><a href="#comment">Comment</a></li>
+                    
+                <li class="second-level"><a href="#incremental-save">Incremental Save</a></li>
+                    
+                <li class="second-level"><a href="#update-status-and-publish">Update Status and Publish</a></li>
+                    
+                    <li class="third-level"><a href="#publication">Publication</a></li>
+                <li class="second-level"><a href="#preview">Preview</a></li>
+                    
+                    <li class="third-level"><a href="#playblasts">Playblasts</a></li>
+                <li class="second-level"><a href="#save-as">Save As</a></li>
+                    
+                <li class="second-level"><a href="#template">Template</a></li>
+                    
+                <li class="second-level"><a href="#open-and-import">Open and Import</a></li>
+                    
+                <li class="second-level"><a href="#retrieve-version">Retrieve Version</a></li>
+                    
+                <li class="second-level"><a href="#settings">Settings</a></li>
+                    
+                    <li class="third-level"><a href="#versionning">Versionning</a></li>
+                    <li class="third-level"><a href="#folders">Folders</a></li>
+                    <li class="third-level"><a href="#ramses-application">Ramses Application</a></li>
+                    <li class="third-level"><a href="#development">Development</a></li>
+        </ul>
+    </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
@@ -1134,6 +1148,7 @@
 <p><em>Ramses</em> comes with an official add-on for <strong><em>Autodesk Maya</em></strong>, which actually consists in a <em>Python</em> plug-in and a custom shelf packaged in a simple single module.</p>
 <p>It is an example of an implementation of an add-on using the <a href="../../dev/add-ons-reference"><em>Ramses Python API</em></a> but it is already well suited for use in production.</p>
 <p>As well as all other <a href="../"><em>Ramses Add-ons</em></a>, the <em>Ramses Maya Add-on</em> includes the main features like versionning, publishing and production tracking with <em>Ramses</em>, but <a href="../maya-extend/">it can be extended to automate your workflow</a>. An example of such an extension is provided as the <a href="rubika.md"><em>Ramses Maya Add-on <strong>Rubika Flavor</strong></em></a>.</p>
+<p>This Add-on can be used with or without being connected to the <em>Ramses Daemon</em> (and the <em>Ramses Client Application</em>). If it is connected to the <em>Daemon</em>, it will automatically update the production tracking data.</p>
 <h2 id="installation">Installation</h2>
 <ul>
 <li><a href="https://github.com/Rainbox-dev/Ramses-Maya/archive/refs/heads/main.zip">Download</a> and unzip the module.<br />
@@ -1192,37 +1207,37 @@ MAYA_SHELF_PATH+:=shelves
 <td>Associates a comment wit the current version file.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/saveversion.svg" style="width:28px" /> <strong>Incremental Save</strong></td>
+<td><img alt="" src="../../../img/icons/saveversion.svg" style="width:28px" /> <a href="#incremental-save"><strong>Incremental Save</strong></a></td>
 <td><code>ramSaveVersion</code></td>
 <td>Saves and increments the version of the current scene.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/savestatus.svg" style="width:28px" /> <strong>Update Status</strong></td>
+<td><img alt="" src="../../../img/icons/savestatus.svg" style="width:28px" /> <a href="update-status-and-publish"><strong>Update Status</strong></a></td>
 <td><code>ramSaveVersion</code></td>
 <td>Saves and increments the version of the current scene, while updating its current production tracking status.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/preview.svg" style="width:28px" /> <strong>Create Preview</strong></td>
+<td><img alt="" src="../../../img/icons/preview.svg" style="width:28px" /> <a href="#preview"><strong>Create Preview</strong></a></td>
 <td><code>ramPreview</code></td>
 <td>Creates a preview (thumbnail or playblast) of the current scene.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/saveas.svg" style="width:28px" /> <strong>Save as</strong></td>
+<td><img alt="" src="../../../img/icons/saveas.svg" style="width:28px" /> <a href="#save-as"><strong>Save as</strong></a></td>
 <td><code>ramSaveAs</code></td>
 <td>Saves the scene as a new Asset, Shot or General item.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/template.svg" style="width:28px" /> <strong>Template</strong></td>
+<td><img alt="" src="../../../img/icons/template.svg" style="width:28px" /> <a href="#template"><strong>Template</strong></a></td>
 <td><code>ramPublishTemplate</code></td>
 <td>Saves the current scene as a new template for the current scene.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/open.svg" style="width:28px" /> <strong>Open / Import</strong></td>
+<td><img alt="" src="../../../img/icons/open.svg" style="width:28px" /> <a href="#open-and-import"><strong>Open / Import</strong></a></td>
 <td><code>ramOpen</code></td>
 <td>Opens or imports an Asset, Shot or Template.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/restoreversion.svg" style="width:28px" /> <strong>Retrieve Version</strong></td>
+<td><img alt="" src="../../../img/icons/restoreversion.svg" style="width:28px" /> <a href="#retrieve-version"><strong>Retrieve Version</strong></a></td>
 <td><code>ramRetrieveVersion</code></td>
 <td>Retrieves and restores a previous version of the current scene.</td>
 </tr>
@@ -1239,7 +1254,7 @@ MAYA_SHELF_PATH+:=shelves
 <li><em>Naming Scheme</em>: checks if the file is correctly named and located. If not, <em>Ramses</em> will run the <em>Save as</em> command instead to ensure the name is correct.</li>
 <li><em>Version</em>: checks if the version has to be incremented. That&rsquo;s the case if the current scene is a restored previous version, or if the latest increment occured before the timeout set in the settings.</li>
 </ul>
-<p>Depending of these checks, <em>Ramses</em> will automatically associate a comment with the corresponding version to warn of any changes.</p>
+<p>Depending on these checks, <em>Ramses</em> will automatically associate a comment with the corresponding version to warn of any changes.</p>
 <p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramSave</code>. It can take two parameters:</p>
 <ul>
 <li><code>-set_comment</code> or <code>-sc</code>: <em>boolean</em> used to set a comment associated to the current version file.</li>
@@ -1270,12 +1285,173 @@ cmds.ramSave(sc = True, comment = &quot;A new comment!&quot;)
   <figcaption>A list of versions with a few comments, as shown in the <i>Ramses Client Application</i>.</figcaption>
 </figure>
 
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramSave</code> with its two parameters <code>-sc</code> and <code>c</code>. Read the <a href="#save"><em>Save</em></a> section for details.</p>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+# Save the file with a custom comment
+cmds.ramSave(sc = True, comment = &quot;A new comment!&quot;)
+</code></pre>
+<h2 id="incremental-save"><img alt="" src="../../../img/icons/saveversion.svg" style="width:32px" /> Incremental Save</h2>
+<p>The <em>Incremental Save</em> runs the save command and forces it to increment to a new version.</p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramSaveVersion</code> with the parameter <code>updateStatus</code> set to <code>False</code>. Read the <a href="#update-status-and-publish"><em>Update Status</em></a> section for details.</p>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+# Incremental save
+cmds.ramSaveVersion( updateStatus=False )
+</code></pre>
+<h2 id="update-status-and-publish"><img alt="" src="../../../img/icons/savestatus.svg" style="width:32px" /> Update Status and Publish</h2>
+<p>The <em>Update Status</em> runs the <em>Incremental Save</em> command and updates the current production status of the current Asset or Shot.</p>
+<p>A dialog is shown with a few options ot update the status, and to choose to also publish the scene, and create a preview for it. This dialog may differ depending on the use of the <em>Ramses Client Application</em> or not.</p>
+<figure>
+  <img src="../../../img/maya/updatestatus.png"/>
+  <figcaption>This is the status dialog when connected to the <i>Ramses Client Application</i>.</figcaption>
+</figure>
+
+<ul>
+<li>You can set the new <strong><em>State</em></strong> with the drop down list at the top right; the list of the states is retrieved from the <em>Ramses Daemon</em>.</li>
+<li>The slider and percentage is used to set a new <strong><em>Completion Ratio</em></strong>.</li>
+<li>The <strong><em>Comment</em></strong> field is used to update the comment displayed in the production tracking tools and tables of <em>Ramses</em>.</li>
+</ul>
+<p>All this information is automatically fed to the <em>Ramses Daemon</em> which updates the information for everyone.</p>
+<figure>
+  <img src="../../../img/maya/updatestatusoffline.png"/>
+  <figcaption>This is the status dialog when the <i>Ramses Client Application</i> isn't available.</figcaption>
+</figure>
+
+<ul>
+<li>When not connected to the <em>Daemon</em>, there is still an option to set a <strong><em>State</em></strong> from a default limited list.</li>
+<li>Check the <strong><em>Publication</em></strong> button to publish the current scene.</li>
+<li>Check the <strong><em>Preview</em></strong> button to create a preview (thumbnail or playblast) for the current scene. Read the <a href="#preview"><em>Preview</em></a> section for more details.</li>
+</ul>
+<p>The <strong><em>Update Status and Save</em></strong> button updates the status, publishes the scene, and creates the preview, while the <strong><em>Skip and Just Save</em></strong> button just increments the version and saves.</p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramSaveVersion</code>. It can take three parameters:</p>
+<ul>
+<li><code>-updateStatus</code> or <code>-us</code>: <em>boolean</em>. When <code>True</code> (default), the status dialog is shown to let the user update the status.</li>
+<li><code>-publish</code> or <code>-p</code>: <em>boolean</em> activates the publication of the scene.</li>
+<li><code>-preview</code> or <code>-pv</code>: <em>boolean</em> activates the creation of a preview.</li>
+</ul>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+
+# Shows the update status dialog
+cmds.ramSaveVersion()
+
+# Incremental save
+cmds.ramSaveVersion(updateStatus = False)
+
+# Publishes the file without showing the status dialog
+cmds.ramSaveVersion(publish = True, us = False)
+# Publishes and creates a preview without showing the status dialog
+cmds.ramSaveVersion(publish = True, preview = True, us = False)
+</code></pre>
+<h3 id="publication">Publication</h3>
+<p>The publication of the scene is done in two steps:</p>
+<ol>
+<li>The Scene is saved in the <code>_published</code> subfolder. This is the folder from which the scene can be imported or referenced into other Assets and Shots.</li>
+<li><em>Ramses</em> then calls any potential publish function registered by the pipeline tools or an extension of the Add-On, like the <a href="../maya-rubika/"><em>Rubika Flavor</em></a>.</li>
+</ol>
+<h2 id="preview"><img alt="" src="../../../img/icons/preview.svg" style="width:32px" /> Preview</h2>
+<p>The <em>Preview</em> command allows you to quickly create either an image (thumbnail) or a video (playblast) preview of the current scene, automatically saved in the <code>_preview</code> subfolder.</p>
+<p>There are a few options to adjust how the image or video are rendered.</p>
+<p><img alt="" src="../../../img/maya/createpreview.png" /></p>
+<ul>
+<li><em>Ramses</em> <strong><em>auto-selects the first renderable camera</em></strong> in the scene. To always automatically use the right camera, either add it in the render settings (and remove any other unneeded camera), or check the <em>renderable</em> option in the <em>Ouput Settings</em> section of its attributes.</li>
+<li>The <strong><em>size</em></strong> is a percentage of the resolution of the render settings of the scene.</li>
+<li>You can then adjust all the render options; checking both <strong><em>Only Polygons</em></strong> and <strong><em>Show Motion Trails</em></strong> allows to hide all animation controllers (if they&rsquo;re curves as usual) but keep the motion trails.</li>
+<li>By default, <em>Ramses</em> overwrites any previous image or video for the current scene, except if you set <strong><em>a new comment</em></strong> when making the preview. Note that the <em>Ramses Client Application</em> uses the preview with an empty comment as a thumbnail to display the asset or the shot in the user interface.</li>
+</ul>
+<p>Ramses also automatically burns useful meta-data in the image, like the frame number, the focal length, the comment, etc.</p>
+<p><img alt="" src="../../../img/maya/blast.png" /></p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramPreview</code>.</p>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+
+# Shows the preview dialog
+cmds.ramPreview()
+</code></pre>
+<h3 id="playblasts">Playblasts</h3>
+<p>When rendering the playblasts, <em>Ramses</em> does not only renders them as usual <em>Maya</em> playblasts: you don&rsquo;t need to install <em>Quicktime</em> on windows anymore to export videos. <em>Ramses</em> automatically renders the playblasts in a very lightweight <em>MP4</em> video, crafted especially for reviewing animations, with an intra-frame encoding setting which enables frame by frame playblack on every video player, with great performance.</p>
+<p><em>Ramses</em> will also automatically play the video as soon as it&rsquo;s encoded using <em>ffplay</em>, a very efficient and lightweight video player. It may seem complicated at first as it does not have any User Interface, but it is easily controlled with a few shortcuts:</p>
+<ul>
+<li>To scroll in the video, <code>[Right Click]</code> anywhere on the video and drag the mouse horizontally. The left border of the frame represents the beginning of the video, while the right border represents the end.</li>
+<li>You can go forwards and backwards with the <code>[←]</code> and <code>[→]</code> keys of your keyboard by a few frames.</li>
+<li>Use <code>[↑]</code> and <code>[↓]</code> to go to the start or the end of the video.</li>
+<li>Use <code>[Space]</code> to play and pause the video.</li>
+<li>Use <code>[S]</code> for frame-by-frame playing.</li>
+<li>Hit <code>[Q]</code> to quickly quit the player.</li>
+</ul>
+<h2 id="save-as"><img alt="" src="../../../img/icons/saveas.svg" style="width:32px" /> Save As</h2>
+<p>The <em>Save As</em> command can be used to create a new Asset or Shot, or save any other new file, while automatically naming and locating it.</p>
+<p><img alt="" src="../../../img/maya/saveas.png" /></p>
+<ul>
+<li><em>Ramses</em> automatically selects the current <strong><em>Project</em></strong>.</li>
+<li>Select the type of item to save; either an <strong><em>Asset</em></strong>, a <strong><em>Shot</em></strong> or another general item.</li>
+<li>The list of <strong><em>Steps</em></strong>, <strong><em>Asset Groups</em></strong> and <strong><em>Items</em></strong> is automatically built either by asking the <em>Ramses Daemon</em> if the add-on is used with the <em>Ramses Client Application</em> or by looking into the folder structure, but it is possible to create a new one by just entering a new name.</li>
+<li>The <strong><em>Resource</em></strong> is used to differenciate several files for the same Asset or Shot. An empty <em>Resource</em> is considered the main and default working file for the item, but you can add any other file by just adding a small resource name.</li>
+</ul>
+<p>When selecting <em>Other</em> as type, the file will be saved in the main folder of the corresponding step. Read the section about the <a href="../../files/"><em>Ramses Tree</em></a> for more information.</p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramSaveAs</code>.</p>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+
+# Shows the save as dialog
+cmds.ramSaveAs()
+</code></pre>
+<h2 id="template"><img alt="" src="../../../img/icons/template.svg" style="width:32px" /> Template</h2>
+<p>Use the <em>Template</em> command to create a new template file to be used with a specific step.</p>
+<p><img alt="" src="../../../img/maya/template.png" /></p>
+<p>Use the <strong><em>Name</em></strong> to have several templates for the same step.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>This command just creates the new template, but does not publish it. You still have to publish it using the <a href="#update-status-and-publish"><em>Update Status</em></a> command afterwards.</p>
+</div>
+<figure>
+  <img src="../../../img/client/createfromtemplate.png"/>
+  <figcaption>Templates can then be used to create new scenes for specific Shots or Assets from the <i>Ramses Client Application</i>.</figcaption>
+</figure>
+
+<figure>
+  <img src="../../../img/maya/opentemplate.png"/>
+  <figcaption>Templates are also available with the <i>Open / Import</i> command of the add-on.</figcaption>
+</figure>
+
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramPublishTemplate</code>.</p>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+
+# Shows the publish template dialog
+cmds.ramPublishTemplate()
+</code></pre>
+<h2 id="open-and-import"><img alt="" src="../../../img/icons/open.svg" style="width:32px" /> Open and Import</h2>
+<p>The <em>Open and Import</em> command automatically finds available scenes from your projects.</p>
+<p><img alt="" src="../../../img/maya/open.png" /></p>
+<p>It is not needed to go down all the hierarchy to select a file to open; if you just select an item and a step, <em>Ramses</em> will automatically open or import the corresponding latest version of the main resource. It works the same way when importing items: you don&rsquo;t need to go all the way down to select the files you want to import; by selecting just the main file, <em>Ramses</em> will import everything available, or, if you&rsquo;re using an <a href="../maya-extend/">extension</a> of the <em>Add-on</em> such as the <a href="../maya-rubika/"><em>Rubika Flavor</em></a>, it will pass all the files to the extension so it can automatically manage the import for you.</p>
+<p>When importing an item, <em>Ramses</em> will also trigger custom import scripts registered by the pipeline tools or an extension of the <em>Maya Add-on</em>, such as the <a href="../maya-rubika/"><em>Rubika Flavor</em></a>. This is one way of automating your workflow, by just registering scripts to be called when publishing and importing items.</p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramOpen</code>.</p>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+
+# Shows the open/import dialog
+cmds.ramOpen()
+</code></pre>
+<h2 id="retrieve-version"><img alt="" src="../../../img/icons/restoreversion.svg" style="width:32px" /> Retrieve Version</h2>
+<p>The <em>Retrieve version</em> command can be used to check and restore a previous version of the current scene.</p>
+<p><img alt="" src="../../../img/maya/versionlist.png" /></p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramRetrieveVersion</code>.</p>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+
+# Shows the retrieve version dialog
+cmds.ramRetrieveVersion()
+</code></pre>
 <h2 id="settings"><img alt="" src="../../../img/icons/gotosettings.svg" style="width:32px" /> Settings</h2>
 <h3 id="versionning">Versionning</h3>
 <p><img alt="" src="../../../img/maya/versionsettings.png" /></p>
 <ul>
 <li>The <strong><em>Auto-Increment</em></strong> option sets how many time can be spent before <em>Ramses</em> automatically increments the version of the file when saving. Use this option to be sure you can get back to an earlier version of your work even if you forget to increment the version.</li>
 <li>the <strong><em>Save hotkey</em></strong> option replaces the default &ldquo;<em>Save Scene</em>&rdquo; <code>[Ctrl + S]</code> hotkey from <em>Maya</em> by the <em>Save</em> command from <em>Ramses</em>. This is recommended to enable all production tracking features of <em>Ramses</em> and ensure an automatic backup of your work. Note that checking this box <strong>does not replace the <code>File/Save</code> menu entry</strong> so you can still use the default <em>Maya Save</em> command.</li>
+<li>the <strong><em>Save as hotkey</em></strong> option replaces the default &ldquo;<em>Save Scene As</em>&rdquo; <code>[Ctrl + Shift + S]</code> hotkey from <em>Maya</em> by the <em>Save As</em> command from <em>Ramses</em>. Note that checking this box <strong>does not replace the <code>File/Save as...</code> menu entry</strong> so you can still use the default <em>Maya Save as</em> command.</li>
+<li>the <strong>Open hotkey</strong><em> option replaces the default &ldquo;</em>Open Scene&hellip;<em>&rdquo; <code>[Ctrl + O]</code> hotkey from </em>Maya<em> by the </em>Open<em> command from </em>Ramses<em>. Note that checking this box </em><em>does not replace the <code>File/Open Scene...</code> menu entry</em><em> so you can still use the default </em>Maya Open* command.</li>
 </ul>
 <h3 id="folders">Folders</h3>
 <p><img alt="" src="../../../img/maya/foldersettings.png" /></p>
@@ -1293,51 +1469,7 @@ cmds.ramSave(sc = True, comment = &quot;A new comment!&quot;)
 <p><img alt="" src="../../../img/maya/devsettings.png" /></p>
 <ul>
 <li>Change the <strong><em>Log Level</em></strong> to adjust how many information is printed in the console to help you debug your scripts when you&rsquo;re developping using the <a href="../../../dev/add-ons-reference/"><em>Ramses Python API</em></a> or if you&rsquo;re <a href="../maya-extend/">extending the add-on</a>.</li>
-</ul>
-<h2 id="commands">Commands</h2>
-<p>As all other <em>Ramses</em> add-ons, the add-on for <em>Maya</em> adds a few commands to maya which you can use as any other command (e.g. to add a shortcut in a shelf, in a <em>Mel</em> script or in a <em>Python</em> script)</p>
-<p>Here is the list of these commands.</p>
-<table>
-<thead>
-<tr>
-<th>Command name</th>
-<th>Flags</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ramSave</td>
-<td><strong>-set_comment -sc</strong>: <em>boolean</em>,<br /><strong>-comment -c</strong>: <em>string</em></td>
-<td>Saves the current scene and copies a backup inside the <em>versions</em> subfolder.<br /> If <em>-set_comment</em> is set to <code>True</code>, <em>Ramses</em> will add a comment to the current version.<br />Setting <em>-comment</em> will prevent the dialog from showing, and set the given comment to the current version.</td>
-</tr>
-<tr>
-<td>ramSaveVersion</td>
-<td></td>
-<td>Saves a new version of the scene. A Dialog is shown to ask for an optionnal <em>Ramses Status</em> update.</td>
-</tr>
-<tr>
-<td>ramRetrieveVersion</td>
-<td></td>
-<td>Shows a dialog to select an older version of the scene to restore.</td>
-</tr>
-<tr>
-<td>ramPublishTemplate</td>
-<td></td>
-<td>Publishes the current scene as a template for a given step.</td>
-</tr>
-<tr>
-<td>ramSettings</td>
-<td></td>
-<td>Shows the settings dialog for the add-on.</td>
-</tr>
-<tr>
-<td>ramOpenRamses</td>
-<td></td>
-<td>Attempts to launch the <em>Ramses</em> application.</td>
-</tr>
-</tbody>
-</table></div>
+</ul></div>
         
         
     </div>

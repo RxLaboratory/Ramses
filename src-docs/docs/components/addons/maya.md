@@ -285,7 +285,7 @@ The *Open and Import* command automatically finds available scenes from your pro
 
 ![](../../img/maya/open.png)
 
-It is not needed to go down all the hierarchy to select a file to open; if you just select an item and a step, *Ramses* will automatically open or import the corresponding latest version of the main resource.
+It is not needed to go down all the hierarchy to select a file to open; if you just select an item and a step, *Ramses* will automatically open or import the corresponding latest version of the main resource. It works the same way when importing items: you don't need to go all the way down to select the files you want to import; by selecting just the main file, *Ramses* will import everything available, or, if you're using an [extension](maya-extend.md) of the *Add-on* such as the [*Rubika Flavor*](maya-rubika.md), it will pass all the files to the extension so it can automatically manage the import for you.
 
 When importing an item, *Ramses* will also trigger custom import scripts registered by the pipeline tools or an extension of the *Maya Add-on*, such as the [*Rubika Flavor*](maya-rubika.md). This is one way of automating your workflow, by just registering scripts to be called when publishing and importing items.
 

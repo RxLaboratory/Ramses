@@ -1,17 +1,4 @@
 <div id="side-menu">
-    <div class="bs-sidebar hidden-print affix well" role="complementary">
-        <ul class="nav bs-sidenav">
-            {%- for toc_item in page.toc %}
-            <li class="first-level {% if toc_item.active %}active{% endif %}"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
-                {%- for toc_item in toc_item.children %}
-                <li class="second-level"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
-                    {% for toc_item in toc_item.children %}
-                    <li class="third-level"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
-                    {%- endfor %}
-                {%- endfor %}
-            {%- endfor %}
-        </ul>
-    </div>
     <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
         {%- if nav|length>1 %}
         <!-- Main navigation -->
@@ -56,6 +43,19 @@
         {% endfor %}
         </ul>
         {%- endif %}
+    </div>
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            {%- for toc_item in page.toc %}
+            <li class="first-level {% if toc_item.active %}active{% endif %}"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                {%- for toc_item in toc_item.children %}
+                <li class="second-level"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                    {% for toc_item in toc_item.children %}
+                    <li class="third-level"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                    {%- endfor %}
+                {%- endfor %}
+            {%- endfor %}
+        </ul>
     </div>
     <div class="footer-meta"></div>
 </div>

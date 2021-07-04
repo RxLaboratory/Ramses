@@ -54,9 +54,9 @@ nav:
         - Ramses Add-ons:
             - General Information: components/addons/index.md
             - Autodesk Maya:
-                - Ramses Add-on: components/addons/maya.md
+                - Maya Add-on: components/addons/maya.md
                 - Extensibility: components/addons/maya-extend.md
-                - Rubika Flavor: addons/maya.md
+                - Rubika Flavor: components/addons/maya-rubika.md
         - Ramses Tree:
             - Introduction: .
             - Naming scheme: files/naming.md

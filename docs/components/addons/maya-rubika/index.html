@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ramses comprehensive documentation">
+    <meta name="author" content="Nicolas Dufresne and contributors">
+    <link rel="canonical" href="https://ramses.rxlab.guide/components/addons/maya-rubika/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Rubika Flavor - Ramses</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/zenburn.min.css">
+        
+    
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="../../../video.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">Ramses</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Ramses</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pipeline & Management <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../pipeline/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/administration/">Administration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/users/">User Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/pipeline/">Pipeline</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/production/">Production tracking</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/planning/">Planning</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Components <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Server</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../server/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server/web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server/admin.md">Administration</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Application</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../..">Installation and settings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Administration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Project settings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">The pipeline</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Assets and shots production management</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Schedule and statistics</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../">General Information</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Autodesk Maya</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../maya/">Maya Add-on</a>
+</li>
+
+        
+            
+<li >
+    <a href="../maya-extend/">Extensibility</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Rubika Flavor</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Tree</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../..">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../files/naming.md">Naming scheme</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../files/tree.md">Folder structure</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../dev/">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Files and Folders</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/files/naming/">Naming</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Scripting API (Add-ons)</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ramses/">Ramses</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_asset/">RamAsset</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_filetype/">RamFileType</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_object/">RamObject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_pipe/">RamPipe</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_project/">RamProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_settings/">RamSettings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_shot/">RamShot</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_state/">RamState</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_status/">RamStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_step/">RamStep</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_user/">RamUser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Daemon API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/user_q/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Server API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/server-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/applications/">Application queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/assets/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/assetgroups/">Asset Group queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/pipefiles/">PipeFiles queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/projects/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/sequences/">Sequence queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/shots/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/states/">State queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/users/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">... <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../credits/">Credits</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../changelog/">Changelog</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Licenses</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../licenses/gnu-gpl/">GNU GPLv3</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../licenses/gfdl/">Documentation license</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../maya-extend/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../../dev/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/components/addons/maya-rubika.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../../../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Pipeline & Management</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/administration/">Administration</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/users/">User Management</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/pipeline/">Pipeline</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/production/">Production tracking</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/planning/">Planning</a></li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button active-collapse-button">Components</button>
+                <ul class="collapsible-content collapsible-content-active">
+                    
+                        
+                        <li class="second-level "><a href="../../">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Server</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/admin.md">Administration</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Application</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Installation and settings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Project settings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">The pipeline</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Assets and shots production management</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Schedule and statistics</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button active-collapse-button">Ramses Add-ons</button>
+                            <ul class="collapsible-content collapsible-content-active">
+                                
+                                    
+                                    <li class="third-level "><a href="../">General Information</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button active-collapse-button">Autodesk Maya</button>
+                                        <ul class="collapsible-content collapsible-content-active">
+                                            
+                                                <li class="fourth-level "><a href="../maya/">Maya Add-on</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../maya-extend/">Extensibility</a></li>
+                                            
+                                                <li class="fourth-level active"><a href="./">Rubika Flavor</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Tree</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../files/naming.md">Naming scheme</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../files/tree.md">Folder structure</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Development</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../dev/">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Files and Folders</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/files/naming/">Naming</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Scripting API (Add-ons)</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/enum/">Constants</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ramses/">Ramses</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_asset/">RamAsset</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_filetype/">RamFileType</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_item/">RamItem</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_object/">RamObject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_pipe/">RamPipe</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_project/">RamProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_settings/">RamSettings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_shot/">RamShot</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_state/">RamState</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_status/">RamStatus</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_step/">RamStep</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_user/">RamUser</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/implementation/">Dev Notes</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Daemon API</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/general_q/">General queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/asset_q/">Asset queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/pipe_q/">Pipe queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/project_q/">Project queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/shot_q/">Shot queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/state_q/">State and Status queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/step_q/">Step queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/user_q/">User queries</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Server API</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/applications/">Application queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/assets/">Asset queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/assetgroups/">Asset Group queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/filetypes/">File type queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/general/">General queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/pipes/">Pipe queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/pipefiles/">PipeFiles queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/projects/">Project queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/sequences/">Sequence queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/shots/">Shot queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/states/">State queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/status/">Status queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/steps/">Step queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/users/">User queries</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">...</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../credits/">Credits</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../changelog/">Changelog</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Licenses</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gnu-gpl/">GNU GPLv3</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gfdl/">Documentation license</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#rubika-flavor-of-the-ramses-maya-add-on">Rubika Flavor of the Ramses Maya Add-on</a></li>
+                <li class="second-level"><a href="#publication">Publication</a></li>
+                    
+                    <li class="third-level"><a href="#animation-animpipe">Animation - AnimPipe</a></li>
+                    <li class="third-level"><a href="#proxy-geometry-geopipe-and-pgeopipe">(Proxy) Geometry - GeoPipe and pGeoPipe</a></li>
+                    <li class="third-level"><a href="#proxy-shaders-pshapipe">Proxy shaders  - pShaPipe</a></li>
+                    <li class="third-level"><a href="#render-and-viewport-shaders-rdrshapipe-and-vpshapipe">Render and Viewport shaders  - rdrShaPipe and vpShaPipe</a></li>
+                    <li class="third-level"><a href="#rig-rigpipe">Rig - RigPipe</a></li>
+                    <li class="third-level"><a href="#set-setpipe">Set - SetPipe</a></li>
+                    <li class="third-level"><a href="#standard-standard-and-standarda">Standard - Standard and StandardA</a></li>
+                <li class="second-level"><a href="#import">Import</a></li>
+                    
+                    <li class="third-level"><a href="#animation-animpipe_1">Animation - AnimPipe</a></li>
+                    <li class="third-level"><a href="#proxy-geometry-geopipe-and-pgeopipe_1">(Proxy) Geometry - GeoPipe and pGeoPipe</a></li>
+                    <li class="third-level"><a href="#proxy-shaders-pshapipe_1">Proxy shaders  - pShaPipe</a></li>
+                    <li class="third-level"><a href="#render-and-viewport-shaders-rdrshapipe-and-vpshapipe_1">Render and Viewport shaders  - rdrShaPipe and vpShaPipe</a></li>
+                    <li class="third-level"><a href="#rig-rigpipe_1">Rig - RigPipe</a></li>
+                    <li class="third-level"><a href="#set-setpipe_1">Set - SetPipe</a></li>
+                <li class="second-level"><a href="#update">Update</a></li>
+                    
+                <li class="second-level"><a href="#configuration-and-settings">Configuration and settings</a></li>
+                    
+                    <li class="third-level"><a href="#pipe-formats">Pipe formats</a></li>
+        </ul>
+    </div>
+    <div class="footer-meta"></div>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04" /></p>
+<h1 id="rubika-flavor-of-the-ramses-maya-add-on"><img alt="" src="../../../img/icons/maya_sd.svg" style="width:48px;" /> Rubika Flavor of the Ramses Maya Add-on</h1>
+<p>The <em>Rubika Flavor</em> of the <a href="../maya/"><em>Ramses Maya Add-on</em></a> is an extension of the add-on developed to be used at the <a href="http://rubika-edu.com"><em>Rubika Supinfocom</em></a> school, automating the workflow and production pipeline of the graduation movie of the students during the last year of their studies.</p>
+<p>It is provided as an example extension of the <a href="../maya/"><em>Ramses Maya Add-on</em></a> and can be used as-is in other productions too.</p>
+<p>It extends the default add-on with some automations when exporting and importing items, and adds an <em>Update</em> command, located in the <em>Ramses</em> shelf too.</p>
+<figure>
+  <img src="../../../img/maya-rubika/shelf.png"/>
+  <figcaption>The shelf is almost the same as the default add-on, except for the extra <i>Update</i> button.</figcaption>
+</figure>
+
+<p>The <em>Rubika Flavor</em> of the <a href="../maya/"><em>Maya Add-on</em></a> automates the publication, import and update of the items according to how the pipeline is set up in the <em>Ramses Client Application</em>. When publishing or importing an item, the <em>Add-on</em> asks the <em>Ramses Daemon</em> which formats needs to be published or imported and then runs the corresponding automation scripts.</p>
+<p>This makes the add-on very versatile, as it adapts to the way the pipeline has been designed, using a simple set of predefined formats to be used through the pipes. Read the <a href="#configuration-and-settings"><em>Configuration and settings</em></a> section to learn how to configure the pipeline.</p>
+<p>As well as the default add-on, the <em>Rubika Flavor</em> can also be used without the <em>Ramses Client Application</em>, in which case it will fall back to predefined default values and formats explained in the <a href="#configuration-and-settings"><em>Configuration and settings</em></a> section below.</p>
+<h2 id="publication">Publication</h2>
+<p>Before publishing an item from an asset or a shot scene, you have to tell <em>Ramses</em> exactly what you want to publish. <em>Ramses</em> <strong>doesn&rsquo;t publish all the content of the scene</strong>, but only what has been set to be exported.</p>
+<p>To set the items to be exported, you just have to include them in one of the following predefined <em>Maya Sets</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Set name</th>
+<th>Desciption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ramses_Publish</code></td>
+<td>The items to be published</td>
+</tr>
+<tr>
+<td><code>Ramses_Proxy</code></td>
+<td>The proxies to be published (either geometry, or shaders). For shaders, add the geometry associated to the shaders to be exported.</td>
+</tr>
+<tr>
+<td><code>Ramses_DelOnPublish</code></td>
+<td>This special set contains the nodes to be removed from the scene before publishing it.</td>
+</tr>
+</tbody>
+</table>
+<p>The easiest way to always have these sets available in the scenes is to create them in the template files used by each step.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The names of the sets are case sensitive! <code>Ramses_Publish</code> will be handled, but not <code>ramses_publish</code>.</p>
+</div>
+<p>You just need to add the root node of the items to publish in the corresponding set; Do not add the whole hierearchy! <em>Ramses</em> will automatically publish all its children. This root node can be of any type, and not necessarily a group.</p>
+<p><img alt="" src="../../../img/maya-rubika/mayasets.png" /></p>
+<p>In this example, &ldquo;<em>Beautiful_asset</em>&rdquo; and &ldquo;<em>Another_item</em>&rdquo; will be published in separate files: <em>Ramses</em> publishes altogether all the child nodes of the nodes found into the <code>Ramses_Publish</code> set.</p>
+<p>All exported files contains the name of the pipe and the name of the item if any, as defined in the pipeline editor of the <em>Ramses Client Application</em>.</p>
+<figure>
+  <img src="../../../img/maya-rubika/publishedaddon.png"/>
+  <figcaption>This is how the published files are listed in the Add-on (with the *Open and Import* command).</figcaption>
+</figure>
+
+<figure>
+  <img src="../../../img/maya-rubika/published.png"/>
+  <figcaption>This is how the published files are listed in the <i>Ramses Client Application</i>.</figcaption>
+</figure>
+
+<p><em>Ramses</em> will also copy an extra file in the <code>_publish</code> folder: a copy of the Scene as it is at the moment you publish it.</p>
+<p>According to the information the add-on gets from the <em>Daemon</em>, when publishing items from a specific steps, a few options may be shown.</p>
+<h3 id="animation-animpipe">Animation - <code>AnimPipe</code></h3>
+<p><img alt="" src="../../../img/maya-rubika/publishanim.png" /></p>
+<p>Ramses will clean the scene before exporting, removing everything not checked in the options and not included in the Ramses_Publish Maya set.</p>
+<p><img alt="" src="../../../img/maya-rubika/publishedgeo.png" style="width:300px" /></p>
+<p>A root controller is added as a parent of the root node of the published animation (a simple curve), which stores needed meta-data and can be used to manipulate the item once imported into another scene.</p>
+<h3 id="proxy-geometry-geopipe-and-pgeopipe">(Proxy) Geometry - <code>GeoPipe</code> and <code>pGeoPipe</code></h3>
+<p><img alt="" src="../../../img/maya-rubika/publishgeo.png" /></p>
+<p><em>Ramses</em> will clean the scene before exporting, removing everything checked in the options and not included in the <code>Ramses_Publish</code> <em>Maya</em> set. It also removes all histories from the exported nodes. And it finally freezes the transformations of all objects by default, except for the ones which names contain the strings defined in the &ldquo;<em>Don&rsquo;t freeze tranformations for</em>&rdquo; field.</p>
+<p>By default it will also remove all curves and surfaces to publish only meshes, but you can change that in the options if needed. If a curve or a surface is part of the hierarchy (it has child meshes), only the <em>shape</em> node will be removed, but the <em>transform</em> node is kept (effectively transforming the node into a simple <em>group</em>): this way everything stays as it is without any modification.</p>
+<p><img alt="" src="../../../img/maya-rubika/publishedgeo.png" style="width:300px" /></p>
+<p>A root controller is added as a parent of the root node of the published geometry (a simple curve), which stores needed meta-data and can be used to manipulate the item once imported into another scene.</p>
+<h3 id="proxy-shaders-pshapipe">Proxy shaders  - <code>pShaPipe</code></h3>
+<p><em>Ramses</em> exports the items as an <em>Arnold Scene Source</em> (.ass) file. This pipe is usually used in conjunction with a <em>Proxy Geometry</em> pipe (<em>pGeoPipe</em>) which will export the geometry used as a proxy for the <em>Arnold scene</em>.</p>
+<h3 id="render-and-viewport-shaders-rdrshapipe-and-vpshapipe">Render and Viewport shaders  - <code>rdrShaPipe</code> and <code>vpShaPipe</code></h3>
+<p><img alt="" src="../../../img/maya-rubika/publishshaders.png" /></p>
+<p>Everything except shaders is removed from the scene; the only option is to also remove shaders associated with hidden nodes.</p>
+<p><em>Ramses</em> then saves a <em>Maya</em> scene containing only these shaders, and stores associated meta-data to be able to assign these shaders back to the corresponding geometry (see the <a href="#import"><em>Import</em></a> section for more details).</p>
+<h3 id="rig-rigpipe">Rig - <code>RigPipe</code></h3>
+<p><img alt="" src="../../../img/maya-rubika/publishrig.png" /></p>
+<p>As with other pipes, a few options are available to select what to remove to clean the scene, as well as choosing the default display for the joints.</p>
+<p>The rig is published in a simple <em>Maya</em> Scene, where everything else has been removed.</p>
+<h3 id="set-setpipe">Set - <code>SetPipe</code></h3>
+<p>Sets are published as a simple <em>Maya</em> Scene where everything else has been removed; all meta-data and links with external assets are kept, so that individual assets can be updated later, as well as the whole set, but individual root controllers of included assets are hidden.</p>
+<p><img alt="" src="../../../img/maya-rubika/publishgeo.png" /></p>
+<p>The options are the same as with Geometry.</p>
+<h3 id="standard-standard-and-standarda">Standard - <code>Standard</code> and <code>StandardA</code></h3>
+<p>Standard publication is the default format, where everything not included with the items to be published is simply removed, and the Scene is then published as is, as a simple <em>Maya</em> Scene.</p>
+<h2 id="import">Import</h2>
+<p><img alt="" src="../../../img/maya-rubika/import.png" /></p>
+<p>When items are imported in a Scene, <em>Ramses</em> sorts them in groups at the root of the Scene, depending on their type, group, and where they&rsquo;re from. Root controllers are colored to make them easily recognizable. The name of the pipe where they came from is kept for future information.</p>
+<p>It is possible to select several input pipes at once, for example to import both the geometry and the shaders at once; <em>Ramses</em> will automatically handle the import and assign the right shaders to the right geometry in this example.</p>
+<h3 id="animation-animpipe_1">Animation - <code>AnimPipe</code></h3>
+<p><img alt="" src="../../../img/maya-rubika/importanim.png" /></p>
+<p>When importing an animation, <em>Ramses</em> can try to remove corresponding existing rigs from the scene before, so that only the baked animation is kept.</p>
+<h3 id="proxy-geometry-geopipe-and-pgeopipe_1">(Proxy) Geometry - <code>GeoPipe</code> and <code>pGeoPipe</code></h3>
+<p>Geometry is simply added to the scene, sorted in its corresponding group.</p>
+<h3 id="proxy-shaders-pshapipe_1">Proxy shaders  - <code>pShaPipe</code></h3>
+<p>There is no automatic import of <em>Arnold Scene Sources</em>. You have to manually handle them.</p>
+<h3 id="render-and-viewport-shaders-rdrshapipe-and-vpshapipe_1">Render and Viewport shaders  - <code>rdrShaPipe</code> and <code>vpShaPipe</code></h3>
+<p>Shaders are imported to the current Scene, and <em>Ramses</em> will automatically assign them to any corresponding <strong>selected</strong> geometry before the import.</p>
+<p>Shaders are imported as reference, so there&rsquo;s no need to update them once imported in a scene; except for switching between viewport shaders and render shaders.</p>
+<h3 id="rig-rigpipe_1">Rig - <code>RigPipe</code></h3>
+<p>Rigs are imported as reference into the current Scene. You can safely import several times the same Rig, as <em>Ramses</em> will correctly handle namespaces so they&rsquo;re self-contained.</p>
+<h3 id="set-setpipe_1">Set - <code>SetPipe</code></h3>
+<p>Sets are imported the same way as geometry; the root controllers of the included assets are hidden, but they&rsquo;re still available and colored in the outliner.</p>
+<p><img alt="" src="../../../img/maya-rubika/importedset.png" /></p>
+<p>If you need to modify a set in a specific shot, you&rsquo;ll want the modified assets to not be updated when the set is updated. To prevent that, just move the corresponding assets outside the hierarchy of the set, or update the assets individually.</p>
+<h2 id="update"><img alt="" src="../../../img/icons/update.svg" style="width:32px" /> Update</h2>
+<p><img alt="" src="../../../img/maya-rubika/update.png" /></p>
+<p>When updating, by default <em>Ramses</em> will list only the items which needs to be updated; if for some reason you need to re-import/update another item, uncheck the box at the top of the window.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When updating an item, all the children of its root controller will be removed and replaced by the updated item.</p>
+<p>If you added an object to the hierarchy you want to keep, make sure to move it out before updating and parent it again after the update.</p>
+<p>It works the same way for assets included in sets: if you need to keep changes you&rsquo;ve made, move the corresponding assets out of the hierarchy of the set before updating.</p>
+</div>
+<h2 id="configuration-and-settings">Configuration and settings</h2>
+<p>The <em>Add-on</em> automatically publishes and imports items using predefined formats and configurations. These formats can be set to be used between any step in the production pipeline, configured using the <em>Ramses Client Application</em> pipeline editor.</p>
+<figure>
+  <img src="../../../img/maya-rubika/pipe.png"/>
+  <figcaption>An example of a simple pipe as shown in the <i>Ramses Client Application</i> pipeline editor.</figcaption>
+</figure>
+
+<p>As you can see in this example, each step can be connected using several formats.</p>
+<p>The <em>Add-on</em> gets the predefined name of the pipes to export the items in the corresponding formats.</p>
+<h3 id="pipe-formats">Pipe formats</h3>
+<p>Here is the list of all the pies the <em>Add-on</em> can handle.</p>
+<table>
+<thead>
+<tr>
+<th>Pipe ID</th>
+<th>Supported file formats</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AnimPipe</code></td>
+<td>Alembic (.abc)</td>
+<td>Character and VFX animation.</td>
+</tr>
+<tr>
+<td><code>GeoPipe</code></td>
+<td>Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb)</td>
+<td>Used to export meshes.</td>
+</tr>
+<tr>
+<td><code>pGeoPipe</code></td>
+<td>Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb)</td>
+<td>The proxy geometry to be replaced on rendering by an Arnold Scene Source or any other higher definition geometry.</td>
+</tr>
+<tr>
+<td><code>pShaPipe</code></td>
+<td>Arnold Scene Source (.ass)</td>
+<td>The Arnold scene to be used when rendering to replace proxy geometries by the high definition version.</td>
+</tr>
+<tr>
+<td><code>rdrShaPipe</code></td>
+<td>Maya Binary (.mb)</td>
+<td>Render shaders, the final version of the shaders.</td>
+</tr>
+<tr>
+<td><code>RigPipe</code></td>
+<td>Maya ASCII (.ma)<br />Maya Binary (.mb)</td>
+<td>Rigged characters and props.</td>
+</tr>
+<tr>
+<td><code>SetPipe</code></td>
+<td>Maya ASCII (.ma)<br />Maya Binary (.mb)</td>
+<td>Sets made of other assets.</td>
+</tr>
+<tr>
+<td><code>Standard</code></td>
+<td>Maya Binary (.mb)</td>
+<td>A Standard Maya file.</td>
+</tr>
+<tr>
+<td><code>StandardA</code></td>
+<td>Maya ASCII (.ma)</td>
+<td>A Standard Maya file.</td>
+</tr>
+<tr>
+<td><code>vpShaPipe</code></td>
+<td>Maya Binary (.mb)</td>
+<td>Viewport shaders, a lightweight version of the shaders used for draft display in the viewport.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The pipe IDs are case sensitive! <code>GeoPipe</code> will be handled, but not <code>geoPipe</code>.</p>
+</div>
+<p>These pipes are described in more details in the sections below.</p>
+<figure>
+  <img src="../../../img/maya-rubika/emptypipe.png"/>
+  <figcaption>An empty pipe.</figcaption>
+</figure>
+
+<figure>
+  <img src="../../../img/maya-rubika/unknownpipe.png"/>
+  <figcaption>An unsupported pipe.</figcaption>
+</figure>
+
+<p>When a pipe is not configured or uses unsupported formats, or if the <em>Ramses Daemon</em> is not available (because the add-on is not used with the <em>Ramses Client Application</em>), <em>Ramses</em> will fall back on the Step names to try to export something anyway, using the following rules.</p>
+<table>
+<thead>
+<tr>
+<th>Step ID</th>
+<th>Default output pipe IDs</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MOD</code> (Modeling)</td>
+<td><code>GeoPipe</code><br /><code>pGeoPipe</code><br /><code>vpShaPipe</code></td>
+<td>Geometry<br />Proxy Geometry<br />Viewport Shaders</td>
+</tr>
+<tr>
+<td><code>SHADE</code> (Shading)</td>
+<td><code>rdrShaPipe</code><br /><code>pShaPipe</code><br /><code>pGeoPipe</code></td>
+<td>Render Shaders<br />Arnold Scene<br />Proxy Geometry</td>
+</tr>
+<tr>
+<td><code>RIG</code> (Rigging)</td>
+<td><code>RigPipe</code></td>
+<td>Rigging</td>
+</tr>
+<tr>
+<td><code>SET</code> (Sets)</td>
+<td><code>SetPipe</code></td>
+<td>Sets of assets</td>
+</tr>
+<tr>
+<td><code>LAY</code> (Layout)</td>
+<td><code>Standard</code></td>
+<td>A Standard file.</td>
+</tr>
+<tr>
+<td><code>LIGHT</code> (Lighting)</td>
+<td><code>Standard</code></td>
+<td>A Standard file.</td>
+</tr>
+<tr>
+<td><code>ANIM</code> (Animation)</td>
+<td><code>AnimPipe</code></td>
+<td>Baked animation.</td>
+</tr>
+<tr>
+<td><code>VFX</code> (Visual Effects))</td>
+<td><code>AnimPipe</code></td>
+<td>Baked animation.</td>
+</tr>
+</tbody>
+</table>
+<p>These default values are defined in the <code>plug-ins/rubika/utils_constants.py</code> source file of the add-on.</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+<div></div>
+
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../video.js"></script>
+    <script src="../../../meta.js"></script>
+    <script src="../../../collapser.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

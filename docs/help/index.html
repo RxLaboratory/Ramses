@@ -228,7 +228,7 @@
         
             
 <li >
-    <a href="../components/addons/maya/">Ramses Add-on</a>
+    <a href="../components/addons/maya/">Maya Add-on</a>
 </li>
 
         
@@ -240,7 +240,7 @@
         
             
 <li >
-    <a href="../addons/maya.md">Rubika Flavor</a>
+    <a href="../components/addons/maya-rubika/">Rubika Flavor</a>
 </li>
 
         
@@ -265,13 +265,13 @@
         
             
 <li >
-    <a href="../files/naming/">Naming scheme</a>
+    <a href="../files/naming.md">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../files/tree/">Folder structure</a>
+    <a href="../files/tree.md">Folder structure</a>
 </li>
 
         
@@ -666,19 +666,6 @@
         
         
         <div class="col-md-3"><div id="side-menu">
-    <div class="bs-sidebar hidden-print affix well" role="complementary">
-        <ul class="nav bs-sidenav">
-            <li class="first-level active"><a href="#ramses">Ramses</a></li>
-                <li class="second-level"><a href="#objects">Objects</a></li>
-                    
-                <li class="second-level"><a href="#ramses-tree">Ramses tree</a></li>
-                    
-                <li class="second-level"><a href="#object-general-attributes">Object general attributes</a></li>
-                    
-                <li class="second-level"><a href="#object-folders">Object folders</a></li>
-                    
-        </ul>
-    </div>
     <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
         <!-- Main navigation -->
         <ul class="nav bs-sidenav">
@@ -803,11 +790,11 @@
                                         <button  type="button" class="collapse-button ">Autodesk Maya</button>
                                         <ul class="collapsible-content ">
                                             
-                                                <li class="fourth-level "><a href="../components/addons/maya/">Ramses Add-on</a></li>
+                                                <li class="fourth-level "><a href="../components/addons/maya/">Maya Add-on</a></li>
                                             
                                                 <li class="fourth-level "><a href="../components/addons/maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="../addons/maya.md">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../components/addons/maya-rubika/">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -827,11 +814,11 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../files/naming/">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../files/naming.md">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../files/tree/">Folder structure</a></li>
+                                    <li class="third-level "><a href="../files/tree.md">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1107,6 +1094,19 @@
         
         </ul>
     </div>
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramses">Ramses</a></li>
+                <li class="second-level"><a href="#objects">Objects</a></li>
+                    
+                <li class="second-level"><a href="#ramses-tree">Ramses tree</a></li>
+                    
+                <li class="second-level"><a href="#object-general-attributes">Object general attributes</a></li>
+                    
+                <li class="second-level"><a href="#object-folders">Object folders</a></li>
+                    
+        </ul>
+    </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
@@ -1157,7 +1157,7 @@
 <li><img alt="" src="../img/icons/state.svg" style="width:18px;" /> A <a href="states/"><strong><em>State</em></strong></a> is part of an asset or shot status, and defines its working state (e.g. work in progress, to do, OK, etc.)</li>
 </ul>
 <h2 id="ramses-tree">Ramses tree</h2>
-<p>The easiest way to let <em>Ramses</em> manage your files and pipeline is to just set its working folder. See the section entitled <a href="../files/tree/"><em>Ramese Tree</em></a> for more information.</p>
+<p>The easiest way to let <em>Ramses</em> manage your files and pipeline is to just set its working folder. See the section entitled <a href="../files/tree.md"><em>Ramese Tree</em></a> for more information.</p>
 <p>You can also set alternative paths to the <em>Ramses</em> working folder. Missing files will be looked for in these paths (and copied to the main path if available), and they will be used if the main path is not available.</p>
 <p>Finally, you can set a backup path too, which is a copy of the main folder where all files are stored. <em>Ramses</em> is able to update this backup folder, but will never read data from it.</p>
 <div class="admonition note">
@@ -1173,20 +1173,20 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The full name can be changed as any moment during the production.</p>
-<p>The short name can also be changed at any moment, as <em>Ramses</em> uses unique identifiers internally to refer to each objects, be be warned that the short names are used in the <a href="../files/tree/"><em>Ramses Tree</em></a> so when changing the name of an object, you also need to rename/move all files and folders to the new name. This can easily be done at the start of the production but may become very difficult if the object is already used a lot.</p>
+<p>The short name can also be changed at any moment, as <em>Ramses</em> uses unique identifiers internally to refer to each objects, be be warned that the short names are used in the <a href="../files/tree.md"><em>Ramses Tree</em></a> so when changing the name of an object, you also need to rename/move all files and folders to the new name. This can easily be done at the start of the production but may become very difficult if the object is already used a lot.</p>
 </div>
 <h2 id="object-folders">Object folders</h2>
-<p>Most of the folders are managed by <em>Ramses</em> inside the <a href="../files/tree/"><em>Ramses Tree</em></a>, but for some specific objects, the folder can also be user-defined. That&rsquo;s the case for:</p>
+<p>Most of the folders are managed by <em>Ramses</em> inside the <a href="../files/tree.md"><em>Ramses Tree</em></a>, but for some specific objects, the folder can also be user-defined. That&rsquo;s the case for:</p>
 <ul>
 <li>Projects</li>
 <li>Users</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <a href="../files/tree/"><em>Ramses Tree</em></a> is relative to the main <em>Ramses</em> folder. This folder can be different on each workstation, NAS or other remote locations.</p>
+<p>The <a href="../files/tree.md"><em>Ramses Tree</em></a> is relative to the main <em>Ramses</em> folder. This folder can be different on each workstation, NAS or other remote locations.</p>
 <p>If a custom folder is defined for a project, all its child-objects folders will be relative to that new project folder.</p>
 </div>
-<p>Read the <a href="../files/tree/"><em>Ramses Tree</em></a> section of this documentation for more information.</p></div>
+<p>Read the <a href="../files/tree.md"><em>Ramses Tree</em></a> section of this documentation for more information.</p></div>
         
         
     </div>

@@ -98,8 +98,16 @@ figure {
     border-right: 7px solid;
 }
 
+li.first-level .collapse-button {
+    padding-left:10px;
+}
+
+li.first-level .second-level .collapse-button {
+    padding-left:0px;
+}
+
 .collapsible-content {
-    padding: 0 30px;
+    padding: 0 20px;
     overflow: hidden;
     background: #f1f1f1;
     list-style-type: none;
@@ -115,7 +123,6 @@ figure {
 .collapse-button {
     background: none;
     border: none;
-    padding-left:20px;
     font-weight: bold;
     color:#333;
     width:100%;
