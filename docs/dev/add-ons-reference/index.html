@@ -139,13 +139,25 @@
         
             
 <li >
-    <a href="../../install/server/">Installation</a>
+    <a href="../../components/server/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../..">Administration</a>
+    <a href="../../components/server/web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/server/admin.md">Administration</a>
 </li>
 
         
@@ -205,7 +217,7 @@
         
             
 <li >
-    <a href="../../addons/">General Information</a>
+    <a href="../../components/addons/">General Information</a>
 </li>
 
         
@@ -216,19 +228,19 @@
         
             
 <li >
-    <a href="../../addons/maya/">Ramses Add-on</a>
+    <a href="../../components/addons/maya/">Ramses Add-on</a>
 </li>
 
         
             
 <li >
-    <a href="../../addons/maya/">Extensibility</a>
+    <a href="../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
             
 <li >
-    <a href="../../addons/maya/">Rubika Flavor</a>
+    <a href="../../addons/maya.md">Rubika Flavor</a>
 </li>
 
         
@@ -735,11 +747,19 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../install/server/">Installation</a></li>
+                                    <li class="third-level "><a href="../../components/server/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../components/server/web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../components/server/admin.md">Administration</a></li>
                                     
                                 
                             </ul>
@@ -785,7 +805,7 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../addons/">General Information</a></li>
+                                    <li class="third-level "><a href="../../components/addons/">General Information</a></li>
                                     
                                 
                                     
@@ -793,11 +813,11 @@
                                         <button  type="button" class="collapse-button ">Autodesk Maya</button>
                                         <ul class="collapsible-content ">
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya/">Ramses Add-on</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya/">Ramses Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya.md">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1228,7 +1248,7 @@
 <h2 id="examples">Examples</h2>
 <p>Here are a few examples showing how this API can be used.</p>
 <h3 id="include-import-the-api">Include / Import the API</h3>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 # Use your usual preferred way to import the module.
 
 from ramses import *
@@ -1258,8 +1278,7 @@ aNewStatus = ram.RamStatus(
     )
 myShot.setStatus(aNewStatus, myRamses.currentStep())
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 // Just include the file the usual way.
 
 #include ramses.jsxinc
@@ -1275,11 +1294,10 @@ var aNewStatus = new RamStatus(
     );
 myShot.setStatus(aNewStatus, myRamses.currentStep());
 </code></pre>
-
 <h3 id="enumerated-values-constants">Enumerated values (constants)</h3>
 <p>Enumerated values (a.k.a. Constants) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they’re grouped together by type (for exemple Color.RED, or Shape.RECTANGLE). The value itself can be of any type (array, string, number…).</p>
 <p>In this documentation they&rsquo;re written like this: <code>ValueType.VALUE</code>, i.e. <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code>, and they&rsquo;re used the same way in the actual code.</p>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 from ramses import RamItem, ItemType
 
@@ -1292,8 +1310,7 @@ if anItem is not None:
     if anItem.itemType() == ItemType.SHOT:
         doSomething()
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 #include ramses.jsxinc
 
@@ -1308,10 +1325,9 @@ if (anItem != null)
         doSomething();
 }
 </code></pre>
-
 <h3 id="save-command-for-maya-python">Save command for <em>Maya</em> (Python)</h3>
 <p>This example shows how to use the <a href="ram_file_manager/">RamFileManager</a> class to implement a save command in <em>Maya</em> with automatic backup in the <em>_versions</em> subfolder.</p>
-<pre><code class="python">import maya.cmds as cmds
+<pre><code class="language-python">import maya.cmds as cmds
 import ramses as ram
 
 ramses = ram.Ramses.instance()
@@ -1364,7 +1380,6 @@ def ramSave():
 
 ramSave()
 </code></pre>
-
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/08" /></p></div>
         
         

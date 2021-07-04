@@ -139,13 +139,25 @@
         
             
 <li >
-    <a href="../../../install/server/">Installation</a>
+    <a href="../../../components/server/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Administration</a>
+    <a href="../../../components/server/web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/admin.md">Administration</a>
 </li>
 
         
@@ -205,7 +217,7 @@
         
             
 <li >
-    <a href="../../../addons/">General Information</a>
+    <a href="../../../components/addons/">General Information</a>
 </li>
 
         
@@ -216,19 +228,19 @@
         
             
 <li >
-    <a href="../../../addons/maya/">Ramses Add-on</a>
+    <a href="../../../components/addons/maya/">Ramses Add-on</a>
 </li>
 
         
             
 <li >
-    <a href="../../../addons/maya/">Extensibility</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
             
 <li >
-    <a href="../../../addons/maya/">Rubika Flavor</a>
+    <a href="../../../addons/maya.md">Rubika Flavor</a>
 </li>
 
         
@@ -739,11 +751,19 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../../install/server/">Installation</a></li>
+                                    <li class="third-level "><a href="../../../components/server/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/server/web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/admin.md">Administration</a></li>
                                     
                                 
                             </ul>
@@ -789,7 +809,7 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../../addons/">General Information</a></li>
+                                    <li class="third-level "><a href="../../../components/addons/">General Information</a></li>
                                     
                                 
                                     
@@ -797,11 +817,11 @@
                                         <button  type="button" class="collapse-button ">Autodesk Maya</button>
                                         <ul class="collapsible-content ">
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Ramses Add-on</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya/">Ramses Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../addons/maya.md">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1135,7 +1155,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?createFileType&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createApplication&quot;,
     &quot;success&quot;: true,
@@ -1143,7 +1163,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="getapplications">getApplications</h2>
 <p>Retrieves the list of all applications.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1160,7 +1179,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?getApplications&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getApplications&quot;,
     &quot;success&quot;: true,
@@ -1181,7 +1200,6 @@
     ]
 }
 </code></pre>
-
 <h2 id="updateapplication">updateApplication</h2>
 <p>Update application info in the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1199,7 +1217,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?updateApplication&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;comment=A comment&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateApplication&quot;,
     &quot;success&quot;: true,
@@ -1207,7 +1225,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeapplication">removeApplication</h2>
 <p>Removes an application from the database.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1221,7 +1238,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?removeApplication&amp;uuid=123&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeApplication&quot;,
     &quot;success&quot;: true,
@@ -1229,7 +1246,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignfiletype">assignFileType</h2>
 <p>Assigns a file type to an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1245,7 +1261,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?assignFileType&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;type=import&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignFileType&quot;,
     &quot;success&quot;: true,
@@ -1253,7 +1269,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="unassignfiletype">unassignFileType</h2>
 <p>Unassigns a file type from an application.</p>
 <p><strong>Query attributes:</strong></p>
@@ -1269,7 +1284,7 @@
 <p>Query:<br />
 <code>http://your.server/ramses/?unassignUser&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;token=123</code></p>
 <p>Reply:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignFileType&quot;,
     &quot;success&quot;: true,

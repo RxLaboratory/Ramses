@@ -22,6 +22,8 @@
 - SERVER DOC: comment in getters
 - server doc: request in post as json or form-encoded, except the query
 
+- api doc: userSettings
+
 - Build installer, add folder to PATH, add startup entry
 - Finish / Test Maya addon
 

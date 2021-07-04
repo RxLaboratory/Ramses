@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/03)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04)
 
 # Ramses - The Rainbox Asset Management System
 
@@ -142,8 +142,8 @@ Legend:
         - [Assets and shots production management](#)
         - [Schedule and statistics](#)
     - Ramses Add-ons
-        - [General information](addons/index.md)
-        - [Add-on for Autodesk Maya](addons/maya.md)
+        - [General information](components/addons/index.md)
+        - [Add-on for Autodesk Maya](components/addons/maya.md)
         - [Add-on for Autodesk Maya - The Rubika Flavor](#)
     - The Ramses Tree
         - [Introduction](#)

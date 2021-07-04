@@ -139,13 +139,25 @@
         
             
 <li >
-    <a href="install/server/">Installation</a>
+    <a href="components/server/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href=".">Administration</a>
+    <a href="components/server/web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="components/server/admin.md">Administration</a>
 </li>
 
         
@@ -205,7 +217,7 @@
         
             
 <li >
-    <a href="addons/">General Information</a>
+    <a href="components/addons/">General Information</a>
 </li>
 
         
@@ -216,19 +228,19 @@
         
             
 <li >
-    <a href="addons/maya/">Ramses Add-on</a>
+    <a href="components/addons/maya/">Ramses Add-on</a>
 </li>
 
         
             
 <li >
-    <a href="addons/maya/">Extensibility</a>
+    <a href="components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
             
 <li >
-    <a href="addons/maya/">Rubika Flavor</a>
+    <a href="addons/maya.md">Rubika Flavor</a>
 </li>
 
         
@@ -676,6 +688,7 @@
                     <li class="third-level"><a href="#pipeline-automation">▹ Pipeline automation</a></li>
                     <li class="third-level"><a href="#very-easy-to-use">▹ (Very) Easy-to-use</a></li>
                     <li class="third-level"><a href="#and-also">▹ And also...</a></li>
+                    <li class="third-level"><a href="#the-future">▹ The future</a></li>
                 <li class="second-level"><a href="#table-of-contents">Table of Contents</a></li>
                     
                 <li class="second-level"><a href="#license">License</a></li>
@@ -743,11 +756,19 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="install/server/">Installation</a></li>
+                                    <li class="third-level "><a href="components/server/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href=".">Administration</a></li>
+                                    <li class="third-level "><a href="components/server/web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="components/server/admin.md">Administration</a></li>
                                     
                                 
                             </ul>
@@ -793,7 +814,7 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="addons/">General Information</a></li>
+                                    <li class="third-level "><a href="components/addons/">General Information</a></li>
                                     
                                 
                                     
@@ -801,11 +822,11 @@
                                         <button  type="button" class="collapse-button ">Autodesk Maya</button>
                                         <ul class="collapsible-content ">
                                             
-                                                <li class="fourth-level "><a href="addons/maya/">Ramses Add-on</a></li>
+                                                <li class="fourth-level "><a href="components/addons/maya/">Ramses Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="addons/maya/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="components/addons/maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="addons/maya/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="addons/maya.md">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1109,6 +1130,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04" /></p>
 <h1 id="ramses-the-rainbox-asset-management-system">Ramses - The Rainbox Asset Management System</h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1123,7 +1145,7 @@ The first public Beta version will be available very soon.</p>
 <h3 id="free-and-open-source">▹ Free and open source</h3>
 <p><em>Ramses</em> is licensed under the GNU General Public License v3, which means <strong>you&rsquo;re free</strong> to do anything you&rsquo;d like with it, use it the way you want, modify it, and share your modifications.</p>
 <h3 id="modular-and-scalable">▹ Modular and scalable</h3>
-<p><em>Ramses</em> is made of <strong>several components which can be used either individually or as a whole framework</strong>. If you just need an add-on to your creative software improve your workflow and versionning, you could use only on of the <a href="addons/"><em>Ramses Add-ons</em></a>. If you&rsquo;re interested in production tracking, you&rsquo;ll need the <a href="#"><em>Ramses Client Application</em></a> and maybe connect it to the <a href="#"><em>Ramses Server</em></a> to stay connected with your team.</p>
+<p><em>Ramses</em> is made of <strong>several components which can be used either individually or as a whole framework</strong>. If you just need an add-on to your creative software improve your workflow and versionning, you could use only on of the <a href="addons/index.md"><em>Ramses Add-ons</em></a>. If you&rsquo;re interested in production tracking, you&rsquo;ll need the <a href="#"><em>Ramses Client Application</em></a> and maybe connect it to the <a href="#"><em>Ramses Server</em></a> to stay connected with your team.</p>
 <p>Of course, each of these components can work together and share information for <strong>a seamless integration into your workflow</strong>.</p>
 <p><a href="#"><strong><em>▸ Read more</em></strong></a></p>
 <h3 id="planning">▹ Planning</h3>
@@ -1138,11 +1160,16 @@ The first public Beta version will be available very soon.</p>
 <p><a href="#"><strong><em>▸ Read more</em></strong></a></p>
 <h3 id="pipeline-automation">▹ Pipeline automation</h3>
 <p><img alt="" src="img/client/pipeline.png" /></p>
-<p>In combination with the <em>Ramses Add-ons</em>, <em>Ramses</em> is able to <strong>automate your pipeline</strong>, managing the <strong>versionning</strong> of the files, the exports, imports and all these manual tasks a robot could do for you.</p>
+<p>In combination with the <em>Ramses Add-ons</em> which integrate <em>Ramses</em> in your favorite creative software, <em>Ramses</em> is able to <strong>automate your pipeline</strong>, managing the <strong>versionning</strong> of the files, the exports, imports and all these manual tasks a robot could do for you.</p>
+<figure>
+  <img src="img/maya/shelf.png"/>
+  <figcaption>An example: the Autodesk Maya shelf of the Ramses Add-on.</figcaption>
+</figure>
+
 <p>With a nice and modern nodal view, it&rsquo;s easy to design your pipeline, connecting each step and setting how the data should go from one step to the other. All this information will be used both by the <em>Ramses</em> production tracking algorithms and the <em>Add-ons</em> to help you <strong>focus on your real work: creation</strong>.</p>
 <p><a href="#"><strong><em>▸ Read more</em></strong></a></p>
 <h3 id="very-easy-to-use">▹ (Very) Easy-to-use</h3>
-<p>A tool like <em>Ramses</em> is here to help, not to give you a headake.</p>
+<p>A tool like <em>Ramses</em> is here to help, not to give you a headache.</p>
 <p>All user interface components have been carefully crafted to be beautiful, but most of all to be <strong>intuitive and practical</strong>. Everything has to be clear, precise, and meaningful.</p>
 <p>Of course, there&rsquo;s this comprehensive documentation if you have any doubt..</p>
 <h3 id="and-also">▹ And also&hellip;</h3>
@@ -1157,10 +1184,103 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 <li>
 <p><em>Ramses</em> can <a href="#"><strong>manage all your files</strong></a>: the idea is that you won&rsquo;t ever need to search for any file through the system&rsquo;s explorer.</p>
 </li>
-<li>
-<p><strong><em>Ramses</em> is (far from) not finished</strong>. And probably never will: it is going to evolve, and there are a lot of other planned features and improvements on their way!</p>
-</li>
 </ul>
+<h3 id="the-future">▹ The future</h3>
+<p><strong><em>Ramses</em> is (far from) not finished</strong>. And probably never will: it is going to evolve, and there are a lot of other planned features and improvements on their way!</p>
+<p>Here are some of the features which are not available yet but which will be available in the future.</p>
+<ul>
+<li><strong>Full <em>SSL</em> encryption</strong> when connecting to the server. <em>SSL</em> may already be available on <em>Linux</em> and will be available on <em>Windows</em> and <em>Mac OS</em> shortly. If <em>Ramses</em>&lsquo; beta versions can already be tested without it, it is a mandatory feature for the release versions, as the security of your data is non-negociable.</li>
+<li>The <strong>Dashboard</strong> will be an area where each user accesses all its important data and schedule. It comes with notifications so you won&rsquo;t miss any change concerning your assets, shots and steps.</li>
+<li>The <strong>Offline mode</strong> for the <em>Ramses Client Application</em> will make it easier to use for one-man bands; you will be able to use <em>Ramses</em> without having to install the server. This also means you&rsquo;ll still be able to use <em>Ramses</em> even if you&rsquo;re not connected to the network, when you&rsquo;re in a train or on top of a mountain.</li>
+<li><strong>Project Planning</strong>: a simple but indispensable tool to easily plan the production of the project, at the very beginning of the production. With this planning tool you will be able to set the important dates of the production, the deadlines for each step, all in an easy-to-use and visual panel.</li>
+<li><strong>Status automation</strong>: when a character is rigged, it means it&rsquo;s ready to be animated. Status automation will automatically update the states of all the items according to the pipeline design, and your custom rules.</li>
+<li><strong>Data export and import</strong>: if you&rsquo;re planning important software update, or for your backups at the end of a production, it may be useful to export and re-import your data.</li>
+<li><strong>File tools</strong> will provide automatic ways to manage your files, create new assets and shots from already existing files, clean the tree, backup, remove temporary data, batch rename files and folders&hellip;</li>
+<li><strong>Editing tools</strong> to manage your shots from your edits. Automatically set shot duration, order and other metadata by just importing your edit.</li>
+<li>A lot of <strong>UI improvements</strong> and tweaks are planned too, and work will be done to improve the performance of the <em>Ramses Client Application</em> even further.</li>
+<li><strong><em>Syncthing</em> integration</strong> will provide <a href="https://syncthing.net/">a free, open, and secure way to synchronize</a> all files and data of your production accross multiple workstations, servers, NAS, etc.</li>
+</ul>
+<p>There&rsquo;s also a lot of ongoing work to extend the supported creative applications through <em>Ramses</em> Add-ons. This table shows what&rsquo;s planned, what&rsquo;s already available, what will be available soon.</p>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Scripting Language</th>
+<th>Status</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="dev/add-ons-reference/">API</a></td>
+<td>Python</td>
+<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
+<td>A Beta version is already available.</td>
+</tr>
+<tr>
+<td><a href="dev/add-ons-reference/">API</a></td>
+<td>ExtendScript</td>
+<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
+<td>For Adobe Creative Cloud</td>
+</tr>
+<tr>
+<td><a href="dev/add-ons-reference/">API</a></td>
+<td>UXP</td>
+<td><img alt="icon" src="img/icons/red_circle.png" style="width:16px;" /></td>
+<td>For Adobe Creative Cloud<br/><em>UXP</em> is a new scripting environment for Adobe Software. <em>Ramses</em> won&rsquo;t officially support it until it is mature enough, which is not the case as of July 2020. This being said, the <em>ExtendScript</em> API may be compatible with <em>UXP</em>.</td>
+</tr>
+<tr>
+<td>Adobe After Effects</td>
+<td>ExtendScript</td>
+<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
+<td></td>
+</tr>
+<tr>
+<td>Adobe Illustrator</td>
+<td>ExtendScript</td>
+<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
+<td>Low-priority</td>
+</tr>
+<tr>
+<td>Adobe Photoshop</td>
+<td>ExtendScript</td>
+<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="addons/maya.md">Autodesk Maya</a></td>
+<td>Python</td>
+<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
+<td>A Beta version is already available.</td>
+</tr>
+<tr>
+<td>Autodesk Maya<br/><a href="#">Rubika Flavor</a></td>
+<td>Python</td>
+<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
+<td>A Beta version is already available.</td>
+</tr>
+<tr>
+<td>Blender</td>
+<td>Python</td>
+<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
+<td></td>
+</tr>
+<tr>
+<td>Inkscape</td>
+<td>Python</td>
+<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
+<td>Low-priority</td>
+</tr>
+<tr>
+<td>Krita</td>
+<td>Python</td>
+<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Legend:<br />
+<img alt="icon" src="img/icons/green_tick.png" style="width:16px;" /> Available | <img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /> In development | <img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /> Planned | <img alt="icon" src="img/icons/red_circle.png" style="width:16px;" /> Not supported</p>
 <p><img alt="" src="img/client/home.png" /></p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
@@ -1177,7 +1297,8 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 <li><strong>Ramses Components</strong><ul>
 <li><a href="components/">Introduction</a></li>
 <li>The Ramses server<ul>
-<li><a href="install/server/">Installation</a></li>
+<li><a href="components/server/">Introduction</a></li>
+<li><a href="components/server/install/">Installation</a></li>
 <li><a href="#">Administration</a></li>
 </ul>
 </li>
@@ -1191,8 +1312,8 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 </ul>
 </li>
 <li>Ramses Add-ons<ul>
-<li><a href="addons/">General information</a></li>
-<li><a href="addons/maya/">Add-on for Autodesk Maya</a></li>
+<li><a href="components/addons/">General information</a></li>
+<li><a href="components/addons/maya/">Add-on for Autodesk Maya</a></li>
 <li><a href="#">Add-on for Autodesk Maya - The Rubika Flavor</a></li>
 </ul>
 </li>
@@ -1241,8 +1362,7 @@ This program is free software; you can redistribute them and/or modify them unde
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation;<br />
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled &ldquo;<a href="licenses/gfdl/">Documentation License</a>&rdquo;.</span></p>
-<p><img alt="GNU" src="img/licenses/gnu.png" style="height:75px;" /> <img alt="GFDL" src="img/licenses/gfdl-logo.png" style="height:50px;" /></p>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/02" /></p></div>
+<p><img alt="GNU" src="img/licenses/gnu.png" style="height:75px;" /> <img alt="GFDL" src="img/licenses/gfdl-logo.png" style="height:50px;" /></p></div>
         
         
     </div>
@@ -1342,6 +1462,6 @@ A copy of the license is included in the section entitled &ldquo;<a href="licens
 </html>
 
 <!--
-MkDocs version : 1.0.4
-Build Date UTC : 2021-07-02 18:55:38
+MkDocs version : 1.1.2
+Build Date UTC : 2021-07-04 11:53:01.030755+00:00
 -->

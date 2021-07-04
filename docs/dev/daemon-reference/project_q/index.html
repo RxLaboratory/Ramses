@@ -139,13 +139,25 @@
         
             
 <li >
-    <a href="../../../install/server/">Installation</a>
+    <a href="../../../components/server/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Administration</a>
+    <a href="../../../components/server/web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/admin.md">Administration</a>
 </li>
 
         
@@ -205,7 +217,7 @@
         
             
 <li >
-    <a href="../../../addons/">General Information</a>
+    <a href="../../../components/addons/">General Information</a>
 </li>
 
         
@@ -216,19 +228,19 @@
         
             
 <li >
-    <a href="../../../addons/maya/">Ramses Add-on</a>
+    <a href="../../../components/addons/maya/">Ramses Add-on</a>
 </li>
 
         
             
 <li >
-    <a href="../../../addons/maya/">Extensibility</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
             
 <li >
-    <a href="../../../addons/maya/">Rubika Flavor</a>
+    <a href="../../../addons/maya.md">Rubika Flavor</a>
 </li>
 
         
@@ -747,11 +759,19 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../../install/server/">Installation</a></li>
+                                    <li class="third-level "><a href="../../../components/server/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/server/web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/admin.md">Administration</a></li>
                                     
                                 
                             </ul>
@@ -797,7 +817,7 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../../addons/">General Information</a></li>
+                                    <li class="third-level "><a href="../../../components/addons/">General Information</a></li>
                                     
                                 
                                     
@@ -805,11 +825,11 @@
                                         <button  type="button" class="collapse-button ">Autodesk Maya</button>
                                         <ul class="collapsible-content ">
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Ramses Add-on</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya/">Ramses Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../addons/maya.md">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1134,7 +1154,7 @@
 <p>Query:<br />
 <code>getCurrentProject</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProjects&quot;,
     &quot;success&quot;: true,
@@ -1149,7 +1169,6 @@
     }
 }
 </code></pre>
-
 <h2 id="getproject">getProject</h2>
 <p>Gets a specific project</p>
 <h3 id="query-attributes_1">Query attributes</h3>
@@ -1172,7 +1191,7 @@
 <p>Query:<br />
 <code>getProject&amp;name=The Project&amp;shortName=PROJ</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProject&quot;,
     &quot;success&quot;: true,
@@ -1187,7 +1206,6 @@
         }
 }
 </code></pre>
-
 <h2 id="getprojects">getProjects</h2>
 <p>Returns the list of available projects.</p>
 <h3 id="query-attributes_2">Query attributes</h3>
@@ -1211,7 +1229,7 @@
 <p>Query:<br />
 <code>getProjects</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProjects&quot;,
     &quot;success&quot;: true,
@@ -1238,7 +1256,6 @@
     }
 }
 </code></pre>
-
 <h2 id="setcurrentproject">setCurrentProject</h2>
 <p>Sets the current project</p>
 <h3 id="query-attributes_3">Query attributes</h3>
@@ -1261,7 +1278,7 @@
 <p>Query:<br />
 <code>setCurrentProject&amp;name=The Project&amp;shortName=PROJ</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setCurrentProject&quot;,
     &quot;success&quot;: true,

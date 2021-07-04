@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The Ramses comprehensive documentation">
     <meta name="author" content="Nicolas Dufresne and contributors">
-    <link rel="canonical" href="https://ramses.rxlab.guide/install/server/">
+    <link rel="canonical" href="https://ramses.rxlab.guide/components/server/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     
-    <title>Installation - Ramses</title>
+    <title>Introduction - Ramses</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -128,7 +128,7 @@
                         
                             
 <li >
-    <a href="../../components/">Introduction</a>
+    <a href="../">Introduction</a>
 </li>
 
                         
@@ -139,13 +139,25 @@
         
             
 <li class="active">
-    <a href="./">Installation</a>
+    <a href="./">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../..">Administration</a>
+    <a href="web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="admin.md">Administration</a>
 </li>
 
         
@@ -205,7 +217,7 @@
         
             
 <li >
-    <a href="../../addons/">General Information</a>
+    <a href="../addons/">General Information</a>
 </li>
 
         
@@ -216,19 +228,19 @@
         
             
 <li >
-    <a href="../../addons/maya/">Ramses Add-on</a>
+    <a href="../addons/maya/">Ramses Add-on</a>
 </li>
 
         
             
 <li >
-    <a href="../../addons/maya/">Extensibility</a>
+    <a href="../addons/maya-extend/">Extensibility</a>
 </li>
 
         
             
 <li >
-    <a href="../../addons/maya/">Rubika Flavor</a>
+    <a href="../../addons/maya.md">Rubika Flavor</a>
 </li>
 
         
@@ -643,17 +655,17 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../components/">
+                        <a rel="prev" href="../">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../../addons/">
+                        <a rel="next" href="web-server/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/install/server.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/components/server/index.md"><i class="fab fa-github"></i> Edit on GitHub</a>
                     </li>
             </ul>
         </div>
@@ -666,10 +678,10 @@
         <div class="col-md-3"><div id="side-menu">
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
-            <li class="first-level active"><a href="#ramses-server-installation">Ramses Server installation</a></li>
-                <li class="second-level"><a href="#prerequisites">Prerequisites</a></li>
+            <li class="first-level active"><a href="#the-ramses-server">The Ramses Server</a></li>
+                <li class="second-level"><a href="#requirements">Requirements</a></li>
                     
-                <li class="second-level"><a href="#installation">Installation</a></li>
+                <li class="second-level"><a href="#technical-description">Technical description</a></li>
                     
         </ul>
     </div>
@@ -722,7 +734,7 @@
                 <ul class="collapsible-content collapsible-content-active">
                     
                         
-                        <li class="second-level "><a href="../../components/">Introduction</a></li>
+                        <li class="second-level "><a href="../">Introduction</a></li>
                         
                     
                         
@@ -731,11 +743,19 @@
                             <ul class="collapsible-content collapsible-content-active">
                                 
                                     
-                                    <li class="third-level active"><a href="./">Installation</a></li>
+                                    <li class="third-level active"><a href="./">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../..">Administration</a></li>
+                                    <li class="third-level "><a href="web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="admin.md">Administration</a></li>
                                     
                                 
                             </ul>
@@ -781,7 +801,7 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../addons/">General Information</a></li>
+                                    <li class="third-level "><a href="../addons/">General Information</a></li>
                                     
                                 
                                     
@@ -789,11 +809,11 @@
                                         <button  type="button" class="collapse-button ">Autodesk Maya</button>
                                         <ul class="collapsible-content ">
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya/">Ramses Add-on</a></li>
+                                                <li class="fourth-level "><a href="../addons/maya/">Ramses Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../addons/maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya.md">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1097,38 +1117,35 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="ramses-server-installation">Ramses Server installation</h1>
-<p><em>Ramses Server</em> runs on very standard web servers, with the usual Web Server / PHP / mySQL stack. That means you can install it on almost any desktop or server computers, private server, shared hosting, workstation, Raspberry&hellip; It does not need much resources.</p>
-<div class="toc">
-<ul>
-<li><a href="#ramses-server-installation">Ramses Server installation</a><ul>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#installation">Installation</a></li>
-</ul>
-</li>
-</ul>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/03" /></p>
+<h1 id="the-ramses-server">The Ramses Server</h1>
+<p>The server stores and serves all shared data to the <em>Ramses Client</em> between all workstations in the studio. The <em>Ramses Clients</em> installed on these workstations connect to it to retrieve tha data they need.</p>
+<p>It is just a small software meant to be installable on small hardware and with very low requirements. You can install it on any computer in the studio (even just a simple <a href="https://www.raspberrypi.org/"><em>Raspberry</em></a>) and make it available on your <em>Local Area Network</em>, or make it available from the internet. You can also easily install it on a shared or private hosting, even a low-cost one.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Although the currently available <em>Beta Version</em> of the <em>Ramses Client</em> cannot be used as a stand-alone, offline application yet and needs a connection to a <em>Ramses Server</em>, you can install a local server on any computer to test and use <em>Ramses</em> without needing a full scale online server. We&rsquo;re explaining in this documentation how to install such a standard webserver on your computer, read below.</p>
 </div>
-<h2 id="prerequisites">Prerequisites</h2>
-<p><em>Ramses Server</em> must be installed on a computer with:</p>
+<h2 id="requirements">Requirements</h2>
+<p>The <em>Ramses Server</em> must be installed on a computer with:</p>
 <ul>
-<li>An <strong>http web server</strong></li>
+<li>An <strong>http web server</strong> like <em>Apache</em></li>
 <li><strong><em>PHP 7</em></strong></li>
+<li>An acces to a <strong><em>mySQL</em></strong> server and a dedicated database.</li>
 </ul>
-<p>It also needs an acces to a <strong><em>mySQL</em></strong> database.</p>
-<p>The recommended configuration is a standard <em>AMP</em> stack (<em>Apache</em> - <em>mySQL</em> - <em>PHP</em>), with at least 4GB of RAM if the <em>SQL</em> server is on the same computer.</p>
+<p>The recommended configuration is a standard <em>AMP</em> stack (<em>Apache</em> - <em>mySQL</em> - <em>PHP</em>), with at least 2GB of RAM if the <em>SQL</em> server is on the same computer than the <em>Apache</em> server.</p>
+<ul>
+<li>The needed space for the <em>Ramses Server</em> files (<em>PHP</em>) is only <em><code>300 KB</code></em>!</li>
+<li><em><code>50 MB</code></em> should be more than enough for the vast majority of users for the <em>mySQL</em> database.</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As <em>Ramses</em> is still in development, the only compatible SQL database is <em>mySQL</em>. We may add support for other databases in the future.</p>
+<p>As <em>Ramses</em> is still in development, the only compatible SQL database is <em>mySQL</em>. We may add support for other databases in the future, include <em>SQLite</em> so the <em>Ramses Server</em> could be use without an actual <em>SQL</em> database.</p>
 </div>
-<h2 id="installation">Installation</h2>
-<ol>
-<li>Create a new base on the <em>SQL</em> server, along with its user and password.</li>
-<li>Copy the <em>Ramses Server</em> files to the web server.</li>
-<li>Edit <code>config.php</code> with needed info.</li>
-<li>Go to <code>http://your.server/ramses/install</code></li>
-<li>Delete the <code>install</code> folder from the server.</li>
-</ol>
-<p>The default user for Ramses is <code>Admin</code> with the password <code>password</code>. You should start by changing this name and password.</p></div>
+<p>We provide a detailed, step-by-step guide to help you install your own web server satisfying these requirements on <em>Windows</em>, <em>Linux</em> or <em>Mac OS</em> if you need to, before installing the <em>Ramses Server</em>: <a href="web-server/">install your own webserver</a>.</p>
+<p>As soon as you have a working web server, you can <a href="install/">install the <em>Ramses server</em></a>.</p>
+<h2 id="technical-description">Technical description</h2>
+<p>The <em>Ramses Server</em> is a pretty standard <em>REST API</em> written in <em>PHP</em> which just serves as an interface to an <em>SQL</em> database. It receives requests from the <em>Ramses Client</em> and responds with the needed data.</p>
+<p>For developers who may want to extend or modify <em>Ramses</em>, or develop their own client, <a href="../../dev/server-reference/">the complete reference of this <em>API</em> is available here</a>.</p></div>
         
         
     </div>

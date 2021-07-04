@@ -139,13 +139,25 @@
         
             
 <li >
-    <a href="../../../install/server/">Installation</a>
+    <a href="../../../components/server/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Administration</a>
+    <a href="../../../components/server/web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/admin.md">Administration</a>
 </li>
 
         
@@ -205,7 +217,7 @@
         
             
 <li >
-    <a href="../../../addons/">General Information</a>
+    <a href="../../../components/addons/">General Information</a>
 </li>
 
         
@@ -216,19 +228,19 @@
         
             
 <li >
-    <a href="../../../addons/maya/">Ramses Add-on</a>
+    <a href="../../../components/addons/maya/">Ramses Add-on</a>
 </li>
 
         
             
 <li >
-    <a href="../../../addons/maya/">Extensibility</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
             
 <li >
-    <a href="../../../addons/maya/">Rubika Flavor</a>
+    <a href="../../../addons/maya.md">Rubika Flavor</a>
 </li>
 
         
@@ -743,11 +755,19 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../../install/server/">Installation</a></li>
+                                    <li class="third-level "><a href="../../../components/server/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/server/web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/admin.md">Administration</a></li>
                                     
                                 
                             </ul>
@@ -793,7 +813,7 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../../addons/">General Information</a></li>
+                                    <li class="third-level "><a href="../../../components/addons/">General Information</a></li>
                                     
                                 
                                     
@@ -801,11 +821,11 @@
                                         <button  type="button" class="collapse-button ">Autodesk Maya</button>
                                         <ul class="collapsible-content ">
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Ramses Add-on</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya/">Ramses Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../addons/maya/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../addons/maya.md">Rubika Flavor</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1326,7 +1346,7 @@
 </table>
 <h2 id="callbacks">Callbacks</h2>
 <p>The callbacks are the methods you can add to these lists: <code>Ramses.publishScripts</code>, <code>Ramses.statusScripts</code>, <code>Ramses.importScripts</code>, <code>Ramses.userScripts</code>.</p>
-<p>When using one of the provided <a href="../../../addons/">Ramses Add-ons</a>, these callbacks will be called automatically when the user publishes an item, changes the status, or wants to import a file. This makes it very easy to extend these add-ons by just adding your own methods.</p>
+<p>When using one of the provided <a href="../../addons/index.md">Ramses Add-ons</a>, these callbacks will be called automatically when the user publishes an item, changes the status, or wants to import a file. This makes it very easy to extend these add-ons by just adding your own methods.</p>
 <p>If you&rsquo;re developping your own add-on from scratch, it may be useful to add your methods to these lists to call them easily anyway; use <code>Ramses.publish()</code>, <code>Ramses.importItem()</code>, and <code>Ramses.updateStatus()</code>.</p>
 <p><em>Ramses</em> will pass a few arguments depending on the context to theses methods, which they&rsquo;ll have to handle. The table below describes the callbacks.</p>
 <table>
@@ -1356,7 +1376,7 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 # import ramses
 import ramses as ram
@@ -1384,8 +1404,7 @@ ramses.publish(currentItem, 'a path', 'STEP')
 # From anywhere in the app where the Ramses module has been imported, you can call 'aFunction' with
 ramses.userScripts[&quot;MyFunction&quot;](some, arg)
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 // include the Ramses lib
 #include ramses.jsxinc
@@ -1417,7 +1436,6 @@ ramses.publish(currentItem, 'a path', 'STEP');
 // From anywhere in the app, you can call 'aFunction' with
 ramses.userScripts[&quot;MyFunction&quot;](some, arg);
 </code></pre>
-
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">

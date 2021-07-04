@@ -52,10 +52,10 @@ nav:
             - Assets and shots production management: .
             - Schedule and statistics: .
         - Ramses Add-ons:
-            - General Information: addons/index.md
+            - General Information: components/addons/index.md
             - Autodesk Maya:
-                - Ramses Add-on: addons/maya.md
-                - Extensibility: addons/maya.md
+                - Ramses Add-on: components/addons/maya.md
+                - Extensibility: components/addons/maya-extend.md
                 - Rubika Flavor: addons/maya.md
         - Ramses Tree:
             - Introduction: .

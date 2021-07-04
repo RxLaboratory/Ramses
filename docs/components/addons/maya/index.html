@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ramses comprehensive documentation">
+    <meta name="author" content="Nicolas Dufresne and contributors">
+    <link rel="canonical" href="https://ramses.rxlab.guide/components/addons/maya/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Ramses Add-on - Ramses</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/zenburn.min.css">
+        
+    
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="../../../video.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">Ramses</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Ramses</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pipeline & Management <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../pipeline/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/administration/">Administration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/users/">User Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/pipeline/">Pipeline</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/production/">Production tracking</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/planning/">Planning</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Components <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Server</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../server/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server/web-server/">A web server</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../server/admin.md">Administration</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Application</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../..">Installation and settings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Administration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Project settings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">The pipeline</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Assets and shots production management</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../..">Schedule and statistics</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../">General Information</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Autodesk Maya</a>
+    <ul class="dropdown-menu">
+        
+            
+<li class="active">
+    <a href="./">Ramses Add-on</a>
+</li>
+
+        
+            
+<li >
+    <a href="../maya-extend/">Extensibility</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../addons/maya.md">Rubika Flavor</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Tree</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../..">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../files/naming/">Naming scheme</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../files/tree/">Folder structure</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../dev/">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Files and Folders</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/files/naming/">Naming</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Scripting API (Add-ons)</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ramses/">Ramses</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_asset/">RamAsset</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_filetype/">RamFileType</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_object/">RamObject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_pipe/">RamPipe</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_project/">RamProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_settings/">RamSettings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_shot/">RamShot</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_state/">RamState</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_status/">RamStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_step/">RamStep</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/ram_user/">RamUser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Daemon API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/general_q/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/asset_q/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/pipe_q/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/project_q/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/shot_q/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/state_q/">State and Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/step_q/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/daemon-reference/user_q/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Server API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../dev/server-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/applications/">Application queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/assets/">Asset queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/assetgroups/">Asset Group queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/filetypes/">File type queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/general/">General queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/pipes/">Pipe queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/pipefiles/">PipeFiles queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/projects/">Project queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/sequences/">Sequence queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/shots/">Shot queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/states/">State queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/status/">Status queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/steps/">Step queries</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../dev/server-reference/users/">User queries</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">... <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../credits/">Credits</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../changelog/">Changelog</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Licenses</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../licenses/gnu-gpl/">GNU GPLv3</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../licenses/gfdl/">Documentation license</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../maya-extend/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Rainbox-dev/Ramses/edit/master/src-docs/docs/components/addons/maya.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#ramses-maya-add-on">Ramses Maya Add-on</a></li>
+                <li class="second-level"><a href="#installation">Installation</a></li>
+                    
+                <li class="second-level"><a href="#features">Features</a></li>
+                    
+                <li class="second-level"><a href="#save">Save</a></li>
+                    
+                <li class="second-level"><a href="#comment">Comment</a></li>
+                    
+                <li class="second-level"><a href="#settings">Settings</a></li>
+                    
+                    <li class="third-level"><a href="#versionning">Versionning</a></li>
+                    <li class="third-level"><a href="#folders">Folders</a></li>
+                    <li class="third-level"><a href="#ramses-application">Ramses Application</a></li>
+                    <li class="third-level"><a href="#development">Development</a></li>
+                <li class="second-level"><a href="#commands">Commands</a></li>
+                    
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../../../../..">Ramses</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Pipeline & Management</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/administration/">Administration</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/users/">User Management</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/pipeline/">Pipeline</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/production/">Production tracking</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/planning/">Planning</a></li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button active-collapse-button">Components</button>
+                <ul class="collapsible-content collapsible-content-active">
+                    
+                        
+                        <li class="second-level "><a href="../../">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Server</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/web-server/">A web server</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/admin.md">Administration</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Application</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Installation and settings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Project settings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">The pipeline</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Assets and shots production management</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Schedule and statistics</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button active-collapse-button">Ramses Add-ons</button>
+                            <ul class="collapsible-content collapsible-content-active">
+                                
+                                    
+                                    <li class="third-level "><a href="../">General Information</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button active-collapse-button">Autodesk Maya</button>
+                                        <ul class="collapsible-content collapsible-content-active">
+                                            
+                                                <li class="fourth-level active"><a href="./">Ramses Add-on</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../maya-extend/">Extensibility</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../addons/maya.md">Rubika Flavor</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Tree</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../..">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../files/naming/">Naming scheme</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../files/tree/">Folder structure</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Development</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../dev/">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Files and Folders</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/files/naming/">Naming</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Scripting API (Add-ons)</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/enum/">Constants</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ramses/">Ramses</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_asset/">RamAsset</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_filetype/">RamFileType</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_item/">RamItem</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_object/">RamObject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_pipe/">RamPipe</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_project/">RamProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_settings/">RamSettings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_shot/">RamShot</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_state/">RamState</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_status/">RamStatus</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_step/">RamStep</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_user/">RamUser</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/implementation/">Dev Notes</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Daemon API</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/general_q/">General queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/asset_q/">Asset queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/pipe_q/">Pipe queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/project_q/">Project queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/shot_q/">Shot queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/state_q/">State and Status queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/step_q/">Step queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/user_q/">User queries</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Server API</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/applications/">Application queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/assets/">Asset queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/assetgroups/">Asset Group queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/filetypes/">File type queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/general/">General queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/pipes/">Pipe queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/pipefiles/">PipeFiles queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/projects/">Project queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/sequences/">Sequence queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/shots/">Shot queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/states/">State queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/status/">Status queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/steps/">Step queries</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../dev/server-reference/users/">User queries</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">...</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../credits/">Credits</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../changelog/">Changelog</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Licenses</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gnu-gpl/">GNU GPLv3</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gfdl/">Documentation license</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        </ul>
+    </div>
+    <div class="footer-meta"></div>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04" /></p>
+<h1 id="ramses-maya-add-on"><img alt="" src="../../../img/icons/maya_sd.svg" style="width:48px;" /> Ramses Maya Add-on</h1>
+<p><em>Ramses</em> comes with an official add-on for <strong><em>Autodesk Maya</em></strong>, which actually consists in a <em>Python</em> plug-in and a custom shelf packaged in a simple single module.</p>
+<p>It is an example of an implementation of an add-on using the <a href="../../dev/add-ons-reference"><em>Ramses Python API</em></a> but it is already well suited for use in production.</p>
+<p>As well as all other <a href="../"><em>Ramses Add-ons</em></a>, the <em>Ramses Maya Add-on</em> includes the main features like versionning, publishing and production tracking with <em>Ramses</em>, but <a href="../maya-extend/">it can be extended to automate your workflow</a>. An example of such an extension is provided as the <a href="rubika.md"><em>Ramses Maya Add-on <strong>Rubika Flavor</strong></em></a>.</p>
+<h2 id="installation">Installation</h2>
+<ul>
+<li><a href="https://github.com/Rainbox-dev/Ramses-Maya/archive/refs/heads/main.zip">Download</a> and unzip the module.<br />
+    To quickly deploy the module on several workstations, choose a shared location; the module can then be shared with all workstations and updated at once.</li>
+<li>Edit <code>Ramses.mod</code> with a text editor, and replace the path in the first line with the absolute path where you&rsquo;ve unzipped the module.</li>
+</ul>
+<p>This is how the content of this file looks like:</p>
+<pre><code>+ Ramses 0.0.1-dev D:\your\path\to\the\module
+PYTHONPATH+:=plug-ins
+MAYA_SHELF_PATH+:=shelves
+</code></pre>
+<p>Do not change anything else in the file.</p>
+<ul>
+<li>In order to prevent unintended modifications to the <em>Ramses</em> shelf, you can set its <em>read-only</em> attribute:<ul>
+<li>Right click on the <code>shelves/shelf_Ramses.mel</code> file and select <code>Properties</code>.</li>
+<li>Check the <code>Read only</code> box.</li>
+</ul>
+</li>
+<li>Copy <code>Ramses.mod</code> in one of your modules paths<br />
+    e.g. <code>C:\Users\User\Documents\Maya\modules</code>.<br />
+    You may need to create the <em>modules</em> folder if it does not exist yet.<br />
+    Repeat this operation on all workstations where you need the module.</li>
+<li>Restart <em>Maya</em>.</li>
+<li>Activate the <em>Ramses</em> plug-in from <em>Maya</em>&lsquo;s plug-in manager.</li>
+</ul>
+<p><img alt="Plugin manager" src="/img/maya/plugin_manager.png" /></p>
+<ul>
+<li>You may need to restart <em>Maya</em> again so that the <em>Ramses</em> shelf is loaded.</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>All features of the <em>Ramses add-on</em> are available through the new shelf. They are also registered as <em>Mel</em> and <em>Python</em> <em>Maya</em> commands. All these features are detailed in the next sections.</p>
+<p>To handle all file naming and sorting, <em>Ramses</em> includes commands to replace all the default <em>Save</em>, <em>Save As</em> and <em>Open</em> functions. Using (almost) only the <em>Ramses</em> commands ensures your files will always be correctly named and in the right location. It also helps <em>Ramses</em> track the production.</p>
+<p><img alt="" src="../../../img/maya/shelf-details.svg" /></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><em>Maya</em> Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../../../img/icons/ramses-small.svg" style="width:28px" /> <strong>Open the <em>Ramses</em> App</strong></td>
+<td><code>ramOpenRamses</code></td>
+<td>Launches the <em>Ramses Client Application</em> (if its path is correctly set in the settings).</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/save.svg" style="width:28px" /> <a href="#save"><strong>Save</strong></a></td>
+<td><code>ramSave</code></td>
+<td>Saves and backups the current scene; this save command is also used for production tracking.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/comment.svg" style="width:28px" /> <a href="#comment"><strong>Comment</strong></a></td>
+<td><code>ramSave</code></td>
+<td>Associates a comment wit the current version file.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/saveversion.svg" style="width:28px" /> <strong>Incremental Save</strong></td>
+<td><code>ramSaveVersion</code></td>
+<td>Saves and increments the version of the current scene.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/savestatus.svg" style="width:28px" /> <strong>Update Status</strong></td>
+<td><code>ramSaveVersion</code></td>
+<td>Saves and increments the version of the current scene, while updating its current production tracking status.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/preview.svg" style="width:28px" /> <strong>Create Preview</strong></td>
+<td><code>ramPreview</code></td>
+<td>Creates a preview (thumbnail or playblast) of the current scene.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/saveas.svg" style="width:28px" /> <strong>Save as</strong></td>
+<td><code>ramSaveAs</code></td>
+<td>Saves the scene as a new Asset, Shot or General item.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/template.svg" style="width:28px" /> <strong>Template</strong></td>
+<td><code>ramPublishTemplate</code></td>
+<td>Saves the current scene as a new template for the current scene.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/open.svg" style="width:28px" /> <strong>Open / Import</strong></td>
+<td><code>ramOpen</code></td>
+<td>Opens or imports an Asset, Shot or Template.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/restoreversion.svg" style="width:28px" /> <strong>Retrieve Version</strong></td>
+<td><code>ramRetrieveVersion</code></td>
+<td>Retrieves and restores a previous version of the current scene.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/gotosettings.svg" style="width:28px" /> <a href="#settings"><strong>Settings</strong></a></td>
+<td><code>ramSettings</code></td>
+<td>Opens the settings dialog for the <em>Ramses Add-on</em>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="save"><img alt="" src="../../../img/icons/save.svg" style="width:32px" /> Save</h2>
+<p>The <em>Ramses</em> <em>Save</em> command starts by saving the current scene, and then runs a few checks before backuping the file into the <code>_versions</code> subfolder:</p>
+<ul>
+<li><em>Naming Scheme</em>: checks if the file is correctly named and located. If not, <em>Ramses</em> will run the <em>Save as</em> command instead to ensure the name is correct.</li>
+<li><em>Version</em>: checks if the version has to be incremented. That&rsquo;s the case if the current scene is a restored previous version, or if the latest increment occured before the timeout set in the settings.</li>
+</ul>
+<p>Depending of these checks, <em>Ramses</em> will automatically associate a comment with the corresponding version to warn of any changes.</p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramSave</code>. It can take two parameters:</p>
+<ul>
+<li><code>-set_comment</code> or <code>-sc</code>: <em>boolean</em> used to set a comment associated to the current version file.</li>
+<li><code>-comment</code> or <code>-c</code>: <em>string</em> is the comment to be associated if <code>-sc</code> is <code>True</code>.</li>
+</ul>
+<pre><code class="language-py"># Python
+import maya.cmds as cmds
+
+# Save the current file
+cmds.ramSave()
+
+# Save the file with a comment (show the comment dialog)
+cmds.ramSave(set_comment = True)
+
+# Save the file with a custom comment
+cmds.ramSave(sc = True, comment = &quot;A new comment!&quot;)
+</code></pre>
+<h2 id="comment"><img alt="" src="../../../img/icons/comment.svg" style="width:32px" /> Comment</h2>
+<p>The <em>Comment</em> command saves the current scene the same way as the <em>Save</em> command, and adds a comment associated with the current version.</p>
+<p>This comment is displayed with the corresponding version in all version selection dialogs, both in the add-on itself and in the <em>Ramses Client Application</em>, as shown below.</p>
+<figure>
+  <img src="../../../img/maya/versionlist.png"/>
+  <figcaption>A list of versions with a few comments, as shown in the <i>Ramses Maya Add-on</i>.</figcaption>
+</figure>
+
+<figure>
+  <img src="../../../img/client/versionlist.png"/>
+  <figcaption>A list of versions with a few comments, as shown in the <i>Ramses Client Application</i>.</figcaption>
+</figure>
+
+<h2 id="settings"><img alt="" src="../../../img/icons/gotosettings.svg" style="width:32px" /> Settings</h2>
+<h3 id="versionning">Versionning</h3>
+<p><img alt="" src="../../../img/maya/versionsettings.png" /></p>
+<ul>
+<li>The <strong><em>Auto-Increment</em></strong> option sets how many time can be spent before <em>Ramses</em> automatically increments the version of the file when saving. Use this option to be sure you can get back to an earlier version of your work even if you forget to increment the version.</li>
+<li>the <strong><em>Save hotkey</em></strong> option replaces the default &ldquo;<em>Save Scene</em>&rdquo; <code>[Ctrl + S]</code> hotkey from <em>Maya</em> by the <em>Save</em> command from <em>Ramses</em>. This is recommended to enable all production tracking features of <em>Ramses</em> and ensure an automatic backup of your work. Note that checking this box <strong>does not replace the <code>File/Save</code> menu entry</strong> so you can still use the default <em>Maya Save</em> command.</li>
+</ul>
+<h3 id="folders">Folders</h3>
+<p><img alt="" src="../../../img/maya/foldersettings.png" /></p>
+<ul>
+<li>Set <strong>the main <em>Ramses</em> folder location</strong>. This is mandatory if you&rsquo;re using the add-on without the <em>Ramses Client Application</em>.</li>
+</ul>
+<h3 id="ramses-application">Ramses Application</h3>
+<p><img alt="" src="../../../img/maya/appsettings.png" /></p>
+<ul>
+<li>Check the <strong><em>Connected</em></strong> box so that the <em>Ramses Add-on</em> will work with the <em>Ramses Client Application</em> for production tracking features.</li>
+<li>In order for this to work, you&rsquo;ll need to <strong><em>set the path to the <code>Ramses.exe</code> file</em></strong> inside the installation folder of the <em>Ramses Client Application</em>.</li>
+<li>The <strong><em>Ramses Daemon Port</em></strong> is the local networking port used by the <em>Ramses Daemon</em> to communicate with the add-ons. It must be the same value as the one set in the <em>Ramses Client Application</em>; the default value is the birthdate of <em>Karl Marx</em>: <code>18185</code> (May, 5th 1818).</li>
+</ul>
+<h3 id="development">Development</h3>
+<p><img alt="" src="../../../img/maya/devsettings.png" /></p>
+<ul>
+<li>Change the <strong><em>Log Level</em></strong> to adjust how many information is printed in the console to help you debug your scripts when you&rsquo;re developping using the <a href="../../../dev/add-ons-reference/"><em>Ramses Python API</em></a> or if you&rsquo;re <a href="../maya-extend/">extending the add-on</a>.</li>
+</ul>
+<h2 id="commands">Commands</h2>
+<p>As all other <em>Ramses</em> add-ons, the add-on for <em>Maya</em> adds a few commands to maya which you can use as any other command (e.g. to add a shortcut in a shelf, in a <em>Mel</em> script or in a <em>Python</em> script)</p>
+<p>Here is the list of these commands.</p>
+<table>
+<thead>
+<tr>
+<th>Command name</th>
+<th>Flags</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ramSave</td>
+<td><strong>-set_comment -sc</strong>: <em>boolean</em>,<br /><strong>-comment -c</strong>: <em>string</em></td>
+<td>Saves the current scene and copies a backup inside the <em>versions</em> subfolder.<br /> If <em>-set_comment</em> is set to <code>True</code>, <em>Ramses</em> will add a comment to the current version.<br />Setting <em>-comment</em> will prevent the dialog from showing, and set the given comment to the current version.</td>
+</tr>
+<tr>
+<td>ramSaveVersion</td>
+<td></td>
+<td>Saves a new version of the scene. A Dialog is shown to ask for an optionnal <em>Ramses Status</em> update.</td>
+</tr>
+<tr>
+<td>ramRetrieveVersion</td>
+<td></td>
+<td>Shows a dialog to select an older version of the scene to restore.</td>
+</tr>
+<tr>
+<td>ramPublishTemplate</td>
+<td></td>
+<td>Publishes the current scene as a template for a given step.</td>
+</tr>
+<tr>
+<td>ramSettings</td>
+<td></td>
+<td>Shows the settings dialog for the add-on.</td>
+</tr>
+<tr>
+<td>ramOpenRamses</td>
+<td></td>
+<td>Attempts to launch the <em>Ramses</em> application.</td>
+</tr>
+</tbody>
+</table></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+<div></div>
+
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../video.js"></script>
+    <script src="../../../meta.js"></script>
+    <script src="../../../collapser.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
