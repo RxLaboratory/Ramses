@@ -46,8 +46,23 @@ nav:
         - Ramses Application:
             - Introduction: components/client/index.md
             - Installation and settings: components/client/install.md
-            - Administration: components/client/admin.md
-            - Project settings: components/client/project.md
+            - Administration:
+                - Introduction: components/client/admin.md
+                - Users: components/client/users.md
+                - Projects: components/client/projects.md
+                - Template Steps: components/client/templatesteps.md
+                - Template Asset Groups: components/client/templateassetgroups.md
+                - States: components/client/states.md
+                - File Types: components/client/filetypes.md
+                - Applications: components/client/applications.md
+            - Project settings:
+                - Introduction: components/client/project.md
+                - Steps: components/client/steps.md
+                - Pipe Types: components/client/pipetypes.md
+                - Asset Groups: components/client/assetgroups.md
+                - Assets: components/client/assets.md
+                - Sequences: components/client/sequences.md
+                - Shots: components/client/shots.md
             - Pipeline editor: components/client/pipeline.md
             - Assets and shots production tracking: components/client/production.md
             - Schedule and statistics: components/client/schedule.md
