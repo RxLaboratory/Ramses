@@ -1,14 +1,16 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing steps
 
 !!! note
-    The API also provides an access to "template steps" which can be assigned to projects. The calls are exactly the same except you have to insert the "Template" word (e.g. use `createTemplateStep` instead of `createStep`)
+    The *API* also provides an access to "template steps" which can be assigned to projects. The calls are exactly the same except you have to insert the "Template" word (e.g. use `createTemplateStep` instead of `createStep`)
 
 !!! hint
     There is no method to retrive steps directly; steps are returned by the project method [`getProjects`](projects.md#getprojects)
 
-[TOC]
-
 ## createStep
+
+`http://your.server/ramses/?createStep`
 
 Creates a new step in the database and assigns it to a project.
 
@@ -18,7 +20,7 @@ Creates a new step in the database and assigns it to a project.
 - *shortName*: **string**. The new shortName.
 - *projectUuid*: **string**. The UUID of the project to assign the step to.
 - *uuid*: **string** (optionnal). The step's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 !!! note
     When creating a template step with `createTemplateStep`, omit the *projectUuid* attribute.
@@ -27,12 +29,7 @@ Creates a new step in the database and assigns it to a project.
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createStep&name=Rigging&shortName=RIG&projectUuid=456&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -46,6 +43,8 @@ Reply:
 
 ## updateStep
 
+`http://your.server/ramses/?updateStep`
+
 Update step info in the database.
 
 **Query attributes:**
@@ -54,20 +53,15 @@ Update step info in the database.
 - *shortName*: **string**. The new (or current for no change) shortName.
 - *comment*: **string**. The new comment.
 - *type*: **string** (optionnal). The type of the step. One of `asset`, `shot`, `pre`, or `post`.
-- *order*: **int** (optionnal). The order of the step in the production pipeline.
+- *color*: **string** (optionnal). The color to use in the UI to display this step.
 - *uuid*: **string**. The user's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login)
+- *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updateStep&name=Rigging&shortName=RIG&comment=A comment&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -81,24 +75,21 @@ Reply:
 
 ## setStepOrder
 
+`http://your.server/ramses/?setStepOrder`
+
 Moves a step in the list. This method changes only the order value of the given step.
 
 **Query attributes:**
 
 - *order*: **intenger**. The new order for the shot.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?setStepOrder&order=6&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -112,24 +103,21 @@ Reply:
 
 ## moveStep
 
+`http://your.server/ramses/?moveStep`
+
 Moves a step in the list. This method will update the order of all the other steps of the same project accordingly.
 
 **Query attributes:**
 
 - *order*: **intenger**. The new order for the shot.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?moveStep&order=6&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -143,23 +131,20 @@ Reply:
 
 ## removeStep
 
+`http://your.server/ramses/?removeStep`
+
 Removes a step from the database.
 
 **Query attributes:**
 
 - *uuid*: **string**. The step's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removeStep&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -171,69 +156,43 @@ Reply:
 }
 ```
 
-## assignUser
+## setStepEstimations
 
-Assigns a user to a step.
+`http://your.server/ramses/?setStepEstimations`
+
+Updates the default estimations for this step
 
 **Query attributes:**
 
-- *stepUuid*: **string**. The step's Universal Unique Identifier.
-- *userUuid*: **string**. The user's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *uuid*: **string**. The step's Universal Unique Identifier.
+- *method*: **string**. For shot steps, the method to use for estimations. One of `shot` or `second`.
+- *veryEasy*: **float**. The estimation for very easy items, in days.
+- *easy*:**float**. The estimation for easy items, in days.
+- *medium*: **float**. The estimation for medium items, in days.
+- *hard*: **float**. The estimation forhard items, in days.
+- *veryHard*: **float**. The estimation for very hard items, in days.
+- *multiplyGroupUuid*: **string**. For shot steps, the uuid of an asset group used to multiply estimations.
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?assignUser&stepUuid=123&userUuid=456&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
     "accepted": true,
-    "query": "assignUser",
+    "query": "setStepEstimations",
     "success": true,
-    "message": "User assigned to step.",
-    "content": { }
-}
-```
-
-## unassignUser
-
-Unassigns a user from a step.
-
-**Query attributes:**
-
-- *stepUuid*: **string**. The step's Universal Unique Identifier.
-- *userUuid*: **string**. The user's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
-
-**Reply content:**
-
-Empty
-
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?unassignUser&stepUuid=123&userUuid=456&token=123`
-
-Reply:
-
-```json
-{
-    "accepted": true,
-    "query": "unassignUser",
-    "success": true,
-    "message": "User unassigned from step.",
+    "message": "Step updated.",
     "content": { }
 }
 ```
 
 ## assignApplication
+
+`http://your.server/ramses/?assignApplication`
 
 Assigns an application to a step.
 
@@ -241,18 +200,13 @@ Assigns an application to a step.
 
 - *stepUuid*: **string**. The step's Universal Unique Identifier.
 - *applicationUuid*: **string**. The application's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?assignApplication&stepUuid=123&applicationUuid=456&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -266,24 +220,21 @@ Reply:
 
 ## unassignApplication
 
+`http://your.server/ramses/?unassignApplication`
+
 Unassigns an application from a step.
 
 **Query attributes:**
 
 - *stepUuid*: **string**. The step's Universal Unique Identifier.
 - *applicationUuid*: **string**. The application's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?unassignApplication&stepUuid=123&applicationUuid=456&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

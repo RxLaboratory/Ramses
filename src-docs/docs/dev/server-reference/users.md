@@ -1,8 +1,10 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing users
 
-[TOC]
-
 ## updateUser
+
+`http://your.server/ramses/?updateUser`
 
 Logs in with a username and a (hashed) password.
 
@@ -14,18 +16,13 @@ Logs in with a username and a (hashed) password.
 - *role*: **string** (optionnal). The new role of the user. One of `admin`, `project`, `lead`, or `standard`.
 - *folderPath*: **string** (optionnal). The path for the user folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updateUser&name=Nicolas Dufresne&shortName=Duduf&comment=A comment&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -39,6 +36,8 @@ Reply:
 
 ## updatePassword
 
+`http://your.server/ramses/?updatePassword`
+
 Changes the password of a specific user
 
 **Query attributes:**
@@ -46,21 +45,16 @@ Changes the password of a specific user
 - *current*: **string**. The current (hashed) password.
 - *new*: **string**. The new (hashed) password.
 - *uuid*: **string**. The user's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
-!!! note
+!!! tip
     Your application / client should not send a clear password, but it should hash it first, even when using a secure/SSL connection.
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updatePassword&current=123&new=456&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -74,11 +68,13 @@ Reply:
 
 ## getUsers
 
+`http://your.server/ramses/?getUsers`
+
 Retrieves the list of all users.
 
 **Query attributes:**
 
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
@@ -86,16 +82,12 @@ The server replies an array of user information. Each user is an object with the
 
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
+- *comment*: **string**. A comment.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *folderPath*: **string**. The user folder path.
 - *role*: **string**. The userrole. One of `admin`, `project`, `lead`, or `standard`.
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?getUsers&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -124,6 +116,8 @@ Reply:
 
 ## createUser
 
+`http://your.server/ramses/?createUser`
+
 Creates a new user in the database.
 
 **Query attributes:**
@@ -137,12 +131,7 @@ Creates a new user in the database.
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createUser&name=Nicolas Dufresne&shortName=Duduf&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -156,23 +145,20 @@ Reply:
 
 ## removeUser
 
+`http://your.server/ramses/?removeUser`
+
 Removes a user from the database.
 
 **Query attributes:**
 
 - *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removeUser&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

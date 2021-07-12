@@ -1,8 +1,10 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # General queries
 
-[TOC]
-
 ## ping
+
+`http://your.server/ramses/?ping`
 
 Use this query to test if the server is available before logging in.
 
@@ -11,12 +13,7 @@ Use this query to test if the server is available before logging in.
 - *version*: **string**. The version of the current Ramses Server.
 - *installed*: **boolean**. False if the server is not correctly installed (i.e. the install script has not been run). See the [*Server installatio*](../../install/server.md) section of this documentation.
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?ping`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -25,13 +22,15 @@ Reply:
     "success": true,
     "message": "Server Ready!",
     "content": {
-        "version": "0.0.1",
+        "version": "0.1.1-Alpha",
         "installed": true
     }
 }
 ```
 
 ## login
+
+`http://your.server/ramses/?login`
 
 Logs in with a username and a (hashed) password.
 
@@ -45,7 +44,7 @@ Logs in with a username and a (hashed) password.
 
 **Reply content:**
 
-The server replies with the user which has logged in. Note that the content also includes the *token* you'll need for further requests.
+If successful, the server replies with the user who's logged in. Note that the content also includes the *token* you'll need for further requests.
 
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
@@ -54,12 +53,9 @@ The server replies with the user which has logged in. Note that the content also
 - *role*: **string**. The userrole.
 - *token*: **string**. The token to use for further requests.
 
-**Examples:**
+If not successful, the content is empty and the message explains the error.
 
-Query:  
-`http://your.server/ramses/?login&username=Duduf&password=123456`
-
-Reply:
+**Successful reply body**:
 
 ```json
 {
@@ -78,13 +74,27 @@ Reply:
 }
 ```
 
+**Unsuccesful reply body**:
+
+```json
+{
+    "accepted":true,
+    "success":false,
+    "message":"Invalid username",
+    "query":"login",
+    "content":[]
+}
+```
+
 ## init
+
+`http://your.server/ramses/?init`
 
 This special requests is used to retrieve all useful information when initializing the *Ramses Client*. It groups together in a single request the data which can be retrieved individually by `getUsers`, `getTemplateSteps`, `getTemplateAssetGroups`, `getStates`, `getFileTypes`, `getApplications` and `getProjects`. The project data contains only general project information (resolution, framerate...) but not the project content (shots, assets...). Use `getProject` to retrieve a specific project content.
 
 **Query attributes:**
 
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
@@ -98,12 +108,7 @@ The server replies with all the data. Read the documentation for the correspondi
 - *applications*: **array**.
 - *projects*: **array**.
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?init&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

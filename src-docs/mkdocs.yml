@@ -106,6 +106,7 @@ nav:
             - Pipe queries: dev/server-reference/pipes.md
             - PipeFiles queries: dev/server-reference/pipefiles.md
             - Project queries: dev/server-reference/projects.md
+            - Schedule queries: dev/server-reference/schedule.md
             - Sequence queries: dev/server-reference/sequences.md
             - Shot queries: dev/server-reference/shots.md
             - State queries: dev/server-reference/states.md

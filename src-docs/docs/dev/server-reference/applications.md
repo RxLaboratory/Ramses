@@ -1,8 +1,10 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing applications
 
-[TOC]
-
 ## createApplication
+
+`http://your.server/ramses/?createApplication`
 
 Creates a new application e in the database.
 
@@ -10,20 +12,11 @@ Creates a new application e in the database.
 
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
-- *executableFilePath*: **string**. The path to the main executable binary of the application. Don't forget to encode `/` and `\` in the URL!
+- *executableFilePath*: **string**. The path to the main executable binary of the application.
 - *uuid*: **string** (optionnal). The file type's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
-**Reply content:**
-
-Empty
-
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createFileType&name=Autodesk Maya&shortName=Maya&executableFilePath=%2Fusr%2Fbin%2Fmaya&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -37,11 +30,13 @@ Reply:
 
 ## getApplications
 
+`http://your.server/ramses/?getApplications`
+
 Retrieves the list of all applications.
 
 **Query attributes:**
 
-None
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
@@ -52,12 +47,7 @@ The server replies an array of application information. Each application is an o
 - *executableFilePath*: **string**. The path to the executable binary of the application.
 - *uuid*: **string**. The Universal Unique Identifier of this application.
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?getApplications&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -84,6 +74,8 @@ Reply:
 
 ## updateApplication
 
+`http://your.server/ramses/?updateApplication`
+
 Update application info in the database.
 
 **Query attributes:**
@@ -92,19 +84,14 @@ Update application info in the database.
 - *shortName*: **string**. The username.
 - *comment*: **string**. The new comment.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
-- *executableFilePath*: **string**. The path to the executable binary of the application. Don't forget to encode `/` and `\` in the URL!
-- *token*: **string**. The session token returned with [*login*](general.md#login)
+- *executableFilePath*: **string**. The path to the executable binary of the application.
+- *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updateApplication&name=Autodesk Maya&shortName=Maya&executableFilePath=%2Fusr%2Fbin%2Fmaya&comment=A comment&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -118,23 +105,20 @@ Reply:
 
 ## removeApplication
 
+`http://your.server/ramses/?removeApplication`
+
 Removes an application from the database.
 
 **Query attributes:**
 
 - *uuid*: **string**. The application's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removeApplication&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -146,8 +130,9 @@ Reply:
 }
 ```
 
-
 ## assignFileType
+
+`http://your.server/ramses/?assignFileType`
 
 Assigns a file type to an application.
 
@@ -156,18 +141,13 @@ Assigns a file type to an application.
 - *applicationUuid*: **string**. The Applcation's Universal Unique Identifier.
 - *fileTypeUuid*: **string**. The File Type's Universal Unique Identifier.
 - *type*: **string** (optional). The type, an enumerated value in `native`, `import`, `export`. Default is `native`.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?assignFileType&applicationUuid=123&fileTypeUuid=456&type=import&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -181,6 +161,8 @@ Reply:
 
 ## unassignFileType
 
+`http://your.server/ramses/?unassignFileType`
+
 Unassigns a file type from an application.
 
 **Query attributes:**
@@ -188,18 +170,13 @@ Unassigns a file type from an application.
 - *applicationUuid*: **string**. The Applcation's Universal Unique Identifier.
 - *fileTypeUuid*: **string**. The File Type's Universal Unique Identifier.
 - *type*: **string** (optional). The type, an enumerated value in `native`, `import`, `export`. If left empty, the file type is removed for all types.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?unassignUser&applicationUuid=123&fileTypeUuid=456&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

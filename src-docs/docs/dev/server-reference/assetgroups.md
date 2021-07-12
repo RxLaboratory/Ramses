@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing asset groups
 
 !!! note
@@ -6,9 +8,9 @@
 !!! hint
     There is no method to retrieve asset groups directly; asset groups are returned by the project method [`getProjects`](projects.md#getprojects)
 
-[TOC]
-
 ## createAssetGroup
+
+`http://your.server/ramses/?createAssetGroup`
 
 Creates a new asset group in the database and assigns it to a project.
 
@@ -18,7 +20,7 @@ Creates a new asset group in the database and assigns it to a project.
 - *shortName*: **string**. The new shortName.
 - *projectUuid*: **string**. The UUID of the project to assign the asset group to.
 - *uuid*: **string** (optionnal). The asset group's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 !!! note
     When creating a template asset group with `createTemplateAssetGroup`, omit the *projectUuid* attribute.
@@ -27,12 +29,7 @@ Creates a new asset group in the database and assigns it to a project.
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createAssetGroup&name=Rigging&shortName=RIG&projectUuid=456&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -46,6 +43,8 @@ Reply:
 
 ## updateAssetGroup
 
+`http://your.server/ramses/?updateAssetGroup`
+
 Update asset group info in the database.
 
 **Query attributes:**
@@ -54,18 +53,13 @@ Update asset group info in the database.
 - *shortName*: **string**. The new (or current for no change) shortName.
 - *comment*: **string**. The new comment.
 - *uuid*: **string**. The asset group's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login)
+- *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updateAssetGroup&name=Rigging&shortName=RIG&comment=A comment&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -79,23 +73,20 @@ Reply:
 
 ## removeAssetGroup
 
+`http://your.server/ramses/?removeAssetGroup`
+
 Removes an asset group from the database.
 
 **Query attributes:**
 
 - *uuid*: **string**. The asset group's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removeAssetGroup&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

@@ -1,8 +1,10 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing file types
 
-[TOC]
-
 ## createFileType
+
+`http://your.server/ramses/?createFileType`
 
 Creates a new file type in the database.
 
@@ -12,18 +14,13 @@ Creates a new file type in the database.
 - *shortName*: **string**. The new shortName. This should be the default file extension.
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
 - *uuid*: **string** (optionnal). The file type's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createFileType&name=Maya Ascii&shortName=.ma&extensions=ma&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -36,6 +33,8 @@ Reply:
 ```
 
 ## getFileTypes
+
+`http://your.server/ramses/?getFileTypes`
 
 Retrieves the list of all file types.
 
@@ -52,13 +51,9 @@ The server replies an array of file type information. Each file type is an objec
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
 - *previewable*: **int**. Whether this file type is used for previews. 1 or 0.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?getFileTypes&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -91,6 +86,8 @@ Reply:
 
 ## updateFileType
 
+`http://your.server/ramses/?updateFileType`
+
 Update file type info in the database.
 
 **Query attributes:**
@@ -101,18 +98,13 @@ Update file type info in the database.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
 - *previewable*: **int**. Whether this file type is used for previews. 1 or 0.
-- *token*: **string**. The session token returned with [*login*](general.md#login)
+- *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updateFileType&name=Maya Ascii&shortName=.ma&extensions=ma&comment=A comment&previewable=0&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -126,23 +118,20 @@ Reply:
 
 ## removeFileType
 
+`http://your.server/ramses/?removeFileType`
+
 Removes a file type from the database.
 
 **Query attributes:**
 
 - *uuid*: **string**. The file type's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removeFileType&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

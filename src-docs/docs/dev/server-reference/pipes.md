@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing pipes
 
 Pipes are the connections between *[Steps](steps.md)* which form the pipeline.
@@ -7,6 +9,8 @@ Pipes are the connections between *[Steps](steps.md)* which form the pipeline.
 
 ## createPipe
 
+`http://your.server/ramses/?createPipe`
+
 Creates a new pipe in the database.
 
 **Query attributes:**
@@ -14,18 +18,13 @@ Creates a new pipe in the database.
 - *inputUuid*: **string**. The UUID of the input step.
 - *outputUuid*: **string**. The UUID of the output step.
 - *uuid*: **string** (optional). The pipe's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createPipe&inputUuid=456&outputUuid=789&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -39,6 +38,8 @@ Reply:
 
 ## updatePipe
 
+`http://your.server/ramses/?updatePipe`
+
 Update pipe info in the database.
 
 **Query attributes:**
@@ -48,18 +49,13 @@ Update pipe info in the database.
 - *colorSpaceUuid*: **string**. The UUID of the color space for the files going through this pipe.
 - *filetypeUuid*: **string**. The UUID of the file type going through this pipe.
 - *uuid*: **string**. The pipe's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updatePipe&colorSpaceUuid=123&filetypeUuid=456&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -73,23 +69,20 @@ Reply:
 
 ## removePipe
 
+`http://your.server/ramses/?removePipe`
+
 Removes a pipe group from the database.
 
 **Query attributes:**
 
 - *uuid*: **string**. The pipe's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removePipe&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -103,24 +96,21 @@ Reply:
 
 ## assignPipeFile
 
+`http://your.server/ramses/?assignPipeFile`
+
 Assigns a pipe file type to a pipe.
 
 **Query attributes:**
 
 - *pipeFileUuid*: **string**. The PipeFile's Universal Unique Identifier.
 - *pipeUuid*: **string**. The Pipe's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?assignPipeFile&pipeFileUuid=123&pipeUuid=456&&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -134,24 +124,21 @@ Reply:
 
 ## unassingPipeFile
 
+`http://your.server/ramses/?unassingPipeFile`
+
 Unassigns a pipe file type from a pipe.
 
 **Query attributes:**
 
 - *pipeFileUuid*: **string**. The PipeFile's Universal Unique Identifier.
 - *pipeUuid*: **string**. The Pipe's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?unassingPipeFile&pipeFileUuid=123&pipeUuid=456&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

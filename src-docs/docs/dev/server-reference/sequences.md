@@ -1,11 +1,13 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing sequences
 
 !!! hint
     There is no method to retrieve sequences directly; sequences are returned by the project method [`getProjects`](projects.md#getprojects)
 
-[TOC]
-
 ## createSequence
+
+`http://your.server/ramses/?createSequence`
 
 Creates a new squence in the database and assigns it to a project.
 
@@ -16,18 +18,13 @@ Creates a new squence in the database and assigns it to a project.
 - *comment*: **string**. The new comment.
 - *projectUuid*: **string**. The UUID of the project to assign the sequence to.
 - *uuid*: **string** (optionnal). The asset group's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createSequence&name=Sequence 01&shortName=SEQ01&comment=A comment&projectUuid=456&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -41,25 +38,23 @@ Reply:
 
 ## updateSequence
 
+`http://your.server/ramses/?updateSequence`
+
 Update sequence info in the database.
 
 **Query attributes:**
 
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
+- *comment*: **string**. A new comment.
 - *uuid*: **string**. The sequence's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login)
+- *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updateSequence&name=Sequence 01&shortName=SEQ01&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -73,6 +68,8 @@ Reply:
 
 ## removeSequence
 
+`http://your.server/ramses/?removeSequence`
+
 Removes a sequence from the database.
 
 **Query attributes:**
@@ -84,12 +81,7 @@ Removes a sequence from the database.
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removeSequence&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -100,3 +92,32 @@ Reply:
     "content": { }
 }
 ```
+
+## setSequenceOrder
+
+`http://your.server/ramses/?setSequenceOrder`
+
+Changes the order of a sequence in the project.
+
+**Query attributes:**
+
+- *uuid*: **string**. The sequence's Universal Unique Identifier.
+- *order*: **int**. The new order.
+- *token*: **string**. The session token returned with [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Reply body**:
+
+```json
+{
+    "accepted": true,
+    "query": "setSequenceOrder",
+    "success": true,
+    "message": "Sequence moved.",
+    "content": { }
+}
+```
+

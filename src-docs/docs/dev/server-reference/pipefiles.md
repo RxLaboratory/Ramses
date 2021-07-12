@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing pipe files
 
 Pipe Files describe the file formats and colors which go through the *[Pipes](pipes.md)*.
@@ -6,6 +8,8 @@ Pipe Files describe the file formats and colors which go through the *[Pipes](pi
     There is no method to retrieve pipe files directly; pipe files are returned by the project method [`getProject`](projects.md#getproject)
 
 ## createPipeFile
+
+`http://your.server/ramses/?createPipeFile`
 
 Creates a new pipe file in the database.
 
@@ -16,18 +20,9 @@ Creates a new pipe file in the database.
 - *fileTypeUuid*: **string**. The UUID of the associated file type.
 - *colorSpaceUuid*: **string** (optional). The UUID of the associated color space (if any).
 - *projectUuid*: **string**. The UUID of the project this pipe file belongs to.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
-**Reply content:**
-
-Empty
-
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createPipeFile&shortName=newPipeFile&fileTypeUuid=456&colorSpaceUuid=789&projectUuid=789&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -41,6 +36,8 @@ Reply:
 
 ## updatePipeFile
 
+`http://your.server/ramses/?updatePipeFile`
+
 Updates pipe file info in the database.
 
 **Query attributes:**
@@ -50,18 +47,13 @@ Updates pipe file info in the database.
 - *comment*: **string**. The new comment.
 - *fileTypeUuid*: **string** (optional). The UUID of the associated file type.
 - *colorSpaceUuid*: **string** (optional). The UUID of the associated color space.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updatePipeFile&shortName=newPipeFile&fileTypeUuid=456&comment=A comment&colorSpaceUuid=789&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -75,23 +67,20 @@ Reply:
 
 ## removePipeFile
 
+`http://your.server/ramses/?removePipeFile`
+
 Removes a pipe file from the database.
 
 **Query attributes:**
 
 - *uuid*: **string**. The pipe file's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removePipeFile&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {

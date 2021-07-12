@@ -1,8 +1,10 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Queries for managing states
 
-[TOC]
-
 ## createState
+
+`http://your.server/ramses/?createState`
 
 Creates a new state in the database.
 
@@ -11,18 +13,13 @@ Creates a new state in the database.
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
 - *uuid*: **string** (optionnal). The step's Universal Unique Identifier.
-- *token*: **string**. The session token returned with [*login*](general.md#login).
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?createState&name=Work in progress&shortName=WIP&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -36,11 +33,13 @@ Reply:
 
 ## getStates
 
+`http://your.server/ramses/?getStates`
+
 Retrieves the list of all states.
 
 **Query attributes:**
 
-None
+- *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
 
@@ -48,16 +47,12 @@ The server replies an array of state information. Each state is an object with t
 
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
+- *comment*: **string**. The comment.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *color*: **string**. The color to use to display the state, hexadecimal web color preceded with a `#`.
 - *completionRatio*: **int**. The completion ratio in percentage.
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?getStates&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -69,6 +64,7 @@ Reply:
         {
             "name": "Stand by",
             "shortName": "STB",
+            "comment": "A Comment",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "color": "#6d6d6d",
             "completionRatio": 0
@@ -76,6 +72,7 @@ Reply:
         {
             "name": "To do",
             "shortName": "TODO",
+            "comment": "A Comment",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "color": "#00aaff",
             "completionRatio": 0
@@ -83,6 +80,7 @@ Reply:
         {
             "name": "Finished",
             "shortName": "OK",
+            "comment": "A Comment",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "color": "#00aa00",
             "completionRatio": 100
@@ -92,6 +90,8 @@ Reply:
 ```
 
 ## updateState
+
+`http://your.server/ramses/?updateState`
 
 Update state info in the database.
 
@@ -109,12 +109,7 @@ Update state info in the database.
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?updateState&name=Work in progress&shortName=WIP&comment=A Comment&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
@@ -128,6 +123,8 @@ Reply:
 
 ## removeState
 
+`http://your.server/ramses/?removeState`
+
 Removes a state from the database.
 
 **Query attributes:**
@@ -139,12 +136,7 @@ Removes a state from the database.
 
 Empty
 
-**Examples:**
-
-Query:  
-`http://your.server/ramses/?removeState&uuid=123&token=123`
-
-Reply:
+**Reply body**:
 
 ```json
 {
