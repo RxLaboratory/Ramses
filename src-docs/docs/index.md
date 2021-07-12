@@ -1,10 +1,12 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
 
 # Ramses - The Rainbox Asset Management System
 
 !!! warning
     **Ramses is still under active development**, and this documentation is still being written.  
     The first public Beta version will be available very soon.
+
+    We strongly invite you to read the [changelog](changelog.md) to know what's going on, and especially to have a look at the [known issues](changelog.md).
 
 ![](/img/LAB_Ramses_Doc_Schemas.png)
 
