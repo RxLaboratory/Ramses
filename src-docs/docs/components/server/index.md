@@ -23,7 +23,7 @@ The recommended configuration is a standard *AMP* stack (*Apache* - *mySQL* - *P
 - *`50 MB`* should be more than enough for the vast majority of users for the *mySQL* database.
 
 !!! note
-    As *Ramses* is still in development, the only compatible SQL database is *mySQL*. We may add support for other databases in the future, include *SQLite* so the *Ramses Server* could be use without an actual *SQL* database.
+    As *Ramses* is still in development, the only compatible SQL database is *mySQL*. We may add support for other databases in the future, including *SQLite* so the *Ramses Server* could be used without an actual *SQL* database.
 
 We provide a detailed, step-by-step guide to help you install your own web server satisfying these requirements on *Windows*, *Linux* or *Mac OS* if you need to, before installing the *Ramses Server*: [install your own webserver](web-server.md).
 

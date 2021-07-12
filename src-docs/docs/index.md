@@ -4,7 +4,6 @@
 
 !!! warning
     **Ramses is still under active development**, and this documentation is still being written.  
-    The first public Beta version will be available very soon.
 
     We strongly invite you to read the [changelog](changelog.md) to know what's going on, and especially to have a look at the [known issues](changelog.md).
 
@@ -24,13 +23,15 @@ Let's have a look at a few key features.
 
 ### ▹ Modular and scalable
 
-*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software improve your workflow and versionning, you could use only on of the [*Ramses Add-ons*](components/addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](#) and maybe connect it to the [*Ramses Server*](#) to stay connected with your team.
+*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software to improve your workflow and versionning, you could use only one of the [*Ramses Add-ons*](components/addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](components/client/index.md) and maybe connect it to the [*Ramses Server*](#) to stay connected with your team.
 
 Of course, each of these components can work together and share information for **a seamless integration into your workflow**.
 
-[***▸ Read more***](#)
+This scalability makes *Ramses* a good choice for individuals as well as teams of all sizes.
 
-### ▹ Planning
+[***▸ Read more***](components/addons/index.md)
+
+### ▹ Production Planning
 
 ![](img/client/schedule.png)
 
@@ -38,7 +39,7 @@ Of course, each of these components can work together and share information for 
 
 For each shot and asset of the project, you'll be able to (automatically) estimate how long it will take to produce, and *Ramses* will keep track of all estimations for you so you can plan accordingly.
 
-[***▸ Read more***](#)
+[***▸ Read more***](pipeline/planning.md)
 
 ### ▹ Production Tracking
 
@@ -48,7 +49,7 @@ At any time, *Ramses* can tell you where you are in the production, how late (or
 
 You can **always keep a close (or overall) look at the production**, and check which assets and shots are longer or shorter to produce, and the state in which they are at any time.
 
-[***▸ Read more***](#)
+[***▸ Read more***](pipeline/production.md)
 
 ### ▹ Pipeline automation
 
@@ -58,12 +59,12 @@ In combination with the *Ramses Add-ons* which integrate *Ramses* in your favori
 
 <figure>
   <img src="img/maya/shelf.png"/>
-  <figcaption>An example: the Autodesk Maya shelf of the Ramses Add-on.</figcaption>
+  <figcaption>An example: the Autodesk Maya shelf of the Ramses Maya Add-on.</figcaption>
 </figure>
 
 With a nice and modern nodal view, it's easy to design your pipeline, connecting each step and setting how the data should go from one step to the other. All this information will be used both by the *Ramses* production tracking algorithms and the *Add-ons* to help you **focus on your real work: creation**.
 
-[***▸ Read more***](#)
+[***▸ Read more***](pipeline/pipeline.md)
 
 ### ▹ (Very) Easy-to-use
 
@@ -71,7 +72,7 @@ A tool like *Ramses* is here to help, not to give you a headache.
 
 All user interface components have been carefully crafted to be beautiful, but most of all to be **intuitive and practical**. Everything has to be clear, precise, and meaningful.
 
-Of course, there's this comprehensive documentation if you have any doubt..
+Of course, there's this comprehensive documentation if you have any doubt...
 
 ### ▹ And also...
 
@@ -114,6 +115,7 @@ There's also a lot of ongoing work to extend the supported creative applications
 | Blender | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
 | Inkscape | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |
 | Krita | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
+| The Foundry Nuke | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
 
 Legend:  
 ![icon](img/icons/green_tick.png){: style="width:16px;"} Available | ![icon](img/icons/blue_circle.png){: style="width:16px;"} In development | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} Planned | ![icon](img/icons/red_circle.png){: style="width:16px;"} Not supported
@@ -126,7 +128,6 @@ Legend:
 - **The Pipeline & Production Management**
     - [Introduction](pipeline/index.md)
     - [Administration](pipeline/administration.md)
-    - [User Management](pipeline/users.md)
     - [Pipeline](pipeline/pipeline.md)
     - [Production tracking](pipeline/production.md)
     - [Planning](pipeline/planning.md)

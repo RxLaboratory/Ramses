@@ -1,16 +1,16 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+
 # Folder Structure: the Ramses Tree
 
-One of Ramses' goals is to manage all your files and folders; sometimes, you may still need to manually add, remove, or edit files and folders through your explorator, in which case you should always try to respect the *Ramses Tree* described here.
+One of Ramses' goals is to manage all your files and folders; sometimes, you may still need to manually add, remove, or edit files and folders through your file explorer, in which case you should always try to respect the *Ramses Tree* described here.
 
-This document will also help you find your files should Ramses be unavailable for some reason.
-
-[TOC]
+This document will also help you find your files should *Ramses* be unavailable for some reason.
 
 ## Introduction
 
-All folders inside the *Ramses Tree* follow the Ramses [Naming Scheme](naming.md).
+All folders inside the *Ramses Tree* **follow the Ramses [Naming Scheme](naming.md)**.
 
-The folders used by Ramses can be located either locally or on remote computers and servers. The supported protocols (SMB, FTP...) may vary depending on the platform (read below for more information).
+The folders used by Ramses can be located either **locally or on remote computers and servers**. The supported protocols (*SMB*, *FTP*...) may vary depending on the platform (read below for more information).
 
 Ramses includes a system of *alternative trees*, which means you can use different paths to folders used by Ramses, and that it is compatible with virtually all syncing applications (Dropbox, Syncthing, Synology...), wether they are automatic or manual (like backup tools).
 
@@ -23,13 +23,13 @@ If a specific file or folder is not found in the *main tree*, Ramses will automa
 
 Ramses should be able to access files located on remote locations using the *Samba* (*SMB*) protocol, using standard URL starting with `\\server-name`.
 
-Another way to access remote locations, which enables *FTP* and other protocols support, is to use *Windows Network Drives* to mount the remote locations. To make it easy to deploy Ramses on several devices, they should all use the same letter for the network drive.
+Another way to access remote locations, which enables *FTP* and other protocols support, is to use *Windows Network Drives* to mount the remote locations. To make it easy to deploy Ramses on several devices, they should all use the same drive letter.
 
 ### Remote files on Unix-like Systems (Linux, Mac OS)
 
 The quickest and easiest way to use Ramses on remote folders on Unix-like systems is to automatically mount the remote locations in a specific folder. This can work for a lot of different protocols (*Samba*, *FTP(s)*, *SFTP*, *NFS*...)
 
-## The Ramses Folder
+## The Main Ramses Folder
 
 The easiest way to use Ramses to manage all your projects is to define a root folder for all Ramses projects, where Ramses will create a subfolder for each project.
 
@@ -38,81 +38,86 @@ This Ramses folder is also used to store user specific files, some configuration
 Nevertheless, you can always choose another folder to store a specific project, outside of the Ramses Folder.
 
 ```sh
-- Ramses Folder
-    - Config # Configuration files
-    - Projects # All projects
-        - Project01 # First project
-        - Project02 # Second project
-        - ...
-    - Users # User files
-        - User01 # Files for a single user
-            - Config # Configuration files for this user
-        - User02
-            - Config
-        - ...
+┌ Ramses Folder
+│
+├─── Config # Configuration files
+│
+├─┬─ Projects # All projects
+│ ├─── Project01 # First project
+│ ├─── Project02 # Second project
+│ └─── ...
+│
+└─┬─ Users # User files
+  ├─┬─ User01 # Files for a single user
+  │ └─── Config # Configuration files for this user
+  ├─┬─ User02
+  │ └─── Config
+  └─── ...
 ```
+
+!!! hint
+    When using the *Ramses Client*, user and project folders can be located anywhere outside the *Ramses Folder*, it is not mandatory to keep them grouped together there.
 
 ## The Project Folder
 
-These are the contents of the Project folder:
+These are the contents of a Project folder:
 
 ```sh
-- PROJECTID # Root
-    - 00-ADMIN # Project administration
-    - 01-PRE-PROD # Pre-production steps
-    - 02-PROD # Production steps
-    - 03-POST-PROD # Post-production steps
-    - 04-ASSETS # All the Assets
-    - 05-SHOTS # All the Shots
-    - 06-EXPORT # Media files
+┌ PROJECTID # Root
+├─── 00-ADMIN # Project administration
+├─── 01-PRE-PROD # Pre-production steps common files
+├─── 02-PROD # Production steps common files
+├─── 03-POST-PROD # Post-production steps common files
+├─── 04-ASSETS # All the Assets
+├─── 05-SHOTS # All the Shots
+└─── 06-EXPORT # Media files
 ```
 
 The root folder of a project only contains other folders and no files.
 
-The subfolder in the root folder are numbered to help sorting them and quickly find them.
+The subfolders in the root folder are numbered to help sorting them and quickly find them.
 
 Here is an example of a typical project tree, without showing the details in the working directories nor any file.
 
 ```sh
-- PROJECTID # Root
-    - 00-ADMIN
-    - 01-PRE-PROD
-        - PROJECTID_G_SCRIPT # Pre production step
-        - PROJECTID_G_STORYBOARD
-    - 02-PROD
-        - PROJECTID_G_MOD # Common files for the mod step (which works on Assets)
-            - PROJECTID_G_MOD_Templates # Template files for the mod step
-        - PROJECTID_G_RIG # Common files for the rig step
-            - PROJECTID_G_RIG_Templates # Template files for the rig step
-        - PROJECTID_G_TEX
-            - PROJECTID_G_TEX_Templates
-        - PROJECTID_G_ANIM # Common files for the anim step (which works on Shots)
-            - PROJECTID_G_ANIM_Templates
-        - PROJECTID_G_LIGHT
-            - PROJECTID_G_LIGHT_Templates
-        - PROJECTID_G_COMP
-            - PROJECTID_G_COMP_Templates
-    - 03-POST-PROD
-        - PROJECTID_G_EDIT # Post production step 
-    - 04-ASSETS 
-        - Characters # A Group of Assets
-            - PROJECTID_A_TRISTAN # An Asset
-                - PROJECTID_A_TRISTAN_DESIGN # An asset production step
-                - PROJECTID_A_TRISTAN_MOD
-                - PROJECTID_A_TRISTAN_RIG
-                - PROJECTID_A_TRISTAN_TEX
-            - PROJECTID_A_ISOLDE # An Asset
-        - Props # A Group of Assets
-        - Sets # A Group of Assets
-    - 05-SHOTS
-        - PROJECTID_S_01-001 # A Shot
-            - PROJECTID_S_01-001_ANIM # A shot production step
-            - PROJECTID_S_01-001_LIGHT
-            - PROJECTID_S_01-001_COMP
-        - PROJECTID_S_01-002 # A Shot
-        - PROJECTID_S_01-003 # A Shot
-        - PROJECTID_S_02-001 # A Shot
-    - 06-EXPORT
+┌ PROJECTID # Root
+│
+├─── 00-ADMIN
+│
+├─┬─ 01-PRE-PROD
+│ ├─── PROJECTID_G_SCRIPT # Pre production step
+│ └─── PROJECTID_G_STORYBOARD
+│
+├─┬─ 02-PROD
+│ ├─┬─ PROJECTID_G_MOD # Common files for the mod step
+│ │ └─── Templates # Template files for the mod step
+│ └─┬─ PROJECTID_G_RIG # Common files for the rig step
+│   └─── Templates # Template files for the rig step
+│
+├─┬─ 03-POST-PROD
+│ └─── PROJECTID_G_EDIT # Post production step 
+│
+├─┬─ 04-ASSETS 
+│ ├─┬─ Characters # A Group of Assets
+│ │ ├─┬─ PROJECTID_A_TRISTAN # An Asset
+│ │ │ ├─── PROJECTID_A_TRISTAN_DESIGN # An asset production step
+│ │ │ ├─── PROJECTID_A_TRISTAN_MOD
+│ │ │ ├─── PROJECTID_A_TRISTAN_RIG
+│ │ │ └─── PROJECTID_A_TRISTAN_TEX
+│ │ └─── PROJECTID_A_ISOLDE # An Asset
+│ ├─── Props # A Group of Assets
+│ └─── Sets # A Group of Assets
+│
+├─┬─ 05-SHOTS
+│ ├─┬─ PROJECTID_S_01-001 # A Shot
+│ │ ├─── PROJECTID_S_01-001_ANIM # A shot production step
+│ │ ├─── PROJECTID_S_01-001_LIGHT
+│ │ └─── PROJECTID_S_01-001_COMP
+│ ├─── PROJECTID_S_01-002 # A Shot
+│ ├─── PROJECTID_S_01-003 # A Shot
+│ └─── PROJECTID_S_02-001 # A Shot
+│
+└─── 06-EXPORT
 ```
 
 ## A working folder
@@ -122,36 +127,56 @@ A folder containing working files is always organised the same way.
 Here is an example for the modelling step of the asset called *Tristan*.
 
 ```sh
-- PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
-    - PROJECTID_A_TRISTAN_MOD.blend # The main file for modelling Tristan (on Blender)
-    - PROJECTID_A_TRISTAN_MOD_Sculpt.blend # Another resource
-    - _versions # The versionning folder, handled by Ramses.
-        - PROJECTID_A_TRISTAN_MOD_wip001.blend # A WIP version
-        - PROJECTID_A_TRISTAN_MOD_wip002.blend
-        - PROJECTID_A_TRISTAN_MOD_chk003.blend # The version which has to be checked by the lead
-        - PROJECTID_A_TRISTAN_MOD_ok004.blend # The validated version
-        - PROJECTID_A_TRISTAN_MOD_pub005.blend # The version which has been published
-        - PROJECTID_A_TRISTAN_MOD_Sculpt_v001.blend # The first version of a resource
-        - PROJECTID_A_TRISTAN_MOD_Sculpt_v002.blend # The second version of a resource
-    - _publish
-        - PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
-        - PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
-    - _preview
-        - PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
-        - PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
+┌ PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
+│
+├─── PROJECTID_A_TRISTAN_MOD.blend # The main file for modelling Tristan (on Blender)
+├─── PROJECTID_A_TRISTAN_MOD_Sculpt.blend # Another resource
+│
+├─┬─ _versions # The versionning folder, handled by Ramses.
+│ ├─── PROJECTID_A_TRISTAN_MOD_wip001.blend # A WIP version
+│ ├─── PROJECTID_A_TRISTAN_MOD_wip002.blend
+│ ├─── PROJECTID_A_TRISTAN_MOD_chk003.blend # The version which has to be reviewed
+│ ├─── PROJECTID_A_TRISTAN_MOD_ok004.blend # The validated version
+│ ├─── PROJECTID_A_TRISTAN_MOD_pub005.blend # The version which has been published
+│ ├─── PROJECTID_A_TRISTAN_MOD_Sculpt_v001.blend # The first version of a resource
+│ └─── PROJECTID_A_TRISTAN_MOD_Sculpt_v002.blend # The second version of a resource
+│
+├─┬─ _published
+│ ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
+│ └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
+│
+└─┬─ _preview
+  ├─── PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
+  └─── PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
 ```
 
-The *ramses_versions* subfolder contains the versionning and history of the work.
+The *_versions* subfolder contains the versionning and history of the work.
 
-The *published* subfolder contains the published and exported files to be used by other steps.
+The *_published* subfolder contains the published and exported files to be used by other steps.
 
-The *preview* subfolder contains the files for previewing the current work, like videos or images. These files may be used by Ramses to generate thumbnails. Ramses is also able to list, preview, and play these files (if their format is standard and supported).
+The *_preview* subfolder contains the files for previewing the current work, like videos or images. These files may be used by *Ramses* to generate thumbnails. *Ramses* is also able to list, preview, and play these files (if their format is standard and supported).
 
-!!! important
-    The working file and published files do not include the version in their names, and the versionning and history are hidden in a *ramses_versions* subfolder. This way, there can be no mistake about what file to open or import.
+!!! warning
+    The working file and published files do not include the version in their names, and the versionning and history are hidden in a *_versions* subfolder. This way, there can be no mistake about what file to open or import.
 
 !!! note
-    Only Ramses should access the *ramses_versions* subfolder and it should not be needed for the user to manipulate these files.
+    Only *Ramses* should access the *_versions* subfolder and it should not be needed for the user to manipulate these files. Both the *Ramses Client* and *Ramses Add-ons* have a *restore* feature to retrieve previous versions.
 
 !!! tip
     When backuping a project, only the files in the *published* subfolder may be kept.
+
+## Ramses special files and folders
+
+*Ramses* will also store some special files and folders it needs in the *Ramses Tree*.
+
+### _trash Folder
+
+When *Ramses* needs to remove a file, it will automatically be moved in a `_trash` subfolder. If a file with the same name already exists in this `_trash` subfolder, it will be moved in the system trash so it's not overwritten.
+
+### _ramses_data.json File
+
+*Ramses* may create a file named `_ramses_data.json` in any folder. This file is used to store some meta-data associated with the other files in the same folder. This file should stay small, and it should never be manually removed.
+
+### *.ini Files
+
+*Ramses* stores its settings in files with the `.ini` extension. These are standard text files, and should remain only in folders named `Config`. If these files (or the `Config` folders) are removed, this re-initializes the corresponding settings in *Ramses*.

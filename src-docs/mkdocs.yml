@@ -33,7 +33,6 @@ nav:
     - Pipeline & Management:
         - Introduction: pipeline/index.md
         - Administration: pipeline/administration.md
-        - User Management: pipeline/users.md
         - Pipeline: pipeline/pipeline.md
         - Production tracking: pipeline/production.md
         - Planning: pipeline/planning.md
