@@ -95,12 +95,6 @@
                         
                             
 <li >
-    <a href="../../../pipeline/users/">User Management</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../../pipeline/pipeline/">Pipeline</a>
 </li>
 
@@ -157,7 +151,7 @@
         
             
 <li >
-    <a href="../../server/admin.md">Administration</a>
+    <a href="../../server/admin/">Administration</a>
 </li>
 
         
@@ -172,37 +166,43 @@
         
             
 <li >
-    <a href="../../..">Installation and settings</a>
+    <a href="../../client/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Administration</a>
+    <a href="../../client/install/">Installation and settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Project settings</a>
+    <a href="../../client/admin/">Administration</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">The pipeline</a>
+    <a href="../../client/project/">Project settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Assets and shots production management</a>
+    <a href="../../client/pipeline/">Pipeline editor</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Schedule and statistics</a>
+    <a href="../../client/production/">Assets and shots production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../client/schedule/">Schedule and statistics</a>
 </li>
 
         
@@ -259,19 +259,19 @@
         
             
 <li >
-    <a href="../../..">Introduction</a>
+    <a href="../../files/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/naming.md">Naming scheme</a>
+    <a href="../../files/naming/">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/tree.md">Folder structure</a>
+    <a href="../../files/tree/">Folder structure</a>
 </li>
 
         
@@ -562,6 +562,12 @@
         
             
 <li >
+    <a href="../../../dev/server-reference/schedule/">Schedule queries</a>
+</li>
+
+        
+            
+<li >
     <a href="../../../dev/server-reference/sequences/">Sequence queries</a>
 </li>
 
@@ -700,10 +706,6 @@
                         
                     
                         
-                        <li class="second-level "><a href="../../../pipeline/users/">User Management</a></li>
-                        
-                    
-                        
                         <li class="second-level "><a href="../../../pipeline/pipeline/">Pipeline</a></li>
                         
                     
@@ -746,7 +748,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../server/admin.md">Administration</a></li>
+                                    <li class="third-level "><a href="../../server/admin/">Administration</a></li>
                                     
                                 
                             </ul>
@@ -759,27 +761,31 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Installation and settings</a></li>
+                                    <li class="third-level "><a href="../../client/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../client/install/">Installation and settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Project settings</a></li>
+                                    <li class="third-level "><a href="../../client/admin/">Administration</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">The pipeline</a></li>
+                                    <li class="third-level "><a href="../../client/project/">Project settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Assets and shots production management</a></li>
+                                    <li class="third-level "><a href="../../client/pipeline/">Pipeline editor</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Schedule and statistics</a></li>
+                                    <li class="third-level "><a href="../../client/production/">Assets and shots production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../client/schedule/">Schedule and statistics</a></li>
                                     
                                 
                             </ul>
@@ -820,15 +826,15 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Introduction</a></li>
+                                    <li class="third-level "><a href="../../files/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/naming.md">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../../files/naming/">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/tree.md">Folder structure</a></li>
+                                    <li class="third-level "><a href="../../files/tree/">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1037,6 +1043,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../../dev/server-reference/schedule/">Schedule queries</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../../dev/server-reference/sequences/">Sequence queries</a></li>
                                     
                                 
@@ -1127,7 +1137,7 @@
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04" /></p>
 <h1 id="extending-the-ramses-maya-add-on"><img alt="" src="../../../img/icons/maya_sd.svg" style="width:48px;" /> Extending the Ramses Maya Add-on</h1>
 <p>You can easily add features to the <em>Ramses Maya Add-On</em>, especially by registering your own scripts/methods to be run when a status changes, when a scene is being published, or to import items.</p>
-<p>You can also easily use the included <a href="../dev/add-ons-reference/index.md"><em>Ramses Scripting API</em></a> as a <em>Python module</em> to develop your own functions.</p>
+<p>You can also easily use the included <a href="../../../dev/add-ons-reference/"><em>Ramses Scripting API</em></a> as a <em>Python module</em> to develop your own functions.</p>
 <h3 id="getting-started">Getting started</h3>
 <p>Technically, the simplest and recommended way to extend the <em>Ramses Maya Add-On</em> is to add your own module(s) inside the Add-on iteself. It is very easy and this way you do not need to register your script or plug-in with <em>Maya</em>, <em>Ramses</em> takes care of that for you.</p>
 <h4 id="install-the-add-on">Install the Add-On</h4>
@@ -1137,7 +1147,7 @@
 <li><strong><em>icons</em></strong>: The icons used by the Add-On</li>
 <li><strong><em>plug-ins</em></strong>: The actual <em>Python</em> code<ul>
 <li><strong><em>dumaf</em></strong>: Some useful <em>Python</em> code for <em>Maya</em></li>
-<li><strong><em>ramses</em></strong>: The <a href="../dev/add-ons-reference/index.md"><em>Ramses Scripting API</em></a> as a <em>Python module</em></li>
+<li><strong><em>ramses</em></strong>: The <a href="../../../dev/add-ons-reference/"><em>Ramses Scripting API</em></a> as a <em>Python module</em></li>
 <li><strong><em>ramses_maya</em></strong>: The Add-On itself</li>
 </ul>
 </li>
@@ -1190,26 +1200,26 @@ import your_new_module
 <h3 id="callbacks">Callbacks</h3>
 <p><em>Ramses</em> stores three lists of callbacks you can extend.</p>
 <ul>
-<li><a href="../dev/add-ons-reference/ramses.md"><code>Ramses.publishScripts</code></a> contains the functions to be called when a scene is being published.</li>
+<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.publishScripts</code></a> contains the functions to be called when a scene is being published.</li>
 </ul>
-<p>When <em>Ramses</em> publishes a scene, it first copies the scene file to the publish folder, and then calls all the scripts listed there. Each callback you add to this list must take three arguments. Read the <a href="../dev/add-ons-reference/ramses.md">Scripting API Reference</a> for more information.</p>
+<p>When <em>Ramses</em> publishes a scene, it first copies the scene file to the publish folder, and then calls all the scripts listed there. Each callback you add to this list must take three arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
 <ul>
-<li><a href="../dev/add-ons-reference/ramses.md"><code>Ramses.statusScripts</code></a> contains the functions to be called when a scene status changes.</li>
+<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.statusScripts</code></a> contains the functions to be called when a scene status changes.</li>
 </ul>
-<p>When <em>Ramses</em> updates a status, it first copies the scene file to the version folder and calls the <em>Daemon</em> (if available) to notify the update, and then calls all the scripts listed there. Each callback you add to this list must take two arguments. Read the <a href="../dev/add-ons-reference/ramses.md">Scripting API Reference</a> for more information.</p>
+<p>When <em>Ramses</em> updates a status, it first copies the scene file to the version folder and calls the <em>Daemon</em> (if available) to notify the update, and then calls all the scripts listed there. Each callback you add to this list must take two arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
 <ul>
-<li><a href="../dev/add-ons-reference/ramses.md"><code>Ramses.importScripts</code></a> contains the functions to be called when the user selects an item (shot or asset) to import.</li>
+<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.importScripts</code></a> contains the functions to be called when the user selects an item (shot or asset) to import.</li>
 </ul>
-<p>By default, if and only if the list is empty, <em>Ramses</em> imports the selected item in the current scene, in a group named after the item, and in another group named after the asset group if it is an asset. Adding new callbacks to the list will de-activate this default behaviour so you can use your own methods for importing items. Each callback you add to this list must take two arguments. Read the <a href="../dev/add-ons-reference/ramses.md">Scripting API Reference</a> for more information.</p>
+<p>By default, if and only if the list is empty, <em>Ramses</em> imports the selected item in the current scene, in a group named after the item, and in another group named after the asset group if it is an asset. Adding new callbacks to the list will de-activate this default behaviour so you can use your own methods for importing items. Each callback you add to this list must take two arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
 <p>There are two ways to register your methods: by using a <em>Maya</em> command, or by <a href="https://github.com/Rainbox-dev/Ramses-Maya">forking</a> the provided Add-On to add your functions.</p>
 <p>Once the callbacks have been registered, they are automatically called when the user interacts with the add-on and wants to update/import/publish an item.</p>
 <p>You can also explicitly call them by calling these three methods:</p>
 <ul>
-<li><a href="../dev/add-ons-reference/ramses.md"><code>Ramses.updateStatus( item, status, stepShortName )</code></a></li>
-<li><a href="../dev/add-ons-reference/ramses.md"><code>Ramses.importItem( item, filePath, stepShortName )</code></a></li>
-<li><a href="../dev/add-ons-reference/ramses.md"><code>Ramses.publish( item, filePath, stepShortName )</code></a></li>
+<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.updateStatus( item, status, stepShortName )</code></a></li>
+<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.importItem( item, filePath, stepShortName )</code></a></li>
+<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.publish( item, filePath, stepShortName )</code></a></li>
 </ul>
-<p>Read the <a href="../dev/add-ons-reference/ramses.md">Scripting API Reference</a> for more information.</p>
+<p>Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
 <h4 id="adding-your-custom-callbacks">Adding your custom callbacks</h4>
 <p>To register your callbacks, you just have to append them in the corresponding <code>Ramses</code> lists:</p>
 <pre><code class="language-py"># We need to import the Ramses Module (API)

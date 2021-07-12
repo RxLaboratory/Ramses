@@ -95,12 +95,6 @@
                         
                             
 <li >
-    <a href="users/">User Management</a>
-</li>
-
-                        
-                            
-<li >
     <a href="pipeline/">Pipeline</a>
 </li>
 
@@ -157,7 +151,7 @@
         
             
 <li >
-    <a href="../components/server/admin.md">Administration</a>
+    <a href="../components/server/admin/">Administration</a>
 </li>
 
         
@@ -172,37 +166,43 @@
         
             
 <li >
-    <a href="..">Installation and settings</a>
+    <a href="../components/client/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="..">Administration</a>
+    <a href="../components/client/install/">Installation and settings</a>
 </li>
 
         
             
 <li >
-    <a href="..">Project settings</a>
+    <a href="../components/client/admin/">Administration</a>
 </li>
 
         
             
 <li >
-    <a href="..">The pipeline</a>
+    <a href="../components/client/project/">Project settings</a>
 </li>
 
         
             
 <li >
-    <a href="..">Assets and shots production management</a>
+    <a href="../components/client/pipeline/">Pipeline editor</a>
 </li>
 
         
             
 <li >
-    <a href="..">Schedule and statistics</a>
+    <a href="../components/client/production/">Assets and shots production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="../components/client/schedule/">Schedule and statistics</a>
 </li>
 
         
@@ -259,19 +259,19 @@
         
             
 <li >
-    <a href="..">Introduction</a>
+    <a href="../components/files/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../files/naming.md">Naming scheme</a>
+    <a href="../components/files/naming/">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../files/tree.md">Folder structure</a>
+    <a href="../components/files/tree/">Folder structure</a>
 </li>
 
         
@@ -562,6 +562,12 @@
         
             
 <li >
+    <a href="../dev/server-reference/schedule/">Schedule queries</a>
+</li>
+
+        
+            
+<li >
     <a href="../dev/server-reference/sequences/">Sequence queries</a>
 </li>
 
@@ -700,10 +706,6 @@
                         
                     
                         
-                        <li class="second-level "><a href="users/">User Management</a></li>
-                        
-                    
-                        
                         <li class="second-level "><a href="pipeline/">Pipeline</a></li>
                         
                     
@@ -746,7 +748,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../components/server/admin.md">Administration</a></li>
+                                    <li class="third-level "><a href="../components/server/admin/">Administration</a></li>
                                     
                                 
                             </ul>
@@ -759,27 +761,31 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="..">Installation and settings</a></li>
+                                    <li class="third-level "><a href="../components/client/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Administration</a></li>
+                                    <li class="third-level "><a href="../components/client/install/">Installation and settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Project settings</a></li>
+                                    <li class="third-level "><a href="../components/client/admin/">Administration</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">The pipeline</a></li>
+                                    <li class="third-level "><a href="../components/client/project/">Project settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Assets and shots production management</a></li>
+                                    <li class="third-level "><a href="../components/client/pipeline/">Pipeline editor</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Schedule and statistics</a></li>
+                                    <li class="third-level "><a href="../components/client/production/">Assets and shots production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../components/client/schedule/">Schedule and statistics</a></li>
                                     
                                 
                             </ul>
@@ -820,15 +826,15 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="..">Introduction</a></li>
+                                    <li class="third-level "><a href="../components/files/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../files/naming.md">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../components/files/naming/">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../files/tree.md">Folder structure</a></li>
+                                    <li class="third-level "><a href="../components/files/tree/">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1037,6 +1043,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../dev/server-reference/schedule/">Schedule queries</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../dev/server-reference/sequences/">Sequence queries</a></li>
                                     
                                 
@@ -1107,7 +1117,11 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#ramses-the-rx-asset-management-system-introduction">Ramses - The Rx Asset Management System: Introduction</a></li>
+                <li class="second-level"><a href="#features">Features</a></li>
+                    
                 <li class="second-level"><a href="#the-components">The components</a></li>
+                    
+                <li class="second-level"><a href="#installation">Installation</a></li>
                     
         </ul>
     </div>
@@ -1115,14 +1129,19 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/03" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
 <h1 id="ramses-the-rx-asset-management-system-introduction">Ramses - The Rx Asset Management System: Introduction</h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><strong>Ramses is still under active development</strong>, and this documentation is still being written.<br />
-The first public Beta version will be available very soon.</p>
+<p><strong>Ramses is still under active development</strong>, and this documentation is still being written.  </p>
 </div>
 <p>This first part of the <em>Ramses</em> documention intents to help you understand the general concepts and key features of <em>Ramses</em> without going into technical details. As <em>Ramses</em> is not made of one single application but of several components, the technical description and user guide of each piece of software is available individually in <a href="../components/">the second part of this documentation</a>.</p>
+<h2 id="features">Features</h2>
+<p><em>Ramses</em> has three different main features, which are closely related and for which each component plays its role: <a href="pipeline/"><strong>Pipeline automation</strong></a>, <a href="production/"><strong>Production Tracking</strong></a> and <a href="planning/"><strong>Production Planning</strong></a>, along with the global <a href="administration/"><strong>administration</strong></a> of course.</p>
+<p>▹ <strong><a href="administration/">Administration</a></strong>.</p>
+<p>▹ <strong><a href="pipeline/">Pipeline</a></strong>.</p>
+<p>▹ <strong><a href="production/">Production Tracking</a></strong>.</p>
+<p>▹ <strong><a href="planning/">Planning</a></strong>.</p>
 <h2 id="the-components">The components</h2>
 <p><img alt="" src="/img/LAB_Ramses_Doc_Schemas.png" /></p>
 <p><em>Ramses</em> is a complete framework made of several components, as you can see on the image above.</p>
@@ -1158,21 +1177,50 @@ The first public Beta version will be available very soon.</p>
 </tr>
 <tr>
 <td><strong><em>Ramses Tree</em></strong></td>
-<td>Read by the <em>Ralses Add-ons</em> and the <em>Ramses Client</em>.</td>
+<td>Read by the <em>Ramses Add-ons</em> and the <em>Ramses Client</em>.</td>
 <td>The <em>Ramses Tree</em> is the way <em>Ramses</em> stores and sorts your files. Thanks to a carefully crafted file and folder naming scheme and conventions, both the <em>Ramses Add-ons</em> and the <em>Ramses Client</em> can efficiently handle all your files and data.</td>
-<td>▹ <a href="../components/addons/">Read the doc</a>.</td>
+<td>▹ <a href="../components/files/">Read the doc</a>.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Although in the future the <em>Ramses Client</em> will be able to be used as a stand-alone, offline application, <strong>the currently available <em>Beta Version</em> absolutely needs a connection to a <em>Ramses Server</em></strong> (there&rsquo;s no offline storage of the data for now).</p>
+<p>Although in the future the <em>Ramses Client</em> will be able to be used as a stand-alone, offline application, <strong>the currently available <em>Alpha or Beta Versions</em> absolutely need a connection to a <em>Ramses Server</em></strong> (there&rsquo;s no offline storage of the data for now).</p>
 <p>But that doesn&rsquo;t mean that you absolutely need an online server to test and use <em>Ramses</em>: you can already use it on a single workstation by locally installing a simple webserver. Explanations and a step-by-step guide is available in <a href="../components/server/">the server documentation</a>.</p>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p><strong><em>Ramses</em> is not available <em>as a service</em></strong>: we do not provide any infrastructure nor server nor database for you to connect to. There&rsquo;s no website available to use a <em>Ramses Server</em>: you can stay in control of your own data without relying onto unknown people, even people as loving as us (and you won&rsquo;t have to pay mensual or annual fees just to use <em>Ramses</em>).</p>
 <p>But don&rsquo;t be afraid, even if you&rsquo;re running your own small studio or tiny collective, it&rsquo;s very easy to install and use the <em>Ramses</em> server, it can be done on any computer running <em>Windows</em>, <em>Linux</em> or <em>Mac OS</em>, or better, on any low-cost shared hosting with just a very small available space and a small <em>MySQL</em> database. All the installation procedure is explained in <a href="../components/server/">the server documentation</a>.</p>
+</div>
+<h2 id="installation">Installation</h2>
+<p>In order to use <em>Ramses</em>, you have to install the components you need individually, one after each other.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Installation notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>Ramses Server</em></strong></td>
+<td>Requires a standard <em>AMP</em> stack (<em>Apache</em>, <em>MySQL</em>, <em>PHP</em>). We provide a guide to install one locally:<br />▹ <a href="../components/server/web-server/">AMP server installation</a><br />Then you can install the <em>Ramses server</em> easily:<br />▹ <a href="../components/server/install/">Installation guide</a></td>
+</tr>
+<tr>
+<td><strong><em>Ramses Client</em></strong></td>
+<td>The client is a simple application, installed the same way as other applications:<br />▹ <a href="../components/client/install/">Installation guide</a></td>
+</tr>
+<tr>
+<td><strong><em>Ramses Add-ons</em></strong></td>
+<td>Add-ons installation differs depending on the host application:<br />▹ <a href="../components/addons/maya/">Maya installation</a><br />▹ Other hosts coming soon!</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although in the future the <em>Ramses Client</em> will be able to be used as a stand-alone, offline application, <strong>the currently available <em>Alpha or Beta Versions</em> absolutely need a connection to a <em>Ramses Server</em></strong> (there&rsquo;s no offline storage of the data for now).</p>
+<p>This means that for now you <strong>have to</strong> install the <em>Ramses Server</em> or have one available somewhere.</p>
 </div></div>
         
         

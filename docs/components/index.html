@@ -95,12 +95,6 @@
                         
                             
 <li >
-    <a href="../pipeline/users/">User Management</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../pipeline/pipeline/">Pipeline</a>
 </li>
 
@@ -157,7 +151,7 @@
         
             
 <li >
-    <a href="server/admin.md">Administration</a>
+    <a href="server/admin/">Administration</a>
 </li>
 
         
@@ -172,37 +166,43 @@
         
             
 <li >
-    <a href="..">Installation and settings</a>
+    <a href="client/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="..">Administration</a>
+    <a href="client/install/">Installation and settings</a>
 </li>
 
         
             
 <li >
-    <a href="..">Project settings</a>
+    <a href="client/admin/">Administration</a>
 </li>
 
         
             
 <li >
-    <a href="..">The pipeline</a>
+    <a href="client/project/">Project settings</a>
 </li>
 
         
             
 <li >
-    <a href="..">Assets and shots production management</a>
+    <a href="client/pipeline/">Pipeline editor</a>
 </li>
 
         
             
 <li >
-    <a href="..">Schedule and statistics</a>
+    <a href="client/production/">Assets and shots production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="client/schedule/">Schedule and statistics</a>
 </li>
 
         
@@ -259,19 +259,19 @@
         
             
 <li >
-    <a href="..">Introduction</a>
+    <a href="files/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../files/naming.md">Naming scheme</a>
+    <a href="files/naming/">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../files/tree.md">Folder structure</a>
+    <a href="files/tree/">Folder structure</a>
 </li>
 
         
@@ -562,6 +562,12 @@
         
             
 <li >
+    <a href="../dev/server-reference/schedule/">Schedule queries</a>
+</li>
+
+        
+            
+<li >
     <a href="../dev/server-reference/sequences/">Sequence queries</a>
 </li>
 
@@ -700,10 +706,6 @@
                         
                     
                         
-                        <li class="second-level "><a href="../pipeline/users/">User Management</a></li>
-                        
-                    
-                        
                         <li class="second-level "><a href="../pipeline/pipeline/">Pipeline</a></li>
                         
                     
@@ -746,7 +748,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="server/admin.md">Administration</a></li>
+                                    <li class="third-level "><a href="server/admin/">Administration</a></li>
                                     
                                 
                             </ul>
@@ -759,27 +761,31 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="..">Installation and settings</a></li>
+                                    <li class="third-level "><a href="client/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Administration</a></li>
+                                    <li class="third-level "><a href="client/install/">Installation and settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Project settings</a></li>
+                                    <li class="third-level "><a href="client/admin/">Administration</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">The pipeline</a></li>
+                                    <li class="third-level "><a href="client/project/">Project settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Assets and shots production management</a></li>
+                                    <li class="third-level "><a href="client/pipeline/">Pipeline editor</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="..">Schedule and statistics</a></li>
+                                    <li class="third-level "><a href="client/production/">Assets and shots production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="client/schedule/">Schedule and statistics</a></li>
                                     
                                 
                             </ul>
@@ -820,15 +826,15 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="..">Introduction</a></li>
+                                    <li class="third-level "><a href="files/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../files/naming.md">Naming scheme</a></li>
+                                    <li class="third-level "><a href="files/naming/">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../files/tree.md">Folder structure</a></li>
+                                    <li class="third-level "><a href="files/tree/">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1037,6 +1043,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../dev/server-reference/schedule/">Schedule queries</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../dev/server-reference/sequences/">Sequence queries</a></li>
                                     
                                 
@@ -1125,11 +1135,12 @@
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10" /></p>
 <h1 id="ramses-components">Ramses Components</h1>
 <p><em>Ramses</em> is a complete framework made of different components interacting together. This makes it very modular and scalable to any kind of production, from the freelancer working at home to the biggest studios.</p>
 <p><img alt="" src="/img/LAB_Ramses_Doc_Schemas.png" /></p>
 <h2 id="general-description">General Description</h2>
-<p>The <em>Ramses</em> framework can be viewed as a hirerachical tree, going from the data stored by the <em>Ramses Server</em> up to the <a href="../addons/index.md">creative applications add-ons</a> and the <a href="../files/naming.md">files and folder structure</a> on the workstations.</p>
+<p>The <em>Ramses</em> framework can be viewed as a hirerachical tree, going from the data stored by the <em>Ramses Server</em> up to the <a href="addons/">creative applications add-ons</a> and the <a href="files/naming/">files and folder structure</a> on the workstations.</p>
 <ul>
 <li><strong><em>Ramses Data</em></strong>: all the meta-data is stored by <em>Ramses</em> in an <em>SQL</em> server.</li>
 <li><strong><em>Ramses Server</em></strong>: this data is managed by a webserver, which reads and writes the data on demand from connected <em>Ramses Clients</em>.<ul>
@@ -1157,12 +1168,11 @@ But you can not skip levels, i.e. the <em>Ramses Add-ons</em> can not be used wi
 <p>The client is a native application (<em>Qt / C++</em>), and is available on <em>Linux</em>, <em>Windows</em> and <em>MacOS</em>, which makes it fast and lightweight. It may be available later for <em>Android</em>.</p>
 <p>The client also runs the <em>Ramses Daemon</em> which is a local server which communicates with the <em>Ramses Add-ons</em> and shares the data with them.</p>
 <h2 id="ramses-add-ons">Ramses Add-ons</h2>
-<p>The <a href="../addons/index.md">add-ons</a> are scripts available inside the creative applications (e.g. <em>Blender</em>, <em>Maya</em>, <em>After Effects</em>&hellip;). They could be used without the client, with limited functionnalities. In this case, data is retrieved from the <em>Ramses Tree</em>.</p>
+<p>The <a href="addons/">add-ons</a> are scripts available inside the creative applications (e.g. <em>Blender</em>, <em>Maya</em>, <em>After Effects</em>&hellip;). They could be used without the client, with limited functionnalities. In this case, data is retrieved from the <em>Ramses Tree</em>.</p>
 <p>The add-ons are in charge of file management and versionning, publishing, etc.</p>
 <h2 id="ramses-tree">Ramses Tree</h2>
-<p>On the lowest level, <em>Ramses</em> handles all <a href="../files/naming.md">files</a> and <a href="../files/tree.md">folders</a> for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remote and backup locations.</p>
-<p>Both the Add-ons and the Client can manage the files and folders.</p>
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10" /></p></div>
+<p>On the lowest level, <em>Ramses</em> handles all <a href="files/naming/">files</a> and <a href="files/tree/">folders</a> for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remote and backup locations.</p>
+<p>Both the Add-ons and the Client can manage the files and folders.</p></div>
         
         
     </div>

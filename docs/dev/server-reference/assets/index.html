@@ -95,12 +95,6 @@
                         
                             
 <li >
-    <a href="../../../pipeline/users/">User Management</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../../pipeline/pipeline/">Pipeline</a>
 </li>
 
@@ -157,7 +151,7 @@
         
             
 <li >
-    <a href="../../../components/server/admin.md">Administration</a>
+    <a href="../../../components/server/admin/">Administration</a>
 </li>
 
         
@@ -172,37 +166,43 @@
         
             
 <li >
-    <a href="../../..">Installation and settings</a>
+    <a href="../../../components/client/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Administration</a>
+    <a href="../../../components/client/install/">Installation and settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Project settings</a>
+    <a href="../../../components/client/admin/">Administration</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">The pipeline</a>
+    <a href="../../../components/client/project/">Project settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Assets and shots production management</a>
+    <a href="../../../components/client/pipeline/">Pipeline editor</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Schedule and statistics</a>
+    <a href="../../../components/client/production/">Assets and shots production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/schedule/">Schedule and statistics</a>
 </li>
 
         
@@ -259,19 +259,19 @@
         
             
 <li >
-    <a href="../../..">Introduction</a>
+    <a href="../../../components/files/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/naming.md">Naming scheme</a>
+    <a href="../../../components/files/naming/">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/tree.md">Folder structure</a>
+    <a href="../../../components/files/tree/">Folder structure</a>
 </li>
 
         
@@ -562,6 +562,12 @@
         
             
 <li >
+    <a href="../schedule/">Schedule queries</a>
+</li>
+
+        
+            
+<li >
     <a href="../sequences/">Sequence queries</a>
 </li>
 
@@ -700,10 +706,6 @@
                         
                     
                         
-                        <li class="second-level "><a href="../../../pipeline/users/">User Management</a></li>
-                        
-                    
-                        
                         <li class="second-level "><a href="../../../pipeline/pipeline/">Pipeline</a></li>
                         
                     
@@ -746,7 +748,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/server/admin.md">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/server/admin/">Administration</a></li>
                                     
                                 
                             </ul>
@@ -759,27 +761,31 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Installation and settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/client/install/">Installation and settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Project settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/admin/">Administration</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">The pipeline</a></li>
+                                    <li class="third-level "><a href="../../../components/client/project/">Project settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Assets and shots production management</a></li>
+                                    <li class="third-level "><a href="../../../components/client/pipeline/">Pipeline editor</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Schedule and statistics</a></li>
+                                    <li class="third-level "><a href="../../../components/client/production/">Assets and shots production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/schedule/">Schedule and statistics</a></li>
                                     
                                 
                             </ul>
@@ -820,15 +826,15 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Introduction</a></li>
+                                    <li class="third-level "><a href="../../../components/files/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/naming.md">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../../../components/files/naming/">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/tree.md">Folder structure</a></li>
+                                    <li class="third-level "><a href="../../../components/files/tree/">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1037,6 +1043,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../schedule/">Schedule queries</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../sequences/">Sequence queries</a></li>
                                     
                                 
@@ -1121,23 +1131,14 @@
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
 <h1 id="queries-for-managing-assets">Queries for managing assets</h1>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>There is no method to retrieve assets directly; assets are returned by the project method <a href="../projects/#getprojects"><code>getProjects</code></a></p>
 </div>
-<div class="toc">
-<ul>
-<li><a href="#queries-for-managing-assets">Queries for managing assets</a><ul>
-<li><a href="#createasset">createAsset</a></li>
-<li><a href="#updateasset">updateAsset</a></li>
-<li><a href="#removeasset">removeAsset</a></li>
-<li><a href="#setassetstatus">setAssetStatus</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <h2 id="createasset">createAsset</h2>
+<p><code>http://your.server/ramses/?createAsset</code></p>
 <p>Creates a new asset in the database and assigns it to an asset group.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
@@ -1146,14 +1147,11 @@
 <li><em>assetGroupUuid</em>: <strong>string</strong>. The UUID of the asset group to assign the asset to.</li>
 <li><em>tags</em>: <strong>string</strong>. A comma separated list of tags.</li>
 <li><em>uuid</em>: <strong>string</strong> (optional). The asset&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?createAsset&amp;name=Tristan&amp;shortName=TRI&amp;tags=Main, Warrior&amp;assetGroupUuid=456&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createAsset&quot;,
@@ -1163,6 +1161,7 @@
 }
 </code></pre>
 <h2 id="updateasset">updateAsset</h2>
+<p><code>http://your.server/ramses/?updateAsset</code></p>
 <p>Update asset info in the database.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
@@ -1172,14 +1171,11 @@
 <li><em>assetGroupUuid</em>: <strong>string</strong>. The UUID of the asset group to assign the asset to.</li>
 <li><em>tags</em>: <strong>string</strong>. A comma separated list of tags.</li>
 <li><em>uuid</em>: <strong>string</strong> (optional). The asset&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?updateAsset&amp;name=Tristan&amp;shortName=TRI&amp;tags=Main, Warrior&amp;assetGroupUuid=456&amp;comment=A comment&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateAsset&quot;,
@@ -1189,18 +1185,16 @@
 }
 </code></pre>
 <h2 id="removeasset">removeAsset</h2>
+<p><code>http://your.server/ramses/?removeAsset</code></p>
 <p>Removes an asset group from the database.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong>. The asset&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?removeAssetGroup&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeAsset&quot;,
@@ -1210,25 +1204,24 @@
 }
 </code></pre>
 <h2 id="setassetstatus">setAssetStatus</h2>
+<p><code>http://your.server/ramses/?setAssetStatus</code></p>
 <p>Sets a new status for an asset</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
-<li><em>uuid</em>: <strong>string</strong>. The status&rsquo; Universal Unique Identifier.</li>
+<li><em>uuid</em>: <strong>string</strong> (optionnal). The new status&rsquo; Universal Unique Identifier.</li>
 <li><em>assetUuid</em>: <strong>string</strong>. The asset&rsquo;s Universal Unique Identifier.</li>
-<li><em>completionRation</em>: <strong>int</strong> (optionnal). The current completion ratio in the range [0, 100].</li>
-<li><em>userUuid</em>: <strong>string</strong> (optionnal). The uuid of the user setting the status. Will use the currently connected user if not provided.</li>
+<li><em>assignedUserUuid</em>: <strong>string</strong>. The Universal Unique Identifier of the user assigned to this task.</li>
+<li><em>userUuid</em>: <strong>string</strong>. The uuid of the user setting the status.</li>
 <li><em>stateUuid</em>: <strong>string</strong>. The uuid of the associated state.</li>
-<li><em>comment</em>: <strong>string</strong> (optionnal). A comment.</li>
-<li><em>version</em>: <strong>int</strong> (optionnal). The current version.</li>
+<li><em>completionRation</em>: <strong>int</strong>. The current completion ratio in the range [0, 100].</li>
+<li><em>comment</em>: <strong>string</strong>. A comment.</li>
+<li><em>version</em>: <strong>int</strong>. The current version.</li>
 <li><em>stepUuid</em>: <strong>string</strong>. The uuid of the associated step.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?setAssetStatus&amp;uuid=123&amp;assetUuid=123&amp;completionRatio=50&amp;userUuid=123&amp;stateUuid=123&amp;comment=A nice comment&amp;version=12&amp;stepUuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setAssetStatus&quot;,

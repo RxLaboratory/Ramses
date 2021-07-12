@@ -95,12 +95,6 @@
                         
                             
 <li >
-    <a href="../../pipeline/users/">User Management</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../pipeline/pipeline/">Pipeline</a>
 </li>
 
@@ -157,7 +151,7 @@
         
             
 <li >
-    <a href="../../components/server/admin.md">Administration</a>
+    <a href="../../components/server/admin/">Administration</a>
 </li>
 
         
@@ -172,37 +166,43 @@
         
             
 <li >
-    <a href="../..">Installation and settings</a>
+    <a href="../../components/client/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../..">Administration</a>
+    <a href="../../components/client/install/">Installation and settings</a>
 </li>
 
         
             
 <li >
-    <a href="../..">Project settings</a>
+    <a href="../../components/client/admin/">Administration</a>
 </li>
 
         
             
 <li >
-    <a href="../..">The pipeline</a>
+    <a href="../../components/client/project/">Project settings</a>
 </li>
 
         
             
 <li >
-    <a href="../..">Assets and shots production management</a>
+    <a href="../../components/client/pipeline/">Pipeline editor</a>
 </li>
 
         
             
 <li >
-    <a href="../..">Schedule and statistics</a>
+    <a href="../../components/client/production/">Assets and shots production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/schedule/">Schedule and statistics</a>
 </li>
 
         
@@ -259,19 +259,19 @@
         
             
 <li >
-    <a href="../..">Introduction</a>
+    <a href="../../components/files/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../files/naming.md">Naming scheme</a>
+    <a href="../../components/files/naming/">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../../files/tree.md">Folder structure</a>
+    <a href="../../components/files/tree/">Folder structure</a>
 </li>
 
         
@@ -562,6 +562,12 @@
         
             
 <li >
+    <a href="schedule/">Schedule queries</a>
+</li>
+
+        
+            
+<li >
     <a href="sequences/">Sequence queries</a>
 </li>
 
@@ -700,10 +706,6 @@
                         
                     
                         
-                        <li class="second-level "><a href="../../pipeline/users/">User Management</a></li>
-                        
-                    
-                        
                         <li class="second-level "><a href="../../pipeline/pipeline/">Pipeline</a></li>
                         
                     
@@ -746,7 +748,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../components/server/admin.md">Administration</a></li>
+                                    <li class="third-level "><a href="../../components/server/admin/">Administration</a></li>
                                     
                                 
                             </ul>
@@ -759,27 +761,31 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../..">Installation and settings</a></li>
+                                    <li class="third-level "><a href="../../components/client/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../components/client/install/">Installation and settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../..">Project settings</a></li>
+                                    <li class="third-level "><a href="../../components/client/admin/">Administration</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../..">The pipeline</a></li>
+                                    <li class="third-level "><a href="../../components/client/project/">Project settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../..">Assets and shots production management</a></li>
+                                    <li class="third-level "><a href="../../components/client/pipeline/">Pipeline editor</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../..">Schedule and statistics</a></li>
+                                    <li class="third-level "><a href="../../components/client/production/">Assets and shots production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../components/client/schedule/">Schedule and statistics</a></li>
                                     
                                 
                             </ul>
@@ -820,15 +826,15 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../..">Introduction</a></li>
+                                    <li class="third-level "><a href="../../components/files/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../files/naming.md">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../../components/files/naming/">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../files/tree.md">Folder structure</a></li>
+                                    <li class="third-level "><a href="../../components/files/tree/">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1037,6 +1043,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="schedule/">Schedule queries</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="sequences/">Sequence queries</a></li>
                                     
                                 
@@ -1117,16 +1127,48 @@
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
 <h1 id="ramses-server-api">Ramses Server API</h1>
 <p>The <em>Ramses</em> server provides a standard <em>http(s) REST API</em>. If you&rsquo;re developping your own client (or contributing to <em>Ramses Client</em>), you can easily exchange data with the server using this reference.</p>
-<p>Queries are made by building a <em>URI</em> containing all information, and the server replies with a <em>JSON</em> object in the body. For almost all queries (i.e. all but <em>ping</em> and <em>login</em>) you&rsquo;ll need to be logged in. Initiating a connection to the server usually follows these steps:</p>
+<p><strong>Queries must be a <em>POST</em> request</strong>; the body can be either <em>JSON</em> or <em>URL</em> encoded, the <code>Content-Type</code> being respectively <code>application/json</code> or <code>application/x-www-form-urlencoded</code>. However, some queries (explained in this document) are not supported in the <em>URL</em> encoded form, so it is better to <strong>always use <em>JSON</em> if possible</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In <em>URL</em> encoded queries, all special characters should be percent-encoded (e.g. by replacing <code>/</code> with <code>%2F</code>).</p>
+</div>
+<p>Only one attribute must be set directly in the <em>URL</em> (like a <em>GET</em> request), the name of the query itself.</p>
+<p>For now, the server only supports the <strong>UTF-8</strong> charset, so it is not mandatory to add the charset in the <em>Content-Type</em>, and any value other than <code>utf-8</code> will be ignored. This may change in future versions.</p>
+<p>Here is a minimal example of a query using <em>URL</em> encoding:</p>
+<p><em>URL</em>: <code>http://your.server/ramses/?createStep</code></p>
+<pre><code>POST /ramses HTTP/1.1
+Host: your.server
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Ramses v0.1.1-Alpha
+Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
+Content-Length: 153
+
+uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&amp;shortName=ANIM&amp;name=Animation&amp;type=shot&amp;comment=&amp;color=%23c992ff&amp;token=94393b8e6396fb2bb295552d6d122544d5db1d1f
+</code></pre>
+<p>And this is the same query using <em>JSON</em> encoding:</p>
+<p><em>URL</em>: <code>http://your.server/ramses/?createStep</code></p>
+<pre><code>POST /ramses HTTP/1.1
+Host: your.server
+Content-Type: application/json
+User-Agent: Ramses v0.1.1-Alpha
+Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
+Content-Length: 181
+
+{&quot;uuid&quot;:&quot;b615b4be-66fd-5fd3-8095-2074155a29a8&quot;,&quot;shortName&quot;:&quot;ANIM&quot;,&quot;name&quot;:&quot;Animation&quot;,&quot;type&quot;:&quot;shot&quot;,&quot;comment&quot;:&quot;&quot;,&quot;color&quot;:&quot;#c992ff&quot;,&quot;token&quot;:&quot;94393b8e6396fb2bb295552d6d122544d5db1d1f&quot;}
+</code></pre>
+<p>The parameters to use in the body are described in the next sections of this reference. The <em>Cookie</em> is set by the server on the first connection, the <em>User-Agent</em> is set by the client.</p>
+<p>The server replies with a <em>JSON</em> object in the body.</p>
+<p>For almost all queries (i.e. all but <em>ping</em> and <em>login</em>) you&rsquo;ll need to be logged in. Initiating a connection to the server usually follows these steps:</p>
 <ol>
 <li><em>ping</em> to check if the server is available and check its version.</li>
 <li><em>login</em> to authenticate yourself and get a session token.</li>
 <li><em>init</em> to get the main data (user list, project list&hellip;).</li>
 </ol>
 <p>For the examples in this documentation, we assume the ramses server is available at <code>http://your.server/ramses/</code>.</p>
-<p>For the sake of readability, the <em>JSON</em> replies are formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.</p>
+<p>For the sake of readability, the <em>JSON</em> replies are pretty formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.</p>
 <h2 id="server-replies">Server Replies</h2>
 <p>The <em>JSON</em> objects sent by the server all have the same content:</p>
 <ul>
@@ -1141,7 +1183,7 @@
 <p class="admonition-title">Note</p>
 <p><code>remove</code> queries do not actually delete data from the database, but set a <code>removed</code> attribute to true, to prevent any data loss.<br />
 For now, the only way to permanently delete data is to edit the database by yourself (using SQL queries or MySQL workbench or phpmyadmin, etc.)</p>
-<p>There is no query yet to restore data which has been removed, but using the <code>create</code> queries with the same name and shortname as the removed item will restore it.</p>
+<p>There is no query yet to restore data which has been removed, but using the <code>create</code> queries with the same <em>uuid</em> as the removed item will restore it.</p>
 </div>
 <ul>
 <li>General<ul>
@@ -1164,7 +1206,8 @@ For now, the only way to permanently delete data is to edit the database by your
 <li><a href="projects#updateproject">updateProject</a></li>
 <li><a href="projects#removeproject">removeProject</a></li>
 <li><a href="projects#assignstep">assignStep</a></li>
-<li><a href="projects#unassignstep">unassignStep</a></li>
+<li><a href="projects#assignuser">assignUser</a></li>
+<li><a href="projects#unassignuser">unassignUser</a></li>
 </ul>
 </li>
 <li>Steps and Template Steps<ul>
@@ -1173,8 +1216,7 @@ For now, the only way to permanently delete data is to edit the database by your
 <li><a href="steps#setsteporder">setSteporder</a></li>
 <li><a href="steps#movestep">moveStep</a></li>
 <li><a href="steps#removestep">removeStep</a></li>
-<li><a href="steps#assignuser">assignUser</a></li>
-<li><a href="steps#unassignuser">unassignUser</a></li>
+<li><a href="steps#setstepestimations">setStepEstimations</a></li>
 <li><a href="steps#assignapplication">assignApplication</a></li>
 <li><a href="steps#unassignapplication">unassignApplication</a></li>
 </ul>
@@ -1196,6 +1238,7 @@ For now, the only way to permanently delete data is to edit the database by your
 <li><a href="sequences#createsequence">createSequence</a></li>
 <li><a href="sequences#updatesequence">updateSequence</a></li>
 <li><a href="sequences#removesequence">removeSequence</a></li>
+<li><a href="sequences#setsequenceorder">setSequenceOrder</a></li>
 </ul>
 </li>
 <li>Shots<ul>
@@ -1244,7 +1287,17 @@ For now, the only way to permanently delete data is to edit the database by your
 </li>
 <li>Status<ul>
 <li><a href="status#updatestatus">updateStatus</a></li>
-<li><a href="status#updatestatus">removeStatus</a></li>
+<li><a href="status#removestatus">removeStatus</a></li>
+<li><a href="status#setstatususer">setStatusUser</a></li>
+</ul>
+</li>
+<li>Schedule Entrries<ul>
+<li><a href="schedule#createschedule">createSchedule</a></li>
+<li><a href="schedule#createschedules">createSchedules</a></li>
+<li><a href="schedule#updateschedule">updateSchedule</a></li>
+<li><a href="schedule#updateschedules">updateSchedules</a></li>
+<li><a href="schedule#removeschedule">removeSchedule</a></li>
+<li><a href="schedule#removeschedules">removeSchedules</a></li>
 </ul>
 </li>
 </ul></div>

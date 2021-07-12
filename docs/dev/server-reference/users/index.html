@@ -95,12 +95,6 @@
                         
                             
 <li >
-    <a href="../../../pipeline/users/">User Management</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../../pipeline/pipeline/">Pipeline</a>
 </li>
 
@@ -157,7 +151,7 @@
         
             
 <li >
-    <a href="../../../components/server/admin.md">Administration</a>
+    <a href="../../../components/server/admin/">Administration</a>
 </li>
 
         
@@ -172,37 +166,43 @@
         
             
 <li >
-    <a href="../../..">Installation and settings</a>
+    <a href="../../../components/client/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Administration</a>
+    <a href="../../../components/client/install/">Installation and settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Project settings</a>
+    <a href="../../../components/client/admin/">Administration</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">The pipeline</a>
+    <a href="../../../components/client/project/">Project settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Assets and shots production management</a>
+    <a href="../../../components/client/pipeline/">Pipeline editor</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Schedule and statistics</a>
+    <a href="../../../components/client/production/">Assets and shots production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/schedule/">Schedule and statistics</a>
 </li>
 
         
@@ -259,19 +259,19 @@
         
             
 <li >
-    <a href="../../..">Introduction</a>
+    <a href="../../../components/files/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/naming.md">Naming scheme</a>
+    <a href="../../../components/files/naming/">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/tree.md">Folder structure</a>
+    <a href="../../../components/files/tree/">Folder structure</a>
 </li>
 
         
@@ -562,6 +562,12 @@
         
             
 <li >
+    <a href="../schedule/">Schedule queries</a>
+</li>
+
+        
+            
+<li >
     <a href="../sequences/">Sequence queries</a>
 </li>
 
@@ -700,10 +706,6 @@
                         
                     
                         
-                        <li class="second-level "><a href="../../../pipeline/users/">User Management</a></li>
-                        
-                    
-                        
                         <li class="second-level "><a href="../../../pipeline/pipeline/">Pipeline</a></li>
                         
                     
@@ -746,7 +748,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/server/admin.md">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/server/admin/">Administration</a></li>
                                     
                                 
                             </ul>
@@ -759,27 +761,31 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Installation and settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/client/install/">Installation and settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Project settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/admin/">Administration</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">The pipeline</a></li>
+                                    <li class="third-level "><a href="../../../components/client/project/">Project settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Assets and shots production management</a></li>
+                                    <li class="third-level "><a href="../../../components/client/pipeline/">Pipeline editor</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Schedule and statistics</a></li>
+                                    <li class="third-level "><a href="../../../components/client/production/">Assets and shots production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/schedule/">Schedule and statistics</a></li>
                                     
                                 
                             </ul>
@@ -820,15 +826,15 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Introduction</a></li>
+                                    <li class="third-level "><a href="../../../components/files/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/naming.md">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../../../components/files/naming/">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/tree.md">Folder structure</a></li>
+                                    <li class="third-level "><a href="../../../components/files/tree/">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1037,6 +1043,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../schedule/">Schedule queries</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../sequences/">Sequence queries</a></li>
                                     
                                 
@@ -1123,20 +1133,10 @@
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
 <h1 id="queries-for-managing-users">Queries for managing users</h1>
-<div class="toc">
-<ul>
-<li><a href="#queries-for-managing-users">Queries for managing users</a><ul>
-<li><a href="#updateuser">updateUser</a></li>
-<li><a href="#updatepassword">updatePassword</a></li>
-<li><a href="#getusers">getUsers</a></li>
-<li><a href="#createuser">createUser</a></li>
-<li><a href="#removeuser">removeUser</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <h2 id="updateuser">updateUser</h2>
+<p><code>http://your.server/ramses/?updateUser</code></p>
 <p>Logs in with a username and a (hashed) password.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
@@ -1146,14 +1146,11 @@
 <li><em>role</em>: <strong>string</strong> (optionnal). The new role of the user. One of <code>admin</code>, <code>project</code>, <code>lead</code>, or <code>standard</code>.</li>
 <li><em>folderPath</em>: <strong>string</strong> (optionnal). The path for the user folder.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?updateUser&amp;name=Nicolas Dufresne&amp;shortName=Duduf&amp;comment=A comment&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
@@ -1163,24 +1160,22 @@
 }
 </code></pre>
 <h2 id="updatepassword">updatePassword</h2>
+<p><code>http://your.server/ramses/?updatePassword</code></p>
 <p>Changes the password of a specific user</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>current</em>: <strong>string</strong>. The current (hashed) password.</li>
 <li><em>new</em>: <strong>string</strong>. The new (hashed) password.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Your application / client should not send a clear password, but it should hash it first, even when using a secure/SSL connection.</p>
 </div>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?updatePassword&amp;current=123&amp;new=456&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
@@ -1190,24 +1185,23 @@
 }
 </code></pre>
 <h2 id="getusers">getUsers</h2>
+<p><code>http://your.server/ramses/?getUsers</code></p>
 <p>Retrieves the list of all users.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>The server replies an array of user information. Each user is an object with the following attributes:</p>
 <ul>
 <li><em>name</em>: <strong>string</strong>. The name of the user.</li>
 <li><em>shortName</em>: <strong>string</strong>. The username.</li>
+<li><em>comment</em>: <strong>string</strong>. A comment.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this user.</li>
 <li><em>folderPath</em>: <strong>string</strong>. The user folder path.</li>
 <li><em>role</em>: <strong>string</strong>. The userrole. One of <code>admin</code>, <code>project</code>, <code>lead</code>, or <code>standard</code>.</li>
 </ul>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?getUsers&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getUsers&quot;,
@@ -1232,6 +1226,7 @@
 }
 </code></pre>
 <h2 id="createuser">createUser</h2>
+<p><code>http://your.server/ramses/?createUser</code></p>
 <p>Creates a new user in the database.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
@@ -1242,10 +1237,7 @@
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?createUser&amp;name=Nicolas Dufresne&amp;shortName=Duduf&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createUser&quot;,
@@ -1255,18 +1247,16 @@
 }
 </code></pre>
 <h2 id="removeuser">removeUser</h2>
+<p><code>http://your.server/ramses/?removeUser</code></p>
 <p>Removes a user from the database.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The user&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?removeUser&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeUser&quot;,

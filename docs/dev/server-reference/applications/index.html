@@ -95,12 +95,6 @@
                         
                             
 <li >
-    <a href="../../../pipeline/users/">User Management</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../../pipeline/pipeline/">Pipeline</a>
 </li>
 
@@ -157,7 +151,7 @@
         
             
 <li >
-    <a href="../../../components/server/admin.md">Administration</a>
+    <a href="../../../components/server/admin/">Administration</a>
 </li>
 
         
@@ -172,37 +166,43 @@
         
             
 <li >
-    <a href="../../..">Installation and settings</a>
+    <a href="../../../components/client/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Administration</a>
+    <a href="../../../components/client/install/">Installation and settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Project settings</a>
+    <a href="../../../components/client/admin/">Administration</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">The pipeline</a>
+    <a href="../../../components/client/project/">Project settings</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Assets and shots production management</a>
+    <a href="../../../components/client/pipeline/">Pipeline editor</a>
 </li>
 
         
             
 <li >
-    <a href="../../..">Schedule and statistics</a>
+    <a href="../../../components/client/production/">Assets and shots production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/schedule/">Schedule and statistics</a>
 </li>
 
         
@@ -259,19 +259,19 @@
         
             
 <li >
-    <a href="../../..">Introduction</a>
+    <a href="../../../components/files/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/naming.md">Naming scheme</a>
+    <a href="../../../components/files/naming/">Naming scheme</a>
 </li>
 
         
             
 <li >
-    <a href="../../../files/tree.md">Folder structure</a>
+    <a href="../../../components/files/tree/">Folder structure</a>
 </li>
 
         
@@ -562,6 +562,12 @@
         
             
 <li >
+    <a href="../schedule/">Schedule queries</a>
+</li>
+
+        
+            
+<li >
     <a href="../sequences/">Sequence queries</a>
 </li>
 
@@ -700,10 +706,6 @@
                         
                     
                         
-                        <li class="second-level "><a href="../../../pipeline/users/">User Management</a></li>
-                        
-                    
-                        
                         <li class="second-level "><a href="../../../pipeline/pipeline/">Pipeline</a></li>
                         
                     
@@ -746,7 +748,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/server/admin.md">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/server/admin/">Administration</a></li>
                                     
                                 
                             </ul>
@@ -759,27 +761,31 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Installation and settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Administration</a></li>
+                                    <li class="third-level "><a href="../../../components/client/install/">Installation and settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Project settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/admin/">Administration</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">The pipeline</a></li>
+                                    <li class="third-level "><a href="../../../components/client/project/">Project settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Assets and shots production management</a></li>
+                                    <li class="third-level "><a href="../../../components/client/pipeline/">Pipeline editor</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Schedule and statistics</a></li>
+                                    <li class="third-level "><a href="../../../components/client/production/">Assets and shots production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/schedule/">Schedule and statistics</a></li>
                                     
                                 
                             </ul>
@@ -820,15 +826,15 @@
                             <ul class="collapsible-content ">
                                 
                                     
-                                    <li class="third-level "><a href="../../..">Introduction</a></li>
+                                    <li class="third-level "><a href="../../../components/files/">Introduction</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/naming.md">Naming scheme</a></li>
+                                    <li class="third-level "><a href="../../../components/files/naming/">Naming scheme</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../files/tree.md">Folder structure</a></li>
+                                    <li class="third-level "><a href="../../../components/files/tree/">Folder structure</a></li>
                                     
                                 
                             </ul>
@@ -1037,6 +1043,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../schedule/">Schedule queries</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../sequences/">Sequence queries</a></li>
                                     
                                 
@@ -1125,36 +1135,20 @@
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
 <h1 id="queries-for-managing-applications">Queries for managing applications</h1>
-<div class="toc">
-<ul>
-<li><a href="#queries-for-managing-applications">Queries for managing applications</a><ul>
-<li><a href="#createapplication">createApplication</a></li>
-<li><a href="#getapplications">getApplications</a></li>
-<li><a href="#updateapplication">updateApplication</a></li>
-<li><a href="#removeapplication">removeApplication</a></li>
-<li><a href="#assignfiletype">assignFileType</a></li>
-<li><a href="#unassignfiletype">unassignFileType</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <h2 id="createapplication">createApplication</h2>
+<p><code>http://your.server/ramses/?createApplication</code></p>
 <p>Creates a new application e in the database.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>name</em>: <strong>string</strong>. The new name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The new shortName.</li>
-<li><em>executableFilePath</em>: <strong>string</strong>. The path to the main executable binary of the application. Don&rsquo;t forget to encode <code>/</code> and <code>\</code> in the URL!</li>
+<li><em>executableFilePath</em>: <strong>string</strong>. The path to the main executable binary of the application.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The file type&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
-<p><strong>Reply content:</strong></p>
-<p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?createFileType&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createApplication&quot;,
@@ -1164,9 +1158,12 @@
 }
 </code></pre>
 <h2 id="getapplications">getApplications</h2>
+<p><code>http://your.server/ramses/?getApplications</code></p>
 <p>Retrieves the list of all applications.</p>
 <p><strong>Query attributes:</strong></p>
-<p>None</p>
+<ul>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
+</ul>
 <p><strong>Reply content:</strong></p>
 <p>The server replies an array of application information. Each application is an object with the following attributes:</p>
 <ul>
@@ -1175,10 +1172,7 @@
 <li><em>executableFilePath</em>: <strong>string</strong>. The path to the executable binary of the application.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this application.</li>
 </ul>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?getApplications&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getApplications&quot;,
@@ -1201,6 +1195,7 @@
 }
 </code></pre>
 <h2 id="updateapplication">updateApplication</h2>
+<p><code>http://your.server/ramses/?updateApplication</code></p>
 <p>Update application info in the database.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
@@ -1208,15 +1203,12 @@
 <li><em>shortName</em>: <strong>string</strong>. The username.</li>
 <li><em>comment</em>: <strong>string</strong>. The new comment.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this file type.</li>
-<li><em>executableFilePath</em>: <strong>string</strong>. The path to the executable binary of the application. Don&rsquo;t forget to encode <code>/</code> and <code>\</code> in the URL!</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a></li>
+<li><em>executableFilePath</em>: <strong>string</strong>. The path to the executable binary of the application.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a></li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?updateApplication&amp;name=Autodesk Maya&amp;shortName=Maya&amp;executableFilePath=%2Fusr%2Fbin%2Fmaya&amp;comment=A comment&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateApplication&quot;,
@@ -1226,18 +1218,16 @@
 }
 </code></pre>
 <h2 id="removeapplication">removeApplication</h2>
+<p><code>http://your.server/ramses/?removeApplication</code></p>
 <p>Removes an application from the database.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong>. The application&rsquo;s Universal Unique Identifier.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?removeApplication&amp;uuid=123&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeApplication&quot;,
@@ -1247,20 +1237,18 @@
 }
 </code></pre>
 <h2 id="assignfiletype">assignFileType</h2>
+<p><code>http://your.server/ramses/?assignFileType</code></p>
 <p>Assigns a file type to an application.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>applicationUuid</em>: <strong>string</strong>. The Applcation&rsquo;s Universal Unique Identifier.</li>
 <li><em>fileTypeUuid</em>: <strong>string</strong>. The File Type&rsquo;s Universal Unique Identifier.</li>
 <li><em>type</em>: <strong>string</strong> (optional). The type, an enumerated value in <code>native</code>, <code>import</code>, <code>export</code>. Default is <code>native</code>.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?assignFileType&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;type=import&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignFileType&quot;,
@@ -1270,20 +1258,18 @@
 }
 </code></pre>
 <h2 id="unassignfiletype">unassignFileType</h2>
+<p><code>http://your.server/ramses/?unassignFileType</code></p>
 <p>Unassigns a file type from an application.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>applicationUuid</em>: <strong>string</strong>. The Applcation&rsquo;s Universal Unique Identifier.</li>
 <li><em>fileTypeUuid</em>: <strong>string</strong>. The File Type&rsquo;s Universal Unique Identifier.</li>
 <li><em>type</em>: <strong>string</strong> (optional). The type, an enumerated value in <code>native</code>, <code>import</code>, <code>export</code>. If left empty, the file type is removed for all types.</li>
-<li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
+<li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
-<p><strong>Examples:</strong></p>
-<p>Query:<br />
-<code>http://your.server/ramses/?unassignUser&amp;applicationUuid=123&amp;fileTypeUuid=456&amp;token=123</code></p>
-<p>Reply:</p>
+<p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignFileType&quot;,
