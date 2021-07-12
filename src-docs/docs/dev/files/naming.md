@@ -1,6 +1,6 @@
 # Regular Expressions for files and folder naming.
 
-Ramses uses [specific file and folder naming conventions](../../files/naming.md). Here are useful *regular expressions* to manipulate them.
+Ramses uses [specific file and folder naming conventions](../../components/files/naming.md). Here are useful *regular expressions* to manipulate them.
 
 !!! note
     All names used by Ramses should be compated ignoring the case. Thus all regular expressions should use the `i` flag.

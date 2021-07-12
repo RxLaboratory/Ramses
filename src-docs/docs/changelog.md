@@ -4,7 +4,7 @@
 
 We're listing here all changes for all versions of the whole *Ramses* framework. To make things simpler, **all components always share the same version**, all are updated if one is updated. All the components you're using should always be in the same version.
 
-For each version, there's also a list of **known issues**. To read more details about these issues, check our [tracking on Github](https://github.com/RxLaboratory/Ramses/issues).
+For each version, there's also a list of **known issues**. To read more details about these issues, check our [tracking on *Github*](https://github.com/RxLaboratory/Ramses/labels/bug).
 
 !!! note
     Versions ending with *`-Alpha`* or *`-Beta`* are released for testing purposes only and should not be used in production, unless you know what you're doing.
@@ -13,6 +13,8 @@ For each version, there's also a list of **known issues**. To read more details 
 
 ## Planned Features
 
+The detailed list of planned features and enhancements is [available on *Github*](https://github.com/RxLaboratory/Ramses/labels/enhancement).
+
 - **Full _SSL_ encryption** when connecting to the server. *SSL* may already be available on *Linux* and will be available on *Windows* and *Mac OS* shortly. If *Ramses*' beta versions can already be tested without it, it is a mandatory feature for the release versions, as the security of your data is non-negociable.
 - The **Dashboard** will be an area where each user accesses all its important data and schedule. It comes with notifications so you won't miss any change concerning your assets, shots and steps.
 - The **Offline mode** for the *Ramses Client Application* will make it easier to use for one-man bands; you will be able to use *Ramses* without having to install the server. This also means you'll still be able to use *Ramses* even if you're not connected to the network, when you're in a train or on top of a mountain.
@@ -20,8 +22,9 @@ For each version, there's also a list of **known issues**. To read more details 
 - **Status automation**: when a character is rigged, it means it's ready to be animated. Status automation will automatically update the states of all the items according to the pipeline design, and your custom rules.
 - **Data export and import**: if you're planning important software update, or for your backups at the end of a production, it may be useful to export and re-import your data.
 - **File tools** will provide automatic ways to manage your files, create new assets and shots from already existing files, clean the tree, backup, remove temporary data, batch rename files and folders...
-- **Editing tools** to manage your shots from your edits. Automatically set shot duration, order and other metadata by just importing your edit.
+- **Video Editing tools** to manage your shots from your edits. Automatically set shot duration, order and other metadata by just importing your edit from a *Final Cut XML*, *EDL* or *CSV* file.
 - A lot of **UI improvements** and tweaks are planned too, and work will be done to improve the performance of the *Ramses Client Application* even further.
+- **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
 ## 0.1.1-Alpha

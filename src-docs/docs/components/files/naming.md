@@ -2,9 +2,7 @@
 
 *Ramses* uses a strict and specific naming convention. This naming scheme is based on the *short names* of the elements, which are defined by the administrator users.
 
-We provide [a set of regular expressions](../dev/files/naming.md) to help developpers manipulate this naming scheme.
-
-[TOC]
+We provide [a set of regular expressions](../../dev/files/naming.md) to help developpers manipulate this naming scheme.
 
 ## Short names (ID)
 

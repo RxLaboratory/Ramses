@@ -15,12 +15,13 @@ Inherits: [***RamObject***](ram_object.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *string*: **stepName**,<br />*string*: **stepShortName**,<br />*string*: **stepFolderPath**=`""`,<br />*StepType*: **stepType**=`""` | At least the folder or the type must be provided, but one is enough as the other info can be gotten from the [*Ramses Tree*](../../files/tree.md) |
+| ***constructor*** | *string*: **stepName**,<br />*string*: **stepShortName**,<br />*string*: **stepFolderPath**=`""`,<br />*StepType*: **stepType**=`""` | At least the folder or the type must be provided, but one is enough as the other info can be gotten from the [*Ramses Tree*](../../components/files/tree.md) |
 | **folderPath**<br />▹ *string* | | The absolute path to the folder containing the common files for this step |
 | **inputPipes**<br />▹ *list* of *[RamPipe](ram_pipe.md)* | | The pipes comming into this step. |
 | **outputPipes**<br />▹ *list* of *[RamPipe](ram_pipe.md)* | | The pipes going out of this step. |
 | **project**<br />▹ *[RamProject](ram_project.md)* | | Gets the project this step belongs too. To improve performance, if only the shortName is needed, prefer using `projectShortName()` |
-| **projectShortName**<br />▹ *string* | | Gets the short name of the project this step belongs too. || **stepType**<br />▹ *StepType* | | The type of this step, one of `StepType.PRE_PRODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.ASSET_PRODUCTION`, `StepType.POST_PRODUCTION`|
+| **projectShortName**<br />▹ *string* | | Gets the short name of the project this step belongs too. |
+| **stepType**<br />▹ *StepType* | | The type of this step, one of `StepType.PRE_PRODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.ASSET_PRODUCTION`, `StepType.POST_PRODUCTION`|
 | **templatesFolderPath**<br />▹ *string* | | The absolute path to the folder containing the template files for this step |
 | **templatesPublishFilePaths**<br />▹ *list* of *string* | | The list of published files for the templates |
 | **templatesPublishPath**<br />▹ *string* | | The absolute path to the folder where templates are published |

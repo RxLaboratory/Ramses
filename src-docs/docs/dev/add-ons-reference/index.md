@@ -20,7 +20,7 @@ This is the comprehensive list of available classes. In the *Ramses Add-ons API*
 | [Ramses](ramses.md) | | The main class. One (and only one) instance globally available, instantiated during init time. |
 | [RamAsset](ram_asset.md) | [RamItem](ram_item.md) | An asset. |
 | [RamDaemonInterface](ram_daemon_interface.md) | | The Class used to communicate with the Ramses Daemon |
-| [RamFileManager](ram_file_manager.md) | | Generic tools to handle files and the [Ramses Naming Scheme](../../files/naming.md) |
+| [RamFileManager](ram_file_manager.md) | | Generic tools to handle files and the [Ramses Naming Scheme](../../components/files/naming.md) |
 | [RamFileType](ram_filetype.md) | | A File type (name and possible extensions) |
 | [RamItem](ram_item.md) | [RamObject](ram_object.md) | The base class for Shots and Assets. |
 | [RamMetaDataManager](ram_metadata_manager.md) | | A Class to get/set metadata from files. |

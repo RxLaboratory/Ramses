@@ -11,7 +11,7 @@ Use this query to test if the server is available before logging in.
 **Reply content:**
 
 - *version*: **string**. The version of the current Ramses Server.
-- *installed*: **boolean**. False if the server is not correctly installed (i.e. the install script has not been run). See the [*Server installatio*](../../install/server.md) section of this documentation.
+- *installed*: **boolean**. False if the server is not correctly installed (i.e. the install script has not been run). See the [*Server installatio*](../../components/server/install.md) section of this documentation.
 
 **Reply body**:
 

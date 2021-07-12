@@ -45,12 +45,13 @@ nav:
             - Installation: components/server/install.md
             - Administration: components/server/admin.md
         - Ramses Application:
-            - Installation and settings: .
-            - Administration: .
-            - Project settings: .
-            - The pipeline: .
-            - Assets and shots production management: .
-            - Schedule and statistics: .
+            - Introduction: components/client/index.md
+            - Installation and settings: components/client/install.md
+            - Administration: components/client/admin.md
+            - Project settings: components/client/project.md
+            - Pipeline editor: components/client/pipeline.md
+            - Assets and shots production tracking: components/client/production.md
+            - Schedule and statistics: components/client/schedule.md
         - Ramses Add-ons:
             - General Information: components/addons/index.md
             - Autodesk Maya:
@@ -58,9 +59,9 @@ nav:
                 - Extensibility: components/addons/maya-extend.md
                 - Rubika Flavor: components/addons/maya-rubika.md
         - Ramses Tree:
-            - Introduction: .
-            - Naming scheme: files/naming.md
-            - Folder structure: files/tree.md
+            - Introduction: components/files/index.md
+            - Naming scheme: components/files/naming.md
+            - Folder structure: components/files/tree.md
     - Development:
         - Introduction: dev/index.md
         - Files and Folders:

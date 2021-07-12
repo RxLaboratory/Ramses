@@ -4,7 +4,7 @@
 
 You can easily add features to the *Ramses Maya Add-On*, especially by registering your own scripts/methods to be run when a status changes, when a scene is being published, or to import items.
 
-You can also easily use the included [*Ramses Scripting API*](../dev/add-ons-reference/index.md) as a *Python module* to develop your own functions.
+You can also easily use the included [*Ramses Scripting API*](../../dev/add-ons-reference/index.md) as a *Python module* to develop your own functions.
 
 ### Getting started
 
@@ -19,7 +19,7 @@ These folders should be available:
 - ***icons***: The icons used by the Add-On
 - ***plug-ins***: The actual *Python* code
     - ***dumaf***: Some useful *Python* code for *Maya*
-    - ***ramses***: The [*Ramses Scripting API*](../dev/add-ons-reference/index.md) as a *Python module*
+    - ***ramses***: The [*Ramses Scripting API*](../../dev/add-ons-reference/index.md) as a *Python module*
     - ***ramses_maya***: The Add-On itself
 - ***shelves***: The *Ramses Maya shelf*
 
@@ -85,17 +85,17 @@ Feel free to try and use it, and study it. As explained just before, all the ext
 
 *Ramses* stores three lists of callbacks you can extend.
 
-- [`Ramses.publishScripts`](../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene is being published.
+- [`Ramses.publishScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene is being published.
 
-When *Ramses* publishes a scene, it first copies the scene file to the publish folder, and then calls all the scripts listed there. Each callback you add to this list must take three arguments. Read the [Scripting API Reference](../dev/add-ons-reference/ramses.md) for more information.
+When *Ramses* publishes a scene, it first copies the scene file to the publish folder, and then calls all the scripts listed there. Each callback you add to this list must take three arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
 
-- [`Ramses.statusScripts`](../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene status changes.
+- [`Ramses.statusScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene status changes.
 
-When *Ramses* updates a status, it first copies the scene file to the version folder and calls the *Daemon* (if available) to notify the update, and then calls all the scripts listed there. Each callback you add to this list must take two arguments. Read the [Scripting API Reference](../dev/add-ons-reference/ramses.md) for more information.
+When *Ramses* updates a status, it first copies the scene file to the version folder and calls the *Daemon* (if available) to notify the update, and then calls all the scripts listed there. Each callback you add to this list must take two arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
 
-- [`Ramses.importScripts`](../dev/add-ons-reference/ramses.md) contains the functions to be called when the user selects an item (shot or asset) to import.
+- [`Ramses.importScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when the user selects an item (shot or asset) to import.
 
-By default, if and only if the list is empty, *Ramses* imports the selected item in the current scene, in a group named after the item, and in another group named after the asset group if it is an asset. Adding new callbacks to the list will de-activate this default behaviour so you can use your own methods for importing items. Each callback you add to this list must take two arguments. Read the [Scripting API Reference](../dev/add-ons-reference/ramses.md) for more information.
+By default, if and only if the list is empty, *Ramses* imports the selected item in the current scene, in a group named after the item, and in another group named after the asset group if it is an asset. Adding new callbacks to the list will de-activate this default behaviour so you can use your own methods for importing items. Each callback you add to this list must take two arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
 
 There are two ways to register your methods: by using a *Maya* command, or by [forking](https://github.com/Rainbox-dev/Ramses-Maya) the provided Add-On to add your functions.
 
@@ -103,11 +103,11 @@ Once the callbacks have been registered, they are automatically called when the 
 
 You can also explicitly call them by calling these three methods:
 
-- [`Ramses.updateStatus( item, status, stepShortName )`](../dev/add-ons-reference/ramses.md)
-- [`Ramses.importItem( item, filePath, stepShortName )`](../dev/add-ons-reference/ramses.md)
-- [`Ramses.publish( item, filePath, stepShortName )`](../dev/add-ons-reference/ramses.md)
+- [`Ramses.updateStatus( item, status, stepShortName )`](../../dev/add-ons-reference/ramses.md)
+- [`Ramses.importItem( item, filePath, stepShortName )`](../../dev/add-ons-reference/ramses.md)
+- [`Ramses.publish( item, filePath, stepShortName )`](../../dev/add-ons-reference/ramses.md)
 
-Read the [Scripting API Reference](../dev/add-ons-reference/ramses.md) for more information.
+Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
 
 #### Adding your custom callbacks
 

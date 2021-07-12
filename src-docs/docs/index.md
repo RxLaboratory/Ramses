@@ -24,7 +24,7 @@ Let's have a look at a few key features.
 
 ### ▹ Modular and scalable
 
-*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software improve your workflow and versionning, you could use only on of the [*Ramses Add-ons*](addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](#) and maybe connect it to the [*Ramses Server*](#) to stay connected with your team.
+*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software improve your workflow and versionning, you could use only on of the [*Ramses Add-ons*](components/addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](#) and maybe connect it to the [*Ramses Server*](#) to stay connected with your team.
 
 Of course, each of these components can work together and share information for **a seamless integration into your workflow**.
 
@@ -109,7 +109,7 @@ There's also a lot of ongoing work to extend the supported creative applications
 | Adobe After Effects | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
 | Adobe Illustrator | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |
 | Adobe Photoshop | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
-| [Autodesk Maya](addons/maya.md) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
+| [Autodesk Maya](components/addons/maya.md) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
 | Autodesk Maya<br/>[Rubika Flavor](#) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
 | Blender | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
 | Inkscape | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |
@@ -135,22 +135,25 @@ Legend:
     - The Ramses server
         - [Introduction](components/server/index.md)
         - [Installation](components/server/install.md)
-        - [Administration](#)
+        - [Administration](components/server/admin.md)
     - The Ramses application (client)
-        - [Installation and settings](#)
-        - [Administration](#)
-        - [Project settings](#)
-        - [The pipeline](#)
-        - [Assets and shots production management](#)
-        - [Schedule and statistics](#)
+        - [Introduction](components/client/index.md)
+        - [Installation and settings](components/client/install.md)
+        - [Administration](components/client/admin.md)
+        - [Project settings](components/client/project.md)
+        - [The pipeline](components/client/pipeline.md)
+        - [Assets and shots production tracking](components/client/production.md)
+        - [Schedule and statistics](components/client/schedule.md)
     - Ramses Add-ons
         - [General information](components/addons/index.md)
-        - [Add-on for Autodesk Maya](components/addons/maya.md)
-        - [Add-on for Autodesk Maya - The Rubika Flavor](#)
+        - Autodesk Maya
+            - [Autodesk Maya Add-on](components/addons/maya.md)
+            - [Extensibility](components/addons/maya-extend.md)
+            - [The Rubika Flavor](components/addons/maya-rubika.md)
     - The Ramses Tree
-        - [Introduction](#)
-        - [Naming scheme](files/naming.md)
-        - [Folder Structure](files/tree.md)
+        - [Introduction](components/files/index.md)
+        - [Naming scheme](components/files/naming.md)
+        - [Folder Structure](components/files/tree.md)
 - **Extending Ramses, Development**
     - [Introduction](dev/index.md)
     - [Files and folders](dev/files/naming.md)
@@ -164,6 +167,7 @@ Legend:
         - [Software: GNU GPLv3](licenses/gnu-gpl.md)
         - [Documentation: GNU FDL](licenses/gfdl.md)
         - [Medias: CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+        
 ## License
 
 ### Software

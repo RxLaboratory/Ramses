@@ -1,8 +1,8 @@
 # RamFileManager
 
-Generic tools to handle files and the [*Ramses Naming Scheme*](../../files/naming.md)
+Generic tools to handle files and the [*Ramses Naming Scheme*](../../components/files/naming.md)
 
-Read the sections about the *[Ramses Tree](../../files/tree.md)* and *[Naming Scheme](../../files/naming.md)* for more details about names and folders used by *Ramses*.
+Read the sections about the *[Ramses Tree](../../components/files/tree.md)* and *[Naming Scheme](../../components/files/naming.md)* for more details about names and folders used by *Ramses*.
 
 ## Static Methods
 
@@ -20,7 +20,7 @@ Read the sections about the *[Ramses Tree](../../files/tree.md)* and *[Naming Sc
 | **getProjectFolder**<br />▹ *string* | *string*: **path** | Gets the root folder of the project this path belongs to. |
 | **getPublishFolder**<br />▹ *string* | *string*: **filePath** | Gets the *_published_* folder path for any given file. |
 | **getRamsesFiles**<br />▹ *list* of *string* | *string*: **folderPath**, <br />*string*: **resource**=`None` | Gets all the files respecting the *Ramses* naming scheme inside the folder, optionally corresponding to the given resource only. |
-| **getSaveFilePath**<br />▹ *string* | *string*: **filePath** | Gets and returns the path to be used to save the file given as argument, with a name respecting the [*Ramses Naming Scheme*](../../files/naming.md). If the file is in a *_versions*, *_preview* or *_published* folder, the save file is located in the parent folder. |
+| **getSaveFilePath**<br />▹ *string* | *string*: **filePath** | Gets and returns the path to be used to save the file given as argument, with a name respecting the [*Ramses Naming Scheme*](../../components/files/naming.md). If the file is in a *_versions*, *_preview* or *_published* folder, the save file is located in the parent folder. |
 | **getVersionFilePaths**<br />▹ *string* | *string*: **filePath** | Gets the corresponding version files from the *_versions* folder path for any given file. |
 | **getVersionFolder**<br />▹ *string* | *string*: **filePath** | Gets the *_versions* folder path for any given file. |
 | **inPreviewFolder**<br />▹ *boolean* | *string*: **filePath** | Checks if a given file is located in a *_preview* folder. |

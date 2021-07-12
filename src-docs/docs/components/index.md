@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10)
+
 # Ramses Components
 
 *Ramses* is a complete framework made of different components interacting together. This makes it very modular and scalable to any kind of production, from the freelancer working at home to the biggest studios.
@@ -6,7 +8,7 @@
 
 ## General Description
 
-The *Ramses* framework can be viewed as a hirerachical tree, going from the data stored by the *Ramses Server* up to the [creative applications add-ons](../addons/index.md) and the [files and folder structure](../files/naming.md) on the workstations.
+The *Ramses* framework can be viewed as a hirerachical tree, going from the data stored by the *Ramses Server* up to the [creative applications add-ons](addons/index.md) and the [files and folder structure](files/naming.md) on the workstations.
 
 - ***Ramses Data***: all the meta-data is stored by *Ramses* in an *SQL* server.
 - ***Ramses Server***: this data is managed by a webserver, which reads and writes the data on demand from connected *Ramses Clients*.
@@ -40,14 +42,12 @@ The client also runs the *Ramses Daemon* which is a local server which communica
 
 ## Ramses Add-ons
 
-The [add-ons](../addons/index.md) are scripts available inside the creative applications (e.g. *Blender*, *Maya*, *After Effects*...). They could be used without the client, with limited functionnalities. In this case, data is retrieved from the *Ramses Tree*.
+The [add-ons](addons/index.md) are scripts available inside the creative applications (e.g. *Blender*, *Maya*, *After Effects*...). They could be used without the client, with limited functionnalities. In this case, data is retrieved from the *Ramses Tree*.
 
 The add-ons are in charge of file management and versionning, publishing, etc.
 
 ## Ramses Tree
 
-On the lowest level, *Ramses* handles all [files](../files/naming.md) and [folders](../files/tree.md) for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remote and backup locations.
+On the lowest level, *Ramses* handles all [files](files/naming.md) and [folders](files/tree.md) for the managed projects. It is able to retrieve missing data from the file structure, and missing files from clones on remote and backup locations.
 
 Both the Add-ons and the Client can manage the files and folders.
-
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10)

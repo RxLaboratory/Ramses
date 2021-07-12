@@ -14,7 +14,7 @@ The main class. One (and only one) instance globally available (Ramses is a *sin
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
 | **apiReferenceUrl** | *string* | This page URL | A link to this API documentation |
-| **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | A link to the [Ramses add-ons](../../../addons/) documentation |
+| **addonsHelpUrl** | *string* | The URL to [this page](../../components/addons/) | A link to the [Ramses add-ons](../../components/addons/) documentation |
 | **generalHelpUrl** | *string* | The URL to [this documentation](../../../) | A link to the [Ramses documentation](../../../) |
 
 ## Attributes
@@ -59,7 +59,7 @@ Read the section entitled *Callbacks* below (and see the *Examples*) for more in
 
 The callbacks are the methods you can add to these lists: `Ramses.publishScripts`, `Ramses.statusScripts`, `Ramses.importScripts`, `Ramses.userScripts`.
 
-When using one of the provided [Ramses Add-ons](../../addons/index.md), these callbacks will be called automatically when the user publishes an item, changes the status, or wants to import a file. This makes it very easy to extend these add-ons by just adding your own methods.
+When using one of the provided [Ramses Add-ons](../../components/addons/index.md), these callbacks will be called automatically when the user publishes an item, changes the status, or wants to import a file. This makes it very easy to extend these add-ons by just adding your own methods.
 
 If you're developping your own add-on from scratch, it may be useful to add your methods to these lists to call them easily anyway; use `Ramses.publish()`, `Ramses.importItem()`, and `Ramses.updateStatus()`.
 
