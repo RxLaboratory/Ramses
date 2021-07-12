@@ -77,6 +77,24 @@
         <div class="col-md-3">{% include "toc.html" %}</div>
         <div class="col-md-9" role="main">{% include "content.html" %}</div>
         {% endif %}
+            {%- block next_prev %}
+            {%- if page and (page.next_page or page.previous_page) and not config.theme.disable_nav_previous_next %}
+            <div class="nav-footer">
+            <ul>
+                <li {% if not page.previous_page %}class="disabled nav-footer-prev"{% else %}class="nav-footer-prev"{% endif %}>
+                    <a rel="prev" {% if page.previous_page %}href="{{ page.previous_page.url|url }}"{% endif %}>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li {% if not page.next_page %}class="disabled nav-footer-next"{% else %}class="nav-footer-next"{% endif %}>
+                    <a rel="next" {% if page.next_page %}href="{{ page.next_page.url|url }}"{% endif %}>
+                        Next <i class="fas fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+            </div>
+            {%- endif %}
+            {%- endblock %}
         {% endblock %}
     </div>
 

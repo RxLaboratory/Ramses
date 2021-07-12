@@ -177,6 +177,43 @@ li.first-level .second-level .collapse-button {
     box-shadow: 1px 4px 7px #131313;
 }
 
+.nav-footer {
+    width: 78%;
+    float: right;
+}
+
+@media (max-width: 992px) {
+    .nav-footer {
+        width: 100%;
+    }
+}
+
+.nav-footer ul {
+    list-style-type: none;
+}
+
+.nav-footer ul li {
+    background-color: #e3e3e3;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 4px 7px #131313;
+    max-width: 50%;
+    text-align: center;
+    font-weight: 800;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+.nav-footer-prev {
+    float: left;
+}
+
+.nav-footer-next {
+    float: right;
+}
+
 pre {
     background: none;
     border: none;
