@@ -40,7 +40,7 @@ Each user is represented by its **name** and **ID**, and has a **role**.
 The **ID** is used in file and folder names in the [*Ramses Tree*](../components/files/index.md), while the **name** is used in the user interface.  
 The **role** defines the rights the user has to manage *Ramses*, the projects, the assets, etc. There are four roles listed below.
 
-▹ **[User management in the *Ramses Client Application*](../components/client/admin.md)**.
+▹ **[User management in the *Ramses Client Application*](../components/client/users.md)**.
 
 ### ![](../img/icons/admininstrator_sl.svg){: style="width:26px;"} Administrator
 
@@ -92,7 +92,7 @@ They are made of ***Shots*** which are in turn made of ***Assets***.
 !!! note
     It is not mandatory to use sequences, and for short projects (less than a hundred shots), it is often easier to just have a single sequence.
 
-**The list of projects is available and can be managed in the [*Ramses Client Application*](../components/client/index.md), under [the administration panel](../components/client/admin.md) (for administrator users)**, and by default each project is represented by a folder in the [*Ramses Tree*](../components/files/index.md) as shown below.
+**The list of projects is available and can be managed in the [*Ramses Client Application*](../components/client/projects.md), under [the administration panel](../components/client/admin.md) (for administrator users)**, and by default each project is represented by a folder in the [*Ramses Tree*](../components/files/index.md) as shown below.
 
 ```sh
 ┌ Ramses Folder
@@ -116,4 +116,4 @@ The projects also have the characteristics of the final video (**width** and **h
 
 **Users** can be assigned to specific projects.
 
-▹ **[Project management in the *Ramses Client Application*](../components/client/admin.md)**.
+▹ **[Project management in the *Ramses Client Application*](../components/client/projects.md)**.

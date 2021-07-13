@@ -45,7 +45,8 @@ nav:
             - Administration: components/server/admin.md
         - Ramses Application:
             - Introduction: components/client/index.md
-            - Installation and settings: components/client/install.md
+            - Installation: components/client/install.md
+            - Settings: components/client/settings.md
             - Administration:
                 - Introduction: components/client/admin.md
                 - Users: components/client/users.md
@@ -76,7 +77,7 @@ nav:
             - Introduction: components/files/index.md
             - Naming scheme: components/files/naming.md
             - Folder structure: components/files/tree.md
-    - Development:
+    - Extensibility:
         - Introduction: dev/index.md
         - Files and Folders:
             - Naming: dev/files/naming.md

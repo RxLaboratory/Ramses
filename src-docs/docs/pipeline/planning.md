@@ -18,13 +18,13 @@ At the **step** level, **default estimations** can be set to be used on shots an
 
 For each step, it is possible to set a **default estimation** which will be used for all assets and shots.
 
-This estimation, usually set in days of work, can vary with the **difficulty** for the production of each specific asset or shot; *Ramses* let you define an estimation for five predefined levels of difficulty: *very easy*, *easy*, *medium*, *hard*, *very hard*.
+This estimation, usually set in days of work, can vary with the **difficulty** for the production of each specific asset or shot; *Ramses* lets you define an estimation for five predefined levels of difficulty: *very easy*, *easy*, *medium*, *hard*, *very hard*.
 
-This default estimation is used to **automatically evaluate the time needed** for the production of the whole step, depending on the assets or shots which have to be produced, at first based on a medium difficulty. **Adjusting the difficulty per shot or asset** will then automatically update the global estimation to be more and more precise.
+This default estimation is used to **automatically evaluate the time needed** for the production of the whole step, depending on the assets or shots which have to be produced, at first based on a medium difficulty. **Adjusting the difficulty per shot or asset** will then automatically update the global estimation to raise the precision.
 
-For the production of **shots**, the estimations can also be optionaly automatically multiplied by the **duration** of the shot, so that the estimation can be made **per second** instead of **per shot**, and also by the **number of assets used by the shot**, for example to multiply the estimation by the number of characters in the shot.
+For the production of **shots**, the estimations can also be optionnaly and automatically multiplied by the **duration** of the shot, so that the estimation can be made **per second** instead of **per shot**, and also by the **number of assets used by the shot**, for example to multiply the estimation by the number of characters in the shot.
 
-▹ **[Step management in the *Ramses Client Application*](../components/client/project.md)**.
+▹ **[Step management in the *Ramses Client Application*](../components/client/steps.md)**.
 
 ## ![](../img/icons/assets_sl.svg){: style="width:48px;"} Asset and shots estimations
 

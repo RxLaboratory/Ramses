@@ -40,7 +40,7 @@ These are the predefined states:
 | CBB | Could be better | 95% | No | This works like that, but if possible it can still be improved. |
 | OK | Finished | 100% | Yes | This has been reviewed and validated. |
 
-▹ **[State management in the *Ramses Client Application*](../components/client/admin.md)**.
+▹ **[State management in the *Ramses Client Application*](../components/client/states.md)**.
 
 ## ![](../img/icons/assets_sl.svg){: style="width:48px;"} Assets
 
@@ -77,7 +77,7 @@ They're grouped in **Asset Groups** to make them easier to sort, and produced th
 
 They also have **tags** to be able to search for specific assets.
 
-▹ **[Asset management in the *Ramses Client Application*](../components/client/project.md)**.
+▹ **[Asset management in the *Ramses Client Application*](../components/client/assets.md)**.
 
 ## ![](../img/icons/shots.svg){: style="width:48px;"} Shots
 
@@ -112,7 +112,7 @@ Each shot contains a list of **assets** which are needed for its production.
 
 Shots have a **duration**, usually shown either in seconds or frames, and the addition of all their duration is the duration of the project.
 
-▹ **[Shot management in the *Ramses Client Application*](../components/client/project.md)**.
+▹ **[Shot management in the *Ramses Client Application*](../components/client/shots.md)**.
 
 ## ![](../img/icons/check_sl.svg){: style="width:48px;"} Production status of assets and shots
 

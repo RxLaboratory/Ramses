@@ -26,16 +26,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.313708"
-     inkscape:cx="28.063866"
-     inkscape:cy="15.985399"
+     inkscape:cx="12.419128"
+     inkscape:cy="15.631846"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
-     inkscape:window-x="1920"
-     inkscape:window-y="120"
+     inkscape:window-x="0"
+     inkscape:window-y="252"
      inkscape:window-maximized="1">
     <sodipodi:guide
        position="8.4666666,0"
@@ -74,6 +74,6 @@
        id="path1276"
        d="m 4.2388268,292.77468 c 1.1632341,0 2.1059962,-0.94277 2.1059962,-2.106 0,-1.16324 -0.9427621,-2.106 -2.1059962,-2.106 -1.1632341,0 -2.1059963,0.94276 -2.1059963,2.106 0,1.16323 0.9427622,2.106 2.1059963,2.106 z m 1.4741977,0.52649 H 5.4382574 c -0.3652588,0.16782 -0.7716502,0.26325 -1.1994306,0.26325 -0.4277805,0 -0.8325262,-0.0954 -1.1994306,-0.26325 H 2.7646299 c -1.2208197,0 -2.21129619,0.99048 -2.21129619,2.2113 v 0.68445 c 0,0.436 0.35374185,0.78974 0.78974889,0.78974 h 5.7914883 c 0.436007,0 0.7897488,-0.35374 0.7897488,-0.78974 v -0.68445 c 0,-1.22082 -0.9904755,-2.2113 -2.2112952,-2.2113 z"
        inkscape:connector-curvature="0"
-       style="fill:#83d3f6;fill-opacity:1;stroke-width:0.0164531" />
+       style="fill:#10688e;fill-opacity:1;stroke-width:0.0164531" />
   </g>
 </svg>

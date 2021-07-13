@@ -172,20 +172,122 @@
         
             
 <li >
-    <a href="../../components/client/install/">Installation and settings</a>
+    <a href="../../components/client/install/">Installation</a>
 </li>
 
         
             
 <li >
-    <a href="../../components/client/admin/">Administration</a>
+    <a href="../../components/client/settings/">Settings</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Administration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../components/client/admin/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../../components/client/project/">Project settings</a>
+    <a href="../../components/client/users/">Users</a>
 </li>
+
+        
+            
+<li >
+    <a href="../../components/client/projects/">Projects</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/templatesteps/">Template Steps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/templateassetgroups/">Template Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/states/">States</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/filetypes/">File Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/applications/">Applications</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Project settings</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../components/client/project/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/steps/">Steps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/pipetypes/">Pipe Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/assetgroups/">Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/assets/">Assets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/sequences/">Sequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/client/shots/">Shots</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
             
@@ -285,7 +387,7 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extensibility <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
@@ -765,15 +867,59 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../components/client/install/">Installation and settings</a></li>
+                                    <li class="third-level "><a href="../../components/client/install/">Installation</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../components/client/admin/">Administration</a></li>
+                                    <li class="third-level "><a href="../../components/client/settings/">Settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../components/client/project/">Project settings</a></li>
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Administration</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/admin/">Introduction</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/users/">Users</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/projects/">Projects</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/templatesteps/">Template Steps</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/templateassetgroups/">Template Asset Groups</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/states/">States</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/filetypes/">File Types</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/applications/">Applications</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Project settings</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/project/">Introduction</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/steps/">Steps</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/pipetypes/">Pipe Types</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/assetgroups/">Asset Groups</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/assets/">Assets</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/sequences/">Sequences</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../components/client/shots/">Shots</a></li>
+                                            
+                                        </ul>
+                                    </li>
                                     
                                 
                                     
@@ -847,7 +993,7 @@
         
         
             <li class="first-level">
-                <button  type="button" class="collapse-button ">Development</button>
+                <button  type="button" class="collapse-button ">Extensibility</button>
                 <ul class="collapsible-content ">
                     
                         
@@ -1144,10 +1290,10 @@
 <p>At the <strong>step</strong> level, <strong>default estimations</strong> can be set to be used on shots and assets, depending on the difficulty of their productions. Then, each individual <strong>estimation</strong> can be customized for a finer evaluation of the time needed for the production.</p>
 <h2 id="step-estimations"><img alt="" src="../../img/icons/connections_sl.svg" style="width:48px;" /> Step estimations</h2>
 <p>For each step, it is possible to set a <strong>default estimation</strong> which will be used for all assets and shots.</p>
-<p>This estimation, usually set in days of work, can vary with the <strong>difficulty</strong> for the production of each specific asset or shot; <em>Ramses</em> let you define an estimation for five predefined levels of difficulty: <em>very easy</em>, <em>easy</em>, <em>medium</em>, <em>hard</em>, <em>very hard</em>.</p>
-<p>This default estimation is used to <strong>automatically evaluate the time needed</strong> for the production of the whole step, depending on the assets or shots which have to be produced, at first based on a medium difficulty. <strong>Adjusting the difficulty per shot or asset</strong> will then automatically update the global estimation to be more and more precise.</p>
-<p>For the production of <strong>shots</strong>, the estimations can also be optionaly automatically multiplied by the <strong>duration</strong> of the shot, so that the estimation can be made <strong>per second</strong> instead of <strong>per shot</strong>, and also by the <strong>number of assets used by the shot</strong>, for example to multiply the estimation by the number of characters in the shot.</p>
-<p>▹ <strong><a href="../../components/client/project/">Step management in the <em>Ramses Client Application</em></a></strong>.</p>
+<p>This estimation, usually set in days of work, can vary with the <strong>difficulty</strong> for the production of each specific asset or shot; <em>Ramses</em> lets you define an estimation for five predefined levels of difficulty: <em>very easy</em>, <em>easy</em>, <em>medium</em>, <em>hard</em>, <em>very hard</em>.</p>
+<p>This default estimation is used to <strong>automatically evaluate the time needed</strong> for the production of the whole step, depending on the assets or shots which have to be produced, at first based on a medium difficulty. <strong>Adjusting the difficulty per shot or asset</strong> will then automatically update the global estimation to raise the precision.</p>
+<p>For the production of <strong>shots</strong>, the estimations can also be optionnaly and automatically multiplied by the <strong>duration</strong> of the shot, so that the estimation can be made <strong>per second</strong> instead of <strong>per shot</strong>, and also by the <strong>number of assets used by the shot</strong>, for example to multiply the estimation by the number of characters in the shot.</p>
+<p>▹ <strong><a href="../../components/client/steps/">Step management in the <em>Ramses Client Application</em></a></strong>.</p>
 <h2 id="asset-and-shots-estimations"><img alt="" src="../../img/icons/assets_sl.svg" style="width:48px;" /> Asset and shots estimations</h2>
 <p>The estimation set by default by the <strong>step</strong> and automatically computed based on the number of assets, the duration and the difficulty can always be individually <strong>overriden</strong> for each shot and asset, for a more precise control on the estimations.</p>
 <p>This is done through the <a href="../production/"><em>Production Tracking</em></a></p>

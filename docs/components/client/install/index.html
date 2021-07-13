@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
     
-    <title>Installation and settings - Ramses</title>
+    <title>Installation - Ramses</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -172,20 +172,122 @@
         
             
 <li class="active">
-    <a href="./">Installation and settings</a>
+    <a href="./">Installation</a>
 </li>
 
         
             
 <li >
-    <a href="../admin/">Administration</a>
+    <a href="../settings/">Settings</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Administration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../admin/">Introduction</a>
 </li>
 
         
             
 <li >
-    <a href="../project/">Project settings</a>
+    <a href="../users/">Users</a>
 </li>
+
+        
+            
+<li >
+    <a href="../projects/">Projects</a>
+</li>
+
+        
+            
+<li >
+    <a href="../templatesteps/">Template Steps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../templateassetgroups/">Template Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../states/">States</a>
+</li>
+
+        
+            
+<li >
+    <a href="../filetypes/">File Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../applications/">Applications</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Project settings</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../project/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../steps/">Steps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pipetypes/">Pipe Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../assetgroups/">Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../assets/">Assets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sequences/">Sequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../shots/">Shots</a>
+</li>
+
+        
+    </ul>
+  </li>
 
         
             
@@ -285,7 +387,7 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extensibility <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
@@ -666,7 +768,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../admin/">
+                        <a rel="next" href="../settings/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -765,15 +867,59 @@
                                     
                                 
                                     
-                                    <li class="third-level active"><a href="./">Installation and settings</a></li>
+                                    <li class="third-level active"><a href="./">Installation</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../admin/">Administration</a></li>
+                                    <li class="third-level "><a href="../settings/">Settings</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../project/">Project settings</a></li>
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Administration</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../admin/">Introduction</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../users/">Users</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../projects/">Projects</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../templatesteps/">Template Steps</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../templateassetgroups/">Template Asset Groups</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../states/">States</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../filetypes/">File Types</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../applications/">Applications</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Project settings</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../project/">Introduction</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../steps/">Steps</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../pipetypes/">Pipe Types</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../assetgroups/">Asset Groups</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../assets/">Assets</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../sequences/">Sequences</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../shots/">Shots</a></li>
+                                            
+                                        </ul>
+                                    </li>
                                     
                                 
                                     
@@ -847,7 +993,7 @@
         
         
             <li class="first-level">
-                <button  type="button" class="collapse-button ">Development</button>
+                <button  type="button" class="collapse-button ">Extensibility</button>
                 <ul class="collapsible-content ">
                     
                         
@@ -1116,13 +1262,40 @@
     </div>
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#application-installation">Application installation</a></li>
+                <li class="second-level"><a href="#linux">Linux</a></li>
+                    
+                <li class="second-level"><a href="#windows">Windows</a></li>
+                    
+                <li class="second-level"><a href="#mac-os">Mac OS</a></li>
+                    
         </ul>
     </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/13" /></p>
+<h1 id="application-installation"><img alt="" src="/img/icons/ramses-icon-large.svg" style="width:55px;" /> Application installation</h1>
+<p>The method to install Ramses depends on your operating system; no matter what, it is installed as any other standard application.</p>
+<p>As soon as the application is installed and running, go to the <strong><a href="../settings/">settings</a></strong> to configure it.</p>
+<h2 id="linux">Linux</h2>
+<p>On <strong><em>Debian</em>-based distributions</strong>, like <strong><em>Ubuntu</em></strong> for example, the easiest way to install the <em>Ramses Client Application</em> is to download and install the <code>.deb</code> package, which will also install all dependencies, using your usual package manager / installer.</p>
+<p>There are two different version which depend on the version of <em>openSSL</em> (either <em>1.0</em> or <em>1.1</em>) and the <em>Qt</em> library (either <em>5.9</em> or <em>5.12</em>) available with your distribution; if you have any doubt, the <em>openSSL-1.0_Qt-5.9</em> version should work on most systems including older ones.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In case you don&rsquo;t need a secure connexion to the server (for a local server for example), the version of <em>openSSL</em> does not really matter.</p>
 </div>
+<p>For <strong>other distributions</strong> or if you have any issues with the <em>.deb</em> package, you can just download and run the <code>.appImage</code> package. There are two versions of the package depending on the version of <em>openSSL</em> (either <em>1.0</em> or <em>1.1</em>) available with your distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When using the <code>.appImage</code> package, <em>openSSL</em> will not be automatically installed; if you need a secure connexion to the server you will have to install it with your usual package manager.</p>
+</div>
+<h2 id="windows">Windows</h2>
+<p>There&rsquo;s no installer for <em>Windows</em> (yet). To install <em>Ramses</em>, you can just unzip the files in a folder of your choice.</p>
+<p>If you want <em>Ramses</em> to start with the system, you can just copy a shortcut to <code>Ramses.exe</code> in the startup folder. You can access this startup folder with the shortcut <code>[Win + R]</code> and typing <code>shell:startup</code>.</p>
+<h2 id="mac-os">Mac OS</h2>
+<p>TODO</p></div>
         
             <div class="nav-footer">
             <ul>
@@ -1132,7 +1305,7 @@
                     </a>
                 </li>
                 <li class="nav-footer-next">
-                    <a rel="next" href="../admin/">
+                    <a rel="next" href="../settings/">
                         Next <i class="fas fa-arrow-right"></i>
                     </a>
                 </li>
