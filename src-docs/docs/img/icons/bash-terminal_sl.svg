@@ -29,16 +29,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="16"
-     inkscape:cx="6.452552"
-     inkscape:cy="10.71875"
+     inkscape:cx="-4.609948"
+     inkscape:cy="10.46875"
      inkscape:document-units="mm"
      inkscape:current-layer="svg8"
      showgrid="false"
      units="px"
-     inkscape:window-width="3368"
-     inkscape:window-height="1376"
-     inkscape:window-x="1992"
-     inkscape:window-y="27"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="252"
      inkscape:window-maximized="1">
     <sodipodi:guide
        position="8.4666666,0"
@@ -69,7 +69,7 @@
     </rdf:RDF>
   </metadata>
   <path
-     style="fill:#3e8b45;fill-opacity:1;stroke-width:0.06054943"
+     style="fill:#8ad891;fill-opacity:1;stroke-width:0.06054943"
      d="M 3.4199219 6.3496094 C 3.2337321 6.3549026 3.0474666 6.4308717 2.9082031 6.5761719 L 0.27539062 9.3847656 C -0.0031380872 9.6814585 0.0154188 10.155261 0.32421875 10.427734 L 5.8085938 15.259766 L 0.32421875 20.083984 C 0.015418763 20.356458 -0.009193249 20.830261 0.27539062 21.126953 L 2.9082031 23.935547 C 3.1806768 24.23224 3.640805 24.245107 3.9375 23.972656 L 12.664062 15.791016 C 12.972861 15.506432 12.972861 15.017004 12.664062 14.732422 L 3.9375 6.546875 C 3.7921806 6.4106381 3.6061116 6.3443161 3.4199219 6.3496094 z M 31.226562 19.089844 L 14.927734 19.097656 C 14.525201 19.101145 14.19573 19.423634 14.199219 19.826172 L 14.201172 23.673828 C 14.198846 24.078053 14.525465 24.398061 14.929688 24.400391 L 31.228516 24.392578 C 31.631049 24.38909 31.96052 24.066603 31.957031 23.664062 L 31.955078 19.818359 C 31.951589 19.415825 31.629096 19.086373 31.226562 19.089844 z "
      transform="scale(0.26458333)"
      id="path821" />
