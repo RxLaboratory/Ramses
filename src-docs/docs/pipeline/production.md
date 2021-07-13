@@ -124,6 +124,9 @@ This status consists of a **state**, a **comment** and a **completion ratio**.
 
 All this information is added and summarized at the **step** level to show the completion for each step, each asset and each shot. *Ramses* also keeps track of the whole production at the **project** level with general statistics.
 
+!!! note
+    There's no way with *Ramses* to link the production tracking data to individual users (meaning that there's no easy way to build statistics about users or compare their productivity). That's by design, don't ask for it.
+
 *Ramses* is also able to extract a **lateness** value from all the available information, available at all levels (shots, assets, steps and whole project).
 
 All the **history** of successive states, comments, completion ratio, etc. is always available.

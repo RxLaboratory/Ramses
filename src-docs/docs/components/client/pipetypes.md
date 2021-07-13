@@ -31,7 +31,7 @@ You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 
 - ***ID*** is the **unique** identifier which is used in the files and folders (see the [*Ramses Tree*](../files/index.md) section). **It's this *ID* which is passed to the [*Ramses Add-ons*](../addons/index.md)** to let them know what they need to export or import, along with the other information from the pipe. Read the [*Ramses naming conventions*](../files/naming.md) to learn how *IDs* and names have to be formatted.
 - ***Comment*** can be any text associated to the pipe and describing it.
-- Use the ***Type*** list to set the [type]((../../pipeline/pipeline.md)) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
+- Use the ***Type*** list to set the [type](../../pipeline/pipeline.md) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
 - You can select one ***File type*** to be used through this pipe; if you need several different types, you can use multiple pipes between steps. Read the [*Pipeline Editor*](pipeline.md) section for more information.
 - You can select one ***Color space*** to be used through this pipe; if you need several different color spaces, you can use multiple pipes between steps. Read the [*Pipeline Editor*](pipeline.md) section for more information.
 

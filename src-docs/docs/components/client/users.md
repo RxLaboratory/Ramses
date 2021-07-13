@@ -37,7 +37,7 @@ Except for the password, there's no need to validate any change; changes are sav
 - ***Name*** is the user's display name and can be changed any time (although it's not really advisable).
 - ***ID*** is the **unique** identifier which is used in the files and folders (see [*Ramses Tree*](../files/index.md)). It can't be changed after the user folder has been created. Read the [*Ramses naming conventions*](../files/naming.md) to learn how *IDs* and names have to be formatted.
 - ***Comment*** can be any text associated to the user. It is public.
-- The ***Current [role](../../pipeline/administration.md)*** can never be changed by the user itself, and has to be changed by an administrator ([read this]((../../pipeline/administration.md)) for more information about roles).
+- The ***Current [role](../../pipeline/administration.md)*** can never be changed by the user itself, and has to be changed by an administrator ([read this](../../pipeline/administration.md) for more information about roles).
 - To update your own password, input your ***Current password*** and repeat your ***New password*** twice. Don't forget to click the ***Change password*** button to validate!
 - You can change any other user password, just set the ***New password*** twice and ignore the *Current password* field. Don't forget to click the ***Change password*** button to validate!
 - You can change the ***folder*** where the user files are stored.

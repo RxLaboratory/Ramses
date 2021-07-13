@@ -35,7 +35,7 @@ Steps can be re-order by dragging their *ID* in the column header of the list.
 - ***Name*** is the step's display name.
 - ***ID*** is the **unique** identifier which is used in the files and folders (see the [*Ramses Tree*](../files/index.md) section). **It can't be changed after the step has been created**. Read the [*Ramses naming conventions*](../files/naming.md) to learn how *IDs* and names have to be formatted.
 - ***Comment*** can be any text associated to the step and describing it.
-- Use the ***Type*** list to set the [type]((../../pipeline/pipeline.md)) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
+- Use the ***Type*** list to set the [type](../../pipeline/pipeline.md) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
 - The ***color*** is used to display the steps in the user interface and easily differenciate them in lists and the [schedule](schedule.md).
     - Input a custom hexadecimal color code in the field.
     - Click the ![](/img/icons/color2.svg){: style="width:18px;"} button to use a nice color selector.

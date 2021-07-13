@@ -1263,10 +1263,10 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#production-planning">Production Planning</a></li>
-                <li class="second-level"><a href="#step-estimations">Step estimations</a></li>
+                <li class="second-level"><a href="#estimations">Estimations</a></li>
                     
-                <li class="second-level"><a href="#asset-and-shots-estimations">Asset and shots estimations</a></li>
-                    
+                    <li class="third-level"><a href="#step-estimations">Step estimations</a></li>
+                    <li class="third-level"><a href="#asset-and-shots-estimations">Asset and shots estimations</a></li>
                 <li class="second-level"><a href="#schedule">Schedule</a></li>
                     
         </ul>
@@ -1288,13 +1288,22 @@
 </div>
 <p>As <em>Ramses</em> is able to (automatically) estimate the time needed for the production of the individual <strong>assets</strong> and <strong>shots</strong>, it can help you plan the production, and keep track of the <strong>time needed</strong> to produce any project.</p>
 <p>At the <strong>step</strong> level, <strong>default estimations</strong> can be set to be used on shots and assets, depending on the difficulty of their productions. Then, each individual <strong>estimation</strong> can be customized for a finer evaluation of the time needed for the production.</p>
-<h2 id="step-estimations"><img alt="" src="../../img/icons/connections_sl.svg" style="width:48px;" /> Step estimations</h2>
+<h2 id="estimations">Estimations</h2>
+<p>To establish a realistic schedule, it is important to be able to estimate the time needed to produce the project, as well as tracking the production to adjust these estimations if needed.</p>
+<p><em>Ramses</em> helps you to quickly estimate this time needed, and then helps you to make it as precise as you need.</p>
+<p>The unit used for estimations by <em>Ramses</em> is the <em>day</em> (which can be divided into smaller parts of a day if you need). Counting in days is precise enough for planning a production, and this way you don&rsquo;t need to know exactly how many hours are (actually) worked in a day.</p>
+<p>But when <em>Ramses</em> <a href="../production/">tracks the production</a>, the data it gathers is actually in&hellip; Seconds. To make things simpler, the time spent on each task is actually displayed and calculated in <em>hours</em>. Time tracking can&rsquo;t be done in days like the estimation, as the user may work on many different tasks the same day. Consequently, <em>Ramses</em> needs to be able to convert the actual <em>hours</em> spent on a task to <em>days</em> to be able to compare this value with the estimation (and warn you if you&rsquo;re late). As it would not really make sense to define an arbitrary number of hours per work day (as <em>Ramses</em> measures actual time spent, but never knows if the user is eating, going to the toilets, sick or just working <em>as he should without any break</em> (that&rsquo;s a joke)), <em>Ramses</em> rounds all that data to fractionnal days; this makes the measurement of the time spent less precise for individual tasks, but works quite well globally for the whole project, and thus to compare with estimations; the algorithm should work no matter what the <em>official</em> duration of a working day is (if it&rsquo;s more than 5-6 hours and less than 12).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There&rsquo;s no way with <em>Ramses</em> to link the production tracking data to individual users (meaning that there&rsquo;s no easy way to build statistics about users or compare their productivity). That&rsquo;s by design, don&rsquo;t ask for it.</p>
+</div>
+<h3 id="step-estimations"><img alt="" src="../../img/icons/connections_sl.svg" style="width:48px;" /> Step estimations</h3>
 <p>For each step, it is possible to set a <strong>default estimation</strong> which will be used for all assets and shots.</p>
 <p>This estimation, usually set in days of work, can vary with the <strong>difficulty</strong> for the production of each specific asset or shot; <em>Ramses</em> lets you define an estimation for five predefined levels of difficulty: <em>very easy</em>, <em>easy</em>, <em>medium</em>, <em>hard</em>, <em>very hard</em>.</p>
 <p>This default estimation is used to <strong>automatically evaluate the time needed</strong> for the production of the whole step, depending on the assets or shots which have to be produced, at first based on a medium difficulty. <strong>Adjusting the difficulty per shot or asset</strong> will then automatically update the global estimation to raise the precision.</p>
 <p>For the production of <strong>shots</strong>, the estimations can also be optionnaly and automatically multiplied by the <strong>duration</strong> of the shot, so that the estimation can be made <strong>per second</strong> instead of <strong>per shot</strong>, and also by the <strong>number of assets used by the shot</strong>, for example to multiply the estimation by the number of characters in the shot.</p>
 <p>▹ <strong><a href="../../components/client/steps/">Step management in the <em>Ramses Client Application</em></a></strong>.</p>
-<h2 id="asset-and-shots-estimations"><img alt="" src="../../img/icons/assets_sl.svg" style="width:48px;" /> Asset and shots estimations</h2>
+<h3 id="asset-and-shots-estimations"><img alt="" src="../../img/icons/assets_sl.svg" style="width:48px;" /> Asset and shots estimations</h3>
 <p>The estimation set by default by the <strong>step</strong> and automatically computed based on the number of assets, the duration and the difficulty can always be individually <strong>overriden</strong> for each shot and asset, for a more precise control on the estimations.</p>
 <p>This is done through the <a href="../production/"><em>Production Tracking</em></a></p>
 <p>▹ <strong><a href="../../components/client/production/">Production tracking in the <em>Ramses Client Application</em></a></strong>.</p>

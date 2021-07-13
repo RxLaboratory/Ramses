@@ -6,6 +6,8 @@
 
 The pipeline panel is accessible only to [*Administrator* and *Project administrator* users](../../pipeline/administration.md). This is where the project pipeline can be created and edited.
 
+▹ **[More details about the pipeline](../../pipeline/pipeline.md)**.
+
 ## Overview
 
 The pipeline editor has three main areas: the **toolbar** on top contains a few useful menus and tools, the **nodal view** is where steps and pipes are connected, and the **dock** shows the editors (on the right side of the nocal view by default).
@@ -58,6 +60,36 @@ To manipulate the view, use the following shortcuts:
 
 - `[middle click]` to **pan**.
 - `[Ctrl + middle click]` to **zoom**.
+
+When opening a project from the first time, the nodes may be stacked all together, and you'll have to sort the spaghettis. To do this quickly, start by using the automatic layout! Select `Layout ▸ Layout all steps` or use the `[Shift + L]` shortcut.
+
+## Pipeline edition
+
+To create and edit your pipeline, you just have to follow these simple steps:
+
+- **Create new steps**, either from a template using the ***Step*** menu or from scratch (`[Shift + A]`). When a step is created, it is automatically selected and its editor panel is docked on the right area.
+
+![](/img/client/pipestepedit.png)
+
+Read the [project step settings](steps.md) documentation for details about the settings in the step editor. You can also edit the [applications](applications.md) (and their [file types](filetypes.md)) assigned to the steps with the ![](/img/icons/edit-comment-modify_sl.svg){: style="width:18px;"} *edit* button.
+
+- **Connect the steps** together: click on the green dot on the right of a step and drag to the blue dot on the left of another step to connect them. The connections goes from left to right (the step on the right is the child).
+
+- **Select the connection** (the pipe) to edit it.
+
+![](/img/client/pipeedit.png)
+
+In the pipe editor, you can check the steps from and to which the connections goes.
+
+The ***Files*** list contains the file types this pipe can accept.
+
+- The ![](/img/icons/add_sl.svg){: style="width:18px;"} button contains a list of available types you can assign to the pipe, and an entry to quickly create a pipe type without having to switch to the [project pipe types settings](pipetypes.md) panel.
+- The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button unassigns the selected pipe types from the pipe but does not remove them from *Ramses*. You can also use the `[DEL]` key.
+- From the list, you can use the ![](/img/icons/edit-comment-modify_sl.svg){: style="width:18px;"} *edit* button to edit them in another side docked panel. Read the [project pipe types settings](pipetypes.md) section for more details about pipe types edition.
+
+This list is what is passed to the [*Ramses Add-Ons*](../addons/index.md) when they're exporting or importing items to and from the connected steps to let them know which kind of data and files they need to use.
+
+▹ **[More details about the pipeline](../../pipeline/pipeline.md)**.
 
 [^1]:
     The data is not actually deleted from the server nor the local data, but just flagged as removed. A server administrator can still restore the data at any time, but there is no way (yet) to do that from the user interface of the application.

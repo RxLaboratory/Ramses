@@ -1262,13 +1262,111 @@
     </div>
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#pipeline-editor">Pipeline editor</a></li>
+                <li class="second-level"><a href="#overview">Overview</a></li>
+                    
+                    <li class="third-level"><a href="#toolbar">Toolbar</a></li>
+                    <li class="third-level"><a href="#node-view">Node view</a></li>
+                <li class="second-level"><a href="#pipeline-edition">Pipeline edition</a></li>
+                    
         </ul>
     </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
 
-</div>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/13" /></p>
+<h1 id="pipeline-editor"><img alt="" src="/img/icons/edit-connections-pipeline_bl.svg" style="width:55px;" /> Pipeline editor</h1>
+<p><img alt="" src="/img/client/pipelineeditor.png" /></p>
+<p>The pipeline panel is accessible only to <a href="../../../pipeline/administration/"><em>Administrator</em> and <em>Project administrator</em> users</a>. This is where the project pipeline can be created and edited.</p>
+<p>▹ <strong><a href="../../../pipeline/pipeline/">More details about the pipeline</a></strong>.</p>
+<h2 id="overview">Overview</h2>
+<p>The pipeline editor has three main areas: the <strong>toolbar</strong> on top contains a few useful menus and tools, the <strong>nodal view</strong> is where steps and pipes are connected, and the <strong>dock</strong> shows the editors (on the right side of the nocal view by default).</p>
+<p>All docked panels can be undocked (as shown on the picture below) or docked on the other side of the nodal view, by dragging their title bar at the top of the panel.</p>
+<p><img alt="" src="/img/client/pipestepundock.png" /></p>
+<h3 id="toolbar">Toolbar</h3>
+<p><img alt="" src="/img/client/pipetoolbar.png" /></p>
+<p>On its left side, the toolbar displays a few menus.</p>
+<ul>
+<li><img alt="" src="/img/icons/frame-focus-center-target_sd.svg" style="width:18px;" /> View<ul>
+<li><strong><em>Center view</em></strong> resets the zoom of the nodal view to 100% and centers it. Shortcut: <code>[Home]</code></li>
+<li><strong><em>Center selection</em></strong> centers the selected nodes and zooms in on them. Shortcuts: <code>[F]</code> or <code>[.]</code> on the numpad.</li>
+</ul>
+</li>
+<li><img alt="" src="/img/icons/select.svg" style="width:18px;" /> Select<ul>
+<li><strong><em>Select all steps</em></strong> selects all the steps in the nodal view. Shortcut: <code>[A]</code></li>
+<li><strong><em>Select children steps</em></strong> selects all the steps following the currently selected one(s). Repeat the command to expand the selection on the child side. Shortcut: <code>[Ctrl + A]</code></li>
+<li><strong><em>Select parent steps</em></strong> selects all the steps preceding the currently selected one(s). Repeat the command to expand the selection on the parent side. Shortcut: <code>[Alt + A]</code></li>
+</ul>
+</li>
+<li><img alt="" src="/img/icons/connections_sd.svg" style="width:18px;" /> Layout<ul>
+<li><strong><em>Layout all steps</em></strong> automatically arranges all the nodes using a smart (or not) algorithm to (try to) make the layout clearer. Shortcut: <code>[Shift + L]</code></li>
+<li><strong><em>Layout selected steps</em></strong> will use the same smart (or not) algorithm to (try to) make the layout clearer for the selected nodes. Shortcut: <code>[Alt + L]</code></li>
+</ul>
+</li>
+<li><img alt="" src="/img/icons/step-node_sl.svg" style="width:18px;" /> Step<ul>
+<li><strong><em>Create new step</em></strong> creates a new step from scratch in the project, and opens a side docked editor to edit its details. Shortcut: <code>[Shift + A]</code></li>
+<li>The list of <strong><em>Template steps</em></strong> can be used to quickly create a new step from an template.</li>
+<li><strong><em>Remove selected steps</em></strong> removes the selected steps from the project<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Shortcut: <code>[Shift + X]</code></li>
+<li><strong><em>Delete selection</em></strong> removes everything selected (steps and pipes) from the project<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Shortcut: <code>[Del]</code></li>
+</ul>
+</li>
+<li><img alt="" src="/img/icons/connection_sl.svg" style="width:18px;" /> Pipe<ul>
+<li><strong><em>Remove selected pipes</em></strong> removes the selected pipes from the project<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, disconnected corresponding steps. Shortcut: <code>[Alt + X]</code></li>
+</ul>
+</li>
+</ul>
+<p>On its right side, the toolbar has a few settings available.</p>
+<ul>
+<li><img alt="" src="/img/icons/frame-focus-center-target_sl.svg" style="width:18px;" /> <strong><em>Center view</em></strong>, Shortcut: <code>[Home]</code></li>
+<li><img alt="" src="/img/icons/frame-focus-center-target-nodes_sl.svg" style="width:18px;" /> <strong><em>Center selection</em></strong>, Shortcuts: <code>[F]</code> or <code>[.]</code> on the numpad</li>
+<li><strong><em>Zoom</em></strong> changes the zoom of the nodal view. Minimum zoom is 25%.</li>
+<li>The <strong><em>Grid size</em></strong> is used when snapping nodes and defines the snap precision. It is displayed as small crosses in the nodal view when it has focus.</li>
+<li><strong><em>Snap to grid</em></strong> will snap the nodes to the grid when moving them, allowing you to perfectly align them, you maniac.</li>
+</ul>
+<h3 id="node-view">Node view</h3>
+<p><img alt="" src="/img/client/nodeview.png" /></p>
+<p>In the node view, you can move around all the nodes (steps) by just clicking and dragging them. To select multiple nodes, just click on the background and drag the mouse to use a box selection.</p>
+<p>You can select both nodes (steps) and connections (pipes); when a node or a pipe is selected, its corresponding editor is shown in the right dock area to let you edit its details.</p>
+<p>To manipulate the view, use the following shortcuts:</p>
+<ul>
+<li><code>[middle click]</code> to <strong>pan</strong>.</li>
+<li><code>[Ctrl + middle click]</code> to <strong>zoom</strong>.</li>
+</ul>
+<p>When opening a project from the first time, the nodes may be stacked all together, and you&rsquo;ll have to sort the spaghettis. To do this quickly, start by using the automatic layout! Select <code>Layout ▸ Layout all steps</code> or use the <code>[Shift + L]</code> shortcut.</p>
+<h2 id="pipeline-edition">Pipeline edition</h2>
+<p>To create and edit your pipeline, you just have to follow these simple steps:</p>
+<ul>
+<li><strong>Create new steps</strong>, either from a template using the <strong><em>Step</em></strong> menu or from scratch (<code>[Shift + A]</code>). When a step is created, it is automatically selected and its editor panel is docked on the right area.</li>
+</ul>
+<p><img alt="" src="/img/client/pipestepedit.png" /></p>
+<p>Read the <a href="../steps/">project step settings</a> documentation for details about the settings in the step editor. You can also edit the <a href="../applications/">applications</a> (and their <a href="../filetypes/">file types</a>) assigned to the steps with the <img alt="" src="/img/icons/edit-comment-modify_sl.svg" style="width:18px;" /> <em>edit</em> button.</p>
+<ul>
+<li>
+<p><strong>Connect the steps</strong> together: click on the green dot on the right of a step and drag to the blue dot on the left of another step to connect them. The connections goes from left to right (the step on the right is the child).</p>
+</li>
+<li>
+<p><strong>Select the connection</strong> (the pipe) to edit it.</p>
+</li>
+</ul>
+<p><img alt="" src="/img/client/pipeedit.png" /></p>
+<p>In the pipe editor, you can check the steps from and to which the connections goes.</p>
+<p>The <strong><em>Files</em></strong> list contains the file types this pipe can accept.</p>
+<ul>
+<li>The <img alt="" src="/img/icons/add_sl.svg" style="width:18px;" /> button contains a list of available types you can assign to the pipe, and an entry to quickly create a pipe type without having to switch to the <a href="../pipetypes/">project pipe types settings</a> panel.</li>
+<li>The <img alt="" src="/img/icons/remove_sl.svg" style="width:18px;" /> button unassigns the selected pipe types from the pipe but does not remove them from <em>Ramses</em>. You can also use the <code>[DEL]</code> key.</li>
+<li>From the list, you can use the <img alt="" src="/img/icons/edit-comment-modify_sl.svg" style="width:18px;" /> <em>edit</em> button to edit them in another side docked panel. Read the <a href="../pipetypes/">project pipe types settings</a> section for more details about pipe types edition.</li>
+</ul>
+<p>This list is what is passed to the <a href="../../addons/"><em>Ramses Add-Ons</em></a> when they&rsquo;re exporting or importing items to and from the connected steps to let them know which kind of data and files they need to use.</p>
+<p>▹ <strong><a href="../../../pipeline/pipeline/">More details about the pipeline</a></strong>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>The data is not actually deleted from the server nor the local data, but just flagged as removed. A server administrator can still restore the data at any time, but there is no way (yet) to do that from the user interface of the application.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
         
             <div class="nav-footer">
             <ul>

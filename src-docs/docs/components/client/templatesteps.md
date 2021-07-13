@@ -31,7 +31,7 @@ You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 - ***Name*** is the template step's display name.
 - ***ID*** is the **unique** identifier which is used in the files and folders (see the [*Ramses Tree*](../files/index.md) section and the [*Ramses naming convetions*](../files/naming.md)).
 - ***Comment*** can be any text associated to the template step.
-- Use the ***Type*** list to set the [type]((../../pipeline/pipeline.md)) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
+- Use the ***Type*** list to set the [type](../../pipeline/pipeline.md) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
 - The ***color*** is used to display the steps in the user interface and easily differenciate them in lists and the [schedule](schedule.md).
     - Input a custom hexadecimal color code in the field.
     - Click the ![](/img/icons/color2.svg){: style="width:18px;"} button to use a nice color selector.
