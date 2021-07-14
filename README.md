@@ -4,13 +4,13 @@
 
 It is meant to be used both by freelancers, small or big teams.
 
-**▹ [Read the doc on ramses.rxlab.guide](http://ramses.rxlab.guide)!**
+▹ **Read the doc** on [ramses.rxlab.guide](http://ramses.rxlab.guide)!
 
-**▹ [Developer guides are available on ramses.rxlab.io](http://ramses.rxlab.io).**
+▹ **Developer guides** are available on [ramses.rxlab.io](http://ramses.rxlab.io).
 
-**▹ [Post your feedback, bug reports and feature requests in the issues](https://github.com/RxLaboratory/Ramses/issues/new/choose)!**
+▹ **Post your feedback**, bug reports and feature requests in [the issues](https://github.com/RxLaboratory/Ramses/issues/new/choose). Issues are nicely arranged in the [***Projects***](https://github.com/RxLaboratory/Ramses/projects) tab to help track their states.
 
-**▹ [Join us on chat.rxlab.info](http://chat.rxlab.info), we don't bite!**
+▹ **Join us** on [chat.rxlab.info](http://chat.rxlab.info), we don't bite!
 
 ## ▹ Free and open source
 
