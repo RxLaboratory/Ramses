@@ -1,0 +1,3 @@
+[submodule "Ramses-Blender"]
+	path = Ramses-Blender
+	url = https://github.com/RxLaboratory/Ramses-Blender.git
