@@ -1,1 +1,0 @@
-# The project root folder
