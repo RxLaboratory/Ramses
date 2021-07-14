@@ -25,7 +25,7 @@ Let's have a look at a few key features.
 
 ### ▹ Modular and scalable
 
-*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software to improve your workflow and versionning, you could use only one of the [*Ramses Add-ons*](components/addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](components/client/index.md) and maybe connect it to the [*Ramses Server*](#) to stay connected with your team.
+*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software to improve your workflow and versionning, you could use only one of the [*Ramses Add-ons*](components/addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](components/client/index.md) and maybe connect it to the [*Ramses Server*](components/server/index.md) to stay connected with your team.
 
 Of course, each of these components can work together and share information for **a seamless integration into your workflow**.
 
