@@ -49,7 +49,7 @@ Initial release.
 -  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
 - On ***Windows***, the tray icon may not be removed if the client crashes.
-- On ***Linux/Ubuntu*** 18.04 and ***Mac OS*** it is sometimes impossible to interact with the schedule table. Restart the application to fix the issue.
+- It is sometimes impossible to interact with the schedule table (when running Ramses for the first time). Restart the application to fix the issue.
 
 #### Python API
 
