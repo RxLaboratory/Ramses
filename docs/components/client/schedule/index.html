@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
     
-    <title>Schedule and statistics - Ramses</title>
+    <title>Schedule and planning - Ramses</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">Ramses</a>
+                        <a href="../../..">v0.1.1-Alpha</a>
                     </li>
                 
                 
@@ -298,13 +298,13 @@
         
             
 <li >
-    <a href="../production/">Assets and shots production tracking</a>
+    <a href="../production/">Asset and shot production tracking</a>
 </li>
 
         
             
 <li class="active">
-    <a href="./">Schedule and statistics</a>
+    <a href="./">Schedule and planning</a>
 </li>
 
         
@@ -790,7 +790,7 @@
         
         
             <li >
-                <a href="../../../../../..">Ramses</a>
+                <a href="../../../../../..">v0.1.1-Alpha</a>
             </li>
         
         
@@ -927,11 +927,11 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../production/">Assets and shots production tracking</a></li>
+                                    <li class="third-level "><a href="../production/">Asset and shot production tracking</a></li>
                                     
                                 
                                     
-                                    <li class="third-level active"><a href="./">Schedule and statistics</a></li>
+                                    <li class="third-level active"><a href="./">Schedule and planning</a></li>
                                     
                                 
                             </ul>
@@ -1262,13 +1262,92 @@
     </div>
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#schedule-and-planning">Schedule and planning</a></li>
+                <li class="second-level"><a href="#overview">Overview</a></li>
+                    
+                    <li class="third-level"><a href="#toolbar">Toolbar</a></li>
+                    <li class="third-level"><a href="#main-table">Main table</a></li>
+                <li class="second-level"><a href="#statistics">Statistics</a></li>
+                    
         </ul>
     </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
 
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/14" /></p>
+<h1 id="schedule-and-planning"><img alt="" src="/img/icons/calendar_sl.svg" style="width:55px;" /> Schedule and planning</h1>
+<p><img alt="" src="/img/client/schedule2.png" /></p>
+<p>You can use the schedule panel to plan the production, per user and per step.</p>
+<p>▹ <strong><a href="../../../pipeline/planning/">More details about production planning</a></strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A future version of the application will include a more general schedule, to let you quickly select time ranges for each step, defining a starting and ending date for each, without having to assign tasks to individual users.</p>
 </div>
+<h2 id="overview">Overview</h2>
+<p>The schedule table has two main areas: the <strong>toolbar</strong> on top contains a few useful menus and tools, and the <strong>main table</strong> is where you plan the production.</p>
+<p>It is useful to keep the <strong>statistics</strong> side panel at hand when planning the production.</p>
+<h3 id="toolbar">Toolbar</h3>
+<p><img alt="" src="/img/client/scheduletoolbar.png" /></p>
+<p>On its left side, the toolbar displays a few menus and tools.</p>
+<p><img alt="" src="/img/client/scheduletoolbarleft.png" /></p>
+<ul>
+<li><img alt="" src="/img/icons/user_sl.svg" style="width:18px;" /> Users<ul>
+<li><strong><em>Me</em></strong>: shows only the current user in the table.</li>
+<li><strong><em>Select all</em></strong>: shows all the users assigned to this project in the table.</li>
+<li><strong><em>Select none</em></strong>: hides all the users from the table.</li>
+<li>The <strong><em>User list</em></strong> can be used to select the users to show in the table.</li>
+</ul>
+</li>
+<li><img alt="" src="/img/icons/calendar_sl.svg" style="width:18px;" /> Days<ul>
+<li>Select the days of the week to be shown in the table. This setting is kept across sessions, but it is a local setting, it is not shared with other workstations.</li>
+</ul>
+</li>
+<li><img alt="" src="/img/icons/step-node_sl.svg" style="width:18px;" /> Step<ul>
+<li><strong><em>Comment&hellip;</em></strong> adds a comment to the selected table cells (schedule entries).</li>
+<li><strong><em>Assign</em></strong> (un)assigns a step to the selected celles (schedule entries).</li>
+</ul>
+</li>
+<li><img alt="" src="/img/icons/select.svg" style="width:18px;" /> <strong><em>Go to date</em></strong> scrolls the table to a specific date.</li>
+<li><strong><em>Today</em></strong> scrolls the table to the current date.</li>
+<li><strong><em>Deadline</em></strong> scrolls the table to the deadline of the current project.</li>
+<li><strong><em>◀ Previous month</em></strong> scrolls the table to the previous month.</li>
+<li><strong><em>Next month ▶</em></strong>: I think you can guess what this button does.</li>
+</ul>
+<p>The right side of the toolbar shows the time remaining before reaching the deadline of the project and lets you define the time range of the table.</p>
+<p><img alt="" src="/img/client/scheduletoolbarright.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <strong><em>Step</em></strong> menu, to assign steps and set comments, is also availabe as a context menu with the <code>[right click]</code> on the table cells.</p>
+</div>
+<h3 id="main-table">Main table</h3>
+<p><img alt="" src="/img/client/scheduletable.png" /></p>
+<p>Each column represents a day, lines represent users. There are two lines per user to allow you to assign tasks only to half of a day.</p>
+<p>Columns in the past are darker than columns in the future, the current day is shown in purple in the header; the project deadline is shown in red. To help you differenciate weeks, an alternate grey is used for to separate them. You can hide the days of the week which are not working days (a.k.a. Weekends) using the <code>Days</code> menu.</p>
+<p>Planning the project with the table is very quick and easy:</p>
+<ul>
+<li>Click on any cell to assign a step to the corresponding user and date.</li>
+</ul>
+<p><img alt="" src="/img/client/scheduleselectstep.png" /></p>
+<ul>
+<li>Use the context menu with <code>[Right click]</code> to assign steps to multiple users and multiple days at once.</li>
+</ul>
+<p><img alt="" src="/img/client/schedulecontextmenu.png" /></p>
+<ul>
+<li>You can also add a comment to selected schedule entries; comments are shown when changing the size of the rows.</li>
+<li>There are a lot of different ways to select multiple cells in the table:<ul>
+<li><code>[Left click + Drag]</code> to quickly select contiguous cells.</li>
+<li><code>[Shift + Left click]</code> to select the range between the active (last selected) cell and another cell.</li>
+<li><code>[Ctrl + Left click]</code> to select individual cells.</li>
+<li>These three methods can be combined: for example, <code>[Ctrl + Left click + Drag]</code> to quickly select different groups of cells.</li>
+</ul>
+</li>
+</ul>
+<p>To check how many days you have to assign (or how many extra days you have already assigned) according to the estimations, use the <strong><em>Statistics</em></strong> panel.</p>
+<h2 id="statistics"><img alt="" src="/img/icons/counter_bl.svg" style="width:55px;" /> Statistics</h2>
+<p>The <strong><em>Statistics</em></strong> button on the title bar of the application opens a summary of the progress of all steps and the whole project.</p>
+<p><img alt="" src="/img/client/statistics.png" /></p>
+<p>For the project and each step, you can read the total number of days you have to assign (the <strong><em>estimation</em></strong>), and for each step, you can read how many days have been <strong>assigned</strong> and how many are <strong>missing</strong> or how many <strong>extra</strong> days are assigned.</p></div>
         
             <div class="nav-footer">
             <ul>

@@ -17,6 +17,8 @@ It is meant to be used both by freelancers, small or big teams.
 
 Let's have a look at a few key features.
 
+**▹ [Read the changelog](changelog.md)** to know exactly what's already available and what's planned (along with known issues)
+
 ### ▹ Free and open source
 
 *Ramses* is licensed under the GNU General Public License v3, which means **you're free** to do anything you'd like with it, use it the way you want, modify it, and share your modifications.
@@ -86,6 +88,8 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 ### ▹ The future
 
 **_Ramses_ is (far from) not finished**. And probably never will: it is going to evolve, and there are a lot of other planned features and improvements on their way!
+
+**▹ [Read the changelog for more details about what's going on, and known issues](changelog.md)**
 
 Here are some of the features which are not available yet but which will be available in the future.
 

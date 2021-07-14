@@ -8,7 +8,9 @@
 </figure>
 
 !!! warning
-    **Ramses is still under active development**, and this documentation is still being written.  
+    **Ramses is still under active development**, and this documentation is still being written.
+
+    We strongly invite you to read the [changelog](../changelog.md) to know what's going on, and especially to have a look at the [known issues](../changelog.md).
 
 The **pipeline** describes the way the production of the **assets** and the **shots** goes through each **step**. It actually describes each connection, each **pipe** between each step, keeping important information like the **file type** used and its color space for example.
 

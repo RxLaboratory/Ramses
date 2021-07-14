@@ -3,7 +3,9 @@
 # Ramses - The Rx Asset Management System: Introduction
 
 !!! warning
-    **Ramses is still under active development**, and this documentation is still being written.  
+    **Ramses is still under active development**, and this documentation is still being written.
+
+    We strongly invite you to read the [changelog](../changelog.md) to know what's going on, and especially to have a look at the [known issues](../changelog.md).
 
 This first part of the *Ramses* documention intents to help you understand the general concepts and key features of *Ramses* without going into technical details. As *Ramses* is not made of one single application but of several components, the technical description and user guide of each piece of software is available individually in [the second part of this documentation](../components/index.md).
 

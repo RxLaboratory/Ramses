@@ -10,6 +10,8 @@
 !!! warning
     **Ramses is still under active development**, and this documentation is still being written.
 
+    We strongly invite you to read the [changelog](../changelog.md) to know what's going on, and especially to have a look at the [known issues](../changelog.md).
+
 *Ramses* keeps track of the whole production for you, by tracking each **asset** and each **shot** at each **step** of the production. This allows for a precise information about the production of the whole project, and *Ramses* can summarize all this information in nice graphics.
 
 *Ramses* measures the **time spent** on the production of each asset and each shot, and the user can set a **completion ratio** along with setting the **state** of the production for each step. These values are closely related to the estimations used for [**production planning**](planning.md) and *Ramses* is able to measure the **lateness** of the production in real time.

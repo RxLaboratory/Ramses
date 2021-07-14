@@ -8,7 +8,9 @@
 </figure>
 
 !!! warning
-    **Ramses is still under active development**, and this documentation is still being written.  
+    **Ramses is still under active development**, and this documentation is still being written.
+
+    We strongly invite you to read the [changelog](../changelog.md) to know what's going on, and especially to have a look at the [known issues](../changelog.md). 
 
 In order to use *Ramses*, at least one **user** and one **project** are needed; when using the [*Ramses Client Application*](../components/client/index.md), you can also manage other elements.
 

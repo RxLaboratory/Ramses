@@ -29,7 +29,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - Ramses: index.md
+    - v0.1.1-Alpha: index.md
     - Pipeline & Management:
         - Introduction: pipeline/index.md
         - Administration: pipeline/administration.md
@@ -65,8 +65,8 @@ nav:
                 - Sequences: components/client/sequences.md
                 - Shots: components/client/shots.md
             - Pipeline editor: components/client/pipeline.md
-            - Assets and shots production tracking: components/client/production.md
-            - Schedule and statistics: components/client/schedule.md
+            - Asset and shot production tracking: components/client/production.md
+            - Schedule and planning: components/client/schedule.md
         - Ramses Add-ons:
             - General Information: components/addons/index.md
             - Autodesk Maya:

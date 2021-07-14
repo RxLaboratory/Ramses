@@ -235,6 +235,14 @@ ul.nav li p {
     margin-left: 10px;
 }
 
+ul.nav li a {
+    font-weight: normal;
+}
+
+.collapsible ul.nav li a::before {
+    content: "▹ ";
+}
+
 .post-meta {
     font-size: 0.9em;
     background-color: #535353;

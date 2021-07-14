@@ -1,12 +1,17 @@
 # Add-ons
 
+!!! warning
+    **Ramses is still under active development**, and this documentation is still being written.
+
+    For now, the only *Add-on* available for testing is the *Autodesk Maya Add-On*, others will follow in the upcoming weeks and months.
+
+    This specific page of the documentation is just a draft, sorry!
+
 Ramses comes with some add-ons to be used in your creative applications (*Blender*, *Maya*, *After Effects*...). They are basic add-ons to demonstrate some capabilities of Ramses for file versionning and asset management, and can be used as templates to develop your own add-ons working with Ramses.
 
 They will be developed one after each other, and you're welcome to contribute with your own!
 
 Here are some guidelines and descriptions about how these add-ons should work. We're trying to apply the same guidelines to all host applications for a unified experience. These add-ons should use the provided [*Scripting API*](../../dev/add-ons-reference/index.md) available at first in *Python* and *Adobe ExtendsScript*.
-
-[TOC]
 
 ## Introduction
 

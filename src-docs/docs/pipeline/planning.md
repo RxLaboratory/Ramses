@@ -10,6 +10,8 @@
 !!! warning
     **Ramses is still under active development**, and this documentation is still being written.
 
+    We strongly invite you to read the [changelog](../changelog.md) to know what's going on, and especially to have a look at the [known issues](../changelog.md).
+
 As *Ramses* is able to (automatically) estimate the time needed for the production of the individual **assets** and **shots**, it can help you plan the production, and keep track of the **time needed** to produce any project.
 
 At the **step** level, **default estimations** can be set to be used on shots and assets, depending on the difficulty of their productions. Then, each individual **estimation** can be customized for a finer evaluation of the time needed for the production.

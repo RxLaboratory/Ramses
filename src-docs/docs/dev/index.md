@@ -1,6 +1,11 @@
 # Developping and extending Ramses
 
-WIP
+!!! warning
+    **Ramses is still under active development**, and this documentation is still being written.
+
+    This specific page of the documentation is just a draft, sorry!
+
+    *Ramses* already includes a few different *APIs* to allow for different levels of extensibility, and don't forget, *Ramses* is free and open source, you can modify it according to your needs, and you can also contribute ;)
 
 ## Extending Ramses
 

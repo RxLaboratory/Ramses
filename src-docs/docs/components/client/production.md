@@ -1,6 +1,6 @@
 ![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/13)
 
-# ![](/img/icons/assets_sl.svg){: style="width:55px;"} Assets and shots production tracking
+# ![](/img/icons/assets_sl.svg){: style="width:55px;"} Asset and shot production tracking
 
 ![](/img/client/assettracking.png)
 
@@ -45,7 +45,7 @@ On its left side, the toolbar displays a few menus and tools.
 
 From the main table, you can have a look at all the **status** of all shots or assets, and a summary for steps on the column headers.
 
-The p**rogress bar in the step headers** goes from red to green when the **completion ratio** raises. If a second reddish part is shown to the right of the progress bar, it means the production of this step is late; the bigger and the more red it is, the later you are!
+The **progress bar in the step headers** goes from red to green when the **completion ratio** raises. If a second reddish part is shown to the right of the progress bar, it means the production of this step is late; the bigger and the redder it is, the later you are!
 
 The first column contains all the information about the shots or the assets (duration, tags, etc.).
 
@@ -124,6 +124,8 @@ The bottom part of the status editor shows the available ***working***, ***publi
 
 From these three lists, you can open any file by just double-clicking it. You can restore previous versions of working and published files, and the ![](/img/icons/add_sl.svg){: style="width:18px;"} *add* button in the *Work* tab can create a new file from a step template (if any template has been published).
 
+Files must respect the [*Ramses naming scheme*](../files/naming) and [folders](../files/tree.md) to be detected and listed here, but you don't necessarily have to use the [*Ramses Add-ons*](../addons/index.md), all files will be detected and handled by *Ramses*.
+
 ## ![](/img/icons/counter_bl.svg){: style="width:55px;"} Statistics
 
 The ***Statistics*** button on the title bar of the application opens a summary of the progress of all steps and the whole project.
@@ -139,5 +141,3 @@ The top part shows the statistics for the whole project.
 - The last line shows if you need to assign more days in the [schedule](schedule.md) ("missing") or if you have some extra days planned.
 
 The same information is available for all steps.
-
-Files must respect the [*Ramses naming scheme*](../files/naming) and [folders](../files/tree.md) to be detected and listed here, but you don't necessarily have to use the [*Ramses Add-ons*](../addons/index.md), all files will be detected and handled by *Ramses*.
