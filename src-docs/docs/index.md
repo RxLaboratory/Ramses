@@ -129,7 +129,7 @@ Legend:
 ## Table of Contents
 
 - Introduction (this page)
-- **The Pipeline & Production Management**
+- **Principles: the Pipeline & Production Management**
     - [Introduction](pipeline/index.md)
     - [Administration](pipeline/administration.md)
     - [Pipeline](pipeline/pipeline.md)

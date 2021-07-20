@@ -77,8 +77,14 @@
                 
                 
                 
+                    <li >
+                        <a href="../../../quickstart/">Quick start</a>
+                    </li>
+                
+                
+                
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pipeline & Management <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Principles <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
@@ -795,8 +801,14 @@
         
         
         
+            <li >
+                <a href="../../../../../../quickstart/">Quick start</a>
+            </li>
+        
+        
+        
             <li class="first-level">
-                <button  type="button" class="collapse-button ">Pipeline & Management</button>
+                <button  type="button" class="collapse-button ">Principles</button>
                 <ul class="collapsible-content ">
                     
                         
@@ -1489,7 +1501,7 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 daemon = RamDaemonInterface.instance()
 reply = daemon.getProjects() # Call from the instance
 if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
@@ -1497,8 +1509,7 @@ if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static me
 else:
     print (reply['message'])
 </code></pre>
-
-<pre><code class="js">// JavaScript
+<pre><code class="language-js">// JavaScript
 var daemon = RamDaemonInterface.instance();
 var reply = daemon.getProjects(); // Call from the instance
 if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
@@ -1508,7 +1519,6 @@ else {
     alert (reply['message']);
 }
 </code></pre>
-
 <h2 id="implementation">Implementation</h2>
 <h3 id="python">Python</h3>
 <p>In Python, the methods from this class return a <code>dict</code> as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json.loads( str )</code> method.</p>

@@ -77,8 +77,14 @@
                 
                 
                 
+                    <li >
+                        <a href="../../../quickstart/">Quick start</a>
+                    </li>
+                
+                
+                
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pipeline & Management <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Principles <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
@@ -795,8 +801,14 @@
         
         
         
+            <li >
+                <a href="../../../../../../quickstart/">Quick start</a>
+            </li>
+        
+        
+        
             <li class="first-level">
-                <button  type="button" class="collapse-button ">Pipeline & Management</button>
+                <button  type="button" class="collapse-button ">Principles</button>
                 <ul class="collapsible-content ">
                     
                         
@@ -1295,7 +1307,7 @@
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createApplication&quot;,
     &quot;success&quot;: true,
@@ -1303,7 +1315,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="getapplications">getApplications</h2>
 <p><code>http://your.server/ramses/?getApplications</code></p>
 <p>Retrieves the list of all applications.</p>
@@ -1320,7 +1331,7 @@
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this application.</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getApplications&quot;,
     &quot;success&quot;: true,
@@ -1341,7 +1352,6 @@
     ]
 }
 </code></pre>
-
 <h2 id="updateapplication">updateApplication</h2>
 <p><code>http://your.server/ramses/?updateApplication</code></p>
 <p>Update application info in the database.</p>
@@ -1357,7 +1367,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateApplication&quot;,
     &quot;success&quot;: true,
@@ -1365,7 +1375,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeapplication">removeApplication</h2>
 <p><code>http://your.server/ramses/?removeApplication</code></p>
 <p>Removes an application from the database.</p>
@@ -1377,7 +1386,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeApplication&quot;,
     &quot;success&quot;: true,
@@ -1385,7 +1394,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignfiletype">assignFileType</h2>
 <p><code>http://your.server/ramses/?assignFileType</code></p>
 <p>Assigns a file type to an application.</p>
@@ -1399,7 +1407,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignFileType&quot;,
     &quot;success&quot;: true,
@@ -1407,7 +1415,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="unassignfiletype">unassignFileType</h2>
 <p><code>http://your.server/ramses/?unassignFileType</code></p>
 <p>Unassigns a file type from an application.</p>
@@ -1421,7 +1428,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignFileType&quot;,
     &quot;success&quot;: true,

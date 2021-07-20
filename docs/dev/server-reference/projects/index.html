@@ -77,8 +77,14 @@
                 
                 
                 
+                    <li >
+                        <a href="../../../quickstart/">Quick start</a>
+                    </li>
+                
+                
+                
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pipeline & Management <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Principles <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
@@ -795,8 +801,14 @@
         
         
         
+            <li >
+                <a href="../../../../../../quickstart/">Quick start</a>
+            </li>
+        
+        
+        
             <li class="first-level">
-                <button  type="button" class="collapse-button ">Pipeline & Management</button>
+                <button  type="button" class="collapse-button ">Principles</button>
                 <ul class="collapsible-content ">
                     
                         
@@ -1300,7 +1312,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createProject&quot;,
     &quot;success&quot;: true,
@@ -1308,7 +1320,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="getproject">getProject</h2>
 <p><code>http://your.server/ramses/?getProject</code></p>
 <p>Retrieves a single project.</p>
@@ -1444,7 +1455,7 @@
 </li>
 </ul>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProject&quot;,
     &quot;success&quot;: true,
@@ -1634,7 +1645,6 @@
         }
 }
 </code></pre>
-
 <h2 id="getprojects">getProjects</h2>
 <p><code>http://your.server/ramses/?getProjects</code></p>
 <p>Retrieves the list of all projects.</p>
@@ -1659,7 +1669,7 @@
 </ul>
 <p>The project objects also contain empty lists for the project content (shots, assets, etc.). To retrieve the content, use <code>getProject</code> for the given project.</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProjects&quot;,
     &quot;success&quot;: true,
@@ -1710,7 +1720,6 @@
     ]
 }
 </code></pre>
-
 <h2 id="updateproject">updateProject</h2>
 <p><code>http://your.server/ramses/?updateProject</code></p>
 <p>Updates project information.</p>
@@ -1726,7 +1735,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateProject&quot;,
     &quot;success&quot;: true,
@@ -1734,7 +1743,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeproject">removeProject</h2>
 <p><code>http://your.server/ramses/?removeProject</code></p>
 <p>Removes a project from the database.</p>
@@ -1746,7 +1754,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeProject&quot;,
     &quot;success&quot;: true,
@@ -1754,7 +1762,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignstep">assignStep</h2>
 <p><code>http://your.server/ramses/?assignStep</code></p>
 <p>Assigns a template step to a project</p>
@@ -1767,7 +1774,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignStep&quot;,
     &quot;success&quot;: true,
@@ -1775,7 +1782,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignuser">assignUser</h2>
 <p><code>http://your.server/ramses/?assignUser</code></p>
 <p>Assigns a user to a project</p>
@@ -1788,7 +1794,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignUser&quot;,
     &quot;success&quot;: true,
@@ -1796,7 +1802,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="unassignuser">unassignUser</h2>
 <p><code>http://your.server/ramses/?unassignUser</code></p>
 <p>Unassigns a user to a project</p>
@@ -1809,7 +1814,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignUser&quot;,
     &quot;success&quot;: true,

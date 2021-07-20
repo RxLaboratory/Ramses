@@ -28,4 +28,4 @@ If you want *Ramses* to start with the system, you can just copy a shortcut to `
 
 ## Mac OS
 
-TODO
+*Ramses* is available as a *.dmg* file. Just open the archive, and drop the *Ramses* app in your *Applications* folder (or anywhere else).

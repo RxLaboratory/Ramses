@@ -30,7 +30,8 @@ site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
     - v0.1.1-Alpha: index.md
-    - Pipeline & Management:
+    - Quick start: quickstart.md
+    - Principles:
         - Introduction: pipeline/index.md
         - Administration: pipeline/administration.md
         - Pipeline: pipeline/pipeline.md
