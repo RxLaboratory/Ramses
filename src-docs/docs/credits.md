@@ -13,6 +13,19 @@
 - Lisa Lainé (Python API)
 - Jean-Philippe Luchez (Python API)
 
+### Testers
+
+- Juan David Almanza
+- Ana Arce
+- Daniel Arce
+- François Bonnière
+- Mickaël Gantois
+- Alejandro Jaramillo
+- Philippe Meis
+- Rubika - Supinfocom & the Promotheus
+- María Margarita J. Moyano
+- Camilo José Rivera Varona
+
 ### Translations
 
 ### Third-party libraries and other code
