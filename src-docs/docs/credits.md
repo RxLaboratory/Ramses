@@ -22,8 +22,8 @@
 - Mickaël Gantois
 - Alejandro Jaramillo
 - Philippe Meis
-- Rubika - Supinfocom & the Promotheus
 - María Margarita J. Moyano
+- Rubika - Supinfocom & the Promotheus
 - Camilo José Rivera Varona
 
 ### Translations
