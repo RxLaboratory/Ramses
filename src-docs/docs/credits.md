@@ -23,8 +23,8 @@
 - Alejandro Jaramillo
 - Philippe Meis
 - María Margarita J. Moyano
-- Rubika - Supinfocom & the Promotheus
 - Camilo José Rivera Varona
+- Rubika - Supinfocom & the Promotheus
 
 ### Translations
 
