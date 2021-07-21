@@ -1,10 +1,10 @@
 site_name: Ramses
 site_url: https://ramses.rxlab.guide
-repo_url: https://github.com/Rainbox-dev/Ramses/
+repo_url: https://github.com/RxLaboratory/Ramses/
 edit_uri: edit/master/src-docs/docs/
 site_description: The Ramses comprehensive documentation
 site_author: Nicolas Dufresne and contributors
-copyright: 'Copyright © 2020 <a href="https://rainboxlagb.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
+copyright: 'Copyright © 2020 <a href="https://rxlaboratory.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
 theme:
     name: null
     custom_dir: 'cinder'
