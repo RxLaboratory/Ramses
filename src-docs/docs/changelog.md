@@ -27,7 +27,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
-## 0.1.2-Alpha
+## 0.1.2-Alpha (In development)
 
 Bugfixes and minor improvements.
 
