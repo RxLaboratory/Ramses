@@ -12,6 +12,8 @@ It is meant to be used both by freelancers, small or big teams.
 
 ▹ **Join us** on [chat.rxlab.info](http://chat.rxlab.info), we don't bite!
 
+▹ Here's the [changelog](https://github.com/RxLaboratory/Ramses/blob/master/src-docs/docs/changelog.md).
+
 ## ▹ Free and open source
 
 *Ramses* is licensed under the [GNU General Public License v3](https://github.com/RxLaboratory/Ramses/blob/master/LICENSE.md), which means **you're free** to do anything you'd like with it, use it the way you want, modify it, and share your modifications.
