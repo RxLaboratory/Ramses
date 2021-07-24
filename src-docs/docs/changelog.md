@@ -29,7 +29,11 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ## 0.1.2-Alpha
 
-Bugfixes.
+Bugfixes and minor improvements.
+
+### Improvements
+
+- **Client**: Improved feedback when editing items.
 
 ### Fixed issues.
 
