@@ -35,6 +35,7 @@ Bugfixes.
 
 - **Client**: Menus, Context menus and clicks now work correctly on the Schedule Manager when there's no project selected at startup.
 - **Client**: Minor code refactor to remove some warnings on *Qt 5.15* build.
+- **Server**: Fixed an issue where users could not change their own password.
 
 ### Known Issues
 
