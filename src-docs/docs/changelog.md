@@ -27,9 +27,14 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
-## 0.1.1-Alpha
+## 0.1.2-Alpha
 
-Initial release.
+Bugfixes.
+
+### Fixed issues.
+
+- **Client**: Menus, Context menus and clicks now work correctly on the Schedule Manager when there's no project selected at startup.
+- **Client**: Minor code refactor to remove some warnings on *Qt 5.15* build.
 
 ### Known Issues
 
@@ -49,7 +54,7 @@ Initial release.
 -  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
 - On ***Windows***, the tray icon may not be removed if the client crashes.
-- It is sometimes impossible to interact with the schedule table (when running Ramses for the first time). Restart the application to fix the issue.
+- On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
 #### Python API
 
@@ -61,3 +66,7 @@ Initial release.
 -  ***[#109](https://github.com/RxLaboratory/Ramses/issues/109)***: *Maya*. The version should be added in the comment when saving restored versions.
 -  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
 -  ***[#118](https://github.com/RxLaboratory/Ramses/issues/118)***: It seems the *Preview* function does not always work on *Maya 2020*.
+
+## 0.1.1-Alpha
+
+Initial release.
