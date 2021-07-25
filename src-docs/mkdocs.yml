@@ -4,7 +4,7 @@ repo_url: https://github.com/RxLaboratory/Ramses/
 edit_uri: edit/master/src-docs/docs/
 site_description: The Ramses comprehensive documentation
 site_author: Nicolas Dufresne and contributors
-copyright: 'Copyright © 2020 <a href="https://rxlaboratory.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
+copyright: 'Copyright © 2020-2021 <a href="https://rxlaboratory.org">Rainbox Laboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
 theme:
     name: null
     custom_dir: 'cinder'
@@ -29,7 +29,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v0.1.1-Alpha: index.md
+    - v0.1.2-Alpha: index.md
     - Quick start: quickstart.md
     - Principles:
         - Introduction: pipeline/index.md
