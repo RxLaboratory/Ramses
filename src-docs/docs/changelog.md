@@ -26,19 +26,21 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
-## 0.1.2-Alpha (In development)
+## 0.1.2-Alpha
 
 Bugfixes and minor improvements.
 
 ### Improvements
 
 - **Client**: Improved feedback when editing items.
+- **Python API** and **Maya Add-on**: Improved comments when saving file (includes the version number when saving a restored version).
 
 ### Fixed issues
 
 - **Client**: Menus, Context menus and clicks now work correctly on the Schedule Manager when there's no project selected at startup.
 - **Client**: Minor code refactor to remove some warnings on *Qt 5.15* build.
 - **Server**: Fixed an issue where users could not change their own password.
+- **Maya Add-on - Rubika Flavor**: Deformers and shaders are now correctly reset on geometry update.
 
 ### Known Issues
 
@@ -67,7 +69,6 @@ Bugfixes and minor improvements.
 
 #### Add-ons
 
--  ***[#109](https://github.com/RxLaboratory/Ramses/issues/109)***: *Maya*. The version should be added in the comment when saving restored versions.
 -  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
 -  ***[#118](https://github.com/RxLaboratory/Ramses/issues/118)***: It seems the *Preview* function does not always work on *Maya 2020*.
 

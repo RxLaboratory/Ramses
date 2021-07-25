@@ -1277,9 +1277,13 @@
             <li class="first-level active"><a href="#ramses-changelog">Ramses Changelog</a></li>
                 <li class="second-level"><a href="#planned-features">Planned Features</a></li>
                     
+                <li class="second-level"><a href="#012-alpha">0.1.2-Alpha</a></li>
+                    
+                    <li class="third-level"><a href="#improvements">Improvements</a></li>
+                    <li class="third-level"><a href="#fixed-issues">Fixed issues</a></li>
+                    <li class="third-level"><a href="#known-issues">Known Issues</a></li>
                 <li class="second-level"><a href="#011-alpha">0.1.1-Alpha</a></li>
                     
-                    <li class="third-level"><a href="#known-issues">Known Issues</a></li>
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1298,7 +1302,6 @@
 <h2 id="planned-features">Planned Features</h2>
 <p>The detailed list of planned features and enhancements is <a href="https://github.com/RxLaboratory/Ramses/labels/enhancement">available on <em>Github</em></a>.</p>
 <ul>
-<li><strong>Full <em>SSL</em> encryption</strong> when connecting to the server. <em>SSL</em> may already be available on <em>Linux</em> and will be available on <em>Windows</em> and <em>Mac OS</em> shortly. If <em>Ramses</em>&lsquo; beta versions can already be tested without it, it is a mandatory feature for the release versions, as the security of your data is non-negociable.</li>
 <li>The <strong>Dashboard</strong> will be an area where each user accesses all its important data and schedule. It comes with notifications so you won&rsquo;t miss any change concerning your assets, shots and steps.</li>
 <li>The <strong>Offline mode</strong> for the <em>Ramses Client Application</em> will make it easier to use for one-man bands; you will be able to use <em>Ramses</em> without having to install the server. This also means you&rsquo;ll still be able to use <em>Ramses</em> even if you&rsquo;re not connected to the network, when you&rsquo;re in a train or on top of a mountain.</li>
 <li><strong>Project Planning</strong>: a simple but indispensable tool to easily plan the production of the project, at the very beginning of the production. With this planning tool you will be able to set the important dates of the production, the deadlines for each step, all in an easy-to-use and visual panel.</li>
@@ -1310,8 +1313,20 @@
 <li><strong>Folder monitoring</strong> will provide a way to handle versionning and production tracking even if there&rsquo;s no <em>Ramses Add-on</em> available for the application being used. </li>
 <li><strong><em>Syncthing</em> integration</strong> will provide <a href="https://syncthing.net/">a free, open, and secure way to synchronize</a> all files and data of your production accross multiple workstations, servers, NAS, etc.</li>
 </ul>
-<h2 id="011-alpha">0.1.1-Alpha</h2>
-<p>Initial release.</p>
+<h2 id="012-alpha">0.1.2-Alpha</h2>
+<p>Bugfixes and minor improvements.</p>
+<h3 id="improvements">Improvements</h3>
+<ul>
+<li><strong>Client</strong>: Improved feedback when editing items.</li>
+<li><strong>Python API</strong> and <strong>Maya Add-on</strong>: Improved comments when saving file (includes the version number when saving a restored version).</li>
+</ul>
+<h3 id="fixed-issues">Fixed issues</h3>
+<ul>
+<li><strong>Client</strong>: Menus, Context menus and clicks now work correctly on the Schedule Manager when there&rsquo;s no project selected at startup.</li>
+<li><strong>Client</strong>: Minor code refactor to remove some warnings on <em>Qt 5.15</em> build.</li>
+<li><strong>Server</strong>: Fixed an issue where users could not change their own password.</li>
+<li><strong>Maya Add-on - Rubika Flavor</strong>: Deformers and shaders are now correctly reset on geometry update.</li>
+</ul>
 <h3 id="known-issues">Known Issues</h3>
 <h4 id="server">Server</h4>
 <ul>
@@ -1329,7 +1344,7 @@
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/11">#11</a></em></strong>: The client should check if it&rsquo;s connected to a server with the same version.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/151">#151</a></em></strong>: The client should switch to offline mode when the server session token becomes invalid (server timeout).</li>
 <li>On <strong><em>Windows</em></strong>, the tray icon may not be removed if the client crashes.</li>
-<li>It is sometimes impossible to interact with the schedule table (when running Ramses for the first time). Restart the application to fix the issue.</li>
+<li>On <strong><em>Mac OS</em></strong>, the user specific settings (current project, location of the nodes in the pipeline editor, &hellip;) may not be saved.</li>
 </ul>
 <h4 id="python-api">Python API</h4>
 <ul>
@@ -1338,10 +1353,11 @@
 </ul>
 <h4 id="add-ons">Add-ons</h4>
 <ul>
-<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/109">#109</a></em></strong>: <em>Maya</em>. The version should be added in the comment when saving restored versions.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/110">#110</a></em></strong>: <em>Ramses</em> should use a versionning system for published files.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/118">#118</a></em></strong>: It seems the <em>Preview</em> function does not always work on <em>Maya 2020</em>.</li>
-</ul></div>
+</ul>
+<h2 id="011-alpha">0.1.1-Alpha</h2>
+<p>Initial release.</p></div>
         
             <div class="nav-footer">
             <ul>
