@@ -29,7 +29,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v0.1.2-Alpha: index.md
+    - v0.1.3-Alpha: index.md
     - Quick start: quickstart.md
     - Principles:
         - Introduction: pipeline/index.md
@@ -43,6 +43,7 @@ nav:
             - Introduction: components/server/index.md
             - A web server: components/server/web-server.md
             - Installation: components/server/install.md
+            - Update: components/server/update.md
             - Administration: components/server/admin.md
         - Ramses Application:
             - Introduction: components/client/index.md

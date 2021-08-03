@@ -1,8 +1,13 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/03)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/08/03)
 
 # Ramses Server installation
 
 *Ramses Server* runs on very standard web servers, with the usual Web Server / PHP / mySQL stack. That means you can install it on almost any desktop or server computers, private server, shared hosting, workstation, Raspberry... It does not need much resources.
+
+!!! warning
+    The procedure to install and to update *Ramses* differ a bit. **Do not** follow the installation procedure to update your server, as it will wipe all your data!
+
+    It is also a good habit to always backup the data before updating.
 
 ## Prerequisites
 

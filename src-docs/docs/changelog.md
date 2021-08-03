@@ -26,21 +26,15 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
-## 0.1.2-Alpha
+## 0.1.3-Alpha
 
-Bugfixes and minor improvements.
-
-### Improvements
-
-- **Client**: Improved feedback when editing items.
-- **Python API** and **Maya Add-on**: Improved comments when saving file (includes the version number when saving a restored version).
+Bugfixes.
 
 ### Fixed issues
 
-- **Client**: Menus, Context menus and clicks now work correctly on the Schedule Manager when there's no project selected at startup.
-- **Client**: Minor code refactor to remove some warnings on *Qt 5.15* build.
-- **Server**: Fixed an issue where users could not change their own password.
-- **Maya Add-on - Rubika Flavor**: Deformers and shaders are now correctly reset on geometry update.
+- **Client**: Loading of the projects taking a very long time has been fixed. Projects now load in an instant.
+- **Client**: Linux .deb packaged fixed (the doc is now in its right folder).
+- **Server and client**: Difficulty and estimations for shots are now correctly set.
 
 ### Known Issues
 
@@ -59,6 +53,8 @@ Bugfixes and minor improvements.
 -  ***[#138](https://github.com/RxLaboratory/Ramses/issues/138)***: The client should list only projects the user is assigned to.
 -  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
+- ***[#207](https://github.com/RxLaboratory/Ramses/issues/207)*** when editing a shot, it's attribution is reinitialized.
+- ***[#204](https://github.com/RxLaboratory/Ramses/issues/204)*** Crash when removing an asset group still containing assets.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
@@ -71,6 +67,22 @@ Bugfixes and minor improvements.
 
 -  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
 -  ***[#118](https://github.com/RxLaboratory/Ramses/issues/118)***: It seems the *Preview* function does not always work on *Maya 2020*.
+
+## 0.1.2-Alpha
+
+Bugfixes and minor improvements.
+
+### Improvements
+
+- **Client**: Improved feedback when editing items.
+- **Python API** and **Maya Add-on**: Improved comments when saving file (includes the version number when saving a restored version).
+
+### Fixed issues
+
+- **Client**: Menus, Context menus and clicks now work correctly on the Schedule Manager when there's no project selected at startup.
+- **Client**: Minor code refactor to remove some warnings on *Qt 5.15* build.
+- **Server**: Fixed an issue where users could not change their own password.
+- **Maya Add-on - Rubika Flavor**: Deformers and shaders are now correctly reset on geometry update.
 
 ## 0.1.1-Alpha
 

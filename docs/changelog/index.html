@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="..">v0.1.2-Alpha</a>
+                        <a href="..">v0.1.3-Alpha</a>
                     </li>
                 
                 
@@ -152,6 +152,12 @@
             
 <li >
     <a href="../components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../components/server/update/">Update</a>
 </li>
 
         
@@ -796,7 +802,7 @@
         
         
             <li >
-                <a href="../..">v0.1.2-Alpha</a>
+                <a href="../..">v0.1.3-Alpha</a>
             </li>
         
         
@@ -859,6 +865,10 @@
                                 
                                     
                                     <li class="third-level "><a href="../components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../components/server/update/">Update</a></li>
                                     
                                 
                                     
@@ -1277,11 +1287,14 @@
             <li class="first-level active"><a href="#ramses-changelog">Ramses Changelog</a></li>
                 <li class="second-level"><a href="#planned-features">Planned Features</a></li>
                     
+                <li class="second-level"><a href="#013-alpha">0.1.3-Alpha</a></li>
+                    
+                    <li class="third-level"><a href="#fixed-issues">Fixed issues</a></li>
+                    <li class="third-level"><a href="#known-issues">Known Issues</a></li>
                 <li class="second-level"><a href="#012-alpha">0.1.2-Alpha</a></li>
                     
                     <li class="third-level"><a href="#improvements">Improvements</a></li>
-                    <li class="third-level"><a href="#fixed-issues">Fixed issues</a></li>
-                    <li class="third-level"><a href="#known-issues">Known Issues</a></li>
+                    <li class="third-level"><a href="#fixed-issues_1">Fixed issues</a></li>
                 <li class="second-level"><a href="#011-alpha">0.1.1-Alpha</a></li>
                     
         </ul>
@@ -1313,19 +1326,13 @@
 <li><strong>Folder monitoring</strong> will provide a way to handle versionning and production tracking even if there&rsquo;s no <em>Ramses Add-on</em> available for the application being used. </li>
 <li><strong><em>Syncthing</em> integration</strong> will provide <a href="https://syncthing.net/">a free, open, and secure way to synchronize</a> all files and data of your production accross multiple workstations, servers, NAS, etc.</li>
 </ul>
-<h2 id="012-alpha">0.1.2-Alpha</h2>
-<p>Bugfixes and minor improvements.</p>
-<h3 id="improvements">Improvements</h3>
-<ul>
-<li><strong>Client</strong>: Improved feedback when editing items.</li>
-<li><strong>Python API</strong> and <strong>Maya Add-on</strong>: Improved comments when saving file (includes the version number when saving a restored version).</li>
-</ul>
+<h2 id="013-alpha">0.1.3-Alpha</h2>
+<p>Bugfixes.</p>
 <h3 id="fixed-issues">Fixed issues</h3>
 <ul>
-<li><strong>Client</strong>: Menus, Context menus and clicks now work correctly on the Schedule Manager when there&rsquo;s no project selected at startup.</li>
-<li><strong>Client</strong>: Minor code refactor to remove some warnings on <em>Qt 5.15</em> build.</li>
-<li><strong>Server</strong>: Fixed an issue where users could not change their own password.</li>
-<li><strong>Maya Add-on - Rubika Flavor</strong>: Deformers and shaders are now correctly reset on geometry update.</li>
+<li><strong>Client</strong>: Loading of the projects taking a very long time has been fixed. Projects now load in an instant.</li>
+<li><strong>Client</strong>: Linux .deb packaged fixed (the doc is now in its right folder).</li>
+<li><strong>Server and client</strong>: Difficulty and estimations for shots are now correctly set.</li>
 </ul>
 <h3 id="known-issues">Known Issues</h3>
 <h4 id="server">Server</h4>
@@ -1343,6 +1350,8 @@
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/138">#138</a></em></strong>: The client should list only projects the user is assigned to.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/11">#11</a></em></strong>: The client should check if it&rsquo;s connected to a server with the same version.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/151">#151</a></em></strong>: The client should switch to offline mode when the server session token becomes invalid (server timeout).</li>
+<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/207">#207</a></em></strong> when editing a shot, it&rsquo;s attribution is reinitialized.</li>
+<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/204">#204</a></em></strong> Crash when removing an asset group still containing assets.</li>
 <li>On <strong><em>Windows</em></strong>, the tray icon may not be removed if the client crashes.</li>
 <li>On <strong><em>Mac OS</em></strong>, the user specific settings (current project, location of the nodes in the pipeline editor, &hellip;) may not be saved.</li>
 </ul>
@@ -1355,6 +1364,20 @@
 <ul>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/110">#110</a></em></strong>: <em>Ramses</em> should use a versionning system for published files.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/118">#118</a></em></strong>: It seems the <em>Preview</em> function does not always work on <em>Maya 2020</em>.</li>
+</ul>
+<h2 id="012-alpha">0.1.2-Alpha</h2>
+<p>Bugfixes and minor improvements.</p>
+<h3 id="improvements">Improvements</h3>
+<ul>
+<li><strong>Client</strong>: Improved feedback when editing items.</li>
+<li><strong>Python API</strong> and <strong>Maya Add-on</strong>: Improved comments when saving file (includes the version number when saving a restored version).</li>
+</ul>
+<h3 id="fixed-issues_1">Fixed issues</h3>
+<ul>
+<li><strong>Client</strong>: Menus, Context menus and clicks now work correctly on the Schedule Manager when there&rsquo;s no project selected at startup.</li>
+<li><strong>Client</strong>: Minor code refactor to remove some warnings on <em>Qt 5.15</em> build.</li>
+<li><strong>Server</strong>: Fixed an issue where users could not change their own password.</li>
+<li><strong>Maya Add-on - Rubika Flavor</strong>: Deformers and shaders are now correctly reset on geometry update.</li>
 </ul>
 <h2 id="011-alpha">0.1.1-Alpha</h2>
 <p>Initial release.</p></div>

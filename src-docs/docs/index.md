@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/08/03)
 
 # Ramses - The Rainbox Asset Management System
 
@@ -139,7 +139,9 @@ Legend:
     - [Introduction](components/index.md)
     - The Ramses server
         - [Introduction](components/server/index.md)
-        - [Installation](components/server/install.md)
+        - [How to nstall a web server](components/server/web-server.md)
+        - [Installation procedure](components/server/install.md)
+        - [Update procedure](components/server/update.md)
         - [Administration](components/server/admin.md)
     - The Ramses application (client)
         - [Introduction](components/client/index.md)
