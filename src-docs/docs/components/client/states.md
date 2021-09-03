@@ -19,7 +19,9 @@ When changing the size of the rows in the list, more details about each state ca
 
 Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to **create** a new state. The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected states from *Ramses*[^1].
 
-You can also use the `[DEL]` key to remove selected states.
+You can use the `[Shift + A]` shortcut key to quickly add new states.
+
+You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected states.
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 

@@ -26,15 +26,24 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
-## 0.1.3-Alpha
+## 0.2.0-Alpha (In Development)
 
-Bugfixes.
+### Improvements
+
+- **Client**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
+- **Client**: Better feedback in case a change is not accepted by the server.
+- **Client**: Better UI feedback when creating/editing users.
+- **Client**: Lots of UI tweaks
+- **Add-ons**: A comment is added to a file when it's restored from a previous version.
+- **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
+- **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
 
 ### Fixed issues
 
-- **Client**: Loading of the projects taking a very long time has been fixed. Projects now load in an instant.
-- **Client**: Linux .deb packaged fixed (the doc is now in its right folder).
-- **Server and client**: Difficulty and estimations for shots are now correctly set.
+- **Client**: Available projects are only the projects the user has been assigned to.
+- **Client**: When clicking the "network settings" button from the login panel, you're now correctly redirected to the right network settings tab.
+- **Client**: Fixed an false error when trying to log in with an unknown user name.
+- **Maya Add-on (Rubika Flavor)**: Import Geo now works correctly.
 
 ### Known Issues
 
@@ -49,8 +58,6 @@ Bugfixes.
 -  ***[#105](https://github.com/RxLaboratory/Ramses/issues/105)***: `Internal Server Error` when moving steps/changing their order.
 -  ***[#106](https://github.com/RxLaboratory/Ramses/issues/106)***: Errors in the *Python API* when special characters are sent by the *Daemon*.
 -  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
--  ***[#136](https://github.com/RxLaboratory/Ramses/issues/136)***: Sanitation needed to check if names and IDs respect the *Ramses* naming conventions.
--  ***[#138](https://github.com/RxLaboratory/Ramses/issues/138)***: The client should list only projects the user is assigned to.
 -  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
 - ***[#207](https://github.com/RxLaboratory/Ramses/issues/207)*** when editing a shot, it's attribution is reinitialized.
@@ -67,6 +74,16 @@ Bugfixes.
 
 -  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
 -  ***[#118](https://github.com/RxLaboratory/Ramses/issues/118)***: It seems the *Preview* function does not always work on *Maya 2020*.
+
+## 0.1.3-Alpha
+
+Bugfixes.
+
+### Fixed issues
+
+- **Client**: Loading of the projects taking a very long time has been fixed. Projects now load in an instant.
+- **Client**: Linux .deb packaged fixed (the doc is now in its right folder).
+- **Server and client**: Difficulty and estimations for shots are now correctly set.
 
 ## 0.1.2-Alpha
 

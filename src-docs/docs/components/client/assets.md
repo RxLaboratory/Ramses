@@ -15,7 +15,9 @@ When changing the size of the rows in the list, more details about each asset ca
 
 Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to **create** a new asset in the current group. The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected asset from the project[^1].
 
-You can also use the `[DEL]` key to remove the selected assets.
+You can use the `[Shift + A]` shortcut key to quickly add new assets.
+
+You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected assets.
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 

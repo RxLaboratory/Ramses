@@ -21,7 +21,9 @@ When changing the size of the rows in the list, more details about each pipes ca
 
 Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to **create** a new pipe. The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected pipes from the project[^1].
 
-You can also use the `[DEL]` key to remove selected pipes.
+You can use the `[Shift + A]` shortcut key to quickly add new pipes.
+
+You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected pipes.
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 

@@ -15,7 +15,9 @@ When changing the size of the rows in the list, more details about each project 
 
 Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to create a new project. The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected projects from *Ramses*[^1].
 
-You can also use the `[DEL]` key to remove selected projects.
+You can use the `[Shift + A]` shortcut key to quickly add new projects.
+
+You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected projects.
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 

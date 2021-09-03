@@ -17,7 +17,9 @@ When changing the size of the rows in the list, more details about each step can
 
 Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to **create** a new step (either completely new or using a template). The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected steps from the project[^1].
 
-You can also use the `[DEL]` key to remove selected steps.
+You can use the `[Shift + A]` shortcut key to quickly add new steps.
+
+You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected steps.
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 

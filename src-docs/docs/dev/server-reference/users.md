@@ -13,6 +13,7 @@ Logs in with a username and a (hashed) password.
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
 - *comment*: **string**. The new comment.
+- *email*: **string**. The new email.
 - *role*: **string** (optionnal). The new role of the user. One of `admin`, `project`, `lead`, or `standard`.
 - *folderPath*: **string** (optionnal). The path for the user folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
@@ -61,7 +62,7 @@ Empty
     "accepted": true,
     "query": "updateUser",
     "success": true,
-    "message": "User \"Duduf\" updated.",
+    "message": "User updated.",
     "content": { }
 }
 ```
@@ -83,6 +84,7 @@ The server replies an array of user information. Each user is an object with the
 - *name*: **string**. The name of the user.
 - *shortName*: **string**. The username.
 - *comment*: **string**. A comment.
+- *email*: **string**. The email.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *folderPath*: **string**. The user folder path.
 - *role*: **string**. The userrole. One of `admin`, `project`, `lead`, or `standard`.
@@ -99,6 +101,7 @@ The server replies an array of user information. Each user is an object with the
         {
             "name": "Nicolas Dufresne",
             "shortName": "Duduf",
+            "email": "big@boss.com",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "folderPath": "/home/duduf",
             "role": "admin",
@@ -106,6 +109,7 @@ The server replies an array of user information. Each user is an object with the
         {
             "name": "J. Doh",
             "shortName": "User",
+            "email": "",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "folderPath": "/home/doe",
             "role": "standard",
@@ -124,6 +128,7 @@ Creates a new user in the database.
 
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
+- *email*: **string**. The email.
 - *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
@@ -138,7 +143,7 @@ Empty
     "accepted": true,
     "query": "createUser",
     "success": true,
-    "message": "User \"Duduf\" created.",
+    "message": "User created.",
     "content": { }
 }
 ```

@@ -17,7 +17,9 @@ When changing the size of the rows in the list, more details about each asset gr
 
 Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to **create** a new template asset group. The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected template asset groups from *Ramses*[^1].
 
-You can also use the `[DEL]` key to remove selected template asset groups.
+You can use the `[Shift + A]` shortcut key to quickly add template asset groups.
+
+You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected template asset groups.
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 

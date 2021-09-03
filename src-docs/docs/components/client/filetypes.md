@@ -19,7 +19,9 @@ The file types are sorted by main extension.
 
 Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to **create** a new file type. The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected file types from *Ramses*[^1].
 
-You can also use the `[DEL]` key to remove selected file types.
+You can use the `[Shift + A]` shortcut key to quickly add new file types.
+
+You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected file types.
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 
