@@ -21,6 +21,18 @@ You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected
 
 You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 
+The creation button also allows you to create multiple shots at once and opens the following dialog:
+
+![](/img/client/multipleshots.png)
+
+- First, select the sequence where the shots will be added. If you need to add shots to several sequences, start again for each sequence.
+
+- Choose the starting and end number. You can add leading zeroes, *Ramses* will keep them in the number, so that all shots have the same count of digits.
+
+- Choose a name for the new shots. Include the `%` character at the location where you wish the number to be. For example, `Shot % A` will be translated as `Shot 012 A`.
+
+- Choose an ID for the new shots. Again, you can use the `%` character to locate the shot number. If you omit it, the number is automatically appended to the ID.
+
 ## Edition
 
 ![](/img/client/shotedition.png)

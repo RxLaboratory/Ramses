@@ -36,6 +36,8 @@ On its left side, the toolbar displays a few menus and tools.
     - ***Changer difficulty*** changes the difficulty of all selected tasks.
     - ***Set completion*** changes the completion ratio of all selected tasks.
 
+If the current user is at least a *[project adminstrator](../../pipeline/administration.md#users)*, the toolbar also displays an entry to let you quickly create new items (shots or assets) or remove selected items.
+
 !!! tip
     The ***Status*** menu is also availabe as a context menu with the `[right click]`.
 

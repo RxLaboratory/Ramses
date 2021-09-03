@@ -44,6 +44,7 @@ Except for the password, there's no need to validate any change; changes are sav
 - You can change any other user password, just set the ***New password*** twice and ignore the *Current password* field. Don't forget to click the ***Change password*** button to validate!
 - You can change the ***folder*** where the user files are stored.
     - Leave the field empty to set back the default folder inside the [*Ramses Tree*](../files/index.md).
+    - The red ![](/img/icons/remove_sl.svg){: style="width:18px;"} button moves the user's folder to a `_trash` subfolder.
     - The blue ![](/img/icons/set-folder_sl.svg){: style="width:18px;"} button opens a folder selector to change the folder location.
     - The green ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} button opens the folder in your file explorer.
 

@@ -32,6 +32,8 @@ On its left side, the toolbar displays a few menus.
 - ![](/img/icons/connections_sd.svg){: style="width:18px;"} Layout
     - ***Layout all steps*** automatically arranges all the nodes using a smart (or not) algorithm to (try to) make the layout clearer. Shortcut: `[Shift + L]`
     - ***Layout selected steps*** will use the same smart (or not) algorithm to (try to) make the layout clearer for the selected nodes. Shortcut: `[Alt + L]`
+    - ***Reload project layout*** will load the default layout for this project. Shorcut: `[Shift + R]`
+    - ***Save project layout*** saves (overwrite) the default layout for this project. Shorcut: `[Shift + S]`
 - ![](/img/icons/step-node_sl.svg){: style="width:18px;"} Step
     - ***Create new step*** creates a new step from scratch in the project, and opens a side docked editor to edit its details. Shortcut: `[Shift + A]`
     - The list of ***Template steps*** can be used to quickly create a new step from an template.

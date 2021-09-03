@@ -32,7 +32,7 @@ The names of the folders used by the [*Ramses Tree*](../../components/files/inde
 | FolderNames.**projects** | `"Projects"` | |
 | FolderNames.**publish** | `"_published"` | |
 | FolderNames.**shots** | `"05-SHOTS"` | |
-| FolderNames.**userConfig** | `"Config"` | |
+| FolderNames.**config** | `"Config"` | |
 | FolderNames.**users** | `"Users"` | |
 | FolderNames.**versions** | `"_versions"` | |
 
