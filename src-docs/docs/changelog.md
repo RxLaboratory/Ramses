@@ -31,10 +31,12 @@ The detailed list of planned features and enhancements is [available on *Github*
 ### Improvements
 
 - **Client**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
+- **Client**: Added User and State filters in the production tables.
 - **Client**: Better feedback in case a change is not accepted by the server.
 - **Client**: Better UI feedback when creating/editing users.
 - **Client**: Added menus and shortcuts in administration panels.
 - **Client**: The pipeline layout is now saved per project too (and not only per user), with the ability to manually save and reload the default project layout.
+- **Client**: Major performance improvement of the UI.
 - **Client**: Lots of UI tweaks.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
