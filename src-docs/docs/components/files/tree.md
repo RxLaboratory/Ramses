@@ -56,7 +56,7 @@ Nevertheless, you can always choose another folder to store a specific project, 
 ```
 
 !!! hint
-    When using the *Ramses Client*, user and project folders can be located anywhere outside the *Ramses Folder*, it is not mandatory to keep them grouped together there.
+    When using the *Ramses Client*, project folders can be located anywhere outside the *Ramses Folder*, it is not mandatory to keep them grouped together there.
 
 ## The Project Folder
 
@@ -142,9 +142,14 @@ Here is an example for the modelling step of the asset called *Tristan*.
 │ └─── PROJECTID_A_TRISTAN_MOD_Sculpt_v002.blend # The second version of a resource
 │
 ├─┬─ _published
-│ ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
-│ └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
-│
+│ ├─┬─ 001_WIP # The first published version
+│ │ ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
+│ │ └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
+│ │
+│ └─┬─ 004_OK # The 4th version, which was published as ok
+│   ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
+│   └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
+│ 
 └─┬─ _preview
   ├─── PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
   └─── PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling

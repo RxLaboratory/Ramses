@@ -32,12 +32,16 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - **Client**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Client**: Added User and State filters in the production tables.
+- **Client**: Added the ability to copy and paste comments from the tables.
 - **Client**: Better feedback in case a change is not accepted by the server.
 - **Client**: Better UI feedback when creating/editing users.
 - **Client**: Added menus and shortcuts in administration panels.
 - **Client**: The pipeline layout is now saved per project too (and not only per user), with the ability to manually save and reload the default project layout.
+- **Client**: The project folder is now a local setting; you can push the setting to the server to share it with everyone.
+- **Client**: When offline, the client does not anymore try (and fail) to refresh its data from the server.
 - **Client**: Major performance improvement of the UI.
 - **Client**: Lots of UI tweaks.
+- **Client**: Added a welcome page to help you adjust the most important *Ramses* settings on first launch.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
@@ -46,26 +50,25 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - **Client**: Available projects are only the projects the user has been assigned to.
 - **Client**: When clicking the "network settings" button from the login panel, you're now correctly redirected to the right network settings tab.
-- **Client**: Fixed an false error when trying to log in with an unknown user name.
+- **Client**: Fixed an wrong error when trying to log in with an unknown user name.
+- **Client**: Crash when removing an asset group still containing assets.
+- **Client**: Fixed an issue where shot/asset attribution would be reinitialized on edition from the production table.
+- **Client**: Fixed the size of the dropdown menus sometimes being too small for long sequence/asset group names.
 - **Maya Add-on (Rubika Flavor)**: Import Geo now works correctly.
 
 ### Known Issues
 
 #### Server
 
--  ***[#105](https://github.com/RxLaboratory/Ramses/issues/105)***: `Internal Server Error` when moving steps/changing their order.
 -  ***[#107](https://github.com/RxLaboratory/Ramses/issues/107)***: Table prefixes can't be changed.
 
 #### Client and Daemon
 
 -  ***[#137](https://github.com/RxLaboratory/Ramses/issues/107)***: The *SSL* option should be disabled if *openSSL* is not available on the system.
--  ***[#105](https://github.com/RxLaboratory/Ramses/issues/105)***: `Internal Server Error` when moving steps/changing their order.
 -  ***[#106](https://github.com/RxLaboratory/Ramses/issues/106)***: Errors in the *Python API* when special characters are sent by the *Daemon*.
 -  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
 -  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
-- ***[#207](https://github.com/RxLaboratory/Ramses/issues/207)*** when editing a shot, it's attribution is reinitialized.
-- ***[#204](https://github.com/RxLaboratory/Ramses/issues/204)*** Crash when removing an asset group still containing assets.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 

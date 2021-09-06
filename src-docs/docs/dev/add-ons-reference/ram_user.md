@@ -15,6 +15,7 @@ Inherits: [***RamObject***](ram_object.md)
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **userName**,<br />*string*: **userShortName**,<br />*string*: **userFolderPath**=`""`,<br />*UserRole*: **role**=`UserRole.STANDARD` | |
+| **comment**<br />▹ *string* | | A comment associated to the user |
 | **configPath**<br>▹ *string* | | The path to the *Config* folder for this user |
 | **folderPath**<br>▹ *string* | | The path to the user folder |
 | **role**<br />▹ *UserRole* | | One of `UserRole.ADMIN`, `UserRole.PROJECT_ADMIN`, `UserRole.LEAD` or `UserRole.STANDARD` |
@@ -32,6 +33,7 @@ The data returned by the methods can be either [mutable or immutable](implementa
 
 | Method | Type of the returned data |
 | --- | --- |
+| **comment** | <i class="fa fa-lock"></i> Immutable |
 | **configPath** | <i class="fa fa-lock"></i> Immutable |
 | **folderPath** | <i class="fa fa-lock"></i> Immutable |
 | **role** | <i class="fa fa-lock"></i> Immutable |
