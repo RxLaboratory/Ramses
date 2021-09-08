@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/09/08)
+
 # Scripting API reference
 
 [*Rainbox Laboratory*](https://rainboxlab.org) provides a reference implementation of the API in *Python* and *Adobe ExtendScript*.
@@ -24,6 +26,7 @@ This is the comprehensive list of available classes. In the *Ramses Add-ons API*
 | [RamFileType](ram_filetype.md) | | A File type (name and possible extensions) |
 | [RamItem](ram_item.md) | [RamObject](ram_object.md) | The base class for Shots and Assets. |
 | [RamMetaDataManager](ram_metadata_manager.md) | | A Class to get/set metadata from files. |
+| [RamNameManager](ram_name_manager.md) | | A Class to handle ramses (file)names. |
 | [RamObject](ram_object.md) | | The base class for most of Ramses objects. |
 | [RamPipe](ram_pipe.md) | | A pipe which connects two steps together in the production pipeline |
 | [RamPipeFile](ram_pipefile.md) | | The description of a file type going through a pipe |
@@ -193,5 +196,3 @@ def ramSave():
     
 ramSave()
 ```
-
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/08)

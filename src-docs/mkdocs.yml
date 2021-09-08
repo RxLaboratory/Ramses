@@ -93,6 +93,7 @@ nav:
             - RamFileType: dev/add-ons-reference/ram_filetype.md
             - RamItem: dev/add-ons-reference/ram_item.md
             - RamMetaDataManager: dev/add-ons-reference/ram_metadata_manager.md
+            - RamNameManager: dev/add-ons-reference/ram_name_manager.md
             - RamObject: dev/add-ons-reference/ram_object.md
             - RamPipe: dev/add-ons-reference/ram_pipe.md
             - RamPipeFile: dev/add-ons-reference/ram_pipefile.md

@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/09/08)
+
 # RamMetaDataManager
 
 A Class to get/set metadata from files.
@@ -21,6 +23,7 @@ The Meta-Data used by *Ramses* contains at least these attributes.
 | Method | Arguments | Description |
 | --- | --- | --- |
 | **getComment**<br />▹ *string* | *string*: **filePath** | Gets the comment associated to the file. |
+| **getDate**<br />▹ *datetime* | *string*: **filePath** | Gets the date associated to the file. |
 | **getFileMetaData**<br />▹ *object* or *dict* | *string*: **filePath** | Gets the meta-data of the given file. |
 | **getMetaData**<br />▹ *object* or *dict* | *string*: **folderPath** | Gets the meta-data of all the files for the given folder.<br />Each file name is used as a key in the returned object. |
 | **getMetaDataFile**<br />▹ *string* | *string*: **path** | Gets the path of the file containing the metadata for the given file or folder. |
@@ -29,12 +32,10 @@ The Meta-Data used by *Ramses* contains at least these attributes.
 | **getVersion**<br />▹ *int* | *string*: **filePath** | Gets the version associated to the file. |
 | **getVersionFilePath**<br />▹ *string* | *string*: **filePath** | Gets the version file associated to the file. |
 | **setComment**<br />▹ *string* | *string*: **filePath**,<br />*string*: **comment** | Sets the comment associated to a file. |
+| **setDate**<br />▹ *string* | *string*: **filePath**,<br />*date* or *datetime* or *int* or *string*: **date** | Sets the date associated to a file. |
 | **setFileMetaData**<br /> | *string*: **filePath**,<br />*object* or *dict*: **fileData** | Writes the given meta-data to the meta-data file associated to this file. |
 | **setMetaData**<br /> | *string*: **path**,<br />*object* or *dict*: **data** | Writes the given meta-data to the meta-data file associated to this folder. |
 | **setPipeType**<br /> | *string*: **filePath**,<br />*string*: **pipeType** | Sets the pipe which created the file. The value should be the short name of the pipe. |
 | **setValue** | *string*: **filePath**,<br />*string*: **key**,<br />*any*: **value** | Sets the value of a specific key for the file. |
 | **setVersion** | *string*: **filePath**,<br />*int*: **version** | Sets the version associated to the file. |
 | **setVersionFilePath** | *string*: **filePath**,<br />*string*: **versionFilePath** | Sets the version file associated to the file. |
-
-
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/10)

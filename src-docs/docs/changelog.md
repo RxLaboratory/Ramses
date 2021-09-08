@@ -33,6 +33,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Client**: Added User and State filters in the production tables.
 - **Client**: Added the ability to copy and paste comments from the tables.
+- **Client**: Added versionning for published files.
 - **Client**: Better feedback in case a change is not accepted by the server.
 - **Client**: Better UI feedback when creating/editing users.
 - **Client**: Added menus and shortcuts in administration panels.
@@ -42,6 +43,8 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Major performance improvement of the UI.
 - **Client**: Lots of UI tweaks.
 - **Client**: Added a welcome page to help you adjust the most important *Ramses* settings on first launch.
+- **Python API**: Added versionning for published files.
+- **Python API**: Added the new `RamNameManager` class to help hadling file names.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
