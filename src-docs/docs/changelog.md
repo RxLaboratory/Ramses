@@ -46,6 +46,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Python API**: Added versionning for published files.
 - **Python API**: Added the new `RamNameManager` class to help hadling file names.
 - **Python API**: Files are now copied using a separate thread whenever possible. This improves a lot the performance.
+- **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).

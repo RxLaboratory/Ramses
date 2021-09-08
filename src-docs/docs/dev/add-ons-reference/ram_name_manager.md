@@ -26,6 +26,7 @@ These attributes are automatically set by the `RamNameManager.setFileName( name 
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** |  | Creates a new empty instance. |
+| **copy**<br />▹ *RamNameManager* |  | Creates a copy of the current instance. |
 | **fileName**<br />▹ *string* |  | Constructs and returns the file name based on the attributes. |
 | **originalFileName**<br />▹ *string* |  | Gets the original file name withoutany modification. |
 | **setFileName**<br />▹ *boolean* |  | Sets the filename and parses data from it. Returns `true` on success. |
