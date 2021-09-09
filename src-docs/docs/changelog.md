@@ -50,6 +50,8 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Scripting API**: Added the new `RamNameManager` class to help handling file names.
 - **Scripting API**: Improved the `RamFileManager` class and added a few new methods. Be careful, some method names have changed, and some methods were removed/moved to `RamNameManager`, especially methods concerning file publication.
     - Removed or moved to `RamNameManager`: `isRestoredFilePath`, `composeRamsesFileName`, `buildRamsesFileName`, `decomposeRamsesFilePath`, `isRamsesName`, `decomposeRamsesFileName`.
+    - `RamFileManager.getLatestVersion` now returns a `RamNameManager` instance.
+    - `RamFileManager.getPublishPath` is now `getPublishInfo` and returns a `RamNameManager`.
     - `RamFileManager.copyToPublish` is renamed `RamFileManager.publishFile`.
     - Copy operations for files is now multi-threaded. That improves a lot the performance of your scripts, but that means the script continues while the new file doesn't necessarilly exist yet, be careful!
 - **Scripting API**: Updated `RamItem` to use the new versionning system for published files.
