@@ -19,7 +19,7 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 | ***constructor*** | *string*: **itemName**,<br />*string*: **itemShortName**,<br />*string*: **itemFolder**=`""`,<br />*ItemType*: **itemType**=`ItemType.GENERAL` | |
 | **currentStatus**<br />▹ *RamStatus* | *[RamStep](ram_step.md)* or *string*: **step**=`""`,<br />*string*: **resource** = `""` | The current status for the given step |
 | **folderPath**<br />▹ *string* |  | The absolute path to the folder containing the item |
-| **isPublished**<br />▹ *bool* | *string*: **resource** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Convenience function to check if there are published files in the publish folder. Equivalent to `len(self.publishFilePaths(step, resource)) > 0` |
+| **isPublished**<br />▹ *bool* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Convenience function to check if there are published files in the publish folder. Equivalent to `len(self.publishedVersionFolderPaths(step, resource)) > 0` |
 | **itemType**<br />▹ *ItemType* | | The type of this item. One of `ItemType.SHOT`, `ItemType.ASSET`, `ItemType.GENERAL` |
 | **latestVersion**<br />▹ *integer* | *string*: **resource** = `""`,<br />*string*: **state** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step***=`""` | Returns the highest version number for the given state (wip, pub...). |
 | **latestVersionFilePath**<br />▹ *string* | *string*: **resource** = `""`,<br />*string*: **state** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Latest version file path |
@@ -27,8 +27,8 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 | **previewFilePaths**<br />▹ *list of string* | *string*: **resource** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the list of file paths in the preview folder. Paths are relative to the root of the item folder. |
 | **project**<br />▹ *[RamProject](ram_project.md)* | | Gets the project this item belongs too. To improve performance, if only the shortName is needed, prefer using `projectShortName()` |
 | **projectShortName**<br />▹ *string* | | Gets the short name of the project this item belongs too. |
+| **publishedVersionFolderPaths**<br />▹ *list of string* | [RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder. |
 | **publishFolderPath**<br />▹ *string* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the path to the publish folder. Paths are relative to the root of the item folder. |
-| **publishFilePaths**<br />▹ *list of string* | *string*: **resource** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder. |
 | **setStatus** | *[RamStatus](ram_status.md)*: **status**,<br />*[RamStep](ram_step.md)* or *string*: **step** | Sets the current status for the given step |
 | **status**<br />▹ *[RamStatus](ram_status.md)* | *[RamStep](ram_step.md)*: **step** | Gets the current status for the given step |
 | **stepFilePath**<br />▹ *string* | *string*: **resource** = `""`,<br />*string*: **extension**=`""`,<br/>*[RamStep](ram_step.md) or string*: **step***=`""` | Gets the file used for this step with the given file extension. |

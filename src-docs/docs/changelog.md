@@ -9,7 +9,7 @@ For each version, there's also a list of **known issues**. To read more details 
 !!! note
     Versions ending with *`-Alpha`* or *`-Beta`* are released for testing purposes only and should not be used in production, unless you know what you're doing.
 
-    In versions labeled *`Alpha`*, the [*APIs*](dev/index.md) may still vary a lot, especially for versions still in `0.x`.
+    In versions labeled *`Alpha`*, the [*APIs*](dev/index.md) may still vary a lot, especially for versions still in `0.x`. Changes are mentionned in this changelog.
 
 ## Planned Features
 
@@ -43,11 +43,20 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Major performance improvement of the UI.
 - **Client**: Lots of UI tweaks.
 - **Client**: Added a welcome page to help you adjust the most important *Ramses* settings on first launch.
-- **Python API**: Added versionning for published files.
-- **Python API**: Added the new `RamNameManager` class to help hadling file names.
-- **Python API**: Files are now copied using a separate thread whenever possible. This improves a lot the performance.
 - **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
+- **Maya Add-on**: Handle the new versionning system for published files.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
+- **Scripting API**: Added versionning for published files.
+- **Scripting API**: Added the new `RamNameManager` class to help handling file names.
+- **Scripting API**: Improved the `RamFileManager` class and added a few new methods. Be careful, some method names have changed, and some methods were removed/moved to `RamNameManager`, especially methods concerning file publication.
+    - `RamFileManager.copyToPublish` is renamed `RamFileManager.publishFile`.
+    - Copy operations for files is now multi-threaded. That improves a lot the performance of your scripts, but that means the script continues while the new file doesn't necessarilly exist yet, be careful!
+- **Scripting API**: Updated `RamItem` to use the new versionning system for published files.
+    - `RamItem.publishFilePaths(resource, step)` is replaced by `RamItem.publishedVersionFolderPaths(step)` which returns a list of folder paths (sorted from oldest to latest).
+    - `RamItem.isPublished(resource, step)` no longer have the `resource` argument.
+- **Scripting API**: Updated `RamStep` to use the new versionning system for published files.
+    - `RamStep.templatesPublishFilePaths` is replaced by `RamStep.templatesPublishedVersionFolderPaths` which now returns a list of folders.
+- **Scripting API**: Files are now copied using a separate thread whenever possible. This improves a lot the performance.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
 
