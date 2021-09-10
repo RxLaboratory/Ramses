@@ -12,7 +12,7 @@ These attributes are automatically set by the `RamFileInfo.setFileName( name )` 
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **date** | *datetime* | undefined | The modification date of the file. |
+| **date** | *datetime* | current date and time | The modification date of the file. |
 | **extension** | *string* | `""` | The file extension (without the leading `.`). |
 | **isRestoredVersion** | *boolean* | `false` | True if the corresponding file is a file created from restoring a previous version. |
 | **project** | *string* | `""` | The project short name (ID). |
