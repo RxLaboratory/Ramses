@@ -65,6 +65,7 @@ The detailed list of planned features and enhancements is [available on *Github*
     - `RamItem.isPublished(resource, step)` no longer have the `resource` argument.
 - Updated `RamStep` to use the new versionning system for published files.
     - `RamStep.templatesPublishFilePaths` is replaced by `RamStep.templatesPublishedVersionFolderPaths` which now returns a list of folders.
+- `Ramses` callbacks for publishing, importing, changing status have changed a bit.
 - Files are now copied using a separate thread whenever possible. This improves a lot the performance. Call `RamFileManager.waitFiles()` if your script needs the files to be actually written to continue.
 
 ### Fixed issues
