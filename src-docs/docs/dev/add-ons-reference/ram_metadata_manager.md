@@ -28,6 +28,7 @@ The Meta-Data used by *Ramses* contains at least these attributes.
 | **getMetaData**<br />▹ *object* or *dict* | *string*: **folderPath** | Gets the meta-data of all the files for the given folder.<br />Each file name is used as a key in the returned object. |
 | **getMetaDataFile**<br />▹ *string* | *string*: **path** | Gets the path of the file containing the metadata for the given file or folder. |
 | **getPipeType**<br />▹ *string* | *string*: **filePath** | Gets the type of the pipe which created this file (if it has previously been set by the addon using `setPipeType()`). |
+| **getState**<br />▹ *string* | *string*: **filePath** | Gets the state short name of the file. |
 | **getValue**<br />▹ *any* | *string*: **filePath**,<br />*string*: **key** | Gets the value of a specific key for the file. |
 | **getVersion**<br />▹ *int* | *string*: **filePath** | Gets the version associated to the file. |
 | **getVersionFilePath**<br />▹ *string* | *string*: **filePath** | Gets the version file associated to the file. |
@@ -36,6 +37,7 @@ The Meta-Data used by *Ramses* contains at least these attributes.
 | **setFileMetaData**<br /> | *string*: **filePath**,<br />*object* or *dict*: **fileData** | Writes the given meta-data to the meta-data file associated to this file. |
 | **setMetaData**<br /> | *string*: **path**,<br />*object* or *dict*: **data** | Writes the given meta-data to the meta-data file associated to this folder. |
 | **setPipeType**<br /> | *string*: **filePath**,<br />*string*: **pipeType** | Sets the pipe which created the file. The value should be the short name of the pipe. |
+| **setState**<br /> | *string*: **filePath**,<br />*string*: **state** | Sets the state for the file. |
 | **setValue** | *string*: **filePath**,<br />*string*: **key**,<br />*any*: **value** | Sets the value of a specific key for the file. |
 | **setVersion** | *string*: **filePath**,<br />*int*: **version** | Sets the version associated to the file. |
 | **setVersionFilePath** | *string*: **filePath**,<br />*string*: **versionFilePath** | Sets the version file associated to the file. |

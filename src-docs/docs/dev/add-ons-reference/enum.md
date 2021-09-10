@@ -81,7 +81,10 @@ The available predefined keys to store file metadata.
 | Name | Actual value | Description |
 | --- | --- | --- |
 | MetaDataKeys.**COMMENT** | `"comment"` | A comment associated to the file |
+| MetaDataKeys.**DATE** | `"date"` | A date for the file |
+| MetaDataKeys.**MODIFICATION_HISTORY** | `"history"` | The list of all modification dates |
 | MetaDataKeys.**PIPE_TYPE** | `"pipeFileShortName"` | The type of the pipe associated to the file |
+| MetaDataKeys.**STATE** | `"stateShortName"` | A version file associated to the file |
 | MetaDataKeys.**VERSION** | `"version"` | A version associated to the file |
 | MetaDataKeys.**VERSION_FILE** | `"versionFilePath"` | A version file associated to the file |
 
