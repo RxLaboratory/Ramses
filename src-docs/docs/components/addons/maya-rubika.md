@@ -28,7 +28,7 @@ To set the items to be exported, you just have to include them in one of the fol
 | Set name | Desciption |
 | --- | --- |
 | `Ramses_Publish` | The items to be published |
-| `Ramses_Proxy` | The proxies to be published (either geometry, or shaders). For shaders, add the geometry associated to the shaders to be exported. |
+| `Ramses_Proxies` | The proxies to be published (either geometry, or shaders). For shaders, add the geometry associated to the shaders to be exported. |
 | `Ramses_DelOnPublish` | This special set contains the nodes to be removed from the scene before publishing it. |
 
 The easiest way to always have these sets available in the scenes is to create them in the template files used by each step.
