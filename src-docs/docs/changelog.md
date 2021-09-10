@@ -43,9 +43,10 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Major performance improvement of the UI.
 - **Client**: Lots of UI tweaks.
 - **Client**: Added a welcome page to help you adjust the most important *Ramses* settings on first launch.
+- **Add-ons**: A comment is added to a file when it's restored from a previous version.
+- **Add-ons**: For *Python* addons (all except *Adobe*), multi-threading makes long operations - like publishing or restoring files - non-blocking and much more performant.
 - **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
 - **Maya Add-on**: Handle the new versionning system for published files.
-- **Add-ons**: A comment is added to a file when it's restored from a previous version.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
 
@@ -64,7 +65,7 @@ The detailed list of planned features and enhancements is [available on *Github*
     - `RamItem.isPublished(resource, step)` no longer have the `resource` argument.
 - Updated `RamStep` to use the new versionning system for published files.
     - `RamStep.templatesPublishFilePaths` is replaced by `RamStep.templatesPublishedVersionFolderPaths` which now returns a list of folders.
-- Files are now copied using a separate thread whenever possible. This improves a lot the performance.
+- Files are now copied using a separate thread whenever possible. This improves a lot the performance. Call `RamFileManager.waitFiles()` if your script needs the files to be actually written to continue.
 
 ### Fixed issues
 

@@ -32,6 +32,7 @@ Read the sections about the *[Ramses Tree](../../components/files/tree.md)* and 
 | **restoreVersionFile** | *string*: **filePath** | Restores an older version.<br />Be careful, this method is multi-threaded, and the script will not wait for the copy to finish to continue; the method may return before the file even exists. |
 | **validateName**<br />▹ *boolean* | *string*: **name** | Checks if this name respects the Ramses naming scheme. |
 | **validateShortName**<br />▹ *boolean* | *string*: **shortName** | Checks if this short name respects the Ramses naming scheme. |
+| **waitFiles** |  | Calling this makes the current thread wait for all file writing threads to finish. |
 
 ____
 
