@@ -89,11 +89,11 @@ nav:
             - Ramses: dev/add-ons-reference/ramses.md
             - RamAsset: dev/add-ons-reference/ram_asset.md
             - RamDaemonInterface: dev/add-ons-reference/ram_daemon_interface.md
+            - RamFileInfo: dev/add-ons-reference/ram_file_info.md
             - RamFileManager: dev/add-ons-reference/ram_file_manager.md
             - RamFileType: dev/add-ons-reference/ram_filetype.md
             - RamItem: dev/add-ons-reference/ram_item.md
             - RamMetaDataManager: dev/add-ons-reference/ram_metadata_manager.md
-            - RamNameManager: dev/add-ons-reference/ram_name_manager.md
             - RamObject: dev/add-ons-reference/ram_object.md
             - RamPipe: dev/add-ons-reference/ram_pipe.md
             - RamPipeFile: dev/add-ons-reference/ram_pipefile.md

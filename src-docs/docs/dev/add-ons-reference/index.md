@@ -26,7 +26,7 @@ This is the comprehensive list of available classes. In the *Ramses Add-ons API*
 | [RamFileType](ram_filetype.md) | | A File type (name and possible extensions) |
 | [RamItem](ram_item.md) | [RamObject](ram_object.md) | The base class for Shots and Assets. |
 | [RamMetaDataManager](ram_metadata_manager.md) | | A Class to get/set metadata from files. |
-| [RamNameManager](ram_name_manager.md) | | A Class to handle ramses (file)names. |
+| [RamFileInfo](ram_file_info.md) | | A Class to handle ramses (file)names. |
 | [RamObject](ram_object.md) | | The base class for most of Ramses objects. |
 | [RamPipe](ram_pipe.md) | | A pipe which connects two steps together in the production pipeline |
 | [RamPipeFile](ram_pipefile.md) | | The description of a file type going through a pipe |

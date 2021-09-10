@@ -46,22 +46,25 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
 - **Maya Add-on**: Handle the new versionning system for published files.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
-- **Scripting API**: Added versionning for published files.
-- **Scripting API**: Added the new `RamNameManager` class to help handling file names.
-- **Scripting API**: Improved the `RamFileManager` class and added a few new methods. Be careful, some method names have changed, and some methods were removed/moved to `RamNameManager`, especially methods concerning file publication.
-    - Removed or moved to `RamNameManager`: `isRestoredFilePath`, `composeRamsesFileName`, `buildRamsesFileName`, `decomposeRamsesFilePath`, `isRamsesName`, `decomposeRamsesFileName`.
-    - `RamFileManager.getLatestVersion` now returns a `RamNameManager` instance.
-    - `RamFileManager.getPublishPath` is now `getPublishInfo` and returns a `RamNameManager`.
-    - `RamFileManager.copyToPublish` is renamed `RamFileManager.publishFile`.
-    - Copy operations for files is now multi-threaded. That improves a lot the performance of your scripts, but that means the script continues while the new file doesn't necessarilly exist yet, be careful!
-- **Scripting API**: Updated `RamItem` to use the new versionning system for published files.
-    - `RamItem.publishFilePaths(resource, step)` is replaced by `RamItem.publishedVersionFolderPaths(step)` which returns a list of folder paths (sorted from oldest to latest).
-    - `RamItem.isPublished(resource, step)` no longer have the `resource` argument.
-- **Scripting API**: Updated `RamStep` to use the new versionning system for published files.
-    - `RamStep.templatesPublishFilePaths` is replaced by `RamStep.templatesPublishedVersionFolderPaths` which now returns a list of folders.
-- **Scripting API**: Files are now copied using a separate thread whenever possible. This improves a lot the performance.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
+
+### Changes to the scripting API
+
+- Added versionning for published files.
+- Added the new `RamFileInfo` class to help handling file names.
+- Improved the `RamFileManager` class and added a few new methods. Be careful, some method names have changed, and some methods were removed/moved to `RamFileInfo`, especially methods concerning file publication.
+    - Removed or moved to `RamFileInfo`: `isRestoredFilePath`, `composeRamsesFileName`, `buildRamsesFileName`, `decomposeRamsesFilePath`, `isRamsesName`, `decomposeRamsesFileName`.
+    - `RamFileManager.getLatestVersion` is now `getLatestVersionInfo` and returns a `RamFileInfo` instance.
+    - `RamFileManager.getPublishPath` is now `getPublishInfo` and returns a `RamFileInfo` instance.
+    - `RamFileManager.copyToPublish` is renamed `RamFileManager.publishFile`.
+    - Copy operations for files is now multi-threaded. That improves a lot the performance of your scripts, but that means the script continues while the new file doesn't necessarilly exist yet, be careful!
+- Updated `RamItem` to use the new versionning system for published files.
+    - `RamItem.publishFilePaths(resource, step)` is replaced by `RamItem.publishedVersionFolderPaths(step)` which returns a list of folder paths (sorted from oldest to latest).
+    - `RamItem.isPublished(resource, step)` no longer have the `resource` argument.
+- Updated `RamStep` to use the new versionning system for published files.
+    - `RamStep.templatesPublishFilePaths` is replaced by `RamStep.templatesPublishedVersionFolderPaths` which now returns a list of folders.
+- Files are now copied using a separate thread whenever possible. This improves a lot the performance.
 
 ### Fixed issues
 
