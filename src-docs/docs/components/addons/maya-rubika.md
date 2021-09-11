@@ -2,9 +2,9 @@
 
 # ![](../../img/icons/maya_sd.svg){: style="width:48px;" } Rubika Flavor of the Ramses Maya Add-on
 
-The *Rubika Flavor* of the [*Ramses Maya Add-on*](maya.md) is an extension of the add-on developed to be used at the [*Rubika Supinfocom*](http://rubika-edu.com) school, automating the workflow and production pipeline of the graduation movie of the students during the last year of their studies.
+The *Rubika Flavor* of the *[Ramses Maya Add-on](maya.md)* is an extension of the add-on developed to be used at the *[Rubika Supinfocom](http://rubika-edu.com)* school, automating the workflow and production pipeline of the graduation movie of the students during the last year of their studies.
 
-It is provided as an example extension of the [*Ramses Maya Add-on*](maya.md) and can be used as-is in other productions too.
+It is provided as an example extension of the *[Ramses Maya Add-on](maya.md)* and can be used as-is in other productions too.
 
 It extends the default add-on with some automations when exporting and importing items, and adds an *Update* command, located in the *Ramses* shelf too.
 
@@ -56,7 +56,66 @@ All exported files contains the name of the pipe and the name of the item if any
 
 *Ramses* will also copy an extra file in the `_publish` folder: a copy of the Scene as it is at the moment you publish it.
 
-According to the information the add-on gets from the *Daemon*, when publishing items from a specific steps, a few options may be shown.
+According to the information the add-on gets from the *Daemon*, when publishing items from specific steps, a few options may be shown.
+
+## Configuration and settings
+
+The *Add-on* automatically publishes and imports items using predefined formats and configurations. These formats can be set to be used between any step in the production pipeline, configured using the *Ramses Client Application* pipeline editor.
+
+<figure>
+  <img src="../../../img/maya-rubika/pipe.png"/>
+  <figcaption>An example of a simple pipe as shown in the <i>Ramses Client Application</i> pipeline editor.</figcaption>
+</figure>
+
+As you can see in this example, each step can be connected using several formats.
+
+The *Add-on* gets the predefined name of the pipes to export the items in the corresponding formats.
+
+### Pipe formats
+
+Here is the list of all the pipes the *Add-on* can handle.
+
+| Pipe ID | Supported file formats | Description |
+| --- | --- | --- |
+| `Anim` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Character and VFX animation. |
+| `Geo` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Used to export meshes. |
+| `pGeo` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | The proxy geometry to be replaced on rendering by an Arnold Scene Source or any other higher definition geometry. |
+| `pSha` | Arnold Scene Source (.ass) | The Arnold scene to be used when rendering to replace proxy geometries by the high definition version. |
+| `rdrSha` | Maya Binary (.mb) | Render shaders, the final version of the shaders. |
+| `Rig` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Rigged characters and props. |
+| `Set` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Sets made of other assets. |
+| `Std` | Maya ASCII (.ma)<br />Maya Binary (.mb) | A Standard Maya file with minimal changes before publishing. |
+| `vpSha` | Maya Binary (.mb) | Viewport shaders, a lightweight version of the shaders used for draft display in the viewport. |
+
+!!! warning
+    The pipe IDs are case sensitive! `Geo` will be handled, but not `geo`.
+
+These pipes are described in more details in the sections below.
+
+<figure>
+  <img src="../../../img/maya-rubika/emptypipe.png"/>
+  <figcaption>An empty pipe.</figcaption>
+</figure>
+
+<figure>
+  <img src="../../../img/maya-rubika/unknownpipe.png"/>
+  <figcaption>An unsupported pipe.</figcaption>
+</figure>
+
+When a pipe is not configured or uses unsupported formats, or if the *Ramses Daemon* is not available (because the add-on is not used with the *Ramses Client Application*), *Ramses* will fall back on the Step names to try to export something anyway, using the following rules.
+
+| Step ID | Default output pipe IDs | Description |
+| --- | --- | --- |
+| `MOD` (Modeling) | `GeoPipe`<br />`pGeoPipe`<br />`vpShaPipe` | Geometry<br />Proxy Geometry<br />Viewport Shaders |
+| `SHADE` (Shading) | `rdrShaPipe`<br />`pShaPipe`<br />`pGeoPipe` | Render Shaders<br />Arnold Scene<br />Proxy Geometry |
+| `RIG` (Rigging) | `RigPipe` | Rigging |
+| `SET` (Sets) | `SetPipe` | Sets of assets |
+| `LAY` (Layout) | `Standard` | A Standard file. |
+| `LIGHT` (Lighting) | `Standard` | A Standard file. |
+| `ANIM` (Animation) | `AnimPipe` | Baked animation. |
+| `VFX` (Visual Effects)) | `AnimPipe` | Baked animation. |
+
+These default values are defined in the `plug-ins/rubika/utils_constants.py` source file of the add-on.
 
 ### Animation - `AnimPipe`
 
@@ -165,63 +224,3 @@ When updating, by default *Ramses* will list only the items which needs to be up
 
     It works the same way for assets included in sets: if you need to keep changes you've made, move the corresponding assets out of the hierarchy of the set before updating.
 
-## Configuration and settings
-
-The *Add-on* automatically publishes and imports items using predefined formats and configurations. These formats can be set to be used between any step in the production pipeline, configured using the *Ramses Client Application* pipeline editor.
-
-<figure>
-  <img src="../../../img/maya-rubika/pipe.png"/>
-  <figcaption>An example of a simple pipe as shown in the <i>Ramses Client Application</i> pipeline editor.</figcaption>
-</figure>
-
-As you can see in this example, each step can be connected using several formats.
-
-The *Add-on* gets the predefined name of the pipes to export the items in the corresponding formats.
-
-### Pipe formats
-
-Here is the list of all the pies the *Add-on* can handle.
-
-| Pipe ID | Supported file formats | Description |
-| --- | --- | --- |
-| `AnimPipe` | Alembic (.abc) | Character and VFX animation. |
-| `GeoPipe` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Used to export meshes. |
-| `pGeoPipe` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | The proxy geometry to be replaced on rendering by an Arnold Scene Source or any other higher definition geometry. |
-| `pShaPipe` | Arnold Scene Source (.ass) | The Arnold scene to be used when rendering to replace proxy geometries by the high definition version. |
-| `rdrShaPipe` | Maya Binary (.mb) | Render shaders, the final version of the shaders. |
-| `RigPipe` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Rigged characters and props. |
-| `SetPipe` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Sets made of other assets. |
-| `Standard` | Maya Binary (.mb) | A Standard Maya file. |
-| `StandardA` | Maya ASCII (.ma) | A Standard Maya file. |
-| `vpShaPipe` | Maya Binary (.mb) | Viewport shaders, a lightweight version of the shaders used for draft display in the viewport. |
-
-!!! warning
-    The pipe IDs are case sensitive! `GeoPipe` will be handled, but not `geoPipe`.
-
-These pipes are described in more details in the sections below.
-
-<figure>
-  <img src="../../../img/maya-rubika/emptypipe.png"/>
-  <figcaption>An empty pipe.</figcaption>
-</figure>
-
-<figure>
-  <img src="../../../img/maya-rubika/unknownpipe.png"/>
-  <figcaption>An unsupported pipe.</figcaption>
-</figure>
-
-
-When a pipe is not configured or uses unsupported formats, or if the *Ramses Daemon* is not available (because the add-on is not used with the *Ramses Client Application*), *Ramses* will fall back on the Step names to try to export something anyway, using the following rules.
-
-| Step ID | Default output pipe IDs | Description |
-| --- | --- | --- |
-| `MOD` (Modeling) | `GeoPipe`<br />`pGeoPipe`<br />`vpShaPipe` | Geometry<br />Proxy Geometry<br />Viewport Shaders |
-| `SHADE` (Shading) | `rdrShaPipe`<br />`pShaPipe`<br />`pGeoPipe` | Render Shaders<br />Arnold Scene<br />Proxy Geometry |
-| `RIG` (Rigging) | `RigPipe` | Rigging |
-| `SET` (Sets) | `SetPipe` | Sets of assets |
-| `LAY` (Layout) | `Standard` | A Standard file. |
-| `LIGHT` (Lighting) | `Standard` | A Standard file. |
-| `ANIM` (Animation) | `AnimPipe` | Baked animation. |
-| `VFX` (Visual Effects)) | `AnimPipe` | Baked animation. |
-
-These default values are defined in the `plug-ins/rubika/utils_constants.py` source file of the add-on.

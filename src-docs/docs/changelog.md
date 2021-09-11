@@ -47,6 +47,11 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Add-ons**: For *Python* addons (all except *Adobe*), multi-threading makes long operations - like publishing or restoring files - non-blocking and much more performant.
 - **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
 - **Maya Add-on**: Handle the new versionning system for published files.
+- **Maya Add-on - Rubika Flavor**: Improved stability and fixed a bunch of bugs.
+- **Maya Add-on - Rubika Flavor**: Improved publication for all pipes:
+    - Ability to export both to Alembic and Maya at once.
+    - Ability to always choose between *ASCII* or *Binary*.
+    - Ability to export animated geometry.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
 
