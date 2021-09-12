@@ -16,6 +16,7 @@ The *Daemon* replies with more information about the step.
 
 - *shortName*: **string**. The short name of the step.
 - *name*: **string**. The name of the step.
+- *color*: **array** of **float**. A color for displaying the step.
 - *folder*: **string**. The absolute path to the common folder of the step.
 - *type*: **string**. One of `"PRE_PRODUCTION"`, `"ASSET_PRODUCTION"`, `"SHOT_PRODUCTION"`, `"POST_PRODUCTION"`.
 
@@ -35,7 +36,8 @@ Reply:
             "shortName": "RIG",
             "name": "Rigging",
             "folder": "/path/to/RIG",
-            "type": "ASSET_PRODUCTION"
+            "type": "ASSET_PRODUCTION",
+            "color": [0.5, 0.5, 0.5]
         }
 }
 ```

@@ -84,7 +84,7 @@ Here is the list of all the pipes the *Add-on* can handle.
 | `rdrSha` | Maya Binary (.mb) | Render shaders, the final version of the shaders. |
 | `Rig` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Rigged characters and props. |
 | `Set` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Sets made of other assets. |
-| `Std` | Maya ASCII (.ma)<br />Maya Binary (.mb) | A Standard Maya file with minimal changes before publishing. |
+| `Std` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | A Standard Maya file with minimal changes before publishing. |
 | `vpSha` | Maya Binary (.mb) | Viewport shaders, a lightweight version of the shaders used for draft display in the viewport. |
 
 !!! warning

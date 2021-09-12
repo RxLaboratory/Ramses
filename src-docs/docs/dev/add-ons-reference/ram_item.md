@@ -21,13 +21,14 @@ Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
 | **folderPath**<br />▹ *string* |  | The absolute path to the folder containing the item |
 | **isPublished**<br />▹ *bool* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Convenience function to check if there are published files in the publish folder. Equivalent to `len(self.publishedVersionFolderPaths(step, resource)) > 0` |
 | **itemType**<br />▹ *ItemType* | | The type of this item. One of `ItemType.SHOT`, `ItemType.ASSET`, `ItemType.GENERAL` |
+| **latestPublishedVersionFolderPath**<br />▹ *string* | *[RamStep](ram_step.md)* or *string*: **step**=`""`,<br />*string*: **fileName** = `""`,<br />*string*: **resource** = `undefined` | Folder of the latest published version, for a specific file name and/or resource |
 | **latestVersion**<br />▹ *integer* | *string*: **resource** = `""`,<br />*string*: **state** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step***=`""` | Returns the highest version number for the given state (wip, pub...). |
 | **latestVersionFilePath**<br />▹ *string* | *string*: **resource** = `""`,<br />*string*: **state** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Latest version file path |
 | **previewFolderPath**<br />▹ *string* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the path to the preview folder. Paths are relative to the root of the item folder. |
 | **previewFilePaths**<br />▹ *list of string* | *string*: **resource** = `""`,<br />*[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the list of file paths in the preview folder. Paths are relative to the root of the item folder. |
 | **project**<br />▹ *[RamProject](ram_project.md)* | | Gets the project this item belongs too. To improve performance, if only the shortName is needed, prefer using `projectShortName()` |
 | **projectShortName**<br />▹ *string* | | Gets the short name of the project this item belongs too. |
-| **publishedVersionFolderPaths**<br />▹ *list of string* | [RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the list of file paths in the publish folder. Paths are relative to the root of the item folder. |
+| **publishedVersionFolderPaths**<br />▹ *list of string* | [RamStep](ram_step.md)* or *string*: **step**=`""`,<br />*string*: **fileName** = `""`,<br />*string*: **resource** = `undefined` | Gets the list of folder paths in the publish folder, optionally for a given specific file name and/or resource. |
 | **publishFolderPath**<br />▹ *string* | *[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the path to the publish folder. Paths are relative to the root of the item folder. |
 | **setStatus** | *[RamStatus](ram_status.md)*: **status**,<br />*[RamStep](ram_step.md)* or *string*: **step** | Sets the current status for the given step |
 | **status**<br />▹ *[RamStatus](ram_status.md)* | *[RamStep](ram_step.md)*: **step** | Gets the current status for the given step |

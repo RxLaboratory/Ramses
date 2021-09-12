@@ -16,6 +16,7 @@ Inherits: [***RamObject***](ram_object.md)
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **stepName**,<br />*string*: **stepShortName**,<br />*string*: **stepFolderPath**=`""`,<br />*StepType*: **stepType**=`""` | At least the folder or the type must be provided, but one is enough as the other info can be gotten from the [*Ramses Tree*](../../components/files/tree.md) |
+| **color**<br />▹ *list* of *float* | | A color used for displaying this step, an RGB list. |
 | **folderPath**<br />▹ *string* | | The absolute path to the folder containing the common files for this step |
 | **inputPipes**<br />▹ *list* of *[RamPipe](ram_pipe.md)* | | The pipes comming into this step. |
 | **outputPipes**<br />▹ *list* of *[RamPipe](ram_pipe.md)* | | The pipes going out of this step. |
