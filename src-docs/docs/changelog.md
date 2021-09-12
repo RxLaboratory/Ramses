@@ -52,6 +52,10 @@ The detailed list of planned features and enhancements is [available on *Github*
     - Ability to export both to Alembic and Maya at once.
     - Ability to always choose between *ASCII* or *Binary*.
     - Ability to export animated geometry.
+- **Maya Add-on - Rubika Flavor**: Improved updater:
+    - Filter selected nodes only
+    - Revert to an older version
+    - Keep PRS offsets
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
 
