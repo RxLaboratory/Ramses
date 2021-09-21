@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.1.3-Alpha</a>
+                        <a href="../../..">v0.2.0-Alpha</a>
                     </li>
                 
                 
@@ -460,6 +460,12 @@
         
             
 <li >
+    <a href="../../../dev/add-ons-reference/ram_file_info/">RamFileInfo</a>
+</li>
+
+        
+            
+<li >
     <a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a>
 </li>
 
@@ -802,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.1.3-Alpha</a>
+                <a href="../../../../../..">v0.2.0-Alpha</a>
             </li>
         
         
@@ -1061,6 +1067,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_file_info/">RamFileInfo</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a></li>
                                     
                                 
@@ -1298,13 +1308,13 @@
 <p>The procedure to install and to update <em>Ramses</em> differ a bit. <strong>Do not</strong> follow the installation procedure to update your server, as it will wipe all your data!</p>
 <p>It is also a good habit to always backup the data before updating.</p>
 </div>
-<p>The safest update procedure is as follow:</p>
+<p>The safe update procedure is as follow:</p>
 <ol>
-<li>Un-Zip the <em>Ramses Server</em> you&rsquo;ve downloaded.</li>
-<li>Edit <code>config.php</code> with needed info (you can retrieve this info froñ the current file on your server).</li>
-<li>Delete the <code>install</code> folder.</li>
-<li>Delete all files from the server.</li>
-<li>Copy the <em>Ramses Server</em> files to the web server.</li>
+<li>Un-Zip the <em>Ramses Server update package</em> you&rsquo;ve downloaded.</li>
+<li>Remove all files from your server <strong>except <em>config.php</em></strong>. Note that it&rsquo;s a good habit to keep a backup copy of this file offline.</li>
+<li>Uplaod all files and folders from the update package to your server.</li>
+<li>Go to http://yourserver.com/ramses/update (of course, replace the first part of this URL with your actual server address). The page may take some time to load.</li>
+<li>You can then remove the <em>update</em> folder from the server, everything is ready.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

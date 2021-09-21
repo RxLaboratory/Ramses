@@ -106,18 +106,18 @@ When a pipe is not configured or uses unsupported formats, or if the *Ramses Dae
 
 | Step ID | Default output pipe IDs | Description |
 | --- | --- | --- |
-| `MOD` (Modeling) | `GeoPipe`<br />`pGeoPipe`<br />`vpShaPipe` | Geometry<br />Proxy Geometry<br />Viewport Shaders |
-| `SHADE` (Shading) | `rdrShaPipe`<br />`pShaPipe`<br />`pGeoPipe` | Render Shaders<br />Arnold Scene<br />Proxy Geometry |
-| `RIG` (Rigging) | `RigPipe` | Rigging |
-| `SET` (Sets) | `SetPipe` | Sets of assets |
-| `LAY` (Layout) | `Standard` | A Standard file. |
-| `LIGHT` (Lighting) | `Standard` | A Standard file. |
-| `ANIM` (Animation) | `AnimPipe` | Baked animation. |
-| `VFX` (Visual Effects)) | `AnimPipe` | Baked animation. |
+| `MOD` (Modeling) | `Geo`<br />`pGeo`<br />`vpSha` | Geometry<br />Proxy Geometry<br />Viewport Shaders |
+| `SHADE` (Shading) | `rdrSha`<br />`pSha`<br />`pGeo` | Render Shaders<br />Arnold Scene<br />Proxy Geometry |
+| `RIG` (Rigging) | `Rig` | Rigging |
+| `SET` (Sets) | `Set` | Sets of assets |
+| `LAY` (Layout) | `Std` | A Standard file. |
+| `LIGHT` (Lighting) | `Std` | A Standard file. |
+| `ANIM` (Animation) | `Anim` | Baked animation. |
+| `VFX` (Visual Effects)) | `Anim` | Baked animation. |
 
 These default values are defined in the `plug-ins/rubika/utils_constants.py` source file of the add-on.
 
-### Animation - `AnimPipe`
+### Animation - `Anim`
 
 ![](../../img/maya-rubika/publishanim.png)
 
@@ -127,7 +127,7 @@ Ramses will clean the scene before exporting, removing everything not checked in
 
 A root controller is added as a parent of the root node of the published animation (a simple curve), which stores needed meta-data and can be used to manipulate the item once imported into another scene.
 
-### (Proxy) Geometry - `GeoPipe` and `pGeoPipe`
+### (Proxy) Geometry - `Geo` and `pGeo`
 
 ![](../../img/maya-rubika/publishgeo.png)
 
@@ -139,11 +139,11 @@ By default it will also remove all curves and surfaces to publish only meshes, b
 
 A root controller is added as a parent of the root node of the published geometry (a simple curve), which stores needed meta-data and can be used to manipulate the item once imported into another scene.
 
-### Proxy shaders  - `pShaPipe`
+### Proxy shaders  - `pSha`
 
 *Ramses* exports the items as an *Arnold Scene Source* (.ass) file. This pipe is usually used in conjunction with a *Proxy Geometry* pipe (*pGeoPipe*) which will export the geometry used as a proxy for the *Arnold scene*.
 
-### Render and Viewport shaders  - `rdrShaPipe` and `vpShaPipe`
+### Render and Viewport shaders  - `rdrSha` and `vpSha`
 
 ![](../../img/maya-rubika/publishshaders.png)
 
@@ -151,7 +151,7 @@ Everything except shaders is removed from the scene; the only option is to also 
 
 *Ramses* then saves a *Maya* scene containing only these shaders, and stores associated meta-data to be able to assign these shaders back to the corresponding geometry (see the [*Import*](#import) section for more details).
 
-### Rig - `RigPipe`
+### Rig - `Rig`
 
 ![](../../img/maya-rubika/publishrig.png)
 
@@ -159,7 +159,7 @@ As with other pipes, a few options are available to select what to remove to cle
 
 The rig is published in a simple *Maya* Scene, where everything else has been removed.
 
-### Set - `SetPipe`
+### Set - `Set`
 
 Sets are published as a simple *Maya* Scene where everything else has been removed; all meta-data and links with external assets are kept, so that individual assets can be updated later, as well as the whole set, but individual root controllers of included assets are hidden.
 
@@ -167,7 +167,7 @@ Sets are published as a simple *Maya* Scene where everything else has been remov
 
 The options are the same as with Geometry.
 
-### Standard - `Standard` and `StandardA`
+### Standard - `Std`
 
 Standard publication is the default format, where everything not included with the items to be published is simply removed, and the Scene is then published as is, as a simple *Maya* Scene.
 
@@ -179,31 +179,31 @@ When items are imported in a Scene, *Ramses* sorts them in groups at the root of
 
 It is possible to select several input pipes at once, for example to import both the geometry and the shaders at once; *Ramses* will automatically handle the import and assign the right shaders to the right geometry in this example.
 
-### Animation - `AnimPipe`
+### Animation - `Anim`
 
 ![](../../img/maya-rubika/importanim.png)
 
 When importing an animation, *Ramses* can try to remove corresponding existing rigs from the scene before, so that only the baked animation is kept.
 
-### (Proxy) Geometry - `GeoPipe` and `pGeoPipe`
+### (Proxy) Geometry - `Geo` and `pGeo`
 
 Geometry is simply added to the scene, sorted in its corresponding group.
 
-### Proxy shaders  - `pShaPipe`
+### Proxy shaders  - `pSha`
 
 There is no automatic import of *Arnold Scene Sources*. You have to manually handle them.
 
-### Render and Viewport shaders  - `rdrShaPipe` and `vpShaPipe`
+### Render and Viewport shaders  - `rdrSha` and `vpSha`
 
 Shaders are imported to the current Scene, and *Ramses* will automatically assign them to any corresponding **selected** geometry before the import.
 
 Shaders are imported as reference, so there's no need to update them once imported in a scene; except for switching between viewport shaders and render shaders.
 
-### Rig - `RigPipe`
+### Rig - `Rig`
 
 Rigs are imported as reference into the current Scene. You can safely import several times the same Rig, as *Ramses* will correctly handle namespaces so they're self-contained.
 
-### Set - `SetPipe`
+### Set - `Set`
 
 Sets are imported the same way as geometry; the root controllers of the included assets are hidden, but they're still available and colored in the outliner.
 
@@ -221,6 +221,3 @@ When updating, by default *Ramses* will list only the items which needs to be up
     When updating an item, all the children of its root controller will be removed and replaced by the updated item.
 
     If you added an object to the hierarchy you want to keep, make sure to move it out before updating and parent it again after the update.
-
-    It works the same way for assets included in sets: if you need to keep changes you've made, move the corresponding assets out of the hierarchy of the set before updating.
-

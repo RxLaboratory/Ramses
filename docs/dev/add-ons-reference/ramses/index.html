@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.1.3-Alpha</a>
+                        <a href="../../..">v0.2.0-Alpha</a>
                     </li>
                 
                 
@@ -460,6 +460,12 @@
         
             
 <li >
+    <a href="../ram_file_info/">RamFileInfo</a>
+</li>
+
+        
+            
+<li >
     <a href="../ram_file_manager/">RamFileManager</a>
 </li>
 
@@ -802,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.1.3-Alpha</a>
+                <a href="../../../../../..">v0.2.0-Alpha</a>
             </li>
         
         
@@ -1058,6 +1064,10 @@
                                 
                                     
                                     <li class="third-level "><a href="../ram_daemon_interface/">RamDaemonInterface</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../ram_file_info/">RamFileInfo</a></li>
                                     
                                 
                                     
@@ -1457,7 +1467,7 @@
 </tr>
 <tr>
 <td><strong>importItem</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
 <td>Runs the scripts in <code>Ramses.instance().importScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
@@ -1492,7 +1502,7 @@
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br /><em>string</em>: <strong>publishFolderPath</strong>,<br /><em><a href="../ram_file_info/">RamFileInfo</a></em>: <strong>fileInfo</strong></td>
 <td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
@@ -1538,17 +1548,17 @@
 <tbody>
 <tr>
 <td><strong>importItem</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>list</em> of <em>string</em>: <strong>filePaths</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>list</em> of <em>string</em>: <strong>filePaths</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
 <td>- <code>item</code> is the item from which the user wants to import a file.<br />- <code>filePaths</code> is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />- <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.</td>
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>- <code>item</code> is the item from which the user wants to publish a file.<br />- <code>filePath</code> is the absolute path to the folder where the user wants to publish.<br />- <code>step</code> is the step from which the user is publishing. You can check <code>step.outputPipes()</code> to know which file types to publish.</td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em><a href="../ram_file_info/">RamFileInfo</a></em>: <strong>publishFileInfo</strong></td>
+<td>- <code>item</code> is the item from which the user wants to publish a file.<br />- <code>step</code> is the step from which the user is publishing. You can check <code>step.outputPipes()</code> to know which file types to publish.<br />- <code>fileInfo</code> contains all the info which can be gathered from the publishing file, including version and state. <code>fileInfo.filePath()</code> returns the path for publishing the file (including a proposed fileName).</td>
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
 <td>- <code>item</code> is the item which is being updated.<br />- <code>status</code> is the new status.<br />- <code>step</code> is the step being updated.</td>
 </tr>
 </tbody>

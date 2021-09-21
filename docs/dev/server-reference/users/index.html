@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.1.3-Alpha</a>
+                        <a href="../../..">v0.2.0-Alpha</a>
                     </li>
                 
                 
@@ -460,6 +460,12 @@
         
             
 <li >
+    <a href="../../add-ons-reference/ram_file_info/">RamFileInfo</a>
+</li>
+
+        
+            
+<li >
     <a href="../../add-ons-reference/ram_file_manager/">RamFileManager</a>
 </li>
 
@@ -802,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.1.3-Alpha</a>
+                <a href="../../../../../..">v0.2.0-Alpha</a>
             </li>
         
         
@@ -1061,6 +1067,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_file_info/">RamFileInfo</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../add-ons-reference/ram_file_manager/">RamFileManager</a></li>
                                     
                                 
@@ -1311,6 +1321,7 @@
 <li><em>name</em>: <strong>string</strong>. The new (or current for no change) name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The new (or current for no change) shortName.</li>
 <li><em>comment</em>: <strong>string</strong>. The new comment.</li>
+<li><em>email</em>: <strong>string</strong>. The new email.</li>
 <li><em>role</em>: <strong>string</strong> (optionnal). The new role of the user. One of <code>admin</code>, <code>project</code>, <code>lead</code>, or <code>standard</code>.</li>
 <li><em>folderPath</em>: <strong>string</strong> (optionnal). The path for the user folder.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
@@ -1349,7 +1360,7 @@
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
     &quot;success&quot;: true,
-    &quot;message&quot;: &quot;User \&quot;Duduf\&quot; updated.&quot;,
+    &quot;message&quot;: &quot;User updated.&quot;,
     &quot;content&quot;: { }
 }
 </code></pre>
@@ -1367,6 +1378,7 @@
 <li><em>name</em>: <strong>string</strong>. The name of the user.</li>
 <li><em>shortName</em>: <strong>string</strong>. The username.</li>
 <li><em>comment</em>: <strong>string</strong>. A comment.</li>
+<li><em>email</em>: <strong>string</strong>. The email.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this user.</li>
 <li><em>folderPath</em>: <strong>string</strong>. The user folder path.</li>
 <li><em>role</em>: <strong>string</strong>. The userrole. One of <code>admin</code>, <code>project</code>, <code>lead</code>, or <code>standard</code>.</li>
@@ -1381,6 +1393,7 @@
         {
             &quot;name&quot;: &quot;Nicolas Dufresne&quot;,
             &quot;shortName&quot;: &quot;Duduf&quot;,
+            &quot;email&quot;: &quot;big@boss.com&quot;,
             &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
             &quot;folderPath&quot;: &quot;/home/duduf&quot;,
             &quot;role&quot;: &quot;admin&quot;,
@@ -1388,6 +1401,7 @@
         {
             &quot;name&quot;: &quot;J. Doh&quot;,
             &quot;shortName&quot;: &quot;User&quot;,
+            &quot;email&quot;: &quot;&quot;,
             &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
             &quot;folderPath&quot;: &quot;/home/doe&quot;,
             &quot;role&quot;: &quot;standard&quot;,
@@ -1403,6 +1417,7 @@
 <ul>
 <li><em>name</em>: <strong>string</strong>. The new name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The new shortName.</li>
+<li><em>email</em>: <strong>string</strong>. The email.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The user&rsquo;s Universal Unique Identifier.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
@@ -1413,7 +1428,7 @@
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createUser&quot;,
     &quot;success&quot;: true,
-    &quot;message&quot;: &quot;User \&quot;Duduf\&quot; created.&quot;,
+    &quot;message&quot;: &quot;User created.&quot;,
     &quot;content&quot;: { }
 }
 </code></pre>

@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.1.3-Alpha</a>
+                        <a href="../../..">v0.2.0-Alpha</a>
                     </li>
                 
                 
@@ -460,6 +460,12 @@
         
             
 <li >
+    <a href="../ram_file_info/">RamFileInfo</a>
+</li>
+
+        
+            
+<li >
     <a href="../ram_file_manager/">RamFileManager</a>
 </li>
 
@@ -802,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.1.3-Alpha</a>
+                <a href="../../../../../..">v0.2.0-Alpha</a>
             </li>
         
         
@@ -1058,6 +1064,10 @@
                                 
                                     
                                     <li class="third-level "><a href="../ram_daemon_interface/">RamDaemonInterface</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../ram_file_info/">RamFileInfo</a></li>
                                     
                                 
                                     
@@ -1343,6 +1353,11 @@
 <td>The color space used through the pipe.</td>
 </tr>
 <tr>
+<td><strong>customSettings</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>Can be any string which can be set from the pipeline editor in the <a href="../../../components/client/"><em>Ramses Client Application</em></a>. Use this to add more information to configure your pipeline and pass this information to the addons.</td>
+</tr>
+<tr>
 <td><strong>getFiles</strong><br />▹ <em>list</em> of <em>string</em></td>
 <td><em>string</em>: <strong>folderPath</strong></td>
 <td>Gets all the files which can go through this pipe in the given folder.</td>
@@ -1368,6 +1383,10 @@
 <tbody>
 <tr>
 <td><strong>colorSpace</strong></td>
+<td><i class="fa fa-lock"></i> Immutable</td>
+</tr>
+<tr>
+<td><strong>customSettings</strong></td>
 <td><i class="fa fa-lock"></i> Immutable</td>
 </tr>
 <tr>

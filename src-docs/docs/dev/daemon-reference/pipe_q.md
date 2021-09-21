@@ -18,6 +18,7 @@ The *Daemon* replies with the list of Pipes.
     - *pipeFiles*: **list** of **object**. The pipe files, objects with:
         - *colorSpace*: **string**. The short name of the color space
         - *shortName*: **string**. The short name pipe file.
+        - *customSettings*: **string**. Custom (user) settings for this pipe file.
         - *fileType*: **object**. The file type, an object with:
             - *name*: **string**
             - *shortName*: **string**
@@ -44,6 +45,7 @@ Reply:
                     {
                         "colorSpace": "",
                         "shortName": "Preview",
+                        "customSettings": "",
                         "fileType": {
                             "name": "JPEG Image",
                             "shortName": "jpg",
@@ -53,6 +55,7 @@ Reply:
                     {
                         "colorSpace": "",
                         "shortName": "Publish",
+                        "customSettings": "importAsRef",
                         "fileType": {
                             "name": "Maya Binary",
                             "shortName": "mb",
@@ -68,6 +71,7 @@ Reply:
                     {
                         "colorSpace": "",
                         "shortName": "Preview",
+                        "customSettings": "",
                         "fileType": {
                             "name": "JPEG Image",
                             "shortName": "jpg",
@@ -77,6 +81,7 @@ Reply:
                     {
                         "colorSpace": "",
                         "shortName": "Publish",
+                        "customSettings": "",
                         "fileType": {
                             "name": "Adobe PDF",
                             "shortName": "pdf",

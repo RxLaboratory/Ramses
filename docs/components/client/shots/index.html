@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.1.3-Alpha</a>
+                        <a href="../../..">v0.2.0-Alpha</a>
                     </li>
                 
                 
@@ -460,6 +460,12 @@
         
             
 <li >
+    <a href="../../../dev/add-ons-reference/ram_file_info/">RamFileInfo</a>
+</li>
+
+        
+            
+<li >
     <a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a>
 </li>
 
@@ -802,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.1.3-Alpha</a>
+                <a href="../../../../../..">v0.2.0-Alpha</a>
             </li>
         
         
@@ -1061,6 +1067,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../../dev/add-ons-reference/ram_file_info/">RamFileInfo</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../../dev/add-ons-reference/ram_file_manager/">RamFileManager</a></li>
                                     
                                 
@@ -1304,8 +1314,25 @@
 <p>The list on the left lists all the shots of the project, and you can use the <strong><em>Search</em></strong> field to filter them by <strong><em>name</em></strong> or <strong><em>ID</em></strong>. The top selector filters the shots according to their <strong>containing sequence</strong>.
 When changing the size of the rows in the list, more details about each shot can be displayed. The <img alt="" src="/img/icons/explore.svg" style="width:18px;" /> <strong><em>folder</em></strong> button on the top right corner for each shot in the list opens the shot folder in your file explorer.</p>
 <p>Use the <img alt="" src="/img/icons/add_sl.svg" style="width:18px;" /> button to <strong>create</strong> a new shot in the current sequence. The <img alt="" src="/img/icons/remove_sl.svg" style="width:18px;" /> button <strong>removes</strong> the selected shots from the project<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
-<p>You can also use the <code>[DEL]</code> key to remove the selected shots.</p>
+<p>You can use the <code>[Shift + A]</code> shortcut key to quickly add new shots.</p>
+<p>You can use the <code>[DEL]</code> or <code>[Shift + X]</code> shortcut key to quickly remove selected shots.</p>
 <p>You can scroll all lists using <code>[Middle click]</code> as well as the <code>[Mouse wheel]</code>.</p>
+<p>The creation button also allows you to create multiple shots at once and opens the following dialog:</p>
+<p><img alt="" src="/img/client/multipleshots.png" /></p>
+<ul>
+<li>
+<p>First, select the sequence where the shots will be added. If you need to add shots to several sequences, start again for each sequence.</p>
+</li>
+<li>
+<p>Choose the starting and end number. You can add leading zeroes, <em>Ramses</em> will keep them in the number, so that all shots have the same count of digits.</p>
+</li>
+<li>
+<p>Choose a name for the new shots. Include the <code>%</code> character at the location where you wish the number to be. For example, <code>Shot % A</code> will be translated as <code>Shot 012 A</code>.</p>
+</li>
+<li>
+<p>Choose an ID for the new shots. Again, you can use the <code>%</code> character to locate the shot number. If you omit it, the number is automatically appended to the ID.</p>
+</li>
+</ul>
 <h2 id="edition">Edition</h2>
 <p><img alt="" src="/img/client/shotedition.png" /></p>
 <ul>

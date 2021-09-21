@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.1.3-Alpha</a>
+                        <a href="../../..">v0.2.0-Alpha</a>
                     </li>
                 
                 
@@ -459,6 +459,12 @@
 
         
             
+<li >
+    <a href="../ram_file_info/">RamFileInfo</a>
+</li>
+
+        
+            
 <li class="active">
     <a href="./">RamFileManager</a>
 </li>
@@ -775,7 +781,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../ram_daemon_interface/">
+                        <a rel="prev" href="../ram_file_info/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -802,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.1.3-Alpha</a>
+                <a href="../../../../../..">v0.2.0-Alpha</a>
             </li>
         
         
@@ -1061,6 +1067,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../ram_file_info/">RamFileInfo</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level active"><a href="./">RamFileManager</a></li>
                                     
                                 
@@ -1287,7 +1297,6 @@
             <li class="first-level active"><a href="#ramfilemanager">RamFileManager</a></li>
                 <li class="second-level"><a href="#static-methods">Static Methods</a></li>
                     
-                    <li class="third-level"><a href="#decomposeramsesfilename">decomposeRamsesFileName( )</a></li>
                 <li class="second-level"><a href="#api-dev-notes">API Dev notes</a></li>
                     
                     <li class="third-level"><a href="#private-methods">Private methods</a></li>
@@ -1316,39 +1325,14 @@
 <td>Builds a path with a list of folder names or subpaths, adding the <code>"/"</code> only if needed. Paths never include any trailing <code>"/"</code></td>
 </tr>
 <tr>
-<td><strong>buildRamsesFileName</strong><br />▹ <em>string</em></td>
-<td><em>string</em>: <strong>project</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>string</em>: <strong>ext</strong>,<br /><em>string</em>: <strong>ramType</strong>=<code>"G"</code>,<br /><em>string</em>: <strong>objectShortName</strong>=<code>""</code>,<br /><em>string</em>: <strong>resourceStr</strong>=<code>""</code>,<br /><em>int</em>: <strong>version,</strong>=<code>-1</code>,<br /><em>string</em>: <strong>version_prefix</strong>=<code>""</code></td>
-<td>Builds a filename respecting Ramses&rsquo; naming conventions.</td>
-</tr>
-<tr>
-<td><strong>composeRamsesFileName</strong><br />▹ <em>string</em></td>
-<td><em>object or dict</em>: <strong>ramsesFileNameDict</strong>,<br /><em>boolean</em>: <strong>increment</strong>=<code>false</code></td>
-<td>Builds a filename from a dict or object similar as the one returned by <code>decomposeRamsesFileName()</code>.</td>
-</tr>
-<tr>
-<td><strong>copyToPublish</strong><br />▹ <em>string</em></td>
-<td><em>string</em>: <strong>filePath</strong></td>
-<td>Copies the given file inside the corresponding <code>_published</code> subfolder.<br />Returns the path to the new file.</td>
-</tr>
-<tr>
 <td><strong>copyToVersion</strong><br />▹ <em>string</em></td>
 <td><em>string</em>: <strong>filePath</strong>,<br /><em>boolean</em>: <strong>increment</strong>=<code>false</code>,<br /><em>string</em>: <strong>dafaultStateShortName</strong>=<code>"v"</code></td>
-<td>Copies the given file inside the corresponding <code>_versions</code> subfolder, optionnaly incrementing the version number.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />Returns the path to the new file.</td>
+<td>Copies the given file inside the corresponding <code>_versions</code> subfolder, optionnaly incrementing the version number.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />Returns the path to the new file.<br />Be careful, this method is multi-threaded, and the script will not wait for the copy to finish to continue; the method may return before the file even exists.</td>
 </tr>
 <tr>
-<td><strong>decomposeRamsesFileName</strong><br />▹ <em>dict</em> or <em>None</em></td>
-<td><em>string</em>: <strong>ramsesFileName</strong></td>
-<td>Used on files that respect Ramses&rsquo; naming convention: it separates the name into blocks (one block for the project&rsquo;s shortname, one for the step, one for the extension&hellip;).</td>
-</tr>
-<tr>
-<td><strong>decomposeRamsesFilePath</strong><br />▹ <em>dict</em> or <em>None</em></td>
-<td><em>string</em>: <strong>path</strong></td>
-<td>Tries to get the maximum information from a path, traversing up the directory tree to read information. Returns a dict similar to <code>decomposeRamsesFileName()</code>.</td>
-</tr>
-<tr>
-<td><strong>getLatestVersion</strong><br />▹ <em>list of int and string</em></td>
+<td><strong>getLatestVersionInfo</strong><br />▹ <em><a href="../ram_file_info/">RamFileInfo</a></em></td>
 <td><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>dafaultStateShortName</strong>=<code>"v"</code>,<br /><em>boolean</em>: <strong>previous</strong>=<code>false</code></td>
-<td>Gets the latest version number and state for the given file, which can be located either in the main folder or one of the <em>_versions</em>, <em>_preview</em> or <em>_published</em> subfolder.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />If <em>previous</em> is true, will return the version immediately before the latest one.<br />Returns a list with the version number as first item, the state as second item, and the date as the third item.</td>
+<td>Gets the latest version number and state for the given file, which can be located either in the main folder or one of the <em>_versions</em>, <em>_preview</em> or <em>_published</em> subfolder.<br />Use <em>defaultStateShortName</em> to change the state to be used if not found in the current or previous version.<br />If <em>previous</em> is true, will return the version immediately before the latest one.</td>
 </tr>
 <tr>
 <td><strong>getLatestVersionFilePath</strong><br />▹ <em>string</em></td>
@@ -1364,6 +1348,16 @@
 <td><strong>getPublishFolder</strong><br />▹ <em>string</em></td>
 <td><em>string</em>: <strong>filePath</strong></td>
 <td>Gets the <em><em>published</em></em> folder path for any given file.</td>
+</tr>
+<tr>
+<td><strong>getPublishInfo</strong><br />▹ <em><a href="../ram_file_info/">RamFileInfo</a></em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the <em><em>published</em></em> information for any given file.</td>
+</tr>
+<tr>
+<td><strong>getPublishedVersions</strong><br />▹ <em>list</em> of <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Gets the list of subfolders (versions) from the <em><em>published</em></em> folder of this file.</td>
 </tr>
 <tr>
 <td><strong>getRamsesFiles</strong><br />▹ <em>list</em> of <em>string</em></td>
@@ -1416,11 +1410,6 @@
 <td>Checks if a given folder is the project root folder.</td>
 </tr>
 <tr>
-<td><strong>isRamsesName</strong><br />▹ <em>boolean</em></td>
-<td><em>string</em>: <strong>fileName</strong></td>
-<td>Checks if the given name respects the <em>Ramses</em> naming scheme.</td>
-</tr>
-<tr>
 <td><strong>isRestoredFilePath</strong><br />▹ <em>boolean</em> or <em>int</em></td>
 <td><em>string</em>: <strong>filePath</strong></td>
 <td>Checks if the file is a working file which has been restored from a previous version (contains <code>"+restored-vXX+"</code> in its resource name).<br />If it is a restored older version, the version number is returned, otherwise returns <code>false</code>.</td>
@@ -1431,9 +1420,14 @@
 <td>Checks using the information found in <code>shotsPath</code> (which should be the shots folder of a given project) if the given short name corresponds to a shot production step.</td>
 </tr>
 <tr>
+<td><strong>publishFile</strong><br />▹ <em>string</em></td>
+<td><em>string</em>: <strong>filePath</strong></td>
+<td>Copies the given file inside the corresponding <code>_published</code> subfolder.<br />Returns the path to the new file.<br />Be careful, this method is multi-threaded, and the script will not wait for the copy to finish to continue; the method may return before the file even exists.</td>
+</tr>
+<tr>
 <td><strong>restoreVersionFile</strong></td>
 <td><em>string</em>: <strong>filePath</strong></td>
-<td>Restores an older version.</td>
+<td>Restores an older version.<br />Be careful, this method is multi-threaded, and the script will not wait for the copy to finish to continue; the method may return before the file even exists.</td>
 </tr>
 <tr>
 <td><strong>validateName</strong><br />▹ <em>boolean</em></td>
@@ -1445,34 +1439,13 @@
 <td><em>string</em>: <strong>shortName</strong></td>
 <td>Checks if this short name respects the Ramses naming scheme.</td>
 </tr>
+<tr>
+<td><strong>waitFiles</strong></td>
+<td></td>
+<td>Calling this makes the current thread wait for all file writing threads to finish.</td>
+</tr>
 </tbody>
 </table>
-<h3 id="decomposeramsesfilename">decomposeRamsesFileName( )</h3>
-<p>Used on files that respect Ramses&rsquo; naming convention: it separates the name into blocks (one block for the project&rsquo;s shortname, one for the step, one for the extension&hellip;)</p>
-<p>A Ramses filename can have all of these blocks:</p>
-<p><code>project_type_object_step_resource_versionBlock.extension</code></p>
-<ul>
-<li><code>type</code> can be one of the following letters: A (asset), S (shot), G (general).</li>
-<li>there is an <code>object</code> for assets and shots but it may be empty for general items</li>
-<li>the <code>step</code> may be empty for assets and shots if the method is used on a folder name instead of a file</li>
-<li><code>resource</code> is optional. It only serves to differentiate the main working file and its resources, that serve as secondary working files.</li>
-<li><code>versionBlock</code> is optional. It&rsquo;s made of two blocks: an optional version prefix, also named state, followed by a version number.<br />
-    Version prefixes consist of all the available states&rsquo; shortnames ( see <a href="../ramses/"><code>Ramses.getStates()</code></a> ) and some additional prefixes. E.g. <code>"wip"</code>, <code>"v"</code>, &hellip;</li>
-</ul>
-<p>If the file does not match Ramses&rsquo; naming convention, returns None.<br />
-Else, returns a dictionary made of all the blocks:</p>
-<pre><code class="py">{
-    &quot;project&quot;,
-    &quot;type&quot;,
-    &quot;object&quot;,
-    &quot;step&quot;,
-    &quot;resource&quot;,
-    &quot;state&quot;,
-    &quot;version&quot;,
-    &quot;extension&quot;
-}
-</code></pre>
-
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">
@@ -1501,7 +1474,7 @@ Else, returns a dictionary made of all the blocks:</p>
             <div class="nav-footer">
             <ul>
                 <li class="nav-footer-prev">
-                    <a rel="prev" href="../ram_daemon_interface/">
+                    <a rel="prev" href="../ram_file_info/">
                         <i class="fas fa-arrow-left"></i> Previous
                     </a>
                 </li>
