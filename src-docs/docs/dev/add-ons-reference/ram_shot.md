@@ -17,6 +17,7 @@ Inherits: [***RamItem***](ram_item.md)
 | --- | --- | --- |
 | ***constructor*** | *string*: **shotName**,<br />*string*: **shotShortName**,<br />*string*: **shotFolder**,<br />*float*: **duration**=`0.0` | |
 | **duration**<br />▹ *float* | | The shot duration, in seconds |
+| **group**<br />▹ *string* | | The name of the sequence containing this shot. |
 
 ____
 

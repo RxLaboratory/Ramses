@@ -15,6 +15,7 @@ Logs in with a username and a (hashed) password.
 - *comment*: **string**. The new comment.
 - *email*: **string**. The new email.
 - *role*: **string** (optionnal). The new role of the user. One of `admin`, `project`, `lead`, or `standard`.
+- *color*: **string**. The color of the user.
 - *folderPath*: **string** (optionnal). The path for the user folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
@@ -86,6 +87,7 @@ The server replies an array of user information. Each user is an object with the
 - *comment*: **string**. A comment.
 - *email*: **string**. The email.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
+- *color*: **string**. The color.
 - *folderPath*: **string**. The user folder path.
 - *role*: **string**. The userrole. One of `admin`, `project`, `lead`, or `standard`.
 
@@ -105,6 +107,7 @@ The server replies an array of user information. Each user is an object with the
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "folderPath": "/home/duduf",
             "role": "admin",
+            "color": "#e3e3e3"
         },
         {
             "name": "J. Doh",
@@ -113,6 +116,7 @@ The server replies an array of user information. Each user is an object with the
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "folderPath": "/home/doe",
             "role": "standard",
+            "color": "#674357"
         }
     ]
 }
@@ -129,6 +133,7 @@ Creates a new user in the database.
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
 - *email*: **string**. The email.
+- *color*: **string** (optional). The color.
 - *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 

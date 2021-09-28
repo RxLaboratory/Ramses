@@ -132,7 +132,7 @@ Reply:
 ```json
 {
     "accepted": true,
-    "query": "getAgetAssetGroupsssets",
+    "query": "getAssetGroups",
     "success": true,
     "message": "Asset group list retrived.",
     "content": {

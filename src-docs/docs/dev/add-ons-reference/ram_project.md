@@ -30,8 +30,9 @@ Inherits: [***RamObject***](ram_object.md)
 | **postProdPath**<br />▹ *str* | | The path to the post-production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **preProdPath**<br />▹ *str* | | The path to the pre-production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **prodPath**<br />▹ *str* | | The path to the production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
+| **sequences**<br />▹ *list of string* | | Available sequences in this project |
 | **shot**<br />▹ *[RamShot](ram_shot.md)* | *string*: **shotShortName** | Gets a shot with its short name. |
-| **shots**<br />▹ *[RamShot](ram_shot.md)* | | Available shots in this project |
+| **shots**<br />▹ *[RamShot](ram_shot.md)* | *string*: **nameFilter**=`"*"`,<br />*string*: **sequence**=`""`  | Available shots in this project |
 | **shotsPath**<br />▹ *str* | | The path to the shots of this project. When calling this method, the folder will created if it does not exist yet. |
 | **step**<br />▹ *[RamStep](ram_step.md)* | *string*: **stepShortName** | Gets a step with its short name. | 
 | **steps**<br />▹ *list of [RamStep](ram_step.md)* | *enumerated value*: **type**=`RamStep.ALL`,<br />*boolean*: **deepSearch**=`false` | Available steps in this project. Use *type* to filter the results.<br />One of: `StepType.ALL`, `StepType.ASSET_PODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.PRE_PRODUCTION`, `StepType.PRODUCTION`, `StepType.POST_PRODUCTION`.<br />`StepType.PRODUCTION` represents a combination of `SHOT` and `ASSET`.<br />When offline, *deepSearch* will also look for existing steps in the *Assets* and *Shots* folder of the project, but this can take a long time if there are many assets and shots. |

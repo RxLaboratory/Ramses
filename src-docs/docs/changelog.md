@@ -30,8 +30,11 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ### Improvements
 
+- **All**: Added custom setttings in the pipe files.
 - **Client**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
+- **Client and server**: Added colors associated to users, shown in the schedule and item tables when the user is assigned to an item.
 - **Client**: Added User and State filters in the production tables.
+- **Client**: Added an option to show or hide all details in the tables.
 - **Client**: Added the ability to copy and paste comments from the tables.
 - **Client**: Added versionning for published files.
 - **Client**: Better feedback in case a change is not accepted by the server.
@@ -47,6 +50,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Add-ons**: For *Python* addons (all except *Adobe*), multi-threading makes long operations - like publishing or restoring files - non-blocking and much more performant.
 - **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
 - **Maya Add-on**: Handle the new versionning system for published files.
+- **Maya Add-on**: Filter shots by sequence in the open/import dialog.
 - **Maya Add-on - Rubika Flavor**: Improved stability and fixed a bunch of bugs.
 - **Maya Add-on - Rubika Flavor**: Improved publication for all pipes:
     - Ability to export both to Alembic and Maya at once.
