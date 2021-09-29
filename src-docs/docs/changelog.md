@@ -56,6 +56,7 @@ The detailed list of planned features and enhancements is [available on *Github*
     - Ability to export both to Alembic and Maya at once.
     - Ability to always choose between *ASCII* or *Binary*.
     - Ability to export animated geometry.
+    - Ability to publish/import as reference most of the pipes
 - **Maya Add-on - Rubika Flavor**: Improved updater:
     - Filter selected nodes only
     - Revert to an older version
@@ -89,6 +90,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Crash when removing an asset group still containing assets.
 - **Client**: Fixed an issue where shot/asset attribution would be reinitialized on edition from the production table.
 - **Client**: Fixed the size of the dropdown menus sometimes being too small for long sequence/asset group names.
+- **Maya Add-on**: The "preview" function now works correctly.
 - **Maya Add-on (Rubika Flavor)**: Import Geo now works correctly.
 
 ### Known Issues
@@ -100,22 +102,10 @@ The detailed list of planned features and enhancements is [available on *Github*
 #### Client and Daemon
 
 -  ***[#137](https://github.com/RxLaboratory/Ramses/issues/107)***: The *SSL* option should be disabled if *openSSL* is not available on the system.
--  ***[#106](https://github.com/RxLaboratory/Ramses/issues/106)***: Errors in the *Python API* when special characters are sent by the *Daemon*.
--  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
 -  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
-
-#### Python API
-
--  ***[#106](https://github.com/RxLaboratory/Ramses/issues/106)***: crash when special characters are sent by the *Daemon*.
--  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
-
-#### Add-ons
-
--  ***[#110](https://github.com/RxLaboratory/Ramses/issues/110)***: *Ramses* should use a versionning system for published files.
--  ***[#118](https://github.com/RxLaboratory/Ramses/issues/118)***: It seems the *Preview* function does not always work on *Maya 2020*.
 
 ## 0.1.3-Alpha
 

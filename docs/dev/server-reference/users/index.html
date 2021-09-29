@@ -1323,6 +1323,7 @@
 <li><em>comment</em>: <strong>string</strong>. The new comment.</li>
 <li><em>email</em>: <strong>string</strong>. The new email.</li>
 <li><em>role</em>: <strong>string</strong> (optionnal). The new role of the user. One of <code>admin</code>, <code>project</code>, <code>lead</code>, or <code>standard</code>.</li>
+<li><em>color</em>: <strong>string</strong>. The color of the user.</li>
 <li><em>folderPath</em>: <strong>string</strong> (optionnal). The path for the user folder.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
@@ -1330,7 +1331,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
     &quot;success&quot;: true,
@@ -1338,7 +1339,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="updatepassword">updatePassword</h2>
 <p><code>http://your.server/ramses/?updatePassword</code></p>
 <p>Changes the password of a specific user</p>
@@ -1356,7 +1356,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateUser&quot;,
     &quot;success&quot;: true,
@@ -1364,7 +1364,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="getusers">getUsers</h2>
 <p><code>http://your.server/ramses/?getUsers</code></p>
 <p>Retrieves the list of all users.</p>
@@ -1380,11 +1379,12 @@
 <li><em>comment</em>: <strong>string</strong>. A comment.</li>
 <li><em>email</em>: <strong>string</strong>. The email.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this user.</li>
+<li><em>color</em>: <strong>string</strong>. The color.</li>
 <li><em>folderPath</em>: <strong>string</strong>. The user folder path.</li>
 <li><em>role</em>: <strong>string</strong>. The userrole. One of <code>admin</code>, <code>project</code>, <code>lead</code>, or <code>standard</code>.</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getUsers&quot;,
     &quot;success&quot;: true,
@@ -1397,6 +1397,7 @@
             &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
             &quot;folderPath&quot;: &quot;/home/duduf&quot;,
             &quot;role&quot;: &quot;admin&quot;,
+            &quot;color&quot;: &quot;#e3e3e3&quot;
         },
         {
             &quot;name&quot;: &quot;J. Doh&quot;,
@@ -1405,11 +1406,11 @@
             &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
             &quot;folderPath&quot;: &quot;/home/doe&quot;,
             &quot;role&quot;: &quot;standard&quot;,
+            &quot;color&quot;: &quot;#674357&quot;
         }
     ]
 }
 </code></pre>
-
 <h2 id="createuser">createUser</h2>
 <p><code>http://your.server/ramses/?createUser</code></p>
 <p>Creates a new user in the database.</p>
@@ -1418,13 +1419,14 @@
 <li><em>name</em>: <strong>string</strong>. The new name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The new shortName.</li>
 <li><em>email</em>: <strong>string</strong>. The email.</li>
+<li><em>color</em>: <strong>string</strong> (optional). The color.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The user&rsquo;s Universal Unique Identifier.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createUser&quot;,
     &quot;success&quot;: true,
@@ -1432,7 +1434,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeuser">removeUser</h2>
 <p><code>http://your.server/ramses/?removeUser</code></p>
 <p>Removes a user from the database.</p>
@@ -1444,7 +1445,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeUser&quot;,
     &quot;success&quot;: true,

@@ -78,14 +78,19 @@ Here is the list of all the pipes the *Add-on* can handle.
 | Pipe ID | Supported file formats | Description |
 | --- | --- | --- |
 | `Anim` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Character and VFX animation. |
+| `AnimRef` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Same as `Anim` but imported as a reference. |
 | `Geo` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Used to export meshes. |
+| `GeoRef` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Same as `Geo` but imported as a reference. |
 | `pGeo` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | The proxy geometry to be replaced on rendering by an Arnold Scene Source or any other higher definition geometry. |
+| `pGeoRef` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Same as `pGeo` but imported as a reference. |
 | `pSha` | Arnold Scene Source (.ass) | The Arnold scene to be used when rendering to replace proxy geometries by the high definition version. |
-| `rdrSha` | Maya Binary (.mb) | Render shaders, the final version of the shaders. |
-| `Rig` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Rigged characters and props. |
+| `rdrSha` | Maya Binary (.mb) | Render shaders, the final version of the shaders. Always imported as a reference. |
+| `Rig` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Rigged characters and props. Always imported as a reference. |
 | `Set` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Sets made of other assets. |
+| `SetRef` | Maya ASCII (.ma)<br />Maya Binary (.mb) | Same as `Set` but imported as a reference. |
 | `Std` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | A Standard Maya file with minimal changes before publishing. |
-| `vpSha` | Maya Binary (.mb) | Viewport shaders, a lightweight version of the shaders used for draft display in the viewport. |
+| `StdRef` | Alembic (.abc)<br />Maya ASCII (.ma)<br />Maya Binary (.mb) | Same as `Std` but imported as a reference. |
+| `vpSha` | Maya Binary (.mb) | Viewport shaders, a lightweight version of the shaders used for draft display in the viewport. Always imported as a reference. |
 
 !!! warning
     The pipe IDs are case sensitive! `Geo` will be handled, but not `geo`.
@@ -117,23 +122,51 @@ When a pipe is not configured or uses unsupported formats, or if the *Ramses Dae
 
 These default values are defined in the `plug-ins/rubika/utils_constants.py` source file of the add-on.
 
-### Animation - `Anim`
+### Animation - `Anim` and `AnimRef`
 
 ![](../../img/maya-rubika/publishanim.png)
 
-Ramses will clean the scene before exporting, removing everything not checked in the options and not included in the Ramses_Publish Maya set.
+This is what *Ramses* does when publishing animation:
+
+0. **Copy the current scene** in the publish folder, as it is without any change.
+1. **Import all references** in the scene.
+2. **Remove all namespaces** from node names.
+3. For each node found in the `Ramses_Publish` set:
+    1. If the node is an empty group, it is removed, and skip.
+    2. **Remove all hidden children** if the *Remove Hidden Nodes* is checked in the publication options.
+    3. **Remove all non-mesh nodes**, except curves or NURBS if the options to keep them are checked.
+    4. **Delete history and rename shapes after the transform nodes** if the option to keep deformer animation is not checked.
+    5. **Add a _root_ controller** as a parent of the published node.
+    6. If the pipes contain *Alembic* files, **publish the node** and its children in an alembic file.
+4. If the pipes contain *Maya ASCII* or *Maya Binary* files, publish all the nodes from the `Ramses_Publish` set as a single *Maya* file.
 
 ![](../../img/maya-rubika/publishedgeo.png){ style="width:300px" }
 
 A root controller is added as a parent of the root node of the published animation (a simple curve), which stores needed meta-data and can be used to manipulate the item once imported into another scene.
 
-### (Proxy) Geometry - `Geo` and `pGeo`
+### (Proxy) Geometry - `Geo`, `pGeo`, `GeoRef` and `pGeoRef`
 
 ![](../../img/maya-rubika/publishgeo.png)
 
-*Ramses* will clean the scene before exporting, removing everything checked in the options and not included in the `Ramses_Publish` *Maya* set. It also removes all histories from the exported nodes. And it finally freezes the transformations of all objects by default, except for the ones which names contain the strings defined in the "*Don't freeze tranformations for*" field.
+This is what *Ramses* does when publishing animation:
 
-By default it will also remove all curves and surfaces to publish only meshes, but you can change that in the options if needed. If a curve or a surface is part of the hierarchy (it has child meshes), only the *shape* node will be removed, but the *transform* node is kept (effectively transforming the node into a simple *group*): this way everything stays as it is without any modification.
+0. **Copy the current scene** in the publish folder, as it is without any change.
+1. **Import all references** in the scene.
+2. **Remove all namespaces** from node names.
+3. **Remove all animation** from the scene if the option to keep animation is not checked.
+4. **Lock the visibility** of hidden nodes.
+5. For each node found in the `Ramses_Publish` (for the *Geo* pipes) or the `Ramses_Proxies` (for the *pGeo* pipes) set:
+    1. If the node is an empty group, it is removed, and skip.
+    2. **Lock transform** of the node.
+    3. **Move the node to the origin of the scene** (0,0,0)
+    4. **Remove all hidden children** if the *Remove Hidden Nodes* is checked in the publication options.
+    5. **Remove all non-mesh child nodes**, except curves, NURBS and locators if the options to keep them are checked.
+    6. **Delete history and rename shapes after the child transform nodes** if the option to keep deformer animation is not checked.
+    7. **Freeze and lock transform** of all children if their name does not contain one of the filters set in the publication options and the animation is not kept.
+    8. **Add a _root_ controller** as a parent of the published node.
+    9. If the pipes contain *Alembic* files, **publish the node** and its children in an alembic file. If the animation is kept, the current timeline frame range is used.
+    10. If there are also shader pipes for the current step, **publish the shaders** of the node.
+6. If the pipes contain *Maya ASCII* or *Maya Binary* files, publish all the nodes from the `Ramses_Publish` set as a single *Maya* file.
 
 ![](../../img/maya-rubika/publishedgeo.png){ style="width:300px" }
 
@@ -141,7 +174,13 @@ A root controller is added as a parent of the root node of the published geometr
 
 ### Proxy shaders  - `pSha`
 
-*Ramses* exports the items as an *Arnold Scene Source* (.ass) file. This pipe is usually used in conjunction with a *Proxy Geometry* pipe (*pGeoPipe*) which will export the geometry used as a proxy for the *Arnold scene*.
+This is what *Ramses* does when publishing proxy shaders (*Arnold scene source*):
+
+0. **Copy the current scene** in the publish folder, as it is without any change.
+1. **Import all references** in the scene.
+2. **Remove all namespaces** from node names.
+3. **Remove all animation** from the scene.
+4. **Export each node** and its children from the `Ramses_Proxies` set as an *.ass* file.
 
 ### Render and Viewport shaders  - `rdrSha` and `vpSha`
 
@@ -149,17 +188,39 @@ A root controller is added as a parent of the root node of the published geometr
 
 Everything except shaders is removed from the scene; the only option is to also remove shaders associated with hidden nodes.
 
-*Ramses* then saves a *Maya* scene containing only these shaders, and stores associated meta-data to be able to assign these shaders back to the corresponding geometry (see the [*Import*](#import) section for more details).
+This is what *Ramses* does when publishing shaders:
+
+0. **Copy the current scene** in the publish folder, as it is without any change.
+1. **Import all references** in the scene.
+2. **Remove all namespaces** from node names.
+3. **Remove all animation** from the scene.
+4. For the shading engines of each node (and its children) in the `Ramses_Publish` set:
+    1. **Remove hidden nodes** if the option is checked in the publication settings.
+    2. **Remove all non-mesh** nodes.
+    3. **Delete history** of the nodes.
+    4. **Rename the shading engine** after the surface shader.
+    5. **List all nodes** using the shading engine and keeps the information as an extra attribute of the shading engine node.
+    6. **Export the shading engines** of the node and its children as a *Maya Binary* file.
 
 ### Rig - `Rig`
 
 ![](../../img/maya-rubika/publishrig.png)
 
-As with other pipes, a few options are available to select what to remove to clean the scene, as well as choosing the default display for the joints.
+This is what *Ramses* does when publishing rigs:
 
-The rig is published in a simple *Maya* Scene, where everything else has been removed.
+0. **Copy the current scene** in the publish folder, as it is without any change.
+1. **Import all references** in the scene.
+2. **Remove all namespaces** from node names.
+3. **Remove all animation** from the scene if the option to delete keyframes is checked.
+4. **Lock the visibility of hidden nodes** if the option is checked.
+5. For each node in the `Ramses_Publish` set:
+    1. **Move the node to the origin of the scene** (0,0,0).
+    2. **Export viewport shaders** of the child nodes if the pipe contains viewport shaders.
+    3. **Add a _root_ controller** as a parent of the published node.
+6. **Hide or set draw style to none** for all the joints according to the selected option.
+7. **Publish all the nodes** as a single *Maya Scene*.
 
-### Set - `Set`
+### Set - `Set` or `SetRef`
 
 Sets are published as a simple *Maya* Scene where everything else has been removed; all meta-data and links with external assets are kept, so that individual assets can be updated later, as well as the whole set, but individual root controllers of included assets are hidden.
 
@@ -167,9 +228,39 @@ Sets are published as a simple *Maya* Scene where everything else has been remov
 
 The options are the same as with Geometry.
 
-### Standard - `Std`
+This is what *Ramses* does when publishing sets:
+
+0. **Copy the current scene** in the publish folder, as it is without any change.
+1. **Import all references** in the scene.
+2. **Remove all namespaces** from node names.
+3. **Remove all animation** from the scene if the option to keep animation is not checked.
+4. For each node found in the `Ramses_Publish` set:
+    1. If the node is an empty group, it is removed, and skip.
+    2. **Lock transform** of the node.
+    3. **Move the node to the origin of the scene** (0,0,0)
+    4. **Remove all hidden children** if the *Remove Hidden Nodes* is checked in the publication options.
+    5. **Remove all non-mesh child nodes**, except curves, NURBS and locators if the options to keep them are checked.
+    6. **Delete history and rename shapes after the child transform nodes** if the option to keep deformer animation is not checked.
+    7. **Freeze and lock transform** of all children if their name does not contain one of the filters set in the publication options and the animation is not kept.
+    8. **Store the current PRS values of the child transform nodes managed by Ramses (i.e. imported assets)** in their extra attributes to be able to keep the offset when updating the set later.
+    9. **Freeze and lock transfrom** of all other child nodes.
+    10. **Remove all empty groups**.
+    11. **Add a _root_ controller** as a parent of the published node.
+5. **Publish the nodes** in a single *Maya Scene*.
+
+### Standard - `Std` or `StdRef`
 
 Standard publication is the default format, where everything not included with the items to be published is simply removed, and the Scene is then published as is, as a simple *Maya* Scene.
+
+This is what *Ramses* does when publishing standard pipes:
+
+0. **Copy the current scene** in the publish folder, as it is without any change.
+1. **Remove all empty groups**.
+2. For each node found in the `Ramses_Publish` set:
+    1. **Add a _root_ controller** as a parent of the published node.
+    2. If the pipes contain *Alembic* files, **publish the node** and its children in an alembic file. The current timeline frame range is used.
+    3. If there are also shader pipes for the current step, **publish the shaders** of the node.
+3. If the pipes contain *Maya ASCII* or *Maya Binary* files, publish all the nodes from the `Ramses_Publish` set as a single *Maya* file.
 
 ## Import
 
@@ -179,15 +270,19 @@ When items are imported in a Scene, *Ramses* sorts them in groups at the root of
 
 It is possible to select several input pipes at once, for example to import both the geometry and the shaders at once; *Ramses* will automatically handle the import and assign the right shaders to the right geometry in this example.
 
-### Animation - `Anim`
+### Animation - `Anim` or `AnimRef`
 
 ![](../../img/maya-rubika/importanim.png)
 
 When importing an animation, *Ramses* can try to remove corresponding existing rigs from the scene before, so that only the baked animation is kept.
 
-### (Proxy) Geometry - `Geo` and `pGeo`
+If the pipe ID is `AnimRef` the animation is imported as a reference.
+
+### (Proxy) Geometry - `Geo`, `pGeo`, `GeoRef` or `pGeoRef`
 
 Geometry is simply added to the scene, sorted in its corresponding group.
+
+If the pipe ID is `GeoRef` or `pGeoRef` the geometry is imported as a reference.
 
 ### Proxy shaders  - `pSha`
 
@@ -197,23 +292,29 @@ There is no automatic import of *Arnold Scene Sources*. You have to manually han
 
 Shaders are imported to the current Scene, and *Ramses* will automatically assign them to any corresponding **selected** geometry before the import.
 
-Shaders are imported as reference, so there's no need to update them once imported in a scene; except for switching between viewport shaders and render shaders.
+Shaders are imported as reference.
 
 ### Rig - `Rig`
 
 Rigs are imported as reference into the current Scene. You can safely import several times the same Rig, as *Ramses* will correctly handle namespaces so they're self-contained.
 
-### Set - `Set`
+### Set - `Set` or `SetRef`
 
-Sets are imported the same way as geometry; the root controllers of the included assets are hidden, but they're still available and colored in the outliner.
+Sets are imported the same way as geometry.
 
 ![](../../img/maya-rubika/importedset.png)
 
-If you need to modify a set in a specific shot, you'll want the modified assets to not be updated when the set is updated. To prevent that, just move the corresponding assets outside the hierarchy of the set, or update the assets individually.
+If a set contains other assets, *Ramses* should keep any modification of their PRS coordinates when updating, but you can also choose to update either specific assets individually or the whole set at once.
 
 ## ![](../../img/icons/update.svg){ style="width:32px"} Update
 
 ![](../../img/maya-rubika/update.png)
+
+The column on the left lists all nodes managed by *Ramses* found in the current scene.
+
+When selecting one of the nodes on the left, *Ramses* displays the version information at the bottom of the list, and the available published version of the correspondint asset (or shot) in the column on the right.
+
+You can then select the version you wish to use to replace the current node; you can either select a more recent version to update the asset or select an older version as well to restore a previous version.
 
 When updating, by default *Ramses* will list only the items which needs to be updated; if for some reason you need to re-import/update another item, uncheck the box at the top of the window.
 

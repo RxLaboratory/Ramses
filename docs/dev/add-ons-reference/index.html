@@ -1442,7 +1442,7 @@
 <h2 id="examples">Examples</h2>
 <p>Here are a few examples showing how this API can be used.</p>
 <h3 id="include-import-the-api">Include / Import the API</h3>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 # Use your usual preferred way to import the module.
 
 from ramses import *
@@ -1472,8 +1472,7 @@ aNewStatus = ram.RamStatus(
     )
 myShot.setStatus(aNewStatus, myRamses.currentStep())
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 // Just include the file the usual way.
 
 #include ramses.jsxinc
@@ -1489,11 +1488,10 @@ var aNewStatus = new RamStatus(
     );
 myShot.setStatus(aNewStatus, myRamses.currentStep());
 </code></pre>
-
 <h3 id="enumerated-values-constants">Enumerated values (constants)</h3>
 <p>Enumerated values (a.k.a. Constants) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they’re grouped together by type (for exemple Color.RED, or Shape.RECTANGLE). The value itself can be of any type (array, string, number…).</p>
 <p>In this documentation they&rsquo;re written like this: <code>ValueType.VALUE</code>, i.e. <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code>, and they&rsquo;re used the same way in the actual code.</p>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 from ramses import RamItem, ItemType
 
@@ -1506,8 +1504,7 @@ if anItem is not None:
     if anItem.itemType() == ItemType.SHOT:
         doSomething()
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 #include ramses.jsxinc
 
@@ -1522,10 +1519,9 @@ if (anItem != null)
         doSomething();
 }
 </code></pre>
-
 <h3 id="save-command-for-maya-python">Save command for <em>Maya</em> (Python)</h3>
 <p>This example shows how to use the <a href="ram_file_manager/">RamFileManager</a> class to implement a save command in <em>Maya</em> with automatic backup in the <em>_versions</em> subfolder.</p>
-<pre><code class="python">import maya.cmds as cmds
+<pre><code class="language-python">import maya.cmds as cmds
 import ramses as ram
 
 ramses = ram.Ramses.instance()

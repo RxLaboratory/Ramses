@@ -1334,7 +1334,7 @@
 <h2 id="a-working-folder">A working folder</h2>
 <p>All working folders should contain a few predefined subfolders, so that <em>Ramses</em> can efficiently handle the versionning and production tracking of all files, assets, and shots.</p>
 <p>This is a typical working folder (files are not shown):</p>
-<pre><code class="sh">┌ projectID_A_AssetID_StepID # The working folder, for an asset in this example
+<pre><code class="language-sh">┌ projectID_A_AssetID_StepID # The working folder, for an asset in this example
 │
 ├─── _versions # The versionning folder, handled by Ramses.
 │    # Contains the history and all versions
@@ -1343,7 +1343,6 @@
 └─── _preview
      # Contains media files to be used to preview the work on this step (videos, images...)
 </code></pre>
-
 <p><a href="../../components/addons/"><em>Ramses Add-ons</em></a> automatically create and sort the files in these folders when working on an item, but you can manually create and use them, especially the <code>_published</code> and <code>_preview</code> subfolder. Any file added in these folders will be automatically detected and managed by <em>Ramses</em>. Even when not using a <em>Ramses Add-on</em> it is recommended to use this folder structure.</p>
 <p>All files inside these folders should be correctly named and respect all <a href="../../components/files/naming/">Ramses naming conventions</a>.</p>
 <p>▹ <strong><a href="../../components/files/">More information: The <em>Ramses Tree</em></a></strong>.</p>
@@ -1391,7 +1390,7 @@
 <li><img alt="" src="../../img/icons/film_sl.svg" style="width:18px;" /> <strong><em>Post-Production</em></strong> includes all the steps from the edit to the delivery, where the work is made on the whole edit and not individual shots (for example: editing, sound design, music, etc.)</li>
 </ul>
 <p><strong>The list of steps is available and can be managed in the <a href="../../components/client/"><em>Ramses Client Application</em></a>, under <a href="../../components/client/project/">the project panel</a> (for project admin users)</strong>, and by default each step is represented by a folder in the <a href="../../components/files/"><em>Ramses Tree</em></a> as shown below.</p>
-<pre><code class="sh"># (inside the &quot;Projects&quot; folder of the Ramses main folder)
+<pre><code class="language-sh"># (inside the &quot;Projects&quot; folder of the Ramses main folder)
 ┌ PROJECTID # Project Root folder
 │
 ├─┬─ 01-PRE-PROD
@@ -1407,7 +1406,6 @@
 └─┬─ 03-POST-PROD
   └─── PROJECTID_G_EDIT # Post production step 
 </code></pre>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These folders <strong>are not where the working files are stored</strong>; they contain the common files, like libraries, examples, references, and the <strong>Templates</strong> used for the creation of new assets and shots.</p>

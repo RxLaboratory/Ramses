@@ -1305,6 +1305,11 @@
                     <li class="third-level"><a href="#query-attributes_1">Query attributes</a></li>
                     <li class="third-level"><a href="#reply-content_1">Reply content</a></li>
                     <li class="third-level"><a href="#example_1">Example</a></li>
+                <li class="second-level"><a href="#getsequences">getSequences</a></li>
+                    
+                    <li class="third-level"><a href="#query-attributes_2">Query attributes</a></li>
+                    <li class="third-level"><a href="#reply-content_2">Reply content</a></li>
+                    <li class="third-level"><a href="#example_2">Example</a></li>
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1326,13 +1331,14 @@
 <li><em>shortName</em>: <strong>string</strong>. The short name of the shot.</li>
 <li><em>name</em>: <strong>string</strong>. The name of the shot.</li>
 <li><em>folder</em>: <strong>string</strong>. The absolute path of the folder containing the shot.</li>
+<li><em>sequence</em>: <strong>string</strong>. The containing sequence name.</li>
 <li><em>duration</em>: <strong>float</strong>. The duration of the shot, in seconds</li>
 </ul>
 <h3 id="example">Example</h3>
 <p>Query:<br />
 <code>getShot&amp;shortName=001*</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getShot&quot;,
     &quot;success&quot;: true,
@@ -1345,7 +1351,6 @@
         }
 }
 </code></pre>
-
 <h2 id="getshots">getShots</h2>
 <p>Returns the list of assets for the current project.</p>
 <h3 id="query-attributes_1">Query attributes</h3>
@@ -1360,6 +1365,7 @@
 <li><em>shortName</em>: <strong>string</strong>. The short name of the shot.</li>
 <li><em>name</em>: <strong>string</strong>. The name of the shot.</li>
 <li><em>folder</em>: <strong>string</strong>. The absolute path of the folder containing the shot.</li>
+<li><em>sequence</em>: <strong>string</strong>. The containing sequence name.</li>
 <li><em>duration</em>: <strong>float</strong>. The duration of the shot, in seconds</li>
 </ul>
 </li>
@@ -1368,7 +1374,7 @@
 <p>Query:<br />
 <code>getShots&amp;filter=Seq01-*</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getShots&quot;,
     &quot;success&quot;: true,
@@ -1386,6 +1392,48 @@
                 &quot;name&quot;: &quot;Shot 02&quot;,
                 &quot;folder&quot;: &quot;/path/to/S2&quot;,
                 &quot;duration&quot;: 2.4
+            }
+        ]
+    }
+}
+</code></pre>
+<h2 id="getsequences">getSequences</h2>
+<p>Returns the list of sequences for the current project.</p>
+<h3 id="query-attributes_2">Query attributes</h3>
+<ul>
+<li><em>getSequences</em></li>
+</ul>
+<h3 id="reply-content_2">Reply content</h3>
+<p>The <em>Daemon</em> replies with the list of sequences.</p>
+<ul>
+<li><em>sequences</em>: <strong>array of objects</strong>. The sequences. Each sequence is an object with:<ul>
+<li><em>shortName</em>: <strong>string</strong>. The short name of the sequence.</li>
+<li><em>name</em>: <strong>string</strong>. The name of the sequence.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example_2">Example</h3>
+<p>Query:<br />
+<code>getSequences</code></p>
+<p>Reply:  </p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;getSequences&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Sequence list retrived.&quot;,
+    &quot;content&quot;: {
+        &quot;assets&quot;: [
+            {
+                &quot;shortName&quot;: &quot;SEQ01&quot;,
+                &quot;name&quot;: &quot;Sequence 01&quot;,
+            },
+            {
+                &quot;shortName&quot;: &quot;SEQ02&quot;,
+                &quot;name&quot;: &quot;Sequence 02&quot;,
+            },
+            {
+                &quot;shortName&quot;: &quot;SEQ03&quot;,
+                &quot;name&quot;: &quot;Sequence 03&quot;,
             }
         ]
     }
