@@ -46,6 +46,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Major performance improvement of the UI.
 - **Client**: Lots of UI tweaks.
 - **Client**: Added a welcome page to help you adjust the most important *Ramses* settings on first launch.
+- **Client**: *NO* state in tables is now greyed out.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
 - **Add-ons**: For *Python* addons (all except *Adobe*), multi-threading makes long operations - like publishing or restoring files - non-blocking and much more performant.
 - **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
