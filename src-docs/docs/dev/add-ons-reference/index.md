@@ -43,6 +43,7 @@ This is the comprehensive list of available classes. In the *Ramses Add-ons API*
 | Method | Arguments | Description |
 | --- | --- | --- |
 | **log** | *string*: **message**,<br />*LogLevel*: **level**=`LogLevel.Info`| Logs a message to the console. The level must be one of `LogLevel.DataReceived`, `LogLevel.DataSent`, `LogLevel.Debug`, `LogLevel.Info`, `LogLevel.Critical`, `LogLevel.Fatal` |
+| **printException** | | To be used in an `except` statement in Python or a `catch` statement in *JavaScript*. In *JavaScript* the error must be passed as an argument. Logs the exception to the console. |
 
 ## Examples
 

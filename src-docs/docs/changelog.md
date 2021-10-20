@@ -48,10 +48,12 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Added a welcome page to help you adjust the most important *Ramses* settings on first launch.
 - **Client**: *NO* state in tables is now greyed out.
 - **Add-ons**: A comment is added to a file when it's restored from a previous version.
+- **Add-ons**: Added a *debug mode* for developpers.
 - **Add-ons**: For *Python* addons (all except *Adobe*), multi-threading makes long operations - like publishing or restoring files - non-blocking and much more performant.
 - **Maya Add-on**: Updated to use the new version of the *Python API*, improves stability and performance.
 - **Maya Add-on**: Handle the new versionning system for published files.
 - **Maya Add-on**: Filter shots by sequence in the open/import dialog.
+- **Maya Add-on**: New *Debug mode* setting for developpers.
 - **Maya Add-on - Rubika Flavor**: Improved stability and fixed a bunch of bugs.
 - **Maya Add-on - Rubika Flavor**: Improved publication for all pipes:
     - Ability to export both to Alembic and Maya at once.
