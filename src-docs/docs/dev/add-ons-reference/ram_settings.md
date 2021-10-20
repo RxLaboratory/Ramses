@@ -29,7 +29,9 @@ To retrieve the default values after the settings have been changed, access them
 | **addonsHelpUrl** | *string* | The URL to [this page](../../../addons/) | Read-only. A link to the [Ramses add-ons](../../../addons/) documentation |
 | **apiReferenceUrl** | *string* | This page URL | Read-only. A link to this API documentation |
 | **autoIncrementTimeout** | *int* | `120` | Timeout before auto incrementing a file, in minutes. |
+| **debugMode** | *boolean* | `false` | Set to true to throw errors and other debug info when developping add-ons. |
 | **defaultAutoIncrementTimeout** | *int* | `120` |
+| **defaultDebugMode** | *boolean* | `false` |
 | **defaultOnline** | *boolean* | `true` |
 | **defaultRamsesClientPath** | *string* | os-specific |
 | **defaultRamsesClientPort** | *integer* | `18185` |
