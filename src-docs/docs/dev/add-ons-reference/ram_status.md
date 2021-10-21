@@ -16,6 +16,7 @@ A state associated to a comment, the user who changed the state, etc.
 | **comment** | *string* |  | A user comment. |
 | **completionRatio** | *float* |  | The ratio of completion of this status. |
 | **date** | *datetime* |  | The date at which this status was created. |
+| **published** | *boolean* |  | True if this version of the item has been published. |
 | **state** | *[RamState](ram_state.md)* |  | The corresponding state. |
 | **user** | *[RamUser](ram_user.md)* |  | The user who created this status. |
 | **version** | *integer* |  | The version of the corresponding working file. |

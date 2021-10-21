@@ -44,12 +44,9 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **getStep**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific step. The name is optional, as short names *should* be unique. | |
 | **online**<br />▹ *boolean* | | True if the *Daemon* is available |
 | **ping**<br />▹ *Object / Dict*  | | Gets the version and current user of the *Ramses Daemon* |
-| **publishAsset**<br />▹ *Object / Dict*  | | | TODO |
-| **publishShot**<br />▹ *Object / Dict*  | | | TODO |
 | **raiseWindow** | | Raises the Ramses Client application main window |
 | **setCurrentProject**<br />▹ *Object / Dict*  | *string*: **shortName** | Sets the current project |
-| **setAssetStatus**<br />▹ *Object / Dict*  | | | TODO |
-| **setShotStatus**<br />▹ *Object / Dict*  | | | TODO |
+| **setStatus** | *string*: **itemShortName**,<br />*string*: **itemName**,<br />*string*: **step**,<br />*ItemType*: **itemType**=`ItemType.SHOT`,<br />*string*: **state**=`""`,<br />*string*: **comment**=`""`,<br />*string*: **completionRatio**=`-1`,<br />*int*: **version**=`0`,<br />*boolean*: **published**=`false`,<br />*string*: **user**=`undefined` | Sets a new status for the item. | |
 
 ## Examples
 

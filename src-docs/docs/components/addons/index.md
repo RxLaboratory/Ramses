@@ -9,7 +9,7 @@
 
 Ramses comes with some add-ons to be used in your creative applications (*Blender*, *Maya*, *After Effects*...). They are basic add-ons to demonstrate some capabilities of Ramses for file versionning and asset management, and can be used as templates to develop your own add-ons working with Ramses.
 
-They will be developed one after each other, and you're welcome to contribute with your own!
+They will be developed one at a time, and you're welcome to contribute with your own!
 
 Here are some guidelines and descriptions about how these add-ons should work. We're trying to apply the same guidelines to all host applications for a unified experience. These add-ons should use the provided [*Scripting API*](../../dev/add-ons-reference/index.md) available at first in *Python* and *Adobe ExtendsScript*.
 
@@ -27,9 +27,19 @@ All commands except *open Ramses* and *Settings* should first:
     - If the path to the *Client* executable file is invalid: warn the user and stop.
     - If the user is not connected, warn the user and stop
 
-### Open
+### Open and import
 
-// TODO
+Shows a selector to quickly open or import a file from the [*Ramses Tree*](../files/tree.md).
+
+Allows the user to select either a shot, asset or template.
+
+The user can then select the shot or asset, and then the step, to open a file.
+
+To make shot and asset selection easier, they can be filtered by group or sequence, and a search field is available.
+
+Optionnaly, the user can select a specific version of the file.
+
+When importing a file, the way it is imported and managed depends on the host application. Some options may be shown before importing.
 
 ### Save
 
