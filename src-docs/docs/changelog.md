@@ -93,6 +93,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Crash when removing an asset group still containing assets.
 - **Client**: Fixed an issue where shot/asset attribution would be reinitialized on edition from the production table.
 - **Client**: Fixed the size of the dropdown menus sometimes being too small for long sequence/asset group names.
+- **Client**: Versions for working files and published items are now correctly sorted from highest version to lowest, according to the resource if any.
 - **Maya Add-on**: The "preview" function now works correctly.
 - **Maya Add-on (Rubika Flavor)**: Import Geo now works correctly.
 

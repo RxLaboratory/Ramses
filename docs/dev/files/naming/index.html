@@ -1336,40 +1336,40 @@
 </ul>
 </div>
 <h2 id="short-names-ids">Short Names (IDs)</h2>
-<pre><code>/^(?!(?:PUB|WIP|V)?[0-9]+)[a-zA-Z0-9+-]{1,10}$/gi
+<pre><code>/^(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-zA-Z0-9+-]{1,10}$/gi
 </code></pre>
 <p><em>Short names</em>, or <em>ID</em>s are made exclusively of <code>a-z</code>, <code>A-Z,</code>0-1<code>and</code>+-` characters, and cannot be more than 10 characters.</p>
-<p>The negative part of the regular expression, <code>(?!(?:PUB|WIP|V)?[0-9]+)</code>, is used to differenciate regular blocks (name, short name, etc.) from versions.</p>
+<p>The negative part of the regular expression, <code>(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)</code>, is used to differenciate regular blocks (name, short name, etc.) from versions.</p>
 <h2 id="names">Names</h2>
-<pre><code>/^(?!(?:PUB|WIP|V)?[0-9]+)[ a-zA-Z0-9+-]{1,256}$/gi
+<pre><code>/^(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[ a-zA-Z0-9+-]{1,256}$/gi
 </code></pre>
 <p><em>Names</em> made exclusively of <code>a-z</code>, <code>A-Z</code>, <code>0-1</code>, <code>+-</code> and the space characters, and cannot be more than 256 characters.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><em>Names</em> should never be used in file names, as it may generate paths which may be very long.</p>
 </div>
-<p>The negative part of the regular expression, <code>(?!(?:PUB|WIP|V)?[0-9]+)</code>, is used to differenciate regular blocks (name, short name, etc.) from versions.</p>
+<p>The negative part of the regular expression, <code>(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)</code>, is used to differenciate regular blocks (name, short name, etc.) from versions.</p>
 <h2 id="status-and-versions">Status and versions</h2>
-<pre><code>/(PUB|WIP|V)?([0-9]+)/gi
+<pre><code>/(NO|STB|TODO|WIP|OK|PUB|V)?([0-9]+)/gi
 </code></pre>
 <p>The first matching group contains the status (and may be empty), and the second group is the version number.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The string in the first matching group should be dynamically built using the list of available status <em>ID</em>s (<em>short names</em>). By default, it should at least contain the three strings shown in this example: <em>WIP</em>, <em>PUB</em>, and <em>V</em>.</p>
+<p>The string in the first matching group should be dynamically built using the list of available status <em>ID</em>s (<em>short names</em>). By default, it should at least contain the default states: <em>NO</em>, <em>STB</em>, <em>TODO</em>, <em>WIP</em>, <em>OK</em>, <em>PUB</em>, <em>V</em>.</p>
 </div>
 <h2 id="extract-version-from-a-file-name">Extract version from a file name</h2>
-<pre><code>/(?:(_(v|wip|pub)?([0-9]+)))(?:\.[a-z0-9.]+)?$/gi
+<pre><code>/(?:(_(NO|STB|TODO|WIP|OK|PUB|V)?([0-9]+)))(?:\.[a-z0-9.]+)?$/gi
 </code></pre>
 <p>This regular expressions matches everything including the last underscore, the version block and the file extension if any.</p>
 <p>The first group contains the underscore and the version block; it can be used to be replaced by an empty string in file names to quickly remove the version block from the name.</p>
 <p>The second and third groups contain the state and the version.</p>
 <h2 id="resource-names">Resource names</h2>
-<pre><code>/(?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+/gi
+<pre><code>/(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+\s-]+/gi
 </code></pre>
 <p>Resource names can be made of <code>a-z</code>, <code>0-9</code>, <code>+-</code> and white spaces but must not start with a version scheme.</p>
 <h2 id="file-names">File names</h2>
 <p>This is the regular expression for validating, matching and decomposing file names.</p>
-<pre><code>/^([a-z0-9+-]{1,10})_(?:([ASG])_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-]{1,10}))(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-]{1,10}))?(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+))?(?:_(PUB|WIP|V)?([0-9]+))?(?:\.([a-z0-9.]+))?$/gi
+<pre><code>/^([a-z0-9+-]{1,10})_(?:([ASG])_((?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+-]{1,10}))(?:_((?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+-]{1,10}))?(?:_((?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+\s-]+))?(?:_(NO|STB|TODO|WIP|OK|PUB|V)?([0-9]+))?(?:\.([a-z0-9.]+))?$/gi
 </code></pre>
 <p>Here is the list of matching groups:</p>
 <ol>
