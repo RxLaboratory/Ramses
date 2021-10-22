@@ -52,8 +52,8 @@ Update step info in the database.
 - *name*: **string**. The new (or current for no change) name.
 - *shortName*: **string**. The new (or current for no change) shortName.
 - *comment*: **string**. The new comment.
-- *type*: **string** (optionnal). The type of the step. One of `asset`, `shot`, `pre`, or `post`.
-- *color*: **string** (optionnal). The color to use in the UI to display this step.
+- *type*: **string**. The type of the step. One of `asset`, `shot`, `pre`, or `post`.
+- *color*: **string**. The color to use in the UI to display this step.
 - *uuid*: **string**. The user's Universal Unique Identifier.
 - *token*: **string**. The session token returned by [*login*](general.md#login)
 
