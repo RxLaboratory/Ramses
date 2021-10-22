@@ -9,36 +9,36 @@ Ramses uses [specific file and folder naming conventions](../../components/files
 
 ## Short Names (IDs)
 
-    /^(?!(?:PUB|WIP|V)?[0-9]+)[a-zA-Z0-9+-]{1,10}$/gi
+    /^(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-zA-Z0-9+-]{1,10}$/gi
 
 *Short names*, or *ID*s are made exclusively of `a-z`, `A-Z, `0-1` and `+-` characters, and cannot be more than 10 characters.
 
-The negative part of the regular expression, `(?!(?:PUB|WIP|V)?[0-9]+)`, is used to differenciate regular blocks (name, short name, etc.) from versions.
+The negative part of the regular expression, `(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)`, is used to differenciate regular blocks (name, short name, etc.) from versions.
 
 ## Names
 
-    /^(?!(?:PUB|WIP|V)?[0-9]+)[ a-zA-Z0-9+-]{1,256}$/gi
+    /^(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[ a-zA-Z0-9+-]{1,256}$/gi
 
 *Names* made exclusively of `a-z`, `A-Z`, `0-1`, `+-` and the space characters, and cannot be more than 256 characters.
 
 !!! warning
     *Names* should never be used in file names, as it may generate paths which may be very long.
 
-The negative part of the regular expression, `(?!(?:PUB|WIP|V)?[0-9]+)`, is used to differenciate regular blocks (name, short name, etc.) from versions.
+The negative part of the regular expression, `(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)`, is used to differenciate regular blocks (name, short name, etc.) from versions.
 
 
 ## Status and versions
 
-    /(PUB|WIP|V)?([0-9]+)/gi
+    /(NO|STB|TODO|WIP|OK|PUB|V)?([0-9]+)/gi
 
 The first matching group contains the status (and may be empty), and the second group is the version number.
 
 !!! note
-    The string in the first matching group should be dynamically built using the list of available status *ID*s (*short names*). By default, it should at least contain the three strings shown in this example: *WIP*, *PUB*, and *V*.
+    The string in the first matching group should be dynamically built using the list of available status *ID*s (*short names*). By default, it should at least contain the default states: *NO*, *STB*, *TODO*, *WIP*, *OK*, *PUB*, *V*.
 
 ## Extract version from a file name
 
-    /(?:(_(v|wip|pub)?([0-9]+)))(?:\.[a-z0-9.]+)?$/gi
+    /(?:(_(NO|STB|TODO|WIP|OK|PUB|V)?([0-9]+)))(?:\.[a-z0-9.]+)?$/gi
 
 This regular expressions matches everything including the last underscore, the version block and the file extension if any.
 
@@ -48,7 +48,7 @@ The second and third groups contain the state and the version.
 
 ## Resource names
 
-    /(?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+/gi
+    /(?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+\s-]+/gi
 
 Resource names can be made of `a-z`, `0-9`, `+-` and white spaces but must not start with a version scheme.
 
@@ -56,7 +56,7 @@ Resource names can be made of `a-z`, `0-9`, `+-` and white spaces but must not s
 
 This is the regular expression for validating, matching and decomposing file names.
 
-    /^([a-z0-9+-]{1,10})_(?:([ASG])_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-]{1,10}))(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+-]{1,10}))?(?:_((?!(?:PUB|WIP|V)?[0-9]+)[a-z0-9+\s-]+))?(?:_(PUB|WIP|V)?([0-9]+))?(?:\.([a-z0-9.]+))?$/gi
+    /^([a-z0-9+-]{1,10})_(?:([ASG])_((?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+-]{1,10}))(?:_((?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+-]{1,10}))?(?:_((?!(?:NO|STB|TODO|WIP|OK|PUB|V)?[0-9]+)[a-z0-9+\s-]+))?(?:_(NO|STB|TODO|WIP|OK|PUB|V)?([0-9]+))?(?:\.([a-z0-9.]+))?$/gi
 
 
 Here is the list of matching groups:
