@@ -1301,24 +1301,33 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/08/03" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/10/24" /></p>
 <h1 id="ramses-server-update">Ramses Server update</h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The procedure to install and to update <em>Ramses</em> differ a bit. <strong>Do not</strong> follow the installation procedure to update your server, as it will wipe all your data!</p>
 <p>It is also a good habit to always backup the data before updating.</p>
 </div>
+<p>Before updating, <strong>it is always a good habit to backup your data!</strong></p>
+<ol>
+<li><strong>Backup the server files (php)</strong>: download them or move them to another folder. If you&rsquo;re using <em>SQLite</em>, the database is included in these files, it is called <em>ramses_data</em>.</li>
+<li><strong>Backup the data if you&rsquo;re using a <em>MySQL</em> server</strong>. Use <em>phpMyAdmin</em> to export the database, or any backup provided by your web hosting provider.</li>
+<li><strong>Keep a copy of the file named <em>config.php</em> and <em>config_security.php</em></strong> (if it exists) in a safe place! If you lose the information from these files, you&rsquo;ll permanently lose access to part or all of your data, and nobody will ever be able to retrieve it. But be careful, if anyone gets access to them, they will be able to access and decrypt your data without you knowing it.</li>
+</ol>
+<p>With this copy of your server, you&rsquo;ll be able to easily retrieve your data or revert to the previous version if anything goes wrong.</p>
 <p>The safe update procedure is as follow:</p>
 <ol>
-<li>Un-Zip the <em>Ramses Server update package</em> you&rsquo;ve downloaded.</li>
-<li>Remove all files from your server <strong>except <em>config.php</em></strong>. Note that it&rsquo;s a good habit to keep a backup copy of this file offline.</li>
-<li>Uplaod all files and folders from the update package to your server.</li>
-<li>Go to http://yourserver.com/ramses/update (of course, replace the first part of this URL with your actual server address). The page may take some time to load.</li>
-<li>You can then remove the <em>update</em> folder from the server, everything is ready.</li>
+<li><strong>Un-Zip</strong> the <em>Ramses Server update package</em> you&rsquo;ve downloaded.</li>
+<li><strong>Download the current <em>config.php</em> and <em>config_security.php</em> from your server</strong> and keep them safe.</li>
+<li><strong>Update the new version of <em>config.php</em></strong> with the same information from the one you&rsquo;ve just retrieved.</li>
+<li>Note that it&rsquo;s a good habit to keep a backup copy of these files offline.</li>
+<li><strong>Upload all files and folders</strong> from the update package to your server, <strong>except the folder named <em>install</em></strong>.</li>
+<li><strong>Go to http://yourserver.com/ramses/update</strong> (of course, replace the first part of this URL with your actual server address). The page may take some time to load.</li>
+<li>You can then <strong>remove the <em>update</em> and <em>install</em> folder</strong> from the server, everything is ready.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the future, when <em>Ramses</em> won&rsquo;t be in a test version anymore, there should be an automatic install procedure.</p>
+<p>In the future, when <em>Ramses</em> won&rsquo;t be in a test version anymore, there should be an automatic update procedure.</p>
 </div></div>
         
             <div class="nav-footer">

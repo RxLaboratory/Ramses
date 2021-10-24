@@ -26,7 +26,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
-## 0.2.0-Alpha (In Development)
+## 0.2.0-Alpha
 
 ### Improvements
 
@@ -64,6 +64,7 @@ The detailed list of planned features and enhancements is [available on *Github*
     - Filter selected nodes only
     - Revert to an older version
     - Keep PRS offsets
+- **Server**: added the option to use an *SQLite* database instead of *MySQL*. This makes it even simpler to install and manage, when there isn't too many users.
 - **Server**: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.
 - **Server**: Improved security with database encryption for sensible data (user personnal information and roles).
 
@@ -108,12 +109,11 @@ The detailed list of planned features and enhancements is [available on *Github*
 -  ***[#137](https://github.com/RxLaboratory/Ramses/issues/107)***: The *SSL* option should be disabled if *openSSL* is not available on the system.
 -  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
+- ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client will crash when removing a project which is not empty.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
 ## 0.1.3-Alpha
-
-Bugfixes.
 
 ### Fixed issues
 
@@ -122,8 +122,6 @@ Bugfixes.
 - **Server and client**: Difficulty and estimations for shots are now correctly set.
 
 ## 0.1.2-Alpha
-
-Bugfixes and minor improvements.
 
 ### Improvements
 

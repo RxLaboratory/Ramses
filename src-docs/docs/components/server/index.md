@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/03)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/10/24)
 
 # The Ramses Server
 
@@ -11,19 +11,25 @@ It is just a small software meant to be installable on small hardware and with v
 
 ## Requirements
 
+### Required Software
+
 The *Ramses Server* must be installed on a computer with:
 
 - An **http web server** like *Apache*
 - ***PHP 7***
-- An acces to a ***mySQL*** server and a dedicated database.
+
+### Optional Software
+
+- An acces to a ***mySQL*** or ***MariaDB*** or any other compatible server and a dedicated database.
+
+Without such a database server, the *Ramses Server* can still be run correctly (it will use an *SQLite* database which doesn't need any particular server), but performance may be poor with too many different concurrent users.
+
+### Recommended configuration
 
 The recommended configuration is a standard *AMP* stack (*Apache* - *mySQL* - *PHP*), with at least 2GB of RAM if the *SQL* server is on the same computer than the *Apache* server.
 
 - The needed space for the *Ramses Server* files (*PHP*) is only *`300 KB`*!
 - *`50 MB`* should be more than enough for the vast majority of users for the *mySQL* database.
-
-!!! note
-    As *Ramses* is still in development, the only compatible SQL database is *mySQL*. We may add support for other databases in the future, including *SQLite* so the *Ramses Server* could be used without an actual *SQL* database.
 
 We provide a detailed, step-by-step guide to help you install your own web server satisfying these requirements on *Windows*, *Linux* or *Mac OS* if you need to, before installing the *Ramses Server*: [install your own webserver](web-server.md).
 

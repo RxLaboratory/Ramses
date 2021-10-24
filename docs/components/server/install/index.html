@@ -1300,7 +1300,7 @@
                 <li class="second-level"><a href="#standard-installation">Standard Installation</a></li>
                     
                     <li class="third-level"><a href="#configphp">config.php</a></li>
-                <li class="second-level"><a href="#preparing-the-database">Preparing the database</a></li>
+                <li class="second-level"><a href="#mysql-preparing-the-database">MySQL: Preparing the database</a></li>
                     
         </ul>
     </div>
@@ -1308,9 +1308,9 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/08/03" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/10/24" /></p>
 <h1 id="ramses-server-installation">Ramses Server installation</h1>
-<p><em>Ramses Server</em> runs on very standard web servers, with the usual Web Server / PHP / mySQL stack. That means you can install it on almost any desktop or server computers, private server, shared hosting, workstation, Raspberry&hellip; It does not need much resources.</p>
+<p><em>Ramses Server</em> runs on very standard web servers, with the usual Web Server / <em>PHP</em> / <em>mySQL</em> stack. That means you can install it on almost any desktop or server computers, private server, shared hosting, workstation, Raspberry&hellip; It doesn&rsquo;t need much resources.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The procedure to install and to update <em>Ramses</em> differ a bit. <strong>Do not</strong> follow the installation procedure to update your server, as it will wipe all your data!</p>
@@ -1321,23 +1321,27 @@
 <ul>
 <li>An <strong>http web server</strong> like <em>Apache</em></li>
 <li><strong><em>PHP 7</em></strong></li>
-<li>An acces to a <strong><em>mySQL</em></strong> server and a dedicated database.</li>
+<li><em>Optionally</em>, an acces to a <strong><em>mySQL</em></strong> server and a dedicated database.</li>
 </ul>
 <p>The recommended configuration is a standard <em>AMP</em> stack (<em>Apache</em> - <em>mySQL</em> - <em>PHP</em>), with at least 2GB of RAM if the <em>SQL</em> server is on the same computer than the <em>Apache</em> server.</p>
 <ul>
 <li>The needed space for the <em>Ramses Server</em> files (<em>PHP</em>) is only <em><code>300 KB</code></em>!</li>
 <li><em><code>50 MB</code></em> should be more than enough for the vast majority of users for the <em>mySQL</em> database.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>As <em>Ramses</em> is still in development, the only compatible SQL database is <em>mySQL</em>. We may add support for other databases in the future, include <em>SQLite</em> so the <em>Ramses Server</em> could be use without an actual <em>SQL</em> database.</p>
-</div>
 <p>We provide a detailed, step-by-step guide to help you install your own web server satisfying these requirements on <em>Windows</em>, <em>Linux</em> or <em>Mac OS</em> if you need to, before installing the <em>Ramses Server</em>: <a href="../web-server/">install your own webserver</a>.</p>
 <h2 id="standard-installation">Standard Installation</h2>
+<p>You first have to decide what type of database the <em>Ramses Server</em> will be using. There are two options:</p>
+<ul>
+<li><strong><em>MySQL</em></strong> or any other compatible server like <em>MariaDB</em>.<br />
+    Use this if there will be a lot of users connected simultaneously to <em>Ramses</em>, and if you already know how to configure an SQL database (or you&rsquo;re ready to learn).</li>
+<li><strong><em>SQLite</em></strong> is a simpler database, self-contained in a single file handled by the <em>Ramses Server</em>.
+    Use this if there will be just a few users connected simultaneously to <em>Ramses</em>, or if you want an server easier to setup and backup.</li>
+</ul>
+<p>Once you&rsquo;ve made your choice, follow these steps:</p>
 <ol>
-<li>Create a new base on the <em>SQL</em> server, along with its user and password.</li>
+<li>(<em>MySQL</em> only) Create a new base on the <em>SQL</em> server, along with its user and password.</li>
 <li>Un-Zip the <em>Ramses Server</em> you&rsquo;ve downloaded.</li>
-<li>Edit <code>config.php</code> with needed info.</li>
+<li>Edit <code>config.php</code> with needed info (read below).</li>
 <li>Copy the <em>Ramses Server</em> files to the web server (you can just copy the <code>ramses</code> folder from the <em>ZIP</em> archive).</li>
 <li>Go to <code>http://your.server/ramses/install</code> (if you&rsquo;re running your own local server, this is probably something like <code>http://localhost/ramses/install</code>)</li>
 <li>Delete the <code>install</code> folder from the server.</li>
@@ -1345,7 +1349,17 @@
 <p>The default user for Ramses is <code>Admin</code> with the password <code>password</code>. You should start by changing this name and password using the <a href="../../client/"><em>Ramses Client Application</em></a>.</p>
 <h3 id="configphp">config.php</h3>
 <p>The <code>config.php</code> file you have to edit looks like that:</p>
-<pre><code class="language-php">    // ==== SQL SETTINGS ====
+<pre><code class="php">    // === DEV MODE ===
+    // Activates printing the SQL &amp; PHP errors.
+    // For security reasons, it is important to set this to false in production mode
+    $devMode = false;
+
+    // ==== SQL SETTINGS ====
+
+    // either 'mysql' (works for MariaDB too) or 'sqlite'
+    $sqlMode = 'sqlite';
+
+    // ==== MySQL/MariaDB SETTINGS ====
 
     // Host URL
     $sqlHost = &quot;localhost&quot;;
@@ -1355,7 +1369,7 @@
     // User
     $sqlUser = &quot;ramses&quot;;
     // Password
-    $sqlpassword = &quot;ramsesdbpassword&quot;;
+    $sqlpassword = &quot;password&quot;;
     // Table prefix
     // DO NOT CHANGE THIS, not working yet
     $tablePrefix = &quot;ram&quot;;
@@ -1372,6 +1386,12 @@
     // 5 hours by default( 18000 )
     $cookieTimeout = 18000;
 </code></pre>
+
+<ul>
+<li><code>$devMode</code> should always be <code>false</code> unless this server is going to be used for development and tests in a development environement. For security reasons <strong>do not set this to <code>true</code></strong> on a production server.</li>
+<li><code>$sqlMode</code> can be either <code>'sqlite'</code> or <code>'mysql'</code> depending on your choice of configuration (read above).</li>
+</ul>
+<p>The next options are only used in <em>MySQL</em> mode. Ignore them when using <em>SQLite</em>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>You will need your database information to configure the <em>Ramses Server</em> to use it. If you don&rsquo;t know how to do that or if you&rsquo;ve just installed your own web server <a href="../web-server/">following our instructions</a>, read the next section first.</p>
@@ -1388,9 +1408,10 @@
 <p class="admonition-title">Tip</p>
 <p>If you know what you&rsquo;re doing, you can actually already change the table prefix, but <em>Ramses</em> will be installed using the default prefix anyway. That means you have to install <em>Ramses</em> with this default <code>ram</code> prefix, then rename all the tables with a new prefix, and finally change the prefix in <code>config.php</code>.</p>
 </div>
-<h2 id="preparing-the-database">Preparing the database</h2>
+<h2 id="mysql-preparing-the-database">MySQL: Preparing the database</h2>
+<p>If you need to use <em>MySQL</em> (for better performance with many users), here&rsquo;s a simple guide to configure your first database.</p>
 <p>Whether you&rsquo;ve installed your own web server (maybe by <a href="../web-server/">following our procedure</a> in order to test the <em>Beta Version</em> of <em>Ramses</em> without using an online server) or you&rsquo;ve order a shared or private hosting, you will need to create a database to be used by <em>Ramses</em> on the <em>MySQL</em> server.</p>
-<p>Most of the time, you can do this with <em>phpMyAdmin</em>, although the procedure can be different depending on your web hosting provider. Here are some explanations about how to do that with <em>phpMyAdmin</em>.</p>
+<p>Most of the time, you can do this with <em>phpMyAdmin</em>, although the procedure can be different depending on your web hosting provider, some of them having their own interface to create and configure new databases. Here are some explanations about how to do that with <em>phpMyAdmin</em>.</p>
 <ul>
 <li>
 <p>First, go to the <em>phpMyAdmin</em> web interface. If you&rsquo;ve installed your own web server locally, this is probably <a href="http://localhost/phpmyadmin"><code>http://localhost/phpmyadmin</code></a>.</p>

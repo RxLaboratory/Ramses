@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../../.">v0.2.0-Alpha</a>
+                <a href="../..">v0.2.0-Alpha</a>
             </li>
         
         
@@ -1297,7 +1297,7 @@
             <li class="first-level active"><a href="#ramses-changelog">Ramses Changelog</a></li>
                 <li class="second-level"><a href="#planned-features">Planned Features</a></li>
                     
-                <li class="second-level"><a href="#020-alpha-in-development">0.2.0-Alpha (In Development)</a></li>
+                <li class="second-level"><a href="#020-alpha">0.2.0-Alpha</a></li>
                     
                     <li class="third-level"><a href="#improvements">Improvements</a></li>
                     <li class="third-level"><a href="#changes-to-the-scripting-api">Changes to the scripting API</a></li>
@@ -1341,7 +1341,7 @@
 <li><strong>Folder monitoring</strong> will provide a way to handle versionning and production tracking even if there&rsquo;s no <em>Ramses Add-on</em> available for the application being used. </li>
 <li><strong><em>Syncthing</em> integration</strong> will provide <a href="https://syncthing.net/">a free, open, and secure way to synchronize</a> all files and data of your production accross multiple workstations, servers, NAS, etc.</li>
 </ul>
-<h2 id="020-alpha-in-development">0.2.0-Alpha (In Development)</h2>
+<h2 id="020-alpha">0.2.0-Alpha</h2>
 <h3 id="improvements">Improvements</h3>
 <ul>
 <li><strong>All</strong>: Added custom setttings in the pipe files.</li>
@@ -1382,6 +1382,7 @@
 <li>Keep PRS offsets</li>
 </ul>
 </li>
+<li><strong>Server</strong>: added the option to use an <em>SQLite</em> database instead of <em>MySQL</em>. This makes it even simpler to install and manage, when there isn&rsquo;t too many users.</li>
 <li><strong>Server</strong>: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.</li>
 <li><strong>Server</strong>: Improved security with database encryption for sensible data (user personnal information and roles).</li>
 </ul>
@@ -1431,11 +1432,11 @@
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/107">#137</a></em></strong>: The <em>SSL</em> option should be disabled if <em>openSSL</em> is not available on the system.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/11">#11</a></em></strong>: The client should check if it&rsquo;s connected to a server with the same version.</li>
 <li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/151">#151</a></em></strong>: The client should switch to offline mode when the server session token becomes invalid (server timeout).</li>
+<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/263">#263</a></em></strong>: The client will crash when removing a project which is not empty.</li>
 <li>On <strong><em>Windows</em></strong>, the tray icon may not be removed if the client crashes.</li>
 <li>On <strong><em>Mac OS</em></strong>, the user specific settings (current project, location of the nodes in the pipeline editor, &hellip;) may not be saved.</li>
 </ul>
 <h2 id="013-alpha">0.1.3-Alpha</h2>
-<p>Bugfixes.</p>
 <h3 id="fixed-issues_1">Fixed issues</h3>
 <ul>
 <li><strong>Client</strong>: Loading of the projects taking a very long time has been fixed. Projects now load in an instant.</li>
@@ -1443,7 +1444,6 @@
 <li><strong>Server and client</strong>: Difficulty and estimations for shots are now correctly set.</li>
 </ul>
 <h2 id="012-alpha">0.1.2-Alpha</h2>
-<p>Bugfixes and minor improvements.</p>
 <h3 id="improvements_1">Improvements</h3>
 <ul>
 <li><strong>Client</strong>: Improved feedback when editing items.</li>

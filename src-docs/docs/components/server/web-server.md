@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/03)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/10/24)
 
 # Install your own webserver
 
@@ -25,6 +25,9 @@ If you see this warning, don't choose to install *XAMPP* in `C:\Program Files` i
 ### Configure *XAMPP*
 
 To start using your brand new server, you can just click on the *Start* button for *Apache* and *MySQL* in the *XAMPP* control panel.
+
+!!! Note
+    If there aren't many users going to use *Ramses* *at the same time*, you don't need the *MySQL* part of the server, you can just ignore it. You'll just have to set *Ramses* to use *SQLite* when installing it later.
 
 ![](../../img/xampp-win/05.png)
 
@@ -118,6 +121,9 @@ echo "<?php phpinfo() ?>" | sudo tee -a /var/www/html/phptest.php > /dev/null
 ```
 
 ### Install MySQL
+
+!!! Note
+    If there aren't many users going to use *Ramses* *at the same time*, you don't need *MySQL*, you can just ignore this part. You'll just have to set *Ramses* to use *SQLite* when installing it later.
 
 ```bash
 sudo apt install mysql-server

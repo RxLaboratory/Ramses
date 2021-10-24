@@ -1345,7 +1345,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createStep&quot;,
     &quot;success&quot;: true,
@@ -1353,6 +1353,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="updatestep">updateStep</h2>
 <p><code>http://your.server/ramses/?updateStep</code></p>
 <p>Update step info in the database.</p>
@@ -1361,15 +1362,15 @@
 <li><em>name</em>: <strong>string</strong>. The new (or current for no change) name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The new (or current for no change) shortName.</li>
 <li><em>comment</em>: <strong>string</strong>. The new comment.</li>
-<li><em>type</em>: <strong>string</strong> (optionnal). The type of the step. One of <code>asset</code>, <code>shot</code>, <code>pre</code>, or <code>post</code>.</li>
-<li><em>color</em>: <strong>string</strong> (optionnal). The color to use in the UI to display this step.</li>
+<li><em>type</em>: <strong>string</strong>. The type of the step. One of <code>asset</code>, <code>shot</code>, <code>pre</code>, or <code>post</code>.</li>
+<li><em>color</em>: <strong>string</strong>. The color to use in the UI to display this step.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a></li>
 </ul>
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateStep&quot;,
     &quot;success&quot;: true,
@@ -1377,6 +1378,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="setsteporder">setStepOrder</h2>
 <p><code>http://your.server/ramses/?setStepOrder</code></p>
 <p>Moves a step in the list. This method changes only the order value of the given step.</p>
@@ -1389,7 +1391,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setStepOrder&quot;,
     &quot;success&quot;: true,
@@ -1397,6 +1399,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="movestep">moveStep</h2>
 <p><code>http://your.server/ramses/?moveStep</code></p>
 <p>Moves a step in the list. This method will update the order of all the other steps of the same project accordingly.</p>
@@ -1409,7 +1412,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;moveStep&quot;,
     &quot;success&quot;: true,
@@ -1417,6 +1420,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="removestep">removeStep</h2>
 <p><code>http://your.server/ramses/?removeStep</code></p>
 <p>Removes a step from the database.</p>
@@ -1428,7 +1432,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeStep&quot;,
     &quot;success&quot;: true,
@@ -1436,6 +1440,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="setstepestimations">setStepEstimations</h2>
 <p><code>http://your.server/ramses/?setStepEstimations</code></p>
 <p>Updates the default estimations for this step</p>
@@ -1454,7 +1459,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setStepEstimations&quot;,
     &quot;success&quot;: true,
@@ -1462,6 +1467,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="assignapplication">assignApplication</h2>
 <p><code>http://your.server/ramses/?assignApplication</code></p>
 <p>Assigns an application to a step.</p>
@@ -1474,7 +1480,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignApplication&quot;,
     &quot;success&quot;: true,
@@ -1482,6 +1488,7 @@
     &quot;content&quot;: { }
 }
 </code></pre>
+
 <h2 id="unassignapplication">unassignApplication</h2>
 <p><code>http://your.server/ramses/?unassignApplication</code></p>
 <p>Unassigns an application from a step.</p>
@@ -1494,7 +1501,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="language-json">{
+<pre><code class="json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignApplication&quot;,
     &quot;success&quot;: true,
