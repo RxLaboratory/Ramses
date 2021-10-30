@@ -26,9 +26,7 @@ Special thanks to [all the supporters of Duduf on Patreon](https://patreon.com/d
 - Daniel Arce
 - François Bonnière
 - Mickaël Gantois
-- Alejandro Jaramillo
 - Philippe Meis
-- María Margarita J. Moyano
 - Camilo José Rivera Varona
 - Rubika - Supinfocom & the Promotheus
 
