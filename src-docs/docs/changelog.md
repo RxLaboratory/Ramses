@@ -26,6 +26,26 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
+## 0.2.2-Alpha
+
+### Improvements
+
+- **Client**: Improved statistics accuracy and UI
+- **Client**: Checks if updates are available and added a *donation* button
+- **Client**: More UI tweaks
+
+### Fixed issues
+
+- **Server**: fixed server error when removing pipes from the pipeline.
+
+## 0.2.1-Alpha
+
+### Fixed issues
+
+- **Server**: fixed update script not updating the database correctly.
+- **Server**: fixed incomplete list of steps for some projects.
+- **Client**: fixed crash when loading some projects.
+
 ## 0.2.0-Alpha
 
 ### Improvements
