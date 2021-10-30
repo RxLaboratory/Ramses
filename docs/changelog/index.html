@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="..">v0.2.0-Alpha</a>
+                        <a href="..">v0.2.2-Alpha</a>
                     </li>
                 
                 
@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../..">v0.2.0-Alpha</a>
+                <a href="../..">v0.2.2-Alpha</a>
             </li>
         
         
@@ -1297,19 +1297,26 @@
             <li class="first-level active"><a href="#ramses-changelog">Ramses Changelog</a></li>
                 <li class="second-level"><a href="#planned-features">Planned Features</a></li>
                     
-                <li class="second-level"><a href="#020-alpha">0.2.0-Alpha</a></li>
+                <li class="second-level"><a href="#022-alpha">0.2.2-Alpha</a></li>
                     
                     <li class="third-level"><a href="#improvements">Improvements</a></li>
-                    <li class="third-level"><a href="#changes-to-the-scripting-api">Changes to the scripting API</a></li>
                     <li class="third-level"><a href="#fixed-issues">Fixed issues</a></li>
+                <li class="second-level"><a href="#021-alpha">0.2.1-Alpha</a></li>
+                    
+                    <li class="third-level"><a href="#fixed-issues_1">Fixed issues</a></li>
+                <li class="second-level"><a href="#020-alpha">0.2.0-Alpha</a></li>
+                    
+                    <li class="third-level"><a href="#improvements_1">Improvements</a></li>
+                    <li class="third-level"><a href="#changes-to-the-scripting-api">Changes to the scripting API</a></li>
+                    <li class="third-level"><a href="#fixed-issues_2">Fixed issues</a></li>
                     <li class="third-level"><a href="#known-issues">Known Issues</a></li>
                 <li class="second-level"><a href="#013-alpha">0.1.3-Alpha</a></li>
                     
-                    <li class="third-level"><a href="#fixed-issues_1">Fixed issues</a></li>
+                    <li class="third-level"><a href="#fixed-issues_3">Fixed issues</a></li>
                 <li class="second-level"><a href="#012-alpha">0.1.2-Alpha</a></li>
                     
-                    <li class="third-level"><a href="#improvements_1">Improvements</a></li>
-                    <li class="third-level"><a href="#fixed-issues_2">Fixed issues</a></li>
+                    <li class="third-level"><a href="#improvements_2">Improvements</a></li>
+                    <li class="third-level"><a href="#fixed-issues_4">Fixed issues</a></li>
                 <li class="second-level"><a href="#011-alpha">0.1.1-Alpha</a></li>
                     
         </ul>
@@ -1341,8 +1348,26 @@
 <li><strong>Folder monitoring</strong> will provide a way to handle versionning and production tracking even if there&rsquo;s no <em>Ramses Add-on</em> available for the application being used. </li>
 <li><strong><em>Syncthing</em> integration</strong> will provide <a href="https://syncthing.net/">a free, open, and secure way to synchronize</a> all files and data of your production accross multiple workstations, servers, NAS, etc.</li>
 </ul>
-<h2 id="020-alpha">0.2.0-Alpha</h2>
+<h2 id="022-alpha">0.2.2-Alpha</h2>
 <h3 id="improvements">Improvements</h3>
+<ul>
+<li><strong>Client</strong>: Improved statistics accuracy and UI</li>
+<li><strong>Client</strong>: Checks if updates are available and added a <em>donation</em> button</li>
+<li><strong>Client</strong>: More UI tweaks</li>
+</ul>
+<h3 id="fixed-issues">Fixed issues</h3>
+<ul>
+<li><strong>Server</strong>: fixed server error when removing pipes from the pipeline.</li>
+</ul>
+<h2 id="021-alpha">0.2.1-Alpha</h2>
+<h3 id="fixed-issues_1">Fixed issues</h3>
+<ul>
+<li><strong>Server</strong>: fixed update script not updating the database correctly.</li>
+<li><strong>Server</strong>: fixed incomplete list of steps for some projects.</li>
+<li><strong>Client</strong>: fixed crash when loading some projects.</li>
+</ul>
+<h2 id="020-alpha">0.2.0-Alpha</h2>
+<h3 id="improvements_1">Improvements</h3>
 <ul>
 <li><strong>All</strong>: Added custom setttings in the pipe files.</li>
 <li><strong>Client</strong>: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.</li>
@@ -1410,7 +1435,7 @@
 <li><code>Ramses</code> callbacks for publishing, importing, changing status have changed a bit.</li>
 <li>Files are now copied using a separate thread whenever possible. This improves a lot the performance. Call <code>RamFileManager.waitFiles()</code> if your script needs the files to be actually written to continue.</li>
 </ul>
-<h3 id="fixed-issues">Fixed issues</h3>
+<h3 id="fixed-issues_2">Fixed issues</h3>
 <ul>
 <li><strong>Client</strong>: Available projects are only the projects the user has been assigned to.</li>
 <li><strong>Client</strong>: When clicking the &ldquo;network settings&rdquo; button from the login panel, you&rsquo;re now correctly redirected to the right network settings tab.</li>
@@ -1437,19 +1462,19 @@
 <li>On <strong><em>Mac OS</em></strong>, the user specific settings (current project, location of the nodes in the pipeline editor, &hellip;) may not be saved.</li>
 </ul>
 <h2 id="013-alpha">0.1.3-Alpha</h2>
-<h3 id="fixed-issues_1">Fixed issues</h3>
+<h3 id="fixed-issues_3">Fixed issues</h3>
 <ul>
 <li><strong>Client</strong>: Loading of the projects taking a very long time has been fixed. Projects now load in an instant.</li>
 <li><strong>Client</strong>: Linux .deb packaged fixed (the doc is now in its right folder).</li>
 <li><strong>Server and client</strong>: Difficulty and estimations for shots are now correctly set.</li>
 </ul>
 <h2 id="012-alpha">0.1.2-Alpha</h2>
-<h3 id="improvements_1">Improvements</h3>
+<h3 id="improvements_2">Improvements</h3>
 <ul>
 <li><strong>Client</strong>: Improved feedback when editing items.</li>
 <li><strong>Python API</strong> and <strong>Maya Add-on</strong>: Improved comments when saving file (includes the version number when saving a restored version).</li>
 </ul>
-<h3 id="fixed-issues_2">Fixed issues</h3>
+<h3 id="fixed-issues_4">Fixed issues</h3>
 <ul>
 <li><strong>Client</strong>: Menus, Context menus and clicks now work correctly on the Schedule Manager when there&rsquo;s no project selected at startup.</li>
 <li><strong>Client</strong>: Minor code refactor to remove some warnings on <em>Qt 5.15</em> build.</li>
