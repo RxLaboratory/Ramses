@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.2-Alpha</a>
+                        <a href="../../..">v0.2.4-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.2-Alpha</a>
+                <a href="../../..">v0.2.4-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+                <a href="../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1318,7 +1318,7 @@
 <li><em>installed</em>: <strong>boolean</strong>. False if the server is not correctly installed (i.e. the install script has not been run). See the <a href="../../../components/server/install/"><em>Server installatio</em></a> section of this documentation.</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;ping&quot;,
     &quot;success&quot;: true,
@@ -1329,7 +1329,6 @@
     }
 }
 </code></pre>
-
 <h2 id="login">login</h2>
 <p><code>http://your.server/ramses/?login</code></p>
 <p>Logs in with a username and a (hashed) password.</p>
@@ -1354,7 +1353,7 @@
 </ul>
 <p>If not successful, the content is empty and the message explains the error.</p>
 <p><strong>Successful reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;login&quot;,
     &quot;success&quot;: true,
@@ -1369,9 +1368,8 @@
     }
 }
 </code></pre>
-
 <p><strong>Unsuccesful reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;:true,
     &quot;success&quot;:false,
     &quot;message&quot;:&quot;Invalid username&quot;,
@@ -1379,7 +1377,6 @@
     &quot;content&quot;:[]
 }
 </code></pre>
-
 <h2 id="init">init</h2>
 <p><code>http://your.server/ramses/?init</code></p>
 <p>This special requests is used to retrieve all useful information when initializing the <em>Ramses Client</em>. It groups together in a single request the data which can be retrieved individually by <code>getUsers</code>, <code>getTemplateSteps</code>, <code>getTemplateAssetGroups</code>, <code>getStates</code>, <code>getFileTypes</code>, <code>getApplications</code> and <code>getProjects</code>. The project data contains only general project information (resolution, framerate&hellip;) but not the project content (shots, assets&hellip;). Use <code>getProject</code> to retrieve a specific project content.</p>
@@ -1399,7 +1396,7 @@
 <li><em>projects</em>: <strong>array</strong>.</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;login&quot;,
     &quot;success&quot;: true,

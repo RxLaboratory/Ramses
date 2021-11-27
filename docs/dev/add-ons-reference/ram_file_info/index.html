@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.2-Alpha</a>
+                        <a href="../../..">v0.2.4-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.2-Alpha</a>
+                <a href="../../..">v0.2.4-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+                <a href="../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1450,7 +1450,7 @@
 <h2 id="special">Special</h2>
 <h3 id="convert-to-string">Convert to string</h3>
 <p><em>RamFileInfo</em>s can be converted to string the usual way. This is equivalent to calling <code>RamFileInfo.fileName()</code>.</p>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 info = RamFileInfo( )
 info.setFileName( aFileName )
@@ -1461,8 +1461,7 @@ print( str(info) ) # explicit conversion
 # Both will print:
 &gt;&gt;&gt; PROJ_A_anAsset_aStep_aResource.ext
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 var info = new RamFileInfo( );
 info.setFileName( aFileName );
@@ -1473,10 +1472,9 @@ $.writeln( obj.toString() );
 // PROJ_A_anAsset_aStep_aResource.ext
 
 </code></pre>
-
 <h3 id="comparing-objects">Comparing objects</h3>
 <p><em>RamFileInfo</em> can be compared to check if two file info are the same, by comparing the attributes <strong>except the state and the version</strong>. That means all different versions of the same file are considered equal. The location is not compared either: two identical files but in different locations are considered the same.</p>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 info = RamFileInfo( )
 info.setFileName( aFileName )
@@ -1497,8 +1495,7 @@ same in infoList # True
 # But RamFileInfo is not hashable, so it cannot be used in a `set` or as a key in a `dict`
 
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 var info = RamFileInfo( );
 info.setFileName( aFileName );
@@ -1513,9 +1510,8 @@ info.is(other) // false
 info.is(same) // true
 
 </code></pre>
-
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 from ramses import RamFileInfo, ItemType
 
@@ -1552,8 +1548,7 @@ def publishFile( filePath ):
 
     return publishFilePath
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 #include ramses.jsxinc
 

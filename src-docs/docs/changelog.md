@@ -26,6 +26,37 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Folder monitoring** will provide a way to handle versionning and production tracking even if there's no *Ramses Add-on* available for the application being used. 
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
+## Known Issues
+
+### Server
+
+-  ***[#107](https://github.com/RxLaboratory/Ramses/issues/107)***: Table prefixes can't be changed.
+
+### Client and Daemon
+
+-  ***[#137](https://github.com/RxLaboratory/Ramses/issues/107)***: The *SSL* option should be disabled if *openSSL* is not available on the system.
+-  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
+- ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client will crash when removing a project which is not empty.
+- On ***Windows***, the tray icon may not be removed if the client crashes.
+- On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
+
+## 0.2.4-Alpha
+
+### Improvements
+
+- **Client**: Several UI improvements.
+- **Client**: Performance improvements, especially when loading big projects and in the schedule table.
+- **Client**: Keep a server history list in the server settings, to make it easier to switch servers when working with several different servers.
+- **Client**: Now checks if an updated version is available; added a donation link.
+- **Client** and **Server**: Added version compatibility checks.
+
+### Fixes
+
+- **Client**: Queue server requests to prevent spamming.
+- **Server**: Fixed status not correctly updated when the estimation was 0.
+- **Maya Add-on - Rubika Flavor**: Fixed publishing geometry and rigs with hidden nodes.
+- **Maya Add-on**: Fixed publishing with invalid or missing references.
+
 ## 0.2.2-Alpha
 
 ### Improvements
@@ -117,21 +148,6 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Versions for working files and published items are now correctly sorted from highest version to lowest, according to the resource if any.
 - **Maya Add-on**: The "preview" function now works correctly.
 - **Maya Add-on (Rubika Flavor)**: Import Geo now works correctly.
-
-### Known Issues
-
-#### Server
-
--  ***[#107](https://github.com/RxLaboratory/Ramses/issues/107)***: Table prefixes can't be changed.
-
-#### Client and Daemon
-
--  ***[#137](https://github.com/RxLaboratory/Ramses/issues/107)***: The *SSL* option should be disabled if *openSSL* is not available on the system.
--  ***[#11](https://github.com/RxLaboratory/Ramses/issues/11)***: The client should check if it's connected to a server with the same version.
--  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
-- ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client will crash when removing a project which is not empty.
-- On ***Windows***, the tray icon may not be removed if the client crashes.
-- On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
 ## 0.1.3-Alpha
 

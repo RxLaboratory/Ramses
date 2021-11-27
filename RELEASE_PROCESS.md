@@ -2,12 +2,12 @@
 
 Make sure the version is the same for all the components
 
-- [x] Ramses-Py
-- [x] Ramses-Maya
-- [x] Merge ramses maya into Ramses-Maya-Rubika
-- [x] Ramses-Server
-- [x] Ramses-Client
-- [x] Doc
+- [ ] Ramses-Py
+- [ ] Ramses-Maya
+- [ ] Merge ramses maya into Ramses-Maya-Rubika
+- [ ] Ramses-Server
+- [ ] Ramses-Client
+- [ ] Doc
 
 ## Prepare DB
 

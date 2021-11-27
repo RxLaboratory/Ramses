@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="..">v0.2.2-Alpha</a>
+                        <a href="..">v0.2.4-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../..">v0.2.2-Alpha</a>
+                <a href="..">v0.2.4-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../quickstart/">Quick start</a>
+                <a href="../quickstart/">Quick start</a>
             </li>
         
         
@@ -1297,25 +1297,32 @@
             <li class="first-level active"><a href="#ramses-changelog">Ramses Changelog</a></li>
                 <li class="second-level"><a href="#planned-features">Planned Features</a></li>
                     
-                <li class="second-level"><a href="#022-alpha">0.2.2-Alpha</a></li>
+                <li class="second-level"><a href="#known-issues">Known Issues</a></li>
+                    
+                    <li class="third-level"><a href="#server">Server</a></li>
+                    <li class="third-level"><a href="#client-and-daemon">Client and Daemon</a></li>
+                <li class="second-level"><a href="#024-alpha">0.2.4-Alpha</a></li>
                     
                     <li class="third-level"><a href="#improvements">Improvements</a></li>
+                    <li class="third-level"><a href="#fixes">Fixes</a></li>
+                <li class="second-level"><a href="#022-alpha">0.2.2-Alpha</a></li>
+                    
+                    <li class="third-level"><a href="#improvements_1">Improvements</a></li>
                     <li class="third-level"><a href="#fixed-issues">Fixed issues</a></li>
                 <li class="second-level"><a href="#021-alpha">0.2.1-Alpha</a></li>
                     
                     <li class="third-level"><a href="#fixed-issues_1">Fixed issues</a></li>
                 <li class="second-level"><a href="#020-alpha">0.2.0-Alpha</a></li>
                     
-                    <li class="third-level"><a href="#improvements_1">Improvements</a></li>
+                    <li class="third-level"><a href="#improvements_2">Improvements</a></li>
                     <li class="third-level"><a href="#changes-to-the-scripting-api">Changes to the scripting API</a></li>
                     <li class="third-level"><a href="#fixed-issues_2">Fixed issues</a></li>
-                    <li class="third-level"><a href="#known-issues">Known Issues</a></li>
                 <li class="second-level"><a href="#013-alpha">0.1.3-Alpha</a></li>
                     
                     <li class="third-level"><a href="#fixed-issues_3">Fixed issues</a></li>
                 <li class="second-level"><a href="#012-alpha">0.1.2-Alpha</a></li>
                     
-                    <li class="third-level"><a href="#improvements_2">Improvements</a></li>
+                    <li class="third-level"><a href="#improvements_3">Improvements</a></li>
                     <li class="third-level"><a href="#fixed-issues_4">Fixed issues</a></li>
                 <li class="second-level"><a href="#011-alpha">0.1.1-Alpha</a></li>
                     
@@ -1348,8 +1355,37 @@
 <li><strong>Folder monitoring</strong> will provide a way to handle versionning and production tracking even if there&rsquo;s no <em>Ramses Add-on</em> available for the application being used. </li>
 <li><strong><em>Syncthing</em> integration</strong> will provide <a href="https://syncthing.net/">a free, open, and secure way to synchronize</a> all files and data of your production accross multiple workstations, servers, NAS, etc.</li>
 </ul>
-<h2 id="022-alpha">0.2.2-Alpha</h2>
+<h2 id="known-issues">Known Issues</h2>
+<h3 id="server">Server</h3>
+<ul>
+<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/107">#107</a></em></strong>: Table prefixes can&rsquo;t be changed.</li>
+</ul>
+<h3 id="client-and-daemon">Client and Daemon</h3>
+<ul>
+<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/107">#137</a></em></strong>: The <em>SSL</em> option should be disabled if <em>openSSL</em> is not available on the system.</li>
+<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/151">#151</a></em></strong>: The client should switch to offline mode when the server session token becomes invalid (server timeout).</li>
+<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/263">#263</a></em></strong>: The client will crash when removing a project which is not empty.</li>
+<li>On <strong><em>Windows</em></strong>, the tray icon may not be removed if the client crashes.</li>
+<li>On <strong><em>Mac OS</em></strong>, the user specific settings (current project, location of the nodes in the pipeline editor, &hellip;) may not be saved.</li>
+</ul>
+<h2 id="024-alpha">0.2.4-Alpha</h2>
 <h3 id="improvements">Improvements</h3>
+<ul>
+<li><strong>Client</strong>: Several UI improvements.</li>
+<li><strong>Client</strong>: Performance improvements, especially when loading big projects and in the schedule table.</li>
+<li><strong>Client</strong>: Keep a server history list in the server settings, to make it easier to switch servers when working with several different servers.</li>
+<li><strong>Client</strong>: Now checks if an updated version is available; added a donation link.</li>
+<li><strong>Client</strong> and <strong>Server</strong>: Added version compatibility checks.</li>
+</ul>
+<h3 id="fixes">Fixes</h3>
+<ul>
+<li><strong>Client</strong>: Queue server requests to prevent spamming.</li>
+<li><strong>Server</strong>: Fixed status not correctly updated when the estimation was 0.</li>
+<li><strong>Maya Add-on - Rubika Flavor</strong>: Fixed publishing geometry and rigs with hidden nodes.</li>
+<li><strong>Maya Add-on</strong>: Fixed publishing with invalid or missing references.</li>
+</ul>
+<h2 id="022-alpha">0.2.2-Alpha</h2>
+<h3 id="improvements_1">Improvements</h3>
 <ul>
 <li><strong>Client</strong>: Improved statistics accuracy and UI</li>
 <li><strong>Client</strong>: Checks if updates are available and added a <em>donation</em> button</li>
@@ -1367,7 +1403,7 @@
 <li><strong>Client</strong>: fixed crash when loading some projects.</li>
 </ul>
 <h2 id="020-alpha">0.2.0-Alpha</h2>
-<h3 id="improvements_1">Improvements</h3>
+<h3 id="improvements_2">Improvements</h3>
 <ul>
 <li><strong>All</strong>: Added custom setttings in the pipe files.</li>
 <li><strong>Client</strong>: Name and ID are now validated before any change to make sure they fit the Ramses naming scheme.</li>
@@ -1447,20 +1483,6 @@
 <li><strong>Maya Add-on</strong>: The &ldquo;preview&rdquo; function now works correctly.</li>
 <li><strong>Maya Add-on (Rubika Flavor)</strong>: Import Geo now works correctly.</li>
 </ul>
-<h3 id="known-issues">Known Issues</h3>
-<h4 id="server">Server</h4>
-<ul>
-<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/107">#107</a></em></strong>: Table prefixes can&rsquo;t be changed.</li>
-</ul>
-<h4 id="client-and-daemon">Client and Daemon</h4>
-<ul>
-<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/107">#137</a></em></strong>: The <em>SSL</em> option should be disabled if <em>openSSL</em> is not available on the system.</li>
-<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/11">#11</a></em></strong>: The client should check if it&rsquo;s connected to a server with the same version.</li>
-<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/151">#151</a></em></strong>: The client should switch to offline mode when the server session token becomes invalid (server timeout).</li>
-<li><strong><em><a href="https://github.com/RxLaboratory/Ramses/issues/263">#263</a></em></strong>: The client will crash when removing a project which is not empty.</li>
-<li>On <strong><em>Windows</em></strong>, the tray icon may not be removed if the client crashes.</li>
-<li>On <strong><em>Mac OS</em></strong>, the user specific settings (current project, location of the nodes in the pipeline editor, &hellip;) may not be saved.</li>
-</ul>
 <h2 id="013-alpha">0.1.3-Alpha</h2>
 <h3 id="fixed-issues_3">Fixed issues</h3>
 <ul>
@@ -1469,7 +1491,7 @@
 <li><strong>Server and client</strong>: Difficulty and estimations for shots are now correctly set.</li>
 </ul>
 <h2 id="012-alpha">0.1.2-Alpha</h2>
-<h3 id="improvements_2">Improvements</h3>
+<h3 id="improvements_3">Improvements</h3>
 <ul>
 <li><strong>Client</strong>: Improved feedback when editing items.</li>
 <li><strong>Python API</strong> and <strong>Maya Add-on</strong>: Improved comments when saving file (includes the version number when saving a restored version).</li>
