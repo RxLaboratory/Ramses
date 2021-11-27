@@ -1,3 +1,13 @@
+## Update version on all components
+
+Make sure the version is the same for all the components
+
+- [ ] Ramses-Py
+- [ ] Ramses-Maya
+- [ ] Ramses-Maya-Rubika
+- [ ] Ramses-Server
+- [ ] Ramses-Client
+
 ## Prepare DB
 
 - [ ] Set the default sqlite file
