@@ -40,6 +40,13 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
+## 0.2.5-Alpha (In development)
+
+### Fixes
+
+- **Client**: Fixed pipes breaking when re-ordering steps.
+- **Server**: Fixed error thrown when updating some pipes.
+
 ## 0.2.4-Alpha
 
 ### Improvements
