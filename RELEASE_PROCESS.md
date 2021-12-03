@@ -2,12 +2,12 @@
 
 Make sure the version is the same for all the components
 
-- [ ] Ramses-Py
-- [ ] Ramses-Maya
-- [ ] Merge ramses maya into Ramses-Maya-Rubika
-- [ ] Ramses-Server
-- [ ] Ramses-Client
-- [ ] Doc
+- [x] Ramses-Py (ram_settings.py)
+- [x] Ramses-Maya (Ramses.py, Ramses.mod)
+- [x] Merge ramses maya-dev into Ramses-Maya-Rubika-dev
+- [x] Ramses-Server (init.php)
+- [x] Ramses-Client (app-version.h)
+- [x] Doc (mkdocs.yml)
 
 ## Prepare DB
 
