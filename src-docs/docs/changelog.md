@@ -46,6 +46,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - **Client**: Fixed pipes breaking when re-ordering steps.
 - **Server**: Fixed error thrown when updating some pipes.
+- **Python API** and all Python **Add-ons**: Fixed a performance issue when loading the list of assets.
 
 ## 0.2.4-Alpha
 
