@@ -58,7 +58,7 @@ Make sure the version is the same for all the components
 - [ ] Linux .deb (build on Ubuntu 20.04, test also on 21.10)
 - [ ] Linux .appImage
 - [ ] Mac OS
-- [ ] Windows
+- [x] Windows
 - [ ] Merge dev branch
 
 ## Update doc and publish
