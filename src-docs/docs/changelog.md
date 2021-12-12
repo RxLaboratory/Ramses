@@ -40,13 +40,30 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
-## 0.2.5-Alpha (In development)
+## 0.2.6-Alpha
+
+### Improvements
+
+- **Client**: When a task is not automatically estimated, the estimation is now named "goal" instead of "estimation". Warning: estimations manually set to 0 day are temporarilly ignored, use 0.0 day instead. This will be fixed later in 0.3.0.
+- **Client**: A new *Sort* menu in the tables allows to sort items by name, difficulty, estimation, completion ratio...
+- **Client**: The UI has been tweaked to be a bit simpler to user and improve a bit the performance.
+
+### Fixes
+
+- **Client**: The title is now correctly shown on top of the properties panel for statuses/tasks.
+
+## 0.2.5-Alpha
 
 ### Fixes
 
 - **Client**: Fixed pipes breaking when re-ordering steps.
+- **Client**: UI: Fixed the editor panel too big for its dock.
 - **Server**: Fixed error thrown when updating some pipes.
-- **Python API** and all Python **Add-ons**: Fixed a performance issue when loading the list of assets.
+- **Maya Add-on**: Fixed performance issue when using the *saveas* command.
+- **Maya Add-on - Rubika Flavor**: Fixed publish shaders not publishing all nodes.
+- **Maya Add-on - Rubika Flavor**: Fixed *update* command not listing shader nodes.
+- **Maya Add-on - Rubika Flavor**: Fixed publish anim not hiding the progress bar at the end of the process.
+- **Python API**: Fixed performance issue when loading the list of assets with empty asset groups.
 
 ## 0.2.4-Alpha
 
