@@ -25,6 +25,10 @@ On its left side, the toolbar displays a few menus and tools.
 - ![](/img/icons/show_sl.svg){: style="width:18px;"} View
     - ***Show time tracking***: when checked, information about the time spent (and lateness) will be shown on the colored progress bars in the main table.
     - ***Show completion***: when checked, information about the completion will be shown on the colored progress bars in the main table.
+    - ***Show details***: when checked, the default height of the cells is adjusted to show all details and information.
+- ![](/img/icons/sort_sl.svg){: style="width:18px;"} Sort  
+    Use the *sort* menu to sort the rows either by: ID, name, difficulty, time spent, estimation or completion ratio.  
+    ![](/img/client/sortmenu.png)
 - ![](/img/icons/step-node_sl.svg){: style="width:18px;"} Steps
     - ***Select all*** shows all the steps in the table.
     - ***Select none*** hides all the steps from the table.
@@ -37,6 +41,10 @@ On its left side, the toolbar displays a few menus and tools.
     - ***Set completion*** changes the completion ratio of all selected tasks.
 
 If the current user is at least a *[project adminstrator](../../pipeline/administration.md#users)*, the toolbar also displays an entry to let you quickly create new items (shots or assets) or remove selected items.
+
+!!! hint
+    To ***sort*** rows, click on the sort button on the top left part of the column you want to use for sorting.  
+    ![](/img/client/sortcolumns.png)
 
 !!! tip
     The ***Status*** menu is also availabe as a context menu with the `[right click]`.

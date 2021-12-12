@@ -36,7 +36,8 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 -  ***[#137](https://github.com/RxLaboratory/Ramses/issues/107)***: The *SSL* option should be disabled if *openSSL* is not available on the system.
 -  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
-- ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client will crash when removing a project which is not empty.
+- ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client may crash when removing a project which is not empty.
+- ***[#290](https://github.com/RxLaboratory/Ramses/issues/290)***: The application may crash when logging out, changing the server address, then logging back in. You can simply restart the application to log in the new server.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
@@ -46,7 +47,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - **Client**: When a task is not automatically estimated, the estimation is now named "goal" instead of "estimation". Warning: estimations manually set to 0 day are temporarilly ignored, use 0.0 day instead. This will be fixed later in 0.3.0.
 - **Client**: A new *Sort* menu in the tables allows to sort items by name, difficulty, estimation, completion ratio...
-- **Client**: The UI has been tweaked to be a bit simpler to user and improve a bit the performance.
+- **Client**: The UI has been tweaked to be a bit simpler to use and improve a bit the performance.
 
 ### Fixes
 
