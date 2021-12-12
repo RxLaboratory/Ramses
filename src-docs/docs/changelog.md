@@ -63,7 +63,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Maya Add-on - Rubika Flavor**: Fixed publish shaders not publishing all nodes.
 - **Maya Add-on - Rubika Flavor**: Fixed *update* command not listing shader nodes.
 - **Maya Add-on - Rubika Flavor**: Fixed publish anim not hiding the progress bar at the end of the process.
-- **Python API**: Fixed performance issue when loading the list of assets with empty asset groups.
+- **Python API** and all **Python Add-ons**: Fixed performance issue when loading the list of assets with empty asset groups.
 
 ## 0.2.4-Alpha
 
