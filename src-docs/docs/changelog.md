@@ -41,6 +41,17 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
+## 0.2.7-Alpha
+
+### Improvements
+
+- **Client**: Administrators can now modify the status history.
+
+### Fixes
+
+- **Client**: Fixed potential crash when searching/filtering tables.
+- **Client**: Fixed the status which may not be updated using the right-click context menu.
+
 ## 0.2.6-Alpha
 
 ### Improvements
