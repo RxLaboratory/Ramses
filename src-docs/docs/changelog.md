@@ -41,6 +41,23 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
+## 0.2.9-Alpha
+
+### New
+
+- **Maya Add-on - Rubika Flavor**: Added a *replace* method to replace an existing asset/pipe with another one.
+- **Python API**: Added `Ramses.replaceScripts` and `Ramses.replaceItem`.
+
+### Improvements
+
+- **Maya Add-on**: Improved icons.
+
+## 0.2.8-Alpha
+
+### Improvements
+
+- **Maya Add-on - Rubika Flavor**: Fixed shading publication issues.
+
 ## 0.2.7-Alpha
 
 ### Improvements
