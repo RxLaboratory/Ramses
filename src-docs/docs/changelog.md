@@ -45,11 +45,13 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ### New
 
+- **Client**: The UI is more customizable, and the previous window state (location, toolbars, dockers) is restored when starting the application.
 - **Maya Add-on - Rubika Flavor**: Added a *replace* method to replace an existing asset/pipe with another one.
 - **Python API**: Added `Ramses.replaceScripts` and `Ramses.replaceItem`.
 
 ### Improvements
 
+- **Client**: Important UI tweaks.
 - **Maya Add-on**: Improved icons.
 
 ## 0.2.8-Alpha
