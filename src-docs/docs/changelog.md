@@ -45,6 +45,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ### New
 
+- **All**: The template versionning system has been changed and improved. Each template must now be stored in its own subfolder correctly named. See the *[Ramses Tree / Folder structure](components/files/tree.md#template-folders)* section for more details.
 - **Client**: The UI is more customizable, and the previous window state (location, toolbars, dockers) is restored when starting the application.
 - **Maya Add-on - Rubika Flavor**: Added a *replace* method to replace an existing asset/pipe with another one.
 - **Python API**: Added `Ramses.replaceScripts` and `Ramses.replaceItem`.

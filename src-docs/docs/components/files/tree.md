@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2022/01/14)
 
 # Folder Structure: the Ramses Tree
 
@@ -146,10 +146,14 @@ Here is an example for the modelling step of the asset called *Tristan*.
 │ │ ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
 │ │ └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
 │ │
-│ └─┬─ 004_OK # The 4th version, which was published as ok
-│   ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
-│   └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
-│ 
+│ ├─┬─ 004_OK # The 4th version, which was published as ok
+│ │ ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
+│ │ └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
+│ │
+│ └─┬─ Sculpt_002_OK # The 2nd version of the "Sculpt" resource, which was published as ok
+│   ├─── PROJECTID_A_TRISTAN_MOD_Sculpt.blend # The working file as it was when publishing
+│   └─── PROJECTID_A_TRISTAN_MOD_Sculpt.abc # The published export (an *Alembic* file)
+|
 └─┬─ _preview
   ├─── PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
   └─── PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
@@ -169,6 +173,46 @@ The *_preview* subfolder contains the files for previewing the current work, lik
 
 !!! tip
     When backuping a project, only the files in the *published* subfolder may be kept.
+
+## Template folders
+
+*Ramses* can use template files to create new working files. You can use this feature with any application, even if there's no [*Ramses Add-on*](../addons/index.md) available for it (yet).
+
+The template files must be located in each step's *Templates* subfolder. As you can have multiple templates for a single step, each template must be located in its own subfolder, which itself must respect the *[working folder](#a-working-folder)* structure.
+
+Here is an example of a step folder and its templates:
+
+```sh
+┌ PROJECTID # Root
+└─┬─ 02-PROD
+  └─┬─ PROJECTID_G_MOD # Common files for the MOD step
+    └─┬─ Templates # Template files for the mod step
+      ├─── PROJECTID_G_MOD_Template # A template
+      └─── PROJECTID_G_MOD_Other # Another template
+```
+
+A template folder should be organized the same way as any *[working folder](#a-working-folder)* . Typically, a template folder will look like this:
+
+```sh
+┌ PROJECTID_G_MOD_Template # The working folder for the template named "Template"
+│
+├─── PROJECTID_G_MOD_Template.blend # The main template file
+│
+├─┬─ _versions # The versionning folder
+│ ├─── PROJECTID_G_MOD_Template_wip001.blend
+│ ├─── PROJECTID_G_MOD_Template_wip002.blend
+│ └─── PROJECTID_G_MOD_Template_ok003.blend
+│
+└─┬─ _published
+  ├─┬─ 001_WIP # The first published version
+  │ └─── PROJECTID_G_MOD_Template.blend # The working file as it was when publishing
+  │
+  └─┬─ 003_OK # The 3rd version, which was published as ok
+    └─── PROJECTID_G_MOD_Template.blend # The working file as it was when publishing
+```
+
+!!! note
+    A template working folder may contain different resources, but even if they're published, *Ramses* will use only the main resource to create new files from templates and ignore other resources.
 
 ## Ramses special files and folders
 
