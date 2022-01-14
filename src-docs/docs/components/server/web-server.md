@@ -95,8 +95,10 @@ sudo apachectl start
 
 ### Install PHP
 
+Install PHP with a few additional components needed by Ramses and your new Apache web server.
+
 ```bash
-sudo apt install php php-mysql -libapache2-mod-php php-dev
+sudo apt install php php-mysql libapache2-mod-php php-dev php-sqlite3
 ```
 
 Check if PHP is working
