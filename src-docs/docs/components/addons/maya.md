@@ -58,7 +58,9 @@ To handle all file naming and sorting, *Ramses* includes commands to replace all
 |  ![](../../img/icons/preview.svg){ style="width:28px"} [**Create Preview**](#preview) | `ramPreview` | Creates a preview (thumbnail or playblast) of the current scene. |
 |  ![](../../img/icons/saveas.svg){ style="width:28px"} [**Save as**](#save-as) | `ramSaveAs` | Saves the scene as a new Asset, Shot or General item. |
 |  ![](../../img/icons/template.svg){ style="width:28px"} [**Template**](#template) | `ramPublishTemplate` | Saves the current scene as a new template for the current scene. |
-|  ![](../../img/icons/open.svg){ style="width:28px"} [**Open / Import**](#open-and-import) | `ramOpen` | Opens or imports an Asset, Shot or Template. |
+|  ![](../../img/icons/open.svg){ style="width:28px"} [**Open**](#open-and-import) | `ramOpen` | Opens an Asset, Shot or Template. |
+|  ![](../../img/icons/import.svg){ style="width:28px"} [**Import**](#open-and-import) | `ramOpen` | Imports an Asset, Shot or Template. |
+|  ![](../../img/icons/replace.svg){ style="width:28px"} [**Replace**](#open-and-import) | `ramOpen` | Replaces selected nodes with another Asset, Shot or Template. |
 |  ![](../../img/icons/restoreversion.svg){ style="width:28px"} [**Retrieve Version**](#retrieve-version) | `ramRetrieveVersion` | Retrieves and restores a previous version of the current scene. |
 |  ![](../../img/icons/gotosettings.svg){ style="width:28px"} [**Settings**](#settings) | `ramSettings` | Opens the settings dialog for the *Ramses Add-on*. |
 
@@ -279,7 +281,7 @@ import maya.cmds as cmds
 cmds.ramPublishTemplate()
 ```
 
-## ![](../../img/icons/open.svg){ style="width:32px"} Open and Import
+## ![](../../img/icons/open.svg){ style="width:32px"} Open, ![](../../img/icons/import.svg){ style="width:32px"} Import, ![](../../img/icons/replace.svg){ style="width:32px"} Replace
 
 The *Open and Import* command automatically finds available scenes from your projects.
 
@@ -289,14 +291,24 @@ It is not needed to go down all the hierarchy to select a file to open; if you j
 
 When importing an item, *Ramses* will also trigger custom import scripts registered by the pipeline tools or an extension of the *Maya Add-on*, such as the [*Rubika Flavor*](maya-rubika.md). This is one way of automating your workflow, by just registering scripts to be called when publishing and importing items.
 
-The *Mel* and *Python* corresponding command is: `ramOpen`.
+The *Mel* and *Python* corresponding command is: `ramOpen`. It can take two parameters:
+
+- `import` or `-i`: boolean. When `True`, the dialog is opened in *import* mode.
+- `replace` or `-r`: boolean. When `True`, the dialog is opened in *replace* mode.
+
 
 ```py
 # Python
 import maya.cmds as cmds
 
-# Shows the open/import dialog
+# Shows the open dialog
 cmds.ramOpen()
+
+# Shows the import dialog
+cmds.ramOpen(i=true)
+
+# Shows the replace dialog
+cmds.ramOpen(r=true)
 ```
 
 ## ![](../../img/icons/restoreversion.svg){ style="width:32px"} Retrieve Version
