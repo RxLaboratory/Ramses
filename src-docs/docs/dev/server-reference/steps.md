@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2022/01/16)
 
 # Queries for managing steps
 
@@ -20,6 +20,7 @@ Creates a new step in the database and assigns it to a project.
 - *shortName*: **string**. The new shortName.
 - *projectUuid*: **string**. The UUID of the project to assign the step to.
 - *uuid*: **string** (optionnal). The step's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 !!! note
@@ -55,6 +56,7 @@ Update step info in the database.
 - *type*: **string**. The type of the step. One of `asset`, `shot`, `pre`, or `post`.
 - *color*: **string**. The color to use in the UI to display this step.
 - *uuid*: **string**. The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
@@ -83,6 +85,7 @@ Moves a step in the list. This method changes only the order value of the given 
 
 - *order*: **intenger**. The new order for the shot.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -111,6 +114,7 @@ Moves a step in the list. This method will update the order of all the other ste
 
 - *order*: **intenger**. The new order for the shot.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -138,6 +142,7 @@ Removes a step from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The step's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -172,6 +177,7 @@ Updates the default estimations for this step
 - *hard*: **float**. The estimation forhard items, in days.
 - *veryHard*: **float**. The estimation for very hard items, in days.
 - *multiplyGroupUuid*: **string**. For shot steps, the uuid of an asset group used to multiply estimations.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -200,6 +206,7 @@ Assigns an application to a step.
 
 - *stepUuid*: **string**. The step's Universal Unique Identifier.
 - *applicationUuid*: **string**. The application's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -228,6 +235,7 @@ Unassigns an application from a step.
 
 - *stepUuid*: **string**. The step's Universal Unique Identifier.
 - *applicationUuid*: **string**. The application's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

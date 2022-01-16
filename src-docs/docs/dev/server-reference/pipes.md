@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing pipes
 
@@ -18,6 +18,7 @@ Creates a new pipe in the database.
 - *inputUuid*: **string**. The UUID of the input step.
 - *outputUuid*: **string**. The UUID of the output step.
 - *uuid*: **string** (optional). The pipe's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -49,6 +50,7 @@ Update pipe info in the database.
 - *colorSpaceUuid*: **string**. The UUID of the color space for the files going through this pipe.
 - *filetypeUuid*: **string**. The UUID of the file type going through this pipe.
 - *uuid*: **string**. The pipe's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -76,6 +78,7 @@ Removes a pipe group from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The pipe's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -104,6 +107,7 @@ Assigns a pipe file type to a pipe.
 
 - *pipeFileUuid*: **string**. The PipeFile's Universal Unique Identifier.
 - *pipeUuid*: **string**. The Pipe's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -132,6 +136,7 @@ Unassigns a pipe file type from a pipe.
 
 - *pipeFileUuid*: **string**. The PipeFile's Universal Unique Identifier.
 - *pipeUuid*: **string**. The Pipe's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

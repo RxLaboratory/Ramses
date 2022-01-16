@@ -38,6 +38,7 @@ Once you've made your choice, follow these steps:
 1. (*MySQL* only) Create a new base on the *SQL* server, along with its user and password.
 2. Un-Zip the *Ramses Server* you've downloaded.
 3. Edit `config.php` with needed info (read below).
+4. (optional) Edit `config_logs.php` if you want to enable logs on the server.
 2. Copy the *Ramses Server* files to the web server (you can just copy the `ramses` folder from the *ZIP* archive).
 4. Go to `http://your.server/ramses/install` (if you're running your own local server, this is probably something like `http://localhost/ramses/install`)
 5. Delete the `install` folder from the server.

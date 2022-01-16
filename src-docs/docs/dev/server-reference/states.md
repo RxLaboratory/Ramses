@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing states
 
@@ -13,6 +13,7 @@ Creates a new state in the database.
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
 - *uuid*: **string** (optionnal). The step's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -103,6 +104,7 @@ Update state info in the database.
 - *uuid*: **string**. The Universal Unique Identifier of this user.
 - *color*: **string** (optional). The color to use to display the state, hexadecimal web color preceded with a `#`.
 - *completionRatio*: **int** (optional). The completion ratio in percentage.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned with [*login*](general.md#login)
 
 **Reply content:**
@@ -130,6 +132,7 @@ Removes a state from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The step's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**

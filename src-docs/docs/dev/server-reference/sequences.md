@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing sequences
 
@@ -18,6 +18,7 @@ Creates a new squence in the database and assigns it to a project.
 - *comment*: **string**. The new comment.
 - *projectUuid*: **string**. The UUID of the project to assign the sequence to.
 - *uuid*: **string** (optionnal). The asset group's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -48,6 +49,7 @@ Update sequence info in the database.
 - *shortName*: **string**. The new (or current for no change) shortName.
 - *comment*: **string**. A new comment.
 - *uuid*: **string**. The sequence's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
@@ -75,6 +77,7 @@ Removes a sequence from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The sequence's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**
@@ -103,6 +106,7 @@ Changes the order of a sequence in the project.
 
 - *uuid*: **string**. The sequence's Universal Unique Identifier.
 - *order*: **int**. The new order.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**

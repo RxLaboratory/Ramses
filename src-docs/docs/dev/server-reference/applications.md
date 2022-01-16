@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing applications
 
@@ -14,6 +14,7 @@ Creates a new application e in the database.
 - *shortName*: **string**. The new shortName.
 - *executableFilePath*: **string**. The path to the main executable binary of the application.
 - *uuid*: **string** (optionnal). The file type's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply body**:
@@ -36,6 +37,7 @@ Retrieves the list of all applications.
 
 **Query attributes:**
 
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -85,6 +87,7 @@ Update application info in the database.
 - *comment*: **string**. The new comment.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
 - *executableFilePath*: **string**. The path to the executable binary of the application.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
@@ -141,6 +144,7 @@ Assigns a file type to an application.
 - *applicationUuid*: **string**. The Applcation's Universal Unique Identifier.
 - *fileTypeUuid*: **string**. The File Type's Universal Unique Identifier.
 - *type*: **string** (optional). The type, an enumerated value in `native`, `import`, `export`. Default is `native`.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -170,6 +174,7 @@ Unassigns a file type from an application.
 - *applicationUuid*: **string**. The Applcation's Universal Unique Identifier.
 - *fileTypeUuid*: **string**. The File Type's Universal Unique Identifier.
 - *type*: **string** (optional). The type, an enumerated value in `native`, `import`, `export`. If left empty, the file type is removed for all types.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

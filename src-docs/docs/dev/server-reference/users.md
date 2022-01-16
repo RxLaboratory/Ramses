@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2022/01/16)
 
 # Queries for managing users
 
@@ -18,6 +18,7 @@ Logs in with a username and a (hashed) password.
 - *color*: **string**. The color of the user.
 - *folderPath*: **string** (optionnal). The path for the user folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -47,6 +48,7 @@ Changes the password of a specific user
 - *current*: **string**. The current (hashed) password.
 - *new*: **string**. The new (hashed) password.
 - *uuid*: **string**. The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 !!! tip
@@ -135,6 +137,7 @@ Creates a new user in the database.
 - *email*: **string**. The email.
 - *color*: **string** (optional). The color.
 - *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**
@@ -162,6 +165,7 @@ Removes a user from the database.
 **Query attributes:**
 
 - *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

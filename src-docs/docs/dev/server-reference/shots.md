@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing shots
 
@@ -19,6 +19,7 @@ Creates a new shot in the database and assigns it to a sequence group.
 - *duration*: **float** (optional). The duration of the shot in seconds.
 - *order*: **integer** (optional). The order at which to insert the new shot. If omitted, the shot is added at the end of the list.
 - *uuid*: **string** (optional). The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -51,6 +52,7 @@ Update shot info in the database.
 - *sequenceUuid*: **string** (optional). The UUID of the sequence to reassign the shot to.
 - *duration*: **float** (optional). The new duration of the shot, in seconds.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -79,6 +81,7 @@ Moves a shot in the list. This method changes only the order value of the given 
 
 - *order*: **intenger**. The new order for the shot.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -107,6 +110,7 @@ Moves a shot in the list. This method will update the order of all the other sho
 
 - *order*: **intenger**. The new order for the shot.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -134,6 +138,7 @@ Removes a shot from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -169,6 +174,7 @@ Sets a new status for a shot
 - *version*: **int**. The current version.
 - *stepUuid*: **string**. The uuid of the associated step.
 - *assignedUserUuid*: **string**. The uuid of the assigned user for this task.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned with [*login*](general.md#login).
 
 **Reply content:**
@@ -197,6 +203,7 @@ Assigns an asset to the shot.
 
 - *assetUuid*: **string**. The asset's Universal Unique Identifier.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -225,6 +232,7 @@ Unassigns  an asset from the shot.
 
 - *assetUuid*: **string**. The asset's Universal Unique Identifier.
 - *uuid*: **string**. The shot's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

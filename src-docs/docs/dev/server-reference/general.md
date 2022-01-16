@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # General queries
 
@@ -38,6 +38,7 @@ Logs in with a username and a (hashed) password.
 
 - *username*: **string**. The username.
 - *password*: **string**. The (hashed) password.
+- *version*: **string**. The version of the client.
 
 !!! note
     Your application / client should not send a clear password, but it should hash it first, even when using a secure/SSL connection.
@@ -94,6 +95,7 @@ This special requests is used to retrieve all useful information when initializi
 
 **Query attributes:**
 
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

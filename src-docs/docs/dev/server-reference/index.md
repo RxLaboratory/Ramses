@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Ramses Server API
 
@@ -25,7 +25,7 @@ User-Agent: Ramses v0.1.1-Alpha
 Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
 Content-Length: 153
 
-uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&shortName=ANIM&name=Animation&type=shot&comment=&color=%23c992ff&token=94393b8e6396fb2bb295552d6d122544d5db1d1f
+uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&shortName=ANIM&name=Animation&type=shot&comment=&color=%23c992ff&version=0.2.9&token=94393b8e6396fb2bb295552d6d122544d5db1d1f
 ```
 
 And this is the same query using *JSON* encoding:
@@ -40,7 +40,7 @@ User-Agent: Ramses v0.1.1-Alpha
 Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
 Content-Length: 181
 
-{"uuid":"b615b4be-66fd-5fd3-8095-2074155a29a8","shortName":"ANIM","name":"Animation","type":"shot","comment":"","color":"#c992ff","token":"94393b8e6396fb2bb295552d6d122544d5db1d1f"}
+{"uuid":"b615b4be-66fd-5fd3-8095-2074155a29a8","shortName":"ANIM","name":"Animation","type":"shot","comment":"","color":"#c992ff","version":"0.2.9","token":"94393b8e6396fb2bb295552d6d122544d5db1d1f"}
 ```
 
 The parameters to use in the body are described in the next sections of this reference. The *Cookie* is set by the server on the first connection, the *User-Agent* is set by the client.

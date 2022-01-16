@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing schedule entries
 
@@ -19,6 +19,7 @@ Creates a new entry in the database.
 - *userUuid*: **string**. The UUID of the user.
 - *stepUuid*: **string**. The UUID of the step.
 - *uuid*: **string** (optional). The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -53,6 +54,7 @@ Creates several new entries in the database.
     - *userUuid*: **string**. The UUID of the user.
     - *stepUuid*: **string**. The UUID of the step.
     - *uuid*: **string** (optional). The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -84,6 +86,7 @@ Updates a new entry in the database.
 - *userUuid*: **string**. The UUID of the user.
 - *stepUuid*: **string**. The UUID of the step.
 - *uuid*: **string** (optional). The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -119,6 +122,7 @@ Updates several new entries in the database.
     - *userUuid*: **string**. The UUID of the user.
     - *stepUuid*: **string**. The UUID of the step.
     - *uuid*: **string**. The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -146,6 +150,7 @@ Removes an entry from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -177,6 +182,7 @@ Removes several entries from the database.
 
 - *entries*: **array** of **object**. Eeach entry must be an object with these properties:
     - *uuid*: **string**. The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

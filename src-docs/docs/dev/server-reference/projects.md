@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing projects
 
@@ -13,6 +13,7 @@ Creates a new project in the database.
 - *name*: **string**. The new name.
 - *shortName*: **string**. The new shortName.
 - *uuid*: **string** (optionnal). The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -40,6 +41,7 @@ Retrieves a single project.
 **Query attributes:**
 
 - *uuid*: **string**. The project unique identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -351,6 +353,7 @@ Retrieves the list of all projects.
 
 **Query attributes:**
 
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -439,6 +442,7 @@ Updates project information.
 - *comment*: **string**. The new comment.
 - *folderPath*: **string** (optionnal). The path for the project folder.
 - *uuid*: **string**. The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
@@ -494,6 +498,7 @@ Assigns a template step to a project
 
 - *stepUuid*: **string**. The template step's Universal Unique Identifier.
 - *projectUuid*: **string**. The project's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -522,6 +527,7 @@ Assigns a user to a project
 
 - *userUuid*: **string**. The user's Universal Unique Identifier.
 - *projectUuid*: **string**. The project's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -550,6 +556,7 @@ Unassigns a user to a project
 
 - *userUuid*: **string**. The user's Universal Unique Identifier.
 - *projectUuid*: **string**. The project's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

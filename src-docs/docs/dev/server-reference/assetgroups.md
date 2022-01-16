@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing asset groups
 
@@ -20,6 +20,7 @@ Creates a new asset group in the database and assigns it to a project.
 - *shortName*: **string**. The new shortName.
 - *projectUuid*: **string**. The UUID of the project to assign the asset group to.
 - *uuid*: **string** (optionnal). The asset group's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 !!! note
@@ -53,6 +54,7 @@ Update asset group info in the database.
 - *shortName*: **string**. The new (or current for no change) shortName.
 - *comment*: **string**. The new comment.
 - *uuid*: **string**. The asset group's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
@@ -80,6 +82,7 @@ Removes an asset group from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The asset group's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

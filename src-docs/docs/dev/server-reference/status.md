@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing status
 
@@ -26,6 +26,7 @@ Update status info in the database.
 - *estimation*: **float**. The estimation in days.
 - *difficulty*: **string**. The difficulty, one of `veryEasy`, `easy`, `medium`, `hard` or `veryHard`.
 - *uuid*: **string** (optional). The asset's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -53,6 +54,7 @@ Removes a status from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The status's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -81,6 +83,7 @@ Changes the user who's modified this status.
 
 - *uuid*: **string**. The status's Universal Unique Identifier.
 - *userUuid*: **string**. The user's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

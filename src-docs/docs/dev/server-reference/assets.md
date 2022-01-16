@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing assets
 
@@ -18,6 +18,7 @@ Creates a new asset in the database and assigns it to an asset group.
 - *assetGroupUuid*: **string**. The UUID of the asset group to assign the asset to.
 - *tags*: **string**. A comma separated list of tags.
 - *uuid*: **string** (optional). The asset's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -50,6 +51,7 @@ Update asset info in the database.
 - *assetGroupUuid*: **string**. The UUID of the asset group to assign the asset to.
 - *tags*: **string**. A comma separated list of tags.
 - *uuid*: **string** (optional). The asset's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -77,6 +79,7 @@ Removes an asset group from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The asset's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -112,6 +115,7 @@ Sets a new status for an asset
 - *comment*: **string**. A comment.
 - *version*: **int**. The current version.
 - *stepUuid*: **string**. The uuid of the associated step.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

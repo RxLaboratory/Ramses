@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing file types
 
@@ -14,6 +14,7 @@ Creates a new file type in the database.
 - *shortName*: **string**. The new shortName. This should be the default file extension.
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
 - *uuid*: **string** (optionnal). The file type's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -51,6 +52,7 @@ The server replies an array of file type information. Each file type is an objec
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
 - *previewable*: **int**. Whether this file type is used for previews. 1 or 0.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply body**:
@@ -98,6 +100,7 @@ Update file type info in the database.
 - *uuid*: **string**. The Universal Unique Identifier of this file type.
 - *extensions*: **string**. The extensions used by this type, a comma separated list.
 - *previewable*: **int**. Whether this file type is used for previews. 1 or 0.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login)
 
 **Reply content:**
@@ -125,6 +128,7 @@ Removes a file type from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The file type's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**

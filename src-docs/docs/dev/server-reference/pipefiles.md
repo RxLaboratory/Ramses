@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16)
 
 # Queries for managing pipe files
 
@@ -20,6 +20,7 @@ Creates a new pipe file in the database.
 - *fileTypeUuid*: **string**. The UUID of the associated file type.
 - *colorSpaceUuid*: **string** (optional). The UUID of the associated color space (if any).
 - *projectUuid*: **string**. The UUID of the project this pipe file belongs to.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply body**:
@@ -47,6 +48,7 @@ Updates pipe file info in the database.
 - *comment*: **string**. The new comment.
 - *fileTypeUuid*: **string** (optional). The UUID of the associated file type.
 - *colorSpaceUuid*: **string** (optional). The UUID of the associated color space.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
@@ -74,6 +76,7 @@ Removes a pipe file from the database.
 **Query attributes:**
 
 - *uuid*: **string**. The pipe file's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
 - *token*: **string**. The session token returned by [*login*](general.md#login).
 
 **Reply content:**
