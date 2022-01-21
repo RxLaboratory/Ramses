@@ -47,6 +47,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - **Server**: Fixed an issue where step estimations would not be correctly updated.
 - **Maya Add-On**: Fixed an issue where Maya Ascii (.ma) files would contain binary data.
+- **Maya Add-On - Rubika Flavor**: When publishing animation, constraints are now correctly kept.
 
 ## 0.2.9-Alpha
 
