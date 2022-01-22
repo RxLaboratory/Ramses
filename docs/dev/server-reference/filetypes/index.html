@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1309,7 +1309,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16" /></p>
 <h1 id="queries-for-managing-file-types">Queries for managing file types</h1>
 <h2 id="createfiletype">createFileType</h2>
 <p><code>http://your.server/ramses/?createFileType</code></p>
@@ -1320,6 +1320,7 @@
 <li><em>shortName</em>: <strong>string</strong>. The new shortName. This should be the default file extension.</li>
 <li><em>extensions</em>: <strong>string</strong>. The extensions used by this type, a comma separated list.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The file type&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1348,6 +1349,7 @@
 <li><em>extensions</em>: <strong>string</strong>. The extensions used by this type, a comma separated list.</li>
 <li><em>previewable</em>: <strong>int</strong>. Whether this file type is used for previews. 1 or 0.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this file type.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
@@ -1389,6 +1391,7 @@
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this file type.</li>
 <li><em>extensions</em>: <strong>string</strong>. The extensions used by this type, a comma separated list.</li>
 <li><em>previewable</em>: <strong>int</strong>. Whether this file type is used for previews. 1 or 0.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a></li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1408,6 +1411,7 @@
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong>. The file type&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>

@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1307,7 +1307,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16" /></p>
 <h1 id="general-queries">General queries</h1>
 <h2 id="ping">ping</h2>
 <p><code>http://your.server/ramses/?ping</code></p>
@@ -1336,6 +1336,7 @@
 <ul>
 <li><em>username</em>: <strong>string</strong>. The username.</li>
 <li><em>password</em>: <strong>string</strong>. The (hashed) password.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1382,6 +1383,7 @@
 <p>This special requests is used to retrieve all useful information when initializing the <em>Ramses Client</em>. It groups together in a single request the data which can be retrieved individually by <code>getUsers</code>, <code>getTemplateSteps</code>, <code>getTemplateAssetGroups</code>, <code>getStates</code>, <code>getFileTypes</code>, <code>getApplications</code> and <code>getProjects</code>. The project data contains only general project information (resolution, framerate&hellip;) but not the project content (shots, assets&hellip;). Use <code>getProject</code> to retrieve a specific project content.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="./#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>

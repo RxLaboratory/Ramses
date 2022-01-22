@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1312,14 +1312,15 @@
 <ol>
 <li><strong>Backup the server files (php)</strong>: download them or move them to another folder. If you&rsquo;re using <em>SQLite</em>, the database is included in these files, it is called <em>ramses_data</em>.</li>
 <li><strong>Backup the data if you&rsquo;re using a <em>MySQL</em> server</strong>. Use <em>phpMyAdmin</em> to export the database, or any backup provided by your web hosting provider.</li>
-<li><strong>Keep a copy of the file named <em>config.php</em> and <em>config_security.php</em></strong> (if it exists) in a safe place! If you lose the information from these files, you&rsquo;ll permanently lose access to part or all of your data, and nobody will ever be able to retrieve it. But be careful, if anyone gets access to them, they will be able to access and decrypt your data without you knowing it.</li>
+<li><strong>Keep a copy of all files which names start with <em>config</em> (there should be: <em>config.php</em>, <em>config_security.php</em>, <em>config_logs.php</em>)</strong> in a safe place! If you lose the information from these files, you&rsquo;ll permanently lose access to part or all of your data, and nobody will ever be able to retrieve it. But be careful, if anyone gets access to them, they will be able to access and decrypt your data without you knowing it.</li>
 </ol>
 <p>With this copy of your server, you&rsquo;ll be able to easily retrieve your data or revert to the previous version if anything goes wrong.</p>
 <p>The safe update procedure is as follow:</p>
 <ol>
 <li><strong>Un-Zip</strong> the <em>Ramses Server update package</em> you&rsquo;ve downloaded.</li>
-<li><strong>Download the current <em>config.php</em> and <em>config_security.php</em> from your server</strong> and keep them safe.</li>
+<li><strong>Download the current <em>config.php</em>, <em>config_security.php</em> and <em>config_logs.php</em> from your server</strong> and keep them safe.</li>
 <li><strong>Update the new version of <em>config.php</em></strong> with the same information from the one you&rsquo;ve just retrieved.</li>
+<li><strong>Update the new version of <em>config_logs.php</em></strong> with the same information from the one you&rsquo;ve just retrieved.</li>
 <li>Note that it&rsquo;s a good habit to keep a backup copy of these files offline.</li>
 <li><strong>Upload all files and folders</strong> from the update package to your server, <strong>except the folder named <em>install</em></strong>.</li>
 <li><strong>Go to http://yourserver.com/ramses/update</strong> (of course, replace the first part of this URL with your actual server address). The page may take some time to load.</li>

@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../..">v0.2.7-Alpha</a>
+                        <a href="../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../..">v0.2.7-Alpha</a>
+                <a href="../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../quickstart/">Quick start</a>
+                <a href="../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1305,7 +1305,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16" /></p>
 <h1 id="ramses-server-api">Ramses Server API</h1>
 <p>The <em>Ramses</em> server provides a standard <em>http(s) REST API</em>. If you&rsquo;re developping your own client (or contributing to <em>Ramses Client</em>), you can easily exchange data with the server using this reference.</p>
 <p><strong>Queries must be a <em>POST</em> request</strong>; the body can be either <em>JSON</em> or <em>URL</em> encoded, the <code>Content-Type</code> being respectively <code>application/json</code> or <code>application/x-www-form-urlencoded</code>. However, some queries (explained in this document) are not supported in the <em>URL</em> encoded form, so it is better to <strong>always use <em>JSON</em> if possible</strong>.</p>
@@ -1324,7 +1324,7 @@ User-Agent: Ramses v0.1.1-Alpha
 Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
 Content-Length: 153
 
-uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&amp;shortName=ANIM&amp;name=Animation&amp;type=shot&amp;comment=&amp;color=%23c992ff&amp;token=94393b8e6396fb2bb295552d6d122544d5db1d1f
+uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&amp;shortName=ANIM&amp;name=Animation&amp;type=shot&amp;comment=&amp;color=%23c992ff&amp;version=0.2.9&amp;token=94393b8e6396fb2bb295552d6d122544d5db1d1f
 </code></pre>
 <p>And this is the same query using <em>JSON</em> encoding:</p>
 <p><em>URL</em>: <code>http://your.server/ramses/?createStep</code></p>
@@ -1335,7 +1335,7 @@ User-Agent: Ramses v0.1.1-Alpha
 Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
 Content-Length: 181
 
-{&quot;uuid&quot;:&quot;b615b4be-66fd-5fd3-8095-2074155a29a8&quot;,&quot;shortName&quot;:&quot;ANIM&quot;,&quot;name&quot;:&quot;Animation&quot;,&quot;type&quot;:&quot;shot&quot;,&quot;comment&quot;:&quot;&quot;,&quot;color&quot;:&quot;#c992ff&quot;,&quot;token&quot;:&quot;94393b8e6396fb2bb295552d6d122544d5db1d1f&quot;}
+{&quot;uuid&quot;:&quot;b615b4be-66fd-5fd3-8095-2074155a29a8&quot;,&quot;shortName&quot;:&quot;ANIM&quot;,&quot;name&quot;:&quot;Animation&quot;,&quot;type&quot;:&quot;shot&quot;,&quot;comment&quot;:&quot;&quot;,&quot;color&quot;:&quot;#c992ff&quot;,&quot;version&quot;:&quot;0.2.9&quot;,&quot;token&quot;:&quot;94393b8e6396fb2bb295552d6d122544d5db1d1f&quot;}
 </code></pre>
 <p>The parameters to use in the body are described in the next sections of this reference. The <em>Cookie</em> is set by the server on the first connection, the <em>User-Agent</em> is set by the client.</p>
 <p>The server replies with a <em>JSON</em> object in the body.</p>

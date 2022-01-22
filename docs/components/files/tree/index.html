@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1305,6 +1305,8 @@
                     
                 <li class="second-level"><a href="#a-working-folder">A working folder</a></li>
                     
+                <li class="second-level"><a href="#template-folders">Template folders</a></li>
+                    
                 <li class="second-level"><a href="#ramses-special-files-and-folders">Ramses special files and folders</a></li>
                     
                     <li class="third-level"><a href="#_trash-folder">_trash Folder</a></li>
@@ -1316,7 +1318,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2022/01/14" /></p>
 <h1 id="folder-structure-the-ramses-tree">Folder Structure: the Ramses Tree</h1>
 <p>One of Ramses&rsquo; goals is to manage all your files and folders; sometimes, you may still need to manually add, remove, or edit files and folders through your file explorer, in which case you should always try to respect the <em>Ramses Tree</em> described here.</p>
 <p>This document will also help you find your files should <em>Ramses</em> be unavailable for some reason.</p>
@@ -1433,10 +1435,14 @@
 │ │ ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
 │ │ └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
 │ │
-│ └─┬─ 004_OK # The 4th version, which was published as ok
-│   ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
-│   └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
-│ 
+│ ├─┬─ 004_OK # The 4th version, which was published as ok
+│ │ ├─── PROJECTID_A_TRISTAN_MOD.blend # The working file as it was when publishing
+│ │ └─── PROJECTID_A_TRISTAN_MOD.abc # The published export (an *Alembic* file)
+│ │
+│ └─┬─ Sculpt_002_OK # The 2nd version of the &quot;Sculpt&quot; resource, which was published as ok
+│   ├─── PROJECTID_A_TRISTAN_MOD_Sculpt.blend # The working file as it was when publishing
+│   └─── PROJECTID_A_TRISTAN_MOD_Sculpt.abc # The published export (an *Alembic* file)
+|
 └─┬─ _preview
   ├─── PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
   └─── PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
@@ -1455,6 +1461,38 @@
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>When backuping a project, only the files in the <em>published</em> subfolder may be kept.</p>
+</div>
+<h2 id="template-folders">Template folders</h2>
+<p><em>Ramses</em> can use template files to create new working files. You can use this feature with any application, even if there&rsquo;s no <a href="../../addons/"><em>Ramses Add-on</em></a> available for it (yet).</p>
+<p>The template files must be located in each step&rsquo;s <em>Templates</em> subfolder. As you can have multiple templates for a single step, each template must be located in its own subfolder, which itself must respect the <em><a href="#a-working-folder">working folder</a></em> structure.</p>
+<p>Here is an example of a step folder and its templates:</p>
+<pre><code class="language-sh">┌ PROJECTID # Root
+└─┬─ 02-PROD
+  └─┬─ PROJECTID_G_MOD # Common files for the MOD step
+    └─┬─ Templates # Template files for the mod step
+      ├─── PROJECTID_G_MOD_Template # A template
+      └─── PROJECTID_G_MOD_Other # Another template
+</code></pre>
+<p>A template folder should be organized the same way as any <em><a href="#a-working-folder">working folder</a></em> . Typically, a template folder will look like this:</p>
+<pre><code class="language-sh">┌ PROJECTID_G_MOD_Template # The working folder for the template named &quot;Template&quot;
+│
+├─── PROJECTID_G_MOD_Template.blend # The main template file
+│
+├─┬─ _versions # The versionning folder
+│ ├─── PROJECTID_G_MOD_Template_wip001.blend
+│ ├─── PROJECTID_G_MOD_Template_wip002.blend
+│ └─── PROJECTID_G_MOD_Template_ok003.blend
+│
+└─┬─ _published
+  ├─┬─ 001_WIP # The first published version
+  │ └─── PROJECTID_G_MOD_Template.blend # The working file as it was when publishing
+  │
+  └─┬─ 003_OK # The 3rd version, which was published as ok
+    └─── PROJECTID_G_MOD_Template.blend # The working file as it was when publishing
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A template working folder may contain different resources, but even if they&rsquo;re published, <em>Ramses</em> will use only the main resource to create new files from templates and ignore other resources.</p>
 </div>
 <h2 id="ramses-special-files-and-folders">Ramses special files and folders</h2>
 <p><em>Ramses</em> will also store some special files and folders it needs in the <em>Ramses Tree</em>.</p>

@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1311,7 +1311,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16" /></p>
 <h1 id="queries-for-managing-pipes">Queries for managing pipes</h1>
 <p>Pipes are the connections between <em><a href="../steps/">Steps</a></em> which form the pipeline.</p>
 <div class="admonition hint">
@@ -1326,6 +1326,7 @@
 <li><em>inputUuid</em>: <strong>string</strong>. The UUID of the input step.</li>
 <li><em>outputUuid</em>: <strong>string</strong>. The UUID of the output step.</li>
 <li><em>uuid</em>: <strong>string</strong> (optional). The pipe&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1349,6 +1350,7 @@
 <li><em>colorSpaceUuid</em>: <strong>string</strong>. The UUID of the color space for the files going through this pipe.</li>
 <li><em>filetypeUuid</em>: <strong>string</strong>. The UUID of the file type going through this pipe.</li>
 <li><em>uuid</em>: <strong>string</strong>. The pipe&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1368,6 +1370,7 @@
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong>. The pipe&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1388,6 +1391,7 @@
 <ul>
 <li><em>pipeFileUuid</em>: <strong>string</strong>. The PipeFile&rsquo;s Universal Unique Identifier.</li>
 <li><em>pipeUuid</em>: <strong>string</strong>. The Pipe&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1408,6 +1412,7 @@
 <ul>
 <li><em>pipeFileUuid</em>: <strong>string</strong>. The PipeFile&rsquo;s Universal Unique Identifier.</li>
 <li><em>pipeUuid</em>: <strong>string</strong>. The Pipe&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>

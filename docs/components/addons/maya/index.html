@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1315,7 +1315,7 @@
                     
                 <li class="second-level"><a href="#template">Template</a></li>
                     
-                <li class="second-level"><a href="#open-and-import">Open and Import</a></li>
+                <li class="second-level"><a href="#open-import-replace">Open,  Import,  Replace</a></li>
                     
                 <li class="second-level"><a href="#retrieve-version">Retrieve Version</a></li>
                     
@@ -1420,9 +1420,19 @@ MAYA_SHELF_PATH+:=shelves
 <td>Saves the current scene as a new template for the current scene.</td>
 </tr>
 <tr>
-<td><img alt="" src="../../../img/icons/open.svg" style="width:28px" /> <a href="#open-and-import"><strong>Open / Import</strong></a></td>
+<td><img alt="" src="../../../img/icons/open.svg" style="width:28px" /> <a href="#open-and-import"><strong>Open</strong></a></td>
 <td><code>ramOpen</code></td>
-<td>Opens or imports an Asset, Shot or Template.</td>
+<td>Opens an Asset, Shot or Template.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/import.svg" style="width:28px" /> <a href="#open-and-import"><strong>Import</strong></a></td>
+<td><code>ramOpen</code></td>
+<td>Imports an Asset, Shot or Template.</td>
+</tr>
+<tr>
+<td><img alt="" src="../../../img/icons/replace.svg" style="width:28px" /> <a href="#open-and-import"><strong>Replace</strong></a></td>
+<td><code>ramOpen</code></td>
+<td>Replaces selected nodes with another Asset, Shot or Template.</td>
 </tr>
 <tr>
 <td><img alt="" src="../../../img/icons/restoreversion.svg" style="width:28px" /> <a href="#retrieve-version"><strong>Retrieve Version</strong></a></td>
@@ -1610,17 +1620,27 @@ import maya.cmds as cmds
 # Shows the publish template dialog
 cmds.ramPublishTemplate()
 </code></pre>
-<h2 id="open-and-import"><img alt="" src="../../../img/icons/open.svg" style="width:32px" /> Open and Import</h2>
+<h2 id="open-import-replace"><img alt="" src="../../../img/icons/open.svg" style="width:32px" /> Open, <img alt="" src="../../../img/icons/import.svg" style="width:32px" /> Import, <img alt="" src="../../../img/icons/replace.svg" style="width:32px" /> Replace</h2>
 <p>The <em>Open and Import</em> command automatically finds available scenes from your projects.</p>
 <p><img alt="" src="../../../img/maya/open.png" /></p>
 <p>It is not needed to go down all the hierarchy to select a file to open; if you just select an item and a step, <em>Ramses</em> will automatically open or import the corresponding latest version of the main resource. It works the same way when importing items: you don&rsquo;t need to go all the way down to select the files you want to import; by selecting just the main file, <em>Ramses</em> will import everything available, or, if you&rsquo;re using an <a href="../maya-extend/">extension</a> of the <em>Add-on</em> such as the <a href="../maya-rubika/"><em>Rubika Flavor</em></a>, it will pass all the files to the extension so it can automatically manage the import for you.</p>
 <p>When importing an item, <em>Ramses</em> will also trigger custom import scripts registered by the pipeline tools or an extension of the <em>Maya Add-on</em>, such as the <a href="../maya-rubika/"><em>Rubika Flavor</em></a>. This is one way of automating your workflow, by just registering scripts to be called when publishing and importing items.</p>
-<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramOpen</code>.</p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramOpen</code>. It can take two parameters:</p>
+<ul>
+<li><code>import</code> or <code>-i</code>: boolean. When <code>True</code>, the dialog is opened in <em>import</em> mode.</li>
+<li><code>replace</code> or <code>-r</code>: boolean. When <code>True</code>, the dialog is opened in <em>replace</em> mode.</li>
+</ul>
 <pre><code class="language-py"># Python
 import maya.cmds as cmds
 
-# Shows the open/import dialog
+# Shows the open dialog
 cmds.ramOpen()
+
+# Shows the import dialog
+cmds.ramOpen(i=true)
+
+# Shows the replace dialog
+cmds.ramOpen(r=true)
 </code></pre>
 <h2 id="retrieve-version"><img alt="" src="../../../img/icons/restoreversion.svg" style="width:32px" /> Retrieve Version</h2>
 <p>The <em>Retrieve version</em> command can be used to check and restore a previous version of the current scene.</p>

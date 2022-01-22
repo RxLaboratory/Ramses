@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1317,7 +1317,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2022/01/16" /></p>
 <h1 id="queries-for-managing-steps">Queries for managing steps</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1336,6 +1336,7 @@
 <li><em>shortName</em>: <strong>string</strong>. The new shortName.</li>
 <li><em>projectUuid</em>: <strong>string</strong>. The UUID of the project to assign the step to.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The step&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <div class="admonition note">
@@ -1364,6 +1365,7 @@
 <li><em>type</em>: <strong>string</strong>. The type of the step. One of <code>asset</code>, <code>shot</code>, <code>pre</code>, or <code>post</code>.</li>
 <li><em>color</em>: <strong>string</strong>. The color to use in the UI to display this step.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a></li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1384,6 +1386,7 @@
 <ul>
 <li><em>order</em>: <strong>intenger</strong>. The new order for the shot.</li>
 <li><em>uuid</em>: <strong>string</strong>. The shot&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1404,6 +1407,7 @@
 <ul>
 <li><em>order</em>: <strong>intenger</strong>. The new order for the shot.</li>
 <li><em>uuid</em>: <strong>string</strong>. The shot&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1423,6 +1427,7 @@
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong>. The step&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1449,6 +1454,7 @@
 <li><em>hard</em>: <strong>float</strong>. The estimation forhard items, in days.</li>
 <li><em>veryHard</em>: <strong>float</strong>. The estimation for very hard items, in days.</li>
 <li><em>multiplyGroupUuid</em>: <strong>string</strong>. For shot steps, the uuid of an asset group used to multiply estimations.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1469,6 +1475,7 @@
 <ul>
 <li><em>stepUuid</em>: <strong>string</strong>. The step&rsquo;s Universal Unique Identifier.</li>
 <li><em>applicationUuid</em>: <strong>string</strong>. The application&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1489,6 +1496,7 @@
 <ul>
 <li><em>stepUuid</em>: <strong>string</strong>. The step&rsquo;s Universal Unique Identifier.</li>
 <li><em>applicationUuid</em>: <strong>string</strong>. The application&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>

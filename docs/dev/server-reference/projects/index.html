@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1317,7 +1317,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16" /></p>
 <h1 id="queries-for-managing-projects">Queries for managing projects</h1>
 <h2 id="createproject">createProject</h2>
 <p><code>http://your.server/ramses/?createProject</code></p>
@@ -1327,6 +1327,7 @@
 <li><em>name</em>: <strong>string</strong>. The new name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The new shortName.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The user&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1346,6 +1347,7 @@
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong>. The project unique identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1670,6 +1672,7 @@
 <p>Retrieves the list of all projects.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1750,6 +1753,7 @@
 <li><em>comment</em>: <strong>string</strong>. The new comment.</li>
 <li><em>folderPath</em>: <strong>string</strong> (optionnal). The path for the project folder.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a></li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1789,6 +1793,7 @@
 <ul>
 <li><em>stepUuid</em>: <strong>string</strong>. The template step&rsquo;s Universal Unique Identifier.</li>
 <li><em>projectUuid</em>: <strong>string</strong>. The project&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1809,6 +1814,7 @@
 <ul>
 <li><em>userUuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
 <li><em>projectUuid</em>: <strong>string</strong>. The project&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1829,6 +1835,7 @@
 <ul>
 <li><em>userUuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
 <li><em>projectUuid</em>: <strong>string</strong>. The project&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>

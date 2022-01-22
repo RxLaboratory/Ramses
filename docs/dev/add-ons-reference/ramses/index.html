@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1385,22 +1385,28 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>importScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().importItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.</td>
+</tr>
+<tr>
 <td><strong>publishScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
 <td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user publishes the current file from the host application.</td>
 </tr>
 <tr>
+<td><strong>replaceScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().replaceItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.</td>
+</tr>
+<tr>
 <td><strong>statusScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
 <td>A list of scripts/functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.</td>
-</tr>
-<tr>
-<td><strong>importScripts</strong></td>
-<td><em>list</em></td>
-<td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().import()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.</td>
 </tr>
 <tr>
 <td><strong>userScripts</strong></td>
@@ -1506,6 +1512,11 @@
 <td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
+<td><strong>replaceItem</strong></td>
+<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
+<td>Runs the scripts in <code>Ramses.instance().replaceScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
+</tr>
+<tr>
 <td><strong>showClient</strong></td>
 <td></td>
 <td>Raises the <em>Ramses Client</em> window, launches the client if it is not already running.</td>
@@ -1555,6 +1566,11 @@
 <td><strong>publish</strong></td>
 <td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em><a href="../ram_file_info/">RamFileInfo</a></em>: <strong>publishFileInfo</strong></td>
 <td>- <code>item</code> is the item from which the user wants to publish a file.<br />- <code>step</code> is the step from which the user is publishing. You can check <code>step.outputPipes()</code> to know which file types to publish.<br />- <code>fileInfo</code> contains all the info which can be gathered from the publishing file, including version and state. <code>fileInfo.filePath()</code> returns the path for publishing the file (including a proposed fileName).</td>
+</tr>
+<tr>
+<td><strong>replaceItem</strong></td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>list</em> of <em>string</em>: <strong>filePaths</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>- <code>item</code> is the item from which the user wants to import a file.<br />- <code>filePath</code> is the absolute path to the file the user wants to import.<br />- <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.<br />With this info, the method should replace selected objects with the imported items.</td>
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>

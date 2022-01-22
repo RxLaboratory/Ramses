@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1311,7 +1311,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2022/01/16" /></p>
 <h1 id="queries-for-managing-users">Queries for managing users</h1>
 <h2 id="updateuser">updateUser</h2>
 <p><code>http://your.server/ramses/?updateUser</code></p>
@@ -1326,6 +1326,7 @@
 <li><em>color</em>: <strong>string</strong>. The color of the user.</li>
 <li><em>folderPath</em>: <strong>string</strong> (optionnal). The path for the user folder.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1347,6 +1348,7 @@
 <li><em>current</em>: <strong>string</strong>. The current (hashed) password.</li>
 <li><em>new</em>: <strong>string</strong>. The new (hashed) password.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <div class="admonition tip">
@@ -1421,6 +1423,7 @@
 <li><em>email</em>: <strong>string</strong>. The email.</li>
 <li><em>color</em>: <strong>string</strong> (optional). The color.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The user&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned with <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1440,6 +1443,7 @@
 <p><strong>Query attributes:</strong></p>
 <ul>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The user&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>

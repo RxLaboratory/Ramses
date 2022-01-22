@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.7-Alpha</a>
+                        <a href="../../..">v0.2.10-Alpha</a>
                     </li>
                 
                 
@@ -808,13 +808,13 @@
         
         
             <li >
-                <a href="../../..">v0.2.7-Alpha</a>
+                <a href="../../../../../..">v0.2.10-Alpha</a>
             </li>
         
         
         
             <li >
-                <a href="../../../quickstart/">Quick start</a>
+                <a href="../../../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1313,7 +1313,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16" /></p>
 <h1 id="queries-for-managing-applications">Queries for managing applications</h1>
 <h2 id="createapplication">createApplication</h2>
 <p><code>http://your.server/ramses/?createApplication</code></p>
@@ -1324,6 +1324,7 @@
 <li><em>shortName</em>: <strong>string</strong>. The new shortName.</li>
 <li><em>executableFilePath</em>: <strong>string</strong>. The path to the main executable binary of the application.</li>
 <li><em>uuid</em>: <strong>string</strong> (optionnal). The file type&rsquo;s Universal Unique Identifier.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
@@ -1340,6 +1341,7 @@
 <p>Retrieves the list of all applications.</p>
 <p><strong>Query attributes:</strong></p>
 <ul>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1382,6 +1384,7 @@
 <li><em>comment</em>: <strong>string</strong>. The new comment.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this file type.</li>
 <li><em>executableFilePath</em>: <strong>string</strong>. The path to the executable binary of the application.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a></li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1422,6 +1425,7 @@
 <li><em>applicationUuid</em>: <strong>string</strong>. The Applcation&rsquo;s Universal Unique Identifier.</li>
 <li><em>fileTypeUuid</em>: <strong>string</strong>. The File Type&rsquo;s Universal Unique Identifier.</li>
 <li><em>type</em>: <strong>string</strong> (optional). The type, an enumerated value in <code>native</code>, <code>import</code>, <code>export</code>. Default is <code>native</code>.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
@@ -1443,6 +1447,7 @@
 <li><em>applicationUuid</em>: <strong>string</strong>. The Applcation&rsquo;s Universal Unique Identifier.</li>
 <li><em>fileTypeUuid</em>: <strong>string</strong>. The File Type&rsquo;s Universal Unique Identifier.</li>
 <li><em>type</em>: <strong>string</strong> (optional). The type, an enumerated value in <code>native</code>, <code>import</code>, <code>export</code>. If left empty, the file type is removed for all types.</li>
+<li><em>version</em>: <strong>string</strong>. The version of the client.</li>
 <li><em>token</em>: <strong>string</strong>. The session token returned by <a href="../general/#login"><em>login</em></a>.</li>
 </ul>
 <p><strong>Reply content:</strong></p>
