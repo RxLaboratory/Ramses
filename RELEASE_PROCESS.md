@@ -68,3 +68,4 @@ Make sure the version is the same for all the components
 - [ ] Publish doc
 - [ ] Github release with all assets
 - [ ] Publish on rxlaboratory.org
+- [ ] Update version on version.rxlab.io
