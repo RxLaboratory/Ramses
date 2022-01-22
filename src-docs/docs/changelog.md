@@ -41,6 +41,18 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
+## 0.2.10-Alpha
+
+### Improvements
+
+- **Client**: More details shown in file lists (modification date, and more to come).
+
+### Fixes
+
+- **Client**: Fixed incorrect rights to edit steps and pipes for project administrators.
+- **Maya Add-on**: Fixed freezing transform when there are constraints or other links (ignore).
+- **Maya Add-on - Rubika Flavor**: Fixed minor publish issue with Sets.
+
 ## 0.2.9-Alpha
 
 ### New
