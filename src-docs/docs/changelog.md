@@ -52,6 +52,10 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client**: Fixed incorrect rights to edit steps and pipes for project administrators.
 - **Maya Add-on**: Fixed freezing transform when there are constraints or other links (ignore).
 - **Maya Add-on - Rubika Flavor**: Fixed minor publish issue with Sets.
+- **Client**: Project edition is now correctly disabled for all users but Administrators.
+- **Server**: Fixed an issue where step estimations would not be correctly updated.
+- **Maya Add-On**: Fixed an issue where Maya Ascii (.ma) files would contain binary data.
+- **Maya Add-On - Rubika Flavor**: When publishing animation, constraints are now correctly kept.
 
 ## 0.2.9-Alpha
 
