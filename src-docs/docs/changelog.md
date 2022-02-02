@@ -41,6 +41,22 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
+## 0.2.11-Alpha
+
+### New
+
+- **Client**: Added a timeline to make it easier to manipulate shots, and to be used with future features...
+
+### Improvements
+
+- ***Client***: Improved statistics panel.
+
+### Fixes
+
+- **Client** and **Server**: Fixed ordering shots and steps.
+- **Client** and **Server**: Fixed changing a schedule item if it had been deleted before.
+- **Server**: Steps estimation method is now correctly returned.
+
 ## 0.2.10-Alpha
 
 ### Improvements
