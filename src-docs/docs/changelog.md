@@ -40,12 +40,14 @@ The detailed list of planned features and enhancements is [available on *Github*
 - ***[#290](https://github.com/RxLaboratory/Ramses/issues/290)***: The application may crash when logging out, changing the server address, then logging back in. You can simply restart the application to log in the new server.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
+- On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
 
 ## 0.2.11-Alpha
 
 ### New
 
 - **Client**: Added a timeline to make it easier to manipulate shots, and to be used with future features...
+- **Client** and **Server**: Added sequence colors.
 
 ### Improvements
 

@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../..">v0.2.10-Alpha</a>
+                        <a href="../..">v0.2.11-Alpha</a>
                     </li>
                 
                 
@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../../../..">v0.2.10-Alpha</a>
+                <a href="../../../..">v0.2.11-Alpha</a>
             </li>
         
         
@@ -1326,6 +1326,7 @@ Content-Length: 153
 
 uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&amp;shortName=ANIM&amp;name=Animation&amp;type=shot&amp;comment=&amp;color=%23c992ff&amp;version=0.2.9&amp;token=94393b8e6396fb2bb295552d6d122544d5db1d1f
 </code></pre>
+
 <p>And this is the same query using <em>JSON</em> encoding:</p>
 <p><em>URL</em>: <code>http://your.server/ramses/?createStep</code></p>
 <pre><code>POST /ramses HTTP/1.1
@@ -1337,6 +1338,7 @@ Content-Length: 181
 
 {&quot;uuid&quot;:&quot;b615b4be-66fd-5fd3-8095-2074155a29a8&quot;,&quot;shortName&quot;:&quot;ANIM&quot;,&quot;name&quot;:&quot;Animation&quot;,&quot;type&quot;:&quot;shot&quot;,&quot;comment&quot;:&quot;&quot;,&quot;color&quot;:&quot;#c992ff&quot;,&quot;version&quot;:&quot;0.2.9&quot;,&quot;token&quot;:&quot;94393b8e6396fb2bb295552d6d122544d5db1d1f&quot;}
 </code></pre>
+
 <p>The parameters to use in the body are described in the next sections of this reference. The <em>Cookie</em> is set by the server on the first connection, the <em>User-Agent</em> is set by the client.</p>
 <p>The server replies with a <em>JSON</em> object in the body.</p>
 <p>For almost all queries (i.e. all but <em>ping</em> and <em>login</em>) you&rsquo;ll need to be logged in. Initiating a connection to the server usually follows these steps:</p>

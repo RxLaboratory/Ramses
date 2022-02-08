@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.10-Alpha</a>
+                        <a href="../../..">v0.2.11-Alpha</a>
                     </li>
                 
                 
@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.10-Alpha</a>
+                <a href="../../../../../..">v0.2.11-Alpha</a>
             </li>
         
         
@@ -1350,7 +1350,7 @@
 <p>The default user for Ramses is <code>Admin</code> with the password <code>password</code>. You should start by changing this name and password using the <a href="../../client/"><em>Ramses Client Application</em></a>.</p>
 <h3 id="configphp">config.php</h3>
 <p>The <code>config.php</code> file you have to edit looks like that:</p>
-<pre><code class="language-php">    // === DEV MODE ===
+<pre><code class="php">    // === DEV MODE ===
     // Activates printing the SQL &amp; PHP errors.
     // For security reasons, it is important to set this to false in production mode
     $devMode = false;
@@ -1387,6 +1387,7 @@
     // 5 hours by default( 18000 )
     $cookieTimeout = 18000;
 </code></pre>
+
 <ul>
 <li><code>$devMode</code> should always be <code>false</code> unless this server is going to be used for development and tests in a development environement. For security reasons <strong>do not set this to <code>true</code></strong> on a production server.</li>
 <li><code>$sqlMode</code> can be either <code>'sqlite'</code> or <code>'mysql'</code> depending on your choice of configuration (read above).</li>

@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/12)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/02/07)
 
 # ![](../img/icons/connections_sd.svg){: style="width:55px;"} Pipeline
 
@@ -139,7 +139,9 @@ The folder names for the steps respect the [*Ramses Naming Scheme*](../component
 
 *Steps* are also associated with the **applications** used to produce the assets and shots (read below). They also have default values for **production estimations** (read the [*Planning*](planning.md) section for more information).
 
-*Step* folders contain a `Templates` subfolder which contains the **template files** to be used when creating a **new asset** or a **new shot**. This can be done directly from [assets and shots tables](../components/client/production.md) in the [*Ramses Client Application*](../components/client/index.md) or from [*Ramses Add-ons*](../components/addons/index.md). The `Templates` subfolder is a standard working folder, and templates can have versions, a *preview* subfolder, and must be *published* to be used.
+### Templates
+
+*Step* folders contain a `Templates` subfolder which contains the **template files** to be used when creating a **new asset** or a **new shot**. This can be done directly from the [assets and shots tables](../components/client/production.md) in the [*Ramses Client Application*](../components/client/index.md) or from [*Ramses Add-ons*](../components/addons/index.md). The `Templates` subfolder is a standard working folder, and templates can have versions, a *preview* subfolder, and must be *published* to be used.
 
 !!! Tip
     You can manually add files in the `Templates` subfolder; if you also copy them in the `_published` folder, *Ramses* will automatically detect and use them for asset and shot creation (see the section above entitled "*A working folder*").

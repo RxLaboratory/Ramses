@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/13)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/02/07)
 
 # ![](/img/icons/gotosettings.svg){: style="width:55px;"} Application settings and overview
 
@@ -10,6 +10,19 @@
 When running the application for the first time, you need to go to the settings first to configure it.
 
 ## Overview
+
+### General shortcuts and behaviour
+
+In all the application, a few shortcuts are always the same, in addition to your system's usual shortcuts for *copy*, *paste*, *undo* etc.
+
+- `[Middle Click]`: scroll/pan in lists, tables, timeline...
+- `[Ctrl] + [Middle Click]` or `[Mouse Wheel]`: zoom in or out in views which can be zoomed.
+- `[Shift] + [A]`: add/create something.
+- `[Del]` or `[Shift] + [X]`: remove/delete selection.
+
+All side panels (docks) can be moved around and docked to the sides or undocked by clicking on their titles.
+
+Menu bars can also be moved to all sides of the application.
 
 ### Title bar
 

@@ -29,7 +29,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v0.2.10-Alpha: index.md
+    - v0.2.11-Alpha: index.md
     - Quick start: quickstart.md
     - Principles:
         - Introduction: pipeline/index.md

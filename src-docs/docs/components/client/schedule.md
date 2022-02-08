@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/14)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/02/07)
 
 # ![](/img/icons/calendar_sl.svg){: style="width:55px;"} Schedule and planning
 
@@ -81,4 +81,17 @@ The ***Statistics*** button on the title bar of the application opens a summary 
 
 ![](/img/client/statistics.png)
 
-For the project and each step, you can read the total number of days you have to assign (the ***estimation***), and for each step, you can read how many days have been **assigned** and how many are **missing** or how many **extra** days are assigned.
+The top part shows the statistics for the whole project.
+
+- ***Remaining time*** is the count of actual days before reaching the deadline of the project.
+- ***Completion*** is the global completion of the project, both as a percentage, and a number of work-days completed (compared to the total estimated work-day count).
+- ***Estimated Lateness*** is an estimation of the lateness for all steps; 0% means all is well, a negative lateness means there's some advance (no, this never happens), a positive value means the production is late. 100% means it took twice the time originally estimated to get to the current completion ratio!
+
+For each step, *Ramses* also compares the remaining work to the schedule, to warn you if you need to plan more days to complete the given step (or if there are extra days).
+
+If you pull the row to make it bigger, you can get more details.
+
+![](/img/client/statistics-details.png)
+
+- ***Assigned*** shows how many days are assigned in the schedule for the given step, including past and future dates.
+- ***Extra / Missing*** shows how many more days are needed to be assigned to the given step, or how many extra days are assigned, compared to the estimation. To the contrary of the extra or missing days shown above, this value does not take into account how much actual work was already done.
