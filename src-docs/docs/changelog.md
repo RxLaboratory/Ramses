@@ -87,6 +87,14 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - **Client**: Important UI tweaks.
 - **Maya Add-on**: Improved icons.
+- **Client**: The current server address is now displayed in the bottom right corner of the application.
+- **Client**: The previous window state and dock locations are now restored at startup.
+- **Client**: UI tweaks and minor improvements.
+- **Maya Add-on**: UI tweaks and new icons.
+
+### Fixes
+
+- **Client**: Fixed a potential crash when using filters on the tables.
 
 ## 0.2.8-Alpha
 
