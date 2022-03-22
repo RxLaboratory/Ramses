@@ -42,6 +42,16 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 - On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
 
+## 0.2.12-Alpha
+
+### Improvements
+
+- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Option to hide HUD when rendering a thumbnail or playplast.
+
+### Fixes
+
+- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Fixed an issue where sometimes the file path would not be correctly in the dialog window updated using the "save as/new scene" command.
+
 ## 0.2.11-Alpha
 
 ### New
