@@ -141,6 +141,74 @@ Empty
 }
 ```
 
+## updateScheduleComment
+
+`http://your.server/ramses/?updateScheduleComment`
+
+Updates a comment from the schedule in the database.
+
+**Query attributes:**
+
+- *date*: **string**. The date, formatted as `yyyy-MM-dd hh:mm:ss`.
+- *comment*: **string**. A comment.
+- *color*: **string**. A hex color, starting with a "#".
+- *projectUuid*: **string**. The UUID of the project.
+- *uuid*: **string** (optional). The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
+- *token*: **string**. The session token returned by [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Reply body**:
+
+```json
+{
+    "accepted": true,
+    "query": "updateScheduleComment",
+    "success": true,
+    "message": "Schedule comment updated.",
+    "content": { }
+}
+```
+
+## updateScheduleComments
+
+`http://your.server/ramses/?updateScheduleComments`
+
+Updates several comments from the schedule in the database.
+
+!!! warning
+    This query cannot be *URL* encoded, it must be posted as *JSON*.
+
+**Query attributes:**
+
+- *comments*: **array** of **object**. Eeach comment must be an object with these properties:
+    - *date*: **string**. The date, formatted as `yyyy-MM-dd hh:mm:ss`.
+    - *comment*: **string**. A comment.
+    - *color*: **string**. A hex color, starting with a "#".
+    - *projectUuid*: **string**. The UUID of the project.
+    - *uuid*: **string** (optional). The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
+- *token*: **string**. The session token returned by [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Reply body**:
+
+```json
+{
+    "accepted": true,
+    "query": "updateScheduleComments",
+    "success": true,
+    "message": "Schedule comments updated.",
+    "content": { }
+}
+```
+
 ## removeSchedule
 
 `http://your.server/ramses/?removeSchedule`
