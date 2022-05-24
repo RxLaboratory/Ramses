@@ -55,6 +55,16 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - Username and password are now correctly saved with new servers.
 
+## 0.2.12-Alpha
+
+### Improvements
+
+- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Option to hide HUD when rendering a thumbnail or playplast.
+
+### Fixes
+
+- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Fixed an issue where sometimes the file path would not be correctly in the dialog window updated using the "save as/new scene" command.
+
 ## 0.2.11-Alpha
 
 ### New
