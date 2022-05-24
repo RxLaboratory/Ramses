@@ -268,3 +268,63 @@ Empty
     "content": { }
 }
 ```
+
+## removeScheduleComment
+
+`http://your.server/ramses/?removeScheduleComment`
+
+Removes a comment of the schedule from the database.
+
+**Query attributes:**
+
+- *uuid*: **string**. The comment's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
+- *token*: **string**. The session token returned by [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Reply body**:
+
+```json
+{
+    "accepted": true,
+    "query": "removeScheduleComment",
+    "success": true,
+    "message": "Schedule updated.",
+    "content": { }
+}
+```
+
+## removeScheduleComments
+
+`http://your.server/ramses/?removeScheduleComments`
+
+Removes several comments of the schedule from the database.
+
+!!! warning
+    This query cannot be *URL* encoded, it must be posted as *JSON*.
+
+**Query attributes:**
+
+- *comments*: **array** of **object**. Eeach entry must be an object with these properties:
+    - *uuid*: **string**. The entry's Universal Unique Identifier.
+- *version*: **string**. The version of the client.
+- *token*: **string**. The session token returned by [*login*](general.md#login).
+
+**Reply content:**
+
+Empty
+
+**Reply body**:
+
+```json
+{
+    "accepted": true,
+    "query": "removeScheduleComments",
+    "success": true,
+    "message": "Schedule updated.",
+    "content": { }
+}
+```

@@ -47,6 +47,14 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 - **Client** and **Server**: The schedule now has a dedicated line to add notes/comments.
 
+### Improvements
+
+- The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
+
+### Fixes
+
+- Username and password are now correctly saved with new servers.
+
 ## 0.2.11-Alpha
 
 ### New
