@@ -150,6 +150,12 @@ The server replies with a project object with the following attributes:
     - *comment*: **string**. A comment.
     - *userUuid*: **string**. The UUID of the associated user.
     - *stepUuid*: **string**. The UUID of the associated step.
+- *scheduleComments*: **array** of **object**. The list of schedule comments. Each comment is an object containing these properties:
+    - *uuid*: **string**. The UUID of this comment.
+    - *date*: **string**. The date of the comment, formatted as `yyyy-MM-dd hh:mm:ss`.
+    - *comment*: **string**. A comment.
+    - *color*: **string**. A color in hex format.
+    - *projectUuid*: **string**. The UUID of the associated project.
 
 **Reply body**:
 
@@ -340,7 +346,23 @@ The server replies with a project object with the following attributes:
                     "userUuid":"uuid456",
                     "stepUuid":"uuid789",
                 }
-            ]
+            ],
+            "scheduleComments": [
+                {
+                    "uuid":"uuid23",
+                    "date":"2021-06-13 12:00:00",
+                    "comment":"A comment",
+                    "color":"#2345269",
+                    "projectUuid":"uuid789",
+                },
+                {
+                    "uuid":"uuid45",
+                    "date":"2021-06-14 00:00:00",
+                    "comment":"A comment",
+                    "color":"#FF12BB",
+                    "projectUuid":"uuid789",
+                }
+            ],
         }
 }
 ```
