@@ -42,6 +42,20 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 - On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
 
+## 0.2.13-Alpha
+
+### New
+
+- **Client** and **Server**: The schedule now has a dedicated line to add notes/comments.
+
+### Improvements
+
+- The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
+
+### Fixes
+
+- Username and password are now correctly saved with new servers.
+
 ## 0.2.12-Alpha
 
 ### Improvements
@@ -57,7 +71,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 ### New
 
 - **Client**: Added a timeline to make it easier to manipulate shots, and to be used with future features...
-- **Client** and **Server**: Added sequence colors.
+- **Client** and **Server**: Added sequence color.
 
 ### Improvements
 
@@ -68,6 +82,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 - **Client** and **Server**: Fixed ordering shots and steps.
 - **Client** and **Server**: Fixed changing a schedule item if it had been deleted before.
 - **Server**: Steps estimation method is now correctly returned.
+- **Server**: States are now correctly updated.
 
 ## 0.2.10-Alpha
 
