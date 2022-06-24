@@ -34,10 +34,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ### Client and Daemon
 
--  ***[#137](https://github.com/RxLaboratory/Ramses/issues/107)***: The *SSL* option should be disabled if *openSSL* is not available on the system.
--  ***[#151](https://github.com/RxLaboratory/Ramses/issues/151)***: The client should switch to offline mode when the server session token becomes invalid (server timeout).
 - ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client may crash when removing a project which is not empty.
-- ***[#290](https://github.com/RxLaboratory/Ramses/issues/290)***: The application may crash when logging out, changing the server address, then logging back in. You can simply restart the application to log in the new server.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 
@@ -49,11 +46,16 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ### Improvements
 
-- The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
+- **Client** The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
+- **Maya Add-on**: The *Rubika Flavor* is merged into the official add-on.
+- **Maya Add-on**: Added update command
+- **Maya Add-on**: Added publish settings
+- **Maya Add-on**: Added import and update settings
 
 ### Fixes
 
-- Username and password are now correctly saved with new servers.
+- **Client**: Username and password are now correctly saved with new servers.
+- **Client**: When logged out of the server, the client now shows the reason, and the error if any, before restarting. 
 
 ## 0.2.12-Alpha
 
