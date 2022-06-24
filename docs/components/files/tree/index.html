@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.10-Alpha</a>
+                        <a href="../../..">v0.2.11-Alpha</a>
                     </li>
                 
                 
@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.10-Alpha</a>
+                <a href="../../../../../..">v0.2.11-Alpha</a>
             </li>
         
         
@@ -1340,7 +1340,7 @@
 <p>The easiest way to use Ramses to manage all your projects is to define a root folder for all Ramses projects, where Ramses will create a subfolder for each project.</p>
 <p>This Ramses folder is also used to store user specific files, some configuration files, etc.</p>
 <p>Nevertheless, you can always choose another folder to store a specific project, outside of the Ramses Folder.</p>
-<pre><code class="language-sh">┌ Ramses Folder
+<pre><code class="sh">┌ Ramses Folder
 │
 ├─── Config # Configuration files
 │
@@ -1356,13 +1356,14 @@
   │ └─── Config
   └─── ...
 </code></pre>
+
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>When using the <em>Ramses Client</em>, project folders can be located anywhere outside the <em>Ramses Folder</em>, it is not mandatory to keep them grouped together there.</p>
 </div>
 <h2 id="the-project-folder">The Project Folder</h2>
 <p>These are the contents of a Project folder:</p>
-<pre><code class="language-sh">┌ PROJECTID # Root
+<pre><code class="sh">┌ PROJECTID # Root
 ├─── 00-ADMIN # Project administration
 ├─── 01-PRE-PROD # Pre-production steps common files
 ├─── 02-PROD # Production steps common files
@@ -1371,10 +1372,11 @@
 ├─── 05-SHOTS # All the Shots
 └─── 06-EXPORT # Media files
 </code></pre>
+
 <p>The root folder of a project only contains other folders and no files.</p>
 <p>The subfolders in the root folder are numbered to help sorting them and quickly find them.</p>
 <p>Here is an example of a typical project tree, without showing the details in the working directories nor any file.</p>
-<pre><code class="language-sh">┌ PROJECTID # Root
+<pre><code class="sh">┌ PROJECTID # Root
 │
 ├─── 00-ADMIN
 │
@@ -1413,10 +1415,11 @@
 │
 └─── 06-EXPORT
 </code></pre>
+
 <h2 id="a-working-folder">A working folder</h2>
 <p>A folder containing working files is always organised the same way.</p>
 <p>Here is an example for the modelling step of the asset called <em>Tristan</em>.</p>
-<pre><code class="language-sh">┌ PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
+<pre><code class="sh">┌ PROJECTID_A_TRISTAN_MOD # The working folder, subfolder of the asset folder.
 │
 ├─── PROJECTID_A_TRISTAN_MOD.blend # The main file for modelling Tristan (on Blender)
 ├─── PROJECTID_A_TRISTAN_MOD_Sculpt.blend # Another resource
@@ -1447,6 +1450,7 @@
   ├─── PROJECTID_A_TRISTAN_MOD.jpg # A file for previewing the modelling
   └─── PROJECTID_A_TRISTAN_MOD.mp4 # A file for previewing the modelling
 </code></pre>
+
 <p>The <em>_versions</em> subfolder contains the versionning and history of the work.</p>
 <p>The <em>_published</em> subfolder contains the published and exported files to be used by other steps.</p>
 <p>The <em>_preview</em> subfolder contains the files for previewing the current work, like videos or images. These files may be used by <em>Ramses</em> to generate thumbnails. <em>Ramses</em> is also able to list, preview, and play these files (if their format is standard and supported).</p>
@@ -1466,15 +1470,16 @@
 <p><em>Ramses</em> can use template files to create new working files. You can use this feature with any application, even if there&rsquo;s no <a href="../../addons/"><em>Ramses Add-on</em></a> available for it (yet).</p>
 <p>The template files must be located in each step&rsquo;s <em>Templates</em> subfolder. As you can have multiple templates for a single step, each template must be located in its own subfolder, which itself must respect the <em><a href="#a-working-folder">working folder</a></em> structure.</p>
 <p>Here is an example of a step folder and its templates:</p>
-<pre><code class="language-sh">┌ PROJECTID # Root
+<pre><code class="sh">┌ PROJECTID # Root
 └─┬─ 02-PROD
   └─┬─ PROJECTID_G_MOD # Common files for the MOD step
     └─┬─ Templates # Template files for the mod step
       ├─── PROJECTID_G_MOD_Template # A template
       └─── PROJECTID_G_MOD_Other # Another template
 </code></pre>
+
 <p>A template folder should be organized the same way as any <em><a href="#a-working-folder">working folder</a></em> . Typically, a template folder will look like this:</p>
-<pre><code class="language-sh">┌ PROJECTID_G_MOD_Template # The working folder for the template named &quot;Template&quot;
+<pre><code class="sh">┌ PROJECTID_G_MOD_Template # The working folder for the template named &quot;Template&quot;
 │
 ├─── PROJECTID_G_MOD_Template.blend # The main template file
 │
@@ -1490,6 +1495,7 @@
   └─┬─ 003_OK # The 3rd version, which was published as ok
     └─── PROJECTID_G_MOD_Template.blend # The working file as it was when publishing
 </code></pre>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A template working folder may contain different resources, but even if they&rsquo;re published, <em>Ramses</em> will use only the main resource to create new files from templates and ignore other resources.</p>

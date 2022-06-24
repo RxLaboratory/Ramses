@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.10-Alpha</a>
+                        <a href="../../..">v0.2.11-Alpha</a>
                     </li>
                 
                 
@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.10-Alpha</a>
+                <a href="../../../../../..">v0.2.11-Alpha</a>
             </li>
         
         
@@ -1301,13 +1301,15 @@
                     <li class="third-level"><a href="#main-table">Main table</a></li>
                 <li class="second-level"><a href="#statistics">Statistics</a></li>
                     
+                <li class="second-level"><a href="#timelime">Timelime</a></li>
+                    
         </ul>
     </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/13" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/02/07" /></p>
 <h1 id="asset-and-shot-production-tracking"><img alt="" src="/img/icons/assets_sl.svg" style="width:55px;" /> Asset and shot production tracking</h1>
 <p><img alt="" src="/img/client/assettracking.png" /></p>
 <p>There are two panels to track the production of the <strong>shots</strong> and of the <strong>assets</strong>. From these tables, you can manage the <strong>status</strong> of all the assets and all the shots of the project, check their <strong>completion ratio</strong>, how much <strong>time was spent</strong> for each of them, check the <strong>estimation</strong>, and finally <strong>how late (or not) you are</strong>&hellip;</p>
@@ -1322,8 +1324,6 @@
 <li><img alt="" src="/img/icons/select.svg" style="width:18px;" /> The first button is a selector to let you filter the displayed asset by asset group, or the shots by sequence.</li>
 <li>Use the <strong><em>Search</em></strong> field to filter the shots or assets according to their <strong>names</strong> or <strong>IDS</strong>.</li>
 <li><img alt="" src="/img/icons/show_sl.svg" style="width:18px;" /> View<ul>
-<li><strong><em>Show time tracking</em></strong>: when checked, information about the time spent (and lateness) will be shown on the colored progress bars in the main table.</li>
-<li><strong><em>Show completion</em></strong>: when checked, information about the completion will be shown on the colored progress bars in the main table.</li>
 <li><strong><em>Show details</em></strong>: when checked, the default height of the cells is adjusted to show all details and information.</li>
 </ul>
 </li>
@@ -1358,9 +1358,10 @@
 <h3 id="main-table">Main table</h3>
 <p><img alt="" src="/img/client/productiontable.png" /></p>
 <p>From the main table, you can have a look at all the <strong>status</strong> of all shots or assets, and a summary for steps on the column headers.</p>
-<p>The <strong>progress bar in the step headers</strong> goes from red to green when the <strong>completion ratio</strong> raises. If a second reddish part is shown to the right of the progress bar, it means the production of this step is late; the bigger and the redder it is, the later you are!</p>
+<p>You can use the <code>[Middle Click]</code> to quickly scroll/pan in the table.</p>
+<p>The <strong>progress bar in the step headers</strong> goes from red to green when the <strong>completion ratio</strong> raises.</p>
 <p>The first column contains all the information about the shots or the assets (duration, tags, etc.).</p>
-<p>For all cells, you can open the corresponding folder with the <img alt="" src="/img/icons/go-to-explore-reveal-folder_sl.svg" style="width:18px;" /> <em>folder</em> button, and if you have enough rights you can edit the corresponding shot, asset or status with the <img alt="" src="/img/icons/edit-comment-modify_sl.svg" style="width:18px;" /> <em>edit</em> button.</p>
+<p>For all cells, you can open the corresponding folder with the <img alt="" src="/img/icons/go-to-explore-reveal-folder_sl.svg" style="width:18px;" /> <em>folder</em> button, and if you have enough rights you can click the corresponding cell to edit the details on the side panel.</p>
 <p>When changing the size of the rows, more details can be shown for each task, including a preview image.<br />
 The image is pulled from the <code>_preview</code> subfolder of the shot or the asset folder which you can open with the <img alt="" src="/img/icons/go-to-explore-reveal-folder_sl.svg" style="width:18px;" /> <em>folder</em> button on the top right corner of the cell. <em>Ramses</em> will get the first <em>PNG</em> or <em>JPG</em> <a href="../../files/naming/">correctly named</a> image from the folder, or any other image if a correct one is not found.</p>
 <p>Each cell contains information about a task (the combination of an asset or shot and a step).</p>
@@ -1370,38 +1371,10 @@ The image is pulled from the <code>_preview</code> subfolder of the shot or the 
 <p>The <strong>progress bar</strong> can show multiple information.</p>
 <ul>
 <li>Its color corresponds to the current <a href="../states/">state color</a>.</li>
-<li>It shows a combination of the completion ratio and the time spent on the task, depending on the options checked in the <em>View</em> menu.</li>
+<li>It shows the completion ratio.</li>
 </ul>
-<p>In the following example, the completion is a bit more than 50%, and the color is the default yellow of the <em>Work in progress</em> state.</p>
-<figure>
-  <img src="/img/client/progressadvance.png"/>
-  <figcaption>The darker part shows where we should be after the time spent: we're a bit in advance!</figcaption>
-</figure>
-
-<figure>
-  <img src="/img/client/progresslate.png"/>
-  <figcaption>The darker part shows where we should be after the time spent: we're a bit late.</figcaption>
-</figure>
-
-<figure>
-  <img src="/img/client/progressverylate.png"/>
-  <figcaption>Lateness is shown in red, we're very late...</figcaption>
-</figure>
-
-<p>If you uncheck the <code>View ▸ Show time tracking</code> option, you can view only the completion ratio:</p>
-<p><img alt="" src="/img/client/progresswithouttime.png" /></p>
-<p>When unchecking the <code>View ▸ Show completion</code> option, you can view only the time spent:</p>
-<figure>
-  <img src="/img/client/progresstime.png"/>
-  <figcaption>If it's red, it's not a good sign... Grey would mean we're not late, but red...</figcaption>
-</figure>
-
-<p>Click the <img alt="" src="/img/icons/edit-comment-modify_sl.svg" style="width:18px;" /> <em>edit</em> button to edit the current status.</p>
+<p>Click on any cell to edit its details in a side panel:</p>
 <p><img alt="" src="/img/client/statusedition.png" /></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Unlike other editors, changes made to status are not saved automatically. Don&rsquo;t forget to click the <img alt="" src="/img/icons/apply_sl.svg" style="width:18px;" /> <em>apply</em> button.</p>
-</div>
 <ul>
 <li>Use the colored <strong><em>state</em></strong> box on the top left to change the current state.</li>
 <li>Use the <strong><em>completion</em></strong> slider on the top right to change completion ratio. Just click the slider without dragging to precisely edit the value.</li>
@@ -1413,25 +1386,35 @@ The image is pulled from the <code>_preview</code> subfolder of the shot or the 
 <li>If the task is published and ready to be used and imported in the next step, check the <strong><em>Published</em></strong> box. Again, <em>Ramses</em> should check it automatically if you&rsquo;ve published the task using the <a href="../../addons/"><em>Ramses Add-ons</em></a>.</li>
 <li>The bottom box is used to <strong><em>Assign a user</em></strong> to the task. Leave it to <em>All Users</em> to unassign the task.</li>
 </ul>
-<p>All these settings can be set precisely by the <a href="../../addons/"><em>Ramses Add-ons</em></a> thanks to <a href="../../../pipeline/pipeline/">pipeline</a> automations, and the resulting data can be used for <a href="../../../pipeline/production/">production tracking</a>) and <a href="../../../pipeline/planning/">planning</a></p>
+<p>All these settings can be set precisely by the <a href="../../addons/"><em>Ramses Add-ons</em></a> thanks to <a href="../../../pipeline/pipeline/">pipeline</a> automations, and the resulting data can be used for <a href="../../../pipeline/production/">production tracking</a> and <a href="../../../pipeline/planning/">planning</a></p>
 <p>▹ <strong><a href="../../../pipeline/pipeline/">More details about the pipeline</a></strong>.</p>
 <p>▹ <strong><a href="../../../pipeline/production/">More details about production tracking</a></strong>.</p>
 <p>▹ <strong><a href="../../../pipeline/planning/">More details about planning</a></strong>.</p>
 <p>The bottom part of the status editor shows the available <strong><em>working</em></strong>, <strong><em>published</em></strong> and <strong><em>preview</em></strong> files.</p>
-<p>From these three lists, you can open any file by just double-clicking it. You can restore previous versions of working and published files, and the <img alt="" src="/img/icons/add_sl.svg" style="width:18px;" /> <em>add</em> button in the <em>Work</em> tab can create a new file from a step template (if any template has been published).</p>
+<p>From these three lists, you can open any file by just double-clicking it. You can restore previous versions of working and published files, and the <img alt="" src="/img/icons/create-from-template.svg" style="width:18px;" /> <em>create from template</em> button in the <em>Work</em> tab can create a new file from a step template (if any template has been published).</p>
 <p>Files must respect the <a href="../files/naming"><em>Ramses naming scheme</em></a> and <a href="../../files/tree/">folders</a> to be detected and listed here, but you don&rsquo;t necessarily have to use the <a href="../../addons/"><em>Ramses Add-ons</em></a>, all files will be detected and handled by <em>Ramses</em>.</p>
 <h2 id="statistics"><img alt="" src="/img/icons/counter_bl.svg" style="width:55px;" /> Statistics</h2>
 <p>The <strong><em>Statistics</em></strong> button on the title bar of the application opens a summary of the progress of all steps and the whole project.</p>
 <p><img alt="" src="/img/client/statistics.png" /></p>
 <p>The top part shows the statistics for the whole project.</p>
 <ul>
-<li><strong><em>Time remaining</em></strong> is the count of days before reaching the deadline of the project.</li>
-<li><strong><em>Completion</em></strong> is the global completion of the project.</li>
-<li><strong><em>Lateness</em></strong> is an estimation of the lateness for all steps; 0% means all is well, a negative lateness means there&rsquo;s some advance (no, this never happens), a positive value means the production is late. 100% means it took twice the time originally estimated to get to the current completion ratio!</li>
-<li>The <strong><em>estimation</em></strong> shows how many days are needed, according to all estimations, to finishe the project.</li>
-<li>The last line shows if you need to assign more days in the <a href="../schedule/">schedule</a> (&ldquo;missing&rdquo;) or if you have some extra days planned.</li>
+<li><strong><em>Remaining time</em></strong> is the count of actual days before reaching the deadline of the project.</li>
+<li><strong><em>Completion</em></strong> is the global completion of the project, both as a percentage, and a number of work-days completed (compared to the total estimated work-day count).</li>
+<li><strong><em>Estimated Lateness</em></strong> is an estimation of the lateness for all steps; 0% means all is well, a negative lateness means there&rsquo;s some advance (no, this never happens), a positive value means the production is late. 100% means it took twice the time originally estimated to get to the current completion ratio!</li>
 </ul>
-<p>The same information is available for all steps.</p></div>
+<p>For each step, <em>Ramses</em> also compares the remaining work to the schedule, to warn you if you need to plan more days to complete the given step (or if there are extra days).</p>
+<p>If you pull the row to make it bigger, you can get more details.</p>
+<p><img alt="" src="/img/client/statistics-details.png" /></p>
+<ul>
+<li><strong><em>Assigned</em></strong> shows how many days are assigned in the schedule for the given step, including past and future dates.</li>
+<li><strong><em>Extra / Missing</em></strong> shows how many more days are needed to be assigned to the given step, or how many extra days are assigned, compared to the estimation. To the contrary of the extra or missing days shown above, this value does not take into account how much actual work was already done.</li>
+</ul>
+<h2 id="timelime"><img alt="" src="/img/icons/timeline-time_sl.svg" style="width:55px;" /> Timelime</h2>
+<p>The <strong><em>Timeline</em></strong> button on the title bar of the application opens a timeline panel showing all the shots of the project.</p>
+<p><img alt="" src="/img/client/timeline.png" /></p>
+<p>From this timeline, you can reorder shots, open their folder, or edit their details by just clicking on the corresponding cell. The width of each row depends on the duration of the corresponding shot.</p>
+<p>You can Use <code>[Middle Click]</code> to quickly scroll in the timeline, and you can use the slider on the left to zoom in and out. You can also control the zoom with <code>[Ctrl] + [Middle Click]</code> or with the <code>[Mouse Wheel]</code>.</p>
+<p>When selecting a shot on the timeline, it is also selected in the shot table, and vice versa.</p></div>
         
             <div class="nav-footer">
             <ul>

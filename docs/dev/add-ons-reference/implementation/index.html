@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.10-Alpha</a>
+                        <a href="../../..">v0.2.11-Alpha</a>
                     </li>
                 
                 
@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.10-Alpha</a>
+                <a href="../../../../../..">v0.2.11-Alpha</a>
             </li>
         
         
@@ -1316,7 +1316,7 @@
 </div>
 <h2 id="enumerated-values">Enumerated Values</h2>
 <p><em>Enumerated values</em> (a.k.a. <em>Constants</em>) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they&rsquo;re grouped together by type (for exemple <code>color.RED</code>, or <code>shape.RECTANGLE</code>). The value itself can be of any type (array, string, number&hellip;).</p>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 # Enumerated values are public static attributes of a containing class. They're declared like this:
 class Group():
@@ -1330,7 +1330,8 @@ class Color():
     GREEN = [0,255,0]
     BLUE = [0,0,255]
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 // Enumerated values are attributes in simple objects. They're declared like this:
 var Group = {
@@ -1346,6 +1347,7 @@ var Color = {
     BLUE: [0,0,255]
 };
 </code></pre>
+
 <h2 id="accessing-the-data">Accessing the data</h2>
 <p>In All &ldquo;<em>RamClasses</em>&rdquo;, most of the data is retrieved with methods (instead of accessing it directly from an attribute). This allows the API to get the data from three different locations:</p>
 <ul>
@@ -1373,7 +1375,7 @@ var Color = {
 </li>
 </ul>
 <p>Here are example concepts in Python and ExtendScript, like what&rsquo;s done in the provided implementations of the <em>Ramses Add-ons</em> API.</p>
-<pre><code class="language-py"># Python
+<pre><code class="py"># Python
 
 class RamClass( object ):
 
@@ -1420,7 +1422,8 @@ class RamClass( object ):
 
         return self.__someMutableData
 </code></pre>
-<pre><code class="language-js">// ExtendScript
+
+<pre><code class="js">// ExtendScript
 
 function RamClass( someImmutableData='', someMutableData='' )
 {
@@ -1482,6 +1485,7 @@ RamClass.prototype.someImmutableData = function ()
 }
 
 </code></pre>
+
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04" /></p></div>
         
             <div class="nav-footer">

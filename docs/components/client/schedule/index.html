@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.10-Alpha</a>
+                        <a href="../../..">v0.2.11-Alpha</a>
                     </li>
                 
                 
@@ -808,7 +808,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.10-Alpha</a>
+                <a href="../../../../../..">v0.2.11-Alpha</a>
             </li>
         
         
@@ -1307,7 +1307,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/14" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/02/07" /></p>
 <h1 id="schedule-and-planning"><img alt="" src="/img/icons/calendar_sl.svg" style="width:55px;" /> Schedule and planning</h1>
 <p><img alt="" src="/img/client/schedule2.png" /></p>
 <p>You can use the schedule panel to plan the production, per user and per step.</p>
@@ -1379,7 +1379,19 @@
 <h2 id="statistics"><img alt="" src="/img/icons/counter_bl.svg" style="width:55px;" /> Statistics</h2>
 <p>The <strong><em>Statistics</em></strong> button on the title bar of the application opens a summary of the progress of all steps and the whole project.</p>
 <p><img alt="" src="/img/client/statistics.png" /></p>
-<p>For the project and each step, you can read the total number of days you have to assign (the <strong><em>estimation</em></strong>), and for each step, you can read how many days have been <strong>assigned</strong> and how many are <strong>missing</strong> or how many <strong>extra</strong> days are assigned.</p></div>
+<p>The top part shows the statistics for the whole project.</p>
+<ul>
+<li><strong><em>Remaining time</em></strong> is the count of actual days before reaching the deadline of the project.</li>
+<li><strong><em>Completion</em></strong> is the global completion of the project, both as a percentage, and a number of work-days completed (compared to the total estimated work-day count).</li>
+<li><strong><em>Estimated Lateness</em></strong> is an estimation of the lateness for all steps; 0% means all is well, a negative lateness means there&rsquo;s some advance (no, this never happens), a positive value means the production is late. 100% means it took twice the time originally estimated to get to the current completion ratio!</li>
+</ul>
+<p>For each step, <em>Ramses</em> also compares the remaining work to the schedule, to warn you if you need to plan more days to complete the given step (or if there are extra days).</p>
+<p>If you pull the row to make it bigger, you can get more details.</p>
+<p><img alt="" src="/img/client/statistics-details.png" /></p>
+<ul>
+<li><strong><em>Assigned</em></strong> shows how many days are assigned in the schedule for the given step, including past and future dates.</li>
+<li><strong><em>Extra / Missing</em></strong> shows how many more days are needed to be assigned to the given step, or how many extra days are assigned, compared to the estimation. To the contrary of the extra or missing days shown above, this value does not take into account how much actual work was already done.</li>
+</ul></div>
         
             <div class="nav-footer">
             <ul>

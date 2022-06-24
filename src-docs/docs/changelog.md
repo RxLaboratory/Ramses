@@ -37,6 +37,31 @@ The detailed list of planned features and enhancements is [available on *Github*
 - ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client may crash when removing a project which is not empty.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
+- On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
+
+## 0.2.13-Alpha
+
+### New
+
+- **Client** and **Server**: The schedule now has a dedicated line to add notes/comments.
+
+### Improvements
+
+- The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
+
+### Fixes
+
+- Username and password are now correctly saved with new servers.
+
+## 0.2.12-Alpha
+
+### Improvements
+
+- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Option to hide HUD when rendering a thumbnail or playplast.
+
+### Fixes
+
+- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Fixed an issue where sometimes the file path would not be correctly in the dialog window updated using the "save as/new scene" command.
 
 ## 0.2.13-Alpha
 
