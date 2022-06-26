@@ -29,7 +29,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v0.2.11-Alpha: index.md
+    - v0.2.14-Alpha: index.md
     - Quick start: quickstart.md
     - Principles:
         - Introduction: pipeline/index.md
@@ -74,7 +74,6 @@ nav:
             - Autodesk Maya:
                 - Maya Add-on: components/addons/maya.md
                 - Extensibility: components/addons/maya-extend.md
-                - Rubika Flavor: components/addons/maya-rubika.md
         - Ramses Tree:
             - Introduction: components/files/index.md
             - Naming scheme: components/files/naming.md

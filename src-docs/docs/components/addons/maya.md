@@ -6,7 +6,7 @@
 
 It is an example of an implementation of an add-on using the [*Ramses Python API*](../../dev/add-ons-reference) but it is already well suited for use in production.
 
-As well as all other [*Ramses Add-ons*](index.md), the *Ramses Maya Add-on* includes the main features like versionning, publishing and production tracking with *Ramses*, but [it can be extended to automate your workflow](maya-extend.md). An example of such an extension is provided as the [*Ramses Maya Add-on __Rubika Flavor__*](maya-rubika.md).
+As well as all other [*Ramses Add-ons*](index.md), the *Ramses Maya Add-on* includes the main features like versionning, publishing and production tracking with *Ramses*, but [it can be extended to automate your workflow](maya-extend.md).
 
 This Add-on can be used with or without being connected to the *Ramses Daemon* (and the *Ramses Client Application*). If it is connected to the *Daemon*, it will automatically update the production tracking data.
 
@@ -52,16 +52,19 @@ To handle all file naming and sorting, *Ramses* includes commands to replace all
 | --- | --- | --- |
 |  ![](../../img/icons/ramses-small.svg){ style="width:28px"} **Open the _Ramses_ App** | `ramOpenRamses` | Launches the *Ramses Client Application* (if its path is correctly set in the settings).
 |  ![](../../img/icons/save.svg){ style="width:28px"} [**Save**](#save) | `ramSave` | Saves and backups the current scene; this save command is also used for production tracking. |
-|  ![](../../img/icons/comment.svg){ style="width:28px"} [**Comment**](#comment) | `ramSave` | Associates a comment wit the current version file. |
+|  ![](../../img/icons/comment.svg){ style="width:28px"} [**Comment**](#comment) | `ramSave` | Associates a comment wit the current scene file. |
 |  ![](../../img/icons/saveversion.svg){ style="width:28px"} [**Incremental Save**](#incremental-save) | `ramSaveVersion` | Saves and increments the version of the current scene. |
-|  ![](../../img/icons/savestatus.svg){ style="width:28px"} [**Update Status**](update-status-and-publish) | `ramSaveVersion` | Saves and increments the version of the current scene, while updating its current production tracking status. |
+|  ![](../../img/icons/savestatus.svg){ style="width:28px"} [**Update Status / Publish**](#update-status-and-publish) | `ramSaveVersion` | Saves and increments the version of the current scene, while updating its current production tracking status. Optionally publishes the asset/shot. |
 |  ![](../../img/icons/preview.svg){ style="width:28px"} [**Create Preview**](#preview) | `ramPreview` | Creates a preview (thumbnail or playblast) of the current scene. |
-|  ![](../../img/icons/saveas.svg){ style="width:28px"} [**Save as**](#save-as) | `ramSaveAs` | Saves the scene as a new Asset, Shot or General item. |
-|  ![](../../img/icons/template.svg){ style="width:28px"} [**Template**](#template) | `ramPublishTemplate` | Saves the current scene as a new template for the current scene. |
+|  ![](../../img/icons/ramsaveas.png){ style="height:28px"} [**Save as**](#save-as) | `ramSaveAs` | Saves the scene as a new Asset, Shot or General item. |
+|  ![](../../img/icons/template.svg){ style="width:28px"} [**Template**](#template) | `ramPublishTemplate` | Saves the current scene as a new template for the current step. |
+|  ![](../../img/icons/ramsetupscene.png){ style="width:28px"} [**Setup scene**](#setup-scene) | `ramSetupScene` | Setups the scene to make it Ramses-friendly. |
 |  ![](../../img/icons/open.svg){ style="width:28px"} [**Open**](#open-and-import) | `ramOpen` | Opens an Asset, Shot or Template. |
 |  ![](../../img/icons/import.svg){ style="width:28px"} [**Import**](#open-and-import) | `ramOpen` | Imports an Asset, Shot or Template. |
 |  ![](../../img/icons/replace.svg){ style="width:28px"} [**Replace**](#open-and-import) | `ramOpen` | Replaces selected nodes with another Asset, Shot or Template. |
+|  ![](../../img/icons/ramupdate.png){ style="width:28px"} [**Update**](#update) | `ramUpdate` | Updates assets and shots included in the scene. |
 |  ![](../../img/icons/restoreversion.svg){ style="width:28px"} [**Retrieve Version**](#retrieve-version) | `ramRetrieveVersion` | Retrieves and restores a previous version of the current scene. |
+|  ![](../../img/icons/rampublishsettings.png){ style="width:28px"} [**Publish settings**](#publish-settings) | `ramPublishSettings` | Sets the default publish settings for steps. |
 |  ![](../../img/icons/gotosettings.svg){ style="width:28px"} [**Settings**](#settings) | `ramSettings` | Opens the settings dialog for the *Ramses Add-on*. |
 
 ## ![](../../img/icons/save.svg){ style="width:32px"} Save
@@ -134,14 +137,14 @@ cmds.ramSaveVersion( updateStatus=False )
 
 The *Update Status* runs the *Incremental Save* command and updates the current production status of the current Asset or Shot.
 
-A dialog is shown with a few options ot update the status, and to choose to also publish the scene, and create a preview for it. This dialog may differ depending on the use of the *Ramses Client Application* or not.
+A dialog is shown with a few options to update the status, and to choose to also publish the scene, and create a preview for it. This dialog may differ depending on the use of the *Ramses Client Application* or not.
 
 <figure>
   <img src="../../../img/maya/updatestatus.png"/>
   <figcaption>This is the status dialog when connected to the <i>Ramses Client Application</i>.</figcaption>
 </figure>
 
-- You can set the new ***State*** with the drop down list at the top right; the list of the states is retrieved from the *Ramses Daemon*.
+- You can set the new ***State*** with the drop down list at the top left; the list of the states is retrieved from the *Ramses Daemon*.
 - The slider and percentage is used to set a new ***Completion Ratio***.
 - The ***Comment*** field is used to update the comment displayed in the production tracking tools and tables of *Ramses*.
 
@@ -182,10 +185,32 @@ cmds.ramSaveVersion(publish = True, preview = True, us = False)
 
 ### Publication
 
-The publication of the scene is done in two steps:
+The publication of the scene is done in several steps:
 
-1. The Scene is saved in the `_published` subfolder. This is the folder from which the scene can be imported or referenced into other Assets and Shots.
-2. *Ramses* then calls any potential publish function registered by the pipeline tools or an extension of the Add-On, like the [*Rubika Flavor*](maya-rubika.md).
+1. If the *Ramses Daemon* is available, *Ramses* checks if there are publish settings available.  
+    If no settings were found, or if the user checked the box to edit the settings, a dialog window is shown to let the user adjust the publish settings.
+2. The Scene is saved in the `_published` subfolder. This is the folder from which the scene and published files can be imported or referenced into other Assets and Shots.
+3. One or several files are published, according to the settings.
+4. *Ramses* then calls any potential publish function registered by the pipeline tools or an extension of the Add-On.
+
+#### Publish format
+
+![Publish settings: Format](/img/maya/publishsettings_format.png)  
+*This is the settings window as it is shown if no settings were given by the* Ramses Daemon*.*
+
+You can set the file format in the first tab, or choose a preset to automatically load predefined settings.
+
+Presets are stored in a folder inside the Maya module folder. You can save or load a preset with `Edit ► Save preset...` and `Edit ► Load preset...`.
+
+The text area on the right shows the preset as a text. This text can be copied and pasted in the publish settings of any step in the *Ramses Client Application*, to be automatically used when publishing files for the given step. In this case, this settings window will not be shown anymore, unless the user checks the *Edit publish settings* box when saving the scene.
+
+This text uses the [*Yaml*](https://yaml.org/) syntax, which can easily be edited manually.
+
+#### Publish nodes
+
+![Publish settings: Nodes](/img/maya/publishsettings_nodes.png)  
+
+Before publishing, you can select the nodes to publish or not, and rename them.
 
 ## ![](../../img/icons/preview.svg){ style="width:32px"} Preview
 

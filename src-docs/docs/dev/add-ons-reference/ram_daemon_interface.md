@@ -23,30 +23,31 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 
 | Method | Arguments | Description | Dev Notes |
 | --- | --- | --- | --- |
-| ***constructor*** | *integer*: **port**=`18185` | |
+| ***constructor*** | • *integer*: **port**=`18185` | |
 | **daemonVersion**<br />▹ *string* |  | The current version of the *Daemon* | *TODO: change the `ping` method to store the version in a private attribute* |
 | **getAssets**<br />▹ *Object / Dict* | | Gets the list of the assets for the current project |
-| **getAsset**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific asset. The name is optional, as short names *should* be unique. | |
+| **getAsset**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific asset. The name is optional, as short names *should* be unique. | |
 | **getAssetGroups***<br />▹ *Object / Dict* | | Gets the list of the asset groups for the current project | |
 | **getCurrentProject**<br />▹ *Object / Dict* | | Gets the current project | |
-| **getCurrentStatus**<br />▹ *Object / Dict* | *string*: **itemShortName**,<br />*string* : **itemName**,<br />*string*: **step**,<br />*ItemType*: **itemType**=`ItemType.SHOT` | Gets the status for the specific step for the item. `itemType` must be one of: `ItemType.SHOT` or `ItemType.ASSET` | |
-| **getCurrentStatuses**<br />▹ *Object / Dict* | *string*: **itemShortName**,<br />*string* : **itemName**,<br />*string*: **step**,<br />*ItemType*: **itemType**=`ItemType.SHOT` | Gets the list of status (one per step) for the item. `itemType` must be one of: `ItemType.SHOT` or `ItemType.ASSET` | |
+| **getCurrentStatus**<br />▹ *Object / Dict* | • *string*: **itemShortName**,<br />• *string* : **itemName**,<br />• *string*: **step**,<br />• *ItemType*: **itemType**=`ItemType.SHOT` | Gets the status for the specific step for the item. `itemType` must be one of: `ItemType.SHOT` or `ItemType.ASSET` | |
+| **getCurrentStatuses**<br />▹ *Object / Dict* | • *string*: **itemShortName**,<br />• *string* : **itemName**,<br />• *string*: **step**,<br />• *ItemType*: **itemType**=`ItemType.SHOT` | Gets the list of status (one per step) for the item. `itemType` must be one of: `ItemType.SHOT` or `ItemType.ASSET` | |
 | **getCurrentUser**<br />▹ *Object / Dict* | | Gets the current user | |
 | **getProjects**<br />▹ *Object / Dict* | | Gets the list of available projects |
-| **getProject**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific project. The name is optional, as short names *should* be unique. | |
+| **getProject**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific project. The name is optional, as short names *should* be unique. | |
 | **getRamsesFolderPath**<br />▹ *Object / Dict* | | Gets the main Ramses folder containing projects, config files, user files... | |
 | **getPipes**<br />▹ *Object / Dict* | | Gets the list of pipes for the current project | TODO |
-| **getShots**<br />▹ *Object / Dict* | *string*: **filter**=`""` | Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard `"*"` | |
-| **getShot**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific shot. The name is optional, as short names *should* be unique. | |
+| **getShots**<br />▹ *Object / Dict* | • *string*: **filter**=`""` | Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard `"*"` | |
+| **getShot**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific shot. The name is optional, as short names *should* be unique. | |
 | **getStates**<br />▹ *Object / Dict* | | Gets the list of available states |
-| **getState**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific state. The name is optional, as short names *should* be unique. | |
+| **getState**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific state. The name is optional, as short names *should* be unique. | |
 | **getSteps**<br />▹ *Object / Dict* | | Gets the list of the steps for the current project |
-| **getStep**<br />▹ *Object / Dict* | *string*:**shortName**,<br />*string*:**name**=`""` | Gets a specific step. The name is optional, as short names *should* be unique. | |
+| **getStep**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific step. The name is optional, as short names *should* be unique. | |
 | **online**<br />▹ *boolean* | | True if the *Daemon* is available |
 | **ping**<br />▹ *Object / Dict*  | | Gets the version and current user of the *Ramses Daemon* |
 | **raiseWindow** | | Raises the Ramses Client application main window |
-| **setCurrentProject**<br />▹ *Object / Dict*  | *string*: **shortName** | Sets the current project |
-| **setStatus** | *string*: **itemShortName**,<br />*string*: **itemName**,<br />*string*: **step**,<br />*ItemType*: **itemType**=`ItemType.SHOT`,<br />*string*: **state**=`""`,<br />*string*: **comment**=`""`,<br />*string*: **completionRatio**=`-1`,<br />*int*: **version**=`0`,<br />*boolean*: **published**=`false`,<br />*string*: **user**=`undefined` | Sets a new status for the item. | |
+| **setCurrentProject**<br />▹ *Object / Dict*  | • *string*: **shortName** | Sets the current project |
+| **setPublishSettings** | • *string*: **stepShortName**,<br />• *string*: **stepName**,<br />• *string*: **settings** | Sets new publish settings for the step. | |
+| **setStatus** | • *string*: **itemShortName**,<br />• *string*: **itemName**,<br />• *string*: **step**,<br />• *ItemType*: **itemType**=`ItemType.SHOT`,<br />• *string*: **state**=`""`,<br />• *string*: **comment**=`""`,<br />• *string*: **completionRatio**=`-1`,<br />• *int*: **version**=`0`,<br />• *boolean*: **published**=`false`,<br />• *string*: **user**=`undefined` | Sets a new status for the item. | |
 
 ## Examples
 

@@ -39,16 +39,17 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 - On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
 
-## 0.2.13-Alpha
+## 0.2.14-Alpha
 
 ### New
 
 - **Client** and **Server**: The schedule now has a dedicated line to add notes/comments.
+- **Client**, **Server** and **Add-ons**: Added publish settings to steps, to be used with add-ons.
 
 ### Improvements
 
-- **Client** The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
-- **Client**: Added publish settings to steps, to be used with add-ons.
+- **Client**: The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
+- **Client**: Changing the file type of a step automatically updates the custom settings accordingly.
 - **Maya Add-on**: The *Rubika Flavor* is merged into the official add-on.
 - **Maya Add-on**: Added update command
 - **Maya Add-on**: Added publish settings

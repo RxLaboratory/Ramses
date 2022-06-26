@@ -90,3 +90,33 @@ Reply:
     }
 }
 ```
+
+## setPublishSettings
+
+Sets new publish settings for the step.
+
+### Query attributes
+
+- *setPublishSettings*
+- *shortName*: **string**. The short name of the step.
+- *name*: **string**. The name of the step.
+- *settings*: **string**. The new settings.
+
+### Reply content
+
+None.
+
+### Example
+
+Query:  
+`setPublishSettings&shortName=MOD&name=Modeling&settings=great settings`
+
+Reply:  
+```json
+{
+    "accepted": true,
+    "query": "setPublishSettings",
+    "success": true,
+    "message": "Settings set.",
+}
+```

@@ -152,7 +152,7 @@ Returns the current status list (one per step) for a given item (shot or asset).
 - *getCurrentStatuses*
 - *shortName*: **string**. The item short name.
 - *name*: **string**. The item name.
-- *type*: **string**. One of `"ASSET"` or `"SHOT"`.
+- *type*: **string**. One of `"A"` or `"S"`.
 
 ### Reply content
 
@@ -202,5 +202,42 @@ Reply:
             
         ]
     }
+}
+```
+
+## setStatus
+
+Sets a new status to an item
+
+### Query attributes
+
+- *setStatus*
+- *shortName*: **string**. The item short name.
+- *name*: **string**. The item name.
+- *step*: **string**. The short name of the step.
+- *type*: **string**. The type of item, either `"A"` or `"S"`.
+- *state*: **string**. The short name of the state.
+- *comment*: **string**. The comment.
+- *published*: **boolean**. Whether the item has been published or not.
+- *completionRatio*: **int**. The completion ration in %.
+- *version*: **int**. The current version.
+- *user*: **string**. The short name of the user.
+
+### Reply content
+
+None.
+
+### Example
+
+Query:  
+`setStatus&shortName=TRI&name=Tristan&step=MOD&type=A&state=WIP&comment=A Comment&published=true&completionRatio=55&version=42&user=Duf`
+
+Reply:  
+```json
+{
+    "accepted": true,
+    "query": "setStatus",
+    "success": true,
+    "message": "Status updated."
 }
 ```
