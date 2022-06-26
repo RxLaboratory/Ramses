@@ -47,30 +47,6 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ### Improvements
 
-- The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
-
-### Fixes
-
-- Username and password are now correctly saved with new servers.
-
-## 0.2.12-Alpha
-
-### Improvements
-
-- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Option to hide HUD when rendering a thumbnail or playplast.
-
-### Fixes
-
-- **Maya Add-On** and **Maya Add-on Rubika Flavor**: Fixed an issue where sometimes the file path would not be correctly in the dialog window updated using the "save as/new scene" command.
-
-## 0.2.13-Alpha
-
-### New
-
-- **Client** and **Server**: The schedule now has a dedicated line to add notes/comments.
-
-### Improvements
-
 - **Client** The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
 - **Maya Add-on**: The *Rubika Flavor* is merged into the official add-on.
 - **Maya Add-on**: Added update command
