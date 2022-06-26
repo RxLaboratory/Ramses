@@ -67,6 +67,7 @@ The server replies with a project object with the following attributes:
     - *name*: **string**. The name.
     - *shortName*: **string**. The short name.
     - *comment*: **string**. A comment for this step.
+    - *publishSettings*: **string**. Custom settings to be used when publishing files for this step.
     - *uuid*: **string**. The Universal Unique Identifier of this step.
     - *projectUuid*: **string**. The UUID of the project.
     - *type*: **string**. One of `asset`, `shot`, `pre`, or `post`.
@@ -169,6 +170,7 @@ The server replies with a project object with the following attributes:
             "name": "Mythomen",
             "shortName": "Mytho",
             "comment": "A comment",
+            "publishSettings": "- A YAML-formatted setting list",
             "uuid": "2d7d7e01-671c-11e7-a78f-4ccc6a288527",
             "folderPath": "PROJECTS/MYTHO",
             "framerate": 25.0,
