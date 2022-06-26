@@ -183,7 +183,7 @@ cmds.ramSaveVersion(publish = True, us = False)
 cmds.ramSaveVersion(publish = True, preview = True, us = False)
 ```
 
-### Publication
+### Publish
 
 The publication of the scene is done in several steps:
 
@@ -193,7 +193,7 @@ The publication of the scene is done in several steps:
 3. One or several files are published, according to the settings.
 4. *Ramses* then calls any potential publish function registered by the pipeline tools or an extension of the Add-On.
 
-#### Publish format
+### Publish format
 
 ![Publish settings: Format](/img/maya/publishsettings_format.png)  
 *This is the settings window as it is shown if no settings were given by the* Ramses Daemon*.*
@@ -206,7 +206,7 @@ The text area on the right shows the preset as a text. This text can be copied a
 
 This text uses the [*Yaml*](https://yaml.org/) syntax, which can easily be edited manually.
 
-#### Publish nodes
+### Publish nodes
 
 ![Publish settings: Nodes](/img/maya/publishsettings_nodes.png)  
 
