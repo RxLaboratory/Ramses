@@ -48,6 +48,7 @@ The detailed list of planned features and enhancements is [available on *Github*
 ### Improvements
 
 - **Client** The status of the connexion (offline, connected, secured) is now shown on the status bar. A warning is logged when the connexion is not secured.
+- **Client**: Added publish settings to steps, to be used with add-ons.
 - **Maya Add-on**: The *Rubika Flavor* is merged into the official add-on.
 - **Maya Add-on**: Added update command
 - **Maya Add-on**: Added publish settings
