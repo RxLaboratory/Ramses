@@ -16,8 +16,9 @@ Inherited by: *[RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **objectName**<br />*string*: **objectShortName** | |
-| **name**<br />▹ *string* | | |
-| **shortName**<br />▹ *string* | | |
+| **comment**<br />▹ *string* | | The comment for this object. |
+| **name**<br />▹ *string* | | The name of this object. |
+| **shortName**<br />▹ *string* | | The short name (ID) of this object. |
 
 ## Special
 
