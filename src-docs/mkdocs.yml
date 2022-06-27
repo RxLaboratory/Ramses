@@ -73,6 +73,7 @@ nav:
             - General Information: components/addons/index.md
             - Autodesk Maya:
                 - Maya Add-on: components/addons/maya.md
+                - Maya pipeline (Publish and import): components/addons/maya-publish.md
                 - Extensibility: components/addons/maya-extend.md
         - Ramses Tree:
             - Introduction: components/files/index.md

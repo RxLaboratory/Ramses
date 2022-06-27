@@ -2,7 +2,7 @@
 
 # Scripting API reference
 
-[*Rainbox Laboratory*](https://rainboxlab.org) provides a reference implementation of the API in *Python* and *Adobe ExtendScript*.
+[*RxLaboratory*](https://rxlaboratory.org) provides a reference implementation of the API in *Python* and *Adobe ExtendScript*.
 
 Other APIs may be developped, in which case all these APIs on all programming/scripting language should implement this reference, with the same classes, attributes and methods.
 

@@ -4,7 +4,7 @@
 
 Ramses, which is and stays free, could not exist without [**your support**](http://donate.rxlab.info) and **contributions**. **Many thanks to all people who made this possible**.
 
-Copyright © 2021 Nicolas Dufresne, RxLaboratory and Contributors. All Rights Reserved - https://rxlaboratory.org
+Copyright © 2021-2022 Nicolas Dufresne, RxLaboratory and Contributors. All Rights Reserved - https://rxlaboratory.org
 
 Special thanks to [all the supporters of Duduf on Patreon](https://patreon.com/duduf).
 
@@ -28,7 +28,7 @@ Special thanks to [all the supporters of Duduf on Patreon](https://patreon.com/d
 - Mickaël Gantois
 - Philippe Meis
 - Camilo José Rivera Varona
-- Rubika - Supinfocom & the Promotheus
+- Rubika - Supinfocom, the Promotheus & the Promhub
 
 ### Translations
 

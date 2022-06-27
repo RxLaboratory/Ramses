@@ -87,7 +87,7 @@ Feel free to try and use it, and study it. As explained just before, all the ext
 
 - [`Ramses.publishScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene is being published.
 
-When *Ramses* publishes a scene, it first copies the scene file to the publish folder, and then calls all the scripts listed there. Each callback you add to this list must take three arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
+When *Ramses* publishes a scene, it calls all the scripts listed there. There already is a script which provides the default implementation; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). Each callback you add to this list must take a few arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
 
 - [`Ramses.statusScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene status changes.
 
@@ -95,9 +95,9 @@ When *Ramses* updates a status, it first copies the scene file to the version fo
 
 - [`Ramses.importScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when the user selects an item (shot or asset) to import.
 
-By default, if and only if the list is empty, *Ramses* imports the selected item in the current scene, in a group named after the item, and in another group named after the asset group if it is an asset. Adding new callbacks to the list will de-activate this default behaviour so you can use your own methods for importing items. Each callback you add to this list must take two arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
+There already is a script which provides the default implementation for importing items; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). . Each callback you add to this list must take a few arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
 
-There are two ways to register your methods: by using a *Maya* command, or by [forking](https://github.com/Rainbox-dev/Ramses-Maya) the provided Add-On to add your functions.
+There are two ways to register your methods: by using a *Maya* command, or by [forking](https://github.com/RxLaboratory/Ramses-Maya) the provided Add-On to add your functions.
 
 Once the callbacks have been registered, they are automatically called when the user interacts with the add-on and wants to update/import/publish an item.
 
@@ -118,6 +118,11 @@ To register your callbacks, you just have to append them in the corresponding `R
 from ramses import Ramses
 # Now we just have to add the callbacks
 ramses = Ramses.instance()
+# First, remove callbacks provided by the Ramses addon,
+# to replace them with our own
+ramses.publishScripts = []
+ramses.importScripts = []
+ramses.statusScripts = []
 # A publish method
 ramses.publishScripts.append( aPublishMethod )
 # An import method
@@ -241,6 +246,12 @@ from ramses import Ramses
 
 # Get the ramses instance
 ramses = Ramses.instance()
+
+# First, remove callbacks provided by the Ramses addon,
+# to replace them with our own
+ramses.publishScripts = []
+ramses.importScripts = []
+ramses.statusScripts = []
 
 # Add the callbacks to the publish list
 ramses.publishScripts.append( publishAsset )

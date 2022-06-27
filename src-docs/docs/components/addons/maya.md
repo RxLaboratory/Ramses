@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2022/06/27)
 
 # ![](../../img/icons/maya_sd.svg){: style="width:48px;" } Ramses Maya Add-on
 
@@ -12,7 +12,7 @@ This Add-on can be used with or without being connected to the *Ramses Daemon* (
 
 ## Installation
 
-- [Download](https://github.com/Rainbox-dev/Ramses-Maya/archive/refs/heads/main.zip) and unzip the module.  
+- [Download](https://rxlaboratory.org/download-ramses/) and unzip the module.  
     To quickly deploy the module on several workstations, choose a shared location; the module can then be shared with all workstations and updated at once.
 - Edit `Ramses.mod` with a text editor, and replace the path in the first line with the absolute path where you've unzipped the module.
 
@@ -193,24 +193,7 @@ The publication of the scene is done in several steps:
 3. One or several files are published, according to the settings.
 4. *Ramses* then calls any potential publish function registered by the pipeline tools or an extension of the Add-On.
 
-### Publish format
-
-![Publish settings: Format](/img/maya/publishsettings_format.png)  
-*This is the settings window as it is shown if no settings were given by the* Ramses Daemon*.*
-
-You can set the file format in the first tab, or choose a preset to automatically load predefined settings.
-
-Presets are stored in a folder inside the Maya module folder. You can save or load a preset with `Edit ► Save preset...` and `Edit ► Load preset...`.
-
-The text area on the right shows the preset as a text. This text can be copied and pasted in the publish settings of any step in the *Ramses Client Application*, to be automatically used when publishing files for the given step. In this case, this settings window will not be shown anymore, unless the user checks the *Edit publish settings* box when saving the scene.
-
-This text uses the [*Yaml*](https://yaml.org/) syntax, which can easily be edited manually.
-
-### Publish nodes
-
-![Publish settings: Nodes](/img/maya/publishsettings_nodes.png)  
-
-Before publishing, you can select the nodes to publish or not, and rename them.
+**▹ Read the [publishing guide for *Maya*](maya-publish.md) for more information about the *Maya* pipeline.**
 
 ## ![](../../img/icons/preview.svg){ style="width:32px"} Preview
 
@@ -252,7 +235,7 @@ When rendering the playblasts, *Ramses* does not only renders them as usual *May
 - Use `[S]` for frame-by-frame playing.
 - Hit `[Q]` to quickly quit the player.
 
-## ![](../../img/icons/saveas.svg){ style="width:32px"} Save As
+## ![](../../img/icons/ramsaveas.png){ style="width:32px"} Save As
 
 The *Save As* command can be used to create a new Asset or Shot, or save any other new file, while automatically naming and locating it.
 
@@ -306,6 +289,32 @@ import maya.cmds as cmds
 cmds.ramPublishTemplate()
 ```
 
+## ![](../../img/icons/ramsetupscene.png){ style="width:32px"} Setup scene
+
+The Setup scene command runs some checks on the current scene and makes sure everything works according to the current project.
+
+![](/img/maya/scenesetup.png)
+
+Ramses will automatically add the `Ramses_Publish` and `Ramses_DelOnPublish` sets if they're missing, and checks these values to optionally fix them:
+
+- The frame rate (if the current scene is a Shot)
+- The duration (if the current scene is a Shot)
+- The rendering resolution
+- The camera used in the render settings
+- The name of the selected camera
+
+These checks are automatically run when the scene is saved.
+
+The *Mel* and *Python* corresponding command is: `ramSetupScene`.
+
+```py
+# Python
+import maya.cmds as cmds
+
+# Checks the scene settings and shows a dialog if something is wrong
+cmds.ramSetupScene()
+```
+
 ## ![](../../img/icons/open.svg){ style="width:32px"} Open, ![](../../img/icons/import.svg){ style="width:32px"} Import, ![](../../img/icons/replace.svg){ style="width:32px"} Replace
 
 The *Open and Import* command automatically finds available scenes from your projects.
@@ -336,6 +345,25 @@ cmds.ramOpen(i=true)
 cmds.ramOpen(r=true)
 ```
 
+## ![](../../img/icons/ramupdate.png){ style="width:32px"} Update
+
+Use the Update command to update (or downgrade) the assets included in the scene.
+
+![](/img/maya/update.png)
+
+For each asset, you can select which version to use in the scene and automatically replace it. The update command is able to update to a newer or downgrade to a previous version.
+
+The *Mel* and *Python* corresponding command is: `ramUpdate`.
+
+
+```py
+# Python
+import maya.cmds as cmds
+
+# Shows the update dialog
+cmds.ramUpdate()
+```
+
 ## ![](../../img/icons/restoreversion.svg){ style="width:32px"} Retrieve Version
 
 The *Retrieve version* command can be used to check and restore a previous version of the current scene.
@@ -351,6 +379,10 @@ import maya.cmds as cmds
 # Shows the retrieve version dialog
 cmds.ramRetrieveVersion()
 ```
+
+## ![](../../img/icons/rampublishsettings.png){ style="width:32px"} Publish Settings
+
+**▹ Read the [publishing guide for *Maya*](maya-publish.md) for more information about the *Maya* pipeline.**
 
 ## ![](../../img/icons/gotosettings.svg){ style="width:32px"} Settings
 

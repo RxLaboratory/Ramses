@@ -1,6 +1,6 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/08/03)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/06/27)
 
-# Ramses - The Rainbox Asset Management System
+# Ramses - The Rx Asset Management System
 
 !!! warning
     **Ramses is still under active development**, and this documentation is still being written.  
@@ -192,7 +192,7 @@ This program is free software; you can redistribute them and/or modify them unde
 
 ### Icons and other graphical elements
 
-All graphical elements, especially icons, are from [***RxUI***](http://rxui-docs.rainboxlab.org) by Nicolas Dufresne and [RxLaboratory](https://rainboxlab.org) are licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+All graphical elements, especially icons, are from [***RxUI***](http://rxui.rxlab.guide) by Nicolas Dufresne and [RxLaboratory](https://rxlaboratory.org) are licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 <span style="font-size:0.75em;">**Copyright (C) 2021 Nicolas Dufresne and Contributors.**
 
