@@ -6,15 +6,15 @@ Here's all you need to know before you start using *Ramses*. Follow these few st
 
 ## Introduction
 
-*Ramses* can help you [**automate your workflow**](pipeline/pipeline.md), [**track**](pipeline/production.md) and [**plan**](pipeline/planning.md) your production. For this, it's made of several different [**components**](components/index.md), which can work both hand in hand or independently:
+*Ramses* can help you [**automate your workflow**](../pipeline/pipeline.md), [**track**](../pipeline/production.md) and [**plan**](../pipeline/planning.md) your production. For this, it's made of several different [**components**](../components/index.md), which can work both hand in hand or independently:
 
-- the [*Ramses Server*](components/server/index.md) shares the *Ramses* metadata between several workstations. Users don't have any direct access to the server, it is managed by your administrator.
-- the [***Ramses Client Application***](components/client/index.md) is the heart of *Ramses* on your workstation. It's the main *Ramses* interface.
-- the [***Ramses Add-ons***](components/addons/index.md) can be scripts, extensions, plugins, add-ons for your creative software and handle the versionning and publishing of your files.
+- the [*Ramses Server*](../components/server/index.md) shares the *Ramses* metadata between several workstations. Users don't have any direct access to the server, it is managed by your administrator.
+- the [***Ramses Client Application***](../components/client/index.md) is the heart of *Ramses* on your workstation. It's the main *Ramses* interface.
+- the [***Ramses Add-ons***](../components/addons/index.md) can be scripts, extensions, plugins, add-ons for your creative software and handle the versionning and publishing of your files.
 
 *Ramses* is modular; that means you don't need to use all components together: it's not mandatory to have access to a *Ramses Server* to use the application, and the *Add-ons* can also work independently.
 
-No matter what, all these components also expect you to have a least a few predefined folders available in your computer or a shared location to store some data. That's the [***Ramses Tree***](components/files/index.md).
+No matter what, all these components also expect you to have a least a few predefined folders available in your computer or a shared location to store some data. That's the [***Ramses Tree***](../components/files/index.md).
 
 Follow the next steps to learn how to use *Ramses* and all of these components.
 
@@ -22,7 +22,7 @@ Follow the next steps to learn how to use *Ramses* and all of these components.
     Although in the future the *Ramses Client Application* will be able to be used as a stand-alone, offline application, **the currently available *Alpha or Beta Versions* absolutely need a connection to a _Ramses Server_** (there's no offline storage of the data for now). That's temporary.
 
 !!! Note
-    For now, the only official *Add-on* available is the one for [*Autodesk Maya*](components/addons/maya.md), but others will follow soon (for *Blender*, *After Effects*, *Nuke*...)
+    For now, the only official *Add-on* available is the one for [*Autodesk Maya*](../components/addons/maya.md), but others will follow soon (for *Blender*, *After Effects*, *Nuke*...)
 
     As *Ramses* is free and open source, and provides easy-to-use [APIs](../dev/add-ons-reference/index.md) in *Python* and *Adobe ExtendScript*, other users may have developped other unofficial add-ons.
 
@@ -30,10 +30,10 @@ Follow the next steps to learn how to use *Ramses* and all of these components.
 
 Although *Ramses* is made to be as simple as possible to use, it's a production tool which both helps and needs you to be organized, and you'll have to familiarize yourself with its organization.
 
-- Read this documentation before installing everything and clicking everywhere! The [*Principles*](pipeline/index.md) section and the [*Ramses Tree*](components/files/index.md) section are especially important.
-- In [files and folders](components/files/index.md), it is important to respect the [*Ramses* naming scheme](components/files/naming.md); take some time to familiarize yourself with it.
+- Read this documentation before installing everything and clicking everywhere! The [*Principles*](../components/index.md) section and the [*Ramses Tree*](../components/files/index.md) section are especially important.
+- In [files and folders](../components/files/index.md), it is important to respect the [*Ramses* naming scheme](../components/files/naming.md); take some time to familiarize yourself with it.
 - On some systems (*Linux* and sometimes *Mac OS* depending on its settings), the case matters in file and folder names. Even on *Windows*, it is safer to assume that the name `Tristan` is different than `tristan`.
-- *Ramses* is just a piece of software. It's dumb. The folder name `_preview` is not the same as `preview`. Be careful with [naming conventions](components/files/naming.md) and [folder structure](components/files/tree.md).
+- *Ramses* is just a piece of software. It's dumb. The folder name `_preview` is not the same as `preview`. Be careful with [naming conventions](../components/files/naming.md) and [folder structure](../components/files/tree.md).
 
 ## 1 - Check the Ramses folder, the *Ramses Tree*
 
@@ -42,7 +42,7 @@ In order to work correctly, *Ramses* expects a few folders to be available on yo
 - You must have a __*Ramses* main folder__, which stores at least some configuration files. In default configurations, this folder actually stores everything you need : user files, project files, etc. In this case, it should contain at least two subfolders: `Users` and `Projects`. The `Projects` subfolder is the most important one: it is there you'll work and save all your data.
 - You may store your __project files in separate folders__, either locally or in a shared location; in this case, for each project, you'll have to know where its folder is. It's in this specific location that you'll work and save your data instead of the *Ramses* main folder.
 
-▹ [__More details about the *Ramses Tree*__](components/files/index.md).
+▹ [__More details about the *Ramses Tree*__](../components/files/index.md).
 
 ### 1.A - Project folders
 
@@ -56,22 +56,22 @@ In short, a project folder should contain *at least* these subfolders.
 - `05-SHOTS` contains shot working files (with a subfolder for each shot).
 - `06-EXPORTS` contains media files for the whole project.
 
-Sorting your files this way enables a lot of features in *Ramses* (thumbnails in the UI, direct access to the files from the *Ramse Client Application*, automatic time tracking, etc.). Read the details about [naming conventions](components/files/naming.md) and the [folder structure](components/files/tree.md) to know more.
+Sorting your files this way enables a lot of features in *Ramses* (thumbnails in the UI, direct access to the files from the *Ramse Client Application*, automatic time tracking, etc.). Read the details about [naming conventions](../components/files/naming.md) and the [folder structure](../components/files/tree.md) to know more.
 
-▹ [__More details about the file and folder structure__](components/files/index.md).
+▹ [__More details about the file and folder structure__](../components/files/index.md).
 
 ## 2 - The Ramses Client Application
 
-The [*Ramses Client Application*](components/client/index.md) is the main User Interface of *Ramses*.
+The [*Ramses Client Application*](../components/client/index.md) is the main User Interface of *Ramses*.
 
 !!! Warning
     Although in the future the *Ramses Client* will be able to be used as a stand-alone, offline application, **the currently available *Alpha or Beta Versions* absolutely need a connection to a _Ramses Server_** (there's no offline storage of the data for now). That's temporary.
 
 ### 3.A - Installation
 
-[Installing the application](components/client/install.md) is standard and very simple, depending on your system. Instructions are available in the [documentation](components/client/install.md) here.
+[Installing the application](../components/client/install.md) is standard and very simple, depending on your system. Instructions are available in the [documentation](../components/client/install.md) here.
 
-Before starting to use the [*Ramses Client Application*](components/client/index.md) there are a few steps to configure it correctly.
+Before starting to use the [*Ramses Client Application*](../components/client/index.md) there are a few steps to configure it correctly.
 
 ### 3.B - Settings
 
@@ -95,7 +95,7 @@ The ***Secure connexion*** box should be checked by default. Only with some serv
 
 That's all, now you can log in, using your user name and password as given by your administrator.
 
-▹ [__All other settings are explained here__](components/client/settings.md).
+▹ [__All other settings are explained here__](../components/client/settings.md).
 
 ### 3.C - Project settings
 
@@ -105,7 +105,7 @@ If you're joining an existing project, and your administrator gave you a specifi
 
 By default, the project is located inside the *Ramses* main folder as defined in step *3.B* but you can override it in this panel.
 
-▹ [__Project settings are detailed here__](components/client/project.md).
+▹ [__Project settings are detailed here__](../components/client/project.md).
 
 ### 3.D - Folders, file access and thumbnails
 
@@ -116,7 +116,7 @@ From the ![](/img/icons/assets_sl.svg){: style="width:18px;"} *Assets* or ![](/i
 ![](/img/client/assettracking.png)
 
 When changing the size of the rows, more details can be shown for each task, including a preview image.  
-The image is pulled from the `_preview` subfolder of the shot or the asset folder which you can open with the ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} *folder* button on the top right corner of the cell. *Ramses* will get the first *PNG* or *JPG* [correctly named](components/files/naming.md) image from the folder, or any other image if a correct one is not found.
+The image is pulled from the `_preview` subfolder of the shot or the asset folder which you can open with the ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} *folder* button on the top right corner of the cell. *Ramses* will get the first *PNG* or *JPG* [correctly named](../components/files/naming.md) image from the folder, or any other image if a correct one is not found.
 
 Each cell contains information about a task (the combination of an asset or shot and a step).
 
@@ -124,4 +124,4 @@ Each cell contains information about a task (the combination of an asset or shot
 
 ## 4 - Install the *Ramses Add-Ons*
 
-Finally, you can install the [*Ramses Add-ons*](components/addons/index.md) you need. Installation differs depending on the host application (*Maya*, *Blender*, *After Effects*...), [read the doc](components/addons/index.md) for more information.
+Finally, you can install the [*Ramses Add-ons*](../components/addons/index.md) you need. Installation differs depending on the host application (*Maya*, *Blender*, *After Effects*...), [read the doc](../components/addons/index.md) for more information.

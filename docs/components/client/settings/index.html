@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
     
-    <title>Settings - Ramses</title>
+    <title>Overview and settings - Ramses</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li class="active">
-    <a href="./">Settings</a>
+    <a href="./">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../addons/maya-extend/">Extensibility</a>
+    <a href="../../addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level active"><a href="./">Settings</a></li>
+                                    <li class="third-level active"><a href="./">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1302,6 +1328,8 @@
                     <li class="third-level"><a href="#status-bar">Status bar</a></li>
                     <li class="third-level"><a href="#console">Console</a></li>
                     <li class="third-level"><a href="#user-profile">User Profile</a></li>
+                    <li class="third-level"><a href="#lists">Lists</a></li>
+                    <li class="third-level"><a href="#comments">Comments</a></li>
                 <li class="second-level"><a href="#settings">Settings</a></li>
                     
                     <li class="third-level"><a href="#appearance">Appearance</a></li>
@@ -1338,15 +1366,7 @@
 <p>The title bar show the main buttons to switch the panels on the left, and the visibility buttons on the right. Click and drag an empty space of the title bar to move the whole window.</p>
 <p><img alt="" src="/img/client/projectselector.png" /></p>
 <p>In the middle of the title bar is the selector where you can select the project you&rsquo;re currently working on.</p>
-<p>The buttons on the right section change the size and visibility of the window.</p>
-<ul>
-<li><img alt="" src="/img/icons/minimize.svg" style="width:18px;" /> Minimize</li>
-<li><img alt="" src="/img/icons/maximize.svg" style="width:18px;" /> Maximize</li>
-<li><img alt="" src="/img/icons/hide_sd.svg" style="width:18px;" /> Hide. The application will not close but sit in the system tray.</li>
-<li><img alt="" src="/img/icons/quit.svg" style="width:18px;" /> Quit</li>
-</ul>
-<p>Once logged in, the left section shows the buttons for the different panels.</p>
-<p><img alt="" src="/img/client/loggedintitlebar.png" /></p>
+<p><img alt="" src="/img/icons/hide_sd.svg" style="width:18px;" /> Hide. The application will not close but sit in the system tray.</p>
 <p>Which panels and buttons are available depends on <a href="../../../pipeline/administration/">the <strong>role</strong> of the current user</a>, and there may be fewer buttons than on the picture above.</p>
 <ul>
 <li><img alt="" src="/img/icons/admin.svg" style="width:18px;" /> <a href="../admin/">Administration</a> panel (<em>Administrators</em> only).</li>
@@ -1368,22 +1388,6 @@
 <li>The <strong><em>user</em></strong> button (which shows your user name, or <em>Guest</em> if you&rsquo;re not logged in yet) gives access to a few user options (see below).</li>
 <li><img alt="" src="/img/icons/gotosettings.svg" style="width:18px;" /> The <em>settings</em> button leads you to the settings of the application.</li>
 <li><img alt="" src="/img/icons/help.svg" style="width:18px;" /> The <em>help</em> button shows a small menu with useful shortcuts.</li>
-</ul>
-<h4 id="the-help-menu">The help menu</h4>
-<p><img alt="" src="/img/client/helpmenu.png" /></p>
-<ul>
-<li><strong><em>Help</em></strong> leads you to this documentation.</li>
-<li><strong><em>About</em></strong> shows a popup window with a few information about <em>Ramses</em> and other legal information.</li>
-<li><strong><em>Bug Report</em></strong> is a shortcut to the <a href="https://github.com/RxLaboratory/Ramses/issues/new/choose">bug report form</a>, in case you have any feedback to share about the application.</li>
-<li><strong><em>Chat</em></strong> is a shortcut to our <a href="http://chat.rxlab.info">chatroom</a>, currently hosted by a <em>Discord Server</em>, where you can get support for <em>Ramses</em> and have a chat with other users.</li>
-<li><strong><em>About Qt</em></strong> shows a popup window with a few information about <em>Qt</em>, the free and open source <em>C++</em> framework used to develop the application.</li>
-</ul>
-<h4 id="the-user-menu">The user menu</h4>
-<p><img alt="" src="/img/client/loggedinstatusbar.png" /></p>
-<ul>
-<li><img alt="" src="/img/icons/go-to-explore-reveal-folder_sl.svg" style="width:18px;" /> The <em>User folder</em> button opens your folder in your file explorer.</li>
-<li><img alt="" src="/img/icons/user-settings_sl.svg" style="width:18px;" /> The <em>Profile</em> button shows the user profile panel when you can update your information and password.</li>
-<li><img alt="" src="/img/icons/logout_sl.svg" style="width:18px;" /> The <em>Log out</em> button logs you out and sets the application to offline mode.</li>
 </ul>
 <h3 id="console">Console</h3>
 <p><img alt="" src="/img/client/console.png" /></p>
@@ -1407,6 +1411,20 @@
 </ul>
 </li>
 </ul>
+<h3 id="lists">Lists</h3>
+<p><img alt="" src="../../../img/client/list.png" /></p>
+<p>There are a lot of lists in <em>Ramses</em>&hellip;</p>
+<p>In all lists, you can grab the bottom margin of any row to reveal more details. Clicking on a item opens the corresponding properties in a side panel. If you need to select several items, you can click and hold while dragging the mouse to select contiguous items, or you can hold <code>[Ctrl]</code> while clicking items to select individual items.</p>
+<p>The search bar uses both IDs and names to find items.</p>
+<p>In most of the lists, <code>[Del]</code> and <code>[Shift] + [X]</code> can be used to remove items. <code>[Middle Click]</code> can be used to scroll the list, as the <code>[Mouse Wheel]</code> does too.</p>
+<h3 id="comments">Comments</h3>
+<p><img alt="" src="../../../img/client/comment-formatted.png" /></p>
+<p>In many places, you can add <em>Comments</em> in <em>Ramses</em>. These comments can be simple texts, but they can also be formatted using the <a href="https://www.markdownguide.org/"><em>Markdown</em></a> syntax.</p>
+<p>Start by writing some text, and validate your input with <code>[Enter]</code> from the numpad. <em>Ramses</em> will interpret the text to display a nice rich text.</p>
+<p>You can get back to the source to edit the text in more details using the <code>[F2]</code> key.</p>
+<p><img alt="" src="../../../img/client/comment-source.png" /></p>
+<p>Use the <code>[Right Click]</code> context menu for other options.</p>
+<p><img alt="" src="../../../img/client/comment-format-context-menu.png" /></p>
 <h2 id="settings"><img alt="" src="/img/icons/gotosettings.svg" style="width:48px;" /> Settings</h2>
 <p>To open the settings panel, click on the <img alt="" src="/img/icons/gotosettings.svg" style="width:18px;" /> settings button at the bottom right corner of the window.</p>
 <div class="admonition note">

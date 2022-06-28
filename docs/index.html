@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="img/favicon.ico">
 
     
-    <title>v0.2.11-Alpha - Ramses</title>
+    <title>v0.2.14-Alpha - Ramses</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -72,13 +72,28 @@
                 
                 
                     <li class="active">
-                        <a href=".">v0.2.11-Alpha</a>
+                        <a href=".">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="components/client/settings/">Settings</a>
+    <a href="components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="components/addons/maya-extend/">Extensibility</a>
+    <a href="components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -786,7 +801,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="quickstart/">
+                        <a rel="next" href="quickstart/administrator/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -808,13 +823,24 @@
         
         
             <li class="active">
-                <a href=".">v0.2.11-Alpha</a>
+                <a href=".">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1294,7 +1320,7 @@
     </div>
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
-            <li class="first-level active"><a href="#ramses-the-rainbox-asset-management-system">Ramses - The Rainbox Asset Management System</a></li>
+            <li class="first-level active"><a href="#ramses-the-rx-asset-management-system">Ramses - The Rx Asset Management System</a></li>
                 <li class="second-level"><a href="#whats-this">What's this?</a></li>
                     
                     <li class="third-level"><a href="#free-and-open-source">▹ Free and open source</a></li>
@@ -1318,8 +1344,8 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/08/03" /></p>
-<h1 id="ramses-the-rainbox-asset-management-system">Ramses - The Rainbox Asset Management System</h1>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/06/27" /></p>
+<h1 id="ramses-the-rx-asset-management-system">Ramses - The Rx Asset Management System</h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>Ramses is still under active development</strong>, and this documentation is still being written.  </p>
@@ -1380,7 +1406,6 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 <p><strong>▹ <a href="changelog/">Read the changelog for more details about what&rsquo;s going on, and known issues</a></strong></p>
 <p>Here are some of the features which are not available yet but which will be available in the future.</p>
 <ul>
-<li><strong>Full <em>SSL</em> encryption</strong> when connecting to the server. <em>SSL</em> may already be available on <em>Linux</em> and will be available on <em>Windows</em> and <em>Mac OS</em> shortly. If <em>Ramses</em>&lsquo; beta versions can already be tested without it, it is a mandatory feature for the release versions, as the security of your data is non-negociable.</li>
 <li>The <strong>Dashboard</strong> will be an area where each user accesses all its important data and schedule. It comes with notifications so you won&rsquo;t miss any change concerning your assets, shots and steps.</li>
 <li>The <strong>Offline mode</strong> for the <em>Ramses Client Application</em> will make it easier to use for one-man bands; you will be able to use <em>Ramses</em> without having to install the server. This also means you&rsquo;ll still be able to use <em>Ramses</em> even if you&rsquo;re not connected to the network, when you&rsquo;re in a train or on top of a mountain.</li>
 <li><strong>Project Planning</strong>: a simple but indispensable tool to easily plan the production of the project, at the very beginning of the production. With this planning tool you will be able to set the important dates of the production, the deadlines for each step, all in an easy-to-use and visual panel.</li>
@@ -1391,93 +1416,8 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 <li>A lot of <strong>UI improvements</strong> and tweaks are planned too, and work will be done to improve the performance of the <em>Ramses Client Application</em> even further.</li>
 <li><strong><em>Syncthing</em> integration</strong> will provide <a href="https://syncthing.net/">a free, open, and secure way to synchronize</a> all files and data of your production accross multiple workstations, servers, NAS, etc.</li>
 </ul>
-<p>There&rsquo;s also a lot of ongoing work to extend the supported creative applications through <em>Ramses</em> Add-ons. This table shows what&rsquo;s planned, what&rsquo;s already available, what will be available soon.</p>
-<table>
-<thead>
-<tr>
-<th>Application</th>
-<th>Scripting Language</th>
-<th>Status</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="dev/add-ons-reference/">API</a></td>
-<td>Python</td>
-<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
-<td>A Beta version is already available.</td>
-</tr>
-<tr>
-<td><a href="dev/add-ons-reference/">API</a></td>
-<td>ExtendScript</td>
-<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
-<td>For Adobe Creative Cloud</td>
-</tr>
-<tr>
-<td><a href="dev/add-ons-reference/">API</a></td>
-<td>UXP</td>
-<td><img alt="icon" src="img/icons/red_circle.png" style="width:16px;" /></td>
-<td>For Adobe Creative Cloud<br/><em>UXP</em> is a new scripting environment for Adobe Software. <em>Ramses</em> won&rsquo;t officially support it until it is mature enough, which is not the case as of July 2020. This being said, the <em>ExtendScript</em> API may be compatible with <em>UXP</em>.</td>
-</tr>
-<tr>
-<td>Adobe After Effects</td>
-<td>ExtendScript</td>
-<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
-<td></td>
-</tr>
-<tr>
-<td>Adobe Illustrator</td>
-<td>ExtendScript</td>
-<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
-<td>Low-priority</td>
-</tr>
-<tr>
-<td>Adobe Photoshop</td>
-<td>ExtendScript</td>
-<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="components/addons/maya/">Autodesk Maya</a></td>
-<td>Python</td>
-<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
-<td>A Beta version is already available.</td>
-</tr>
-<tr>
-<td>Autodesk Maya<br/><a href="#">Rubika Flavor</a></td>
-<td>Python</td>
-<td><img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /></td>
-<td>A Beta version is already available.</td>
-</tr>
-<tr>
-<td>Blender</td>
-<td>Python</td>
-<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
-<td></td>
-</tr>
-<tr>
-<td>Inkscape</td>
-<td>Python</td>
-<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
-<td>Low-priority</td>
-</tr>
-<tr>
-<td>Krita</td>
-<td>Python</td>
-<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
-<td></td>
-</tr>
-<tr>
-<td>The Foundry Nuke</td>
-<td>Python</td>
-<td><img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Legend:<br />
-<img alt="icon" src="img/icons/green_tick.png" style="width:16px;" /> Available | <img alt="icon" src="img/icons/blue_circle.png" style="width:16px;" /> In development | <img alt="icon" src="img/icons/orange_diamond.png" style="width:16px;" /> Planned | <img alt="icon" src="img/icons/red_circle.png" style="width:16px;" /> Not supported</p>
+<p>There&rsquo;s also a lot of ongoing work to extend the supported creative applications through <em>Ramses</em> Add-ons.</p>
+<p><strong>▹ <a href="components/addons/">Read the <em>Add-ons</em> section for a detailed list of existing and planned add-ons</a></strong></p>
 <p><img alt="" src="img/client/home.png" /></p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
@@ -1514,8 +1454,8 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 <li><a href="components/addons/">General information</a></li>
 <li>Autodesk Maya<ul>
 <li><a href="components/addons/maya/">Autodesk Maya Add-on</a></li>
+<li><a href="components/addons/maya-publish/">Maya pipeline (publish and import)</a></li>
 <li><a href="components/addons/maya-extend/">Extensibility</a></li>
-<li><a href="components/addons/maya-rubika/">The Rubika Flavor</a></li>
 </ul>
 </li>
 </ul>
@@ -1557,7 +1497,7 @@ This program is free software; you can redistribute them and/or modify them unde
 <p><span style="font-size:0.75em;">You should have received a copy of the <em>GNU General Public License</em> along with this program . If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</span></p>
 <p><img alt="GNU" src="img/licenses/gnu.png" style="height:75px;" /> <img alt="GPL3" src="img/licenses/gplv3.png" style="height:50px;" /></p>
 <h3 id="icons-and-other-graphical-elements">Icons and other graphical elements</h3>
-<p>All graphical elements, especially icons, are from <a href="http://rxui-docs.rainboxlab.org"><strong><em>RxUI</em></strong></a> by Nicolas Dufresne and <a href="https://rainboxlab.org">RxLaboratory</a> are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
+<p>All graphical elements, especially icons, are from <a href="http://rxui.rxlab.guide"><strong><em>RxUI</em></strong></a> by Nicolas Dufresne and <a href="https://rxlaboratory.org">RxLaboratory</a> are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 <p><span style="font-size:0.75em;"><strong>Copyright (C) 2021 Nicolas Dufresne and Contributors.</strong></p>
 <p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="CC" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height:35px;" /> <img alt="BY" src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height:35px;" /> <img alt="NC" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height:35px;" /> <img alt="SA" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" style="height:35px;" /></a></p>
 <h3 id="this-documentation">This Documentation</h3>
@@ -1575,7 +1515,7 @@ A copy of the license is included in the section entitled &ldquo;<a href="licens
                     </a>
                 </li>
                 <li class="nav-footer-next">
-                    <a rel="next" href="quickstart/">
+                    <a rel="next" href="quickstart/administrator/">
                         Next <i class="fas fa-arrow-right"></i>
                     </a>
                 </li>
@@ -1679,6 +1619,6 @@ A copy of the license is included in the section entitled &ldquo;<a href="licens
 </html>
 
 <!--
-MkDocs version : 1.0.4
-Build Date UTC : 2022-02-08 15:19:33
+MkDocs version : 1.1.2
+Build Date UTC : 2022-06-28 12:04:23.453877+00:00
 -->

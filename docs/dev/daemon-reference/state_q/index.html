@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../../components/client/settings/">Settings</a>
+    <a href="../../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1315,6 +1341,11 @@
                     <li class="third-level"><a href="#query-attributes_3">Query attributes</a></li>
                     <li class="third-level"><a href="#reply-content_3">Reply content</a></li>
                     <li class="third-level"><a href="#example_3">Example</a></li>
+                <li class="second-level"><a href="#setstatus">setStatus</a></li>
+                    
+                    <li class="third-level"><a href="#query-attributes_4">Query attributes</a></li>
+                    <li class="third-level"><a href="#reply-content_4">Reply content</a></li>
+                    <li class="third-level"><a href="#example_4">Example</a></li>
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1342,7 +1373,7 @@
 <p>Query:<br />
 <code>getState&amp;shortName=TODO</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getState&quot;,
     &quot;success&quot;: true,
@@ -1355,7 +1386,6 @@
         }
 }
 </code></pre>
-
 <h2 id="getstates">getStates</h2>
 <p>Returns the list of available states.</p>
 <h3 id="query-attributes_1">Query attributes</h3>
@@ -1377,7 +1407,7 @@
 <p>Query:<br />
 <code>getStates</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getStates&quot;,
     &quot;success&quot;: true,
@@ -1406,7 +1436,6 @@
     }
 }
 </code></pre>
-
 <h2 id="getcurrentstatus">getCurrentStatus</h2>
 <p>Returns the current status of a given step for a given item (shot or asset).</p>
 <h3 id="query-attributes_2">Query attributes</h3>
@@ -1432,7 +1461,7 @@
 <p>Query:<br />
 <code>getCurrentStatus&amp;shortName=TRI&amp;name=Tristan&amp;type=ASSET&amp;step=RIG</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getCurrentUser&quot;,
     &quot;success&quot;: true,
@@ -1448,7 +1477,6 @@
         }
 }
 </code></pre>
-
 <h2 id="getcurrentstatuses">getCurrentStatuses</h2>
 <p>Returns the current status list (one per step) for a given item (shot or asset).</p>
 <h3 id="query-attributes_3">Query attributes</h3>
@@ -1456,7 +1484,7 @@
 <li><em>getCurrentStatuses</em></li>
 <li><em>shortName</em>: <strong>string</strong>. The item short name.</li>
 <li><em>name</em>: <strong>string</strong>. The item name.</li>
-<li><em>type</em>: <strong>string</strong>. One of <code>"ASSET"</code> or <code>"SHOT"</code>.</li>
+<li><em>type</em>: <strong>string</strong>. One of <code>"A"</code> or <code>"S"</code>.</li>
 </ul>
 <h3 id="reply-content_3">Reply content</h3>
 <p>The <em>Daemon</em> replies with the list of status.</p>
@@ -1476,7 +1504,7 @@
 <p>Query:<br />
 <code>getCurrentStatuses&amp;shortName=TRI&amp;name=Tristan&amp;type=ASSET</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getCurrentStatuses&quot;,
     &quot;success&quot;: true,
@@ -1504,6 +1532,35 @@
 
         ]
     }
+}
+</code></pre>
+<h2 id="setstatus">setStatus</h2>
+<p>Sets a new status to an item</p>
+<h3 id="query-attributes_4">Query attributes</h3>
+<ul>
+<li><em>setStatus</em></li>
+<li><em>shortName</em>: <strong>string</strong>. The item short name.</li>
+<li><em>name</em>: <strong>string</strong>. The item name.</li>
+<li><em>step</em>: <strong>string</strong>. The short name of the step.</li>
+<li><em>type</em>: <strong>string</strong>. The type of item, either <code>"A"</code> or <code>"S"</code>.</li>
+<li><em>state</em>: <strong>string</strong>. The short name of the state.</li>
+<li><em>comment</em>: <strong>string</strong>. The comment.</li>
+<li><em>published</em>: <strong>boolean</strong>. Whether the item has been published or not.</li>
+<li><em>completionRatio</em>: <strong>int</strong>. The completion ration in %.</li>
+<li><em>version</em>: <strong>int</strong>. The current version.</li>
+<li><em>user</em>: <strong>string</strong>. The short name of the user.</li>
+</ul>
+<h3 id="reply-content_4">Reply content</h3>
+<p>None.</p>
+<h3 id="example_4">Example</h3>
+<p>Query:<br />
+<code>setStatus&amp;shortName=TRI&amp;name=Tristan&amp;step=MOD&amp;type=A&amp;state=WIP&amp;comment=A Comment&amp;published=true&amp;completionRatio=55&amp;version=42&amp;user=Duf</code></p>
+<p>Reply:  </p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;setStatus&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Status updated.&quot;
 }
 </code></pre></div>
         

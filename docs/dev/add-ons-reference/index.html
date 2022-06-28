@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../..">v0.2.11-Alpha</a>
+                        <a href="../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../components/client/settings/">Settings</a>
+    <a href="../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../..">v0.2.11-Alpha</a>
+                <a href="../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1311,7 +1337,7 @@
 
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/09/08" /></p>
 <h1 id="scripting-api-reference">Scripting API reference</h1>
-<p><a href="https://rainboxlab.org"><em>Rainbox Laboratory</em></a> provides a reference implementation of the API in <em>Python</em> and <em>Adobe ExtendScript</em>.</p>
+<p><a href="https://rxlaboratory.org"><em>RxLaboratory</em></a> provides a reference implementation of the API in <em>Python</em> and <em>Adobe ExtendScript</em>.</p>
 <p>Other APIs may be developped, in which case all these APIs on all programming/scripting language should implement this reference, with the same classes, attributes and methods.</p>
 <p>As this document is referring to different scripting languages, it uses general terms which may be different than what is actually used in specific languages.</p>
 <p><em>(TODO: ADD THE LINK TO THE GITHUB REPOS OF THE APIs / LINK TO GET THEM ON RXLAB.ORG)</em></p>
@@ -1447,7 +1473,7 @@
 <h2 id="examples">Examples</h2>
 <p>Here are a few examples showing how this API can be used.</p>
 <h3 id="include-import-the-api">Include / Import the API</h3>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 # Use your usual preferred way to import the module.
 
 from ramses import *
@@ -1477,8 +1503,7 @@ aNewStatus = ram.RamStatus(
     )
 myShot.setStatus(aNewStatus, myRamses.currentStep())
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 // Just include the file the usual way.
 
 #include ramses.jsxinc
@@ -1494,11 +1519,10 @@ var aNewStatus = new RamStatus(
     );
 myShot.setStatus(aNewStatus, myRamses.currentStep());
 </code></pre>
-
 <h3 id="enumerated-values-constants">Enumerated values (constants)</h3>
 <p>Enumerated values (a.k.a. Constants) are predefined sets of values to be used in specific methods. Their name is in CAPITAL_SNAKE_CASE, and they’re grouped together by type (for exemple Color.RED, or Shape.RECTANGLE). The value itself can be of any type (array, string, number…).</p>
 <p>In this documentation they&rsquo;re written like this: <code>ValueType.VALUE</code>, i.e. <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code>, and they&rsquo;re used the same way in the actual code.</p>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 from ramses import RamItem, ItemType
 
@@ -1511,8 +1535,7 @@ if anItem is not None:
     if anItem.itemType() == ItemType.SHOT:
         doSomething()
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 #include ramses.jsxinc
 
@@ -1527,10 +1550,9 @@ if (anItem != null)
         doSomething();
 }
 </code></pre>
-
 <h3 id="save-command-for-maya-python">Save command for <em>Maya</em> (Python)</h3>
 <p>This example shows how to use the <a href="ram_file_manager/">RamFileManager</a> class to implement a save command in <em>Maya</em> with automatic backup in the <em>_versions</em> subfolder.</p>
-<pre><code class="python">import maya.cmds as cmds
+<pre><code class="language-python">import maya.cmds as cmds
 import ramses as ram
 
 ramses = ram.Ramses.instance()

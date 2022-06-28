@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../..">v0.2.11-Alpha</a>
+                        <a href="../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../components/client/settings/">Settings</a>
+    <a href="../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../..">v0.2.11-Alpha</a>
+                <a href="../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1326,7 +1352,6 @@ Content-Length: 153
 
 uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&amp;shortName=ANIM&amp;name=Animation&amp;type=shot&amp;comment=&amp;color=%23c992ff&amp;version=0.2.9&amp;token=94393b8e6396fb2bb295552d6d122544d5db1d1f
 </code></pre>
-
 <p>And this is the same query using <em>JSON</em> encoding:</p>
 <p><em>URL</em>: <code>http://your.server/ramses/?createStep</code></p>
 <pre><code>POST /ramses HTTP/1.1
@@ -1338,7 +1363,6 @@ Content-Length: 181
 
 {&quot;uuid&quot;:&quot;b615b4be-66fd-5fd3-8095-2074155a29a8&quot;,&quot;shortName&quot;:&quot;ANIM&quot;,&quot;name&quot;:&quot;Animation&quot;,&quot;type&quot;:&quot;shot&quot;,&quot;comment&quot;:&quot;&quot;,&quot;color&quot;:&quot;#c992ff&quot;,&quot;version&quot;:&quot;0.2.9&quot;,&quot;token&quot;:&quot;94393b8e6396fb2bb295552d6d122544d5db1d1f&quot;}
 </code></pre>
-
 <p>The parameters to use in the body are described in the next sections of this reference. The <em>Cookie</em> is set by the server on the first connection, the <em>User-Agent</em> is set by the client.</p>
 <p>The server replies with a <em>JSON</em> object in the body.</p>
 <p>For almost all queries (i.e. all but <em>ping</em> and <em>login</em>) you&rsquo;ll need to be logged in. Initiating a connection to the server usually follows these steps:</p>

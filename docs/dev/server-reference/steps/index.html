@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../../components/client/settings/">Settings</a>
+    <a href="../../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1346,7 +1372,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createStep&quot;,
     &quot;success&quot;: true,
@@ -1354,7 +1380,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="updatestep">updateStep</h2>
 <p><code>http://your.server/ramses/?updateStep</code></p>
 <p>Update step info in the database.</p>
@@ -1363,6 +1388,7 @@
 <li><em>name</em>: <strong>string</strong>. The new (or current for no change) name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The new (or current for no change) shortName.</li>
 <li><em>comment</em>: <strong>string</strong>. The new comment.</li>
+<li><em>publishSettings</em>: <strong>string</strong>. Custom settings to be used when publishing files for this step.</li>
 <li><em>type</em>: <strong>string</strong>. The type of the step. One of <code>asset</code>, <code>shot</code>, <code>pre</code>, or <code>post</code>.</li>
 <li><em>color</em>: <strong>string</strong>. The color to use in the UI to display this step.</li>
 <li><em>uuid</em>: <strong>string</strong>. The user&rsquo;s Universal Unique Identifier.</li>
@@ -1372,7 +1398,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateStep&quot;,
     &quot;success&quot;: true,
@@ -1380,7 +1406,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="setsteporder">setStepOrder</h2>
 <p><code>http://your.server/ramses/?setStepOrder</code></p>
 <p>Moves a step in the list. This method changes only the order value of the given step.</p>
@@ -1394,7 +1419,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setStepOrder&quot;,
     &quot;success&quot;: true,
@@ -1402,7 +1427,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="movestep">moveStep</h2>
 <p><code>http://your.server/ramses/?moveStep</code></p>
 <p>Moves a step in the list. This method will update the order of all the other steps of the same project accordingly.</p>
@@ -1416,7 +1440,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;moveStep&quot;,
     &quot;success&quot;: true,
@@ -1424,7 +1448,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removestep">removeStep</h2>
 <p><code>http://your.server/ramses/?removeStep</code></p>
 <p>Removes a step from the database.</p>
@@ -1437,7 +1460,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeStep&quot;,
     &quot;success&quot;: true,
@@ -1445,7 +1468,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="setstepestimations">setStepEstimations</h2>
 <p><code>http://your.server/ramses/?setStepEstimations</code></p>
 <p>Updates the default estimations for this step</p>
@@ -1465,7 +1487,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setStepEstimations&quot;,
     &quot;success&quot;: true,
@@ -1473,7 +1495,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignapplication">assignApplication</h2>
 <p><code>http://your.server/ramses/?assignApplication</code></p>
 <p>Assigns an application to a step.</p>
@@ -1487,7 +1508,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignApplication&quot;,
     &quot;success&quot;: true,
@@ -1495,7 +1516,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="unassignapplication">unassignApplication</h2>
 <p><code>http://your.server/ramses/?unassignApplication</code></p>
 <p>Unassigns an application from a step.</p>
@@ -1509,7 +1529,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignApplication&quot;,
     &quot;success&quot;: true,

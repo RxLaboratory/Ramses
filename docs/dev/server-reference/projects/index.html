@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../../components/client/settings/">Settings</a>
+    <a href="../../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1333,7 +1359,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createProject&quot;,
     &quot;success&quot;: true,
@@ -1341,7 +1367,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="getproject">getProject</h2>
 <p><code>http://your.server/ramses/?getProject</code></p>
 <p>Retrieves a single project.</p>
@@ -1375,6 +1400,7 @@
 <li><em>name</em>: <strong>string</strong>. The name.</li>
 <li><em>shortName</em>: <strong>string</strong>. The short name.</li>
 <li><em>comment</em>: <strong>string</strong>. A comment for this step.</li>
+<li><em>publishSettings</em>: <strong>string</strong>. Custom settings to be used when publishing files for this step.</li>
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this step.</li>
 <li><em>projectUuid</em>: <strong>string</strong>. The UUID of the project.</li>
 <li><em>type</em>: <strong>string</strong>. One of <code>asset</code>, <code>shot</code>, <code>pre</code>, or <code>post</code>.</li>
@@ -1476,9 +1502,17 @@
 <li><em>stepUuid</em>: <strong>string</strong>. The UUID of the associated step.</li>
 </ul>
 </li>
+<li><em>scheduleComments</em>: <strong>array</strong> of <strong>object</strong>. The list of schedule comments. Each comment is an object containing these properties:<ul>
+<li><em>uuid</em>: <strong>string</strong>. The UUID of this comment.</li>
+<li><em>date</em>: <strong>string</strong>. The date of the comment, formatted as <code>yyyy-MM-dd hh:mm:ss</code>.</li>
+<li><em>comment</em>: <strong>string</strong>. A comment.</li>
+<li><em>color</em>: <strong>string</strong>. A color in hex format.</li>
+<li><em>projectUuid</em>: <strong>string</strong>. The UUID of the associated project.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProject&quot;,
     &quot;success&quot;: true,
@@ -1487,6 +1521,7 @@
             &quot;name&quot;: &quot;Mythomen&quot;,
             &quot;shortName&quot;: &quot;Mytho&quot;,
             &quot;comment&quot;: &quot;A comment&quot;,
+            &quot;publishSettings&quot;: &quot;- A YAML-formatted setting list&quot;,
             &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
             &quot;folderPath&quot;: &quot;PROJECTS/MYTHO&quot;,
             &quot;framerate&quot;: 25.0,
@@ -1664,11 +1699,26 @@
                     &quot;userUuid&quot;:&quot;uuid456&quot;,
                     &quot;stepUuid&quot;:&quot;uuid789&quot;,
                 }
-            ]
+            ],
+            &quot;scheduleComments&quot;: [
+                {
+                    &quot;uuid&quot;:&quot;uuid23&quot;,
+                    &quot;date&quot;:&quot;2021-06-13 12:00:00&quot;,
+                    &quot;comment&quot;:&quot;A comment&quot;,
+                    &quot;color&quot;:&quot;#2345269&quot;,
+                    &quot;projectUuid&quot;:&quot;uuid789&quot;,
+                },
+                {
+                    &quot;uuid&quot;:&quot;uuid45&quot;,
+                    &quot;date&quot;:&quot;2021-06-14 00:00:00&quot;,
+                    &quot;comment&quot;:&quot;A comment&quot;,
+                    &quot;color&quot;:&quot;#FF12BB&quot;,
+                    &quot;projectUuid&quot;:&quot;uuid789&quot;,
+                }
+            ],
         }
 }
 </code></pre>
-
 <h2 id="getprojects">getProjects</h2>
 <p><code>http://your.server/ramses/?getProjects</code></p>
 <p>Retrieves the list of all projects.</p>
@@ -1694,7 +1744,7 @@
 </ul>
 <p>The project objects also contain empty lists for the project content (shots, assets, etc.). To retrieve the content, use <code>getProject</code> for the given project.</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getProjects&quot;,
     &quot;success&quot;: true,
@@ -1745,7 +1795,6 @@
     ]
 }
 </code></pre>
-
 <h2 id="updateproject">updateProject</h2>
 <p><code>http://your.server/ramses/?updateProject</code></p>
 <p>Updates project information.</p>
@@ -1762,7 +1811,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateProject&quot;,
     &quot;success&quot;: true,
@@ -1770,7 +1819,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeproject">removeProject</h2>
 <p><code>http://your.server/ramses/?removeProject</code></p>
 <p>Removes a project from the database.</p>
@@ -1782,7 +1830,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeProject&quot;,
     &quot;success&quot;: true,
@@ -1790,7 +1838,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignstep">assignStep</h2>
 <p><code>http://your.server/ramses/?assignStep</code></p>
 <p>Assigns a template step to a project</p>
@@ -1804,7 +1851,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignStep&quot;,
     &quot;success&quot;: true,
@@ -1812,7 +1859,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignuser">assignUser</h2>
 <p><code>http://your.server/ramses/?assignUser</code></p>
 <p>Assigns a user to a project</p>
@@ -1826,7 +1872,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignUser&quot;,
     &quot;success&quot;: true,
@@ -1834,7 +1880,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="unassignuser">unassignUser</h2>
 <p><code>http://your.server/ramses/?unassignUser</code></p>
 <p>Unassigns a user to a project</p>
@@ -1848,7 +1893,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignUser&quot;,
     &quot;success&quot;: true,

@@ -73,14 +73,6 @@ import your_new_module
 
 Both the new module and the shelf will be automatically registered by the *Ramses Maya Add-On* when it's loaded in *Maya*.
 
-#### Example
-
-A complete and working example has been made available: it is the extension made for the school [*Rubika Animation / Supinfocom*](http://rubika-edu.com), for the production pipeline of the graduation movies of the students.
-
-You can [get it here](#), and it comes with a [comprehensive documentation](maya-rubika.md).
-
-Feel free to try and use it, and study it. As explained just before, all the extension is packaged in its own module called `rubika` in the `plug-ins` folder.
-
 ### Callbacks
 
 *Ramses* stores three lists of callbacks you can extend.

@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../../components/client/settings/">Settings</a>
+    <a href="../../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1358,7 +1384,7 @@
 <tbody>
 <tr>
 <td><strong><em>constructor</em></strong></td>
-<td><em>integer</em>: <strong>port</strong>=<code>18185</code></td>
+<td>• <em>integer</em>: <strong>port</strong>=<code>18185</code></td>
 <td></td>
 <td></td>
 </tr>
@@ -1376,7 +1402,7 @@
 </tr>
 <tr>
 <td><strong>getAsset</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>• <em>string</em>:<strong>shortName</strong>,<br />• <em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific asset. The name is optional, as short names <em>should</em> be unique.</td>
 <td></td>
 </tr>
@@ -1394,13 +1420,13 @@
 </tr>
 <tr>
 <td><strong>getCurrentStatus</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
+<td>• <em>string</em>: <strong>itemShortName</strong>,<br />• <em>string</em> : <strong>itemName</strong>,<br />• <em>string</em>: <strong>step</strong>,<br />• <em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
 <td>Gets the status for the specific step for the item. <code>itemType</code> must be one of: <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code></td>
 <td></td>
 </tr>
 <tr>
 <td><strong>getCurrentStatuses</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em> : <strong>itemName</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
+<td>• <em>string</em>: <strong>itemShortName</strong>,<br />• <em>string</em> : <strong>itemName</strong>,<br />• <em>string</em>: <strong>step</strong>,<br />• <em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code></td>
 <td>Gets the list of status (one per step) for the item. <code>itemType</code> must be one of: <code>ItemType.SHOT</code> or <code>ItemType.ASSET</code></td>
 <td></td>
 </tr>
@@ -1418,7 +1444,7 @@
 </tr>
 <tr>
 <td><strong>getProject</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>• <em>string</em>:<strong>shortName</strong>,<br />• <em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific project. The name is optional, as short names <em>should</em> be unique.</td>
 <td></td>
 </tr>
@@ -1436,13 +1462,13 @@
 </tr>
 <tr>
 <td><strong>getShots</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>: <strong>filter</strong>=<code>""</code></td>
+<td>• <em>string</em>: <strong>filter</strong>=<code>""</code></td>
 <td>Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard <code>"*"</code></td>
 <td></td>
 </tr>
 <tr>
 <td><strong>getShot</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>• <em>string</em>:<strong>shortName</strong>,<br />• <em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific shot. The name is optional, as short names <em>should</em> be unique.</td>
 <td></td>
 </tr>
@@ -1454,7 +1480,7 @@
 </tr>
 <tr>
 <td><strong>getState</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>• <em>string</em>:<strong>shortName</strong>,<br />• <em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific state. The name is optional, as short names <em>should</em> be unique.</td>
 <td></td>
 </tr>
@@ -1466,7 +1492,7 @@
 </tr>
 <tr>
 <td><strong>getStep</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>:<strong>shortName</strong>,<br /><em>string</em>:<strong>name</strong>=<code>""</code></td>
+<td>• <em>string</em>:<strong>shortName</strong>,<br />• <em>string</em>:<strong>name</strong>=<code>""</code></td>
 <td>Gets a specific step. The name is optional, as short names <em>should</em> be unique.</td>
 <td></td>
 </tr>
@@ -1490,20 +1516,26 @@
 </tr>
 <tr>
 <td><strong>setCurrentProject</strong><br />▹ <em>Object / Dict</em></td>
-<td><em>string</em>: <strong>shortName</strong></td>
+<td>• <em>string</em>: <strong>shortName</strong></td>
 <td>Sets the current project</td>
 <td></td>
 </tr>
 <tr>
+<td><strong>setPublishSettings</strong></td>
+<td>• <em>string</em>: <strong>stepShortName</strong>,<br />• <em>string</em>: <strong>stepName</strong>,<br />• <em>string</em>: <strong>settings</strong></td>
+<td>Sets new publish settings for the step.</td>
+<td></td>
+</tr>
+<tr>
 <td><strong>setStatus</strong></td>
-<td><em>string</em>: <strong>itemShortName</strong>,<br /><em>string</em>: <strong>itemName</strong>,<br /><em>string</em>: <strong>step</strong>,<br /><em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code>,<br /><em>string</em>: <strong>state</strong>=<code>""</code>,<br /><em>string</em>: <strong>comment</strong>=<code>""</code>,<br /><em>string</em>: <strong>completionRatio</strong>=<code>-1</code>,<br /><em>int</em>: <strong>version</strong>=<code>0</code>,<br /><em>boolean</em>: <strong>published</strong>=<code>false</code>,<br /><em>string</em>: <strong>user</strong>=<code>undefined</code></td>
+<td>• <em>string</em>: <strong>itemShortName</strong>,<br />• <em>string</em>: <strong>itemName</strong>,<br />• <em>string</em>: <strong>step</strong>,<br />• <em>ItemType</em>: <strong>itemType</strong>=<code>ItemType.SHOT</code>,<br />• <em>string</em>: <strong>state</strong>=<code>""</code>,<br />• <em>string</em>: <strong>comment</strong>=<code>""</code>,<br />• <em>string</em>: <strong>completionRatio</strong>=<code>-1</code>,<br />• <em>int</em>: <strong>version</strong>=<code>0</code>,<br />• <em>boolean</em>: <strong>published</strong>=<code>false</code>,<br />• <em>string</em>: <strong>user</strong>=<code>undefined</code></td>
 <td>Sets a new status for the item.</td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 daemon = RamDaemonInterface.instance()
 reply = daemon.getProjects() # Call from the instance
 if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static method
@@ -1511,8 +1543,7 @@ if RamDaemonInterface.checkReply(reply): # Call from the class, it's a static me
 else:
     print (reply['message'])
 </code></pre>
-
-<pre><code class="js">// JavaScript
+<pre><code class="language-js">// JavaScript
 var daemon = RamDaemonInterface.instance();
 var reply = daemon.getProjects(); // Call from the instance
 if ( RamDaemonInterface.checkReply(reply) ) { // Call from the class, it's a static method
@@ -1522,7 +1553,6 @@ else {
     alert (reply['message']);
 }
 </code></pre>
-
 <h2 id="implementation">Implementation</h2>
 <h3 id="python">Python</h3>
 <p>In Python, the methods from this class return a <code>dict</code> as constructed from the <em>JSON</em> reply of the <em>Daemon</em> using the standard <code>json.loads( str )</code> method.</p>

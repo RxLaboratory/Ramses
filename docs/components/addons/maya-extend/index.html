@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../client/settings/">Settings</a>
+    <a href="../../client/settings/">Overview and settings</a>
 </li>
 
         
@@ -347,14 +362,14 @@
 
         
             
-<li class="active">
-    <a href="./">Extensibility</a>
+<li >
+    <a href="../maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
-<li >
-    <a href="../maya-rubika/">Rubika Flavor</a>
+<li class="active">
+    <a href="./">Extensibility</a>
 </li>
 
         
@@ -781,12 +796,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../maya/">
+                        <a rel="prev" href="../maya-publish/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../maya-rubika/">
+                        <a rel="next" href="../../files/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level active"><a href="./">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level active"><a href="./">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1300,7 +1326,6 @@
                     <li class="third-level"><a href="#install-the-add-on">Install the Add-On</a></li>
                     <li class="third-level"><a href="#create-your-module">Create your module</a></li>
                     <li class="third-level"><a href="#import-the-module">Import the module</a></li>
-                    <li class="third-level"><a href="#example">Example</a></li>
                 <li class="second-level"><a href="#callbacks">Callbacks</a></li>
                     
                     <li class="third-level"><a href="#adding-your-custom-callbacks">Adding your custom callbacks</a></li>
@@ -1348,7 +1373,7 @@
 </ul>
 <p>In the new <code>your_new_module/__init__.py</code> file, you will import or code all the methods you want to expose and make available in Maya, for example to be used in a <em>shelf</em> or any other <em>Python</em> script. You can also register your <em>Ramses</em> callbacks there (read below for more information about <em>Ramses</em> callbacks).</p>
 <p>Here is an example of such an <code>__init__.py</code> file, assuming you have two other files (<em>anotherFile.py</em> and <em>aSecondFile.py</em>) in the same folder, containing the actual code and methods to import:</p>
-<pre><code class="py">from .anotherFile import aPublicMethod
+<pre><code class="language-py">from .anotherFile import aPublicMethod
 from .aSecondFile import aPublishMethod, anImportMethod
 
 # Now, 'aPublicMethod' can be called from everyhwere in Maya
@@ -1363,26 +1388,20 @@ ramses.publishScripts.append( aPublishMethod )
 # The import method
 ramses.importScripts.append( anImportMethod )
 </code></pre>
-
 <h4 id="import-the-module">Import the module</h4>
 <p>Finally, you just have to import your new module in the <code>ramses_maya</code> module: add a simple import at the end of the <code>ramses_maya/__init__.py</code> file, which should look like this:</p>
-<pre><code class="py">from .ram_cmds import cmds_classes
+<pre><code class="language-py">from .ram_cmds import cmds_classes
 from ramses import log, LogLevel
 
 import your_new_module
 </code></pre>
-
 <p>Both the new module and the shelf will be automatically registered by the <em>Ramses Maya Add-On</em> when it&rsquo;s loaded in <em>Maya</em>.</p>
-<h4 id="example">Example</h4>
-<p>A complete and working example has been made available: it is the extension made for the school <a href="http://rubika-edu.com"><em>Rubika Animation / Supinfocom</em></a>, for the production pipeline of the graduation movies of the students.</p>
-<p>You can <a href="#">get it here</a>, and it comes with a <a href="../maya-rubika/">comprehensive documentation</a>.</p>
-<p>Feel free to try and use it, and study it. As explained just before, all the extension is packaged in its own module called <code>rubika</code> in the <code>plug-ins</code> folder.</p>
 <h3 id="callbacks">Callbacks</h3>
 <p><em>Ramses</em> stores three lists of callbacks you can extend.</p>
 <ul>
 <li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.publishScripts</code></a> contains the functions to be called when a scene is being published.</li>
 </ul>
-<p>When <em>Ramses</em> publishes a scene, it first copies the scene file to the publish folder, and then calls all the scripts listed there. Each callback you add to this list must take three arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
+<p>When <em>Ramses</em> publishes a scene, it calls all the scripts listed there. There already is a script which provides the default implementation; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). Each callback you add to this list must take a few arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
 <ul>
 <li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.statusScripts</code></a> contains the functions to be called when a scene status changes.</li>
 </ul>
@@ -1390,8 +1409,8 @@ import your_new_module
 <ul>
 <li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.importScripts</code></a> contains the functions to be called when the user selects an item (shot or asset) to import.</li>
 </ul>
-<p>By default, if and only if the list is empty, <em>Ramses</em> imports the selected item in the current scene, in a group named after the item, and in another group named after the asset group if it is an asset. Adding new callbacks to the list will de-activate this default behaviour so you can use your own methods for importing items. Each callback you add to this list must take two arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
-<p>There are two ways to register your methods: by using a <em>Maya</em> command, or by <a href="https://github.com/Rainbox-dev/Ramses-Maya">forking</a> the provided Add-On to add your functions.</p>
+<p>There already is a script which provides the default implementation for importing items; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). . Each callback you add to this list must take a few arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
+<p>There are two ways to register your methods: by using a <em>Maya</em> command, or by <a href="https://github.com/RxLaboratory/Ramses-Maya">forking</a> the provided Add-On to add your functions.</p>
 <p>Once the callbacks have been registered, they are automatically called when the user interacts with the add-on and wants to update/import/publish an item.</p>
 <p>You can also explicitly call them by calling these three methods:</p>
 <ul>
@@ -1402,10 +1421,15 @@ import your_new_module
 <p>Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
 <h4 id="adding-your-custom-callbacks">Adding your custom callbacks</h4>
 <p>To register your callbacks, you just have to append them in the corresponding <code>Ramses</code> lists:</p>
-<pre><code class="py"># We need to import the Ramses Module (API)
+<pre><code class="language-py"># We need to import the Ramses Module (API)
 from ramses import Ramses
 # Now we just have to add the callbacks
 ramses = Ramses.instance()
+# First, remove callbacks provided by the Ramses addon,
+# to replace them with our own
+ramses.publishScripts = []
+ramses.importScripts = []
+ramses.statusScripts = []
 # A publish method
 ramses.publishScripts.append( aPublishMethod )
 # An import method
@@ -1413,12 +1437,11 @@ ramses.importScripts.append( anImportMethod )
 # A status method
 ramses.statusScripts.append( aStatusMethod )
 </code></pre>
-
 <p>Now, all these methods will be automatically called each time a status changes, an item is published, or an item is imported.</p>
 <h3 id="detailed-example">Detailed Example</h3>
 <p>In this example, three files are added, with the import, status, and publish methods.</p>
 <p>The file <code>plug-ins/your_new_module/myPublishCallbacks.py</code> creates the callbacks used to publish shots and assets.</p>
-<pre><code class="py"># myPublishCallbacks.py
+<pre><code class="language-py"># myPublishCallbacks.py
 
 import ramses as ram
 
@@ -1446,9 +1469,8 @@ def publishShot(item, filePath, step):
     # etc.
 
 </code></pre>
-
 <p>The file <code>plug-ins/your_new_module/myStatusCallbacks.py</code> creates the callbacks used when a status changes.</p>
-<pre><code class="py"># myStatusCallbacks.py
+<pre><code class="language-py"># myStatusCallbacks.py
 
 import ramses as ram
 
@@ -1476,9 +1498,8 @@ def updateShot(item, filePath, publishFolderPath):
     # etc.
 
 </code></pre>
-
 <p>The file <code>plug-ins/your_new_module/myImportCallbacks.py</code> creates the callbacks used to import items.</p>
-<pre><code class="py"># myImportCallbacks.py
+<pre><code class="language-py"># myImportCallbacks.py
 
 import ramses as ram
 
@@ -1496,17 +1517,15 @@ def importAsset(item, filePath, step):
     # etc.
 
 </code></pre>
-
 <p>The file <code>plug-ins/your_new_module/otherMethods.py</code> creates a few other methods, for example to be used in a <em>Maya shelf</em>.</p>
-<pre><code class="py"># otherMethods.py
+<pre><code class="language-py"># otherMethods.py
 
 def methodForAShelf():
     doSomething()
 
 </code></pre>
-
 <p>Finally, we just need to import these files in the <code>plug-ins/your_new_module/__init__.py</code> file of our custom module. We can register them here.</p>
-<pre><code class="py"># __init__.py
+<pre><code class="language-py"># __init__.py
 from myImportCallbacks import importAsset
 from myStatusCallbacks import updateAsset, updateShot
 from myPublishCallbacks import publishAsset, publishShot
@@ -1516,6 +1535,12 @@ from ramses import Ramses
 
 # Get the ramses instance
 ramses = Ramses.instance()
+
+# First, remove callbacks provided by the Ramses addon,
+# to replace them with our own
+ramses.publishScripts = []
+ramses.importScripts = []
+ramses.statusScripts = []
 
 # Add the callbacks to the publish list
 ramses.publishScripts.append( publishAsset )
@@ -1528,27 +1553,25 @@ ramses.statusScripts.append( updateShot )
 # Add the callbacks to the status list
 ramses.importScripts.append( importAsset )
 </code></pre>
-
 <p>And don&rsquo;t forget to import your new module in <code>plug-ins/ramses_maya/__init__.py</code>:</p>
-<pre><code class="py"># plug-ins/ramses_maya/__init__.py
+<pre><code class="language-py"># plug-ins/ramses_maya/__init__.py
 from .ram_cmds import cmds_classes
 from ramses import log, LogLevel
 
 import your_new_module
 </code></pre>
-
 <p>Don&rsquo;t change anything else in the file!</p>
 <p>Now you can also use <code>methodForAShelf()</code> in an existing or new <em>shelf</em>, which can be stored in the <code>shelves</code> folder if you want it to be deployed with your extension.</p></div>
         
             <div class="nav-footer">
             <ul>
                 <li class="nav-footer-prev">
-                    <a rel="prev" href="../maya/">
+                    <a rel="prev" href="../maya-publish/">
                         <i class="fas fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li class="nav-footer-next">
-                    <a rel="next" href="../maya-rubika/">
+                    <a rel="next" href="../../files/">
                         Next <i class="fas fa-arrow-right"></i>
                     </a>
                 </li>

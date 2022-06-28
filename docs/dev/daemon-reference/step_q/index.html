@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../../components/client/settings/">Settings</a>
+    <a href="../../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1305,6 +1331,11 @@
                     <li class="third-level"><a href="#query-attributes_1">Query attributes</a></li>
                     <li class="third-level"><a href="#reply-content_1">Reply content</a></li>
                     <li class="third-level"><a href="#example_1">Example</a></li>
+                <li class="second-level"><a href="#setpublishsettings">setPublishSettings</a></li>
+                    
+                    <li class="third-level"><a href="#query-attributes_2">Query attributes</a></li>
+                    <li class="third-level"><a href="#reply-content_2">Reply content</a></li>
+                    <li class="third-level"><a href="#example_2">Example</a></li>
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1333,7 +1364,7 @@
 <p>Query:<br />
 <code>getStep&amp;shortName=RIG</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getStep&quot;,
     &quot;success&quot;: true,
@@ -1347,7 +1378,6 @@
         }
 }
 </code></pre>
-
 <h2 id="getsteps">getSteps</h2>
 <p>Returns the list of available steps for the current project.</p>
 <h3 id="query-attributes_1">Query attributes</h3>
@@ -1369,7 +1399,7 @@
 <p>Query:<br />
 <code>getSteps</code></p>
 <p>Reply:  </p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;getSteps&quot;,
     &quot;success&quot;: true,
@@ -1390,6 +1420,28 @@
             }
         ]
     }
+}
+</code></pre>
+<h2 id="setpublishsettings">setPublishSettings</h2>
+<p>Sets new publish settings for the step.</p>
+<h3 id="query-attributes_2">Query attributes</h3>
+<ul>
+<li><em>setPublishSettings</em></li>
+<li><em>shortName</em>: <strong>string</strong>. The short name of the step.</li>
+<li><em>name</em>: <strong>string</strong>. The name of the step.</li>
+<li><em>settings</em>: <strong>string</strong>. The new settings.</li>
+</ul>
+<h3 id="reply-content_2">Reply content</h3>
+<p>None.</p>
+<h3 id="example_2">Example</h3>
+<p>Query:<br />
+<code>setPublishSettings&amp;shortName=MOD&amp;name=Modeling&amp;settings=great settings</code></p>
+<p>Reply:  </p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;setPublishSettings&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Settings set.&quot;,
 }
 </code></pre></div>
         

@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../settings/">Settings</a>
+    <a href="../settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../addons/maya-extend/">Extensibility</a>
+    <a href="../../addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1295,8 +1321,6 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#pipe-settings">Pipe settings</a></li>
-                <li class="second-level"><a href="#list">List</a></li>
-                    
                 <li class="second-level"><a href="#edition">Edition</a></li>
                     
         </ul>
@@ -1312,14 +1336,6 @@
 <p>Pipes can also be more easily created, edited and connected from the <a href="../pipeline/"><strong>pipeline editor</strong></a>.</p>
 <p><strong>Pipe types</strong> define the type of files and data which can be used through the <strong>pipes</strong> between <strong>steps</strong>.</p>
 <p>▹ <strong><a href="../../../pipeline/pipeline/">More details about the pipeline</a></strong>.</p>
-<h2 id="list">List</h2>
-<p><img alt="" src="/img/client/pipetypelist.png" /></p>
-<p>The list on the left lists all the pipe types of the project, and you can use the <strong><em>Search</em></strong> field to filter them by <strong><em>ID</em></strong>.<br />
-When changing the size of the rows in the list, more details about each pipes can be displayed.</p>
-<p>Use the <img alt="" src="/img/icons/add_sl.svg" style="width:18px;" /> button to <strong>create</strong> a new pipe. The <img alt="" src="/img/icons/remove_sl.svg" style="width:18px;" /> button <strong>removes</strong> the selected pipes from the project<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
-<p>You can use the <code>[Shift + A]</code> shortcut key to quickly add new pipes.</p>
-<p>You can use the <code>[DEL]</code> or <code>[Shift + X]</code> shortcut key to quickly remove selected pipes.</p>
-<p>You can scroll all lists using <code>[Middle click]</code> as well as the <code>[Mouse wheel]</code>.</p>
 <h2 id="edition">Edition</h2>
 <p><img alt="" src="/img/client/pipetypeedition.png" /></p>
 <ul>
@@ -1328,6 +1344,7 @@ When changing the size of the rows in the list, more details about each pipes ca
 <li>Use the <strong><em>Type</em></strong> list to set the <a href="../../../pipeline/pipeline/">type</a> of the step. <a href="../../../pipeline/pipeline/">Read this for more information</a> about step types.</li>
 <li>You can select one <strong><em>File type</em></strong> to be used through this pipe; if you need several different types, you can use multiple pipes between steps. Read the <a href="../pipeline/"><em>Pipeline Editor</em></a> section for more information.</li>
 <li>You can select one <strong><em>Color space</em></strong> to be used through this pipe; if you need several different color spaces, you can use multiple pipes between steps. Read the <a href="../pipeline/"><em>Pipeline Editor</em></a> section for more information.</li>
+<li>Use the <strong><em>Custom Settings</em></strong> to set default settings to be used by <em>Ramses Add-ons</em> to automate the pipeline. These settings will be read when importing this specific file type, if it is assigned to a incoming pipe of the corresponding steps. Using the official <em>Ramses Add-ons</em>, these settings should be formatted using the <a href="http://yaml.org"><em>Yaml</em></a> syntax. Read the <a href="../../addons/"><em>Add-ons</em></a> section for more information about the settings you can use.</li>
 </ul>
 <p>▹ <strong><a href="../../../pipeline/pipeline/">More details about the pipeline</a></strong>.</p>
 <div class="admonition warning">

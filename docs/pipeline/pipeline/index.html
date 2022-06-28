@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../..">v0.2.11-Alpha</a>
+                        <a href="../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../components/client/settings/">Settings</a>
+    <a href="../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../..">v0.2.11-Alpha</a>
+                <a href="../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1299,15 +1325,14 @@
                     
                 <li class="second-level"><a href="#creating-a-pipeline">Creating a pipeline</a></li>
                     
-                <li class="second-level"><a href="#applications">Applications</a></li>
+                    <li class="third-level"><a href="#project-settings">Project settings</a></li>
+                    <li class="third-level"><a href="#list-steps">List steps</a></li>
+                <li class="second-level"><a href="#use-pipes-to-connect-steps">Use pipes to connect steps</a></li>
                     
-                <li class="second-level"><a href="#file-types">File types</a></li>
+                <li class="second-level"><a href="#automate-the-pipeline">Automate the pipeline</a></li>
                     
-                <li class="second-level"><a href="#steps">Steps</a></li>
-                    
-                    <li class="third-level"><a href="#templates">Templates</a></li>
-                <li class="second-level"><a href="#pipes">Pipes</a></li>
-                    
+                    <li class="third-level"><a href="#publish-settings">Publish settings</a></li>
+                    <li class="third-level"><a href="#import-settings">Import settings</a></li>
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1335,7 +1360,7 @@
 <h2 id="a-working-folder">A working folder</h2>
 <p>All working folders should contain a few predefined subfolders, so that <em>Ramses</em> can efficiently handle the versionning and production tracking of all files, assets, and shots.</p>
 <p>This is a typical working folder (files are not shown):</p>
-<pre><code class="sh">┌ projectID_A_AssetID_StepID # The working folder, for an asset in this example
+<pre><code class="language-sh">┌ projectID_A_AssetID_StepID # The working folder, for an asset in this example
 │
 ├─── _versions # The versionning folder, handled by Ramses.
 │    # Contains the history and all versions
@@ -1344,7 +1369,6 @@
 └─── _preview
      # Contains media files to be used to preview the work on this step (videos, images...)
 </code></pre>
-
 <p><a href="../../components/addons/"><em>Ramses Add-ons</em></a> automatically create and sort the files in these folders when working on an item, but you can manually create and use them, especially the <code>_published</code> and <code>_preview</code> subfolder. Any file added in these folders will be automatically detected and managed by <em>Ramses</em>. Even when not using a <em>Ramses Add-on</em> it is recommended to use this folder structure.</p>
 <p>All files inside these folders should be correctly named and respect all <a href="../../components/files/naming/">Ramses naming conventions</a>.</p>
 <p>▹ <strong><a href="../../components/files/">More information: The <em>Ramses Tree</em></a></strong>.</p>
@@ -1352,37 +1376,26 @@
 <p>The creation of a pipeline is better made using the <a href="../../components/client/"><em>Ramses Client Application</em></a> and its nodal <a href="../../components/client/pipeline/"><em>Pipeline Editor</em></a>, although it is also possible to use basic pipelines only with <a href="../../components/addons/"><em>Ramses Add-ons</em></a> or more complex ones thanks to the <a href="../../dev/add-ons-reference/"><em>Add-on API</em></a> and <em>Ramses</em> extensibility for developpers.</p>
 <p>A pipeline can be built quite quickly by following these steps:</p>
 <ol>
-<li><strong>List the applications</strong> which are going to be used.</li>
+<li><strong>Set the project settings</strong> like its resolution and framerate.</li>
 <li><strong>Create the steps</strong> (from scratch or using templates).</li>
+<li><strong>List the applications</strong> which are going to be used.</li>
 <li><strong>Assign applications</strong> to the steps.</li>
 <li><strong>Connect the steps</strong> with pipes.</li>
 <li>(optional) <strong>Set the file types</strong> to be used through the pipes.</li>
 <li>(optional) <strong>Create Templates</strong> for the steps.</li>
+<li>(optional) <strong>Create default settings</strong> for publishing and importing items.</li>
 <li>(optional) <strong>Develop extensions for the Add-ons</strong> if you have specific needs for an advanced pipeline with a lot of automations.</li>
 </ol>
 <p>▹ <strong><a href="../../components/client/pipeline/">Pipeline editor in the <em>Ramses Client Application</em></a></strong>.</p>
-<p><a href="../../components/addons/maya-rubika/">An example Add-on for <em>Autodesk Maya</em></a> is available to show how an advanced pipeline can be created, with or without the <a href="../../components/client/"><em>Ramses Client Application</em></a>, using the <a href="../../dev/add-ons-reference/"><em>Ramses Python API</em></a>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><a href="../../components/addons/maya-rubika/">This <em>Autodesk Maya</em> Add-on</a> has been developped for the production of the graduation movies at the school Rubika / Supinfocom in Valenciennes, France. It&rsquo;s more than just an example and can be used in production.</p>
-</div>
+<p>▹ <strong><a href="../../components/addons/">Available <em>Add-ons</em></a></strong>.</p>
 <p>▹ <strong><a href="../../dev/add-ons-reference/"><em>Add-on API</em> for the extension or development of new <em>Add-ons</em></a></strong>.</p>
-<h2 id="applications"><img alt="" src="../../img/icons/applications_sl.svg" style="width:48px;" /> Applications</h2>
-<p>In order to manage the assets and the files they use, <em>Ramses</em> keeps track of the <em>Applications</em> used in the production.</p>
-<p>For each <em>Application</em>, <em>Ramses</em> keeps also three lists of <strong>file types</strong>:</p>
-<ul>
-<li><strong>Native types</strong> are the file types used natively by the applications; the ones which type can be created with a <em>save</em> command and which store data in a lossless manner.</li>
-<li><strong>Import types</strong> are all the file types the application can import.</li>
-<li><strong>Export types</strong> are all the file types the application can create, usually with an <em>export</em> or <em>bake</em> command for example.</li>
-</ul>
-<p>The <a href="../../components/client/"><em>Ramses client</em></a> can open applications and open files in applications; <a href="../../components/addons/"><em>Ramses Add-ons</em></a> should be able to save and manage the versionning in an application, as long as import and export assets.</p>
-<p>▹ <strong><a href="../../components/client/admin/">Application management in the <em>Ramses Client Application</em></a></strong>.</p>
-<h2 id="file-types"><img alt="" src="../../img/icons/files_sd.svg" style="width:48px;" /> File types</h2>
-<p>In order to manage the assets and the files they use, <em>Ramses</em> keeps track of the <em>File Types</em> used in the production.</p>
-<p>Specific file types can be marked as <em>preview types</em>, which means they&rsquo;re light and standard and can be used to display or preview an asset, but can store data in a lossy manner.</p>
-<p>File types can be associated with specific <strong>applications</strong> and <strong>pipes</strong>.</p>
-<p>▹ <strong><a href="../../components/client/admin/">File type management in the <em>Ramses Client Application</em></a></strong>.</p>
-<h2 id="steps"><img alt="" src="../../img/icons/connections_sl.svg" style="width:48px;" /> Steps</h2>
+<h3 id="project-settings">Project settings</h3>
+<p>From the <em>Ramses Client Application</em>, you can adjust the project settings.</p>
+<p><img alt="" src="../../img/client/projectedition.png" /></p>
+<p>Specifically, the <em>Resolution</em> and <em>Framerate</em> can be used by the <em>Add-ons</em> to automatically setup the working files in the creative applications.</p>
+<h3 id="list-steps"><img alt="" src="../../img/icons/connections_sl.svg" style="width:48px;" /> List steps</h3>
+<p>You can use the <em>Ramses Client Application</em> to list the steps needed to produce the project.</p>
+<p><img alt="" src="../../img/client/steps.png" /></p>
 <p><em>Steps</em> represent the stages the assets and shots have to go through before completion, for example <em>Modeling</em>, <em>Rigging</em>, <em>Animation</em>, <em>Lighting</em>&hellip;</p>
 <p>There are 4 different types of steps:</p>
 <ul>
@@ -1392,7 +1405,7 @@
 <li><img alt="" src="../../img/icons/film_sl.svg" style="width:18px;" /> <strong><em>Post-Production</em></strong> includes all the steps from the edit to the delivery, where the work is made on the whole edit and not individual shots (for example: editing, sound design, music, etc.)</li>
 </ul>
 <p><strong>The list of steps is available and can be managed in the <a href="../../components/client/"><em>Ramses Client Application</em></a>, under <a href="../../components/client/project/">the project panel</a> (for project admin users)</strong>, and by default each step is represented by a folder in the <a href="../../components/files/"><em>Ramses Tree</em></a> as shown below.</p>
-<pre><code class="sh"># (inside the &quot;Projects&quot; folder of the Ramses main folder)
+<pre><code class="language-sh"># (inside the &quot;Projects&quot; folder of the Ramses main folder)
 ┌ PROJECTID # Project Root folder
 │
 ├─┬─ 01-PRE-PROD
@@ -1408,7 +1421,6 @@
 └─┬─ 03-POST-PROD
   └─── PROJECTID_G_EDIT # Post production step 
 </code></pre>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These folders <strong>are not where the working files are stored</strong>; they contain the common files, like libraries, examples, references, and the <strong>Templates</strong> used for the creation of new assets and shots.</p>
@@ -1421,7 +1433,22 @@
 <p>Each step is represented by its <strong>name</strong> and <strong>ID</strong>. The <strong>ID</strong> is used in file and folder names in the <a href="../../components/files/"><em>Ramses Tree</em></a>, while the <strong>name</strong> is used in the user interface.</p>
 <p>The folder names for the steps respect the <a href="../../components/files/naming/"><em>Ramses Naming Scheme</em></a>: <em>ProjectID_G_stepID</em>.</p>
 <p><em>Steps</em> are also associated with the <strong>applications</strong> used to produce the assets and shots (read below). They also have default values for <strong>production estimations</strong> (read the <a href="../planning/"><em>Planning</em></a> section for more information).</p>
-<h3 id="templates">Templates</h3>
+<h4 id="add-applications"><img alt="" src="../../img/icons/applications_sl.svg" style="width:48px;" /> Add Applications</h4>
+<p>In order to manage the assets and the files they use, <em>Ramses</em> keeps track of the <em>Applications</em> used in the production.</p>
+<p>For each <em>Application</em>, <em>Ramses</em> keeps also three lists of <strong>file types</strong>:</p>
+<ul>
+<li><strong>Native types</strong> are the file types used natively by the applications; the ones which type can be created with a <em>save</em> command and which store data in a lossless manner.</li>
+<li><strong>Import types</strong> are all the file types the application can import.</li>
+<li><strong>Export types</strong> are all the file types the application can create, usually with an <em>export</em> or <em>bake</em> command for example.</li>
+</ul>
+<p>The <a href="../../components/client/"><em>Ramses client</em></a> can open applications and open files in applications; <a href="../../components/addons/"><em>Ramses Add-ons</em></a> should be able to save and manage the versionning in an application, as long as import and export assets.</p>
+<p>▹ <strong><a href="../../components/client/admin/">Application management in the <em>Ramses Client Application</em></a></strong>.</p>
+<h4 id="file-types"><img alt="" src="../../img/icons/files_sd.svg" style="width:48px;" /> File types</h4>
+<p>In order to manage the assets and the files they use, <em>Ramses</em> keeps track of the <em>File Types</em> used in the production.</p>
+<p>Specific file types can be marked as <em>preview types</em>, which means they&rsquo;re light and standard and can be used to display or preview an asset, but can store data in a lossy manner.</p>
+<p>File types can be associated with specific <strong>applications</strong> and <strong>pipes</strong>.</p>
+<p>▹ <strong><a href="../../components/client/admin/">File type management in the <em>Ramses Client Application</em></a></strong>.</p>
+<h4 id="templates">Templates</h4>
 <p><em>Step</em> folders contain a <code>Templates</code> subfolder which contains the <strong>template files</strong> to be used when creating a <strong>new asset</strong> or a <strong>new shot</strong>. This can be done directly from the <a href="../../components/client/production/">assets and shots tables</a> in the <a href="../../components/client/"><em>Ramses Client Application</em></a> or from <a href="../../components/addons/"><em>Ramses Add-ons</em></a>. The <code>Templates</code> subfolder is a standard working folder, and templates can have versions, a <em>preview</em> subfolder, and must be <em>published</em> to be used.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1429,16 +1456,43 @@
 </div>
 <p>▹ <strong><a href="../../components/client/project/">Step management in the <em>Ramses Client Application</em></a></strong>.</p>
 <p>▹ <strong><a href="../../components/client/admin/">Template Step management in the <em>Ramses Client Application</em></a></strong>.</p>
-<h2 id="pipes"><img alt="" src="../../img/icons/connection_sl.svg" style="width:48px;" /> Pipes</h2>
+<h2 id="use-pipes-to-connect-steps"><img alt="" src="../../img/icons/connection_sl.svg" style="width:48px;" /> Use pipes to connect steps</h2>
+<p>You can use the <a href="../../components/client/pipeline/"><em>Pipeline editor</em></a> in the <em>Ramses Client Application</em> to build the pipeline and connect steps.</p>
 <p>Each <em>pipe</em> is a connection between two steps.</p>
+<p><img alt="" src="../../img/client/pipeline.png" /></p>
 <p>It keeps the <strong>file types</strong> used to export from and import to these steps, as long as the color space of the files. <a href="../../components/addons/"><em>Ramses Add-ons</em></a> can use this information to automate the process.</p>
+<p><img alt="" src="../../img/client/pipeedit.png" /></p>
+<p>For each pipe you can add specific file types to be used.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Configuring pipes and passing the information to the <a href="../../components/addons/"><em>Ramses Add-ons</em></a> makes the pipeline very customizable and modular, but it is not mandatory when <a href="../../dev/add-ons-reference/">extending or developping an <em>Add-on</em></a> to use this information.</p>
 </div>
 <p><em>Pipes</em> also handle <em>triggers</em> which run scripts in your applications when a <em>status</em> changes in the production tracking of the corresponding steps (when a file runs through the <em>pipe</em>).</p>
 <p><em>Pipes</em> also automate the production management and are able to automatically update statuses, notify users of changes and of the disponibility of new materials for example.</p>
-<p>▹ <strong><a href="../../components/client/pipeline/">Pipeline editor in the <em>Ramses Client Application</em></a></strong>.</p></div>
+<p>▹ <strong><a href="../../components/client/pipeline/">Pipeline editor in the <em>Ramses Client Application</em></a></strong>.</p>
+<h2 id="automate-the-pipeline">Automate the pipeline</h2>
+<p>Using <a href="../../components/addons/"><em>Ramses Add-ons</em></a> you can easily automate the workflow with a properly configured pipeline.</p>
+<h3 id="publish-settings">Publish settings</h3>
+<p>For each step, you can define default publishing settings, either by inputing them in the <a href="../../components/client/steps/">settings of the step</a> in the <a href="../../components/client/"><em>Ramses Client Application</em></a> or <a href="../../components/addons/">through the add-on</a> itself.</p>
+<p>Using official <a href="../../components/addons/"><em>Ramses Add-ons</em></a>, these settings should be simple <a href="http://yaml.org"><em>Yaml</em></a> formatted texts, looking like this:</p>
+<pre><code class="language-yaml">some_setting: true
+another_setting: false
+a_list:
+  - item1
+  - item2
+a_value: 42
+other_info: &quot;05/05/1818&quot;
+</code></pre>
+<p><img alt="" src="../../img/client/stepedition-settings.png" /></p>
+<p>The <a href="../../components/addons/"><em>Ramses Add-ons</em></a> will read these settings when publishing from the corresponding step to automatically publish the right format with the right parameters.</p>
+<p>▹ <strong><a href="../../components/client/steps/">Step settings in the <em>Ramses Client Application</em></a></strong>.</p>
+<p>▹ <strong><a href="../../components/addons/"><em>Ramses Add-ons</em></a></strong>.</p>
+<h3 id="import-settings">Import settings</h3>
+<p>When importing previously published items, <em>Ramses</em> can also automate some settings and get default parameters, with the same kind of <a href="http://yaml.org"><em>Yaml</em></a> formatted presets.</p>
+<p>The import settings can also be set in the <a href="../../components/client/"><em>Ramses Client Application</em></a> or <a href="../../components/addons/">through the add-on</a> itself.</p>
+<p><img alt="" src="../../img/client/pipetypeedition.png" /></p>
+<p>▹ <strong><a href="../../components/client/pipetypes/">Pipe type settings in the <em>Ramses Client Application</em></a></strong>.</p>
+<p>▹ <strong><a href="../../components/addons/"><em>Ramses Add-ons</em></a></strong>.</p></div>
         
             <div class="nav-footer">
             <ul>

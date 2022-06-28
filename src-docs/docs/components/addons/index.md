@@ -15,8 +15,8 @@ They will be developed one at a time, and you're welcome to contribute with your
 
 | Host Application | Language | Status | Details |
 |---|---|---|---|
-| ► **[API](dev/add-ons-reference/index.md)** | Python | ![icon](/img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
-| ► **[API](dev/add-ons-reference/index.md)** | ExtendScript | ![icon](/img/icons/blue_circle.png){: style="width:16px;"} | For Adobe Creative Cloud |
+| ► **[API](../../dev/add-ons-reference/index.md)** | Python | ![icon](/img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
+| ► **[API](../../dev/add-ons-reference/index.md)** | ExtendScript | ![icon](/img/icons/blue_circle.png){: style="width:16px;"} | For Adobe Creative Cloud |
 | API | UXP | ![icon](/img/icons/red_circle.png){: style="width:16px;"} | For Adobe Creative Cloud<br/>*UXP* is a new scripting environment for Adobe Software. *Ramses* won't officially support it until it is mature enough, which is not the case as of July 2020. This being said, the *ExtendScript* API may be compatible with *UXP*. |
 | Adobe After Effects | ExtendScript | ![icon](/img/icons/blue_circle.png){style="width: 16px;"} | ![icon](/img/icons/blue_circle.png){style="width: 12px;"} **Versionning**, status and comments.<br /> ![icon](/img/icons/orange_diamond.png){style="width: 12px;"} **Preview**: easy playblast or thumbnail<br /> ![icon](/img/icons/orange_diamond.png){style="width: 12px;"} **Pipeline**: publish, import, replace, update assets<br /> ![icon](/img/icons/orange_diamond.png){style="width: 12px;"} **Pipeline**: Advanced customization using publish and import settings and presets |
 | Adobe Illustrator | ExtendScript | ![icon](/CODE_OF_CONDUCT.mdimg/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |

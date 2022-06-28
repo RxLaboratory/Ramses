@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="..">v0.2.11-Alpha</a>
+                        <a href="..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../components/client/settings/">Settings</a>
+    <a href="../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../components/addons/maya-extend/">Extensibility</a>
+    <a href="../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -781,7 +796,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../quickstart/">
+                        <a rel="prev" href="../quickstart/user/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../..">v0.2.11-Alpha</a>
+                <a href="../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1369,8 +1395,9 @@
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p><strong><em>Ramses</em> is not available <em>as a service</em></strong>: we do not provide any infrastructure nor server nor database for you to connect to. There&rsquo;s no website available to use a <em>Ramses Server</em>: you can stay in control of your own data without relying onto unknown people, even people as loving as us (and you won&rsquo;t have to pay mensual or annual fees just to use <em>Ramses</em>).</p>
-<p>But don&rsquo;t be afraid, even if you&rsquo;re running your own small studio or tiny collective, it&rsquo;s very easy to install and use the <em>Ramses</em> server, it can be done on any computer running <em>Windows</em>, <em>Linux</em> or <em>Mac OS</em>, or better, on any low-cost shared hosting with just a very small available space and a small <em>MySQL</em> database. All the installation procedure is explained in <a href="../components/server/">the server documentation</a>.</p>
+<p><strong><em>Ramses</em> is not meant to be available <em>as a service</em></strong>: we believe you should stay in control of your own data without relying onto unknown people, even people as loving as us (and you won&rsquo;t have to pay mensual or annual fees just to use <em>Ramses</em>).</p>
+<p>Even if you&rsquo;re running your own small studio or tiny collective, it&rsquo;s very easy to install and use the <em>Ramses</em> server, it can be done on any computer running <em>Windows</em>, <em>Linux</em> or <em>Mac OS</em>, or better, on any low-cost shared hosting with just a very small available space and a small <em>SQL</em> database. All the installation procedure is explained in <a href="../components/server/">the server documentation</a>.</p>
+<p>This being said, we (will soon) also have a few options for <a href="https://rxlaboratory.org/tools/ramses/"><strong>servers we can install and manage for you</strong> at a very low cost</a>.</p>
 </div>
 <h2 id="installation">Installation</h2>
 <p>In order to use <em>Ramses</em>, you have to install the components you need individually, one after each other.</p>
@@ -1405,7 +1432,7 @@
             <div class="nav-footer">
             <ul>
                 <li class="nav-footer-prev">
-                    <a rel="prev" href="../quickstart/">
+                    <a rel="prev" href="../quickstart/user/">
                         <i class="fas fa-arrow-left"></i> Previous
                     </a>
                 </li>

@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../../components/client/settings/">Settings</a>
+    <a href="../../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1340,7 +1366,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;createShot&quot;,
     &quot;success&quot;: true,
@@ -1348,7 +1374,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="updateshot">updateShot</h2>
 <p><code>http://your.server/ramses/?updateShot</code></p>
 <p>Update shot info in the database.</p>
@@ -1366,7 +1391,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;updateShot&quot;,
     &quot;success&quot;: true,
@@ -1374,7 +1399,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="setshotorder">setShotOrder</h2>
 <p><code>http://your.server/ramses/?setShotOrder</code></p>
 <p>Moves a shot in the list. This method changes only the order value of the given shot.</p>
@@ -1388,7 +1412,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setShotOrder&quot;,
     &quot;success&quot;: true,
@@ -1396,7 +1420,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="moveshot">moveShot</h2>
 <p><code>http://your.server/ramses/?moveShot</code></p>
 <p>Moves a shot in the list. This method will update the order of all the other shots of the same project accordingly.</p>
@@ -1410,7 +1433,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;moveShot&quot;,
     &quot;success&quot;: true,
@@ -1418,7 +1441,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="removeshot">removeShot</h2>
 <p><code>http://your.server/ramses/?removeShot</code></p>
 <p>Removes a shot from the database.</p>
@@ -1431,7 +1453,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;removeShot&quot;,
     &quot;success&quot;: true,
@@ -1439,7 +1461,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="setshotstatus">setShotStatus</h2>
 <p><code>http://your.server/ramses/?setShotStatus</code></p>
 <p>Sets a new status for a shot</p>
@@ -1460,7 +1481,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;setShotStatus&quot;,
     &quot;success&quot;: true,
@@ -1468,7 +1489,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="assignasset">assignAsset</h2>
 <p><code>http://your.server/ramses/?assignAsset</code></p>
 <p>Assigns an asset to the shot.</p>
@@ -1482,7 +1502,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;assignAsset&quot;,
     &quot;success&quot;: true,
@@ -1490,7 +1510,6 @@
     &quot;content&quot;: { }
 }
 </code></pre>
-
 <h2 id="unassignasset">unassignAsset</h2>
 <p><code>http://your.server/ramses/?unassignAsset</code></p>
 <p>Unassigns  an asset from the shot.</p>
@@ -1504,7 +1523,7 @@
 <p><strong>Reply content:</strong></p>
 <p>Empty</p>
 <p><strong>Reply body</strong>:</p>
-<pre><code class="json">{
+<pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;unassignAsset&quot;,
     &quot;success&quot;: true,

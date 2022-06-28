@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../../components/client/settings/">Settings</a>
+    <a href="../../../components/client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../../components/addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../../components/client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1388,19 +1414,19 @@
 <td><strong>importScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().importItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().importItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
 </tr>
 <tr>
 <td><strong>publishScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user publishes the current file from the host application.</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user publishes the current file from the host application.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
 </tr>
 <tr>
 <td><strong>replaceScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of scripts/functions to be triggered when <code>Ramses.instance().replaceItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.</td>
+<td>A list of scripts/functions to be triggered when <code>Ramses.instance().replaceItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
 </tr>
 <tr>
 <td><strong>statusScripts</strong></td>
@@ -1473,12 +1499,12 @@
 </tr>
 <tr>
 <td><strong>importItem</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
 <td>Runs the scripts in <code>Ramses.instance().importScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
 <td><strong>project</strong><br />▹ <em><a href="../ram_project/">RamProject</a></em></td>
-<td><em>string</em>: <strong>projectShortName</strong></td>
+<td>• <em>string</em>: <strong>projectShortName</strong></td>
 <td>Gets a specific project.</td>
 </tr>
 <tr>
@@ -1498,7 +1524,7 @@
 </tr>
 <tr>
 <td><strong>state</strong><br />▹ <em><a href="../ram_state/">RamState</a></em></td>
-<td><em>string</em>: <strong>stateShortName</strong>=<code>WIP</code></td>
+<td>• <em>string</em>: <strong>stateShortName</strong>=<code>WIP</code></td>
 <td>Gets a specific state.</td>
 </tr>
 <tr>
@@ -1508,12 +1534,12 @@
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br /><em>string</em>: <strong>publishFolderPath</strong>,<br /><em><a href="../ram_file_info/">RamFileInfo</a></em>: <strong>fileInfo</strong></td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em>dict</em>: <strong>publishOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showPublishOptions</strong>=<code>false</code></td>
 <td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
 <td><strong>replaceItem</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em>string</em>: <strong>filePath</strong>,<br /><em>string</em>: <strong>stepShortName</strong>=<code>""</code></td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
 <td>Runs the scripts in <code>Ramses.instance().replaceScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
@@ -1523,7 +1549,7 @@
 </tr>
 <tr>
 <td><strong>setCurrentProject</strong></td>
-<td><em><a href="../ram_project/">RamProject</a></em>: <strong>project</strong></td>
+<td>• <em><a href="../ram_project/">RamProject</a></em>: <strong>project</strong></td>
 <td>Sets the current project.</td>
 </tr>
 <tr>
@@ -1533,7 +1559,7 @@
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>
-<td><em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br /><em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br /><em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
 <td>Runs the scripts in <code>Ramses.instance().statusScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
 </tr>
 <tr>
@@ -1559,18 +1585,18 @@
 <tbody>
 <tr>
 <td><strong>importItem</strong></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>list</em> of <em>string</em>: <strong>filePaths</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>- <code>item</code> is the item from which the user wants to import a file.<br />- <code>filePaths</code> is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />- <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.</td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
+<td>- <code>item</code> is the item from which the user wants to import a file.<br />- <code>filePaths</code> is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />- <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.<br />- <code>importOptions</code> is a dictionnary (associative array) containing custom options you can use to import the item.<br />- <code>showImportOptions</code> tells the script to show a UI or not to edit the import options before importing.</td>
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em><a href="../ram_file_info/">RamFileInfo</a></em>: <strong>publishFileInfo</strong></td>
-<td>- <code>item</code> is the item from which the user wants to publish a file.<br />- <code>step</code> is the step from which the user is publishing. You can check <code>step.outputPipes()</code> to know which file types to publish.<br />- <code>fileInfo</code> contains all the info which can be gathered from the publishing file, including version and state. <code>fileInfo.filePath()</code> returns the path for publishing the file (including a proposed fileName).</td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em>dict</em>: <strong>publishOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showPublishOptions</strong>=<code>false</code></td>
+<td>- <code>item</code> is the item from which the user wants to publish a file.<br />- <code>step</code> is the step from which the user is publishing. You can check <code>step.outputPipes()</code> to know which file types to publish.<br />- <code>filePath</code> is the path of the file currently being published.<br />- <code>publishOptions</code> is a dictionnary (associative array) containing custom options you can use to publish the item.<br />- <code>showPublishOptions</code> tells the script to show a UI or not to edit the publish options before publishing.</td>
 </tr>
 <tr>
 <td><strong>replaceItem</strong></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>list</em> of <em>string</em>: <strong>filePaths</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>- <code>item</code> is the item from which the user wants to import a file.<br />- <code>filePath</code> is the absolute path to the file the user wants to import.<br />- <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.<br />With this info, the method should replace selected objects with the imported items.</td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
+<td>- <code>item</code> is the item from which the user wants to import a file.<br />- <code>filePath</code> is the absolute path to the file the user wants to import.<br />- <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.<br />- <code>importOptions</code> is a dictionnary (associative array) containing custom options you can use to import the item.<br />- <code>showImportOptions</code> tells the script to show a UI or not to edit the import options before importing.<br />With this info, the method should replace selected objects with the imported items.</td>
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>
@@ -1580,7 +1606,7 @@
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<pre><code class="py"># Python
+<pre><code class="language-py"># Python
 
 # import ramses
 import ramses as ram
@@ -1608,8 +1634,7 @@ ramses.publish(currentItem, 'a path', 'STEP')
 # From anywhere in the app where the Ramses module has been imported, you can call 'aFunction' with
 ramses.userScripts[&quot;MyFunction&quot;](some, arg)
 </code></pre>
-
-<pre><code class="js">// ExtendScript
+<pre><code class="language-js">// ExtendScript
 
 // include the Ramses lib
 #include ramses.jsxinc
@@ -1641,7 +1666,6 @@ ramses.publish(currentItem, 'a path', 'STEP');
 // From anywhere in the app, you can call 'aFunction' with
 ramses.userScripts[&quot;MyFunction&quot;](some, arg);
 </code></pre>
-
 <hr />
 <h2 id="api-dev-notes">API Dev notes</h2>
 <div class="admonition note">

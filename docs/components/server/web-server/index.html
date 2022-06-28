@@ -72,13 +72,28 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.11-Alpha</a>
+                        <a href="../../..">v0.2.14-Alpha</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../quickstart/">Quick start</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../quickstart/administrator/">Administrator</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../quickstart/user/">User</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -190,7 +205,7 @@
         
             
 <li >
-    <a href="../../client/settings/">Settings</a>
+    <a href="../../client/settings/">Overview and settings</a>
 </li>
 
         
@@ -348,13 +363,13 @@
         
             
 <li >
-    <a href="../../addons/maya-extend/">Extensibility</a>
+    <a href="../../addons/maya-publish/">Maya pipeline (Publish and import)</a>
 </li>
 
         
             
 <li >
-    <a href="../../addons/maya-rubika/">Rubika Flavor</a>
+    <a href="../../addons/maya-extend/">Extensibility</a>
 </li>
 
         
@@ -808,13 +823,24 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.11-Alpha</a>
+                <a href="../../../../../..">v0.2.14-Alpha</a>
             </li>
         
         
         
-            <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Quick start</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/administrator/">Administrator</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../quickstart/user/">User</a></li>
+                        
+                    
+                </ul>
             </li>
         
         
@@ -899,7 +925,7 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../client/settings/">Settings</a></li>
+                                    <li class="third-level "><a href="../../client/settings/">Overview and settings</a></li>
                                     
                                 
                                     
@@ -982,9 +1008,9 @@
                                             
                                                 <li class="fourth-level "><a href="../../addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya-extend/">Extensibility</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../addons/maya-rubika/">Rubika Flavor</a></li>
+                                                <li class="fourth-level "><a href="../../addons/maya-extend/">Extensibility</a></li>
                                             
                                         </ul>
                                     </li>
@@ -1369,67 +1395,56 @@
 <p>If you have enough trust in us, you can just copy the bash script we provide at the end of the procedure and run that.</p>
 </div>
 <p>Before installing any new software on your system, it&rsquo;s a good idea to update already installed packages:</p>
-<pre><code class="bash">sudo apt update
+<pre><code class="language-bash">sudo apt update
 sudo apt upgrade
 </code></pre>
-
 <h3 id="install-apache-the-web-server">Install Apache, the web server</h3>
-<pre><code class="bash">sudo apt install apache2
+<pre><code class="language-bash">sudo apt install apache2
 </code></pre>
-
 <p>Test Apache by going to <a href="http://localhost">http://localhost</a> or <a href="http://127.0.0.1">http://127.0.0.1</a></p>
 <p>Server files are located in <code>/var/www/</code> and configurations files are in <code>/etc/apache2/</code> (he main file is <code>apache2.conf</code>)</p>
 <p>It suppresses some warning info to add a server name in the configuration file. Edit <code>/etc/apache2/sites-available/000-default.conf</code> <a href="#demarrer-une-application-graphique-en-mode-root-administrateur">as root</a>) to uncomment/add the line <code>ServerName localhost</code>.</p>
 <p>Starting and stopping Apache (it automatically starts during system boot by default)</p>
-<pre><code class="bash"># stop
+<pre><code class="language-bash"># stop
 sudo apachectl stop
 # start
 sudo apachectl start
 </code></pre>
-
 <h3 id="install-php">Install PHP</h3>
 <p>Install PHP with a few additional components needed by Ramses and your new Apache web server.</p>
-<pre><code class="bash">sudo apt install php php-mysql libapache2-mod-php php-dev php-sqlite3
+<pre><code class="language-bash">sudo apt install php php-mysql libapache2-mod-php php-dev php-sqlite3
 </code></pre>
-
 <p>Check if PHP is working</p>
-<pre><code class="bash">php -version
+<pre><code class="language-bash">php -version
 </code></pre>
-
 <p>You may need to enable the Apache php module</p>
-<pre><code class="bash">sudo a2dismod mpm_event &amp;&amp; sudo a2enmod mpm_prefork &amp;&amp; sudo a2enmod php7.4
+<pre><code class="language-bash">sudo a2dismod mpm_event &amp;&amp; sudo a2enmod mpm_prefork &amp;&amp; sudo a2enmod php7.4
 # change the php version if not 7.4
 </code></pre>
-
 <p>Test PHP by creating a <code>/var/www/html/phptest.php</code> file containing <code>&lt;?php phpinfo(); ?&gt;</code>, and navigate to <a href="http://localhost/phptest.php">http://localhost/phptest.php</a>.</p>
 <p>You can create this file quickly with the command line too:</p>
-<pre><code class="bash">echo &quot;&lt;?php phpinfo() ?&gt;&quot; | sudo tee -a /var/www/html/phptest.php &gt; /dev/null
+<pre><code class="language-bash">echo &quot;&lt;?php phpinfo() ?&gt;&quot; | sudo tee -a /var/www/html/phptest.php &gt; /dev/null
 </code></pre>
-
 <h3 id="install-mysql">Install MySQL</h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If there aren&rsquo;t many users going to use <em>Ramses</em> <em>at the same time</em>, you don&rsquo;t need <em>MySQL</em>, you can just ignore this part. You&rsquo;ll just have to set <em>Ramses</em> to use <em>SQLite</em> when installing it later.</p>
 </div>
-<pre><code class="bash">sudo apt install mysql-server
+<pre><code class="language-bash">sudo apt install mysql-server
 </code></pre>
-
 <p>You will need to set the root password; first, connect to <em>MySQL</em>:</p>
-<pre><code class="bash">sudo mysql -u root -p
+<pre><code class="language-bash">sudo mysql -u root -p
 # blank password
 </code></pre>
-
 <p>Set password:</p>
-<pre><code class="sql">ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
+<pre><code class="language-sql">ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
 </code></pre>
-
 <p>Keep this password somewhere, it&rsquo;s the one you will need to manage the database.</p>
 <p>Exit MySQL with <code>exit</code>.</p>
 <h4 id="install-phpmyadmin">Install phpMyAdmin</h4>
 <p><em>phpMyAdmin</em> is a nice tool to manage your <em>MySQL</em> databases that will help you prepare the <em>Ramses Server</em>.</p>
-<pre><code class="bash">sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
+<pre><code class="language-bash">sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
 </code></pre>
-
 <p>You have a few options to choose when prompted by the installer.</p>
 <ul>
 <li>For the server selection, choose <code>apache2</code></li>
@@ -1447,18 +1462,16 @@ sudo apt install phpmyadmin</code></p>
 <li>You will then be asked to choose and confirm a <em>MySQL</em> application password for <em>phpMyAdmin</em>.</li>
 </ul>
 <p>Enable the needed PHP extension:</p>
-<pre><code class="bash">sudo phpenmod mbstring
+<pre><code class="language-bash">sudo phpenmod mbstring
 </code></pre>
-
 <p>Restart <em>Apache</em>:</p>
-<pre><code class="bash">sudo systemctl restart apache2
+<pre><code class="language-bash">sudo systemctl restart apache2
 </code></pre>
-
 <p><em>phpMyAdmin</em> is available at <a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a></p>
 <h3 id="installation-script">Installation script</h3>
 <p>Here is a bash script to automate all of these. Copy it into a text file with the <code>.sh</code> extension, make it executable then run it from a terminal with <code>./theScipt.sh</code>.</p>
 <p>Be careful as the included installation of phpMyAdmin will prompt a few questions, read just above to be sure what you need to answer.</p>
-<pre><code class="bash">#!/bin/bash
+<pre><code class="language-bash">#!/bin/bash
 
 sudo apt update
 sudo apt upgrade
