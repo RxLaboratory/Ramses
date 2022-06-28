@@ -53,48 +53,35 @@ The creation of a pipeline is better made using the [*Ramses Client Application*
 
 A pipeline can be built quite quickly by following these steps:
 
-1. **List the applications** which are going to be used.
+1. **Set the project settings** like its resolution and framerate.
 2. **Create the steps** (from scratch or using templates).
+1. **List the applications** which are going to be used.
 3. **Assign applications** to the steps.
 4. **Connect the steps** with pipes.
 5. (optional) **Set the file types** to be used through the pipes.
 6. (optional) **Create Templates** for the steps.
+6. (optional) **Create default settings** for publishing and importing items.
 7. (optional) **Develop extensions for the Add-ons** if you have specific needs for an advanced pipeline with a lot of automations.
 
 ▹ **[Pipeline editor in the *Ramses Client Application*](../components/client/pipeline.md)**.
 
-[An example Add-on for *Autodesk Maya*](../components/addons/maya-rubika.md) is available to show how an advanced pipeline can be created, with or without the [*Ramses Client Application*](../components/client/index.md), using the [*Ramses Python API*](../dev/add-ons-reference/index.md).
-
-!!! note
-    [This *Autodesk Maya* Add-on](../components/addons/maya-rubika.md) has been developped for the production of the graduation movies at the school Rubika / Supinfocom in Valenciennes, France. It's more than just an example and can be used in production.
+▹ **[Available *Add-ons*](../components/addons/index.md)**.
 
 ▹ **[*Add-on API* for the extension or development of new *Add-ons*](../dev/add-ons-reference/index.md)**.
 
-## ![](../img/icons/applications_sl.svg){: style="width:48px;"} Applications
+### Project settings
 
-In order to manage the assets and the files they use, *Ramses* keeps track of the *Applications* used in the production.
+From the *Ramses Client Application*, you can adjust the project settings.
 
-For each *Application*, *Ramses* keeps also three lists of **file types**:
+![](../img/client/projectedition.png)
 
-- **Native types** are the file types used natively by the applications; the ones which type can be created with a *save* command and which store data in a lossless manner.
-- **Import types** are all the file types the application can import.
-- **Export types** are all the file types the application can create, usually with an *export* or *bake* command for example.
+Specifically, the *Resolution* and *Framerate* can be used by the *Add-ons* to automatically setup the working files in the creative applications.
 
-The [*Ramses client*](../components/client/index.md) can open applications and open files in applications; [*Ramses Add-ons*](../components/addons/index.md) should be able to save and manage the versionning in an application, as long as import and export assets.
+### ![](../img/icons/connections_sl.svg){: style="width:48px;"} List steps
 
-▹ **[Application management in the *Ramses Client Application*](../components/client/admin.md)**.
+You can use the *Ramses Client Application* to list the steps needed to produce the project.
 
-## ![](../img/icons/files_sd.svg){: style="width:48px;"} File types
-
-In order to manage the assets and the files they use, *Ramses* keeps track of the *File Types* used in the production.
-
-Specific file types can be marked as *preview types*, which means they're light and standard and can be used to display or preview an asset, but can store data in a lossy manner.
-
-File types can be associated with specific **applications** and **pipes**.
-
-▹ **[File type management in the *Ramses Client Application*](../components/client/admin.md)**.
-
-## ![](../img/icons/connections_sl.svg){: style="width:48px;"} Steps
+![](../img/client/steps.png)
 
 *Steps* represent the stages the assets and shots have to go through before completion, for example *Modeling*, *Rigging*, *Animation*, *Lighting*...
 
@@ -139,7 +126,31 @@ The folder names for the steps respect the [*Ramses Naming Scheme*](../component
 
 *Steps* are also associated with the **applications** used to produce the assets and shots (read below). They also have default values for **production estimations** (read the [*Planning*](planning.md) section for more information).
 
-### Templates
+#### ![](../img/icons/applications_sl.svg){: style="width:48px;"} Add Applications
+
+In order to manage the assets and the files they use, *Ramses* keeps track of the *Applications* used in the production.
+
+For each *Application*, *Ramses* keeps also three lists of **file types**:
+
+- **Native types** are the file types used natively by the applications; the ones which type can be created with a *save* command and which store data in a lossless manner.
+- **Import types** are all the file types the application can import.
+- **Export types** are all the file types the application can create, usually with an *export* or *bake* command for example.
+
+The [*Ramses client*](../components/client/index.md) can open applications and open files in applications; [*Ramses Add-ons*](../components/addons/index.md) should be able to save and manage the versionning in an application, as long as import and export assets.
+
+▹ **[Application management in the *Ramses Client Application*](../components/client/admin.md)**.
+
+#### ![](../img/icons/files_sd.svg){: style="width:48px;"} File types
+
+In order to manage the assets and the files they use, *Ramses* keeps track of the *File Types* used in the production.
+
+Specific file types can be marked as *preview types*, which means they're light and standard and can be used to display or preview an asset, but can store data in a lossy manner.
+
+File types can be associated with specific **applications** and **pipes**.
+
+▹ **[File type management in the *Ramses Client Application*](../components/client/admin.md)**.
+
+#### Templates
 
 *Step* folders contain a `Templates` subfolder which contains the **template files** to be used when creating a **new asset** or a **new shot**. This can be done directly from the [assets and shots tables](../components/client/production.md) in the [*Ramses Client Application*](../components/client/index.md) or from [*Ramses Add-ons*](../components/addons/index.md). The `Templates` subfolder is a standard working folder, and templates can have versions, a *preview* subfolder, and must be *published* to be used.
 
@@ -150,11 +161,19 @@ The folder names for the steps respect the [*Ramses Naming Scheme*](../component
 
 ▹ **[Template Step management in the *Ramses Client Application*](../components/client/admin.md)**.
 
-## ![](../img/icons/connection_sl.svg){: style="width:48px;"} Pipes
+## ![](../img/icons/connection_sl.svg){: style="width:48px;"} Use pipes to connect steps
+
+You can use the [*Pipeline editor*](../components/client/pipeline.md) in the *Ramses Client Application* to build the pipeline and connect steps.
 
 Each *pipe* is a connection between two steps.
 
+![](../img/client/pipeline.png)
+
 It keeps the **file types** used to export from and import to these steps, as long as the color space of the files. [*Ramses Add-ons*](../components/addons/index.md) can use this information to automate the process.
+
+![](../img/client/pipeedit.png)
+
+For each pipe you can add specific file types to be used.
 
 !!! Tip
     Configuring pipes and passing the information to the [*Ramses Add-ons*](../components/addons/index.md) makes the pipeline very customizable and modular, but it is not mandatory when [extending or developping an *Add-on*](../dev/add-ons-reference/index.md) to use this information.
@@ -164,3 +183,43 @@ It keeps the **file types** used to export from and import to these steps, as lo
 *Pipes* also automate the production management and are able to automatically update statuses, notify users of changes and of the disponibility of new materials for example.
 
 ▹ **[Pipeline editor in the *Ramses Client Application*](../components/client/pipeline.md)**.
+
+## Automate the pipeline
+
+Using [*Ramses Add-ons*](../components/addons/index.md) you can easily automate the workflow with a properly configured pipeline.
+
+### Publish settings
+
+For each step, you can define default publishing settings, either by inputing them in the [settings of the step](../components/client/steps.md) in the [*Ramses Client Application*](../components/client/index.md) or [through the add-on](../components/addons/index.md) itself.
+
+Using official [*Ramses Add-ons*](../components/addons/index.md), these settings should be simple [*Yaml*](http://yaml.org) formatted texts, looking like this:
+
+```yaml
+some_setting: true
+another_setting: false
+a_list:
+  - item1
+  - item2
+a_value: 42
+other_info: "05/05/1818"
+```
+
+![](../img/client/stepedition-settings.png)
+
+The [*Ramses Add-ons*](../components/addons/index.md) will read these settings when publishing from the corresponding step to automatically publish the right format with the right parameters.
+
+▹ **[Step settings in the *Ramses Client Application*](../components/client/steps.md)**.
+
+▹ **[*Ramses Add-ons*](../components/addons/index.md)**.
+
+### Import settings
+
+When importing previously published items, *Ramses* can also automate some settings and get default parameters, with the same kind of [*Yaml*](http://yaml.org) formatted presets.
+
+The import settings can also be set in the [*Ramses Client Application*](../components/client/index.md) or [through the add-on](../components/addons/index.md) itself.
+
+![](../img/client/pipetypeedition.png)
+
+▹ **[Pipe type settings in the *Ramses Client Application*](../components/client/pipetypes.md)**.
+
+▹ **[*Ramses Add-ons*](../components/addons/index.md)**.

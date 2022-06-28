@@ -93,7 +93,6 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 
 Here are some of the features which are not available yet but which will be available in the future.
 
-- **Full _SSL_ encryption** when connecting to the server. *SSL* may already be available on *Linux* and will be available on *Windows* and *Mac OS* shortly. If *Ramses*' beta versions can already be tested without it, it is a mandatory feature for the release versions, as the security of your data is non-negociable.
 - The **Dashboard** will be an area where each user accesses all its important data and schedule. It comes with notifications so you won't miss any change concerning your assets, shots and steps.
 - The **Offline mode** for the *Ramses Client Application* will make it easier to use for one-man bands; you will be able to use *Ramses* without having to install the server. This also means you'll still be able to use *Ramses* even if you're not connected to the network, when you're in a train or on top of a mountain.
 - **Project Planning**: a simple but indispensable tool to easily plan the production of the project, at the very beginning of the production. With this planning tool you will be able to set the important dates of the production, the deadlines for each step, all in an easy-to-use and visual panel.
@@ -104,25 +103,9 @@ Here are some of the features which are not available yet but which will be avai
 - A lot of **UI improvements** and tweaks are planned too, and work will be done to improve the performance of the *Ramses Client Application* even further.
 - **_Syncthing_ integration** will provide [a free, open, and secure way to synchronize](https://syncthing.net/) all files and data of your production accross multiple workstations, servers, NAS, etc.
 
-There's also a lot of ongoing work to extend the supported creative applications through *Ramses* Add-ons. This table shows what's planned, what's already available, what will be available soon.
+There's also a lot of ongoing work to extend the supported creative applications through *Ramses* Add-ons.
 
-| Application | Scripting Language | Status | Comment |
-| --- | --- | --- | --- |
-| [API](dev/add-ons-reference/index.md) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
-| [API](dev/add-ons-reference/index.md) | ExtendScript | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | For Adobe Creative Cloud |
-| [API](dev/add-ons-reference/index.md) | UXP | ![icon](img/icons/red_circle.png){: style="width:16px;"} | For Adobe Creative Cloud<br/>*UXP* is a new scripting environment for Adobe Software. *Ramses* won't officially support it until it is mature enough, which is not the case as of July 2020. This being said, the *ExtendScript* API may be compatible with *UXP*. |
-| Adobe After Effects | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
-| Adobe Illustrator | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |
-| Adobe Photoshop | ExtendScript | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
-| [Autodesk Maya](components/addons/maya.md) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
-| Autodesk Maya<br/>[Rubika Flavor](#) | Python | ![icon](img/icons/blue_circle.png){: style="width:16px;"} | A Beta version is already available. |
-| Blender | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
-| Inkscape | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} | Low-priority |
-| Krita | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
-| The Foundry Nuke | Python | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} |
-
-Legend:  
-![icon](img/icons/green_tick.png){: style="width:16px;"} Available | ![icon](img/icons/blue_circle.png){: style="width:16px;"} In development | ![icon](img/icons/orange_diamond.png){: style="width:16px;"} Planned | ![icon](img/icons/red_circle.png){: style="width:16px;"} Not supported
+**▹ [Read the *Add-ons* section for a detailed list of existing and planned add-ons](components/addons/index.md)**
 
 ![](img/client/home.png)
 
@@ -155,8 +138,8 @@ Legend:
         - [General information](components/addons/index.md)
         - Autodesk Maya
             - [Autodesk Maya Add-on](components/addons/maya.md)
+            - [Maya pipeline (publish and import)](components/addons/maya-publish.md)
             - [Extensibility](components/addons/maya-extend.md)
-            - [The Rubika Flavor](components/addons/maya-rubika.md)
     - The Ramses Tree
         - [Introduction](components/files/index.md)
         - [Naming scheme](components/files/naming.md)

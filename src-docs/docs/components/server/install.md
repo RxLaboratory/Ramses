@@ -31,7 +31,7 @@ You first have to decide what type of database the *Ramses Server* will be using
 - ***MySQL*** or any other compatible server like *MariaDB*.  
 	Use this if there will be a lot of users connected simultaneously to *Ramses*, and if you already know how to configure an SQL database (or you're ready to learn).
 - ***SQLite*** is a simpler database, self-contained in a single file handled by the *Ramses Server*.
-	Use this if there will be just a few users connected simultaneously to *Ramses*, or if you want an server easier to setup and backup.
+	Use this if there will be just a few users connected simultaneously to *Ramses*, or if you want a server easier to setup and backup.
 
 Once you've made your choice, follow these steps:
 

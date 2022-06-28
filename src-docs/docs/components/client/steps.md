@@ -36,20 +36,30 @@ Steps can be re-order by dragging their *ID* in the column header of the list.
 
 - ***Name*** is the step's display name.
 - ***ID*** is the **unique** identifier which is used in the files and folders (see the [*Ramses Tree*](../files/index.md) section). **It can't be changed after the step has been created**. Read the [*Ramses naming conventions*](../files/naming.md) to learn how *IDs* and names have to be formatted.
-- ***Comment*** can be any text associated to the step and describing it.
+- ***Comment*** can be any text associated to the step and describing it. It can be formatted, using the [Markdown](https://www.markdownguide.org/) syntax.
 - Use the ***Type*** list to set the [type](../../pipeline/pipeline.md) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
 - The ***color*** is used to display the steps in the user interface and easily differenciate them in lists and the [schedule](schedule.md).
     - Input a custom hexadecimal color code in the field.
     - Click the ![](/img/icons/color2.svg){: style="width:18px;"} button to use a nice color selector.
+
+There are three tabs for other details:
+
+- ***Applications*** can be assigned to each step; this information is used by the [pipeline](../../pipeline/pipeline.md) tools for automations and to open files.
+    - The ![](/img/icons/add_sl.svg){: style="width:18px;"} button contains a list of available applications, and an entry to quickly create a new application without having to switch to the [applications](applications.md) tab.
+    - The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button unassigns the selected appplications from the project but does not remove them from *Ramses*. You can also use the `[DEL]` key.
+
+![](/img/client/stepedition-estim.png)
+
 - You can set the default ***estimation*** for the step. Read the section about [*Production Planning*](../../pipeline/planning.md) for more information.
     - For *Shot Production* steps, you can select if the estimation has to be evaluated **per shot** (for a lighting step where the quantity of work does not depend on the duration of the shot for example) or on the duration, **per second** (better for the animation step for example).
     - You can set a different default estimation for shots or assets depending on the **difficulty**. Estimation is made in **days**.
     - For *Shot Production* steps, you can select an **asset group** to **multiply** the estimation by the number of corresponding assets in the shot. For example, you can multiply the estimation of the animation by the number of characters in the shot.
-- The ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} button opens the step folder in your file explorer. This folder contains [the step common files](../../pipeline/pipeline.md#steps), especially the templates, but not the [working files](../../pipeline/pipeline.md#a-working-folder) which are stored within their assets and shots.
-- ***Applications*** can be assigned to each step; this information is used by the [pipeline](../../pipeline/pipeline.md) tools for automations and to open files.
-    - The ![](/img/icons/add_sl.svg){: style="width:18px;"} button contains a list of available applications, and an entry to quickly create a new application without having to switch to the [applications](applications.md) tab.
-    - The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button unassigns the selected appplications from the project but does not remove them from *Ramses*. You can also use the `[DEL]` key.
-    - From the list, you can use the ![](/img/icons/edit-comment-modify_sl.svg){: style="width:18px;"} *edit* button to edit them in a side docked panel. Read the [*application management*](users.md) section for more details about application edition.
+
+![](/img/client/stepedition-settings.png)
+
+- Use the ***Settings*** tab to add some custom settings which can be used by *Ramses* add-ons to automate the pipeline. Using the official *Ramses Add-ons*, these settings should be formatted using the [*Yaml*](http://yaml.org) syntax. Read the [*Add-ons*](../../components/addons/index.md) section for more information about the settings you can use.
+
+Finally, the ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} button opens the step folder in your file explorer. This folder contains [the step common files](../../pipeline/pipeline.md#steps), especially the templates, but not the [working files](../../pipeline/pipeline.md#a-working-folder) which are stored within their assets and shots.
 
 !!! tip
     To change the *ID* of the step, you'll need to create a new one with the new *ID* and remove the old one; it may be safe to do so at the beginning of a project, but existing data (if any) can't be transfered to the new step, be careful!

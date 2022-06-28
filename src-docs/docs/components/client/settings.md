@@ -34,16 +34,7 @@ The title bar show the main buttons to switch the panels on the left, and the vi
 
 In the middle of the title bar is the selector where you can select the project you're currently working on.
 
-The buttons on the right section change the size and visibility of the window.
-
-- ![](/img/icons/minimize.svg){: style="width:18px;"} Minimize
-- ![](/img/icons/maximize.svg){: style="width:18px;"} Maximize
-- ![](/img/icons/hide_sd.svg){: style="width:18px;"} Hide. The application will not close but sit in the system tray.
-- ![](/img/icons/quit.svg){: style="width:18px;"} Quit
-
-Once logged in, the left section shows the buttons for the different panels.
-
-![](/img/client/loggedintitlebar.png)
+![](/img/icons/hide_sd.svg){: style="width:18px;"} Hide. The application will not close but sit in the system tray.
 
 Which panels and buttons are available depends on [the **role** of the current user](../../pipeline/administration.md), and there may be fewer buttons than on the picture above.
 
@@ -68,24 +59,6 @@ The status bar at the bottom of the window displays temporary feedback, useful m
 - The ***user*** button (which shows your user name, or *Guest* if you're not logged in yet) gives access to a few user options (see below).
 - ![](/img/icons/gotosettings.svg){: style="width:18px;"} The *settings* button leads you to the settings of the application.
 - ![](/img/icons/help.svg){: style="width:18px;"} The *help* button shows a small menu with useful shortcuts.
-
-#### The help menu
-
-![](/img/client/helpmenu.png)
-
-- ***Help*** leads you to this documentation.
-- ***About*** shows a popup window with a few information about *Ramses* and other legal information.
-- ***Bug Report*** is a shortcut to the [bug report form](https://github.com/RxLaboratory/Ramses/issues/new/choose), in case you have any feedback to share about the application.
-- ***Chat*** is a shortcut to our [chatroom](http://chat.rxlab.info), currently hosted by a *Discord Server*, where you can get support for *Ramses* and have a chat with other users.
-- ***About Qt*** shows a popup window with a few information about *Qt*, the free and open source *C++* framework used to develop the application.
-
-#### The user menu
-
-![](/img/client/loggedinstatusbar.png)
-
-- ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} The *User folder* button opens your folder in your file explorer.
-- ![](/img/icons/user-settings_sl.svg){: style="width:18px;"} The *Profile* button shows the user profile panel when you can update your information and password.
-- ![](/img/icons/logout_sl.svg){: style="width:18px;"} The *Log out* button logs you out and sets the application to offline mode.
 
 ### Console
 
@@ -114,6 +87,34 @@ Except for the password, there's no need to validate any change; changes are sav
     - Leave the field empty to set back the default folder.
     - The blue ![](/img/icons/set-folder_sl.svg){: style="width:18px;"} button opens a folder selector to change the folder location.
     - The green ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} button opens the folder in your file explorer.
+
+### Lists
+
+![](../../img/client/list.png)
+
+There are a lot of lists in *Ramses*...
+
+In all lists, you can grab the bottom margin of any row to reveal more details. Clicking on a item opens the corresponding properties in a side panel. If you need to select several items, you can click and hold while dragging the mouse to select contiguous items, or you can hold `[Ctrl]` while clicking items to select individual items.
+
+The search bar uses both IDs and names to find items.
+
+In most of the lists, `[Del]` and `[Shift] + [X]` can be used to remove items. `[Middle Click]` can be used to scroll the list, as the `[Mouse Wheel]` does too.
+
+### Comments
+
+![](../../img/client/comment-formatted.png)
+
+In many places, you can add *Comments* in *Ramses*. These comments can be simple texts, but they can also be formatted using the [*Markdown*](https://www.markdownguide.org/) syntax.
+
+Start by writing some text, and validate your input with `[Enter]` from the numpad. *Ramses* will interpret the text to display a nice rich text.
+
+You can get back to the source to edit the text in more details using the `[F2]` key.
+
+![](../../img/client/comment-source.png)
+
+Use the `[Right Click]` context menu for other options.
+
+![](../../img/client/comment-format-context-menu.png)
 
 ## ![](/img/icons/gotosettings.svg){: style="width:48px;"} Settings
 

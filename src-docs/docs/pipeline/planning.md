@@ -24,8 +24,6 @@ To establish a realistic schedule, it is important to be able to estimate the ti
 
 The unit used for estimations by *Ramses* is the *day* (which can be divided into smaller parts of a day if you need). Counting in days is precise enough for planning a production, and this way you don't need to know exactly how many hours are (actually) worked in a day.
 
-But when *Ramses* [tracks the production](production.md), the data it gathers is actually in... Seconds. To make things simpler, the time spent on each task is actually displayed and calculated in *hours*. Time tracking can't be done in days like the estimation, as the user may work on many different tasks the same day. Consequently, *Ramses* needs to be able to convert the actual *hours* spent on a task to *days* to be able to compare this value with the estimation (and warn you if you're late). As it would not really make sense to define an arbitrary number of hours per work day (as *Ramses* measures actual time spent, but never knows if the user is eating, going to the toilets, sick or just working *as he should without any break* (that's a joke)), *Ramses* rounds all that data to fractionnal days; this makes the measurement of the time spent less precise for individual tasks, but works quite well globally for the whole project, and thus to compare with estimations; the algorithm should work no matter what the *official* duration of a working day is (if it's more than 5-6 hours and less than 12).
-
 !!! note
     There's no way with *Ramses* to link the production tracking data to individual users (meaning that there's no easy way to build statistics about users or compare their productivity). That's by design, don't ask for it.
 

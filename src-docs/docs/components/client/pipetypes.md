@@ -12,21 +12,6 @@ Pipes can also be more easily created, edited and connected from the [**pipeline
 
 ▹ **[More details about the pipeline](../../pipeline/pipeline.md)**.
 
-## List
-
-![](/img/client/pipetypelist.png)
-
-The list on the left lists all the pipe types of the project, and you can use the ***Search*** field to filter them by ***ID***.  
-When changing the size of the rows in the list, more details about each pipes can be displayed.
-
-Use the ![](/img/icons/add_sl.svg){: style="width:18px;"} button to **create** a new pipe. The ![](/img/icons/remove_sl.svg){: style="width:18px;"} button **removes** the selected pipes from the project[^1].
-
-You can use the `[Shift + A]` shortcut key to quickly add new pipes.
-
-You can use the `[DEL]` or `[Shift + X]` shortcut key to quickly remove selected pipes.
-
-You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
-
 ## Edition
 
 ![](/img/client/pipetypeedition.png)
@@ -36,6 +21,7 @@ You can scroll all lists using `[Middle click]` as well as the `[Mouse wheel]`.
 - Use the ***Type*** list to set the [type](../../pipeline/pipeline.md) of the step. [Read this for more information](../../pipeline/pipeline.md) about step types.
 - You can select one ***File type*** to be used through this pipe; if you need several different types, you can use multiple pipes between steps. Read the [*Pipeline Editor*](pipeline.md) section for more information.
 - You can select one ***Color space*** to be used through this pipe; if you need several different color spaces, you can use multiple pipes between steps. Read the [*Pipeline Editor*](pipeline.md) section for more information.
+- Use the ***Custom Settings*** to set default settings to be used by *Ramses Add-ons* to automate the pipeline. These settings will be read when importing this specific file type, if it is assigned to a incoming pipe of the corresponding steps. Using the official *Ramses Add-ons*, these settings should be formatted using the [*Yaml*](http://yaml.org) syntax. Read the [*Add-ons*](../addons/index.md) section for more information about the settings you can use.
 
 ▹ **[More details about the pipeline](../../pipeline/pipeline.md)**.
 

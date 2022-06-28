@@ -30,7 +30,9 @@ site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
     - v0.2.14-Alpha: index.md
-    - Quick start: quickstart.md
+    - Quick start: 
+        - Administrator: quickstart/administrator.md
+        - User: quickstart/user.md
     - Principles:
         - Introduction: pipeline/index.md
         - Administration: pipeline/administration.md
@@ -48,7 +50,7 @@ nav:
         - Ramses Application:
             - Introduction: components/client/index.md
             - Installation: components/client/install.md
-            - Settings: components/client/settings.md
+            - Overview and settings: components/client/settings.md
             - Administration:
                 - Introduction: components/client/admin.md
                 - Users: components/client/users.md

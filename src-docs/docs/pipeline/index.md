@@ -43,10 +43,12 @@ Here is the list of all the components along with a few notes about them.
 
     But that doesn't mean that you absolutely need an online server to test and use *Ramses*: you can already use it on a single workstation by locally installing a simple webserver. Explanations and a step-by-step guide is available in [the server documentation](../components/server/index.md).
 
-!!! hint
-    **_Ramses_ is not available _as a service_**: we do not provide any infrastructure nor server nor database for you to connect to. There's no website available to use a *Ramses Server*: you can stay in control of your own data without relying onto unknown people, even people as loving as us (and you won't have to pay mensual or annual fees just to use *Ramses*).
+!!! Hint
+    **_Ramses_ is not meant to be available _as a service_**: we believe you should stay in control of your own data without relying onto unknown people, even people as loving as us (and you won't have to pay mensual or annual fees just to use *Ramses*).
 
-    But don't be afraid, even if you're running your own small studio or tiny collective, it's very easy to install and use the *Ramses* server, it can be done on any computer running *Windows*, *Linux* or *Mac OS*, or better, on any low-cost shared hosting with just a very small available space and a small *MySQL* database. All the installation procedure is explained in [the server documentation](../components/server/index.md).
+    Even if you're running your own small studio or tiny collective, it's very easy to install and use the *Ramses* server, it can be done on any computer running *Windows*, *Linux* or *Mac OS*, or better, on any low-cost shared hosting with just a very small available space and a small *SQL* database. All the installation procedure is explained in [the server documentation](../components/server/index.md).
+
+    This being said, we (will soon) also have a few options for [**servers we can install and manage for you** at a very low cost](https://rxlaboratory.org/tools/ramses/).
 
 ## Installation
 
