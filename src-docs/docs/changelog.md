@@ -39,12 +39,17 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 - On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
 
+## 0.3.0-Alpha
+
+- **Server** and **Client**: Improved security. Warning: new clients are not compatible with older servers, you have to upgrade both. The update will create/update a new Admin user with the password "password" and you'll have to update all passwords for all users from that account to re-enable their accounts.
+
 ## 0.2.14-Alpha
 
 ### New
 
 - **Client** and **Server**: The schedule now has a dedicated line to add notes/comments.
 - **Client**, **Server** and **Add-ons**: Added publish settings to steps, to be used with add-ons.
+- **Client**: added a log level selector to the console.
 
 ### Improvements
 
