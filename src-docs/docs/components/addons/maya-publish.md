@@ -114,3 +114,11 @@ The text on the right can be copied to any [pipe type](../../components/client/p
 - **All transformations** of all nodes can be *locked*.
 - When importing a shader library, **shaders can automatically be applied** on the selected nodes.
   *Ramses* will use the node names to apply the shaders: the selected nodes must have the *exact same name* as the nodes in the scene used to publish the shaders.
+
+### Shaders
+
+When **importing a shader library**, as published with the publish method of the *Add-On*, ***Ramses* will automatically assign these shaders** to any mesh imported along with the shaders; this is a quick way to import both *Alembic* meshes and their shaders for example: just import both files at once.
+
+If you just want to assign the shaders to existing geometry, just select on or several nodes containing the meshes, and *Ramses* will try to assign the imported shaders to them, using the names of the transform nodes containing the meshes. If the shaders are not correctly assigned, check the names and namespaces of the nodes.
+
+If you need to replace or reassign shaders already imported, the quick and easy way is to remove them from the scene, select the meshes, and import them again. All the shaders will be automatically re-assigned.

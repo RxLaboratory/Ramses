@@ -50,9 +50,11 @@ The right side of the toolbar shows the time remaining before reaching the deadl
 
 ### Main table
 
-![](/img/client/scheduletable.png)
+![](/img/client/schedule.png)
 
 Each column represents a day, lines represent users. There are two lines per user to allow you to assign tasks only to half of a day.
+
+The first line can be used to add any comment to the given day (column), for example to show deadlines, holidays, etc.
 
 Columns in the past are darker than columns in the future, the current day is shown in purple in the header; the project deadline is shown in red. To help you differenciate weeks, an alternate grey is used for to separate them. You can hide the days of the week which are not working days (a.k.a. Weekends) using the `Days` menu.
 
