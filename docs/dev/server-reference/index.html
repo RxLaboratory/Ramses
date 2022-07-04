@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../..">v0.2.14-Alpha</a>
+                        <a href="../..">v0.3.0-Alpha</a>
                     </li>
                 
                 
@@ -823,7 +823,7 @@
         
         
             <li >
-                <a href="../../../..">v0.2.14-Alpha</a>
+                <a href="../..">v0.3.0-Alpha</a>
             </li>
         
         
@@ -1321,6 +1321,8 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#ramses-server-api">Ramses Server API</a></li>
+                <li class="second-level"><a href="#connection">Connection</a></li>
+                    
                 <li class="second-level"><a href="#server-replies">Server Replies</a></li>
                     
                 <li class="second-level"><a href="#queries">Queries</a></li>
@@ -1365,14 +1367,19 @@ Content-Length: 181
 </code></pre>
 <p>The parameters to use in the body are described in the next sections of this reference. The <em>Cookie</em> is set by the server on the first connection, the <em>User-Agent</em> is set by the client.</p>
 <p>The server replies with a <em>JSON</em> object in the body.</p>
+<h2 id="connection">Connection</h2>
 <p>For almost all queries (i.e. all but <em>ping</em> and <em>login</em>) you&rsquo;ll need to be logged in. Initiating a connection to the server usually follows these steps:</p>
 <ol>
-<li><em>ping</em> to check if the server is available and check its version.</li>
-<li><em>login</em> to authenticate yourself and get a session token.</li>
+<li><em>ping</em> to check if the server is available, check its version and get a token.</li>
+<li><em>login</em> to authenticate yourself.</li>
 <li><em>init</em> to get the main data (user list, project list&hellip;).</li>
 </ol>
+<p>It&rsquo;s a good habit to ping the server regularly and check it&rsquo;s still available, and to improve security: for each ping request, the session token changes, and you&rsquo;ll have to update it for following requests.</p>
 <p>For the examples in this documentation, we assume the ramses server is available at <code>http://your.server/ramses/</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>For the sake of readability, the <em>JSON</em> replies are pretty formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.</p>
+</div>
 <h2 id="server-replies">Server Replies</h2>
 <p>The <em>JSON</em> objects sent by the server all have the same content:</p>
 <ul>

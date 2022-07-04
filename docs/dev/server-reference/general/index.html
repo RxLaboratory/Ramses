@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.14-Alpha</a>
+                        <a href="../../..">v0.3.0-Alpha</a>
                     </li>
                 
                 
@@ -823,7 +823,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.14-Alpha</a>
+                <a href="../../..">v0.3.0-Alpha</a>
             </li>
         
         
@@ -1337,18 +1337,20 @@
 <h1 id="general-queries">General queries</h1>
 <h2 id="ping">ping</h2>
 <p><code>http://your.server/ramses/?ping</code></p>
-<p>Use this query to test if the server is available before logging in.</p>
+<p>Use this query to test if the server is available before logging in, and/or get a new session token.</p>
 <p><strong>Reply content:</strong></p>
 <ul>
 <li><em>version</em>: <strong>string</strong>. The version of the current Ramses Server.</li>
 <li><em>installed</em>: <strong>boolean</strong>. False if the server is not correctly installed (i.e. the install script has not been run). See the <a href="../../../components/server/install/"><em>Server installatio</em></a> section of this documentation.</li>
 </ul>
+<p>The server also adds a <code>token</code> value to the root object, specifically for this request. This token must be added to all other requests; if it&rsquo;s not the same in following requests, you&rsquo;re session will be ended and you&rsquo;ll be logged out.</p>
 <p><strong>Reply body</strong>:</p>
 <pre><code class="language-json">{
     &quot;accepted&quot;: true,
     &quot;query&quot;: &quot;ping&quot;,
     &quot;success&quot;: true,
     &quot;message&quot;: &quot;Server Ready!&quot;,
+    &quot;token&quot;: &quot;2f5d2e3d4e3af1a9d459c5731247abd1ee9a7123&quot;,
     &quot;content&quot;: {
         &quot;version&quot;: &quot;0.1.1-Alpha&quot;,
         &quot;installed&quot;: true
@@ -1376,7 +1378,6 @@
 <li><em>uuid</em>: <strong>string</strong>. The Universal Unique Identifier of this user.</li>
 <li><em>folderPath</em>: <strong>string</strong>. The user folder path.</li>
 <li><em>role</em>: <strong>string</strong>. The userrole.</li>
-<li><em>token</em>: <strong>string</strong>. The token to use for further requests.</li>
 </ul>
 <p>If not successful, the content is empty and the message explains the error.</p>
 <p><strong>Successful reply body</strong>:</p>
@@ -1390,8 +1391,7 @@
         &quot;shortName&quot;: &quot;Duduf&quot;,
         &quot;uuid&quot;: &quot;2d7d7e01-671c-11e7-a78f-4ccc6a288527&quot;,
         &quot;folderPath&quot;: &quot;/home/duduf&quot;,
-        &quot;role&quot;: &quot;admin&quot;,
-        &quot;token&quot;: &quot;2f5d2e3d4e3af1a9d459c5731247abd1ee9a7123&quot;
+        &quot;role&quot;: &quot;admin&quot;
     }
 }
 </code></pre>

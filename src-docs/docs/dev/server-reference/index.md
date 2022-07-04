@@ -47,15 +47,20 @@ The parameters to use in the body are described in the next sections of this ref
 
 The server replies with a *JSON* object in the body.
 
+## Connection
+
 For almost all queries (i.e. all but *ping* and *login*) you'll need to be logged in. Initiating a connection to the server usually follows these steps:
 
-1. *ping* to check if the server is available and check its version.
-2. *login* to authenticate yourself and get a session token.
+1. *ping* to check if the server is available, check its version and get a token.
+2. *login* to authenticate yourself.
 3. *init* to get the main data (user list, project list...).
+
+It's a good habit to ping the server regularly and check it's still available, and to improve security: for each ping request, the session token changes, and you'll have to update it for following requests.
 
 For the examples in this documentation, we assume the ramses server is available at `http://your.server/ramses/`.
 
-For the sake of readability, the *JSON* replies are pretty formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.
+!!! note
+    For the sake of readability, the *JSON* replies are pretty formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.
 
 ## Server Replies
 

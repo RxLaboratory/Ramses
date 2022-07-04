@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.14-Alpha</a>
+                        <a href="../../..">v0.3.0-Alpha</a>
                     </li>
                 
                 
@@ -823,7 +823,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.14-Alpha</a>
+                <a href="../../..">v0.3.0-Alpha</a>
             </li>
         
         
@@ -1326,8 +1326,6 @@
                 <li class="second-level"><a href="#standard-installation">Standard Installation</a></li>
                     
                     <li class="third-level"><a href="#configphp">config.php</a></li>
-                <li class="second-level"><a href="#mysql-preparing-the-database">MySQL: Preparing the database</a></li>
-                    
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1348,6 +1346,7 @@
 <li>An <strong>http web server</strong> like <em>Apache</em></li>
 <li><strong><em>PHP 7</em></strong></li>
 <li><em>Optionally</em>, an acces to a <strong><em>mySQL</em></strong> server and a dedicated database.</li>
+<li>An <em>SSL</em> certificate. Although this is not mandatory, it is <strong>strongly</strong> recommended to always encrypt your connections to the server, especially if the server is publicly available on the internet.</li>
 </ul>
 <p>The recommended configuration is a standard <em>AMP</em> stack (<em>Apache</em> - <em>mySQL</em> - <em>PHP</em>), with at least 2GB of RAM if the <em>SQL</em> server is on the same computer than the <em>Apache</em> server.</p>
 <ul>
@@ -1412,6 +1411,14 @@
     // The client will be disconnected no matter what after this time
     // 5 hours by default( 18000 )
     $cookieTimeout = 18000;
+
+    // This must be the server public adress, exactly as used in the clients
+    $serverAdress = &quot;localhost/ramses&quot;;
+
+    // This should never be changed, unless you change the key before building the official client or implementing your own client.
+    // It can be used to make sure only your own client, built by yourself, can connect to your own server. In this case, keep it secret!
+    // It is used to hash passwords.
+    $clientKey = &quot;H6BuYLsW&quot;;
 </code></pre>
 <ul>
 <li><code>$devMode</code> should always be <code>false</code> unless this server is going to be used for development and tests in a development environement. For security reasons <strong>do not set this to <code>true</code></strong> on a production server.</li>
@@ -1434,48 +1441,11 @@
 <p class="admonition-title">Tip</p>
 <p>If you know what you&rsquo;re doing, you can actually already change the table prefix, but <em>Ramses</em> will be installed using the default prefix anyway. That means you have to install <em>Ramses</em> with this default <code>ram</code> prefix, then rename all the tables with a new prefix, and finally change the prefix in <code>config.php</code>.</p>
 </div>
-<h2 id="mysql-preparing-the-database">MySQL: Preparing the database</h2>
-<p>If you need to use <em>MySQL</em> (for better performance with many users), here&rsquo;s a simple guide to configure your first database.</p>
-<p>Whether you&rsquo;ve installed your own web server (maybe by <a href="../web-server/">following our procedure</a> in order to test the <em>Beta Version</em> of <em>Ramses</em> without using an online server) or you&rsquo;ve order a shared or private hosting, you will need to create a database to be used by <em>Ramses</em> on the <em>MySQL</em> server.</p>
-<p>Most of the time, you can do this with <em>phpMyAdmin</em>, although the procedure can be different depending on your web hosting provider, some of them having their own interface to create and configure new databases. Here are some explanations about how to do that with <em>phpMyAdmin</em>.</p>
 <ul>
-<li>
-<p>First, go to the <em>phpMyAdmin</em> web interface. If you&rsquo;ve installed your own web server locally, this is probably <a href="http://localhost/phpmyadmin"><code>http://localhost/phpmyadmin</code></a>.</p>
-</li>
-<li>
-<p>Create a new database: on the left panel, click on <em>New</em>.</p>
-</li>
-</ul>
-<p><img alt="" src="../../../img/phpmyadmin/01.png" /></p>
-<ul>
-<li>Choose a name, for example <code>ramses</code> and click on <em>Create</em>. This is the name of the database which will be used later in the <em>Ramses Server</em> configuration.</li>
-</ul>
-<p><img alt="" src="../../../img/phpmyadmin/02.png" /></p>
-<ul>
-<li>The new database should be automatically selected; if not, click on its name on the left panel.<br />
-    Now let&rsquo;s create a new user for <em>Ramses</em>: click on the <em>Privileges</em> tab.</li>
-</ul>
-<p><img alt="" src="../../../img/phpmyadmin/03.png" /></p>
-<ul>
-<li>Click on <em>Add user account</em> under the <em>New</em> section.</li>
-</ul>
-<p><img alt="" src="../../../img/phpmyadmin/04.png" /></p>
-<ul>
-<li>
-<p>Set the basic login information. The user name can just be <em>ramses</em>; the user name and password will be used in the <em>Ramses Server</em> configuration later. If your using your own local server, it is better to set the <em>Host name</em> to be <em>Local</em> / <em>localhost</em>.</p>
-</li>
-<li>
-<p>Leave all other options to their defaults, and click on <em>Go</em> at the bottom of the page.</p>
-</li>
-</ul>
-<p><img alt="" src="../../../img/phpmyadmin/05.png" /></p>
-<ul>
-<li>
-<p>Leave all these options to their defaults, and click again on <em>Go</em>.</p>
-</li>
-<li>
-<p>That&rsquo;s all! you&rsquo;re ready to finish the installation of the <em>Ramses Server</em>.</p>
-</li>
+<li><code>$sessionTimeout</code> is the time, in seconds, before an idle client is disconnected.</li>
+<li><code>$cookieTimeout</code> is the time, in seconds, before a client is disconnected, no matter what.</li>
+<li><code>$serverAddress</code> must be the public address of the server, exactly as it is set in all clients.</li>
+<li><code>$clientKey</code> can be changed <em>only</em> if your client is not the official open source <em>Ramses Client Application</em>. Otherwise, leave it to the default value. It is a way to make sure only your client can connect to the server. It is currently used only when setting up the first user (administrator) during the server installation.</li>
 </ul></div>
         
             <div class="nav-footer">

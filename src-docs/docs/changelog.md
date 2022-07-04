@@ -41,12 +41,10 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ## 0.3.0-Alpha
 
-- **Server** and **Client**: Improved security. Warning: new clients are not compatible with older servers, you have to upgrade both. The update will create/update a new Admin user with the password "password" and you'll have to update all passwords for all users from that account to re-enable their accounts.
-
-## 0.2.14-Alpha
-
 ### New
 
+- **Server** and **Client**: Improved security. Warning: new clients are not compatible with older servers, you have to upgrade both. The update will create/update a new Admin user with the password "password" and you'll have to update all passwords for all users from that account to re-enable their accounts.
+- The **Client** shows the current RxLab's funding status.
 - **Client** and **Server**: The schedule now has a dedicated line to add notes/comments.
 - **Client**, **Server** and **Add-ons**: Added publish settings to steps, to be used with add-ons.
 - **Client**: added a log level selector to the console.

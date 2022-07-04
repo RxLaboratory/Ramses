@@ -15,7 +15,7 @@ It is just a small software meant to be installable on small hardware and with v
 
 The *Ramses Server* must be installed on a computer with:
 
-- An **http web server** like *Apache*
+- An **http(s) web server** like *Apache*
 - ***PHP 7***
 
 ### Optional Software
@@ -23,6 +23,8 @@ The *Ramses Server* must be installed on a computer with:
 - An acces to a ***mySQL*** or ***MariaDB*** or any other compatible server and a dedicated database.
 
 Without such a database server, the *Ramses Server* can still be run correctly (it will use an *SQLite* database which doesn't need any particular server), but performance may be poor with too many different concurrent users.
+
+- An ***SSL*** certificate. Although this is not mandatory, it is **strongly** recommended to always encrypt your connections to the server, especially if the server is publicly available on the internet.
 
 ### Recommended configuration
 

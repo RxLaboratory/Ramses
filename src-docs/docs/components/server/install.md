@@ -16,6 +16,7 @@
 - An **http web server** like *Apache*
 - ***PHP 7***
 - *Optionally*, an acces to a ***mySQL*** server and a dedicated database.
+- An *SSL* certificate. Although this is not mandatory, it is **strongly** recommended to always encrypt your connections to the server, especially if the server is publicly available on the internet.
 
 The recommended configuration is a standard *AMP* stack (*Apache* - *mySQL* - *PHP*), with at least 2GB of RAM if the *SQL* server is on the same computer than the *Apache* server.
 
@@ -86,6 +87,14 @@ The `config.php` file you have to edit looks like that:
 	// The client will be disconnected no matter what after this time
 	// 5 hours by default( 18000 )
 	$cookieTimeout = 18000;
+
+	// This must be the server public adress, exactly as used in the clients
+	$serverAdress = "localhost/ramses";
+
+	// This should never be changed, unless you change the key before building the official client or implementing your own client.
+	// It can be used to make sure only your own client, built by yourself, can connect to your own server. In this case, keep it secret!
+	// It is used to hash passwords.
+	$clientKey = "H6BuYLsW";
 ```
 
 - `$devMode` should always be `false` unless this server is going to be used for development and tests in a development environement. For security reasons **do not set this to `true`** on a production server.
@@ -106,39 +115,7 @@ The next options are only used in *MySQL* mode. Ignore them when using *SQLite*.
 !!! tip
     If you know what you're doing, you can actually already change the table prefix, but *Ramses* will be installed using the default prefix anyway. That means you have to install *Ramses* with this default `ram` prefix, then rename all the tables with a new prefix, and finally change the prefix in `config.php`.
 
-## MySQL: Preparing the database
-
-If you need to use *MySQL* (for better performance with many users), here's a simple guide to configure your first database.
-
-Whether you've installed your own web server (maybe by [following our procedure](web-server.md) in order to test the *Beta Version* of *Ramses* without using an online server) or you've order a shared or private hosting, you will need to create a database to be used by *Ramses* on the *MySQL* server.
-
-Most of the time, you can do this with *phpMyAdmin*, although the procedure can be different depending on your web hosting provider, some of them having their own interface to create and configure new databases. Here are some explanations about how to do that with *phpMyAdmin*.
-
-- First, go to the *phpMyAdmin* web interface. If you've installed your own web server locally, this is probably [`http://localhost/phpmyadmin`](http://localhost/phpmyadmin).
-
-- Create a new database: on the left panel, click on *New*.
-
-![](../../img/phpmyadmin/01.png)
-
-- Choose a name, for example `ramses` and click on *Create*. This is the name of the database which will be used later in the *Ramses Server* configuration.
-
-![](../../img/phpmyadmin/02.png)
-
-- The new database should be automatically selected; if not, click on its name on the left panel.  
-    Now let's create a new user for *Ramses*: click on the *Privileges* tab.
-
-![](../../img/phpmyadmin/03.png)
-
-- Click on *Add user account* under the *New* section.
-
-![](../../img/phpmyadmin/04.png)
-
-- Set the basic login information. The user name can just be *ramses*; the user name and password will be used in the *Ramses Server* configuration later. If your using your own local server, it is better to set the *Host name* to be *Local* / *localhost*.
-
-- Leave all other options to their defaults, and click on *Go* at the bottom of the page.
-
-![](../../img/phpmyadmin/05.png)
-
-- Leave all these options to their defaults, and click again on *Go*.
-
-- That's all! you're ready to finish the installation of the *Ramses Server*.
+- `$sessionTimeout` is the time, in seconds, before an idle client is disconnected.
+- `$cookieTimeout` is the time, in seconds, before a client is disconnected, no matter what.
+- `$serverAddress` must be the public address of the server, exactly as it is set in all clients.
+- `$clientKey` can be changed *only* if your client is not the official open source *Ramses Client Application*. Otherwise, leave it to the default value. It is a way to make sure only your client can connect to the server. It is currently used only when setting up the first user (administrator) during the server installation.

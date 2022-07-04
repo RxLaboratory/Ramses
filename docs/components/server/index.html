@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../..">v0.2.14-Alpha</a>
+                        <a href="../..">v0.3.0-Alpha</a>
                     </li>
                 
                 
@@ -823,7 +823,7 @@
         
         
             <li >
-                <a href="../../../..">v0.2.14-Alpha</a>
+                <a href="../..">v0.3.0-Alpha</a>
             </li>
         
         
@@ -1346,7 +1346,7 @@
 <h3 id="required-software">Required Software</h3>
 <p>The <em>Ramses Server</em> must be installed on a computer with:</p>
 <ul>
-<li>An <strong>http web server</strong> like <em>Apache</em></li>
+<li>An <strong>http(s) web server</strong> like <em>Apache</em></li>
 <li><strong><em>PHP 7</em></strong></li>
 </ul>
 <h3 id="optional-software">Optional Software</h3>
@@ -1354,6 +1354,9 @@
 <li>An acces to a <strong><em>mySQL</em></strong> or <strong><em>MariaDB</em></strong> or any other compatible server and a dedicated database.</li>
 </ul>
 <p>Without such a database server, the <em>Ramses Server</em> can still be run correctly (it will use an <em>SQLite</em> database which doesn&rsquo;t need any particular server), but performance may be poor with too many different concurrent users.</p>
+<ul>
+<li>An <strong><em>SSL</em></strong> certificate. Although this is not mandatory, it is <strong>strongly</strong> recommended to always encrypt your connections to the server, especially if the server is publicly available on the internet.</li>
+</ul>
 <h3 id="recommended-configuration">Recommended configuration</h3>
 <p>The recommended configuration is a standard <em>AMP</em> stack (<em>Apache</em> - <em>mySQL</em> - <em>PHP</em>), with at least 2GB of RAM if the <em>SQL</em> server is on the same computer than the <em>Apache</em> server.</p>
 <ul>

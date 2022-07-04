@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.2.14-Alpha</a>
+                        <a href="../../..">v0.3.0-Alpha</a>
                     </li>
                 
                 
@@ -823,7 +823,7 @@
         
         
             <li >
-                <a href="../../../../../..">v0.2.14-Alpha</a>
+                <a href="../../..">v0.3.0-Alpha</a>
             </li>
         
         
@@ -1331,6 +1331,8 @@
                     <li class="third-level"><a href="#install-php">Install PHP</a></li>
                     <li class="third-level"><a href="#install-mysql">Install MySQL</a></li>
                     <li class="third-level"><a href="#installation-script">Installation script</a></li>
+                <li class="second-level"><a href="#mysql-preparing-the-database">MySQL: Preparing the database</a></li>
+                    
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1506,7 +1508,50 @@ echo &quot;Test php at http://localhost/phptest.php&quot;
 echo &quot;MySQL installed. User 'root' has password 'admin'.&quot;
 echo &quot;Sometimes you need a non-root user. Created MySQL user 'admin' with password 'admin'&quot;
 echo &quot;You may change these passwords and manage the MySQL databases with phpMyAdmin: http://localhost/phpmyadmin
-</code></pre></div>
+</code></pre>
+<h2 id="mysql-preparing-the-database">MySQL: Preparing the database</h2>
+<p>If you need to use <em>MySQL</em> (for better performance with many users), here&rsquo;s a simple guide to configure your first database.</p>
+<p>Whether you&rsquo;ve installed your own web server (maybe by <a href="./">following our procedure</a> in order to test the <em>Beta Version</em> of <em>Ramses</em> without using an online server) or you&rsquo;ve order a shared or private hosting, you will need to create a database to be used by <em>Ramses</em> on the <em>MySQL</em> server.</p>
+<p>Most of the time, you can do this with <em>phpMyAdmin</em>, although the procedure can be different depending on your web hosting provider, some of them having their own interface to create and configure new databases. Here are some explanations about how to do that with <em>phpMyAdmin</em>.</p>
+<ul>
+<li>
+<p>First, go to the <em>phpMyAdmin</em> web interface. If you&rsquo;ve installed your own web server locally, this is probably <a href="http://localhost/phpmyadmin"><code>http://localhost/phpmyadmin</code></a>.</p>
+</li>
+<li>
+<p>Create a new database: on the left panel, click on <em>New</em>.</p>
+</li>
+</ul>
+<p><img alt="" src="../../../img/phpmyadmin/01.png" /></p>
+<ul>
+<li>Choose a name, for example <code>ramses</code> and click on <em>Create</em>. This is the name of the database which will be used later in the <em>Ramses Server</em> configuration.</li>
+</ul>
+<p><img alt="" src="../../../img/phpmyadmin/02.png" /></p>
+<ul>
+<li>The new database should be automatically selected; if not, click on its name on the left panel.<br />
+    Now let&rsquo;s create a new user for <em>Ramses</em>: click on the <em>Privileges</em> tab.</li>
+</ul>
+<p><img alt="" src="../../../img/phpmyadmin/03.png" /></p>
+<ul>
+<li>Click on <em>Add user account</em> under the <em>New</em> section.</li>
+</ul>
+<p><img alt="" src="../../../img/phpmyadmin/04.png" /></p>
+<ul>
+<li>
+<p>Set the basic login information. The user name can just be <em>ramses</em>; the user name and password will be used in the <em>Ramses Server</em> configuration later. If your using your own local server, it is better to set the <em>Host name</em> to be <em>Local</em> / <em>localhost</em>.</p>
+</li>
+<li>
+<p>Leave all other options to their defaults, and click on <em>Go</em> at the bottom of the page.</p>
+</li>
+</ul>
+<p><img alt="" src="../../../img/phpmyadmin/05.png" /></p>
+<ul>
+<li>
+<p>Leave all these options to their defaults, and click again on <em>Go</em>.</p>
+</li>
+<li>
+<p>That&rsquo;s all! you&rsquo;re ready to finish the installation of the <em>Ramses Server</em>.</p>
+</li>
+</ul></div>
         
             <div class="nav-footer">
             <ul>

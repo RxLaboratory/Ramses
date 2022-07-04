@@ -230,3 +230,40 @@ echo "MySQL installed. User 'root' has password 'admin'."
 echo "Sometimes you need a non-root user. Created MySQL user 'admin' with password 'admin'"
 echo "You may change these passwords and manage the MySQL databases with phpMyAdmin: http://localhost/phpmyadmin
 ```
+
+## MySQL: Preparing the database
+
+If you need to use *MySQL* (for better performance with many users), here's a simple guide to configure your first database.
+
+Whether you've installed your own web server (maybe by [following our procedure](web-server.md) in order to test the *Beta Version* of *Ramses* without using an online server) or you've order a shared or private hosting, you will need to create a database to be used by *Ramses* on the *MySQL* server.
+
+Most of the time, you can do this with *phpMyAdmin*, although the procedure can be different depending on your web hosting provider, some of them having their own interface to create and configure new databases. Here are some explanations about how to do that with *phpMyAdmin*.
+
+- First, go to the *phpMyAdmin* web interface. If you've installed your own web server locally, this is probably [`http://localhost/phpmyadmin`](http://localhost/phpmyadmin).
+
+- Create a new database: on the left panel, click on *New*.
+
+![](../../img/phpmyadmin/01.png)
+
+- Choose a name, for example `ramses` and click on *Create*. This is the name of the database which will be used later in the *Ramses Server* configuration.
+
+![](../../img/phpmyadmin/02.png)
+
+- The new database should be automatically selected; if not, click on its name on the left panel.  
+    Now let's create a new user for *Ramses*: click on the *Privileges* tab.
+
+![](../../img/phpmyadmin/03.png)
+
+- Click on *Add user account* under the *New* section.
+
+![](../../img/phpmyadmin/04.png)
+
+- Set the basic login information. The user name can just be *ramses*; the user name and password will be used in the *Ramses Server* configuration later. If your using your own local server, it is better to set the *Host name* to be *Local* / *localhost*.
+
+- Leave all other options to their defaults, and click on *Go* at the bottom of the page.
+
+![](../../img/phpmyadmin/05.png)
+
+- Leave all these options to their defaults, and click again on *Go*.
+
+- That's all! you're ready to finish the installation of the *Ramses Server*.
