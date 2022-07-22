@@ -41,3 +41,7 @@ Utils/Hash/Duhash.exe
 *.pyc
 .vscode/settings.json
 *.kra~
+
+# Docker Ramses
+docker/www/*
+!docker/www/.gitkeep 
