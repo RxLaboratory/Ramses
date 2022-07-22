@@ -25,7 +25,9 @@ The recommended configuration is a standard *AMP* stack (*Apache* - *mySQL* - *P
 
 We provide a detailed, step-by-step guide to help you install your own web server satisfying these requirements on *Windows*, *Linux* or *Mac OS* if you need to, before installing the *Ramses Server*: [install your own webserver](web-server.md).
 
-## Standard Installation
+This can easily be automated using [*Docker*](https://www.docker.com/) if you already have it installed. We provide a ready-to-use [*Docker folder*](https://github.com/RxLaboratory/Ramses-Server/tree/master/docker) to help you quickly install and run the server.
+
+## Installation
 
 You first have to decide what type of database the *Ramses Server* will be using. There are two options:
 
