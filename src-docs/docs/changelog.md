@@ -16,7 +16,6 @@ For each version, there's also a list of **known issues**. To read more details 
 The detailed list of planned features and enhancements is [available on *Github*](https://github.com/RxLaboratory/Ramses/labels/enhancement).
 
 - The **Dashboard** will be an area where each user accesses all its important data and schedule. It comes with notifications so you won't miss any change concerning your assets, shots and steps.
-- The **Offline mode** for the *Ramses Client Application* will make it easier to use for one-man bands; you will be able to use *Ramses* without having to install the server. This also means you'll still be able to use *Ramses* even if you're not connected to the network, when you're in a train or on top of a mountain.
 - **Project Planning**: a simple but indispensable tool to easily plan the production of the project, at the very beginning of the production. With this planning tool you will be able to set the important dates of the production, the deadlines for each step, all in an easy-to-use and visual panel.
 - **Status automation**: when a character is rigged, it means it's ready to be animated. Status automation will automatically update the states of all the items according to the pipeline design, and your custom rules.
 - **Data export and import**: if you're planning important software update, or for your backups at the end of a production, it may be useful to export and re-import your data.
@@ -28,16 +27,19 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ## Known Issues
 
-### Server
-
--  ***[#107](https://github.com/RxLaboratory/Ramses/issues/107)***: Table prefixes can't be changed.
-
 ### Client and Daemon
 
 - ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client may crash when removing a project which is not empty.
 - On ***Windows***, the tray icon may not be removed if the client crashes.
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 - On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
+
+## 0.5.0-Alpha
+
+### New
+
+- **Client**: Implemented the *Offline mode*
+- **Server**: Completely changed (and simplified) the server API to support syncing with clients.
 
 ## 0.3.0-Alpha
 

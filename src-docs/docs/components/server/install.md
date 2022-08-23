@@ -20,11 +20,6 @@
 
 The recommended configuration is a standard *AMP* stack (*Apache* - *mySQL* - *PHP*), with at least 2GB of RAM if the *SQL* server is on the same computer than the *Apache* server.
 
-- The needed space for the *Ramses Server* files (*PHP*) is only *`300 KB`*!
-- *`50 MB`* should be more than enough for the vast majority of users for the *mySQL* database.
-
-We provide a detailed, step-by-step guide to help you install your own web server satisfying these requirements on *Windows*, *Linux* or *Mac OS* if you need to, before installing the *Ramses Server*: [install your own webserver](web-server.md).
-
 This can easily be automated using [*Docker*](https://www.docker.com/) if you already have it installed. We provide a ready-to-use [*Docker folder*](https://github.com/RxLaboratory/Ramses-Server/tree/master/docker) to help you quickly install and run the server.
 
 ## Installation
@@ -40,10 +35,10 @@ Once you've made your choice, follow these steps:
 
 1. (*MySQL* only) Create a new base on the *SQL* server, along with its user and password.
 2. Un-Zip the *Ramses Server* you've downloaded.
-3. Edit `config.php` with needed info (read below).
-4. (optional) Edit `config_logs.php` if you want to enable logs on the server.
+3. Edit `config/config.php` with needed info (read below).
+4. (optional) Edit `config/config_logs.php` if you want to enable logs on the server.
 2. Copy the *Ramses Server* files to the web server (you can just copy the `ramses` folder from the *ZIP* archive).
-4. Go to `http://your.server/ramses/install` (if you're running your own local server, this is probably something like `http://localhost/ramses/install`)
+4. Go to `http://your.server/ramses/install`.
 5. Delete the `install` folder from the server.
 
 The default user for Ramses is `Admin` with the password `password`. You should start by changing this name and password using the [*Ramses Client Application*](../client/index.md).
@@ -54,6 +49,7 @@ The `config.php` file you have to edit looks like that:
 
 ```php
 	// === DEV MODE ===
+
 	// Activates printing the SQL & PHP errors.
 	// For security reasons, it is important to set this to false in production mode
 	$devMode = false;
@@ -73,12 +69,18 @@ The `config.php` file you have to edit looks like that:
 	// User
 	$sqlUser = "ramses";
 	// Password
-	$sqlpassword = "password";
+	$sqlpassword = "a89pppuD";
 	// Table prefix
-	// DO NOT CHANGE THIS, not working yet
-	$tablePrefix = "ram";
+	// should be a random character string
+	// you can setup multiple instances on the same DB
+	// if each use a different prefix
+	$tablePrefix = "jaom7Jdr";
 
-	// ==== SESSION SETTINGS ====
+	// ==== SESSION & SECURITY SETTINGS ====
+
+	// Whether to accept only SSL connections
+	// This should always be true, except maybe on dev environments.
+	$forceSSL = true;
 
 	// Session timeout (seconds)
 	// The client will be disconnected after being idle for this time
@@ -87,36 +89,33 @@ The `config.php` file you have to edit looks like that:
 	$sessionTimeout = 1800;
 	// Max Session timeout (seconds)
 	// The client will be disconnected no matter what after this time
-	// 5 hours by default( 18000 )
-	$cookieTimeout = 18000;
+	// 12 hours by default( 43200 )
+	$cookieTimeout = 43200;
 
 	// This must be the server public adress, exactly as used in the clients
-	$serverAdress = "localhost/ramses";
+	$serverAddress = "localhost/ramses";
 
 	// This should never be changed, unless you change the key before building the official client or implementing your own client.
+	// It is used to break compatibility between some updates of the client/server framework
 	// It can be used to make sure only your own client, built by yourself, can connect to your own server. In this case, keep it secret!
 	// It is used to hash passwords.
-	$clientKey = "H6BuYLsW";
+	$clientKey = "drHSV2XQ";
 ```
 
 - `$devMode` should always be `false` unless this server is going to be used for development and tests in a development environement. For security reasons **do not set this to `true`** on a production server.
 - `$sqlMode` can be either `'sqlite'` or `'mysql'` depending on your choice of configuration (read above).
 
-The next options are only used in *MySQL* mode. Ignore them when using *SQLite*.
-
-!!! hint
-    You will need your database information to configure the *Ramses Server* to use it. If you don't know how to do that or if you've just installed your own web server [following our instructions](web-server.md), read the next section first.
+These next options are only used in *MySQL* mode. Ignore them when using *SQLite*.
 
 - `$sqlHost` is the url or IP of your *MySQL* server. If you've installed your own server locally, you can leave it to `"localhost"`. Don't forget the quotes!
 - `$sqlPort` is the port used by the *MySQL* server. `3306` is the default for most installations, if you need something different, your hosting provider should tell you.
 - `$sqlDBName` is the name of the specific database you have to create for *Ramses*. Read below to learn how to create it with *phpMyAdmin*; the procedure can be different according to your hosting provider.
 - `$sqlUser` is the name of the specific *MySQL* user you have to create for *Ramses*. Read below to learn how to create it with *phpMyAdmin*; the procedure can be different according to your hosting provider.
 - `$sqlpassword` is the password of the specific *MySQL* user you have to create for *Ramses*. Read below to learn how to create it with *phpMyAdmin*; the procedure can be different according to your hosting provider.
-- `$tablePrefix` is a prefix which will be used for the name of the database tables used by *Ramses*. As soon as this will be implemented, it will allow you to share a database with other instances of *Ramses* and even any other application (for example if your provider doesn't allow you to create more databases on your server).
 
-!!! tip
-    If you know what you're doing, you can actually already change the table prefix, but *Ramses* will be installed using the default prefix anyway. That means you have to install *Ramses* with this default `ram` prefix, then rename all the tables with a new prefix, and finally change the prefix in `config.php`.
+And finally complete these settings too:
 
+- `$tablePrefix` is a prefix which will be used for the name of the database tables used by *Ramses*. It allows you to share a database with other instances of *Ramses* and even any other application (for example if your provider doesn't allow you to create more databases on your server).
 - `$sessionTimeout` is the time, in seconds, before an idle client is disconnected.
 - `$cookieTimeout` is the time, in seconds, before a client is disconnected, no matter what.
 - `$serverAddress` must be the public address of the server, exactly as it is set in all clients.

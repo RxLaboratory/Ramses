@@ -29,24 +29,16 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v0.3.0-Alpha: index.md
-    - Quick start: 
-        - Administrator: quickstart/administrator.md
-        - User: quickstart/user.md
+    - v0.5.0-Alpha: index.md
+    - Quick start: quickstart/index.md
     - Principles:
         - Introduction: pipeline/index.md
         - Administration: pipeline/administration.md
         - Pipeline: pipeline/pipeline.md
         - Production tracking: pipeline/production.md
         - Planning: pipeline/planning.md
-    - Components:
+    - Documentation:
         - Introduction: components/index.md
-        - Ramses Server:
-            - Introduction: components/server/index.md
-            - A web server: components/server/web-server.md
-            - Installation: components/server/install.md
-            - Update: components/server/update.md
-            - Administration: components/server/admin.md
         - Ramses Application:
             - Introduction: components/client/index.md
             - Installation: components/client/install.md
@@ -81,6 +73,11 @@ nav:
             - Introduction: components/files/index.md
             - Naming scheme: components/files/naming.md
             - Folder structure: components/files/tree.md
+        - Ramses Server:
+            - Introduction: components/server/index.md
+            - Installation: components/server/install.md
+            - Update: components/server/update.md
+            - Administration: components/server/admin.md
     - Extensibility:
         - Introduction: dev/index.md
         - Files and Folders:
@@ -117,23 +114,7 @@ nav:
             - State and Status queries: dev/daemon-reference/state_q.md
             - Step queries: dev/daemon-reference/step_q.md
             - User queries: dev/daemon-reference/user_q.md
-        - Server API:
-            - Reference: dev/server-reference/index.md
-            - Application queries: dev/server-reference/applications.md
-            - Asset queries: dev/server-reference/assets.md
-            - Asset Group queries: dev/server-reference/assetgroups.md
-            - File type queries: dev/server-reference/filetypes.md
-            - General queries: dev/server-reference/general.md
-            - Pipe queries: dev/server-reference/pipes.md
-            - PipeFiles queries: dev/server-reference/pipefiles.md
-            - Project queries: dev/server-reference/projects.md
-            - Schedule queries: dev/server-reference/schedule.md
-            - Sequence queries: dev/server-reference/sequences.md
-            - Shot queries: dev/server-reference/shots.md
-            - State queries: dev/server-reference/states.md
-            - Status queries: dev/server-reference/status.md
-            - Step queries: dev/server-reference/steps.md
-            - User queries: dev/server-reference/users.md
+        - Server API: dev/server-reference/index.md
     - ...:
         - Credits: credits.md
         - Changelog: changelog.md

@@ -1,13 +1,12 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/10/24)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2022/08/23)
 
 # The Ramses Server
 
-The server stores and serves all shared data to the *Ramses Client* between all workstations in the studio. The *Ramses Clients* installed on these workstations connect to it to retrieve tha data they need.
+The server stores and serves all shared data to the *Ramses Application* between all workstations in the studio. The *Ramses Applications* installed on these workstations connect to it to sync the data they need.
+
+You can either [install your own](../components/server/install.md) or rent a server managed by *RxLaboratory* (or any other provider you trust).
 
 It is just a small software meant to be installable on small hardware and with very low requirements. You can install it on any computer in the studio (even just a simple [*Raspberry*](https://www.raspberrypi.org/)) and make it available on your *Local Area Network*, or make it available from the internet. You can also easily install it on a shared or private hosting, even a low-cost one.
-
-!!! tip
-    Although the currently available *Beta Version* of the *Ramses Client* cannot be used as a stand-alone, offline application yet and needs a connection to a *Ramses Server*, you can install a local server on any computer to test and use *Ramses* without needing a full scale online server. We're explaining in this documentation how to install such a standard webserver on your computer, read below.
 
 ## Requirements
 
@@ -30,12 +29,9 @@ Without such a database server, the *Ramses Server* can still be run correctly (
 
 The recommended configuration is a standard *AMP* stack (*Apache* - *mySQL* - *PHP*), with at least 2GB of RAM if the *SQL* server is on the same computer than the *Apache* server.
 
-- The needed space for the *Ramses Server* files (*PHP*) is only *`300 KB`*!
-- *`50 MB`* should be more than enough for the vast majority of users for the *mySQL* database.
-
-We provide a detailed, step-by-step guide to help you install your own web server satisfying these requirements on *Windows*, *Linux* or *Mac OS* if you need to, before installing the *Ramses Server*: [install your own webserver](web-server.md).
-
-As soon as you have a working web server, you can [install the *Ramses server*](install.md).
+- The needed space for the *Ramses Server* files (*PHP*) is only *`200 KB`*!
+- If you're not using a *mySQL* database, you'll need more space to store the data directly with the server files. How much space depends on the size of the projects you'll work on, but it will never be huge. *`100 MB`* should be more than enough in most cases.
+- If you're using a *mySQL* database, *`100 MB`* should be more than enough for the vast majority of users.
 
 ## Technical description
 

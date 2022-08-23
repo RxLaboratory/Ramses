@@ -1,4 +1,4 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/06/27)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/08/23)
 
 # Ramses - The Rx Asset Management System
 
@@ -22,16 +22,6 @@ Let's have a look at a few key features.
 ### ▹ Free and open source
 
 *Ramses* is licensed under the GNU General Public License v3, which means **you're free** to do anything you'd like with it, use it the way you want, modify it, and share your modifications.
-
-### ▹ Modular and scalable
-
-*Ramses* is made of **several components which can be used either individually or as a whole framework**. If you just need an add-on to your creative software to improve your workflow and versionning, you could use only one of the [*Ramses Add-ons*](components/addons/index.md). If you're interested in production tracking, you'll need the [*Ramses Client Application*](components/client/index.md) and maybe connect it to the [*Ramses Server*](components/server/index.md) to stay connected with your team.
-
-Of course, each of these components can work together and share information for **a seamless integration into your workflow**.
-
-This scalability makes *Ramses* a good choice for individuals as well as teams of all sizes.
-
-[***▸ Read more***](components/addons/index.md)
 
 ### ▹ Production Planning
 
@@ -94,7 +84,6 @@ It ususally takes about ten times less memory than a usual web-browser with a si
 Here are some of the features which are not available yet but which will be available in the future.
 
 - The **Dashboard** will be an area where each user accesses all its important data and schedule. It comes with notifications so you won't miss any change concerning your assets, shots and steps.
-- The **Offline mode** for the *Ramses Client Application* will make it easier to use for one-man bands; you will be able to use *Ramses* without having to install the server. This also means you'll still be able to use *Ramses* even if you're not connected to the network, when you're in a train or on top of a mountain.
 - **Project Planning**: a simple but indispensable tool to easily plan the production of the project, at the very beginning of the production. With this planning tool you will be able to set the important dates of the production, the deadlines for each step, all in an easy-to-use and visual panel.
 - **Status automation**: when a character is rigged, it means it's ready to be animated. Status automation will automatically update the states of all the items according to the pipeline design, and your custom rules.
 - **Data export and import**: if you're planning important software update, or for your backups at the end of a production, it may be useful to export and re-import your data.
