@@ -1,3 +1,5 @@
+[![Services Health](https://rxlab.montastic.io/badge)](https://rxlab.montastic.io)
+
 # Ramses
 
 *Ramses*, the Rx Asset Management System, is a complete framework to help you, your team, your studio, to track the production of your films.
