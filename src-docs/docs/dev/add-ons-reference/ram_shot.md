@@ -8,7 +8,6 @@ Inherits: [***RamItem***](ram_item.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **fromDict**<br />▹ *RamShot* | *dict or object*: **shotDict** | Builds a *RamShot* from a dict or object like the one returned by the *[RamDaemonInterface](ram_daemon_interface.md)* |
 | **fromPath**<br />▹ *RamShot* | *string*: **folderPath**<br /> | Returns a *RamShot* instance built using the given folder path. The path can be any file or folder path from the asset (a version file, a preview file, etc) |
 
 ## Methods
@@ -19,6 +18,7 @@ Inherits: [***RamItem***](ram_item.md)
 | **duration**<br />▹ *float* | | The shot duration, in seconds |
 | **frames**<br />▹ *int* | | The shot duration, in frames |
 | **group**<br />▹ *string* | | The name of the sequence containing this shot. |
+| **sequence**<br />▹ *[RamSequence](ram_sequence.md)* | | The sequence containing this shot. |
 
 ____
 

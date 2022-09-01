@@ -1,8 +1,8 @@
 # RamDaemonInterface
 
-The low-level Class used to communicate with the Ramses Daemon. This is a simple wrapper for the [*Daemon API*](../../daemon-reference/).
+This is a low-level Class used to communicate with the Ramses Daemon. This is a simple wrapper for the [*Daemon API*](../../daemon-reference/).
 
-One (and only one) instance globally available (RamDaemonInterface is a *singleton*), by calling `RamDaemonInterface.instance()` or `Ramses.instance().daemonInterface()`.
+One (and only one) instance is globally available (RamDaemonInterface is a *singleton*), by calling `RamDaemonInterface.instance()` or `Ramses.instance().daemonInterface()`.
 
 !!! note
     You should not need this class as all communications are automatically handled by the other classes.
@@ -23,31 +23,19 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 
 | Method | Arguments | Description | Dev Notes |
 | --- | --- | --- | --- |
-| ***constructor*** | • *integer*: **port**=`18185` | |
-| **daemonVersion**<br />▹ *string* |  | The current version of the *Daemon* | *TODO: change the `ping` method to store the version in a private attribute* |
-| **getAssets**<br />▹ *Object / Dict* | | Gets the list of the assets for the current project |
-| **getAsset**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific asset. The name is optional, as short names *should* be unique. | |
-| **getAssetGroups***<br />▹ *Object / Dict* | | Gets the list of the asset groups for the current project | |
-| **getCurrentProject**<br />▹ *Object / Dict* | | Gets the current project | |
-| **getCurrentStatus**<br />▹ *Object / Dict* | • *string*: **itemShortName**,<br />• *string* : **itemName**,<br />• *string*: **step**,<br />• *ItemType*: **itemType**=`ItemType.SHOT` | Gets the status for the specific step for the item. `itemType` must be one of: `ItemType.SHOT` or `ItemType.ASSET` | |
-| **getCurrentStatuses**<br />▹ *Object / Dict* | • *string*: **itemShortName**,<br />• *string* : **itemName**,<br />• *string*: **step**,<br />• *ItemType*: **itemType**=`ItemType.SHOT` | Gets the list of status (one per step) for the item. `itemType` must be one of: `ItemType.SHOT` or `ItemType.ASSET` | |
-| **getCurrentUser**<br />▹ *Object / Dict* | | Gets the current user | |
-| **getProjects**<br />▹ *Object / Dict* | | Gets the list of available projects |
-| **getProject**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific project. The name is optional, as short names *should* be unique. | |
-| **getRamsesFolderPath**<br />▹ *Object / Dict* | | Gets the main Ramses folder containing projects, config files, user files... | |
-| **getPipes**<br />▹ *Object / Dict* | | Gets the list of pipes for the current project | TODO |
-| **getShots**<br />▹ *Object / Dict* | • *string*: **filter**=`""` | Gets the list of the shots for the current project. Filter is a way to get a subset of the shots: the daemon will return only shots containing the filter in their name or short name. The filter can contain a wildcard `"*"` | |
-| **getShot**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific shot. The name is optional, as short names *should* be unique. | |
-| **getStates**<br />▹ *Object / Dict* | | Gets the list of available states |
-| **getState**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific state. The name is optional, as short names *should* be unique. | |
-| **getSteps**<br />▹ *Object / Dict* | | Gets the list of the steps for the current project |
-| **getStep**<br />▹ *Object / Dict* | • *string*:**shortName**,<br />• *string*:**name**=`""` | Gets a specific step. The name is optional, as short names *should* be unique. | |
+| **create**<br />▹ *Object / Dict* | • *string*: **uuid**<br/>• *string* or *Object/ Dict*: **data**<br/>• *string*: **objectType** | Creates a new object, with the given data | |
+| **getCurrentProject**<br />▹ [*RamProject*](ram_project.md) or *None* | | Gets the current project | |
+| **getCurrentUser**<br />▹ [*RamUser*](ram_user.md) or *None* | | Gets the current user | |
+| **getData**<br />▹ *Object / Dict* | • *string*: **uuid** | Gets the data of a specific [*RamObject*](ram_object.py). | |
+| **getPath**<br />▹ *string* | • *string*: **uuid** | Gets the path for a specific object. |
+| **getProjects**<br />▹ *string[]* | | Gets the list of available project *UUIDs* (for the current user) |
+| **getRamsesFolderPath**<br />▹ *string* | | Gets the main Ramses folder containing projects, config files, user files... | |
 | **online**<br />▹ *boolean* | | True if the *Daemon* is available |
 | **ping**<br />▹ *Object / Dict*  | | Gets the version and current user of the *Ramses Daemon* |
-| **raiseWindow** | | Raises the Ramses Client application main window |
-| **setCurrentProject**<br />▹ *Object / Dict*  | • *string*: **shortName** | Sets the current project |
-| **setPublishSettings** | • *string*: **stepShortName**,<br />• *string*: **stepName**,<br />• *string*: **settings** | Sets new publish settings for the step. | |
-| **setStatus** | • *string*: **itemShortName**,<br />• *string*: **itemName**,<br />• *string*: **step**,<br />• *ItemType*: **itemType**=`ItemType.SHOT`,<br />• *string*: **state**=`""`,<br />• *string*: **comment**=`""`,<br />• *string*: **completionRatio**=`-1`,<br />• *int*: **version**=`0`,<br />• *boolean*: **published**=`false`,<br />• *string*: **user**=`undefined` | Sets a new status for the item. | |
+| **raiseWindow** | | Raises the Ramses Application main window |
+| **setCurrentProject**<br />▹ *Object / Dict*  | • *string*: **uuid** | Sets the current project |
+| **setData**<br />▹ *Object / Dict* | • *string*: **uuid**<br/>• *string* or *Object/ Dict*: **data** | Sets the data for a specific [*RamObject*](ram_object.py). | |
+| **uuidFromPath**<br />▹ *string* | • *string*: **path**<br/>• *string* : **type** = `"RamObject"` | Gets the *UUID* of a [*RamObject*](ram_object.py) using its path. | |
 
 ## Examples
 

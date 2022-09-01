@@ -80,6 +80,7 @@ nav:
             - Administration: components/server/admin.md
     - Extensibility:
         - Introduction: dev/index.md
+        - Objects: dev/objects.md
         - Files and Folders:
             - Naming: dev/files/naming.md
         - Scripting API (Add-ons):
@@ -87,6 +88,7 @@ nav:
             - Constants: dev/add-ons-reference/enum.md
             - Ramses: dev/add-ons-reference/ramses.md
             - RamAsset: dev/add-ons-reference/ram_asset.md
+            - RamAssetGroup: dev/add-ons-reference/ram_assetgroup.md
             - RamDaemonInterface: dev/add-ons-reference/ram_daemon_interface.md
             - RamFileInfo: dev/add-ons-reference/ram_file_info.md
             - RamFileManager: dev/add-ons-reference/ram_file_manager.md
@@ -97,6 +99,7 @@ nav:
             - RamPipe: dev/add-ons-reference/ram_pipe.md
             - RamPipeFile: dev/add-ons-reference/ram_pipefile.md
             - RamProject: dev/add-ons-reference/ram_project.md
+            - RamSequence: dev/add-ons-reference/ram_sequence.md
             - RamSettings: dev/add-ons-reference/ram_settings.md
             - RamShot: dev/add-ons-reference/ram_shot.md
             - RamState: dev/add-ons-reference/ram_state.md
@@ -106,14 +109,15 @@ nav:
             - Dev Notes: dev/add-ons-reference/implementation.md
         - Daemon API:
             - Reference: dev/daemon-reference/index.md
-            - General queries: dev/daemon-reference/general_q.md
-            - Asset queries: dev/daemon-reference/asset_q.md
-            - Pipe queries: dev/daemon-reference/pipe_q.md
-            - Project queries: dev/daemon-reference/project_q.md
-            - Shot queries: dev/daemon-reference/shot_q.md
-            - State and Status queries: dev/daemon-reference/state_q.md
-            - Step queries: dev/daemon-reference/step_q.md
-            - User queries: dev/daemon-reference/user_q.md
+            - ping: dev/daemon-reference/ping.md
+            - raise: dev/daemon-reference/raise.md
+            - getRamsesFolder: dev/daemon-reference/getRamsesFolder.md
+            - getProjects: dev/daemon-reference/getProjects.md
+            - getCurrentProject: dev/daemon-reference/getCurrentProject.md
+            - setCurrentProject: dev/daemon-reference/setCurrentProject.md
+            - getData: dev/daemon-reference/getData.md
+            - setData: dev/daemon-reference/setData.md
+            - uuidFromPath: dev/daemon-reference/uuidFromPath.md
         - Server API: dev/server-reference/index.md
     - ...:
         - Credits: credits.md

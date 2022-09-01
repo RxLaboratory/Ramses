@@ -2,7 +2,9 @@
 
 # Ramses Server API
 
-The *Ramses* server provides a standard *http(s) REST API*. If you're developping your own client (or contributing to *Ramses Client*), you can easily exchange data with the server using this reference.
+The *Ramses Server* is used to backup and sync data across *Ramses Applications* and workstations.
+
+It provides a standard *http(s) REST API*. If you're developping your own client (or contributing to *Ramses Client*), you can easily exchange data with the server using this reference.
 
 **Queries must be a *POST* request**; the body must be *JSON* encoded, the `Content-Type` being `application/json`.
 
@@ -50,7 +52,7 @@ The server replies to all queries with a *JSON* object, containing these values:
 
 This is the process to sync data with the server.
 
-1. `ping` to check if the server is available and check its version. This is mandatory before being able to log in.
+1. `ping` to check if the server is available and check its version. This is mandatory to initiate the session before being able to log in.
 2. `login` to authenticate yourself.
 3. `sync` your data.
 
@@ -260,3 +262,32 @@ The server replies with:
 
 - `tables`: the list of tables to sync.
   - The `modifiedRows` are the rows which have been changed or added to the table since the previous sync.
+
+### setPassword
+
+Query: `https://ramses.rxlab.io/example/?setPassword`
+
+#### Request body
+
+```json
+{
+    "version": "0.5.0",
+    "token": "token",
+    "newPassword": "new password",
+    "currentPassword": "current password",
+    "uuid": "user-unique-uid"
+}
+```
+
+- `version`: version of the client.
+- `token`: the token got with `login`.
+- `newPassword`: the new password to set.
+- `currentPassword`: the current password of the user.
+- `uuid`: the user *UUID*.
+
+The server will check if the connected user is an administrator, and accept the request accordingly:
+
+- If the connected user is the same as the user changing its password, the current password is mandatory and will be checked before making any change.
+- If the connected user is not the same as the new password, the request will be accepted if and only if the connected user has the *administrator* role. In this case, the current password is not mandatory.
+
+That means if there's only one administrator, who has forgotten its current password, only the server provider - someone who has an actual access to the server files (via *FTP* for example) - can set a new password, using *Ramses Server* development tools.

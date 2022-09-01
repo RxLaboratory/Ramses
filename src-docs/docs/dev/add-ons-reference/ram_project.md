@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/09/01)
+
 # RamProject
 
 A project handled by Ramses. Projects contains general items, assets and shots.
@@ -8,18 +10,15 @@ Inherits: [***RamObject***](ram_object.md)
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **fromDict**<br />▹ *RamProject* | *dict or object*: **projectDict** | Builds a *RamProject* from a dict or object like the one returned by the *[RamDaemonInterface](ram_daemon_interface.md)* |
 | **fromPath**<br />▹ *RamProject* | *string*: **path**<br /> | Returns a *RamProject* instance built using the given path. The path can be any file or folder path from the project |
 
 ## Methods
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| ***constructor*** | *string*: **projectName**,<br />*string*: **projectShortName**,<br />*string*: **projectPath**=`""`,<br />*int*: **width**=`1920`,<br />*int*: **height**=`1080`,<br />*float*: **framerate**=`24.0` | |
 | **adminPath**<br />▹ *str* | | The path to the administration files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **absolutePath**<br />▹ *str* | *string*: **relativePath** | Builds an absolute path from a path relative to the project path |
-| **asset**<br />▹ *[RamAsset](ram_asset.md)* | *string*: **assetShortName** | Gets an asset with its short name. |
-| **assetGroups**<br />▹ *list of string* | | Available asset groups in this project |
+| **assetGroups**<br />▹ *list of [RamAssetGroup](ram_assetgroup.md)* | | Available asset groups in this project |
 | **assets**<br />▹ *list of [RamAsset](ram_asset.md)* | *string*: **groupName**=`""` | Available assets in this project and group. If *groupName* is an empty string, returns all assets. |
 | **assetsPath**<br />▹ *str* | *string*: **assetGroup**=`""`| The path to the assets (including the asset group if provided) of this project. When calling this method, the folder will created if it does not exist yet. |
 | **exportPath**<br />▹ *str* | | The path to the exported medias of this project. When calling this method, the folder will created if it does not exist yet. |
@@ -30,12 +29,10 @@ Inherits: [***RamObject***](ram_object.md)
 | **postProdPath**<br />▹ *str* | | The path to the post-production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **preProdPath**<br />▹ *str* | | The path to the pre-production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **prodPath**<br />▹ *str* | | The path to the production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
-| **sequences**<br />▹ *list of string* | | Available sequences in this project |
-| **shot**<br />▹ *[RamShot](ram_shot.md)* | *string*: **shotShortName** | Gets a shot with its short name. |
+| **sequences**<br />▹ *list of [RamSequence](ram_sequence.md)* | | Available sequences in this project |
 | **shots**<br />▹ *[RamShot](ram_shot.md)* | *string*: **nameFilter**=`"*"`,<br />*string*: **sequence**=`""`  | Available shots in this project |
 | **shotsPath**<br />▹ *str* | | The path to the shots of this project. When calling this method, the folder will created if it does not exist yet. |
-| **step**<br />▹ *[RamStep](ram_step.md)* | *string*: **stepShortName** | Gets a step with its short name. | 
-| **steps**<br />▹ *list of [RamStep](ram_step.md)* | *enumerated value*: **type**=`RamStep.ALL`,<br />*boolean*: **deepSearch**=`false` | Available steps in this project. Use *type* to filter the results.<br />One of: `StepType.ALL`, `StepType.ASSET_PODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.PRE_PRODUCTION`, `StepType.PRODUCTION`, `StepType.POST_PRODUCTION`.<br />`StepType.PRODUCTION` represents a combination of `SHOT` and `ASSET`.<br />When offline, *deepSearch* will also look for existing steps in the *Assets* and *Shots* folder of the project, but this can take a long time if there are many assets and shots. |
+| **steps**<br />▹ *list of [RamStep](ram_step.md)* | *enumerated value*: **type**=`RamStep.ALL` | Available steps in this project. Use *type* to filter the results.<br />One of: `StepType.ALL`, `StepType.ASSET_PODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.PRE_PRODUCTION`, `StepType.PRODUCTION`, `StepType.POST_PRODUCTION`.<br />`StepType.PRODUCTION` represents a combination of `SHOT` and `ASSET`. |
 | **width**<br />▹ *int* | | The project's width, in pixels. |
 
 ____
@@ -49,19 +46,4 @@ ____
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **_getAssetsInFolder**<br />▹ *list* of *[RamAsset](ram_asset.md)* | *string*: **folderPath**,<br />*string*: **groupName**=`""` | Recursively gets all assets contained in the given folder. |
-
-### (Im)mutable data
-
-The data returned by the methods can be either [mutable or immutable](implementation.md#accessing-the-data).
-
-If a method is not listed here, it means the corresponding data is never stored in a class attribute, and must always be got from the Daemon or the tree.
-
-| Method | Type of the returned data |
-| --- | --- |
-| **framerate** | <i class="fa fa-lock"></i> Immutable |
-| **height** | <i class="fa fa-lock"></i> Immutable |
-| **pipes** | <i class="fa fa-lock"></i> Immutable |
-| **width** | <i class="fa fa-lock"></i> Immutable |
-
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/06/08)
+| **_getAssetsInFolder**<br />▹ *list* of *[RamAsset](ram_asset.md)* | *string*: **folderPath**,<br />*RamAssetGroup*: **assetGroup**=`None` | Recursively gets all assets contained in the given folder. |
