@@ -27,8 +27,9 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **getCurrentProject**<br />▹ [*RamProject*](ram_project.md) or *None* | | Gets the current project | |
 | **getCurrentUser**<br />▹ [*RamUser*](ram_user.md) or *None* | | Gets the current user | |
 | **getData**<br />▹ *Object / Dict* | • *string*: **uuid** | Gets the data of a specific [*RamObject*](ram_object.py). | |
+| **getObjects**<br />▹ *list of [*RamObject*](ram_object.md)* | • *string*: **objectType** | Gets the list of objects of a given type. The returned class type depends on the type of object and may be a derived class of *RamObject*. |
 | **getPath**<br />▹ *string* | • *string*: **uuid** | Gets the path for a specific object. |
-| **getProjects**<br />▹ *string[]* | | Gets the list of available project *UUIDs* (for the current user) |
+| **getProjects**<br />▹ *list of [*RamProject*](ram_project.md)* | | Gets the list of available projects (for the current user) |
 | **getRamsesFolderPath**<br />▹ *string* | | Gets the main Ramses folder containing projects, config files, user files... | |
 | **online**<br />▹ *boolean* | | True if the *Daemon* is available |
 | **ping**<br />▹ *Object / Dict*  | | Gets the version and current user of the *Ramses Daemon* |

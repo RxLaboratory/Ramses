@@ -1,10 +1,10 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2022;updated:2022/09/01)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2022;updated:2022/09/02)
 
-# getProjects
+# getObjects
 
-**Query: `getProjects`**
+**Query: `getObjects&type=RamObject`**
 
-Gets the list of available projects for the current user.
+Gets all objects of a specific type.
 
 ## Reply
 
@@ -13,11 +13,11 @@ Gets the list of available projects for the current user.
 ```json
 {
     "accepted": true,
-    "query": "getProjects",
+    "query": "getData",
     "success": true,
-    "message": "I've got the project list.",
+    "message": "I've got the list of \"RamObject\".",
     "content": {
-        "projects": [
+        "objects": [
             {
                 "uuid": "unique-uid1",
                 "data": {"Some JSON Data"}
@@ -33,7 +33,3 @@ Gets the list of available projects for the current user.
     }
 }
 ```
-
-### Details
-
-- *projects*: **list** of **string**. The list of available project *UUIDs*.

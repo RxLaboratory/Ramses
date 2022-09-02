@@ -112,6 +112,7 @@ nav:
             - ping: dev/daemon-reference/ping.md
             - raise: dev/daemon-reference/raise.md
             - getRamsesFolder: dev/daemon-reference/getRamsesFolder.md
+            - getObjets: dev/daemon-reference/getObjects.md
             - getProjects: dev/daemon-reference/getProjects.md
             - getCurrentProject: dev/daemon-reference/getCurrentProject.md
             - setCurrentProject: dev/daemon-reference/setCurrentProject.md

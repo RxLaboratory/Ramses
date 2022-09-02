@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/09/02)
+
 # Ramses
 
 The main class. One (and only one) instance globally available (Ramses is a *singleton*), by calling `Ramses.instance()`.
@@ -37,13 +39,11 @@ Read the section entitled *Callbacks* below (and see the *Examples*) for more in
 | **backupFolderPath**<br />▹ *list* of *string* | | A copy of the main folder where all files are stored. |
 | **connect**<br />▹ *boolean* | | Checks *Daemon* availability and initiates the connection. <br />Returns success. |
 | **currentProject**<br />▹ *[RamProject](ram_project.md)* or *None* | | The current project. |
-| **currentStep**<br />▹ *[RamStep](ram_step.md)* or *None* | | The current step. |
 | **currentUser**<br />▹ *[RamUser](ram_user.md)* or *None* | | The current user. |
 | **daemonInterface**<br />▹ *RamDaemonInterface* | | The *Daemon* interface unique instance. Same as `RamDaemonInterface.instance()` |
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
 | **importItem** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePath**,<br />• *[RamStep](ram_step.md)*: **step**=`None`,<br />• *dict*: **importOptions**=`None`,<br />• *bool*: **showImportOptions**=`false` | Runs the scripts in `Ramses.instance().importScripts`.<br />Read the section entitled *Callbacks* below for more details. |
-| **project**<br />▹ *[RamProject](ram_project.md)* | • *string*: **projectShortName** | Gets a specific project. |
 | **projects**<br />▹ *list of [RamProject](ram_project.md)* | | The list of available projects. |
 | **projectsPath**<br />▹ *string* | | The path to the folder containing projects. |
 | **states**<br />▹ *list of [RamState](ram_state.md)* | | The list of available states. |
@@ -151,24 +151,4 @@ ____
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **defaultStates** | *list of [RamState](ram_state.md)* | | The list of states to use if the *Daemon* is not available. |
 | **defaultState** | *[RamState](ram_state.md)* | | The state to use as default ("WIP"). |
-
-### (Im)mutable data
-
-The data returned by the methods can be either [mutable or immutable](implementation.md#accessing-the-data).
-
-| Method | Type of the returned data |
-| --- | --- |
-| **alternativeFolderPaths** | <i class="fa fa-lock"></i> Immutable |
-| **backupFolderPath** | <i class="fa fa-lock"></i> Immutable |
-| **currentProject** | <i class="fa fa-pen"></i> Mutable |
-| **currentStep** | <i class="fa fa-pen"></i> Mutable |
-| **currentUser** | <i class="fa fa-pen"></i> Mutable |
-| **folderPath** | <i class="fa fa-lock"></i> Immutable |
-| **projects** | <i class="fa fa-pen"></i> Mutable |
-| **project** | <i class="fa fa-pen"></i> Mutable |
-| **states** | <i class="fa fa-lock"></i> Immutable |
-| **state** | <i class="fa fa-pen"></i> Mutable |
-
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/25)
