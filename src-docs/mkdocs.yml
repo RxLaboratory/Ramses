@@ -111,6 +111,7 @@ nav:
             - Reference: dev/daemon-reference/index.md
             - ping: dev/daemon-reference/ping.md
             - raise: dev/daemon-reference/raise.md
+            - create: dev/daemon-reference/create.md
             - getRamsesFolder: dev/daemon-reference/getRamsesFolder.md
             - getObjets: dev/daemon-reference/getObjects.md
             - getProjects: dev/daemon-reference/getProjects.md
