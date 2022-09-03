@@ -4,7 +4,9 @@
 
 The class representing users.
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamUser* |
 
 ## Methods
 

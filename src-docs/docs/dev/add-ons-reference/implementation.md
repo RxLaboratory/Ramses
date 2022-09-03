@@ -1,3 +1,5 @@
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/09/03)
+
 # Implementation / API Dev notes
 
 !!! note
@@ -46,138 +48,94 @@ var Color = {
 
 ## Accessing the data
 
-In All "*RamClasses*", most of the data is retrieved with methods (instead of accessing it directly from an attribute). This allows the API to get the data from three different locations:
+In All "*RamClasses*", most of the data is retrieved with methods (instead of accessing it directly from an attribute). This allows the API to get and set the data from the *Daemon*, if and only if `Ramses.instance().online` is `true`.
 
-- already stored in a private attribute of the class instance (set by a previous call to the method or by the constructor).
-- from the *Daemon*, if and only if `Ramses.instance().online` is `true`.
-- from reading the *Ramses Tree*, the file structure, by retrieving available information from the file names (or eventually file meta-data).
+Some instances of these classes can be *virtual*. A *virtual* instance is an object which is not stored in the database; it's meant to be temporary. In this case, the data can be set by the *API* itself and is not retrieved nor updated with the *Daemon*.
 
-The priority for each method of retrieval changes according to the type of data, which can be either *mutable* or *immutable*.
-
-- Mutable data are data which may change regularly and which can't be stored (like the current status). In this case, they're retrieved by following these priorities:
-    1. Got from the *Daemon* if available: set the private attribute before returning the data.
-    2. Got from the *Ramses Tree*: set the private attribute before returning the data.
-    3. If nothing was found, return the stored data from the corresponding private attribute.
-
-- Immutable data are data which should not change during a single session (like paths). In this case, *Ramses* can store and return them without having to check again each time the method is called.
-    1. If the private attribute contains the data, it is returned.
-    2. Got from the *Daemon* if available: set the private attribute before returning the data.
-    3. Got from the *Ramses Tree* if available: set the private attribute before returning the data.
+There is also a cache system, to prevent having too many calls to the *Daemon* and improve performance. The *Daemon* is called if and only if the data stored in the object is more than two second old. That means subsequent calls to the data in a single process should result to a single call to the *Daemon*.
 
 Here are example concepts in Python and ExtendScript, like what's done in the provided implementations of the *Ramses Add-ons* API.
 
 ```py
 # Python
 
+DAEMON = RamDaemonInterface.instance()
+
 class RamClass( object ):
 
     # The data can be passed to the constructor.
-    # It may or may not have default values.
-    def __init__(self, someImmutableData='', someMutableData=''): 
-        self.__someImmutableData = someImmutableData
-        self.__someMutableData = someMutableData
-
-    def someMutableData( self ):
-        if Ramses.instance().online():
-            # If the Daemon is available, try to get the data there
-            theData = Ramses.instance().getData()
-            # Only if we've got the data, store and return it
-            if theData is not None:
-                self.__someMutableData = theData
-                return self.__someMutableData
-
-        # Try to get from the Ramses Tree
-        theData = AnotherClass.getDataFromPath( somePath )
-        # If we've got the data, store it
-        if theData is not None:
-            self.__someMutableData = theData
-
-        # Last resort return
-        return self.__someMutableData
-
-    def someImmutableData( self ):
-        # We start by checking if we already have some data
-        if self.__someImmutableData != '':
-            # Stop here. This improves performance with immutable data.
-            return self.__someImmutableData
-
-        # Now we can get the Data from the Daemon or the Ramses Tree
-        if Ramses.instance().online():
-            theData = Ramses.instance().getData()
-            if theData is not None:
-                self.__someMutableData = theData
-                return self.__someMutableData
-
-        theData = AnotherClass.getDataFromPath( somePath )
-        if theData is not None:
-            self.__someMutableData = theData
-
-        return self.__someMutableData
-```
-
-```js
-// ExtendScript
-
-function RamClass( someImmutableData='', someMutableData='' )
-{
-    // The data can be passed to the constructor.
-    // It may or may not have default values.
-    this.__someImmutableData = someImmutableData;
-    this.__someMutableData = someMutableData;
-}
-
-RamClass.prototype.someMutableData = function ()
-{
-    if ( Ramses.instance().online() )
-    {
-        // If the Daemon is available, try to get the data there
-        var theData = Ramses.instance().getData();
-        // Only if we've got the data, store and return it
-        if ( theData != null )
-        {
-            this.__someMutableData = theData;
-            return this.__someMutableData;
-        }
-    }      
-
-    // Try to get from the Ramses Tree
-    var theData = AnotherClass.getDataFromPath( somePath );
-    // If we've got the data, store it
-    if ( theData != null )
-        this.__someMutableData = theData;
-
-    // Last resort return
-    return this.__someMutableData;
-}
-
-RamClass.prototype.someImmutableData = function ()
-{
-    // We start by checking if we already have some data
-    if (self.__someImmutableData != '')
-    {
-        // Stop here. This improves performance with immutable data.
-        return self.__someImmutableData;
-    }
+    def __init__( self, uuid="", data = None, virtual=True, objectType="RamObject" ):
+        """
+        Args:
+            uuid (str): The object's uuid
+        """
         
-    // Now we can get the Data from the Daemon or the Ramses Tree
-    if ( Ramses.instance().online() )
-    {
-        var theData = Ramses.instance().getData();
-        if ( theData != null )
-        {
-            this.__someMutableData = theData;
-            return this.__someMutableData;
-        }
-    }
+        if uuid == "" and virtual:
+            self.__virtual = True
+        else:
+            self.__virtual = False
+        
+        if uuid == "":
+            uuid = str(UUID.uuid4())
+        self.__uuid = uuid
 
-    var theData = AnotherClass.getDataFromPath( somePath );
-    if ( theData != null )
-        this.__someMutableData = theData;
+        if isinstance(data, str):
+            data = json.loads(data)
+        if data:
+            self.__data = data
+            self.__cacheTime = time.time()
+        else:
+            self.__data = {}
+            self.__cacheTime = 0
 
-    return this.__someMutableData;
-}
+        if not virtual:
+            reply = DAEMON.create( self.__uuid, self.__data, objectType )
+            if not DAEMON.checkReply(reply):
+                log("I can't create this object.")
 
+        def uuid( self ):
+        return self.__uuid
+
+    def data( self ):
+        """Gets the data for this object"""
+        if self.__virtual:
+            return self.__data
+
+        # Check if the cached data is recent enough
+        # there's a 2-second timeout to not post too many queries
+        # and improve performance
+        cacheElapsed = time.time() - self.__cacheTime
+        if self.__data and cacheElapsed < 2:
+            return self.__data
+
+        # Get the data from the daemon
+        data = DAEMON.getData( self.__uuid )
+
+        if data:
+            self.__data = data
+            self.__cacheTime = time.time()
+
+        return self.__data
+
+    def setData( self, data):
+
+        if isinstance(data, str):
+            data = json.loads(data)           
+
+        self.__data = data
+
+        if not self.__virtual:
+            DAEMON.setData( self.__uuid, data )
+
+    def get(self, key, default = None):
+        """Get a specific value in the data"""
+        data = self.data()
+        return data.get(key, default)
+
+    def name( self ):
+        """
+        Returns:
+            str
+        """
+        return self.get('name', 'Unknown Object')
 ```
-
-
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021;updated:2021/05/04)

@@ -4,7 +4,9 @@
 
 A project handled by Ramses. Projects contains general items, assets and shots.
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamProject* |
 
 ## Static Methods
 
@@ -19,7 +21,7 @@ Inherits: [***RamObject***](ram_object.md)
 | **adminPath**<br />▹ *str* | | The path to the administration files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **absolutePath**<br />▹ *str* | *string*: **relativePath** | Builds an absolute path from a path relative to the project path |
 | **assetGroups**<br />▹ *list of [RamAssetGroup](ram_assetgroup.md)* | | Available asset groups in this project |
-| **assets**<br />▹ *list of [RamAsset](ram_asset.md)* | *string*: **groupName**=`""` | Available assets in this project and group. If *groupName* is an empty string, returns all assets. |
+| **assets**<br />▹ *list of [RamAsset](ram_asset.md)* | *[RamAssetGroup](ram_assergroup.md)*: **assetGroup**=`None` | Available assets in this project and group. If *groupName* is an empty string, returns all assets. |
 | **assetsPath**<br />▹ *str* | *string*: **assetGroup**=`""`| The path to the assets (including the asset group if provided) of this project. When calling this method, the folder will created if it does not exist yet. |
 | **exportPath**<br />▹ *str* | | The path to the exported medias of this project. When calling this method, the folder will created if it does not exist yet. |
 | **folderPath**<br />▹ *string* | | The project's root folder. |
@@ -30,8 +32,9 @@ Inherits: [***RamObject***](ram_object.md)
 | **preProdPath**<br />▹ *str* | | The path to the pre-production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **prodPath**<br />▹ *str* | | The path to the production steps common files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **sequences**<br />▹ *list of [RamSequence](ram_sequence.md)* | | Available sequences in this project |
-| **shots**<br />▹ *[RamShot](ram_shot.md)* | *string*: **nameFilter**=`"*"`,<br />*string*: **sequence**=`""`  | Available shots in this project |
+| **shots**<br />▹ *[RamShot](ram_shot.md)* | *string*: **nameFilter**=`"*"`,<br />[*RamSequence*](ram_sequence.md): **sequence**=`None`  | Available shots in this project |
 | **shotsPath**<br />▹ *str* | | The path to the shots of this project. When calling this method, the folder will created if it does not exist yet. |
+| **step**<br />▹ *[RamStep](ram_step.md)* or *None* | *string*: **shortName** | (Try to) retrieve a step from its short name. |
 | **steps**<br />▹ *list of [RamStep](ram_step.md)* | *enumerated value*: **type**=`RamStep.ALL` | Available steps in this project. Use *type* to filter the results.<br />One of: `StepType.ALL`, `StepType.ASSET_PODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.PRE_PRODUCTION`, `StepType.PRODUCTION`, `StepType.POST_PRODUCTION`.<br />`StepType.PRODUCTION` represents a combination of `SHOT` and `ASSET`. |
 | **width**<br />▹ *int* | | The project's width, in pixels. |
 

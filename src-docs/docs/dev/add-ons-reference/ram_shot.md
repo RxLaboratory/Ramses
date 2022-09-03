@@ -2,7 +2,9 @@
 
 A shot.
 
-Inherits: [***RamItem***](ram_item.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► ***[RamItem](ram_item.md)*** ► *RamShot* |
 
 ## Static Methods
 

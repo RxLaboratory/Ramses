@@ -4,7 +4,9 @@
 
 Represents a state used in a status, like "CHK" (To be checked), "OK" (ok), "TODO", etc.
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamState* |
 
 ## Methods
 

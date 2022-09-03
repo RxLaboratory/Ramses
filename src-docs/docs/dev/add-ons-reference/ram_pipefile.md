@@ -4,7 +4,9 @@
 
 A file which goes through a [`RamPipe`](ram_pipe.md).
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamPipeFile* |
 
 ## Methods
 

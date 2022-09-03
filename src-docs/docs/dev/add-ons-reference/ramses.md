@@ -44,6 +44,7 @@ Read the section entitled *Callbacks* below (and see the *Examples*) for more in
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
 | **importItem** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePath**,<br />• *[RamStep](ram_step.md)*: **step**=`None`,<br />• *dict*: **importOptions**=`None`,<br />• *bool*: **showImportOptions**=`false` | Runs the scripts in `Ramses.instance().importScripts`.<br />Read the section entitled *Callbacks* below for more details. |
+| **project**<br />▹ *[RamProject](ram_project.md)* or *None* | | (Try to) retrieve a project using its short name. |
 | **projects**<br />▹ *list of [RamProject](ram_project.md)* | | The list of available projects. |
 | **projectsPath**<br />▹ *string* | | The path to the folder containing projects. |
 | **states**<br />▹ *list of [RamState](ram_state.md)* | | The list of available states. |

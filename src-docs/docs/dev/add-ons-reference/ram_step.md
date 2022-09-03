@@ -4,7 +4,9 @@
 
 A step in the production of the shots or assets of the project.
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamStep* |
 
 ## Static Methods
 

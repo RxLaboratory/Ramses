@@ -4,7 +4,9 @@
 
 A state associated to a comment, the user who changed the state, etc.
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamStatus* |
 
 ## Static Methods
 

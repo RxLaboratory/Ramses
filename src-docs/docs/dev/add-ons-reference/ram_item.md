@@ -4,15 +4,16 @@
 
 Base class for [*RamAsset*](ram_asset.md) and [*RamShot*](ram_shot.md). An item of the project, either an asset or a shot.
 
-, ItemType, FolderNames
-
-Inherited by: *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)*
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamItem* |
+| Inherited by | *[RamShot](ram_shot.md), [RamAsset](ram_asset.md)* |
 
 ## Static Methods
 
 | Method | Arguments | Description |
 | --- | --- | --- |
-| **fromPath**<br />▹ *RamItem* or *None* | *string*: **fileOrFolderPath**<br /> | The path can be any file or folder path from the item (a version file, a preview file, etc). |
+| **fromPath**<br />▹ *RamItem* or *None* | • *string*: **fileOrFolderPath**<br />• *boolean*: **virtualIfNotFound**=`false` | The path can be any file or folder path from the item (a version file, a preview file, etc). |
 
 ## Methods
 

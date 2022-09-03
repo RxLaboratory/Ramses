@@ -4,7 +4,10 @@
 
 The base class for most of Ramses objects.
 
-Inherited by: *[RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](ram_state.md), [RamStatus](ram_status.md), [RamStep](ram_step.md), [RamUser](ram_user.md)*
+|     |     |
+| --- | --- |
+| Inherits | *object* ► *RamObject* |
+| Inherited by | *[RamFileType](ram_filetype.md), [RamItem](ram_item.md), [RamPipe](ram_pipe.md), [RamPipeFile](ram_pipefile.md), [RamProject](ram_project.md), [RamSequence](ram_sequence.md), [RamShot](ram_shot.md), [RamState](ram_state.md), [RamStatus](ram_status.md), [RamStep](ram_step.md), [RamUser](ram_user.md)* |
 
 ## Static Methods
 
@@ -19,7 +22,8 @@ Inherited by: *[RamItem](ram_item.md), [RamProject](ram_project.md), [RamState](
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | • *string*: **uuid**=`""`<br/>• *Object / Dict*: **data**=`None`<br/>• *bool*: **create**=`false`<br/>• *string*: **objectType**=`"RamObject"` | You should always provide the *UUID* unless you're creating a new object. In this case, set `create = true` and the object type. An object without *UUID* nor the `create` option will be *virtual*. |
-| **color**<br />▹ *string* | | The color used to display this object. |
+| **color**<br />▹ *list of int* | | The color used to display this object, as an `[R, G, B]` list. |
+| **colorName**<br />▹ *string* | | The color used to display this object, as an `"#000000"` string. |
 | **comment**<br />▹ *string* | | The comment for this object. |
 | **data**<br />▹ *Object / dict* | | The data of this object. |
 | **folderPath**<br />▹ *string* | | The path of this object (or an empty string). |

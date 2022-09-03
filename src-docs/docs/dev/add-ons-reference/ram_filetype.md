@@ -1,13 +1,14 @@
 ![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/09/01)
 
-
 # RamFileType
 
 A File type.
 
 File types are typically used with *[RamPipe](ram_pipe.md)*.
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamFileType* |
 
 ## Methods
 

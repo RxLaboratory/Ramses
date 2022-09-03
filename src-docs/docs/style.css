@@ -20,7 +20,6 @@ body {
     font-size: 1.3em;
 }
 
-
 h1 {
     margin-bottom: 50px;
 }
@@ -43,6 +42,23 @@ figcaption {
 
 figure {
     margin-top: 25px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: none;
+    background-color: #fcfdff55;
+  }
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #fcfdffcc;
+}
+
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+    background-color: #fcfdffff;
+}
+
+th:empty {
+    visibility: hidden;
 }
 
 .admonition{

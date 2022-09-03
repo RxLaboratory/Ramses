@@ -6,7 +6,9 @@ A pipe which connects two steps together in the production pipeline.
 
 The pipe goes from the output step (which exports data into specific file types represented by the [`RamPipeFile`](ram_pipefile.md) class) to the input step (which imports that data).
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamPipe* |
 
 ## Methods
 

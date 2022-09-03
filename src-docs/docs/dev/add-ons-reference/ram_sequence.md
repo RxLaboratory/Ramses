@@ -4,7 +4,9 @@
 
 A group of shots.
 
-Inherits: [***RamObject***](ram_object.md)
+|     |     |
+| --- | --- |
+| Inherits | *object* ► ***[RamObject](ram_object.md)*** ► *RamSequence* |
 
 ## Methods
 
