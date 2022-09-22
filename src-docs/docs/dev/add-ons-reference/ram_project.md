@@ -21,7 +21,7 @@ A project handled by Ramses. Projects contains general items, assets and shots.
 | **adminPath**<br />▹ *str* | | The path to the administration files of this project. When calling this method, the folder will created if it does not exist yet. |
 | **absolutePath**<br />▹ *str* | *string*: **relativePath** | Builds an absolute path from a path relative to the project path |
 | **assetGroups**<br />▹ *list of [RamAssetGroup](ram_assetgroup.md)* | | Available asset groups in this project |
-| **assets**<br />▹ *list of [RamAsset](ram_asset.md)* | *[RamAssetGroup](ram_assergroup.md)*: **assetGroup**=`None` | Available assets in this project and group. If *groupName* is an empty string, returns all assets. |
+| **assets**<br />▹ *list of [RamAsset](ram_asset.md)* | *[RamAssetGroup](ram_assetgroup.md)*: **assetGroup**=`None` | Available assets in this project and group. If *groupName* is an empty string, returns all assets. |
 | **assetsPath**<br />▹ *str* | *string*: **assetGroup**=`""`| The path to the assets (including the asset group if provided) of this project. When calling this method, the folder will created if it does not exist yet. |
 | **exportPath**<br />▹ *str* | | The path to the exported medias of this project. When calling this method, the folder will created if it does not exist yet. |
 | **folderPath**<br />▹ *string* | | The project's root folder. |

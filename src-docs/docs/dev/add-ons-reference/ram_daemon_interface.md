@@ -26,7 +26,7 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **create**<br />▹ *Object / Dict* | • *string*: **uuid**<br/>• *string* or *Object/ Dict*: **data**<br/>• *string*: **objectType** | Creates a new object, with the given data | |
 | **getCurrentProject**<br />▹ [*RamProject*](ram_project.md) or *None* | | Gets the current project | |
 | **getCurrentUser**<br />▹ [*RamUser*](ram_user.md) or *None* | | Gets the current user | |
-| **getData**<br />▹ *Object / Dict* | • *string*: **uuid** | Gets the data of a specific [*RamObject*](ram_object.py). | |
+| **getData**<br />▹ *Object / Dict* | • *string*: **uuid** | Gets the data of a specific [*RamObject*](ram_object.md). | |
 | **getObjects**<br />▹ *list of [*RamObject*](ram_object.md)* | • *string*: **objectType** | Gets the list of objects of a given type. The returned class type depends on the type of object and may be a derived class of *RamObject*. |
 | **getPath**<br />▹ *string* | • *string*: **uuid** | Gets the path for a specific object. |
 | **getProjects**<br />▹ *list of [*RamProject*](ram_project.md)* | | Gets the list of available projects (for the current user) |
@@ -35,8 +35,8 @@ These methods return the reply of the *Daemon* converted from *JSON* to an objec
 | **ping**<br />▹ *Object / Dict*  | | Gets the version and current user of the *Ramses Daemon* |
 | **raiseWindow** | | Raises the Ramses Application main window |
 | **setCurrentProject**<br />▹ *Object / Dict*  | • *string*: **uuid** | Sets the current project |
-| **setData**<br />▹ *Object / Dict* | • *string*: **uuid**<br/>• *string* or *Object/ Dict*: **data** | Sets the data for a specific [*RamObject*](ram_object.py). | |
-| **uuidFromPath**<br />▹ *string* | • *string*: **path**<br/>• *string* : **type** = `"RamObject"` | Gets the *UUID* of a [*RamObject*](ram_object.py) using its path. | |
+| **setData**<br />▹ *Object / Dict* | • *string*: **uuid**<br/>• *string* or *Object/ Dict*: **data** | Sets the data for a specific [*RamObject*](ram_object.md). | |
+| **uuidFromPath**<br />▹ *string* | • *string*: **path**<br/>• *string* : **type** = `"RamObject"` | Gets the *UUID* of a [*RamObject*](ram_object.md) using its path. | |
 
 ## Examples
 

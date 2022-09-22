@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ramses comprehensive documentation">
+    <meta name="author" content="Nicolas Dufresne and contributors">
+    <link rel="canonical" href="https://ramses.rxlab.guide/dev/daemon-reference/setData/">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>setData - Ramses</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/zenburn.min.css">
+        
+    
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="../../../video.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">Ramses</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">v0.5.0-Alpha</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../../quickstart/">Quick start</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Principles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../pipeline/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/administration/">Administration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/pipeline/">Pipeline</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/production/">Production tracking</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../pipeline/planning/">Planning</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../components/">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Application</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/client/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/settings/">Overview and settings</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Administration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/client/admin/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/users/">Users</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/projects/">Projects</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/templatesteps/">Template Steps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/templateassetgroups/">Template Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/states/">States</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/filetypes/">File Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/applications/">Applications</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Project settings</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/client/project/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/steps/">Steps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/pipetypes/">Pipe Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/assetgroups/">Asset Groups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/assets/">Assets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/sequences/">Sequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/shots/">Shots</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+            
+<li >
+    <a href="../../../components/client/pipeline/">Pipeline editor</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/production/">Asset and shot production tracking</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/client/schedule/">Schedule and planning</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Add-ons</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/addons/">General Information</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Autodesk Maya</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/addons/maya/">Maya Add-on</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/addons/maya-extend/">Extensibility</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Tree</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/files/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/files/naming/">Naming scheme</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/files/tree/">Folder structure</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Server</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../components/server/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/update/">Update</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/server/admin/">Administration</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extensibility <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../objects/">Objects</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Files and Folders</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../files/naming/">Naming</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Scripting API (Add-ons)</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../add-ons-reference/">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/enum/">Constants</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ramses/">Ramses</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_asset/">RamAsset</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_assetgroup/">RamAssetGroup</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_file_info/">RamFileInfo</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_file_manager/">RamFileManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_filetype/">RamFileType</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_item/">RamItem</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_object/">RamObject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_pipe/">RamPipe</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_project/">RamProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_sequence/">RamSequence</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_settings/">RamSettings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_shot/">RamShot</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_state/">RamState</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_status/">RamStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_step/">RamStep</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/ram_user/">RamUser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../add-ons-reference/implementation/">Dev Notes</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Daemon API</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../">Reference</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ping/">ping</a>
+</li>
+
+        
+            
+<li >
+    <a href="../raise/">raise</a>
+</li>
+
+        
+            
+<li >
+    <a href="../create/">create</a>
+</li>
+
+        
+            
+<li >
+    <a href="../getRamsesFolder/">getRamsesFolder</a>
+</li>
+
+        
+            
+<li >
+    <a href="../getObjects/">getObjets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../getProjects/">getProjects</a>
+</li>
+
+        
+            
+<li >
+    <a href="../getCurrentProject/">getCurrentProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../setCurrentProject/">setCurrentProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../getData/">getData</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">setData</a>
+</li>
+
+        
+            
+<li >
+    <a href="../uuidFromPath/">uuidFromPath</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../server-reference/">Server API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">... <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../credits/">Credits</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../changelog/">Changelog</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Licenses</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../licenses/gnu-gpl/">GNU GPLv3</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../licenses/gfdl/">Documentation license</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../getData/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../uuidFromPath/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/RxLaboratory/Ramses/edit/master/src-docs/docs/dev/daemon-reference/setData.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="../../..">v0.5.0-Alpha</a>
+            </li>
+        
+        
+        
+            <li >
+                <a href="../../../quickstart/">Quick start</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Principles</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/administration/">Administration</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/pipeline/">Pipeline</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/production/">Production tracking</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../pipeline/planning/">Planning</a></li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Documentation</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../components/">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Application</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/settings/">Overview and settings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Administration</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/admin/">Introduction</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/users/">Users</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/projects/">Projects</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/templatesteps/">Template Steps</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/templateassetgroups/">Template Asset Groups</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/states/">States</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/filetypes/">File Types</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/applications/">Applications</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Project settings</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/project/">Introduction</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/steps/">Steps</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/pipetypes/">Pipe Types</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/assetgroups/">Asset Groups</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/assets/">Assets</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/sequences/">Sequences</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/client/shots/">Shots</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/pipeline/">Pipeline editor</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/production/">Asset and shot production tracking</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/client/schedule/">Schedule and planning</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Add-ons</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/addons/">General Information</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level">
+                                        <button  type="button" class="collapse-button ">Autodesk Maya</button>
+                                        <ul class="collapsible-content ">
+                                            
+                                                <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Tree</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/files/">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/files/naming/">Naming scheme</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/files/tree/">Folder structure</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Server</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/update/">Update</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../components/server/admin/">Administration</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button active-collapse-button">Extensibility</button>
+                <ul class="collapsible-content collapsible-content-active">
+                    
+                        
+                        <li class="second-level "><a href="../../">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../objects/">Objects</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Files and Folders</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../files/naming/">Naming</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Scripting API (Add-ons)</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/enum/">Constants</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ramses/">Ramses</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_asset/">RamAsset</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_assetgroup/">RamAssetGroup</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_daemon_interface/">RamDaemonInterface</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_file_info/">RamFileInfo</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_file_manager/">RamFileManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_filetype/">RamFileType</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_item/">RamItem</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_metadata_manager/">RamMetaDataManager</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_object/">RamObject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_pipe/">RamPipe</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_pipefile/">RamPipeFile</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_project/">RamProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_sequence/">RamSequence</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_settings/">RamSettings</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_shot/">RamShot</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_state/">RamState</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_status/">RamStatus</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_step/">RamStep</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/ram_user/">RamUser</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../add-ons-reference/implementation/">Dev Notes</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button active-collapse-button">Daemon API</button>
+                            <ul class="collapsible-content collapsible-content-active">
+                                
+                                    
+                                    <li class="third-level "><a href="../">Reference</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../ping/">ping</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../raise/">raise</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../create/">create</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../getRamsesFolder/">getRamsesFolder</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../getObjects/">getObjets</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../getProjects/">getProjects</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../getCurrentProject/">getCurrentProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../setCurrentProject/">setCurrentProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../getData/">getData</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level active"><a href="./">setData</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../uuidFromPath/">uuidFromPath</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../server-reference/">Server API</a></li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">...</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../../../credits/">Credits</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../../../changelog/">Changelog</a></li>
+                        
+                    
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Licenses</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gnu-gpl/">GNU GPLv3</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../../licenses/gfdl/">Documentation license</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#setdata">setData</a></li>
+                <li class="second-level"><a href="#reply">Reply</a></li>
+                    
+                    <li class="third-level"><a href="#json">JSON</a></li>
+        </ul>
+    </div>
+    <div class="footer-meta"></div>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2022;updated:2022/09/01" /></p>
+<h1 id="setdata">setData</h1>
+<p><strong>Query: <code>getData&amp;uuid=unique-uid&amp;data={Some JSON Data}</code></strong></p>
+<p>Sets the data for a specific <em>RamObject</em>.</p>
+<h2 id="reply">Reply</h2>
+<h3 id="json">JSON</h3>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;query&quot;: &quot;setData&quot;,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Data updated.&quot;,
+    &quot;content&quot;: { }
+}
+</code></pre></div>
+        
+            <div class="nav-footer">
+            <ul>
+                <li class="nav-footer-prev">
+                    <a rel="prev" href="../getData/">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="nav-footer-next">
+                    <a rel="next" href="../uuidFromPath/">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+            </div>
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+<div></div>
+
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../video.js"></script>
+    <script src="../../../meta.js"></script>
+    <script src="../../../collapser.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

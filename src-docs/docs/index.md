@@ -98,55 +98,6 @@ There's also a lot of ongoing work to extend the supported creative applications
 
 ![](img/client/home.png)
 
-## Table of Contents
-
-- Introduction (this page)
-- **Principles: the Pipeline & Production Management**
-    - [Introduction](pipeline/index.md)
-    - [Administration](pipeline/administration.md)
-    - [Pipeline](pipeline/pipeline.md)
-    - [Production tracking](pipeline/production.md)
-    - [Planning](pipeline/planning.md)
-- **Ramses Components**
-    - [Introduction](components/index.md)
-    - The Ramses server
-        - [Introduction](components/server/index.md)
-        - [How to nstall a web server](components/server/web-server.md)
-        - [Installation procedure](components/server/install.md)
-        - [Update procedure](components/server/update.md)
-        - [Administration](components/server/admin.md)
-    - The Ramses application (client)
-        - [Introduction](components/client/index.md)
-        - [Installation and settings](components/client/install.md)
-        - [Administration](components/client/admin.md)
-        - [Project settings](components/client/project.md)
-        - [The pipeline](components/client/pipeline.md)
-        - [Assets and shots production tracking](components/client/production.md)
-        - [Schedule and statistics](components/client/schedule.md)
-    - Ramses Add-ons
-        - [General information](components/addons/index.md)
-        - Autodesk Maya
-            - [Autodesk Maya Add-on](components/addons/maya.md)
-            - [Maya pipeline (publish and import)](components/addons/maya-publish.md)
-            - [Extensibility](components/addons/maya-extend.md)
-    - The Ramses Tree
-        - [Introduction](components/files/index.md)
-        - [Naming scheme](components/files/naming.md)
-        - [Folder Structure](components/files/tree.md)
-- **Extending Ramses, Development**
-    - [Introduction](dev/index.md)
-    - [Files and folders](dev/files/naming.md)
-    - [The Scripting API (Add-ons)](dev/add-ons-reference/index.md)
-    - [The Ramses Daemon API](dev/daemon-reference/index.md)
-    - [The Ramses Server API](dev/server-reference/index.md)
-- **Miscellaneous**
-    - [Credits](credits.md)
-    - [Changelog](changelog.md)
-    - Licenses
-        - [Software: GNU GPLv3](licenses/gnu-gpl.md)
-        - [Documentation: GNU FDL](licenses/gfdl.md)
-        - [Medias: CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-        
 ## License
 
 ### Software

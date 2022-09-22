@@ -4,7 +4,7 @@
 
 The server stores and serves all shared data to the *Ramses Application* between all workstations in the studio. The *Ramses Applications* installed on these workstations connect to it to sync the data they need.
 
-You can either [install your own](../components/server/install.md) or rent a server managed by *RxLaboratory* (or any other provider you trust).
+You can either [install your own](install.md) or rent a server managed by *RxLaboratory* (or any other provider you trust).
 
 It is just a small software meant to be installable on small hardware and with very low requirements. You can install it on any computer in the studio (even just a simple [*Raspberry*](https://www.raspberrypi.org/)) and make it available on your *Local Area Network*, or make it available from the internet. You can also easily install it on a shared or private hosting, even a low-cost one.
 

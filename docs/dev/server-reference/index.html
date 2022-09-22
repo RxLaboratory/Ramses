@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     
-    <title>Reference - Ramses</title>
+    <title>Server API - Ramses</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -72,28 +72,13 @@
                 
                 
                     <li >
-                        <a href="../..">v0.3.0-Alpha</a>
+                        <a href="../..">v0.5.0-Alpha</a>
                     </li>
                 
                 
                 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick start <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                            
-<li >
-    <a href="../../quickstart/administrator/">Administrator</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../quickstart/user/">User</a>
-</li>
-
-                        
-                        </ul>
+                    <li >
+                        <a href="../../quickstart/">Quick start</a>
                     </li>
                 
                 
@@ -138,52 +123,13 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Components <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
     <a href="../../components/">Introduction</a>
 </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Ramses Server</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../../components/server/">Introduction</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../components/server/web-server/">A web server</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../components/server/install/">Installation</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../components/server/update/">Update</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../components/server/admin/">Administration</a>
-</li>
-
-        
-    </ul>
-  </li>
 
                         
                             
@@ -408,6 +354,39 @@
   </li>
 
                         
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Ramses Server</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../components/server/">Introduction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/server/install/">Installation</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/server/update/">Update</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../components/server/admin/">Administration</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
                         </ul>
                     </li>
                 
@@ -420,6 +399,12 @@
                             
 <li >
     <a href="../">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../objects/">Objects</a>
 </li>
 
                         
@@ -464,6 +449,12 @@
             
 <li >
     <a href="../add-ons-reference/ram_asset/">RamAsset</a>
+</li>
+
+        
+            
+<li >
+    <a href="../add-ons-reference/ram_assetgroup/">RamAssetGroup</a>
 </li>
 
         
@@ -529,6 +520,12 @@
         
             
 <li >
+    <a href="../add-ons-reference/ram_sequence/">RamSequence</a>
+</li>
+
+        
+            
+<li >
     <a href="../add-ons-reference/ram_settings/">RamSettings</a>
 </li>
 
@@ -586,49 +583,67 @@
         
             
 <li >
-    <a href="../daemon-reference/general_q/">General queries</a>
+    <a href="../daemon-reference/ping/">ping</a>
 </li>
 
         
             
 <li >
-    <a href="../daemon-reference/asset_q/">Asset queries</a>
+    <a href="../daemon-reference/raise/">raise</a>
 </li>
 
         
             
 <li >
-    <a href="../daemon-reference/pipe_q/">Pipe queries</a>
+    <a href="../daemon-reference/create/">create</a>
 </li>
 
         
             
 <li >
-    <a href="../daemon-reference/project_q/">Project queries</a>
+    <a href="../daemon-reference/getRamsesFolder/">getRamsesFolder</a>
 </li>
 
         
             
 <li >
-    <a href="../daemon-reference/shot_q/">Shot queries</a>
+    <a href="../daemon-reference/getObjects/">getObjets</a>
 </li>
 
         
             
 <li >
-    <a href="../daemon-reference/state_q/">State and Status queries</a>
+    <a href="../daemon-reference/getProjects/">getProjects</a>
 </li>
 
         
             
 <li >
-    <a href="../daemon-reference/step_q/">Step queries</a>
+    <a href="../daemon-reference/getCurrentProject/">getCurrentProject</a>
 </li>
 
         
             
 <li >
-    <a href="../daemon-reference/user_q/">User queries</a>
+    <a href="../daemon-reference/setCurrentProject/">setCurrentProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/getData/">getData</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/setData/">setData</a>
+</li>
+
+        
+            
+<li >
+    <a href="../daemon-reference/uuidFromPath/">uuidFromPath</a>
 </li>
 
         
@@ -637,108 +652,9 @@
 
                         
                             
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Server API</a>
-    <ul class="dropdown-menu">
-        
-            
 <li class="active">
-    <a href="./">Reference</a>
+    <a href="./">Server API</a>
 </li>
-
-        
-            
-<li >
-    <a href="applications/">Application queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="assets/">Asset queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="assetgroups/">Asset Group queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="filetypes/">File type queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="general/">General queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="pipes/">Pipe queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="pipefiles/">PipeFiles queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="projects/">Project queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="schedule/">Schedule queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="sequences/">Sequence queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="shots/">Shot queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="states/">State queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="status/">Status queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="steps/">Step queries</a>
-</li>
-
-        
-            
-<li >
-    <a href="users/">User queries</a>
-</li>
-
-        
-    </ul>
-  </li>
 
                         
                         </ul>
@@ -796,12 +712,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../daemon-reference/user_q/">
+                        <a rel="prev" href="../daemon-reference/uuidFromPath/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="applications/">
+                        <a rel="next" href="../../credits/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -823,24 +739,13 @@
         
         
             <li >
-                <a href="../..">v0.3.0-Alpha</a>
+                <a href="../..">v0.5.0-Alpha</a>
             </li>
         
         
         
-            <li class="first-level">
-                <button  type="button" class="collapse-button ">Quick start</button>
-                <ul class="collapsible-content ">
-                    
-                        
-                        <li class="second-level "><a href="../../quickstart/administrator/">Administrator</a></li>
-                        
-                    
-                        
-                        <li class="second-level "><a href="../../quickstart/user/">User</a></li>
-                        
-                    
-                </ul>
+            <li >
+                <a href="../../quickstart/">Quick start</a>
             </li>
         
         
@@ -875,40 +780,11 @@
         
         
             <li class="first-level">
-                <button  type="button" class="collapse-button ">Components</button>
+                <button  type="button" class="collapse-button ">Documentation</button>
                 <ul class="collapsible-content ">
                     
                         
                         <li class="second-level "><a href="../../components/">Introduction</a></li>
-                        
-                    
-                        
-                        <li class="second-level">
-                            <button  type="button" class="collapse-button ">Ramses Server</button>
-                            <ul class="collapsible-content ">
-                                
-                                    
-                                    <li class="third-level "><a href="../../components/server/">Introduction</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../components/server/web-server/">A web server</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../components/server/install/">Installation</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../components/server/update/">Update</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../components/server/admin/">Administration</a></li>
-                                    
-                                
-                            </ul>
-                        </li>
                         
                     
                         
@@ -1041,6 +917,31 @@
                         </li>
                         
                     
+                        
+                        <li class="second-level">
+                            <button  type="button" class="collapse-button ">Ramses Server</button>
+                            <ul class="collapsible-content ">
+                                
+                                    
+                                    <li class="third-level "><a href="../../components/server/">Introduction</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../components/server/install/">Installation</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../components/server/update/">Update</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../components/server/admin/">Administration</a></li>
+                                    
+                                
+                            </ul>
+                        </li>
+                        
+                    
                 </ul>
             </li>
         
@@ -1052,6 +953,10 @@
                     
                         
                         <li class="second-level "><a href="../">Introduction</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../objects/">Objects</a></li>
                         
                     
                         
@@ -1086,6 +991,10 @@
                                 
                                     
                                     <li class="third-level "><a href="../add-ons-reference/ram_asset/">RamAsset</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../add-ons-reference/ram_assetgroup/">RamAssetGroup</a></li>
                                     
                                 
                                     
@@ -1126,6 +1035,10 @@
                                 
                                     
                                     <li class="third-level "><a href="../add-ons-reference/ram_project/">RamProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../add-ons-reference/ram_sequence/">RamSequence</a></li>
                                     
                                 
                                     
@@ -1170,35 +1083,47 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/general_q/">General queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/ping/">ping</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/asset_q/">Asset queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/raise/">raise</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/pipe_q/">Pipe queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/create/">create</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/project_q/">Project queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/getRamsesFolder/">getRamsesFolder</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/shot_q/">Shot queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/getObjects/">getObjets</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/state_q/">State and Status queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/getProjects/">getProjects</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/step_q/">Step queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/getCurrentProject/">getCurrentProject</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../daemon-reference/user_q/">User queries</a></li>
+                                    <li class="third-level "><a href="../daemon-reference/setCurrentProject/">setCurrentProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../daemon-reference/getData/">getData</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../daemon-reference/setData/">setData</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../daemon-reference/uuidFromPath/">uuidFromPath</a></li>
                                     
                                 
                             </ul>
@@ -1206,76 +1131,7 @@
                         
                     
                         
-                        <li class="second-level">
-                            <button  type="button" class="collapse-button active-collapse-button">Server API</button>
-                            <ul class="collapsible-content collapsible-content-active">
-                                
-                                    
-                                    <li class="third-level active"><a href="./">Reference</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="applications/">Application queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="assets/">Asset queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="assetgroups/">Asset Group queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="filetypes/">File type queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="general/">General queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="pipes/">Pipe queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="pipefiles/">PipeFiles queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="projects/">Project queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="schedule/">Schedule queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="sequences/">Sequence queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="shots/">Shot queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="states/">State queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="status/">Status queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="steps/">Step queries</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="users/">User queries</a></li>
-                                    
-                                
-                            </ul>
-                        </li>
+                        <li class="second-level active"><a href="./">Server API</a></li>
                         
                     
                 </ul>
@@ -1321,207 +1177,284 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#ramses-server-api">Ramses Server API</a></li>
-                <li class="second-level"><a href="#connection">Connection</a></li>
-                    
-                <li class="second-level"><a href="#server-replies">Server Replies</a></li>
-                    
                 <li class="second-level"><a href="#queries">Queries</a></li>
                     
+                <li class="second-level"><a href="#replies">Replies</a></li>
+                    
+                <li class="second-level"><a href="#syncing-data">Syncing data</a></li>
+                    
+                    <li class="third-level"><a href="#ping">ping</a></li>
+                    <li class="third-level"><a href="#login">login</a></li>
+                    <li class="third-level"><a href="#sync">sync</a></li>
+                    <li class="third-level"><a href="#setpassword">setPassword</a></li>
         </ul>
     </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/01/16" /></p>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/08/23" /></p>
 <h1 id="ramses-server-api">Ramses Server API</h1>
-<p>The <em>Ramses</em> server provides a standard <em>http(s) REST API</em>. If you&rsquo;re developping your own client (or contributing to <em>Ramses Client</em>), you can easily exchange data with the server using this reference.</p>
-<p><strong>Queries must be a <em>POST</em> request</strong>; the body can be either <em>JSON</em> or <em>URL</em> encoded, the <code>Content-Type</code> being respectively <code>application/json</code> or <code>application/x-www-form-urlencoded</code>. However, some queries (explained in this document) are not supported in the <em>URL</em> encoded form, so it is better to <strong>always use <em>JSON</em> if possible</strong>.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>In <em>URL</em> encoded queries, all special characters should be percent-encoded (e.g. by replacing <code>/</code> with <code>%2F</code>).</p>
-</div>
+<p>The <em>Ramses Server</em> is used to backup and sync data across <em>Ramses Applications</em> and workstations.</p>
+<p>It provides a standard <em>http(s) REST API</em>. If you&rsquo;re developping your own client (or contributing to <em>Ramses Client</em>), you can easily exchange data with the server using this reference.</p>
+<p><strong>Queries must be a <em>POST</em> request</strong>; the body must be <em>JSON</em> encoded, the <code>Content-Type</code> being <code>application/json</code>.</p>
 <p>Only one attribute must be set directly in the <em>URL</em> (like a <em>GET</em> request), the name of the query itself.</p>
 <p>For now, the server only supports the <strong>UTF-8</strong> charset, so it is not mandatory to add the charset in the <em>Content-Type</em>, and any value other than <code>utf-8</code> will be ignored. This may change in future versions.</p>
-<p>Here is a minimal example of a query using <em>URL</em> encoding:</p>
-<p><em>URL</em>: <code>http://your.server/ramses/?createStep</code></p>
-<pre><code>POST /ramses HTTP/1.1
-Host: your.server
-Content-Type: application/x-www-form-urlencoded
-User-Agent: Ramses v0.1.1-Alpha
-Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
-Content-Length: 153
-
-uuid=b615b4be-66fd-5fd3-8095-2074155a29a8&amp;shortName=ANIM&amp;name=Animation&amp;type=shot&amp;comment=&amp;color=%23c992ff&amp;version=0.2.9&amp;token=94393b8e6396fb2bb295552d6d122544d5db1d1f
+<h2 id="queries">Queries</h2>
+<p>The server provides a single endpoint, which is the root of the folder where it&rsquo;s installed. For example, for a server installed in a folder called <em>example</em> on the server at <em>https://ramses.rxlab.io</em>, the endpoint will be <code>https://ramses.rxlab.io/example</code>.</p>
+<p>To query the server, you only need to add the query name as a parameter to this <em>URL</em>. For example, the URL for the <code>ping</code> query is <code>https://ramses.rxlab.io/example/?ping</code>.</p>
+<p>All queries must be accompanied with a <em>JSON</em> object in the post body, containing at least these values:</p>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;0.5.0&quot;
+}
 </code></pre>
-<p>And this is the same query using <em>JSON</em> encoding:</p>
-<p><em>URL</em>: <code>http://your.server/ramses/?createStep</code></p>
-<pre><code>POST /ramses HTTP/1.1
-Host: your.server
-Content-Type: application/json
-User-Agent: Ramses v0.1.1-Alpha
-Cookie: PHPSESSID=u3jb5ep3bvbrm29kutpue7t4ds
-Content-Length: 181
-
-{&quot;uuid&quot;:&quot;b615b4be-66fd-5fd3-8095-2074155a29a8&quot;,&quot;shortName&quot;:&quot;ANIM&quot;,&quot;name&quot;:&quot;Animation&quot;,&quot;type&quot;:&quot;shot&quot;,&quot;comment&quot;:&quot;&quot;,&quot;color&quot;:&quot;#c992ff&quot;,&quot;version&quot;:&quot;0.2.9&quot;,&quot;token&quot;:&quot;94393b8e6396fb2bb295552d6d122544d5db1d1f&quot;}
+<ul>
+<li><code>version</code>: version of the client connected to the server.</li>
+</ul>
+<h2 id="replies">Replies</h2>
+<p>The server replies to all queries with a <em>JSON</em> object, containing these values:</p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Server ready.&quot;,
+    &quot;query&quot;: &quot;ping&quot;,
+    &quot;content&quot;: {}
+}
 </code></pre>
-<p>The parameters to use in the body are described in the next sections of this reference. The <em>Cookie</em> is set by the server on the first connection, the <em>User-Agent</em> is set by the client.</p>
-<p>The server replies with a <em>JSON</em> object in the body.</p>
-<h2 id="connection">Connection</h2>
-<p>For almost all queries (i.e. all but <em>ping</em> and <em>login</em>) you&rsquo;ll need to be logged in. Initiating a connection to the server usually follows these steps:</p>
+<ul>
+<li><code>accepted</code>: <strong>boolean</strong>. True if the server has recognized the query and accepted it. Will be False if the query does not exist.</li>
+<li><code>success</code>: <strong>boolean</strong>. True if the server has successfully processed the query, False in case of any error.</li>
+<li><code>message</code>: <strong>string</strong>. A short feedback about the result, which can be shown to the user by the client.</li>
+<li><code>query</code>: <strong>string</strong>. The query that was made that the server is replying to.</li>
+<li><code>content</code>: <strong>object</strong>. The actual content of the reply, which varies depending on the query. Read this reference for more details.</li>
+</ul>
+<h2 id="syncing-data">Syncing data</h2>
+<p>This is the process to sync data with the server.</p>
 <ol>
-<li><em>ping</em> to check if the server is available, check its version and get a token.</li>
-<li><em>login</em> to authenticate yourself.</li>
-<li><em>init</em> to get the main data (user list, project list&hellip;).</li>
+<li><code>ping</code> to check if the server is available and check its version. This is mandatory to initiate the session before being able to log in.</li>
+<li><code>login</code> to authenticate yourself.</li>
+<li><code>sync</code> your data.</li>
 </ol>
-<p>It&rsquo;s a good habit to ping the server regularly and check it&rsquo;s still available, and to improve security: for each ping request, the session token changes, and you&rsquo;ll have to update it for following requests.</p>
-<p>For the examples in this documentation, we assume the ramses server is available at <code>http://your.server/ramses/</code>.</p>
+<p>For the examples in this documentation, we assume the ramses server is available at <code>https://ramses.rxlab.io/example/</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For the sake of readability, the <em>JSON</em> replies are pretty formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.</p>
 </div>
-<h2 id="server-replies">Server Replies</h2>
-<p>The <em>JSON</em> objects sent by the server all have the same content:</p>
+<h3 id="ping">ping</h3>
+<p>Query: <code>https://ramses.rxlab.io/example/?ping</code></p>
+<h4 id="request-body">Request body</h4>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;0.5.0&quot;
+}
+</code></pre>
 <ul>
-<li><em>accepted</em>: <strong>boolean</strong>. True if the server has recognized the query and accepted it. Will be False if the query does not exist.</li>
-<li><em>success</em>: <strong>boolean</strong>. True if the server has successfully processed the query, False in case of any error.</li>
-<li><em>message</em>: <strong>string</strong>. A short feedback about the result, which can be shown to the user by the client.</li>
-<li><em>query</em>: <strong>string</strong>. The query that was made that the server is replying to.</li>
-<li><em>content</em>: <strong>object</strong>. The actual content of the reply, which varies depending on the query. Read this reference for more details.</li>
+<li><code>version</code>: version of the client.</li>
 </ul>
-<h2 id="queries">Queries</h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>remove</code> queries do not actually delete data from the database, but set a <code>removed</code> attribute to true, to prevent any data loss.<br />
-For now, the only way to permanently delete data is to edit the database by yourself (using SQL queries or MySQL workbench or phpmyadmin, etc.)</p>
-<p>There is no query yet to restore data which has been removed, but using the <code>create</code> queries with the same <em>uuid</em> as the removed item will restore it.</p>
-</div>
+<h4 id="reply">Reply</h4>
+<p>The server replies with:</p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Server ready.&quot;,
+    &quot;query&quot;: &quot;ping&quot;,
+    &quot;content&quot;: {
+        &quot;installed&quot;: true,
+        &quot;version&quot;: &quot;0.5.0&quot;
+    }
+}
+</code></pre>
 <ul>
-<li>General<ul>
-<li><a href="general/#ping">ping</a></li>
-<li><a href="general/#login">login</a></li>
-<li><a href="general/#init">init</a></li>
+<li><code>installed</code> is false if the server has not been correctly installed yet.</li>
+<li><code>version</code> is the version of the server, which should match the version of the client.</li>
 </ul>
-</li>
-<li>Users<ul>
-<li><a href="users/#updateuser">updateUser</a></li>
-<li><a href="users/#updatepassword">updatePassword</a></li>
-<li><a href="users/#getusers">getUsers</a></li>
-<li><a href="users/#createuser">createUser</a></li>
-<li><a href="users/#removeuser">removeUser</a></li>
+<h3 id="login">login</h3>
+<p>Query: <code>https://ramses.rxlab.io/example/?login</code></p>
+<h4 id="request-body_1">Request body</h4>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;0.5.0&quot;,
+    &quot;username&quot;: &quot;Duduf&quot;,
+    &quot;password&quot;: &quot;123456&quot;
+}
+</code></pre>
+<ul>
+<li><code>version</code>: version of the client.</li>
+<li><code>username</code>: user name.</li>
+<li><code>password</code>: user password.</li>
 </ul>
-</li>
-<li>Projects<ul>
-<li><a href="projects#createproject">createProject</a></li>
-<li><a href="projects#getprojects">getProjects</a></li>
-<li><a href="projects#updateproject">updateProject</a></li>
-<li><a href="projects#removeproject">removeProject</a></li>
-<li><a href="projects#assignstep">assignStep</a></li>
-<li><a href="projects#assignuser">assignUser</a></li>
-<li><a href="projects#unassignuser">unassignUser</a></li>
+<h4 id="reply_1">Reply</h4>
+<p>The server replies with:</p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Successful login. Welcome Duduf!&quot;,
+    &quot;query&quot;: &quot;login&quot;,
+    &quot;content&quot;: {
+        &quot;username&quot;: &quot;Duduf&quot;,
+        &quot;uuid&quot;: &quot;uuid&quot;,
+        &quot;token&quot;: &quot;token&quot;
+    }
+}
+</code></pre>
+<ul>
+<li><code>username</code>: the user name of the user.</li>
+<li><code>uuid</code>: the uuid of the user.</li>
+<li><code>token</code>: a token which must be associated with <code>sync</code> queries later.</li>
 </ul>
-</li>
-<li>Steps and Template Steps<ul>
-<li><a href="steps#createstep">createStep</a></li>
-<li><a href="steps#updatestep">updateStep</a></li>
-<li><a href="steps#setsteporder">setSteporder</a></li>
-<li><a href="steps#movestep">moveStep</a></li>
-<li><a href="steps#removestep">removeStep</a></li>
-<li><a href="steps#setstepestimations">setStepEstimations</a></li>
-<li><a href="steps#assignapplication">assignApplication</a></li>
-<li><a href="steps#unassignapplication">unassignApplication</a></li>
+<h3 id="sync">sync</h3>
+<p>Query: <code>https://ramses.rxlab.io/example/?sync</code></p>
+<h4 id="request-body_2">Request body</h4>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;0.5.0&quot;,
+    &quot;token&quot;: &quot;token&quot;,
+    &quot;previousSyncDate&quot;: &quot;2022-06-15 15:44:23&quot;,
+    &quot;tables&quot;:[
+        {
+            &quot;name&quot;: &quot;RamApplication&quot;,
+            &quot;modifiedRows&quot;: [
+                {
+                    &quot;uuid&quot;: &quot;123456&quot;,
+                    &quot;data&quot;: &quot;{some data}&quot;,
+                    &quot;modified&quot;: &quot;2022-07-15 15:44:23&quot;,
+                    &quot;removed&quot;: 0
+                },
+                {
+                    &quot;uuid&quot;: &quot;789123&quot;,
+                    &quot;data&quot;: &quot;{some other data}&quot;,
+                    &quot;modified&quot;: &quot;2022-08-24 15:44:23&quot;,
+                    &quot;removed&quot;: 1
+                }
+            ]
+        },
+        {
+            &quot;name&quot;: &quot;RamStep&quot;,
+            &quot;modifiedRows&quot;: [
+                {
+                    &quot;uuid&quot;: &quot;123456&quot;,
+                    &quot;data&quot;: &quot;{some data}&quot;,
+                    &quot;modified&quot;: &quot;2022-07-15 15:44:23&quot;,
+                    &quot;removed&quot;: 0
+                },
+                {
+                    &quot;uuid&quot;: &quot;789123&quot;,
+                    &quot;data&quot;: &quot;{some other data}&quot;,
+                    &quot;modified&quot;: &quot;2022-08-24 15:44:23&quot;,
+                    &quot;removed&quot;: 1
+                }
+            ]
+        },
+        {
+            &quot;name&quot;: &quot;RamUser&quot;,
+            &quot;modifiedRows&quot;: [
+                {
+                    &quot;uuid&quot;: &quot;123456&quot;,
+                    &quot;userName&quot;: &quot;Duf&quot;,
+                    &quot;data&quot;: &quot;{some data}&quot;,
+                    &quot;modified&quot;: &quot;2022-07-15 15:44:23&quot;,
+                    &quot;removed&quot;: 0
+                },
+                {
+                    &quot;uuid&quot;: &quot;789123&quot;,
+                    &quot;userName&quot;: &quot;Ana&quot;,
+                    &quot;data&quot;: &quot;{some other data}&quot;,
+                    &quot;modified&quot;: &quot;2022-08-24 15:44:23&quot;,
+                    &quot;removed&quot;: 1
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<ul>
+<li><code>version</code>: version of the client.</li>
+<li><code>token</code>: the token got with <code>login</code>.</li>
+<li><code>previousSyncDate</code>: the date and time of the previous sync.</li>
+<li><code>tables</code>: the list of tables to sync.</li>
 </ul>
-</li>
-<li>Asset Groups and Template Asset Groups<ul>
-<li><a href="assetgroups#createassetgroup">createAssetGroup</a></li>
-<li><a href="assetgroups#updateassetgroup">updateAssetGroup</a></li>
-<li><a href="assetgroups#removeassetgroup">removeAssetGroup</a></li>
+<h4 id="reply_2">Reply</h4>
+<p>The server replies with:</p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Data sync, OK!&quot;,
+    &quot;query&quot;: &quot;sync&quot;,
+    &quot;content&quot;: {
+        &quot;tables&quot;:[
+            {
+                &quot;name&quot;: &quot;RamApplication&quot;,
+                &quot;modifiedRows&quot;: [
+                    {
+                        &quot;uuid&quot;: &quot;123456&quot;,
+                        &quot;data&quot;: &quot;{some data}&quot;,
+                        &quot;modified&quot;: &quot;2022-08-15 15:44:23&quot;,
+                        &quot;removed&quot;: 0
+                    },
+                    {
+                        &quot;uuid&quot;: &quot;789123&quot;,
+                        &quot;data&quot;: &quot;{some other data}&quot;,
+                        &quot;modified&quot;: &quot;2022-08-26 15:44:23&quot;,
+                        &quot;removed&quot;: 1
+                    }
+                ]
+            },
+            {
+                &quot;name&quot;: &quot;RamStep&quot;,
+                &quot;modifiedRows&quot;: [
+                    {
+                        &quot;uuid&quot;: &quot;123456&quot;,
+                        &quot;data&quot;: &quot;{some data}&quot;,
+                        &quot;modified&quot;: &quot;2022-08-15 15:44:23&quot;,
+                        &quot;removed&quot;: 0
+                    },
+                    {
+                        &quot;uuid&quot;: &quot;789123&quot;,
+                        &quot;data&quot;: &quot;{some other data}&quot;,
+                        &quot;modified&quot;: &quot;2022-08-26 15:44:23&quot;,
+                        &quot;removed&quot;: 1
+                    }
+                ]
+            }
+        ]
+    }
+}
+</code></pre>
+<ul>
+<li><code>tables</code>: the list of tables to sync.</li>
+<li>The <code>modifiedRows</code> are the rows which have been changed or added to the table since the previous sync.</li>
 </ul>
-</li>
-<li>Assets<ul>
-<li><a href="assets#createasset">createAsset</a></li>
-<li><a href="assets#updateasset">updateAsset</a></li>
-<li><a href="assets#removeasset">removeAsset</a></li>
-<li><a href="assets#setassetstatus">setAssetStatus</a></li>
+<h3 id="setpassword">setPassword</h3>
+<p>Query: <code>https://ramses.rxlab.io/example/?setPassword</code></p>
+<h4 id="request-body_3">Request body</h4>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;0.5.0&quot;,
+    &quot;token&quot;: &quot;token&quot;,
+    &quot;newPassword&quot;: &quot;new password&quot;,
+    &quot;currentPassword&quot;: &quot;current password&quot;,
+    &quot;uuid&quot;: &quot;user-unique-uid&quot;
+}
+</code></pre>
+<ul>
+<li><code>version</code>: version of the client.</li>
+<li><code>token</code>: the token got with <code>login</code>.</li>
+<li><code>newPassword</code>: the new password to set.</li>
+<li><code>currentPassword</code>: the current password of the user.</li>
+<li><code>uuid</code>: the user <em>UUID</em>.</li>
 </ul>
-</li>
-<li>Sequences<ul>
-<li><a href="sequences#createsequence">createSequence</a></li>
-<li><a href="sequences#updatesequence">updateSequence</a></li>
-<li><a href="sequences#removesequence">removeSequence</a></li>
-<li><a href="sequences#setsequenceorder">setSequenceOrder</a></li>
+<p>The server will check if the connected user is an administrator, and accept the request accordingly:</p>
+<ul>
+<li>If the connected user is the same as the user changing its password, the current password is mandatory and will be checked before making any change.</li>
+<li>If the connected user is not the same as the new password, the request will be accepted if and only if the connected user has the <em>administrator</em> role. In this case, the current password is not mandatory.</li>
 </ul>
-</li>
-<li>Shots<ul>
-<li><a href="shots#createshot">createShot</a></li>
-<li><a href="shots#updateshot">updateShot</a></li>
-<li><a href="shots#setshotorder">setShotOrder</a></li>
-<li><a href="shots#movehot">moveShot</a></li>
-<li><a href="shots#removeshot">removeShot</a></li>
-<li><a href="shots#setshotstatus">setShotStatus</a></li>
-</ul>
-</li>
-<li>States<ul>
-<li><a href="states#createstate">createState</a></li>
-<li><a href="states#getstates">getStates</a></li>
-<li><a href="states#updatestate">updateState</a></li>
-<li><a href="states#removestate">removeState</a></li>
-</ul>
-</li>
-<li>File Types<ul>
-<li><a href="filetypes#createfiletype">createFileType</a></li>
-<li><a href="filetypes#getfiletype">getFileTypes</a></li>
-<li><a href="filetypes#updatefiletype">updateFileType</a></li>
-<li><a href="filetypes#removefiletype">removeFileType</a></li>
-</ul>
-</li>
-<li>Applications<ul>
-<li><a href="applications#createapplication">createApplication</a></li>
-<li><a href="applications#getapplication">getApplications</a></li>
-<li><a href="applications#updateapplication">updateApplication</a></li>
-<li><a href="applications#removeapplication">removeApplication</a></li>
-<li><a href="steps#assignfiletype">assignFileType</a></li>
-<li><a href="steps#unassignfiletype">unassignFileType</a></li>
-</ul>
-</li>
-<li>PipeFiles<ul>
-<li><a href="pipefiless#createpipefile">createPipeFile</a></li>
-<li><a href="pipefiless#updatepipefile">updatePipeFile</a></li>
-<li><a href="pipefiless#removepipefile">removePipeFile</a></li>
-</ul>
-</li>
-<li>Pipes<ul>
-<li><a href="pipes#createpipe">createPipe</a></li>
-<li><a href="pipes#updatepipe">updatePipe</a></li>
-<li><a href="pipes#removepipe">removePipe</a></li>
-</ul>
-</li>
-<li>Status<ul>
-<li><a href="status#updatestatus">updateStatus</a></li>
-<li><a href="status#removestatus">removeStatus</a></li>
-<li><a href="status#setstatususer">setStatusUser</a></li>
-</ul>
-</li>
-<li>Schedule Entrries<ul>
-<li><a href="schedule#createschedule">createSchedule</a></li>
-<li><a href="schedule#createschedules">createSchedules</a></li>
-<li><a href="schedule#updateschedule">updateSchedule</a></li>
-<li><a href="schedule#updateschedules">updateSchedules</a></li>
-<li><a href="schedule#removeschedule">removeSchedule</a></li>
-<li><a href="schedule#removeschedules">removeSchedules</a></li>
-</ul>
-</li>
-</ul></div>
+<p>That means if there&rsquo;s only one administrator, who has forgotten its current password, only the server provider - someone who has an actual access to the server files (via <em>FTP</em> for example) - can set a new password, using <em>Ramses Server</em> development tools.</p></div>
         
             <div class="nav-footer">
             <ul>
                 <li class="nav-footer-prev">
-                    <a rel="prev" href="../daemon-reference/user_q/">
+                    <a rel="prev" href="../daemon-reference/uuidFromPath/">
                         <i class="fas fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li class="nav-footer-next">
-                    <a rel="next" href="applications/">
+                    <a rel="next" href="../../credits/">
                         Next <i class="fas fa-arrow-right"></i>
                     </a>
                 </li>
