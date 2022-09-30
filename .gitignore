@@ -44,4 +44,4 @@ Utils/Hash/Duhash.exe
 
 # Docker Ramses
 docker/www/*
-!docker/www/.gitkeep 
+!docker/www/.gitkeep .DS_Store
