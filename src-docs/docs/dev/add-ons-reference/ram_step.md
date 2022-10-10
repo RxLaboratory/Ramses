@@ -20,11 +20,13 @@ A step in the production of the shots or assets of the project.
 | Method | Arguments | Description |
 | --- | --- | --- |
 | ***constructor*** | *string*: **stepName**,<br />*string*: **stepShortName**,<br />*string*: **stepFolderPath**=`""`,<br />*StepType*: **stepType**=`""` | At least the folder or the type must be provided, but one is enough as the other info can be gotten from the [*Ramses Tree*](../../components/files/tree.md) |
+| **generalSettings**<br />▹ *string* | | The general settings for this step. It is meant to be a YAML string, but can actually be anything. |
 | **inputPipes**<br />▹ *list* of *[RamPipe](ram_pipe.md)* | | The pipes comming into this step. |
 | **outputPipes**<br />▹ *list* of *[RamPipe](ram_pipe.md)* | | The pipes going out of this step. |
 | **project**<br />▹ *[RamProject](ram_project.md)* | | Gets the project this step belongs too. To improve performance, if only the shortName is needed, prefer using `projectShortName()` |
 | **projectShortName**<br />▹ *string* | | Gets the short name of the project this step belongs too. |
 | **publishSettings**<br />▹ *string* | | The publish settings for this step. It is meant to be a YAML string, but can actually be anything. |
+| **setGeneralSettings** | *string*: **settings** | Sets new general settings. It is meant to be a YAML string, but can actually be anything. |
 | **setPublishSettings** | *string*: **settings** | Sets new publish settings. It is meant to be a YAML string, but can actually be anything. |
 | **stepType**<br />▹ *StepType* | | The type of this step, one of `StepType.PRE_PRODUCTION`, `StepType.SHOT_PRODUCTION`, `StepType.ASSET_PRODUCTION`, `StepType.POST_PRODUCTION`|
 | **templatesFolderPath**<br />▹ *string* | | The absolute path to the folder containing the template files for this step |
