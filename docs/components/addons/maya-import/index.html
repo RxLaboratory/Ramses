@@ -1245,6 +1245,8 @@
 <ul>
 <li>Files can be imported as <strong>references</strong>.</li>
 <li><strong>All transformations</strong> of all nodes can be <em>locked</em>.</li>
+<li>By default, a <strong>namespace</strong> is created to store the imported objects. This can be deactivated. Use with caution as name conflicts can generate errors on import/update!</li>
+<li>Imported objects are grouped in a transform node. By default, a <strong>shape</strong> (a square around the objects as a <em>nurbsCurve</em>) is created to easily manipulate them in the viewport.</li>
 <li>When importing a shader library, <strong>shaders can automatically be applied</strong> on the selected nodes.
   <em>Ramses</em> will use the node names to apply the shaders: the selected nodes must have the <em>exact same name</em> as the nodes in the scene used to publish the shaders.</li>
 </ul>
@@ -1258,6 +1260,8 @@
 apply_shaders: true
 as_reference: false
 lock_transformations: true
+create_namespace: true
+no_root_shape: false
 </code></pre>
 <p>These settings can be set directly in the <a href="../../client/pipeline/">Ramses Application&rsquo;s pipeline editor</a>, or directly using the <a href="../../client/pipetypes/">pipe editor</a>, in the settings field.</p></div>
         
