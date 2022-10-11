@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
     
-    <title>Maya pipeline (Publish and import) - Ramses</title>
+    <title>Publish settings - Ramses</title>
     
 
     <link rel="stylesheet" href="../../../css/fontawesome.css">
@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.5.0-Alpha</a>
+                        <a href="../../..">v0.5.0-Beta</a>
                     </li>
                 
                 
@@ -308,8 +308,26 @@
 
         
             
+<li >
+    <a href="../maya-pipeline/">Maya pipeline</a>
+</li>
+
+        
+            
+<li >
+    <a href="../maya-scenesetup/">Scene setup</a>
+</li>
+
+        
+            
 <li class="active">
-    <a href="./">Maya pipeline (Publish and import)</a>
+    <a href="./">Publish settings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../maya-import/">Import settings</a>
 </li>
 
         
@@ -613,6 +631,12 @@
         
             
 <li >
+    <a href="../../../dev/daemon-reference/getPath/">getPath</a>
+</li>
+
+        
+            
+<li >
     <a href="../../../dev/daemon-reference/getProjects/">getProjects</a>
 </li>
 
@@ -712,12 +736,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../maya/">
+                        <a rel="prev" href="../maya-scenesetup/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../maya-extend/">
+                        <a rel="next" href="../maya-import/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -739,13 +763,13 @@
         
         
             <li >
-                <a href="../../../../../..">v0.5.0-Alpha</a>
+                <a href="../../..">v0.5.0-Beta</a>
             </li>
         
         
         
             <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+                <a href="../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -884,7 +908,13 @@
                                             
                                                 <li class="fourth-level "><a href="../maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level active"><a href="./">Maya pipeline (Publish and import)</a></li>
+                                                <li class="fourth-level "><a href="../maya-pipeline/">Maya pipeline</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../maya-scenesetup/">Scene setup</a></li>
+                                            
+                                                <li class="fourth-level active"><a href="./">Publish settings</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../maya-import/">Import settings</a></li>
                                             
                                                 <li class="fourth-level "><a href="../maya-extend/">Extensibility</a></li>
                                             
@@ -1103,6 +1133,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../../dev/daemon-reference/getPath/">getPath</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../../dev/daemon-reference/getProjects/">getProjects</a></li>
                                     
                                 
@@ -1176,30 +1210,27 @@
     </div>
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
-            <li class="first-level active"><a href="#the-maya-pipeline">The Maya pipeline</a></li>
-                <li class="second-level"><a href="#setting-the-publishing-parameters">Setting the publishing parameters</a></li>
+            <li class="first-level active"><a href="#setting-the-publishing-parameters">Setting the publishing parameters</a></li>
+                <li class="second-level"><a href="#pre-publish-settings">Pre-Publish settings</a></li>
                     
-                    <li class="third-level"><a href="#pre-publish-settings">Pre-Publish settings</a></li>
-                    <li class="third-level"><a href="#maya-scene">Maya scene</a></li>
-                    <li class="third-level"><a href="#maya-scene-shader-library">Maya scene - Shader library</a></li>
-                    <li class="third-level"><a href="#alembic">Alembic</a></li>
-                    <li class="third-level"><a href="#arnold-scene-source">Arnold Scene Source</a></li>
-                <li class="second-level"><a href="#importing-assets">Importing assets</a></li>
+                <li class="second-level"><a href="#maya-scene">Maya scene</a></li>
                     
-                    <li class="third-level"><a href="#format-settings">Format settings</a></li>
-                    <li class="third-level"><a href="#shaders">Shaders</a></li>
+                <li class="second-level"><a href="#maya-scene-shader-library">Maya scene - Shader library</a></li>
+                    
+                <li class="second-level"><a href="#alembic">Alembic</a></li>
+                    
+                <li class="second-level"><a href="#arnold-scene-source">Arnold Scene Source</a></li>
+                    
+                <li class="second-level"><a href="#all-settings">All Settings</a></li>
+                    
         </ul>
     </div>
     <div class="footer-meta"></div>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/06/27" /></p>
-<h1 id="the-maya-pipeline">The Maya pipeline</h1>
-<p>With Ramses and its Maya Add-on, the Maya pipeline is easy-to-use but you have access to all parameters when publishing and importing files. Using presets and/or the <em>Ramses Client Application</em> you can completely automate the pipeline according to your specific needs.</p>
-<p><strong>▹ Read more about the <a href="../../../pipeline/pipeline/">pipeline</a>.</strong></p>
-<p><strong>▹ Configure the <a href="../../../pipeline/pipeline/">pipeline in the <em>Ramses Client Application</em></a>.</strong></p>
-<h2 id="setting-the-publishing-parameters">Setting the publishing parameters</h2>
+<p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/10/11" /></p>
+<h1 id="setting-the-publishing-parameters">Setting the publishing parameters</h1>
 <p>Use the <img alt="" src="../../../img/icons/rampublishsettings.png" style="width:28px" /> <strong><em>Publish settings</em></strong> button from the <em>Add-on</em>&lsquo;s shelf to access all available parameters for publishing in Maya. From this dialog, you can build your own presets, or set some settings as defaults for any specific <a href="../../../pipeline/pipeline/">step</a> in your <a href="../../../pipeline/pipeline/">pipeline</a>.</p>
 <p><img alt="Publish settings: Format" src="/img/maya/publishsettings_format.png" />  </p>
 <p>In the first tab, select the step for which your setting the publishing parameters, and optionally select an existing preset.</p>
@@ -1217,7 +1248,7 @@
 <p>The text area on the right shows the preset as a text. This text can be saved or used directly in the publish settings of any step in the <em>Ramses Client Application</em>, to be automatically used when publishing files for the given step. In this case, this settings window will not be shown anymore when publishing files, unless the user checks the <em>Edit publish settings</em> box when saving the scene.</p>
 <p>If the <em>Ramses Client Application</em> is running, you don&rsquo;t necessarily need to use presets; clicking on the <code>Save settings</code> button will set the current settings to the selected step. They can then also be <a href="../../client/steps/">edited directly in the <em>Ramses Client Application</em></a>.</p>
 <p>This text uses the <a href="https://yaml.org/"><em>Yaml</em></a> syntax, which can easily be edited manually.</p>
-<h3 id="pre-publish-settings">Pre-Publish settings</h3>
+<h2 id="pre-publish-settings">Pre-Publish settings</h2>
 <p>Before publishing, <em>Ramses</em> can run some checks and clean the scene.</p>
 <p><img alt="Pre-Publish" src="../../../img/maya/publishsettings_prebublish.png" /></p>
 <ul>
@@ -1232,7 +1263,7 @@
   To check the types of the nodes to complete the list, use the Mel/Python command <code>nodeType</code>.</li>
 <li><strong>Freeze transformations of all the nodes</strong>, except those containing specific strings in their name.</li>
 </ul>
-<h3 id="maya-scene">Maya scene</h3>
+<h2 id="maya-scene">Maya scene</h2>
 <p><img alt="" src="../../../img/maya/publishsettings_maya.png" /></p>
 <ul>
 <li>Select either <strong><em>Binary</em></strong> or <strong><em>ASCII file</em></strong>.</li>
@@ -1240,13 +1271,13 @@
 <li><strong>All transformations can be locked</strong>.</li>
 <li>You can select <strong>how joints will be displayed</strong> in the published file.</li>
 </ul>
-<h3 id="maya-scene-shader-library">Maya scene - Shader library</h3>
+<h2 id="maya-scene-shader-library">Maya scene - Shader library</h2>
 <p><img alt="" src="../../../img/maya/publishsettings_mayashaders.png" /></p>
 <ul>
 <li>Select either <strong><em>Binary</em></strong> or <strong><em>ASCII file</em></strong>.</li>
 </ul>
 <p>When publishing a shader library, <em>Ramses</em> keeps the list of nodes the shaders are applied to, and is able to re-assign them when importing the library in any scene.</p>
-<h3 id="alembic">Alembic</h3>
+<h2 id="alembic">Alembic</h2>
 <p><img alt="" src="../../../img/maya/publishsettings_alembic.png" /></p>
 <ul>
 <li>You can choose to <strong>keep only renderable nodes</strong> and remove all other shapes.</li>
@@ -1254,46 +1285,55 @@
 <li>You can change the <strong>frame step</strong> to make the exported file lighter or more detailed (e.g. for precise motion blur).</li>
 <li>You can automatically <strong>filter Euler rotations</strong>.</li>
 </ul>
-<h3 id="arnold-scene-source">Arnold Scene Source</h3>
+<h2 id="arnold-scene-source">Arnold Scene Source</h2>
 <p>There are no options for this format.</p>
-<h2 id="importing-assets">Importing assets</h2>
-<p>When importing or replacing assets, there are a few options. The same way publish settings can use presets or be set directly in the <em>Ramses Client Application</em>, <em>Ramses</em> will look for presets and default settings when importing the assets.</p>
-<p><img alt="" src="../../../img/maya/importsettings_preset.png" /></p>
-<p>In the first tab, you can optionally select an existing preset.</p>
-<p>Presets are stored in a folder inside the Maya module folder. You can save or load a preset with <code>Edit ► Save preset...</code> and <code>Edit ► Load preset...</code>. When a preset is saved in the default folder, it is listed in the box in this tab.</p>
-<p><em>Ramses</em> provides a few presets by default, they&rsquo;re good examples of what you can do.</p>
-<ul>
-<li><code>Alembic - Reference and shaders</code> imports an alembic file as a reference, along with <em>Maya</em> shader libraries.</li>
-<li><code>Alembic and shaders</code> imports an alembic file, and <em>Maya</em> shader libraries as a reference.</li>
-<li><code>Maya - Lock transform</code> imports a Maya file, and locks the transformations of the imported asset.</li>
-<li><code>Maya - Reference</code> references a Maya file.</li>
-<li><code>Maya</code> simply imports a Maya file.</li>
-</ul>
-<p>You can safely delete these presets from the preset folder if you don&rsquo;t need them.</p>
-<h3 id="format-settings">Format settings</h3>
-<p>For each format to import, you can set some settings.</p>
-<p><img alt="" src="../../../img/maya/importsettings_format.png" /></p>
-<p>The text on the right can be copied to any <a href="../../client/pipetypes/">pipe type</a> in the <em>Ramses Client Application</em>. When importing an asset, <em>Ramses</em> will first look for these settings, and if they&rsquo;re found, it won&rsquo;t show the settings dialog unless the user checked the box <code>Edit import options</code> when importing the asset.</p>
-<ul>
-<li>Files can be imported as <strong>references</strong>.</li>
-<li><strong>All transformations</strong> of all nodes can be <em>locked</em>.</li>
-<li>When importing a shader library, <strong>shaders can automatically be applied</strong> on the selected nodes.
-  <em>Ramses</em> will use the node names to apply the shaders: the selected nodes must have the <em>exact same name</em> as the nodes in the scene used to publish the shaders.</li>
-</ul>
-<h3 id="shaders">Shaders</h3>
-<p>When <strong>importing a shader library</strong>, as published with the publish method of the <em>Add-On</em>, <strong><em>Ramses</em> will automatically assign these shaders</strong> to any mesh imported along with the shaders; this is a quick way to import both <em>Alembic</em> meshes and their shaders for example: just import both files at once.</p>
-<p>If you just want to assign the shaders to existing geometry, just select on or several nodes containing the meshes, and <em>Ramses</em> will try to assign the imported shaders to them, using the names of the transform nodes containing the meshes. If the shaders are not correctly assigned, check the names of the nodes. Namespaces are ignored when matching nodes with their shader.</p>
-<p>If you need to replace or reassign shaders already imported, the quick and easy way is to remove them from the scene, select the meshes, and import them again. All the shaders will be automatically re-assigned.</p></div>
+<h2 id="all-settings">All Settings</h2>
+<p>These are all the available settings:</p>
+<pre><code class="language-yaml">delete_history: false
+formats: # Format specific options
+- mb: # Maya Binary options
+    joints: disable # one of &quot;disable&quot;, &quot;hide&quot;, &quot;lock&quot;, &quot;keep&quot;
+    lock_hidden_nodes: true
+    lock_transformations: false
+    only_shaders: true
+- abc:  # Alembic options
+    animation:
+      frame_step: 1.0
+      handle_in: 0 # in frames
+      handle_out: 0
+    filter_euler_rotations: true
+    renderable_only: true
+- ass # Arnold secne source options (emtpy, no options)
+freeze_transform: 
+  case_sensitive: false
+  whitelist:
+  - _eye_
+  - _eyes_
+import_references: true
+remove_animation: false
+remove_empty_groups: true
+remove_extra_shapes: false
+remove_hidden_nodes: false
+remove_namespaces: true
+types:
+  list:
+  - bezierCurve
+  - nurbsCurve
+  - nurbsSurface
+  - locator
+  mode: remove # either &quot;remove&quot; or &quot;keep&quot;
+</code></pre>
+<p>These settings can be set directly in the <a href="../../client/steps/">Ramses Application&rsquo;s step editor</a>, in the <em>Publish</em> settings tab.</p></div>
         
             <div class="nav-footer">
             <ul>
                 <li class="nav-footer-prev">
-                    <a rel="prev" href="../maya/">
+                    <a rel="prev" href="../maya-scenesetup/">
                         <i class="fas fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li class="nav-footer-next">
-                    <a rel="next" href="../maya-extend/">
+                    <a rel="next" href="../maya-import/">
                         Next <i class="fas fa-arrow-right"></i>
                     </a>
                 </li>

@@ -42,7 +42,7 @@ Steps can be re-order by dragging their *ID* in the column header of the list.
     - Input a custom hexadecimal color code in the field.
     - Click the ![](/img/icons/color2.svg){: style="width:18px;"} button to use a nice color selector.
 
-There are three tabs for other details:
+There are a few tabs for other details:
 
 - ***Applications*** can be assigned to each step; this information is used by the [pipeline](../../pipeline/pipeline.md) tools for automations and to open files.
     - The ![](/img/icons/add_sl.svg){: style="width:18px;"} button contains a list of available applications, and an entry to quickly create a new application without having to switch to the [applications](applications.md) tab.
@@ -57,7 +57,7 @@ There are three tabs for other details:
 
 ![](/img/client/stepedition-settings.png)
 
-- Use the ***Settings*** tab to add some custom settings which can be used by *Ramses* add-ons to automate the pipeline. Using the official *Ramses Add-ons*, these settings should be formatted using the [*Yaml*](http://yaml.org) syntax. Read the [*Add-ons*](../../components/addons/index.md) section for more information about the settings you can use.
+- Use the several ***Settings*** tabs to add some custom settings which can be used by *Ramses* add-ons to automate the pipeline. Using the official *Ramses Add-ons*, these settings should be formatted using the [*Yaml*](http://yaml.org) syntax. Read the [*Add-ons*](../../components/addons/index.md) section for more information about the settings you can use.
 
 Finally, the ![](/img/icons/go-to-explore-reveal-folder_sl.svg){: style="width:18px;"} button opens the step folder in your file explorer. This folder contains [the step common files](../../pipeline/pipeline.md#steps), especially the templates, but not the [working files](../../pipeline/pipeline.md#a-working-folder) which are stored within their assets and shots.
 

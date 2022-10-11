@@ -29,7 +29,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v0.5.0-Alpha: index.md
+    - v0.5.0-Beta: index.md
     - Quick start: quickstart/index.md
     - Principles:
         - Introduction: pipeline/index.md
@@ -67,7 +67,10 @@ nav:
             - General Information: components/addons/index.md
             - Autodesk Maya:
                 - Maya Add-on: components/addons/maya.md
-                - Maya pipeline (Publish and import): components/addons/maya-publish.md
+                - Maya pipeline: components/addons/maya-pipeline.md
+                - Scene setup: components/addons/maya-scenesetup.md
+                - Publish settings: components/addons/maya-publish.md
+                - Import settings: components/addons/maya-import.md
                 - Extensibility: components/addons/maya-extend.md
         - Ramses Tree:
             - Introduction: components/files/index.md
@@ -114,6 +117,7 @@ nav:
             - create: dev/daemon-reference/create.md
             - getRamsesFolder: dev/daemon-reference/getRamsesFolder.md
             - getObjets: dev/daemon-reference/getObjects.md
+            - getPath: dev/daemon-reference/getPath.md
             - getProjects: dev/daemon-reference/getProjects.md
             - getCurrentProject: dev/daemon-reference/getCurrentProject.md
             - setCurrentProject: dev/daemon-reference/setCurrentProject.md

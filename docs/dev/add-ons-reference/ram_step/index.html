@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.5.0-Alpha</a>
+                        <a href="../../..">v0.5.0-Beta</a>
                     </li>
                 
                 
@@ -309,7 +309,25 @@
         
             
 <li >
-    <a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a>
+    <a href="../../../components/addons/maya-pipeline/">Maya pipeline</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/addons/maya-scenesetup/">Scene setup</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/addons/maya-publish/">Publish settings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../components/addons/maya-import/">Import settings</a>
 </li>
 
         
@@ -613,6 +631,12 @@
         
             
 <li >
+    <a href="../../daemon-reference/getPath/">getPath</a>
+</li>
+
+        
+            
+<li >
     <a href="../../daemon-reference/getProjects/">getProjects</a>
 </li>
 
@@ -739,13 +763,13 @@
         
         
             <li >
-                <a href="../../../../../..">v0.5.0-Alpha</a>
+                <a href="../../..">v0.5.0-Beta</a>
             </li>
         
         
         
             <li >
-                <a href="../../../../../../quickstart/">Quick start</a>
+                <a href="../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -884,7 +908,13 @@
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya/">Maya Add-on</a></li>
                                             
-                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Maya pipeline (Publish and import)</a></li>
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-pipeline/">Maya pipeline</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-scenesetup/">Scene setup</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-publish/">Publish settings</a></li>
+                                            
+                                                <li class="fourth-level "><a href="../../../components/addons/maya-import/">Import settings</a></li>
                                             
                                                 <li class="fourth-level "><a href="../../../components/addons/maya-extend/">Extensibility</a></li>
                                             
@@ -1103,6 +1133,10 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../daemon-reference/getPath/">getPath</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../daemon-reference/getProjects/">getProjects</a></li>
                                     
                                 
@@ -1242,6 +1276,11 @@
 <td>At least the folder or the type must be provided, but one is enough as the other info can be gotten from the <a href="../../../components/files/tree/"><em>Ramses Tree</em></a></td>
 </tr>
 <tr>
+<td><strong>generalSettings</strong><br />▹ <em>string</em></td>
+<td></td>
+<td>The general settings for this step. It is meant to be a YAML string, but can actually be anything.</td>
+</tr>
+<tr>
 <td><strong>inputPipes</strong><br />▹ <em>list</em> of <em><a href="../ram_pipe/">RamPipe</a></em></td>
 <td></td>
 <td>The pipes comming into this step.</td>
@@ -1265,6 +1304,11 @@
 <td><strong>publishSettings</strong><br />▹ <em>string</em></td>
 <td></td>
 <td>The publish settings for this step. It is meant to be a YAML string, but can actually be anything.</td>
+</tr>
+<tr>
+<td><strong>setGeneralSettings</strong></td>
+<td><em>string</em>: <strong>settings</strong></td>
+<td>Sets new general settings. It is meant to be a YAML string, but can actually be anything.</td>
 </tr>
 <tr>
 <td><strong>setPublishSettings</strong></td>
