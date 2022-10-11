@@ -34,11 +34,12 @@ The detailed list of planned features and enhancements is [available on *Github*
 - On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
 - On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
 
-## 0.5.0-Alpha
+## 0.5.0-Beta
 
 ### New
 
 - **Client**: Implemented the *Offline mode*
+- **Client**, **Python API**, **Maya Add-on**: Added step general settings
 - **Server**: Completely changed (and simplified) the server API to support syncing with clients.
 
 ## 0.3.0-Alpha
