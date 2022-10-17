@@ -38,9 +38,12 @@ The detailed list of planned features and enhancements is [available on *Github*
 
 ### New
 
+- **Client**: Many UI and preformance improvements.
 - **Client**: Implemented the *Offline mode*
+- **Client**, **Python API**, **Maya Add-on**: Changed and simplified data exchange.
 - **Client**, **Python API**, **Maya Add-on**: Added step general settings
 - **Server**: Completely changed (and simplified) the server API to support syncing with clients.
+- **Server**: Warning: this update is not compatible with older versions. As we're moving from Alpha to Beta test, there's no way to migrate your data when updating this time, as we were just testing the framework. Now that we're in Beta test, this is fixed and future updates won't break compatibility anymore.
 
 ## 0.3.0-Alpha
 
