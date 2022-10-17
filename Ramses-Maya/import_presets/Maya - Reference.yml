@@ -1,0 +1,13 @@
+formats:
+- apply_shaders: false
+  as_reference: true
+  format: '*'
+  lock_transformations: false
+- apply_shaders: false
+  as_reference: true
+  format: ma
+  lock_transformations: false
+- apply_shaders: false
+  as_reference: true
+  format: mb
+  lock_transformations: false

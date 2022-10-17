@@ -1,0 +1,14 @@
+delete_history: false
+formats:
+- mb:
+    only_shaders: true
+import_references: true
+remove_animation: true
+remove_empty_groups: true
+remove_extra_shapes: true
+remove_hidden_nodes: true
+remove_namespaces: true
+types:
+  list:
+  - mesh
+  mode: keep

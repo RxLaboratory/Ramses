@@ -1,0 +1,12 @@
+QDockWidget QLabel {
+    background-color: rgba(0,0,0,0);
+}
+
+StateBox QAbstractItemView{
+    padding: 0;
+}
+
+StateBox::down-arrow {
+    image: none;
+    padding: none;
+}

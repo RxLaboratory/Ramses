@@ -1,0 +1,27 @@
+{
+    "accepted": true,
+    "success": true,
+    "message": "Data sync, OK!",
+    "query": "sync",
+    "content": {
+        "tables":[
+            {
+                "name": "RamApplication",
+                "modifiedRows": [
+                    {
+                        "uuid": "123456",
+                        "data": "{some data}",
+                        "modified": "2022-08-15 15:44:23",
+                        "removed": 0
+                    },
+                    {
+                        "uuid": "789123",
+                        "data": "{some other data}",
+                        "modified": "2022-08-26 15:44:23",
+                        "removed": 1
+                    }
+                ]
+            }
+        ]
+    }
+}

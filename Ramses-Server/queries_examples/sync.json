@@ -1,0 +1,60 @@
+{
+    "version": "0.5.0",
+    "token": "token",
+    "previousSyncDate": "2022-06-15 15:44:23",
+    "tables":[
+        {
+            "name": "RamApplication",
+            "modifiedRows": [
+                {
+                    "uuid": "123456",
+                    "data": "{some data}",
+                    "modified": "2022-07-15 15:44:23",
+                    "removed": 0
+                },
+                {
+                    "uuid": "789123",
+                    "data": "{some other data}",
+                    "modified": "2022-08-24 15:44:23",
+                    "removed": 1
+                }
+            ]
+        },
+        {
+            "name": "RamStep",
+            "modifiedRows": [
+                {
+                    "uuid": "123456",
+                    "data": "{some data}",
+                    "modified": "2022-07-15 15:44:23",
+                    "removed": 0
+                },
+                {
+                    "uuid": "789123",
+                    "data": "{some other data}",
+                    "modified": "2022-08-24 15:44:23",
+                    "removed": 1
+                }
+            ]
+        },
+        {
+            "name": "RamUser",
+            "modifiedRows": [
+                {
+                    "uuid": "123456",
+                    "userName": "Duf",
+                    "data": "{some data}",
+                    "modified": "2022-07-15 15:44:23",
+                    "removed": 0
+                },
+                {
+                    "uuid": "789123",
+                    "userName": "Ana",
+                    "data": "{some other data}",
+                    "modified": "2022-08-24 15:44:23",
+                    "removed": 1
+                }
+            ]
+        }
+    ]
+}

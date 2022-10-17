@@ -1,0 +1,10 @@
+{
+    "accepted": true,
+    "success": true,
+    "message": "Server ready.",
+    "query": "ping",
+    "content": {
+        "installed": true,
+        "version": "0.5.0"
+    }
+}

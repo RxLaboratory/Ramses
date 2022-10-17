@@ -1,0 +1,9 @@
+delete_history: false
+formats:
+- ass
+import_references: true
+remove_animation: true
+remove_empty_groups: true
+remove_extra_shapes: false
+remove_hidden_nodes: false
+remove_namespaces: true

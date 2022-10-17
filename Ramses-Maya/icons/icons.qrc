@@ -1,0 +1,72 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file alias="ramsave.png">ramsave.png</file>
+		<file>ramsave_150.png</file>
+		<file>ramsave_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramsaveincremental.png">ramsaveincremental.png</file>
+		<file>ramsaveincremental_150.png</file>
+		<file>ramsaveincremental_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramtemplate.png">ramtemplate.png</file>
+		<file>ramtemplate_150.png</file>
+		<file>ramtemplate_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramcomment.png">ramcomment.png</file>
+		<file>ramcomment_150.png</file>
+		<file>ramcomment_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramimport.png">ramimport.png</file>
+		<file>ramimport_150.png</file>
+		<file>ramimport_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramopen.png">ramopen.png</file>
+		<file>ramopen_150.png</file>
+		<file>ramopen_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="rampreview.png">rampreview.png</file>
+		<file>rampreview_150.png</file>
+		<file>rampreview_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramretrieve.png">ramretrieve.png</file>
+		<file>ramretrieve_150.png</file>
+		<file>ramretrieve_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramsaveas.png">ramsaveas.png</file>
+		<file>ramsaveas_150.png</file>
+		<file>ramsaveas_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramses.png">ramses.png</file>
+		<file>ramses_150.png</file>
+		<file>ramses_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramsettings.png">ramsettings.png</file>
+		<file>ramsettings_150.png</file>
+		<file>ramsettings_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramstatus.png">ramstatus.png</file>
+		<file>ramstatus_150.png</file>
+		<file>ramstatus_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramupdate.png">ramupdate.png</file>
+		<file>ramupdate_150.png</file>
+		<file>ramupdate_200.png</file>
+	</qresource>
+	<qresource>
+		<file alias="ramreplace.png">ramreplace.png</file>
+		<file>ramreplace_150.png</file>
+		<file>ramreplace_200.png</file>
+	</qresource>
+</RCC>
