@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 8.466666 8.466667"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="ramses-logo-small.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2">
+    <style
+       id="style2">.a{filter:url(#a);}.b{fill:#710132;}.c{fill:#e3e3e3;}</style>
+    <filter
+       name="AI_FlouGaussien_4"
+       id="a">
+      <feGaussianBlur
+         id="feGaussianBlur4"
+         stdDeviation="4" />
+    </filter>
+    <style
+       id="style2-1">.a{filter:url(#a);}.b{fill:#710132;}.c{fill:#e3e3e3;}</style>
+    <filter
+       name="AI_FlouGaussien_4"
+       id="a-3">
+      <feGaussianBlur
+         id="feGaussianBlur4-3"
+         stdDeviation="4" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.313709"
+     inkscape:cx="-46.624853"
+     inkscape:cy="5.8778251"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="3440"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-nodes="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-global="true"
+     inkscape:snap-others="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     inkscape:pagecheckerboard="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-41.884402,-258.97524)">
+    <path
+       sodipodi:nodetypes="csaascccsscsccsssssccccccccc"
+       inkscape:connector-curvature="0"
+       id="circle15-1"
+       d="m 44.353681,259.18777 c -1.435634,0.37495 -2.102869,1.56244 -2.051203,2.94573 0.02051,0.54918 0.04989,0.84098 0.240418,1.20271 0.183553,0.34848 0.494651,0.63116 0.824499,0.84641 0.532495,0.3475 1.135259,0.4604 1.786699,0.66819 0.272793,0.087 0.772394,1.29049 -0.331087,2.58935 0.622463,0 2.236178,0.003 2.860811,0.003 -0.207372,-1.80167 0.613252,-1.70892 0.924308,-1.64903 0.297152,0.0965 0.82484,0.0964 0.942563,-0.18214 0.117732,-0.27852 -0.13623,-0.50343 -0.140977,-0.63092 -0.01431,-0.38305 0.134366,-0.59236 0.153116,-0.62231 0.01877,-0.0297 0.115789,-0.0823 0.120475,-0.1806 0.0077,-0.16129 -0.150206,-0.24196 -0.150206,-0.24196 0.05783,-0.092 0.243318,-0.14708 0.187264,-0.33716 0,0 -0.278113,-0.4229 -0.249441,-0.67732 0.02867,-0.25443 0.557405,-0.22003 0.45064,-0.48562 -0.36568,-0.90968 -0.943909,-1.16883 -1.192462,-1.26715 -0.248552,-0.0983 -0.319995,-0.43829 -0.365213,-0.60294 -0.04521,-0.16459 -0.236383,-0.30432 -0.387808,-0.4259 -0.151424,-0.12159 -0.332313,-0.50639 -0.633485,-0.71055 -0.457506,-0.28263 -1.067514,-0.46469 -1.631822,-0.4471 -0.564311,0.0174 -0.958498,0.0924 -1.357097,0.2049 z m 3.50498,1.80097 c 0,0 0.437478,0.25307 0.392159,0.74525 0,0 -0.357055,0.19574 -1.061957,0.0397 0.135847,-0.43185 0.669801,-0.7849 0.669801,-0.7849 z"
+       style="display:inline;fill:#a526c4;fill-opacity:1;stroke-width:0.0223073" />
+  </g>
+</svg>
