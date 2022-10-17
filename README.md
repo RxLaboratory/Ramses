@@ -16,6 +16,16 @@ It is meant to be used both by freelancers, small or big teams.
 
 ▹ Here's the [changelog](https://github.com/RxLaboratory/Ramses/blob/master/src-docs/docs/changelog.md).
 
+## ▹ Components
+
+Ramses is a framework made of these:
+
+- The **[Ramses Server](https://github.com/RxLaboratory/Ramses-Server)** is used to centralize and sync data between workstations.
+- The **[Ramses Client Application](https://github.com/RxLaboratory/Ramses-Client)** is the user-friendly application installed on all workstations.
+- Ramses is integrated into your creative software:
+  - The **[Ramses Python API](https://github.com/RxLaboratory/Ramses-Py)** is used to develop add-ons for your software.
+  - The **[Ramses Maya Add-on](https://github.com/RxLaboratory/Ramses-Maya)** integrates Ramses into Autodesk Maya.
+
 ## ▹ Free and open source
 
 *Ramses* is licensed under the [GNU General Public License v3](https://github.com/RxLaboratory/Ramses/blob/master/LICENSE.md), which means **you're free** to do anything you'd like with it, use it the way you want, modify it, and share your modifications.
