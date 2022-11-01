@@ -29,7 +29,7 @@ extra_javascript:
 site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
-    - v0.5.0-Beta: index.md
+    - v0.6 (Beta): index.md
     - Quick start: quickstart/index.md
     - Principles:
         - Introduction: pipeline/index.md
@@ -79,6 +79,10 @@ nav:
         - Ramses Server:
             - Introduction: components/server/index.md
             - Installation: components/server/install.md
+            - Install from source: components/server/install-src.md
+            - Docker (MySQL): components/server/install-docker-mysql.md
+            - Docker (SQLite): components/server/install-docker-sqlite.md
+            - Configuration: components/server/config.md
             - Update: components/server/update.md
             - Administration: components/server/admin.md
     - Extensibility:
@@ -127,7 +131,12 @@ nav:
         - Server API: dev/server-reference/index.md
     - ...:
         - Credits: credits.md
-        - Changelog: changelog.md
+        - Changelog:
+            - General: changelog.md
+            - Application: changelog-app.md
+            - Maya: changelog-maya.md
+            - Server: changelog-server.md
+            - API: changelog-api.md
         - Licenses:
             - GNU GPLv3: licenses/gnu-gpl.md
             - Documentation license: licenses/gfdl.md

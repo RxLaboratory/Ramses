@@ -3,7 +3,7 @@
 # Ramses Server update
 
 !!! warning
-    The procedure to install and to update *Ramses* differ a bit. **Do not** follow the installation procedure to update your server, as it will wipe all your data!
+    The procedure to install and to update *Ramses* differ a bit. **Do not** follow the *installation* procedure to *update* your server, as it will wipe all your data!
 
     It is also a good habit to always backup the data before updating.
 
