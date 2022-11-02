@@ -820,13 +820,13 @@
         
         
             <li >
-                <a href="../..">v0.6 (Beta)</a>
+                <a href="../../../..">v0.6 (Beta)</a>
             </li>
         
         
         
             <li >
-                <a href="../../quickstart/">Quick start</a>
+                <a href="../../../../quickstart/">Quick start</a>
             </li>
         
         
@@ -1313,11 +1313,13 @@
                     
                 <li class="second-level"><a href="#replies">Replies</a></li>
                     
+                    <li class="third-level"><a href="#debug-and-logs">Debug and logs</a></li>
                 <li class="second-level"><a href="#syncing-data">Syncing data</a></li>
                     
                     <li class="third-level"><a href="#ping">ping</a></li>
                     <li class="third-level"><a href="#login">login</a></li>
                     <li class="third-level"><a href="#sync">sync</a></li>
+                    <li class="third-level"><a href="#clean">clean</a></li>
                     <li class="third-level"><a href="#setpassword">setPassword</a></li>
         </ul>
     </div>
@@ -1337,7 +1339,7 @@
 <p>To query the server, you only need to add the query name as a parameter to this <em>URL</em>. For example, the URL for the <code>ping</code> query is <code>https://ramses.rxlab.io/example/?ping</code>.</p>
 <p>All queries must be accompanied with a <em>JSON</em> object in the post body, containing at least these values:</p>
 <pre><code class="language-json">{
-    &quot;version&quot;: &quot;0.5.0&quot;
+    &quot;version&quot;: &quot;0.6.0&quot;
 }
 </code></pre>
 <ul>
@@ -1350,7 +1352,9 @@
     &quot;success&quot;: true,
     &quot;message&quot;: &quot;Server ready.&quot;,
     &quot;query&quot;: &quot;ping&quot;,
-    &quot;content&quot;: {}
+    &quot;content&quot;: {},
+    &quot;serverUuid&quot;: &quot;unique-uid&quot;,
+    &quot;debug&quot;: []
 }
 </code></pre>
 <ul>
@@ -1359,6 +1363,21 @@
 <li><code>message</code>: <strong>string</strong>. A short feedback about the result, which can be shown to the user by the client.</li>
 <li><code>query</code>: <strong>string</strong>. The query that was made that the server is replying to.</li>
 <li><code>content</code>: <strong>object</strong>. The actual content of the reply, which varies depending on the query. Read this reference for more details.</li>
+<li><code>serverUuid</code>: <strong>string</strong>. The universal unique identifier of this server. This value can be used to make sure a local DB/client connects to the right server and avoid corrupting data by mixing servers.</li>
+<li><code>debug</code>: <strong>array of objects</strong>. Server (debug) logs.</li>
+</ul>
+<h3 id="debug-and-logs">Debug and logs</h3>
+<p>The <code>debug</code> value of the reply is an array containing these objects:</p>
+<pre><code class="language-json">{
+    &quot;date&quot;: &quot;2022-11-25 13:05:24&quot;,
+    &quot;level&quot;: &quot;DEBUG&quot;,
+    &quot;message&quot;: &quot;A debug log entry&quot;
+}
+</code></pre>
+<ul>
+<li><code>date</code>: <strong>string</strong>. The date and time of the log entry.</li>
+<li><code>level</code>: <strong>string</strong>. One of <code>"DATA"</code>, <code>"DEBUG"</code>, <code>"INFO"</code>, <code>"WARNING"</code>, <code>"CRITICAL"</code>, <code>"FATAL"</code>. The minimum level of the logs is <code>"WARNING"</code> by default (e.g. <em>Data</em>, <em>Debug</em> and <em>Info</em> logs won&rsquo;t be returned) and can be changed in the <a href="../../components/server/config/">config file</a>.</li>
+<li><code>lessage</code>: <strong>string</strong>. The log entry.</li>
 </ul>
 <h2 id="syncing-data">Syncing data</h2>
 <p>This is the process to sync data with the server.</p>
@@ -1376,7 +1395,7 @@
 <p>Query: <code>https://ramses.rxlab.io/example/?ping</code></p>
 <h4 id="request-body">Request body</h4>
 <pre><code class="language-json">{
-    &quot;version&quot;: &quot;0.5.0&quot;
+    &quot;version&quot;: &quot;0.6.0&quot;
 }
 </code></pre>
 <ul>
@@ -1391,8 +1410,10 @@
     &quot;query&quot;: &quot;ping&quot;,
     &quot;content&quot;: {
         &quot;installed&quot;: true,
-        &quot;version&quot;: &quot;0.5.0&quot;
-    }
+        &quot;version&quot;: &quot;0.6.0&quot;
+    },
+    &quot;serverUuid&quot;: &quot;unique-uid&quot;,
+    &quot;debug&quot;: []
 }
 </code></pre>
 <ul>
@@ -1403,7 +1424,7 @@
 <p>Query: <code>https://ramses.rxlab.io/example/?login</code></p>
 <h4 id="request-body_1">Request body</h4>
 <pre><code class="language-json">{
-    &quot;version&quot;: &quot;0.5.0&quot;,
+    &quot;version&quot;: &quot;0.6.0&quot;,
     &quot;username&quot;: &quot;Duduf&quot;,
     &quot;password&quot;: &quot;123456&quot;
 }
@@ -1424,7 +1445,9 @@
         &quot;username&quot;: &quot;Duduf&quot;,
         &quot;uuid&quot;: &quot;uuid&quot;,
         &quot;token&quot;: &quot;token&quot;
-    }
+    },
+    &quot;serverUuid&quot;: &quot;unique-uid&quot;,
+    &quot;debug&quot;: []
 }
 </code></pre>
 <ul>
@@ -1436,7 +1459,7 @@
 <p>Query: <code>https://ramses.rxlab.io/example/?sync</code></p>
 <h4 id="request-body_2">Request body</h4>
 <pre><code class="language-json">{
-    &quot;version&quot;: &quot;0.5.0&quot;,
+    &quot;version&quot;: &quot;0.6.0&quot;,
     &quot;token&quot;: &quot;token&quot;,
     &quot;previousSyncDate&quot;: &quot;2022-06-15 15:44:23&quot;,
     &quot;tables&quot;:[
@@ -1546,18 +1569,56 @@
                 ]
             }
         ]
-    }
+    },
+    &quot;serverUuid&quot;: &quot;unique-uid&quot;,
+    &quot;debug&quot;: []
 }
 </code></pre>
 <ul>
 <li><code>tables</code>: the list of tables to sync.</li>
 <li>The <code>modifiedRows</code> are the rows which have been changed or added to the table since the previous sync.</li>
 </ul>
-<h3 id="setpassword">setPassword</h3>
-<p>Query: <code>https://ramses.rxlab.io/example/?setPassword</code></p>
+<h3 id="clean">clean</h3>
+<p>Query: <code>https://ramses.rxlab.io/example/?clean</code></p>
+<p>Deletes rows from tables, using the objects&rsquo; uuids.</p>
 <h4 id="request-body_3">Request body</h4>
 <pre><code class="language-json">{
-    &quot;version&quot;: &quot;0.5.0&quot;,
+    &quot;version&quot;: &quot;0.6.0&quot;,
+    &quot;token&quot;: &quot;token&quot;,
+    &quot;tables&quot;: [
+        {
+            &quot;name&quot;: &quot;tableName&quot;,
+            &quot;rows&quot;: [&quot;uuid1&quot;, &quot;uuid2&quot;, &quot;uuid3&quot;]
+        },
+        {
+            &quot;name&quot;: &quot;otherTable&quot;,
+            &quot;rows&quot;: [&quot;uuid4&quot;, &quot;uuid5&quot;, &quot;uuid6&quot;]
+        }
+    ]
+}
+</code></pre>
+<h4 id="reply_3">Reply</h4>
+<p>The server replies with:</p>
+<pre><code class="language-json">{
+    &quot;accepted&quot;: true,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Cleaned data, removed 6 rows.&quot;,
+    &quot;query&quot;: &quot;clean&quot;,
+    &quot;content&quot;: {
+        &quot;count&quot;: 6
+    },
+    &quot;serverUuid&quot;: &quot;unique-uid&quot;,
+    &quot;debug&quot;: []
+}
+</code></pre>
+<ul>
+<li><code>count</code>: the number of deleted rows.</li>
+</ul>
+<h3 id="setpassword">setPassword</h3>
+<p>Query: <code>https://ramses.rxlab.io/example/?setPassword</code></p>
+<h4 id="request-body_4">Request body</h4>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;0.6.0&quot;,
     &quot;token&quot;: &quot;token&quot;,
     &quot;newPassword&quot;: &quot;new password&quot;,
     &quot;currentPassword&quot;: &quot;current password&quot;,

@@ -22,7 +22,7 @@ All queries must be accompanied with a *JSON* object in the post body, containin
 
 ```json
 {
-    "version": "0.5.0"
+    "version": "0.6.0"
 }
 ```
 
@@ -38,7 +38,9 @@ The server replies to all queries with a *JSON* object, containing these values:
     "success": true,
     "message": "Server ready.",
     "query": "ping",
-    "content": {}
+    "content": {},
+    "serverUuid": "unique-uid",
+    "debug": []
 }
 ```
 
@@ -47,6 +49,24 @@ The server replies to all queries with a *JSON* object, containing these values:
 - `message`: **string**. A short feedback about the result, which can be shown to the user by the client.
 - `query`: **string**. The query that was made that the server is replying to.
 - `content`: **object**. The actual content of the reply, which varies depending on the query. Read this reference for more details.
+- `serverUuid`: **string**. The universal unique identifier of this server. This value can be used to make sure a local DB/client connects to the right server and avoid corrupting data by mixing servers.
+- `debug`: **array of objects**. Server (debug) logs.
+
+### Debug and logs
+
+The `debug` value of the reply is an array containing these objects:
+
+```json
+{
+    "date": "2022-11-25 13:05:24",
+    "level": "DEBUG",
+    "message": "A debug log entry"
+}
+```
+
+- `date`: **string**. The date and time of the log entry.
+- `level`: **string**. One of `"DATA"`, `"DEBUG"`, `"INFO"`, `"WARNING"`, `"CRITICAL"`, `"FATAL"`. The minimum level of the logs is `"WARNING"` by default (e.g. *Data*, *Debug* and *Info* logs won't be returned) and can be changed in the [config file](../../components/server/config.md).
+- `lessage`: **string**. The log entry.
 
 ## Syncing data
 
@@ -69,7 +89,7 @@ Query: `https://ramses.rxlab.io/example/?ping`
 
 ```json
 {
-    "version": "0.5.0"
+    "version": "0.6.0"
 }
 ```
 
@@ -87,8 +107,10 @@ The server replies with:
     "query": "ping",
     "content": {
         "installed": true,
-        "version": "0.5.0"
-    }
+        "version": "0.6.0"
+    },
+    "serverUuid": "unique-uid",
+    "debug": []
 }
 ```
 
@@ -103,7 +125,7 @@ Query: `https://ramses.rxlab.io/example/?login`
 
 ```json
 {
-    "version": "0.5.0",
+    "version": "0.6.0",
     "username": "Duduf",
     "password": "123456"
 }
@@ -127,7 +149,9 @@ The server replies with:
         "username": "Duduf",
         "uuid": "uuid",
         "token": "token"
-    }
+    },
+    "serverUuid": "unique-uid",
+    "debug": []
 }
 ```
 
@@ -143,7 +167,7 @@ Query: `https://ramses.rxlab.io/example/?sync`
 
 ```json
 {
-    "version": "0.5.0",
+    "version": "0.6.0",
     "token": "token",
     "previousSyncDate": "2022-06-15 15:44:23",
     "tables":[
@@ -256,12 +280,59 @@ The server replies with:
                 ]
             }
         ]
-    }
+    },
+    "serverUuid": "unique-uid",
+    "debug": []
 }
 ```
 
 - `tables`: the list of tables to sync.
   - The `modifiedRows` are the rows which have been changed or added to the table since the previous sync.
+
+### clean
+
+Query: `https://ramses.rxlab.io/example/?clean`
+
+Deletes rows from tables, using the objects' uuids.
+
+#### Request body
+
+```json
+{
+    "version": "0.6.0",
+    "token": "token",
+    "tables": [
+        {
+            "name": "tableName",
+            "rows": ["uuid1", "uuid2", "uuid3"]
+        },
+        {
+            "name": "otherTable",
+            "rows": ["uuid4", "uuid5", "uuid6"]
+        }
+    ]
+}
+```
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "Cleaned data, removed 6 rows.",
+    "query": "clean",
+    "content": {
+        "count": 6
+    },
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
+
+- `count`: the number of deleted rows.
 
 ### setPassword
 
@@ -271,7 +342,7 @@ Query: `https://ramses.rxlab.io/example/?setPassword`
 
 ```json
 {
-    "version": "0.5.0",
+    "version": "0.6.0",
     "token": "token",
     "newPassword": "new password",
     "currentPassword": "current password",
