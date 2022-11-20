@@ -1,6 +1,12 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/01)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/20)
 
 # Ramses Laya Add-on Changelog
+
+## 0.7.0-Beta
+
+### Fixes
+
+- Fixed 'save scene as' failing with random items.
 
 ## 0.6.0-Beta
 

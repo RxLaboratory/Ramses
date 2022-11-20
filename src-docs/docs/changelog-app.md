@@ -1,13 +1,23 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/01)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/20)
 
 # Ramses Application Changelog
 
-## Known Issues
+## 0.7.0-Beta
 
-- ***[#263](https://github.com/RxLaboratory/Ramses/issues/263)***: The client may crash when removing a project which is not empty.
-- On ***Windows***, the tray icon may not be removed if the client crashes.
-- On ***Mac OS***, the user specific settings (current project, location of the nodes in the pipeline editor, ...) may not be saved.
-- On ***Linux***, interaction with the timeline may be limited (impossible to select a shot, or open its folder).
+### New
+
+- New syncing methods with the *Ramses Server* which are slower but more reliable, especially with big sets of data.
+
+### Improvements
+
+- Performance improvements, especially with big sets of data
+
+### Fixes
+
+- Fixed potential crash when loading some items from the *Ramses Scripting API*.
+- Fixed potential crash when adding entries to the schedule.
+- Fixed potential crash when loading specific databases.
+- Fixed schedule entries which may not be correctly shown. No data was lost, it was just a display issue.
 
 ## 0.6.0-Beta
 

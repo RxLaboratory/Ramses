@@ -1,6 +1,21 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/01)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/20)
 
 # Ramses Server Changelog
+
+## 0.7.0-Beta
+
+Starting with this version, the *Ramses Server* is compatible only with versions of MySQL more recent than 8.0, though it can still use SQLite too.
+
+### New
+
+- New syncing methods which are slower but more reliable, especially with big sets of data.
+- Improved performance with big sets of data.
+- When using SQLite, 'VACUUM' is run at regular intervals to optimize the size of the file and fix potential issues with failed queries.
+- Refuse client connexions if they're using the wrong version.
+
+### Fixes
+
+- Accepts requests with missing 'Content-Type' header. Assumes it's *JSON* by default.
 
 ## 0.6.0-Beta
 
