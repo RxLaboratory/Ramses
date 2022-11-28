@@ -74,7 +74,10 @@ This is the process to sync data with the server.
 
 1. `ping` to check if the server is available and check its version. This is mandatory to initiate the session before being able to log in.
 2. `login` to authenticate yourself.
-3. `sync` your data.
+3. `sync` starts the sync session.
+4. `push` to push modified items (or an empty list to download all table data).
+5. `fetch` to get some information, including the number of tables and rows available to pull.
+6. `pull` to pull the updated data from the server.
 
 For the examples in this documentation, we assume the ramses server is available at `https://ramses.rxlab.io/example/`.
 
@@ -163,75 +166,19 @@ The server replies with:
 
 Query: `https://ramses.rxlab.io/example/?sync`
 
+This query starts a sync session. It must be called before pushing data to the server.
+
 #### Request body
 
 ```json
 {
-    "version": "0.6.0",
-    "token": "token",
-    "previousSyncDate": "2022-06-15 15:44:23",
-    "tables":[
-        {
-            "name": "RamApplication",
-            "modifiedRows": [
-                {
-                    "uuid": "123456",
-                    "data": "{some data}",
-                    "modified": "2022-07-15 15:44:23",
-                    "removed": 0
-                },
-                {
-                    "uuid": "789123",
-                    "data": "{some other data}",
-                    "modified": "2022-08-24 15:44:23",
-                    "removed": 1
-                }
-            ]
-        },
-        {
-            "name": "RamStep",
-            "modifiedRows": [
-                {
-                    "uuid": "123456",
-                    "data": "{some data}",
-                    "modified": "2022-07-15 15:44:23",
-                    "removed": 0
-                },
-                {
-                    "uuid": "789123",
-                    "data": "{some other data}",
-                    "modified": "2022-08-24 15:44:23",
-                    "removed": 1
-                }
-            ]
-        },
-        {
-            "name": "RamUser",
-            "modifiedRows": [
-                {
-                    "uuid": "123456",
-                    "userName": "Duf",
-                    "data": "{some data}",
-                    "modified": "2022-07-15 15:44:23",
-                    "removed": 0
-                },
-                {
-                    "uuid": "789123",
-                    "userName": "Ana",
-                    "data": "{some other data}",
-                    "modified": "2022-08-24 15:44:23",
-                    "removed": 1
-                }
-            ]
-        }
-    ]
+    "version": "0.8.0",
+    "token": "token"
 }
 ```
 
 - `version`: version of the client.
 - `token`: the token got with `login`.
-- `previousSyncDate`: the date and time of the previous sync.
-- `tables`: the list of tables to sync.
 
 #### Reply
 
@@ -241,44 +188,120 @@ The server replies with:
 {
     "accepted": true,
     "success": true,
-    "message": "Data sync, OK!",
+    "message": "Sync session started. You can now push your changes.",
     "query": "sync",
+    "content": {},
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
+
+### push
+
+Query: `https://ramses.rxlab.io/example/?push`
+
+This query is used to push (and commit changes once you're done) data to the server.
+
+It can be called as many times as needed to push all the data, and the last call must include `"commit": true` to commit changes and be able to pull updated data from the server. If the *commit* is not done, nothing is changed on the server.
+
+Only one table at a time can be pushed, and if there are a lot of rows to push, it is advised to split the data in several pushes to the same table.
+
+#### Request body
+
+```json
+{
+    "version": "0.8.0",
+    "token": "token",
+    "table": "RamApplication",
+    "rows": [
+                {
+                    "uuid": "123456",
+                    "data": "{some data}",
+                    "modified": "2022-07-15 15:44:23",
+                    "removed": 0
+                },
+                {
+                    "uuid": "789123",
+                    "data": "{some other data}",
+                    "modified": "2022-08-24 15:44:23",
+                    "removed": 1
+                }
+            ],
+    "previousSyncDate": "2022-06-15 15:44:23",
+    "commit": false
+}
+```
+
+- `version`: version of the client.
+- `token`: the token got with `login`.
+- `table`: the name of the table with the new data.
+- `rows`: the new data.
+- `previousSyncDate`: the date of the last previous sync; this is used to limit the data returned by the server to only data more recent than this value. Set it to a past date to download all data from a table.
+- `commit`: set this to `true` if it's the last call to push and you're ready to save all changes on the server and get its updated data.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "Accepted data. Waiting for commit.",
+    "query": "push",
     "content": {
-        "tables":[
+        "commited": false
+    },
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
+
+- `commited`: whether the data has been commited.
+
+### fetch
+
+Query: `https://ramses.rxlab.io/example/?fetch`
+
+Use this query to get information about the available data after a commit. This includes the tables to pull (which should be the ones which have been pushed), and the number of items and pages to pull.
+
+#### Request body
+
+```json
+{
+    "version": "0.8.0",
+    "token": "token"
+}
+```
+
+- `version`: version of the client.
+- `token`: the token got with `login`.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "There are 2 tables to pull from the server.",
+    "query": "fetch",
+    "content": {
+        "tableCount": 2,
+        "tables": [
             {
                 "name": "RamApplication",
-                "modifiedRows": [
-                    {
-                        "uuid": "123456",
-                        "data": "{some data}",
-                        "modified": "2022-08-15 15:44:23",
-                        "removed": 0
-                    },
-                    {
-                        "uuid": "789123",
-                        "data": "{some other data}",
-                        "modified": "2022-08-26 15:44:23",
-                        "removed": 1
-                    }
-                ]
+                "rowCount": 50,
+                "deleteCount": 2,
+                "pageCount": 5
             },
             {
-                "name": "RamStep",
-                "modifiedRows": [
-                    {
-                        "uuid": "123456",
-                        "data": "{some data}",
-                        "modified": "2022-08-15 15:44:23",
-                        "removed": 0
-                    },
-                    {
-                        "uuid": "789123",
-                        "data": "{some other data}",
-                        "modified": "2022-08-26 15:44:23",
-                        "removed": 1
-                    }
-                ]
-            }
+                "name": "RamUser",
+                "rowCount": 5,
+                "deleteCount": 0,
+                "pageCount": 1
+            },
         ]
     },
     "serverUuid": "unique-uid",
@@ -286,8 +309,121 @@ The server replies with:
 }
 ```
 
-- `tables`: the list of tables to sync.
-  - The `modifiedRows` are the rows which have been changed or added to the table since the previous sync.
+- `tableCount`: the number of available tables.
+- `tables`: the table information, including:
+    - `name`: the name of the table
+    - `rowCount`: the number of updated/inserted rows
+    - `deleteCount`: the number of rows which have been deleted
+    - `pageCount`: the number of pages to pull. To improve performance, you can't pull all rows at once, but one page at a time.
+
+### pull
+
+Query: `https://ramses.rxlab.io/example/?pull`
+
+Use this query to pull the new data from the server.
+
+To improve performance, you can't pull all rows and all tables at once, but one page for one table at a time.
+
+#### Request body
+
+```json
+{
+    "version": "0.8.0",
+    "token": "token",
+    "table": "RamApplication",
+    "page": 1
+}
+```
+
+- `version`: version of the client.
+- `token`: the token got with `login`.
+- `table`: the name of the table to pull.
+- `page`: the page to pull.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "Retrieved the 'RamApplication' table data, for page #1 (rows 0 to 9).",
+    "query": "pull",
+    "content": {
+        "table": "RamApplication",
+        "page": 1,
+        "rows": [
+            {
+                "uuid": "123456",
+                "data": "{some data}",
+                "modified": "2022-07-15 15:44:23",
+                "removed": 0
+            },
+            {
+                "uuid": "789123",
+                "data": "{some other data}",
+                "modified": "2022-08-24 15:44:23",
+                "removed": 1
+            }
+        ],
+        "deleted": [
+            "uuid-1", "uuid-2"
+        ]
+    },
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
+
+- `table`: the name of the table.
+- `page`: the page number.
+- `rows`: the new and updated rows.
+- `deleted`: the list of UUIDs which have been deleted from the table.
+
+### pull (single object)
+
+Query: `https://ramses.rxlab.io/example/?pull`
+
+The *pull* query can also be used to get the data of a single object, using its UUID.
+
+
+#### Request body
+
+```json
+{
+    "version": "0.8.0",
+    "token": "token",
+    "table": "RamApplication",
+    "uuid": "123456"
+}
+```
+
+- `version`: version of the client.
+- `token`: the token got with `login`.
+- `table`: the name of the table to pull.
+- `uuid`: the UUID of the object to pull.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "Retrieved the 'RamApplication' table data, for page #1 (rows 0 to 9).",
+    "query": "pull",
+    "content": {
+        "uuid": "123456",
+        "data": "{some data}",
+        "modified": "2022-07-15 15:44:23",
+        "removed": 0
+    },
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
 
 ### clean
 
