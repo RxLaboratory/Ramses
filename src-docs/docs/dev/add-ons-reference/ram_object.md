@@ -30,6 +30,7 @@ The base class for most of Ramses objects.
 | **get**<br />▹ *any* | • *string*: **key**<br/>• *any*: **default** = `None` | Gets a specific value from the data. If the key can't be found, returns the default value. |
 | **name**<br />▹ *string* | | The name of this object. |
 | **set**<br />▹ *any* | • *string*: **key**<br/>• *any*: **value** | Sets a specific value in the data. |
+| **setComment** | • *string*: **comment** | Sets a new comment. |
 | **setData**<br />▹ *string* | • *string* or *Object / Dict*: **data** | Sets new internal data for this object (and sends it to the application). |
 | **shortName**<br />▹ *string* | | The short name of this object. |
 | **uuid**<br />▹ *string* | | The universal unique identified (UUID) of this object. |

@@ -116,16 +116,23 @@ nav:
             - Dev Notes: dev/add-ons-reference/implementation.md
         - Daemon API:
             - Reference: dev/daemon-reference/index.md
-            - ping: dev/daemon-reference/ping.md
-            - raise: dev/daemon-reference/raise.md
             - create: dev/daemon-reference/create.md
-            - getRamsesFolder: dev/daemon-reference/getRamsesFolder.md
+            - getAssetGroups: dev/daemon-reference/getAssetGroups.md
+            - getAssets: dev/daemon-reference/getAssets.md
+            - getCurrentProject: dev/daemon-reference/getCurrentProject.md
+            - getData: dev/daemon-reference/getData.md
             - getObjets: dev/daemon-reference/getObjects.md
             - getPath: dev/daemon-reference/getPath.md
+            - getPipes: dev/daemon-reference/getPipes.md
             - getProjects: dev/daemon-reference/getProjects.md
-            - getCurrentProject: dev/daemon-reference/getCurrentProject.md
+            - getRamsesFolder: dev/daemon-reference/getRamsesFolder.md
+            - getSequences: dev/daemon-reference/getSequences.md
+            - getShots: dev/daemon-reference/getShots.md
+            - getStatus: dev/daemon-reference/getStatus.md
+            - getSteps: dev/daemon-reference/getSteps.md
+            - ping: dev/daemon-reference/ping.md
+            - raise: dev/daemon-reference/raise.md
             - setCurrentProject: dev/daemon-reference/setCurrentProject.md
-            - getData: dev/daemon-reference/getData.md
             - setData: dev/daemon-reference/setData.md
             - uuidFromPath: dev/daemon-reference/uuidFromPath.md
         - Server API: dev/server-reference/index.md
