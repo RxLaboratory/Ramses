@@ -2,9 +2,15 @@
 
 # Ramses Server Changelog
 
+## 0.8.0-Beta
+
+- Regularly cleans the database, to keep it smaller and more performant, as well as resolve corrupted data issues which may happen during failed sync or using incompatible clients.
+- Added a "maintenance mode".
+- Fixed an error when pulling a single object data.
+
 ## 0.7.0-Beta
 
-Starting with this version, the *Ramses Server* is compatible only with versions of MySQL more recent than 8.0, though it can still use SQLite too.
+Starting with this version, the *Ramses Server* is only compatible with versions of MySQL more recent than 8.0, though it can still use SQLite too.
 
 ### New
 

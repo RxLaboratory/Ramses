@@ -13,3 +13,4 @@ A group of shots.
 | Method | Arguments | Description |
 | --- | --- | --- |
 | **project**<br />▹ [*RamProject*](ram_project.md) | | The project containing this sequence. |
+| **shots**<br />▹ *list of [*RamShot*](ram_shot.md)* | | The shots contained in this sequence. |

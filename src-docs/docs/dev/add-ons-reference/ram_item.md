@@ -31,10 +31,8 @@ Base class for [*RamAsset*](ram_asset.md) and [*RamShot*](ram_shot.md). An item 
 | **projectShortName**<br />▹ *string* | | Gets the short name of the project this item belongs too. |
 | **publishedVersionFolderPaths**<br />▹ *list of string* | • [RamStep](ram_step.md)* or *string*: **step**=`""`,<br />• *string*: **fileName** = `""`,<br />• *string*: **resource** = `undefined` | Gets the list of folder paths in the publish folder, optionally for a given specific file name and/or resource. |
 | **publishFolderPath**<br />▹ *string* | • *[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets the path to the publish folder. Paths are relative to the root of the item folder. |
-| **setStatus** | • *[RamStatus](ram_status.md)*: **status**,<br />• *[RamStep](ram_step.md)* or *string*: **step** | Sets the current status for the given step |
 | **stepFilePath**<br />▹ *string* | • *string*: **resource** = `""`,<br />• *string*: **extension**=`""`,<br/>• *[RamStep](ram_step.md) or string*: **step***=`""` | Gets the file used for this step with the given file extension. |
 | **stepFilePaths**<br />▹ *list* of *string* | • *[RamStep](ram_step.md) or string*: **step***=`""` | Gets the files used for this step (there may be several files, one per resource) |
 | **stepFolderPath**<br />▹ *string* | • *[RamStep](ram_step.md) or string*: **step***=`""` | The subfolder for the given step |
-| **stepStatusHistory**<br />▹ *list of string* | | Gets the list of [*RamStatus*](ram_status.md) UUIDs for the given step, ordered from oldest to most recent. |
 | **versionFilePaths**<br />▹ *string* | • *string*: **resource** = `""`,<br />• *[RamStep](ram_step.md)* or *string*: **step**=`""` | Gets all version files for the given resource. |
 | **versionFolderPath**<br />▹ *string* | • *[RamStep](ram_step.md)* or *string*: **step**=`""` | Path to the version folder relative to the item root folder |

@@ -2,6 +2,26 @@
 
 # Ramses Application Changelog
 
+## 0.8.0-Beta
+
+Note: with this version, the history of status modifications is no longer visible. The status history is still saved in the database, and the UI to view it will be re-enabled in a future version.
+
+### Improvements
+
+- Several performance improvements
+- More reliable sync of status and other data
+- UI improvements
+- Simplified statistics
+- Removed time tracking, until a reliable way to track time spent on specific tasks is found
+- The database is cleaned when it is opened to keep it as small as possible, and limit the quantity of data to sync.
+- New Daemon API (see the API changelog for details)
+
+### Fixes
+
+- Fixed incorrect step listing in specific cases.
+- Fixed updated data sometimes not updated in the UI.
+- Fixed potential crashes when loading corrupted databases.
+
 ## 0.7.0-Beta
 
 ### New

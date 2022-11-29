@@ -28,6 +28,6 @@ A state associated to a comment, the user who changed the state, etc.
 | **setCompletionRatio** | • *integer*: **completion** | Sets the ratio of completion of this status. |
 | **setPublished** | • *boolean*: **published**=`true` | Sets if this version of the item has been published. |
 | **setState** | • [*RamState*](ram_state.md): **state** | Sets the corresponding state. |
-| **setUser** | • [*RamUser*](ram_user.md): **user** | Sets the user who created this status. |
+| **setUser** | • [*RamUser*](ram_user.md): **user** = `None` | Sets the user who modified this status. If `None`, it will use the current user |
 | **setVersion** | • *integer*: **version** | Sets the version of the corresponding working file. |
 | **step**<br />▹ *[RamStep](ram_step.md)* | | The step this status refers to. |

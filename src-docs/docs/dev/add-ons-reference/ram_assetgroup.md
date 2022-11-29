@@ -19,3 +19,4 @@ A group of assets.
 | Method | Arguments | Description |
 | --- | --- | --- |
 | **project**<br />▹ [*RamProject*](ram_project.md) | | The project containing this group. |
+| **assets**<br />▹ *list of [*RamAsset*](ram_asset.md)* | | The assets contained in this group. |
