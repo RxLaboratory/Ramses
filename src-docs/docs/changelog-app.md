@@ -2,6 +2,11 @@
 
 # Ramses Application Changelog
 
+## 0.8.1-Beta
+
+- Fixed an issue where removed objects (steps, shots, assets...) would reappear in the UI.
+- Added a "Copy UUID" context menu entry in lists to help developers and scripters. This is a first of a few developer options to be added in the UI.
+
 ## 0.8.0-Beta
 
 Note: with this version, the history of status modifications is no longer visible. The status history is still saved in the database, and the UI to view it will be re-enabled in a future version.
