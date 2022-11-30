@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.7 (Beta)</a>
+                        <a href="../../..">v0.8 (Beta)</a>
                     </li>
                 
                 
@@ -625,25 +625,31 @@
         
             
 <li >
-    <a href="../../daemon-reference/ping/">ping</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../daemon-reference/raise/">raise</a>
-</li>
-
-        
-            
-<li >
     <a href="../../daemon-reference/create/">create</a>
 </li>
 
         
             
 <li >
-    <a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a>
+    <a href="../../daemon-reference/getAssetGroups/">getAssetGroups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getAssets/">getAssets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getData/">getData</a>
 </li>
 
         
@@ -661,25 +667,61 @@
         
             
 <li >
+    <a href="../../daemon-reference/getPipes/">getPipes</a>
+</li>
+
+        
+            
+<li >
     <a href="../../daemon-reference/getProjects/">getProjects</a>
 </li>
 
         
             
 <li >
-    <a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a>
+    <a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getSequences/">getSequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getShots/">getShots</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getStatus/">getStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getSteps/">getSteps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/ping/">ping</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/raise/">raise</a>
 </li>
 
         
             
 <li >
     <a href="../../daemon-reference/setCurrentProject/">setCurrentProject</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../daemon-reference/getData/">getData</a>
 </li>
 
         
@@ -820,7 +862,7 @@
         
         
             <li >
-                <a href="../../..">v0.7 (Beta)</a>
+                <a href="../../..">v0.8 (Beta)</a>
             </li>
         
         
@@ -1186,19 +1228,23 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../daemon-reference/ping/">ping</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../daemon-reference/raise/">raise</a></li>
-                                    
-                                
-                                    
                                     <li class="third-level "><a href="../../daemon-reference/create/">create</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a></li>
+                                    <li class="third-level "><a href="../../daemon-reference/getAssetGroups/">getAssetGroups</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getAssets/">getAssets</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getData/">getData</a></li>
                                     
                                 
                                     
@@ -1210,19 +1256,43 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../daemon-reference/getPipes/">getPipes</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../daemon-reference/getProjects/">getProjects</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a></li>
+                                    <li class="third-level "><a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getSequences/">getSequences</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getShots/">getShots</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getStatus/">getStatus</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getSteps/">getSteps</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/ping/">ping</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/raise/">raise</a></li>
                                     
                                 
                                     
                                     <li class="third-level "><a href="../../daemon-reference/setCurrentProject/">setCurrentProject</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../daemon-reference/getData/">getData</a></li>
                                     
                                 
                                     
@@ -1330,7 +1400,7 @@
 <p>One (and only one) instance is globally available (RamDaemonInterface is a <em>singleton</em>), by calling <code>RamDaemonInterface.instance()</code> or <code>Ramses.instance().daemonInterface()</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You should not need this class as all communications are automatically handled by the other classes.</p>
+<p>You should not need to use this low-level class, as all communications are automatically handled by the other classes.</p>
 </div>
 <h2 id="static-methods">Static Methods</h2>
 <table>
@@ -1377,6 +1447,18 @@
 <td></td>
 </tr>
 <tr>
+<td><strong>getAssetGroups</strong><br />▹ <em>list of <a href="../ram_assetgroup/"><em>RamAssetGroup</em></a></em></td>
+<td>• <em>string</em>: <strong>projectUuid</strong></td>
+<td>Gets the asset groups from the project</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>getAssets</strong><br />▹ <em>list of <a href="../ram_asset/"><em>RamAsset</em></a></em></td>
+<td>• <em>string</em>: <strong>projectUuid</strong><br/>• <em>string</em>: <strong>groupUuid</strong> = <code>""</code></td>
+<td>Gets the assets from the project (or asset group)</td>
+<td></td>
+</tr>
+<tr>
 <td><strong>getCurrentProject</strong><br />▹ <a href="../ram_project/"><em>RamProject</em></a> or <em>None</em></td>
 <td></td>
 <td>Gets the current project</td>
@@ -1407,6 +1489,12 @@
 <td></td>
 </tr>
 <tr>
+<td><strong>getPipes</strong><br />▹ <em>list of <a href="../ram_pipe/"><em>RamPipe</em></a></em></td>
+<td>• <em>string</em>: <strong>projectUuid</strong></td>
+<td>Gets the pipes from the project</td>
+<td></td>
+</tr>
+<tr>
 <td><strong>getProjects</strong><br />▹ <em>list of <a href="../ram_project/"><em>RamProject</em></a></em></td>
 <td></td>
 <td>Gets the list of available projects (for the current user)</td>
@@ -1416,6 +1504,30 @@
 <td><strong>getRamsesFolderPath</strong><br />▹ <em>string</em></td>
 <td></td>
 <td>Gets the main Ramses folder containing projects, config files, user files&hellip;</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>getSequences</strong><br />▹ <em>list of <a href="../ram_sequence/"><em>RamSequence</em></a></em></td>
+<td>• <em>string</em>: <strong>projectUuid</strong></td>
+<td>Gets the sequences from the project</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>getShots</strong><br />▹ <em>list of <a href="../ram_shot/"><em>RamShot</em></a></em></td>
+<td>• <em>string</em>: <strong>projectUuid</strong><br/>• <em>string</em>: <strong>sequenceUuid</strong> = <code>""</code></td>
+<td>Gets the shots from the project (or sequence)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>getStatus</strong><br />▹ <a href="../ram_status/"><em>RamStatus</em></a></td>
+<td>• <em>string</em>: <strong>itemUuid</strong><br/>• <em>string</em>: <strong>stepUuid</strong></td>
+<td>Gets the status of the item (asset or shot) for the given step.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>getSteps</strong><br />▹ <em>list of <a href="../ram_step/"><em>RamStep</em></a></em></td>
+<td>• <em>string</em>: <strong>projectUuid</strong><br/>• <a href="../enum/"><em>StepType</em></a>: <strong>stepType</strong> = <code>StepType.ALL</code></td>
+<td>Gets the steps from the project</td>
 <td></td>
 </tr>
 <tr>
@@ -1446,6 +1558,12 @@
 <td><strong>setData</strong><br />▹ <em>Object / Dict</em></td>
 <td>• <em>string</em>: <strong>uuid</strong><br/>• <em>string</em> or <em>Object/ Dict</em>: <strong>data</strong></td>
 <td>Sets the data for a specific <a href="../ram_object/"><em>RamObject</em></a>.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>setStatusModifiedBy</strong></td>
+<td>• <em>string</em>: <strong>uuid</strong><br/>• <em>string</em>: <strong>userUuid</strong></td>
+<td>Sets the user who&rsquo;s modified the status.</td>
 <td></td>
 </tr>
 <tr>

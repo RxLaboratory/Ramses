@@ -72,7 +72,7 @@
                 
                 
                     <li >
-                        <a href="../../..">v0.7 (Beta)</a>
+                        <a href="../../..">v0.8 (Beta)</a>
                     </li>
                 
                 
@@ -625,25 +625,31 @@
         
             
 <li >
-    <a href="../../daemon-reference/ping/">ping</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../daemon-reference/raise/">raise</a>
-</li>
-
-        
-            
-<li >
     <a href="../../daemon-reference/create/">create</a>
 </li>
 
         
             
 <li >
-    <a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a>
+    <a href="../../daemon-reference/getAssetGroups/">getAssetGroups</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getAssets/">getAssets</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getData/">getData</a>
 </li>
 
         
@@ -661,25 +667,61 @@
         
             
 <li >
+    <a href="../../daemon-reference/getPipes/">getPipes</a>
+</li>
+
+        
+            
+<li >
     <a href="../../daemon-reference/getProjects/">getProjects</a>
 </li>
 
         
             
 <li >
-    <a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a>
+    <a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getSequences/">getSequences</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getShots/">getShots</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getStatus/">getStatus</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/getSteps/">getSteps</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/ping/">ping</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../daemon-reference/raise/">raise</a>
 </li>
 
         
             
 <li >
     <a href="../../daemon-reference/setCurrentProject/">setCurrentProject</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../daemon-reference/getData/">getData</a>
 </li>
 
         
@@ -820,7 +862,7 @@
         
         
             <li >
-                <a href="../../..">v0.7 (Beta)</a>
+                <a href="../../..">v0.8 (Beta)</a>
             </li>
         
         
@@ -1186,19 +1228,23 @@
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../daemon-reference/ping/">ping</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../daemon-reference/raise/">raise</a></li>
-                                    
-                                
-                                    
                                     <li class="third-level "><a href="../../daemon-reference/create/">create</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a></li>
+                                    <li class="third-level "><a href="../../daemon-reference/getAssetGroups/">getAssetGroups</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getAssets/">getAssets</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getData/">getData</a></li>
                                     
                                 
                                     
@@ -1210,19 +1256,43 @@
                                     
                                 
                                     
+                                    <li class="third-level "><a href="../../daemon-reference/getPipes/">getPipes</a></li>
+                                    
+                                
+                                    
                                     <li class="third-level "><a href="../../daemon-reference/getProjects/">getProjects</a></li>
                                     
                                 
                                     
-                                    <li class="third-level "><a href="../../daemon-reference/getCurrentProject/">getCurrentProject</a></li>
+                                    <li class="third-level "><a href="../../daemon-reference/getRamsesFolder/">getRamsesFolder</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getSequences/">getSequences</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getShots/">getShots</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getStatus/">getStatus</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/getSteps/">getSteps</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/ping/">ping</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../daemon-reference/raise/">raise</a></li>
                                     
                                 
                                     
                                     <li class="third-level "><a href="../../daemon-reference/setCurrentProject/">setCurrentProject</a></li>
-                                    
-                                
-                                    
-                                    <li class="third-level "><a href="../../daemon-reference/getData/">getData</a></li>
                                     
                                 
                                     
@@ -1428,11 +1498,6 @@
 <td>Gets the path to the publish folder. Paths are relative to the root of the item folder.</td>
 </tr>
 <tr>
-<td><strong>setStatus</strong></td>
-<td>• <em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em> or <em>string</em>: <strong>step</strong></td>
-<td>Sets the current status for the given step</td>
-</tr>
-<tr>
 <td><strong>stepFilePath</strong><br />▹ <em>string</em></td>
 <td>• <em>string</em>: <strong>resource</strong> = <code>""</code>,<br />• <em>string</em>: <strong>extension</strong>=<code>""</code>,<br/>• <em><a href="../ram_step/">RamStep</a> or string</em>: <strong>step</strong>*=<code>""</code></td>
 <td>Gets the file used for this step with the given file extension.</td>
@@ -1446,11 +1511,6 @@
 <td><strong>stepFolderPath</strong><br />▹ <em>string</em></td>
 <td>• <em><a href="../ram_step/">RamStep</a> or string</em>: <strong>step</strong>*=<code>""</code></td>
 <td>The subfolder for the given step</td>
-</tr>
-<tr>
-<td><strong>stepStatusHistory</strong><br />▹ <em>list of string</em></td>
-<td></td>
-<td>Gets the list of <a href="../ram_status/"><em>RamStatus</em></a> UUIDs for the given step, ordered from oldest to most recent.</td>
 </tr>
 <tr>
 <td><strong>versionFilePaths</strong><br />▹ <em>string</em></td>
