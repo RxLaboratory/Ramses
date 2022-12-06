@@ -1,6 +1,11 @@
-![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/20)
+![META](authors:Nicolas "Duduf" Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/12/06)
 
 # Ramses Application Changelog
+
+## 0.8.2-Beta
+
+- Added a "Copy Path" and "Copy FilName" context menu entries which copy the path or suggested filename of the object in the file system.
+- Fixed some data sync issues and improved how conflicts are handled
 
 ## 0.8.1-Beta
 
