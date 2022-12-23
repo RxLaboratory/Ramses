@@ -25,6 +25,7 @@ Ramses is a framework made of these:
 - Ramses is integrated into your creative software:
   - The **[Ramses Python API](https://github.com/RxLaboratory/Ramses-Py)** is used to develop add-ons for your software.
   - The **[Ramses Maya Add-on](https://github.com/RxLaboratory/Ramses-Maya)** integrates Ramses into Autodesk Maya.
+- An **[installer](https://github.com/RxLaboratory/Ramses-Installer)** is available to install the application and add-ons.
 
 ## ▹ Free and open source
 
