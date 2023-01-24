@@ -1379,6 +1379,12 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#ramses-server-changelog">Ramses Server Changelog</a></li>
+                <li class="second-level"><a href="#083-beta">0.8.3-Beta</a></li>
+                    
+                <li class="second-level"><a href="#082-beta">0.8.2-Beta</a></li>
+                    
+                <li class="second-level"><a href="#081-beta">0.8.1-Beta</a></li>
+                    
                 <li class="second-level"><a href="#080-beta">0.8.0-Beta</a></li>
                     
                 <li class="second-level"><a href="#070-beta">0.7.0-Beta</a></li>
@@ -1407,6 +1413,19 @@
 
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021-2022;updated:2022/11/20" /></p>
 <h1 id="ramses-server-changelog">Ramses Server Changelog</h1>
+<h2 id="083-beta">0.8.3-Beta</h2>
+<ul>
+<li>Fixed character encoding issues.</li>
+</ul>
+<h2 id="082-beta">0.8.2-Beta</h2>
+<ul>
+<li>The automatic database cleaner now runs some tasks on the schedule table too.</li>
+<li>Fixed a bug in the database auto-cleaner, which may throw an error in some specific cases.</li>
+</ul>
+<h2 id="081-beta">0.8.1-Beta</h2>
+<ul>
+<li>Fixed a nasty bug in the sync process which prevented the correct sync between the applications.</li>
+</ul>
 <h2 id="080-beta">0.8.0-Beta</h2>
 <ul>
 <li>Regularly cleans the database, to keep it smaller and more performant, as well as resolve corrupted data issues which may happen during failed sync or using incompatible clients.</li>

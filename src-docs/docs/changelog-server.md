@@ -2,6 +2,19 @@
 
 # Ramses Server Changelog
 
+## 0.8.3-Beta
+
+- Fixed character encoding issues.
+
+## 0.8.2-Beta
+
+- The automatic database cleaner now runs some tasks on the schedule table too.
+- Fixed a bug in the database auto-cleaner, which may throw an error in some specific cases.
+
+## 0.8.1-Beta
+
+- Fixed a nasty bug in the sync process which prevented the correct sync between the applications.
+
 ## 0.8.0-Beta
 
 - Regularly cleans the database, to keep it smaller and more performant, as well as resolve corrupted data issues which may happen during failed sync or using incompatible clients.

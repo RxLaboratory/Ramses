@@ -2,6 +2,27 @@
 
 # Ramses Application Changelog
 
+## 0.8.7-Beta
+
+- Fixed potential crash when accessing a status folder.
+
+## 0.8.6-Beta
+
+- Performance improvements in all panels
+- Important additions under the hood, as the groundwork of future features
+- Fixed freeze issues introduced in v0.8.5 earlier today
+
+## 0.8.5-Beta
+
+- Added the "copy UUID" context menu entry in the schedule, for developpers
+- Panel location and sizes restored when restarting Ramses
+- Improved UI/UX and new menus in the main tool bar
+- Fixed issues with the schedule not showing some changes
+- Fixed the statistics panel not updating according to schedule changes
+- Fixed the estimation not updated in the status edit panel
+- Fixed shots created in the wrong order
+- Fixed double insertions in some lists
+
 ## 0.8.2-Beta
 
 - Added a "Copy Path" and "Copy FilName" context menu entries which copy the path or suggested filename of the object in the file system.

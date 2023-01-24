@@ -21,4 +21,13 @@ shot:
   handle_in: 24 # The handle to add before the shot start time, in frames
   handle_out: 24 # The handle to add after the shot end time, in frames
   first_image_number: 101 # The number of the first frame in the timeline (including the handle_in)
+color_management:
+  ocio_path: "C:\Path\To\config.ocio"
+  rendering_space: "ACEScg"
+  display_space: "sRGB"
+  view_transform: "ACES 1.0 SDR-video"
 ```
+
+All parameters are optional and can be omitted to let the scene use its own/default settings.
+
+You can use the `ocio_path` parameter to set a specific *OCIO* file for a specific step, although it's not recommended to use multiple *OCIO* configs, and one should just set a single *OCIO* config and never change it.

@@ -2,6 +2,34 @@
 
 # Ramses Maya Add-on Changelog
 
+## 0.8.6-Beta
+
+- Added color management options to the scene setup
+- Added support for *OBJ* import/export
+
+## 0.8.5-Beta
+
+- Added "Recent Files" to the "Open" dialog
+- Added tooltips showing the file name in the "Open" dialog
+- Fixed publishing while removing some shapes which would remove children nodes
+
+## 0.8.4-Beta
+
+- Fixed recursion issue with some publish settings
+
+## 0.8.3-Beta
+
+- Fixed update/import error
+
+## 0.8.2-Beta
+
+- Fixed asset updater not finding some nodes
+
+## 0.8.1-Beta
+
+- Fixed incorrect pixel aspect ratio after setting the resolution
+- Fixed error when import settings are malformed
+
 ## 0.8.0-Beta
 
 - Fixed normals flipped in some cases when freezing geometry during the publishing process.
