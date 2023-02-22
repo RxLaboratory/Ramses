@@ -1381,6 +1381,8 @@
             <li class="first-level active"><a href="#ramses-maya-add-on">Ramses Maya Add-on</a></li>
                 <li class="second-level"><a href="#installation">Installation</a></li>
                     
+                <li class="second-level"><a href="#known-issues">Known Issues</a></li>
+                    
                 <li class="second-level"><a href="#features">Features</a></li>
                     
                 <li class="second-level"><a href="#save">Save</a></li>
@@ -1455,6 +1457,14 @@ MAYA_SHELF_PATH+:=shelves
 <p><img alt="Plugin manager" src="/img/maya/plugin_manager.png" /></p>
 <ul>
 <li>You may need to restart <em>Maya</em> again so that the <em>Ramses</em> shelf is loaded.</li>
+</ul>
+<h2 id="known-issues">Known Issues</h2>
+<p>There&rsquo;s an issue with the Maya <em>Batch Render</em> method where any module adding its own shelf prevents the <em>Batch Render</em> to be processed (as <a href="https://forums.autodesk.com/t5/maya-forum/maya-shelf-path-in-module-file-prevents-batch-render-from/td-p/9394129" target="_blank">explained here</a>).</p>
+<p>There are several workarounds:</p>
+<ul>
+<li>Use a command line for batch rendering: <code>"C:\Program Files\Autodesk\Maya2023\bin\Render.exe" -proj "S:\path\to\file.mb"</code></li>
+<li>Or use a plugin <a href="https://www.stormhyde.com/batch-script-generator">like this one</a>.</li>
+<li>Or move the Ramses <code>shelves</code> folder (and all other shelves from other module) from the folder where the module is installed to this folder: <code>C:\Users\UserName\Documents\maya\2023\prefs\shelves</code></li>
 </ul>
 <h2 id="features">Features</h2>
 <p>All features of the <em>Ramses add-on</em> are available through the new shelf. They are also registered as <em>Mel</em> and <em>Python</em> <em>Maya</em> commands. All these features are detailed in the next sections.</p>

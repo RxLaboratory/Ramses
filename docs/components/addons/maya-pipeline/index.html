@@ -1379,6 +1379,10 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#the-maya-pipeline">The Maya pipeline</a></li>
+                <li class="second-level"><a href="#a-typical-maya-prodution-pipeline">A typical Maya prodution pipeline</a></li>
+                    
+                <li class="second-level"><a href="#configure-the-pipeline">Configure the pipeline</a></li>
+                    
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1389,6 +1393,61 @@
 <h1 id="the-maya-pipeline">The Maya pipeline</h1>
 <p>With Ramses and its Maya Add-on, the Maya pipeline is easy-to-use but you have access to all parameters when publishing and importing files. Using presets and/or the <em>Ramses Client Application</em> you can completely automate the pipeline according to your specific needs.</p>
 <p><strong>▹ Read more about the <a href="../../../pipeline/pipeline/">pipeline</a>.</strong></p>
+<p>The Maya Add-on can export (publish), import and update the assets across all your Maya projects, using different file formats (<em>maya</em>, <em>alembic</em>, etc.); but note that sometimes it&rsquo;s easier and quicker to just save a project from a step as a new project for the next step, instead of publishing and importing almost everything.</p>
+<h2 id="a-typical-maya-prodution-pipeline">A typical Maya prodution pipeline</h2>
+<p>This is a typical Maya production pipeline, using <em>Ramses</em> (or not).<br />
+Sculpting and texturing steps are not covered here as they&rsquo;re not done using Maya.</p>
+<p><a href="../../../img/maya/typical_pipe.png" target="_blank"><img alt="" src="../../../img/maya/typical_pipe.png" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Import</th>
+<th>Publish</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Modeling</strong></td>
+<td><code>.obj</code>, <code>.fbx</code>, etc. from a sculpting application like ZBrush</td>
+<td>• <code>.obj</code>, <code>.fbx</code>, <code>.abc</code>&hellip; for a texturing application.<br />• <code>.mb</code>, <code>.ma</code> or <code>.abc</code> for the rigging and the shading step.<br />• <code>.mb</code> with just the shaders if the mesh is published as an alembic for the rigging step.</td>
+<td>Basic shaders may be useful for the next steps (like the pupil in the eye), but alembic files don&rsquo;t contain shaders.<br />Shaders need to be published in a sidecar Maya file, <em>if and only if</em> the mesh is published as an alembic file (which may be lighter and an easy way keep the data clean).</td>
+</tr>
+<tr>
+<td><strong>Rigging</strong></td>
+<td>• <code>.mb</code>, <code>.ma</code> or <code>.abc</code> from the modeling step, optionally as a <em>reference</em>.<br />• <code>.mb</code> with just the shaders if the mesh was published as an alembic from the modelling step, optionally as a <em>reference</em>.</td>
+<td>• <code>.ma</code> for the layout step.</td>
+<td>If the mesh is imported as a reference, it&rsquo;s easier to update as there&rsquo;s no need to transfer the skinning data. In order to avoid nested dependencies, the reference then needs to be imported before the rig is published; <em>Ramses</em> does it by default.</td>
+</tr>
+<tr>
+<td><strong>Shading</strong></td>
+<td>• <code>.mb</code>, <code>.ma</code> or <code>.abc</code> from the modeling step.<br />• <code>.mb</code> with just the shaders if the mesh was published as an alembic from the modelling step.</td>
+<td>• <code>.mb</code> with just the shaders.</td>
+<td>When shaders are published with <em>Ramses</em>, their association to the geometry is stored using the node names, in order to re-apply the shaders to the corresponding nodes at the lighting step. The name of the nodes containing the meshes must not change after the modeling step.</td>
+</tr>
+<tr>
+<td><strong>Layout</strong></td>
+<td>• <code>.mb</code>, <code>.ma</code> or <code>.abc</code> of the assets from the modeling step.<br />• <code>.mb</code> with just the shaders if the mesh was published as an alembic from the modelling step.<br />• <code>.ma</code> from the rigging step as a <em>reference</em>.</td>
+<td></td>
+<td>Nothing to publish, the project can be saved as a new animation project, and a new lighting project, which will contain everything and keep the reference to the rigged characters and props for an easy update of the rigs.</td>
+</tr>
+<tr>
+<td><strong>Animation</strong></td>
+<td>Open the layout project and save it as the animation project.<br />Import the rigged characters if they&rsquo;re not in the layout project:<br />• <code>.ma</code> from the rigging step as a <em>reference</em>.</td>
+<td>• <code>.abc</code> for the lighting step.<br />Export all animated meshes and the camera.</td>
+<td>Exporting the animated objects as Alembic files helps make the lighting project lighter, by removing all rigs.</td>
+</tr>
+<tr>
+<td><strong>Lighting</strong></td>
+<td>Open the layout project <em>or</em> the animation project, and save it as the lighting project.<br />Remove all rigs.<br />Import the shaders, the animated meshes, and the camera:<br />• <code>.mb</code> from the shading step as a <em>reference</em>.<br />• <code>.abc</code> from the animation step.</td>
+<td>• <code>.exr</code> to be used in the compositing application.</td>
+<td>The lighting project is the same as the layout project, where all rigs are replaced by their corresponding Alembic animation, and shaders are imported on all these meshes.</td>
+</tr>
+</tbody>
+</table>
+<p>There may also be a <em>Set Dressing</em> step, where small assets are assembled and grouped in a bigger scene. This group of assets can then be imported in the layout project. In this case, from the layout project, either the whole group or single assets can be updated when needed. But the group of assets from the <em>Set Dressing</em> step must not contain any rigged prop or character, as that would lead to nested references and should be avoided in any case.</p>
+<h2 id="configure-the-pipeline">Configure the pipeline</h2>
 <p><strong>▹ Configure the <a href="../../../pipeline/pipeline/">pipeline in the <em>Ramses Client Application</em></a>.</strong></p>
 <ul>
 <li><a href="../maya-scenesetup/">Scene setup</a></li>

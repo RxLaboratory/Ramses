@@ -40,6 +40,16 @@ Do not change anything else in the file.
 
 - You may need to restart *Maya* again so that the *Ramses* shelf is loaded.
 
+## Known Issues
+
+There's an issue with the Maya *Batch Render* method where any module adding its own shelf prevents the *Batch Render* to be processed (as [explained here](https://forums.autodesk.com/t5/maya-forum/maya-shelf-path-in-module-file-prevents-batch-render-from/td-p/9394129){target="_blank"}).
+
+There are several workarounds:
+
+- Use a command line for batch rendering: `"C:\Program Files\Autodesk\Maya2023\bin\Render.exe" -proj "S:\path\to\file.mb"`
+- Or use a plugin [like this one](https://www.stormhyde.com/batch-script-generator).
+- Or move the Ramses `shelves` folder (and all other shelves from other module) from the folder where the module is installed to this folder: `C:\Users\UserName\Documents\maya\2023\prefs\shelves`
+
 ## Features
 
 All features of the *Ramses add-on* are available through the new shelf. They are also registered as *Mel* and *Python* *Maya* commands. All these features are detailed in the next sections.
