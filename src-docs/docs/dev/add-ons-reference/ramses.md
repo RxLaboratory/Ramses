@@ -25,10 +25,11 @@ Read the section entitled *Callbacks* below (and see the *Examples*) for more in
 
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
-| **importScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().importItem()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user asks to import an item.<br />Note: official *Ramses Add-ons* will add an item to this list to provide a default implementation. If you're extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior. |
-| **publishScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user publishes the current file from the host application.<br />Note: official *Ramses Add-ons* will add an item to this list to provide a default implementation. If you're extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior. |
-| **replaceScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().replaceItem()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user asks to import an item.<br />Note: official *Ramses Add-ons* will add an item to this list to provide a default implementation. If you're extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior. |
-| **statusScripts** | *list* | `[]` | A list of scripts/functions to be triggered when `Ramses.instance().updateStatus()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user changes the current status of an asset / shot from the host application. |
+| **importScripts** | *list* | `[]` | A list of functions to be triggered when `Ramses.instance().importItem()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user asks to import an item.<br />Note: official *Ramses Add-ons* will add an item to this list to provide a default implementation. If you're extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior. |
+| **openScripts** | *list* | `[]` | A list of functions to be triggered when `Ramses.instance().openFile()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user opens an item in the host application.<br />Note: official *Ramses Add-ons* will add an item to this list to provide a default implementation. If you're extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior. |
+| **publishScripts** | *list* | `[]` | A list of functions to be triggered when `Ramses.instance().publish()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user publishes the current file from the host application.<br />Note: official *Ramses Add-ons* will add an item to this list to provide a default implementation. If you're extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior. |
+| **replaceScripts** | *list* | `[]` | A list of functions to be triggered when `Ramses.instance().replaceItem()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user asks to import an item.<br />Note: official *Ramses Add-ons* will add an item to this list to provide a default implementation. If you're extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior. |
+| **statusScripts** | *list* | `[]` | A list of functions to be triggered when `Ramses.instance().updateStatus()` is called.<br />If you're using one of the provided Add-ons, you can add your own callbacks to this list so they're run when the user changes the current status of an asset / shot from the host application. |
 | **userScripts** | *dict* or *object* | `{}` | This *dict* or *object* is here for your convenience, to make it easy to register and call any method from anywhere you've imported Ramses without having to import the file containing the method. Just register with `Ramses.instance().userScripts["TheFunctionName"] = aFunction` and call the method with `Ramses.instance().userScripts["TheFunctionName"](some, args)`. |
 
 ## Methods
@@ -44,6 +45,7 @@ Read the section entitled *Callbacks* below (and see the *Examples*) for more in
 | **disconnect**<br />▹ *boolean* | | Gets back to offline mode (stops all communications with the *Daemon*). |
 | **folderPath**<br />▹ *string* | | The absolute path to main Ramses folder, containing projects by default, config files, user folders, admin files... |
 | **importItem** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePath**,<br />• *[RamStep](ram_step.md)*: **step**=`None`,<br />• *dict*: **importOptions**=`None`,<br />• *bool*: **showImportOptions**=`false` | Runs the scripts in `Ramses.instance().importScripts`.<br />Read the section entitled *Callbacks* below for more details. |
+| **openFile** | • *string*: **filePath**,<br />• *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**=`None`,<br />• *[RamStep](ram_step.md)*: **step**=`None` | Runs the scripts in `Ramses.instance().openScripts`.<br />Read the section entitled *Callbacks* below for more details. |
 | **project**<br />▹ *[RamProject](ram_project.md)* or *None* | | (Try to) retrieve a project using its short name. |
 | **projects**<br />▹ *list of [RamProject](ram_project.md)* | | The list of available projects. |
 | **projectsPath**<br />▹ *string* | | The path to the folder containing projects. |
@@ -58,24 +60,140 @@ Read the section entitled *Callbacks* below (and see the *Examples*) for more in
 | **updateStatus** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *[RamStatus](ram_status.md)*: **status**,<br />• *[RamStep](ram_step.md)*: **step** |  Runs the scripts in `Ramses.instance().statusScripts`.<br />Read the section entitled *Callbacks* below for more details. |
 | **usersPath**<br />▹ *string* | |  The path to the folder containing users. |
 
-## Callbacks
+## Events and Handlers
 
-The callbacks are the methods you can add to these lists: `Ramses.publishScripts`, `Ramses.statusScripts`, `Ramses.importScripts`, `Ramses.userScripts`.
+Some events are triggered by Ramses on specific actions, like opening a file in the host application or importing an asset. *Handlers* are functions to be run when these events are triggered. For each of these events, you can add your own handlers if you're developping an add-on, and the end-user can also register script files containing handlers for these events.
 
-When using one of the provided [Ramses Add-ons](../../components/addons/index.md), these callbacks will be called automatically when the user publishes an item, changes the status, or wants to import a file. This makes it very easy to extend these add-ons by just adding your own methods.
+There are two ways to add a handler to an event:
 
-If you're developping your own add-on from scratch, it may be useful to add your methods to these lists to call them easily anyway; use `Ramses.publish()`, `Ramses.importItem()`, and `Ramses.updateStatus()`.
+- When developping an add-on, add the handler function to the corresponding list, like `Ramses.openScripts` or `Ramses.importScripts` for example.
+- Add script files to the settings (with the UI of the add-on if available, or programmatically with [`RamSettings.userScripts`](ram_settings.md)). These script files must define a function for the desired event(s) named after the event.
 
-*Ramses* will pass a few arguments depending on the context to theses methods, which they'll have to handle. The table below describes the callbacks.
+!!! warning
+    If you're forking/modifying an official add-on, the events are automatically triggered, but if you're developing an add-on from scratch, you need to call the corresponding trigger methods in the `Ramses` class to process all registered handlers.
 
-| Callback | Arguments | Description |
+*Ramses* will pass a few arguments depending on the context to these handler functions.
+
+| Event | Arguments | Description |
 | --- | --- | --- |
-| **importItem** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePath**,<br />• *[RamStep](ram_step.md)*: **step**=`None`,<br />• *dict*: **importOptions**=`None`,<br />• *bool*: **showImportOptions**=`false` | - `item` is the item from which the user wants to import a file.<br />- `filePaths` is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />- `step` is the step from which the user wants to import. You can check `step.outputPipes()` to know which file types have been published, and `inputPipes()` from the step you're importing to to know which files to accept.<br />- `importOptions` is a dictionnary (associative array) containing custom options you can use to import the item.<br />- `showImportOptions` tells the script to show a UI or not to edit the import options before importing. |
-| **publish** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *[RamStep](ram_step.md)*: **step**,<br />• *string*: **filePath**,<br />• *dict*: **publishOptions**=`None`,<br />• *bool*: **showPublishOptions**=`false` | - `item` is the item from which the user wants to publish a file.<br />- `step` is the step from which the user is publishing. You can check `step.outputPipes()` to know which file types to publish.<br />- `filePath` is the path of the file currently being published.<br />- `publishOptions` is a dictionnary (associative array) containing custom options you can use to publish the item.<br />- `showPublishOptions` tells the script to show a UI or not to edit the publish options before publishing. |
-| **replaceItem** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePath**,<br />• *[RamStep](ram_step.md)*: **step**=`None`,<br />• *dict*: **importOptions**=`None`,<br />• *bool*: **showImportOptions**=`false` | - `item` is the item from which the user wants to import a file.<br />- `filePath` is the absolute path to the file the user wants to import.<br />- `step` is the step from which the user wants to import. You can check `step.outputPipes()` to know which file types have been published, and `inputPipes()` from the step you're importing to to know which files to accept.<br />- `importOptions` is a dictionnary (associative array) containing custom options you can use to import the item.<br />- `showImportOptions` tells the script to show a UI or not to edit the import options before importing.<br />With this info, the method should replace selected objects with the imported items. |
-| **updateStatus** | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *[RamStatus](ram_status.md)*: **status**,<br />• *[RamStep](ram_step.md)*: **step** |  - `item` is the item which is being updated.<br />- `status` is the new status.<br />- `step` is the step being updated. |
+| **`on_import_item`**<br/>Trigger function: `Ramses.importItem()`<br/>Handler function list: `Ramses.importScripts` | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePaths**,<br />• *[RamStep](ram_step.md)*: **step**=`None`,<br />• *dict*: **importOptions**=`None`,<br />• *bool*: **showImportOptions**=`false` | • `item` is the item from which the user wants to import a file.<br />• `filePaths` is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />• `step` is the step from which the user wants to import. You can check `step.outputPipes()` to know which file types have been published, and `inputPipes()` from the step you're importing to to know which files to accept.<br />• `importOptions` is a dictionnary (associative array) containing custom options you can use to import the item.<br />• `showImportOptions` tells the script to show a UI or not to edit the import options before importing. |
+| **`on_open`**<br/>Trigger function: `Ramses.openFile()`<br/>Handler function list: `Ramses.openScripts` | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePath**,<br />• *[RamStep](ram_step.md)*: **step**=`None` | • `item` is the item the user has opened.<br />• `filePath` is the absolute path of the file being opened.<br />• `step` is the step being opened. |
+| **`on_publish`**<br/>Trigger function: `Ramses.publish()`<br/>Handler function list: `Ramses.publishScripts` | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *[RamStep](ram_step.md)*: **step**,<br />• *string*: **filePath**,<br />• *dict*: **publishOptions**=`None`,<br />• *bool*: **showPublishOptions**=`false` | • `item` is the item from which the user wants to publish a file.<br />• `step` is the step from which the user is publishing. You can check `step.outputPipes()` to know which file types to publish.<br />• `filePath` is the path of the file currently being published.<br />• `publishOptions` is a dictionnary (associative array) containing custom options you can use to publish the item.<br />• `showPublishOptions` tells the script to show a UI or not to edit the publish options before publishing. |
+| **`on_replace_item`**<br/>Trigger function: `Ramses.replaceItem()`<br/>Handler function list: `Ramses.replaceScripts` | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *string*: **filePath**,<br />• *[RamStep](ram_step.md)*: **step**=`None`,<br />• *dict*: **importOptions**=`None`,<br />• *bool*: **showImportOptions**=`false` | • `item` is the item from which the user wants to import a file.<br />• `filePath` is the absolute path to the file the user wants to import.<br />• `step` is the step from which the user wants to import. You can check `step.outputPipes()` to know which file types have been published, and `inputPipes()` from the step you're importing to to know which files to accept.<br />• `importOptions` is a dictionnary (associative array) containing custom options you can use to import the item.<br />• `showImportOptions` tells the script to show a UI or not to edit the import options before importing.<br />With this info, the method should replace selected objects with the imported items. |
+| **`on_update_status`**<br/>Trigger function: `Ramses.updateStatus()`<br/>Handler function list: `Ramses.statusScripts` | • *[RamItem](ram_item.md) or [RamAsset](ram_asset.md) or [RamShot](ram_shot)*: **item**,<br />• *[RamStatus](ram_status.md)*: **status**,<br />• *[RamStep](ram_step.md)*: **step** |  • `item` is the item which is being updated.<br />• `status` is the new status.<br />• `step` is the step being updated. |
 
-## Examples
+
+If you're developping your own add-on from scratch, it may be useful to add your methods to these lists to call them easily anyway; use `Ramses.openFile()`, `Ramses.publish()`, `Ramses.importItem()`, `Ramses.replaceItem()`, and `Ramses.updateStatus()`.
+
+### Examples
+
+#### Adding handlers with a user script file
+
+Users can add their own handlers for specific events by just storing them in script file(s) and implementing a function named after the event(s).  
+This is a simple example of a file like this containing a few handlers.
+
+```py
+# handlers.py
+
+def on_open( item, file_path, step):
+    """Triggered when an item is opened by the user"""
+
+    if step.shortName() == "LIGHT":
+        # Do Something here if it's a lighting step being opened
+        doSomething(item)
+        print("We've opened the Lighting step for" + item.name())
+    else:
+        print("Nothing to do for unknown steps...")
+
+def on_publish( item, step, file_path, import_options, show_import_options):
+    """Triggered when an item is published"""
+
+    if step.shortName() == "MOD":
+        # Show options to the user
+        if show_import_options:
+            options_dialog = show_options_ui()
+            import_options = options_dialog.getResult()
+        # Do Something here if it's a modeling step being published
+        doSomething(item, import_options)
+        print("We've published the Modeling step for" + item.name())
+    else:
+        print("Nothing to do for unknown steps...")
+```
+
+```js
+// handlers.jsx
+
+// Triggered when an item is opened by the user
+function on_open( item, file_path, step) {
+    
+    if (step.shortName() == "LIGHT") {
+        // Do Something here if it's a lighting step being opened
+        doSomething(item);
+        $.writeln("We've opened the Lighting step for" + item.name());
+    }
+    else {
+        $.writeln("Nothing to do for unknown steps...");
+    }
+}
+
+// Triggered when an item is published
+function on_publish( item, step, file_path, import_options, show_import_options):
+
+    if (step.shortName() == "MOD") {
+        // Show options to the user
+        if (show_import_options) {
+            var options_dialog = show_options_ui();
+            import_options = options_dialog.getResult();
+        }
+        // Do Something here if it's a modeling step being published
+        doSomething(item, import_options);
+        $.writeln("We've published the Modeling step for" + item.name());
+    }
+    else{
+        $.writeln("Nothing to do for unknown steps...");
+    }
+
+```
+
+These script files can be registered using the UI of the add-on or by adding them in the settings programmatically like this:
+
+```py
+# Python
+
+# import ramses
+import ramses as ram
+# Get the instance
+ramses = ram.Ramses.instance()
+
+# The script containing the handlers
+script_file = "/path/to/my/handlers.py"
+# Register
+settings = ramses.settings()
+settings.userScripts.append( script_file )
+settings.save()
+
+# All handlers in the script file are now registered and will be run automatically with corresponding events
+```
+
+```js
+// ExtendScript
+
+// include the Ramses lib
+#include ramses.jsxinc
+// Get the instance
+var ramses = Ramses.instance();
+
+// The script containing the handlers
+var scriptFile = "/path/to/my/handlers.py";
+// Register
+var settings = ramses.settings();
+settings.userScripts.push( scriptFile );
+settings.save();
+
+// All handlers in the script file are now registered and will be run automatically with corresponding events
+```
+
+#### Adding handlers when implementing/extending an add-on
 
 ```py
 # Python

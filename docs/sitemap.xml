@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ramses.rxlab.guide/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -23,491 +24,882 @@
     <url>
          <loc>https://ramses.rxlab.guide/changelog-server/</loc>
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/changelog/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/credits/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/addons/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/addons/maya-extend/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/addons/maya-import/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/addons/maya-pipeline/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/addons/maya-publish/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/addons/maya-scenesetup/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/addons/maya/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/admin/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/applications/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/assetgroups/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/assets/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/filetypes/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/install/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/pipeline/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/pipetypes/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/production/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/project/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/projects/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/schedule/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/sequences/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/settings/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/shots/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/states/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/steps/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/templateassetgroups/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/templatesteps/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/client/users/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/files/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/files/naming/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/files/tree/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/admin/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/config/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/install-docker-mysql/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/install-docker-sqlite/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/install-src/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/install/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/components/server/update/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/objects/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/enum/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/implementation/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_asset/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_assetgroup/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_daemon_interface/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_file_info/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_file_manager/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_filetype/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_item/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_metadata_manager/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_object/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_pipe/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_pipefile/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_project/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_sequence/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_settings/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_shot/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_state/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_status/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_step/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ram_user/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/add-ons-reference/ramses/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/create/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getAssetGroups/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getAssets/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getCurrentProject/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getData/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getObjects/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getPath/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getPipes/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getProjects/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getRamsesFolder/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getSequences/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getShots/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getStatus/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/getSteps/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/ping/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/raise/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/setCurrentProject/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/setData/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/daemon-reference/uuidFromPath/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/files/naming/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/dev/server-reference/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/licenses/gfdl/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/licenses/gnu-gpl/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/pipeline/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/pipeline/administration/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/pipeline/pipeline/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/pipeline/planning/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/pipeline/production/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ramses.rxlab.guide/quickstart/</loc>
+<<<<<<< Updated upstream
          <lastmod>2023-02-22</lastmod>
+=======
+         <lastmod>2023-03-13</lastmod>
+>>>>>>> Stashed changes
          <changefreq>daily</changefreq>
     </url>
 </urlset>

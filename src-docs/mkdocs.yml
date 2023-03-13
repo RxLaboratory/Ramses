@@ -140,10 +140,10 @@ nav:
         - Credits: credits.md
         - Changelog:
             - General: changelog.md
-            - Application: changelog-app.md
-            - Maya: changelog-maya.md
-            - Server: changelog-server.md
-            - API: changelog-api.md
+            - Application: https://github.com/RxLaboratory/Ramses-Client/releases
+            - Maya: https://github.com/RxLaboratory/Ramses-Maya/releases
+            - Server: https://github.com/RxLaboratory/Ramses-Server/releases
+            - API: https://github.com/RxLaboratory/Ramses-Py/releases
         - Licenses:
             - GNU GPLv3: licenses/gnu-gpl.md
             - Documentation license: licenses/gfdl.md

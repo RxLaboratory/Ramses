@@ -4,13 +4,13 @@
 
 ## By component
 
-▹ **[Ramses Application](changelog-app.md)**
+▹ **[Ramses Application](https://github.com/RxLaboratory/Ramses-Client/releases){target="_blank"}**
 
-▹ **[Ramses Maya Add-on](changelog-maya.md)**
+▹ **[Ramses Maya Add-on](https://github.com/RxLaboratory/Ramses-Maya/releases){target="_blank"}**
 
-▹ **[Ramses Server](changelog-server.md)**
+▹ **[Ramses Server](https://github.com/RxLaboratory/Ramses-Server/releases){target="_blank"}**
 
-▹ **[Ramses API](changelog-api.md)**
+▹ **[Ramses API](https://github.com/RxLaboratory/Ramses-Py/releases){target="_blank"}**
 
 ## Versions
 

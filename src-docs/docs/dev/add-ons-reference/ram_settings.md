@@ -43,6 +43,7 @@ To retrieve the default values after the settings have been changed, access them
 | **ramsesClientPath** | *string* | os-specific | Location of the Ramses Client executable file (.exe on Windows, .app on MacOS, .appimage or binary on Linux) |
 | **ramsesClientPort** | *integer* | `18185` | Listening port of the Ramses Daemon |
 | **ramsesFolderPath** | *string* | `"~/Ramses"` | The folder containing all Ramses files (settings, projects, etc) |
+| **userScripts** | *list* | `[]` | A list of script file paths containing handlers for [Ramses events](ramses.md#events-and-handlers). |
 | **userSettings** | *dict* or *object* | `{}` | Use this attribute to store your own settings. You can add as many key/value pairs as you need, they will be saved with the `RamSettings.save()` method too. |
 | **version** | *string* | The current API version | Read-only. |
 
