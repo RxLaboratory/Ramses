@@ -66,6 +66,7 @@ When publishing a shader library, *Ramses* keeps the list of nodes the shaders a
 ![](../../img/maya/publishsettings_alembic.png)
 
 - You can choose to **keep only renderable nodes** and remove all other shapes.
+- You can choose to export the geometry in **world space** or local space.
 - Use the **handles** control to add some time before and after the scene's time range.
 - You can change the **frame step** to make the exported file lighter or more detailed (e.g. for precise motion blur).
 - You can automatically **filter Euler rotations**.
@@ -73,6 +74,12 @@ When publishing a shader library, *Ramses* keeps the list of nodes the shaders a
 ## Arnold Scene Source
 
 There are no options for this format.
+
+## OBJ
+
+![](../../img/maya/publishsettings_obj.png)
+
+You can choose to export or not the **materials** in a sidecar `*.mtl` file.
 
 ## All Settings
 
@@ -93,6 +100,7 @@ formats: # Format specific options
       handle_out: 0
     filter_euler_rotations: true
     renderable_only: true
+    world_space: true
 - ass # Arnold secne source options (emtpy, no options)
 freeze_transform: 
   case_sensitive: false

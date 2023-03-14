@@ -1379,6 +1379,8 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#scripting-api-reference">Scripting API reference</a></li>
+                <li class="second-level"><a href="#develop-a-dcc-application-add-on-using-the-ramses-api">Develop a DCC application Add-on using the Ramses API</a></li>
+                    
                 <li class="second-level"><a href="#classes">Classes</a></li>
                     
             <li class="first-level "><a href="#global-methods">Global Methods</a></li>
@@ -1398,11 +1400,70 @@
 <p><a href="https://rxlaboratory.org"><em>RxLaboratory</em></a> provides a reference implementation of the API in <em>Python</em> and <em>Adobe ExtendScript</em>.</p>
 <p>Other APIs may be developped, in which case all these APIs on all programming/scripting language should implement this reference, with the same classes, attributes and methods.</p>
 <p>As this document is referring to different scripting languages, it uses general terms which may be different than what is actually used in specific languages.</p>
-<p><em>(TODO: ADD THE LINK TO THE GITHUB REPOS OF THE APIs / LINK TO GET THEM ON RXLAB.ORG)</em></p>
+<ul>
+<li>Python API: <a href="https://github.com/RxLaboratory/Ramses-Py">source</a>, <a href="https://github.com/RxLaboratory/Ramses-Py/releases">download</a></li>
+<li>ExtendScript API: <a href="#">source (available soon)</a>, <a href="#">download (available soon)</a></li>
+</ul>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Some of the elements described in this documentation have to be interpreted differently depending on the language used in the implementations of the <em>Ramses Add-ons API</em> and may vary a bit. Read the examples below to see the differences between a few scripting languages.</p>
 </div>
+<h2 id="develop-a-dcc-application-add-on-using-the-ramses-api">Develop a DCC application Add-on using the Ramses API</h2>
+<p>To use Ramses right from any Digital Content Creation application, you can develop an add-on for this application which, by using the Ramses API, communicates with Ramses.</p>
+<p>Such add-ons should implement methods to create, open, save, publish, import, and replace items (shots or assets), and also to update their production status.<br />
+To get started, you should first implement these methods and register them in Ramses.</p>
+<pre><code class="language-py"># Python
+
+# import ramses
+import ramses as ram
+# Get the instance
+RAMSES = ram.Ramses.instance()
+
+# The method to open a file
+def opener( ram_item, file_path, ram_step ):
+    &quot;&quot;&quot;This method should open the file available at file_path, which is the working file for the given *RamItem* and *RamStep*&quot;&quot;&quot;
+
+# The method to publish an item
+def publisher( ram_item, ram_step, file_path ):
+    &quot;&quot;&quot;This method should publish the given *RamItem* at the given *RamStep*, from the working file available at file_path
+    Options can optionally be passed to this method to specify a publishing file format for example
+    &quot;&quot;&quot;
+
+# The method to import an item
+def importer( ram_item, file_paths, ram_step ):
+    &quot;&quot;&quot;This method should import the files available in the file_paths list, which are files published from the given *RamItem* for the given *RamStep*&quot;&quot;&quot;
+
+# Register the methods
+RAMSES.openScripts.append( openener )
+RAMSES.publishScripts.append( publisher )
+RAMSES.importScripts.append( importer )
+</code></pre>
+<p>Now that you have a few methods to open working files, publish and import items, you can implement the UI and options of the add-on, depending on the host DCC application, and use the Ramses API to call them. By doing this, you also enable the user to add his own methods to the <code>on_open</code>, <code>on_publish</code>, <code>on_import</code> events.</p>
+<p>All these events which can be implemented are included in the <a href="ramses/#events-and-handlers"><code>Ramses</code> class</a>.</p>
+<pre><code class="language-py"># Python
+
+# import ramses
+import ramses as ram
+# Get the instance
+RAMSES = ram.Ramses.instance()
+
+# A method which opens the working file of an item
+def open_file():
+    # First, show a UI to let the user select an item and a step
+    open_ui = Open_UI()
+    result = open_ui.exec()
+    if result:
+        item = open_ui.get_item()
+        step = open_ui.get_step()
+        # Get the working file.
+        # stepFilePath() is a method from RamItem to retrieve the file for the given step of the item
+        file_path = item.stepFilePath(&quot;&quot;, &quot;&quot;, step)
+        # Trigger the open event in ramses
+        RAMSES.openFile(file_path, item, step)
+        # Ramses will run the opener() method defined sooner, and all other custom handlers which may be hooked to the open event.
+
+</code></pre>
+<p>The Ramses API provides classes to handle all kind of objets (shots, assets, files, status, projects&hellip;) managed by the Ramses Framework. All these classes are documented here.</p>
 <h2 id="classes">Classes</h2>
 <p>This is the comprehensive list of available classes. In the <em>Ramses Add-ons API</em>, everything is contained in these classes.</p>
 <table>

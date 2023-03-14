@@ -1389,6 +1389,8 @@
                     
                 <li class="second-level"><a href="#arnold-scene-source">Arnold Scene Source</a></li>
                     
+                <li class="second-level"><a href="#obj">OBJ</a></li>
+                    
                 <li class="second-level"><a href="#all-settings">All Settings</a></li>
                     
         </ul>
@@ -1449,12 +1451,16 @@
 <p><img alt="" src="../../../img/maya/publishsettings_alembic.png" /></p>
 <ul>
 <li>You can choose to <strong>keep only renderable nodes</strong> and remove all other shapes.</li>
+<li>You can choose to export the geometry in <strong>world space</strong> or local space.</li>
 <li>Use the <strong>handles</strong> control to add some time before and after the scene&rsquo;s time range.</li>
 <li>You can change the <strong>frame step</strong> to make the exported file lighter or more detailed (e.g. for precise motion blur).</li>
 <li>You can automatically <strong>filter Euler rotations</strong>.</li>
 </ul>
 <h2 id="arnold-scene-source">Arnold Scene Source</h2>
 <p>There are no options for this format.</p>
+<h2 id="obj">OBJ</h2>
+<p><img alt="" src="../../../img/maya/publishsettings_obj.png" /></p>
+<p>You can choose to export or not the <strong>materials</strong> in a sidecar <code>*.mtl</code> file.</p>
 <h2 id="all-settings">All Settings</h2>
 <p>These are all the available settings:</p>
 <pre><code class="language-yaml">delete_history: false
@@ -1471,6 +1477,7 @@ formats: # Format specific options
       handle_out: 0
     filter_euler_rotations: true
     renderable_only: true
+    world_space: true
 - ass # Arnold secne source options (emtpy, no options)
 freeze_transform: 
   case_sensitive: false

@@ -2,15 +2,58 @@
 
 # ![](../../img/icons/maya_sd.svg){: style="width:48px;" } Extending the Ramses Maya Add-on
 
-You can easily add features to the *Ramses Maya Add-On*, especially by registering your own scripts/methods to be run when a status changes, when a scene is being published, or to import items.
+You can easily add features to the *Ramses Maya Add-On*, especially by registering your own scripts/methods to be run when a status changes, when a scene is being published, or to import items for example.
 
 You can also easily use the included [*Ramses Scripting API*](../../dev/add-ons-reference/index.md) as a *Python module* to develop your own functions.
 
-### Getting started
+Technically, there are two ways to extend the maya module:
 
-Technically, the simplest and recommended way to extend the *Ramses Maya Add-On* is to add your own module(s) inside the Add-on iteself. It is very easy and this way you do not need to register your script or plug-in with *Maya*, *Ramses* takes care of that for you.
+- Easy: Register your handler functions to be triggered on specific events
+- Advanced: Fork the module to add your own methods or replace existing methods
 
-#### Install the Add-On
+## Register custom event handlers
+
+The Ramses API exposes several events to which you can hook your own handler functions. This can easily be done by implementing these functions in a simple Python script and registering them with the settings of the Maya Add-on.
+
+This way, the Add-on will automatically run your functions during these specific events, like when opening a file, publishing an asset, importing an asset, etc. The list of available events is documented in the [Ramses API Reference](../../dev/add-ons-reference/ramses.md#events-and-handlers)
+
+For example, to run a function when a file is opened with Ramses, write this simple script in a Python file:
+
+```py
+# modelling_scripts.py
+
+from maya import cmds # The Maya commands
+
+def on_open( ram_item, file_path, ram_step ):
+    """Ramses will hook this function to the on_open event"""
+    
+    if not ram_step:
+        # it seems the step is unknown
+        return
+
+    # Check if this is the modelling step
+    if ram_step.shortName() != "Mod":
+        # Do nothing, this script is only for modelling!
+        return
+
+    if not ram_item:
+        # The file being opened doesn't belong to a valid RamItem
+        return
+
+    # Show the name of the item being opened
+    message = "Congrats, you are ready to model " + ram_item.name()
+    cmds.inViewMessage(amg=message, pos='midCenterBot', fade=True)
+```
+
+To register this function, you just need to add the file in the script list in the settings of the Maya Add-on:
+
+![](../../img/maya/custom_scripts.png)
+
+Because the function is named `on_open`, it is run each time an asset is opened by Ramses. The Python script can contain as many of these functions as there are events available. This list of available events is available in the [Ramses API Reference](../../dev/add-ons-reference/ramses.md#events-and-handlers), along with the details about the arguments which can be passed to these functions.
+
+## Fork / Modify the module
+
+### Install the Add-On
 
 First, install the *Ramses Maya Add-On* as described [here](maya.md).
 
@@ -23,7 +66,7 @@ These folders should be available:
     - ***ramses_maya***: The Add-On itself
 - ***shelves***: The *Ramses Maya shelf*
 
-#### Create your module
+### Create your module
 
 All you need to do to easily extend the *Ramses Maya Add-On* is to create your own module in the `plug-ins` folder.
 
@@ -60,58 +103,37 @@ ramses.publishScripts.append( aPublishMethod )
 ramses.importScripts.append( anImportMethod )
 ```
 
-#### Import the module
+### Import the module
 
-Finally, you just have to import your new module in the `ramses_maya` module: add a simple import at the end of the `ramses_maya/__init__.py` file, which should look like this:
+Finally, you just have to import your new module in the `ramses_maya` module: add a simple import at the end of the `ramses_maya/__init__.py` file:
 
 ```py
-from .ram_cmds import cmds_classes
-from ramses import log, LogLevel
-
 import your_new_module
 ```
 
 Both the new module and the shelf will be automatically registered by the *Ramses Maya Add-On* when it's loaded in *Maya*.
 
-### Callbacks
+### Events and handlers
 
-*Ramses* stores three lists of callbacks you can extend.
+*Ramses* stores a list of handlers for each event you can extend, like [`Ramses.publishScripts`](../../dev/add-ons-reference/ramses.md) or [`Ramses.importScripts`](../../dev/add-ons-reference/ramses.md). The complete list of events and their corresponding handler lists are available in the [Ramses API Reference](../../dev/add-ons-reference/ramses.md#events-and-handlers).
 
-- [`Ramses.publishScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene is being published.
+Each handler function you add to these lists must take a few arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md#events-and-handlers) for more information.
 
-When *Ramses* publishes a scene, it calls all the scripts listed there. There already is a script which provides the default implementation; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). Each callback you add to this list must take a few arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
-
-- [`Ramses.statusScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when a scene status changes.
-
-When *Ramses* updates a status, it first copies the scene file to the version folder and calls the *Daemon* (if available) to notify the update, and then calls all the scripts listed there. Each callback you add to this list must take two arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
-
-- [`Ramses.importScripts`](../../dev/add-ons-reference/ramses.md) contains the functions to be called when the user selects an item (shot or asset) to import.
-
-There already is a script which provides the default implementation for importing items; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). . Each callback you add to this list must take a few arguments. Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
-
-There are two ways to register your methods: by using a *Maya* command, or by [forking](https://github.com/RxLaboratory/Ramses-Maya) the provided Add-On to add your functions.
-
-Once the callbacks have been registered, they are automatically called when the user interacts with the add-on and wants to update/import/publish an item.
-
-You can also explicitly call them by calling these three methods:
-
-- [`Ramses.updateStatus( item, status, stepShortName )`](../../dev/add-ons-reference/ramses.md)
-- [`Ramses.importItem( item, filePath, stepShortName )`](../../dev/add-ons-reference/ramses.md)
-- [`Ramses.publish( item, filePath, stepShortName )`](../../dev/add-ons-reference/ramses.md)
+Once the handlers have been added, they are automatically called when the user interacts with the add-on and wants to update/import/publish... an item.
 
 Read the [Scripting API Reference](../../dev/add-ons-reference/ramses.md) for more information.
 
-#### Adding your custom callbacks
+#### Adding your custom handlers
 
-To register your callbacks, you just have to append them in the corresponding `Ramses` lists:
+To register your handlers, you just have to append them in the corresponding `Ramses` lists:
 
 ```py
 # We need to import the Ramses Module (API)
 from ramses import Ramses
 # Now we just have to add the callbacks
 ramses = Ramses.instance()
-# First, remove callbacks provided by the Ramses addon,
-# to replace them with our own
+# First, you may (or may not) remove callbacks provided by the Ramses addon,
+# to replace them with your own
 ramses.publishScripts = []
 ramses.importScripts = []
 ramses.statusScripts = []
@@ -129,7 +151,7 @@ Now, all these methods will be automatically called each time a status changes, 
 
 In this example, three files are added, with the import, status, and publish methods.
 
-The file `plug-ins/your_new_module/myPublishCallbacks.py` creates the callbacks used to publish shots and assets.
+The file `plug-ins/your_new_module/myPublishCallbacks.py` creates the handlers used to publish shots and assets.
 
 ```py
 # myPublishCallbacks.py
@@ -151,7 +173,7 @@ def publishAsset(item, filePath, step):
 
 def publishShot(item, filePath, step):
     """Callback used to publish Shots only"""
-    # The item must be a RamAsset
+    # The item must be a RamShot
     if item.itemType() != ram.ItemType.SHOT:
         return
     
@@ -161,7 +183,7 @@ def publishShot(item, filePath, step):
 
 ```
 
-The file `plug-ins/your_new_module/myStatusCallbacks.py` creates the callbacks used when a status changes.
+The file `plug-ins/your_new_module/myStatusCallbacks.py` creates the handlers used when a status changes.
 
 ```py
 # myStatusCallbacks.py
@@ -193,7 +215,7 @@ def updateShot(item, filePath, publishFolderPath):
 
 ```
 
-The file `plug-ins/your_new_module/myImportCallbacks.py` creates the callbacks used to import items.
+The file `plug-ins/your_new_module/myImportCallbacks.py` creates the handlers used to import items.
 
 ```py
 # myImportCallbacks.py
@@ -260,10 +282,6 @@ ramses.importScripts.append( importAsset )
 And don't forget to import your new module in `plug-ins/ramses_maya/__init__.py`:
 
 ```py
-# plug-ins/ramses_maya/__init__.py
-from .ram_cmds import cmds_classes
-from ramses import log, LogLevel
-
 import your_new_module
 ```
 

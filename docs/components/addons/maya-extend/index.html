@@ -1379,16 +1379,15 @@
     <div class="bs-sidebar hidden-print affix well" role="complementary">
         <ul class="nav bs-sidenav">
             <li class="first-level active"><a href="#extending-the-ramses-maya-add-on">Extending the Ramses Maya Add-on</a></li>
-                <li class="second-level"><a href="#getting-started">Getting started</a></li>
+                <li class="second-level"><a href="#register-custom-event-handlers">Register custom event handlers</a></li>
+                    
+                <li class="second-level"><a href="#fork-modify-the-module">Fork / Modify the module</a></li>
                     
                     <li class="third-level"><a href="#install-the-add-on">Install the Add-On</a></li>
                     <li class="third-level"><a href="#create-your-module">Create your module</a></li>
                     <li class="third-level"><a href="#import-the-module">Import the module</a></li>
-                <li class="second-level"><a href="#callbacks">Callbacks</a></li>
-                    
-                    <li class="third-level"><a href="#adding-your-custom-callbacks">Adding your custom callbacks</a></li>
-                <li class="second-level"><a href="#detailed-example">Detailed Example</a></li>
-                    
+                    <li class="third-level"><a href="#events-and-handlers">Events and handlers</a></li>
+                    <li class="third-level"><a href="#detailed-example">Detailed Example</a></li>
         </ul>
     </div>
     <div class="footer-meta"></div>
@@ -1397,11 +1396,46 @@
 
 <p><img alt="META" src="authors:Nicolas &quot;Duduf&quot; Dufresne;license:GNU-FDL;copyright:2021;updated:2021/07/04" /></p>
 <h1 id="extending-the-ramses-maya-add-on"><img alt="" src="../../../img/icons/maya_sd.svg" style="width:48px;" /> Extending the Ramses Maya Add-on</h1>
-<p>You can easily add features to the <em>Ramses Maya Add-On</em>, especially by registering your own scripts/methods to be run when a status changes, when a scene is being published, or to import items.</p>
+<p>You can easily add features to the <em>Ramses Maya Add-On</em>, especially by registering your own scripts/methods to be run when a status changes, when a scene is being published, or to import items for example.</p>
 <p>You can also easily use the included <a href="../../../dev/add-ons-reference/"><em>Ramses Scripting API</em></a> as a <em>Python module</em> to develop your own functions.</p>
-<h3 id="getting-started">Getting started</h3>
-<p>Technically, the simplest and recommended way to extend the <em>Ramses Maya Add-On</em> is to add your own module(s) inside the Add-on iteself. It is very easy and this way you do not need to register your script or plug-in with <em>Maya</em>, <em>Ramses</em> takes care of that for you.</p>
-<h4 id="install-the-add-on">Install the Add-On</h4>
+<p>Technically, there are two ways to extend the maya module:</p>
+<ul>
+<li>Easy: Register your handler functions to be triggered on specific events</li>
+<li>Advanced: Fork the module to add your own methods or replace existing methods</li>
+</ul>
+<h2 id="register-custom-event-handlers">Register custom event handlers</h2>
+<p>The Ramses API exposes several events to which you can hook your own handler functions. This can easily be done by implementing these functions in a simple Python script and registering them with the settings of the Maya Add-on.</p>
+<p>This way, the Add-on will automatically run your functions during these specific events, like when opening a file, publishing an asset, importing an asset, etc. The list of available events is documented in the <a href="../../../dev/add-ons-reference/ramses/#events-and-handlers">Ramses API Reference</a></p>
+<p>For example, to run a function when a file is opened with Ramses, write this simple script in a Python file:</p>
+<pre><code class="language-py"># modelling_scripts.py
+
+from maya import cmds # The Maya commands
+
+def on_open( ram_item, file_path, ram_step ):
+    &quot;&quot;&quot;Ramses will hook this function to the on_open event&quot;&quot;&quot;
+
+    if not ram_step:
+        # it seems the step is unknown
+        return
+
+    # Check if this is the modelling step
+    if ram_step.shortName() != &quot;Mod&quot;:
+        # Do nothing, this script is only for modelling!
+        return
+
+    if not ram_item:
+        # The file being opened doesn't belong to a valid RamItem
+        return
+
+    # Show the name of the item being opened
+    message = &quot;Congrats, you are ready to model &quot; + ram_item.name()
+    cmds.inViewMessage(amg=message, pos='midCenterBot', fade=True)
+</code></pre>
+<p>To register this function, you just need to add the file in the script list in the settings of the Maya Add-on:</p>
+<p><img alt="" src="../../../img/maya/custom_scripts.png" /></p>
+<p>Because the function is named <code>on_open</code>, it is run each time an asset is opened by Ramses. The Python script can contain as many of these functions as there are events available. This list of available events is available in the <a href="../../../dev/add-ons-reference/ramses/#events-and-handlers">Ramses API Reference</a>, along with the details about the arguments which can be passed to these functions.</p>
+<h2 id="fork-modify-the-module">Fork / Modify the module</h2>
+<h3 id="install-the-add-on">Install the Add-On</h3>
 <p>First, install the <em>Ramses Maya Add-On</em> as described <a href="../maya/">here</a>.</p>
 <p>These folders should be available:</p>
 <ul>
@@ -1414,7 +1448,7 @@
 </li>
 <li><strong><em>shelves</em></strong>: The <em>Ramses Maya shelf</em></li>
 </ul>
-<h4 id="create-your-module">Create your module</h4>
+<h3 id="create-your-module">Create your module</h3>
 <p>All you need to do to easily extend the <em>Ramses Maya Add-On</em> is to create your own module in the <code>plug-ins</code> folder.</p>
 <p>Create a subfolder in the <code>plug-ins</code> folder, containing an empty <code>__init__.py</code> file. You can also optionally add your own <em>shelf</em> in the <code>shelves</code> folder.</p>
 <p>The new tree should look like this:</p>
@@ -1446,45 +1480,24 @@ ramses.publishScripts.append( aPublishMethod )
 # The import method
 ramses.importScripts.append( anImportMethod )
 </code></pre>
-<h4 id="import-the-module">Import the module</h4>
-<p>Finally, you just have to import your new module in the <code>ramses_maya</code> module: add a simple import at the end of the <code>ramses_maya/__init__.py</code> file, which should look like this:</p>
-<pre><code class="language-py">from .ram_cmds import cmds_classes
-from ramses import log, LogLevel
-
-import your_new_module
+<h3 id="import-the-module">Import the module</h3>
+<p>Finally, you just have to import your new module in the <code>ramses_maya</code> module: add a simple import at the end of the <code>ramses_maya/__init__.py</code> file:</p>
+<pre><code class="language-py">import your_new_module
 </code></pre>
 <p>Both the new module and the shelf will be automatically registered by the <em>Ramses Maya Add-On</em> when it&rsquo;s loaded in <em>Maya</em>.</p>
-<h3 id="callbacks">Callbacks</h3>
-<p><em>Ramses</em> stores three lists of callbacks you can extend.</p>
-<ul>
-<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.publishScripts</code></a> contains the functions to be called when a scene is being published.</li>
-</ul>
-<p>When <em>Ramses</em> publishes a scene, it calls all the scripts listed there. There already is a script which provides the default implementation; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). Each callback you add to this list must take a few arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
-<ul>
-<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.statusScripts</code></a> contains the functions to be called when a scene status changes.</li>
-</ul>
-<p>When <em>Ramses</em> updates a status, it first copies the scene file to the version folder and calls the <em>Daemon</em> (if available) to notify the update, and then calls all the scripts listed there. Each callback you add to this list must take two arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
-<ul>
-<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.importScripts</code></a> contains the functions to be called when the user selects an item (shot or asset) to import.</li>
-</ul>
-<p>There already is a script which provides the default implementation for importing items; you can either remove it to disable it completely, or just add your own which will be run after (or before if you insert it at the beginning of the list). . Each callback you add to this list must take a few arguments. Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
-<p>There are two ways to register your methods: by using a <em>Maya</em> command, or by <a href="https://github.com/RxLaboratory/Ramses-Maya">forking</a> the provided Add-On to add your functions.</p>
-<p>Once the callbacks have been registered, they are automatically called when the user interacts with the add-on and wants to update/import/publish an item.</p>
-<p>You can also explicitly call them by calling these three methods:</p>
-<ul>
-<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.updateStatus( item, status, stepShortName )</code></a></li>
-<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.importItem( item, filePath, stepShortName )</code></a></li>
-<li><a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.publish( item, filePath, stepShortName )</code></a></li>
-</ul>
+<h3 id="events-and-handlers">Events and handlers</h3>
+<p><em>Ramses</em> stores a list of handlers for each event you can extend, like <a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.publishScripts</code></a> or <a href="../../../dev/add-ons-reference/ramses/"><code>Ramses.importScripts</code></a>. The complete list of events and their corresponding handler lists are available in the <a href="../../../dev/add-ons-reference/ramses/#events-and-handlers">Ramses API Reference</a>.</p>
+<p>Each handler function you add to these lists must take a few arguments. Read the <a href="../../../dev/add-ons-reference/ramses/#events-and-handlers">Scripting API Reference</a> for more information.</p>
+<p>Once the handlers have been added, they are automatically called when the user interacts with the add-on and wants to update/import/publish&hellip; an item.</p>
 <p>Read the <a href="../../../dev/add-ons-reference/ramses/">Scripting API Reference</a> for more information.</p>
-<h4 id="adding-your-custom-callbacks">Adding your custom callbacks</h4>
-<p>To register your callbacks, you just have to append them in the corresponding <code>Ramses</code> lists:</p>
+<h4 id="adding-your-custom-handlers">Adding your custom handlers</h4>
+<p>To register your handlers, you just have to append them in the corresponding <code>Ramses</code> lists:</p>
 <pre><code class="language-py"># We need to import the Ramses Module (API)
 from ramses import Ramses
 # Now we just have to add the callbacks
 ramses = Ramses.instance()
-# First, remove callbacks provided by the Ramses addon,
-# to replace them with our own
+# First, you may (or may not) remove callbacks provided by the Ramses addon,
+# to replace them with your own
 ramses.publishScripts = []
 ramses.importScripts = []
 ramses.statusScripts = []
@@ -1498,7 +1511,7 @@ ramses.statusScripts.append( aStatusMethod )
 <p>Now, all these methods will be automatically called each time a status changes, an item is published, or an item is imported.</p>
 <h3 id="detailed-example">Detailed Example</h3>
 <p>In this example, three files are added, with the import, status, and publish methods.</p>
-<p>The file <code>plug-ins/your_new_module/myPublishCallbacks.py</code> creates the callbacks used to publish shots and assets.</p>
+<p>The file <code>plug-ins/your_new_module/myPublishCallbacks.py</code> creates the handlers used to publish shots and assets.</p>
 <pre><code class="language-py"># myPublishCallbacks.py
 
 import ramses as ram
@@ -1518,7 +1531,7 @@ def publishAsset(item, filePath, step):
 
 def publishShot(item, filePath, step):
     &quot;&quot;&quot;Callback used to publish Shots only&quot;&quot;&quot;
-    # The item must be a RamAsset
+    # The item must be a RamShot
     if item.itemType() != ram.ItemType.SHOT:
         return
 
@@ -1527,7 +1540,7 @@ def publishShot(item, filePath, step):
     # etc.
 
 </code></pre>
-<p>The file <code>plug-ins/your_new_module/myStatusCallbacks.py</code> creates the callbacks used when a status changes.</p>
+<p>The file <code>plug-ins/your_new_module/myStatusCallbacks.py</code> creates the handlers used when a status changes.</p>
 <pre><code class="language-py"># myStatusCallbacks.py
 
 import ramses as ram
@@ -1556,7 +1569,7 @@ def updateShot(item, filePath, publishFolderPath):
     # etc.
 
 </code></pre>
-<p>The file <code>plug-ins/your_new_module/myImportCallbacks.py</code> creates the callbacks used to import items.</p>
+<p>The file <code>plug-ins/your_new_module/myImportCallbacks.py</code> creates the handlers used to import items.</p>
 <pre><code class="language-py"># myImportCallbacks.py
 
 import ramses as ram
@@ -1612,11 +1625,7 @@ ramses.statusScripts.append( updateShot )
 ramses.importScripts.append( importAsset )
 </code></pre>
 <p>And don&rsquo;t forget to import your new module in <code>plug-ins/ramses_maya/__init__.py</code>:</p>
-<pre><code class="language-py"># plug-ins/ramses_maya/__init__.py
-from .ram_cmds import cmds_classes
-from ramses import log, LogLevel
-
-import your_new_module
+<pre><code class="language-py">import your_new_module
 </code></pre>
 <p>Don&rsquo;t change anything else in the file!</p>
 <p>Now you can also use <code>methodForAShelf()</code> in an existing or new <em>shelf</em>, which can be stored in the <code>shelves</code> folder if you want it to be deployed with your extension.</p></div>

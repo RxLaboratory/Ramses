@@ -8,10 +8,77 @@ Other APIs may be developped, in which case all these APIs on all programming/sc
 
 As this document is referring to different scripting languages, it uses general terms which may be different than what is actually used in specific languages.
 
-*(TODO: ADD THE LINK TO THE GITHUB REPOS OF THE APIs / LINK TO GET THEM ON RXLAB.ORG)*
+- Python API: [source](https://github.com/RxLaboratory/Ramses-Py), [download](https://github.com/RxLaboratory/Ramses-Py/releases)
+- ExtendScript API: [source (available soon)](#), [download (available soon)](#)
 
 !!! hint
     Some of the elements described in this documentation have to be interpreted differently depending on the language used in the implementations of the *Ramses Add-ons API* and may vary a bit. Read the examples below to see the differences between a few scripting languages.
+
+## Develop a DCC application Add-on using the Ramses API
+
+To use Ramses right from any Digital Content Creation application, you can develop an add-on for this application which, by using the Ramses API, communicates with Ramses.
+
+Such add-ons should implement methods to create, open, save, publish, import, and replace items (shots or assets), and also to update their production status.  
+To get started, you should first implement these methods and register them in Ramses.
+
+```py
+# Python
+
+# import ramses
+import ramses as ram
+# Get the instance
+RAMSES = ram.Ramses.instance()
+
+# The method to open a file
+def opener( ram_item, file_path, ram_step ):
+    """This method should open the file available at file_path, which is the working file for the given *RamItem* and *RamStep*"""
+
+# The method to publish an item
+def publisher( ram_item, ram_step, file_path ):
+    """This method should publish the given *RamItem* at the given *RamStep*, from the working file available at file_path
+    Options can optionally be passed to this method to specify a publishing file format for example
+    """
+
+# The method to import an item
+def importer( ram_item, file_paths, ram_step ):
+    """This method should import the files available in the file_paths list, which are files published from the given *RamItem* for the given *RamStep*"""
+
+# Register the methods
+RAMSES.openScripts.append( openener )
+RAMSES.publishScripts.append( publisher )
+RAMSES.importScripts.append( importer )
+```
+
+Now that you have a few methods to open working files, publish and import items, you can implement the UI and options of the add-on, depending on the host DCC application, and use the Ramses API to call them. By doing this, you also enable the user to add his own methods to the `on_open`, `on_publish`, `on_import` events.
+
+All these events which can be implemented are included in the [`Ramses` class](ramses.md#events-and-handlers).
+
+```py
+# Python
+
+# import ramses
+import ramses as ram
+# Get the instance
+RAMSES = ram.Ramses.instance()
+
+# A method which opens the working file of an item
+def open_file():
+    # First, show a UI to let the user select an item and a step
+    open_ui = Open_UI()
+    result = open_ui.exec()
+    if result:
+        item = open_ui.get_item()
+        step = open_ui.get_step()
+        # Get the working file.
+        # stepFilePath() is a method from RamItem to retrieve the file for the given step of the item
+        file_path = item.stepFilePath("", "", step)
+        # Trigger the open event in ramses
+        RAMSES.openFile(file_path, item, step)
+        # Ramses will run the opener() method defined sooner, and all other custom handlers which may be hooked to the open event.
+
+```
+
+The Ramses API provides classes to handle all kind of objets (shots, assets, files, status, projects...) managed by the Ramses Framework. All these classes are documented here.
 
 ## Classes
 
