@@ -30,17 +30,17 @@ import ramses as ram
 RAMSES = ram.Ramses.instance()
 
 # The method to open a file
-def opener( ram_item, file_path, ram_step ):
+def opener( file_path, ram_item, ram_step ):
     """This method should open the file available at file_path, which is the working file for the given *RamItem* and *RamStep*"""
 
 # The method to publish an item
-def publisher( ram_item, ram_step, file_path ):
+def publisher( file_path, ram_item, ram_step, publish_options=None, show_publish_options=False ):
     """This method should publish the given *RamItem* at the given *RamStep*, from the working file available at file_path
     Options can optionally be passed to this method to specify a publishing file format for example
     """
 
 # The method to import an item
-def importer( ram_item, file_paths, ram_step ):
+def importer( file_paths, ram_item, ram_step, import_options=None, show_import_options=False ):
     """This method should import the files available in the file_paths list, which are files published from the given *RamItem* for the given *RamStep*"""
 
 # Register the methods
@@ -73,7 +73,7 @@ def open_file():
         # stepFilePath() is a method from RamItem to retrieve the file for the given step of the item
         file_path = item.stepFilePath("", "", step)
         # Trigger the open event in ramses
-        RAMSES.openFile(file_path, item, step)
+        RAMSES.openFile(file_path)
         # Ramses will run the opener() method defined sooner, and all other custom handlers which may be hooked to the open event.
 
 ```

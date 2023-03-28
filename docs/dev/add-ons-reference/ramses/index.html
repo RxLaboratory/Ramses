@@ -1456,7 +1456,7 @@
 </tbody>
 </table>
 <h2 id="attributes">Attributes</h2>
-<p>Read the section entitled <em>Callbacks</em> below (and see the <em>Examples</em>) for more information about the methods you can add to these lists.</p>
+<p>Read the section entitled <em>Events and Handlers</em> below (and see the <em>Examples</em>) for more information about the methods you can add to these lists.</p>
 <table>
 <thead>
 <tr>
@@ -1471,31 +1471,49 @@
 <td><strong>importScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of functions to be triggered when <code>Ramses.instance().importItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
+<td>A list of functions to be triggered when <code>Ramses.instance().importItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user asks to import an item.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
 </tr>
 <tr>
 <td><strong>openScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of functions to be triggered when <code>Ramses.instance().openFile()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user opens an item in the host application.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
+<td>A list of functions to be triggered when <code>Ramses.instance().openFile()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user opens an item in the host application.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
 </tr>
 <tr>
 <td><strong>publishScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user publishes the current file from the host application.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
+<td>A list of functions to be triggered when <code>Ramses.instance().publish()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user publishes the current file from the host application.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
 </tr>
 <tr>
 <td><strong>replaceScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of functions to be triggered when <code>Ramses.instance().replaceItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user asks to import an item.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
+<td>A list of functions to be triggered when <code>Ramses.instance().replaceItem()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user asks to import an item.<br />Note: official <em>Ramses Add-ons</em> will add an item to this list to provide a default implementation. If you&rsquo;re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
+</tr>
+<tr>
+<td><strong>saveAsScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of functions to be triggered when <code>Ramses.instance().saveFileAs()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user saves the current file in the host application.<br />Note: official Ramses Add-ons will add an item to this list to provide a default implementation. If you’re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior</td>
+</tr>
+<tr>
+<td><strong>saveScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of functions to be triggered when <code>Ramses.instance().saveFile()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user saves the current file in the host application.<br />Note: official Ramses Add-ons will add an item to this list to provide a default implementation. If you’re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior</td>
+</tr>
+<tr>
+<td><strong>saveTemplateScripts</strong></td>
+<td><em>list</em></td>
+<td><code>[]</code></td>
+<td>A list of functions to be triggered when <code>Ramses.instance().savTemplate()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user saves the current file as a new template in the host application.<br />Note: official Ramses Add-ons will add an item to this list to provide a default implementation. If you’re extending an existing add-on, you can reset the list or insert/append your own methods to keep the default behavior.</td>
 </tr>
 <tr>
 <td><strong>statusScripts</strong></td>
 <td><em>list</em></td>
 <td><code>[]</code></td>
-<td>A list of functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own callbacks to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.</td>
+<td>A list of functions to be triggered when <code>Ramses.instance().updateStatus()</code> is called.<br />If you&rsquo;re using one of the provided Add-ons, you can add your own handlers to this list so they&rsquo;re run when the user changes the current status of an asset / shot from the host application.</td>
 </tr>
 <tr>
 <td><strong>userScripts</strong></td>
@@ -1515,6 +1533,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><strong>addToRecentFiles</strong></td>
+<td>• <em>string</em>: <strong>filePath</strong></td>
+<td>Adds the file to the list of recently opened files, to be used in the DCC app to list these files to the user. The list of recent files is available as <a href="../ram_settings/"><code>RamSettings.instance().recentFiles</code></a>.</td>
+</tr>
 <tr>
 <td><strong>alternativeFolderPaths</strong><br />▹ <em>list</em> of <em>string</em></td>
 <td></td>
@@ -1557,13 +1580,13 @@
 </tr>
 <tr>
 <td><strong>importItem</strong></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
-<td>Runs the scripts in <code>Ramses.instance().importScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
+<td>• <em>string</em>: <strong>currentFilePath</strong><br />• <em>list</em> of <em>string</em>: <strong>importFilePaths</strong><br/>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong><br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code><br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code><br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
+<td>Runs the scripts in <code>Ramses.instance().importScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.</td>
 </tr>
 <tr>
 <td><strong>openFile</strong></td>
-<td>• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>=<code>None</code>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code></td>
-<td>Runs the scripts in <code>Ramses.instance().openScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
+<td>• <em>string</em>: <strong>filePath</strong></td>
+<td>Runs the scripts in <code>Ramses.instance().openScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.</td>
 </tr>
 <tr>
 <td><strong>project</strong><br />▹ <em><a href="../ram_project/">RamProject</a></em> or <em>None</em></td>
@@ -1597,13 +1620,28 @@
 </tr>
 <tr>
 <td><strong>publish</strong></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em>dict</em>: <strong>publishOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showPublishOptions</strong>=<code>false</code></td>
-<td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
+<td>• <em>string</em>: <strong>filePath</strong>,<br />• <em>dict</em>: <strong>publishOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showPublishOptions</strong>=<code>false</code></td>
+<td>Runs the scripts in <code>Ramses.instance().publishScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.</td>
 </tr>
 <tr>
 <td><strong>replaceItem</strong></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
-<td>Runs the scripts in <code>Ramses.instance().replaceScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
+<td>• <em>string</em>: <strong>currentFilePath</strong><br />• <em>string</em>: <strong>importFilePath</strong><br/>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong><br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code><br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code><br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
+<td>Runs the scripts in <code>Ramses.instance().replaceScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.</td>
+</tr>
+<tr>
+<td><strong>saveFile</strong><br />▹ <em>int</em></td>
+<td>• <em>string</em>: <strong>filePath</strong><br />• <em>bool</em>: <strong>incrementVersion</strong>=<code>false</code><br />• <em>string</em>: <strong>comment</strong>=<code>None</code><br />• <em>string</em>:<strong>newStateShortName</strong>:<code>None</code></td>
+<td>Runs the scripts in <code>Ramses.instance().saveScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.<br />• <code>1</code>: Malformed file name, can&rsquo;t get the item from the file. The file was not saved.<br />• <code>2</code>: The file was a restored version, it&rsquo;s been incremented then saved as a working file.<br />• <code>3</code>: The file was misplaced (in a reserved folder), and was incremented and saved in the right place.<br />• <code>4</code>: The file was too old (according to RamSettings.autoIncrementTimeout) and was incremented and saved.</td>
+</tr>
+<tr>
+<td><strong>saveFileAs</strong><br />▹ <em>int</em></td>
+<td>• <em>string</em>: <strong>currentFilePath</strong><br />• <em>string</em>: <strong>fileExtension</strong><br/>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong><br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong><br />• <em>string</em>: <strong>resource</strong>=<code>""</code></td>
+<td>Runs the scripts in <code>Ramses.instance().saveAsScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.<br />• <code>1</code>: Saved as a new version because the file already exists.</td>
+</tr>
+<tr>
+<td><strong>saveTemplate</strong><br />▹ <em>int</em></td>
+<td>• <em>string</em>: <strong>fileExtension</strong><br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong><br />• <em>string</em>: <strong>templateName</strong>=<code>"Template"</code></td>
+<td>Runs the scripts in <code>Ramses.instance().saveTemplateScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.</td>
 </tr>
 <tr>
 <td><strong>showClient</strong></td>
@@ -1622,8 +1660,8 @@
 </tr>
 <tr>
 <td><strong>updateStatus</strong></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
-<td>Runs the scripts in <code>Ramses.instance().statusScripts</code>.<br />Read the section entitled <em>Callbacks</em> below for more details.</td>
+<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code></td>
+<td>Runs the scripts in <code>Ramses.instance().statusScripts</code>.<br />Read the section entitled <em>Events and Handlers</em> below for more details.<br />This method returns an error code:<br />• <code>-1</code>: One of the event handlers interrupted the process.<br />• <code>0</code>: OK.</td>
 </tr>
 <tr>
 <td><strong>usersPath</strong><br />▹ <em>string</em></td>
@@ -1634,16 +1672,21 @@
 </table>
 <h2 id="events-and-handlers">Events and Handlers</h2>
 <p>Some events are triggered by Ramses on specific actions, like opening a file in the host application or importing an asset. <em>Handlers</em> are functions to be run when these events are triggered. For each of these events, you can add your own handlers if you&rsquo;re developping an add-on, and the end-user can also register script files containing handlers for these events.</p>
-<p>There are two ways to add a handler to an event:</p>
 <ul>
-<li>When developping an add-on, add the handler function to the corresponding list, like <code>Ramses.openScripts</code> or <code>Ramses.importScripts</code> for example.</li>
-<li>Add script files to the settings (with the UI of the add-on if available, or programmatically with <a href="../ram_settings/"><code>RamSettings.userScripts</code></a>). These script files must define a function for the desired event(s) named after the event.</li>
+<li><strong>When developping the add-on</strong>: add the handler function to the corresponding list, like <code>Ramses.openScripts</code> or <code>Ramses.importScripts</code> for example.</li>
+<li><strong>Adding a user script</strong>: add script files to the settings (with the UI of the add-on if available, or programmatically with <a href="../ram_settings/"><code>RamSettings.userScripts</code></a>). These script files must define a function for the desired event(s) named after the event.</li>
+</ul>
+<p>There are two types of handler functions per event:</p>
+<ul>
+<li><strong><code>before_event</code></strong> handlers are run before the default methods of the add-on (before all methods stored in <code>Ramses.eventScripts</code>).</li>
+<li><strong><code>on_event</code></strong> handlers are run after the default methods of the add-on.</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you&rsquo;re forking/modifying an official add-on, the events are automatically triggered, but if you&rsquo;re developing an add-on from scratch, you need to call the corresponding trigger methods in the <code>Ramses</code> class to process all registered handlers.</p>
 </div>
 <p><em>Ramses</em> will pass a few arguments depending on the context to these handler functions.</p>
+<p>Handlers must return <code>true</code> or nothing to let the process continue, and can return <code>false</code> to stop the process (the event propagation) and the next registered handlers.</p>
 <table>
 <thead>
 <tr>
@@ -1654,40 +1697,54 @@
 </thead>
 <tbody>
 <tr>
-<td><strong><code>on_import_item</code></strong><br/>Trigger function: <code>Ramses.importItem()</code><br/>Handler function list: <code>Ramses.importScripts</code></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePaths</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
-<td>• <code>item</code> is the item from which the user wants to import a file.<br />• <code>filePaths</code> is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />• <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.<br />• <code>importOptions</code> is a dictionnary (associative array) containing custom options you can use to import the item.<br />• <code>showImportOptions</code> tells the script to show a UI or not to edit the import options before importing.</td>
+<td><strong><code>before_import_item</code></strong> | <strong><code>on_import_item</code></strong><br/>Trigger function: <code>Ramses.importItem()</code><br/>Handler function list: <code>Ramses.importScripts</code></td>
+<td>• <em>list</em> of <em>string</em>: <strong>filePaths</strong>,<br />• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
+<td>• <code>filePaths</code> is the list of absolute path to the files the user wants to import. This list can be empty! In this case, it means the add-on must automatically choose the right file from the publish folder of the item and step.<br />• <code>item</code> is the item from which the user wants to import a file.<br />• <code>step</code> is the step from which the user wants to import.<br />• <code>importOptions</code> is a dictionnary (associative array) containing custom options you can use to import the item, automatically built from the pipeline configuration, if these options have been set.<br />• <code>showImportOptions</code> tells the script to show a UI or not to edit the import options before importing.</td>
 </tr>
 <tr>
-<td><strong><code>on_open</code></strong><br/>Trigger function: <code>Ramses.openFile()</code><br/>Handler function list: <code>Ramses.openScripts</code></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code></td>
-<td>• <code>item</code> is the item the user has opened.<br />• <code>filePath</code> is the absolute path of the file being opened.<br />• <code>step</code> is the step being opened.</td>
+<td><strong><code>before_open</code></strong> | <strong><code>on_open</code></strong><br/>Trigger function: <code>Ramses.openFile()</code><br/>Handler function list: <code>Ramses.openScripts</code></td>
+<td>• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code></td>
+<td>• <code>filePath</code> is the absolute path of the file being opened.<br />• <code>item</code> is the item the user has opened.<br />• <code>step</code> is the step being opened.</td>
 </tr>
 <tr>
-<td><strong><code>on_publish</code></strong><br/>Trigger function: <code>Ramses.publish()</code><br/>Handler function list: <code>Ramses.publishScripts</code></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em>dict</em>: <strong>publishOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showPublishOptions</strong>=<code>false</code></td>
-<td>• <code>item</code> is the item from which the user wants to publish a file.<br />• <code>step</code> is the step from which the user is publishing. You can check <code>step.outputPipes()</code> to know which file types to publish.<br />• <code>filePath</code> is the path of the file currently being published.<br />• <code>publishOptions</code> is a dictionnary (associative array) containing custom options you can use to publish the item.<br />• <code>showPublishOptions</code> tells the script to show a UI or not to edit the publish options before publishing.</td>
+<td><strong><code>before_publish</code></strong> | <strong><code>on_publish</code></strong><br/>Trigger function: <code>Ramses.publish()</code><br/>Handler function list: <code>Ramses.publishScripts</code></td>
+<td>• <em>string</em>: <strong>filePath</strong><br />• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong><br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong><br />• <em>dict</em>: <strong>publishOptions</strong>=<code>None</code><br />• <em>bool</em>: <strong>showPublishOptions</strong>=<code>false</code></td>
+<td>• <code>filePath</code> is the path of the file currently being published.<br />• <code>item</code> is the item from which the user wants to publish a file.<br />• <code>step</code> is the step from which the user is publishing.<br />• <code>publishOptions</code> is a dictionnary (associative array) containing custom options you can use to publish the item.<br />• <code>showPublishOptions</code> tells the script to show a UI or not to edit the publish options before publishing.</td>
 </tr>
 <tr>
-<td><strong><code>on_replace_item</code></strong><br/>Trigger function: <code>Ramses.replaceItem()</code><br/>Handler function list: <code>Ramses.replaceScripts</code></td>
-<td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
-<td>• <code>item</code> is the item from which the user wants to import a file.<br />• <code>filePath</code> is the absolute path to the file the user wants to import.<br />• <code>step</code> is the step from which the user wants to import. You can check <code>step.outputPipes()</code> to know which file types have been published, and <code>inputPipes()</code> from the step you&rsquo;re importing to to know which files to accept.<br />• <code>importOptions</code> is a dictionnary (associative array) containing custom options you can use to import the item.<br />• <code>showImportOptions</code> tells the script to show a UI or not to edit the import options before importing.<br />With this info, the method should replace selected objects with the imported items.</td>
+<td><strong><code>before_replace_item</code></strong> | <strong><code>on_replace_item</code></strong><br/>Trigger function: <code>Ramses.replaceItem()</code><br/>Handler function list: <code>Ramses.replaceScripts</code></td>
+<td>• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>=<code>None</code>,<br />• <em>dict</em>: <strong>importOptions</strong>=<code>None</code>,<br />• <em>bool</em>: <strong>showImportOptions</strong>=<code>false</code></td>
+<td>• <code>filePath</code> is the absolute path to the file the user wants to import.<br />• <code>item</code> is the item from which the user wants to import a file.<br />• <code>step</code> is the step from which the user wants to import.<br />• <code>importOptions</code> is a dictionnary (associative array) containing custom options you can use to import the item, automatically built from the pipeline configuration, if these options have been set.<br />• <code>showImportOptions</code> tells the script to show a UI or not to edit the import options before importing.<br />With this info, the method should replace selected objects with the imported items.</td>
 </tr>
 <tr>
-<td><strong><code>on_update_status</code></strong><br/>Trigger function: <code>Ramses.updateStatus()</code><br/>Handler function list: <code>Ramses.statusScripts</code></td>
+<td><strong><code>before_save</code></strong> | <strong><code>on_save</code></strong><br/>Trigger function: <code>Ramses.saveFile()</code><br/>Handler function list: <code>Ramses.saveScripts</code><br />▹ <em>bool</em></td>
+<td>• <em>string</em>: <strong>filePath</strong>,<br />• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong>,<br />• <em>int</em>: <strong>version</strong>,<br />• <em>string</em>: <strong>comment</strong>,<br />• <em>bool</em>: <strong>incremented</strong></td>
+<td>• <code>filePath</code> is the absolute path of the file being saved.<br />• <code>item</code> is the item the user has saved.<br />• <code>step</code> is the step being saved.<br />• <code>version</code> is the version number for the file being saved.<br />• <code>comment</code> is the comment associated to this version of the file.<br />• <code>incremented</code> is <code>true</code> if this is a new version.</td>
+</tr>
+<tr>
+<td><strong><code>before_save_as</code></strong> | <strong><code>on_save_as</code></strong><br/>Trigger function: <code>Ramses.saveFile()</code><br/>Handler function list: <code>Ramses.saveScripts</code><br />▹ <em>bool</em></td>
+<td>• <em>string</em>: <strong>filePath</strong><br />• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong><br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong><br />• <em>string</em>: <strong>resourceName</strong></td>
+<td>• <code>filePath</code> is the absolute path of the file being saved.<br />• <code>item</code> is the item the user has saved.<br />• <code>step</code> is the step being saved.<br />• <code>resourceName</code> is the name of the resource, this can be an empty string for the main working file.</td>
+</tr>
+<tr>
+<td><strong><code>before_save_template</code></strong> | <strong><code>on_save_template</code></strong><br/>Trigger function: <code>Ramses.saveFile()</code><br/>Handler function list: <code>Ramses.saveScripts</code><br />▹ <em>bool</em></td>
+<td>• <em>string</em>: <strong>filePath</strong><br />• <em><a href="../ram_item/">RamItem</a></em>: <strong>item</strong><br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong><br />• <em>string</em>: <strong>templateName</strong></td>
+<td>• <code>filePath</code> is the absolute path of the file being saved.<br />• <code>item</code> is the item the user has saved.<br />• <code>step</code> is the step being saved.<br />• <code>templateName</code> is the name of the template.</td>
+</tr>
+<tr>
+<td><strong><code>before_update_status</code></strong> | <strong><code>on_update_status</code></strong><br/>Trigger function: <code>Ramses.updateStatus()</code><br/>Handler function list: <code>Ramses.statusScripts</code></td>
 <td>• <em><a href="../ram_item/">RamItem</a> or <a href="../ram_asset/">RamAsset</a> or <a href="ram_shot">RamShot</a></em>: <strong>item</strong>,<br />• <em><a href="../ram_status/">RamStatus</a></em>: <strong>status</strong>,<br />• <em><a href="../ram_step/">RamStep</a></em>: <strong>step</strong></td>
 <td>• <code>item</code> is the item which is being updated.<br />• <code>status</code> is the new status.<br />• <code>step</code> is the step being updated.</td>
 </tr>
 </tbody>
 </table>
-<p>If you&rsquo;re developping your own add-on from scratch, it may be useful to add your methods to these lists to call them easily anyway; use <code>Ramses.openFile()</code>, <code>Ramses.publish()</code>, <code>Ramses.importItem()</code>, <code>Ramses.replaceItem()</code>, and <code>Ramses.updateStatus()</code>.</p>
 <h3 id="examples">Examples</h3>
 <h4 id="adding-handlers-with-a-user-script-file">Adding handlers with a user script file</h4>
 <p>Users can add their own handlers for specific events by just storing them in script file(s) and implementing a function named after the event(s).<br />
 This is a simple example of a file like this containing a few handlers.</p>
 <pre><code class="language-py"># handlers.py
 
-def on_open( item, file_path, step):
+def on_open( file_path, item, step):
     &quot;&quot;&quot;Triggered when an item is opened by the user&quot;&quot;&quot;
 
     if step.shortName() == &quot;LIGHT&quot;:
@@ -1697,7 +1754,7 @@ def on_open( item, file_path, step):
     else:
         print(&quot;Nothing to do for unknown steps...&quot;)
 
-def on_publish( item, step, file_path, import_options, show_import_options):
+def on_publish(  file_path, item, step,import_options, show_import_options):
     &quot;&quot;&quot;Triggered when an item is published&quot;&quot;&quot;
 
     if step.shortName() == &quot;MOD&quot;:
@@ -1714,7 +1771,7 @@ def on_publish( item, step, file_path, import_options, show_import_options):
 <pre><code class="language-js">// handlers.jsx
 
 // Triggered when an item is opened by the user
-function on_open( item, file_path, step) {
+function on_open( file_path, item, step) {
 
     if (step.shortName() == &quot;LIGHT&quot;) {
         // Do Something here if it's a lighting step being opened
@@ -1727,7 +1784,7 @@ function on_open( item, file_path, step) {
 }
 
 // Triggered when an item is published
-function on_publish( item, step, file_path, import_options, show_import_options):
+function on_publish( file_path, item, step, import_options, show_import_options):
 
     if (step.shortName() == &quot;MOD&quot;) {
         // Show options to the user
@@ -1786,7 +1843,7 @@ import ramses as ram
 ramses = ram.Ramses.instance()
 
 # A simple method
-def published(item, filePath, step):
+def published(filePath, item, step):
     ram.log(&quot;Hello, I've been published!&quot;)
 
 # Another one
@@ -1814,7 +1871,7 @@ ramses.userScripts[&quot;MyFunction&quot;](some, arg)
 var ramses = Ramses.instance();
 
 // A simple method
-function published(item, filePath, step)
+function published(filePath, item, step)
 {
     ram.log(&quot;Hello, I've been published!&quot;);
 }
