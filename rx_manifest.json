@@ -4,6 +4,26 @@
         {
             "name": "maya",
             "title": "Maya"
+        },
+        {
+            "name": "aftereffects",
+            "title": "After Effects"
+        },
+        {
+            "name": "blender",
+            "title": "Blender"
+        },
+        {
+            "name": "py",
+            "title": "Python API"
+        },
+        {
+            "name": "estk",
+            "title": "ExtendScript API"
+        },
+        {
+            "name": "server",
+            "title": "Server REST API"
         }
     ],
     "os": [
