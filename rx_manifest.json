@@ -2,6 +2,10 @@
     "title": "Ramses",
     "hosts": [
         {
+            "name": "native",
+            "title": "Ramses Client Application"
+        },
+        {
             "name": "maya",
             "title": "Maya"
         },
@@ -24,10 +28,6 @@
         {
             "name": "server",
             "title": "Server REST API"
-        },
-        {
-            "name": "native",
-            "title": "Ramses Client Application"
         }
     ],
     "os": [
