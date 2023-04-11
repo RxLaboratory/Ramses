@@ -24,6 +24,10 @@
         {
             "name": "server",
             "title": "Server REST API"
+        },
+        {
+            "name": "native",
+            "title": "Ramses Client Application"
         }
     ],
     "os": [
