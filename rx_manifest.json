@@ -43,5 +43,6 @@
             "name": "linux",
             "title": "Linux"
         }
-    ]
+    ],
+    "userGuide": "http://ramses.rxlab.guide"
 }
