@@ -355,6 +355,10 @@ cmds.ramOpen(i=true)
 cmds.ramOpen(r=true)
 ```
 
+When importing or replacing items, you can change how the different versions are sorted using the *Edit* menu.
+
+![](../../img/maya/import_edit_menu.png)
+
 ## ![](../../img/icons/ramupdate.png){ style="width:32px"} Update
 
 Use the Update command to update (or downgrade) the assets included in the scene.
@@ -364,7 +368,6 @@ Use the Update command to update (or downgrade) the assets included in the scene
 For each asset, you can select which version to use in the scene and automatically replace it. The update command is able to update to a newer or downgrade to a previous version.
 
 The *Mel* and *Python* corresponding command is: `ramUpdate`.
-
 
 ```py
 # Python
