@@ -15,7 +15,7 @@ The `config.php` file contains the main configuration and should look like that:
         
         This program is licensed under the GNU General Public License.
 
-        Copyright (C) 20202-2021 Nicolas Dufresne and Contributors.
+        Copyright (C) 2020-2023 Nicolas Dufresne and Contributors.
 
         This program is free software;
         you can redistribute it and/or modify it
@@ -45,7 +45,8 @@ The `config.php` file contains the main configuration and should look like that:
 
 	// ==== SQL SETTINGS ====
 
-	// either 'mysql' (works for MariaDB too) or 'sqlite'
+	// either 'mysql', 'mariadb' or 'sqlite'
+	// Note: with 'mysql', the minimum version of MySQL is 8.0.19
 	$sqlMode = 'sqlite';
 	// Table prefix
 	// should be a random character string (use https://duckduckgo.com/?q=generate+password)
@@ -74,6 +75,10 @@ The `config.php` file contains the main configuration and should look like that:
 	// This should always be true, except maybe on dev environments.
 	$forceSSL = true;
 
+	// Compression may cause issues on some servers,
+	// Set this to true to deactivate it.
+	$disableCompression = false;
+
 	// Session timeout (seconds)
 	// The client will be disconnected after being idle for this time
 	// 30 minutes by default (1800) are more than enough:
@@ -86,7 +91,6 @@ The `config.php` file contains the main configuration and should look like that:
 	$cookieTimeout = 43200;
 
 	// This should never be changed, unless you change the key before building the official client or implementing your own client.
-	// It is used to break compatibility between some updates of the client/server framework
 	// It can be used to make sure only your own client, built by yourself, can connect to your own server. In this case, keep it secret!
 	// It is used to hash passwords.
 	$clientKey = "drHSV2XQ";
@@ -95,7 +99,7 @@ The `config.php` file contains the main configuration and should look like that:
 
 - `$devMode` should always be `false` unless this server is going to be used for development and tests in a development environement. For security reasons **do not set this to `true`** on a production server.
 - `$logLevel` controls the quantity of logs included in the server replies and displayed by *Ramses Applications*. This is independant from the logs saved on the server configured by the `config/config_logs.php` file.
-- `$sqlMode` can be either `'sqlite'` or `'mysql'` depending on your choice of configuration (read above).
+- `$sqlMode` can be either `'sqlite'` or `'mysql'` or `'mariadb'` depending on your choice of configuration (read above).
 - `$tablePrefix` is a prefix which will be used for the name of the database tables used by *Ramses*. It allows you to share a database with other instances of *Ramses* and even any other application (for example if your provider doesn't allow you to create more databases on your server).
 
 These next options are only used in *MySQL* mode. Ignore them when using *SQLite*.
@@ -113,6 +117,7 @@ And finally complete these settings too:
 
 - `$serverAddress` must be the one and only address used by the *Ramses Applications* to connect to this server. If this is incorrectly set, *Ramses Applications* won't be able to connect to this server.
 - `$forceSSL` will always redirect calls to `https` when set to `true`. Set this to `false` if you don't have any SSL certificate on this server (not recommended).
+- `$disableCompression` allows to disable the compression of the data when it is sent to the client (not recommended). Change this only if there are issues with the connexion to the client or if you know your server can't send compressed data (using gzip).
 - `$sessionTimeout` is the time, in seconds, before an idle client is disconnected.
 - `$cookieTimeout` is the time, in seconds, before a client is disconnected, no matter what.
 - `$clientKey` can be changed *only* if your client is not the official open source *Ramses Client Application*. Otherwise, leave it to the default value. It is a way to make sure only your client can connect to the server. It is currently used only when setting up the first user (administrator) during the server installation.

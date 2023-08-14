@@ -1400,7 +1400,7 @@
 
         This program is licensed under the GNU General Public License.
 
-        Copyright (C) 20202-2021 Nicolas Dufresne and Contributors.
+        Copyright (C) 2020-2023 Nicolas Dufresne and Contributors.
 
         This program is free software;
         you can redistribute it and/or modify it
@@ -1430,7 +1430,8 @@
 
     // ==== SQL SETTINGS ====
 
-    // either 'mysql' (works for MariaDB too) or 'sqlite'
+    // either 'mysql', 'mariadb' or 'sqlite'
+    // Note: with 'mysql', the minimum version of MySQL is 8.0.19
     $sqlMode = 'sqlite';
     // Table prefix
     // should be a random character string (use https://duckduckgo.com/?q=generate+password)
@@ -1459,6 +1460,10 @@
     // This should always be true, except maybe on dev environments.
     $forceSSL = true;
 
+    // Compression may cause issues on some servers,
+    // Set this to true to deactivate it.
+    $disableCompression = false;
+
     // Session timeout (seconds)
     // The client will be disconnected after being idle for this time
     // 30 minutes by default (1800) are more than enough:
@@ -1471,7 +1476,6 @@
     $cookieTimeout = 43200;
 
     // This should never be changed, unless you change the key before building the official client or implementing your own client.
-    // It is used to break compatibility between some updates of the client/server framework
     // It can be used to make sure only your own client, built by yourself, can connect to your own server. In this case, keep it secret!
     // It is used to hash passwords.
     $clientKey = &quot;drHSV2XQ&quot;;
@@ -1480,7 +1484,7 @@
 <ul>
 <li><code>$devMode</code> should always be <code>false</code> unless this server is going to be used for development and tests in a development environement. For security reasons <strong>do not set this to <code>true</code></strong> on a production server.</li>
 <li><code>$logLevel</code> controls the quantity of logs included in the server replies and displayed by <em>Ramses Applications</em>. This is independant from the logs saved on the server configured by the <code>config/config_logs.php</code> file.</li>
-<li><code>$sqlMode</code> can be either <code>'sqlite'</code> or <code>'mysql'</code> depending on your choice of configuration (read above).</li>
+<li><code>$sqlMode</code> can be either <code>'sqlite'</code> or <code>'mysql'</code> or <code>'mariadb'</code> depending on your choice of configuration (read above).</li>
 <li><code>$tablePrefix</code> is a prefix which will be used for the name of the database tables used by <em>Ramses</em>. It allows you to share a database with other instances of <em>Ramses</em> and even any other application (for example if your provider doesn&rsquo;t allow you to create more databases on your server).</li>
 </ul>
 <p>These next options are only used in <em>MySQL</em> mode. Ignore them when using <em>SQLite</em>.</p>
@@ -1499,6 +1503,7 @@
 <ul>
 <li><code>$serverAddress</code> must be the one and only address used by the <em>Ramses Applications</em> to connect to this server. If this is incorrectly set, <em>Ramses Applications</em> won&rsquo;t be able to connect to this server.</li>
 <li><code>$forceSSL</code> will always redirect calls to <code>https</code> when set to <code>true</code>. Set this to <code>false</code> if you don&rsquo;t have any SSL certificate on this server (not recommended).</li>
+<li><code>$disableCompression</code> allows to disable the compression of the data when it is sent to the client (not recommended). Change this only if there are issues with the connexion to the client or if you know your server can&rsquo;t send compressed data (using gzip).</li>
 <li><code>$sessionTimeout</code> is the time, in seconds, before an idle client is disconnected.</li>
 <li><code>$cookieTimeout</code> is the time, in seconds, before a client is disconnected, no matter what.</li>
 <li><code>$clientKey</code> can be changed <em>only</em> if your client is not the official open source <em>Ramses Client Application</em>. Otherwise, leave it to the default value. It is a way to make sure only your client can connect to the server. It is currently used only when setting up the first user (administrator) during the server installation.</li>
