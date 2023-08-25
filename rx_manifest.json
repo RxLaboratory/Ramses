@@ -1,5 +1,5 @@
 {
-    "title": "Ramses",
+    "title": "Ramses: Rx Asset Management System",
     "hosts": [
         {
             "name": "native",
@@ -44,5 +44,6 @@
             "title": "Linux"
         }
     ],
-    "userGuide": "http://ramses.rxlab.guide"
+    "userGuide": "http://ramses.rxlab.guide",
+    "description": "Complete framework to help you, your team, your studio, track the production of your films."
 }
