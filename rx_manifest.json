@@ -44,6 +44,74 @@
             "title": "Linux"
         }
     ],
+    "assets": [
+        {
+            "nameRegEx": "Ramses_Online-Installer\\.exe",
+            "name": "Ramses Installer (Windows)",
+            "description": "This is the recommended way to install, update or remove all Ramses Components. This installer will download only the needed components during the installation process. [Read the doc](http://ramses.rxlab.guide) for installation instructions.",
+            "hosts": [ ],
+            "os": [ {"name": "win", "title": "Windows"} ],
+            "urls": [
+                {"title": "Pre release access", "url": "http://memberships.rxlab.io"},
+                {"title": "Documentation", "url": "http://ramses.rxlab.guide"}
+            ]
+        },
+        {
+            "nameRegEx": "Ramses_Offline-Installer\\.exe",
+            "name": "Ramses Offline Installer (Windows)",
+            "description": "Use this offline installer to install Ramses components on computers which can’t access the internet. [Read the doc](http://ramses.rxlab.guide) for installation instructions.",
+            "hosts": [ ],
+            "os": [ {"name": "win", "title": "Windows"} ],
+            "urls": [
+                {"title": "Pre release access", "url": "http://memberships.rxlab.io"},
+                {"title": "Documentation", "url": "http://ramses.rxlab.guide"}
+            ]
+        },
+        {
+            "nameRegEx": "Ramses_Online-Installer\\.dmg",
+            "name": "Ramses Installer (macOS)",
+            "description": "This is the recommended way to install, update or remove all Ramses Components. This installer will download only the needed components during the installation process. [Read the doc](http://ramses.rxlab.guide) for installation instructions.",
+            "hosts": [ ],
+            "os": [ {"name": "mac", "title": "macOS"} ],
+            "urls": [
+                {"title": "Pre release access", "url": "http://memberships.rxlab.io"},
+                {"title": "Documentation", "url": "http://ramses.rxlab.guide"}
+            ]
+        },
+        {
+            "nameRegEx": "Ramses_Offline-Installer\\.dmg",
+            "name": "Ramses Offline Installer (macOS)",
+            "description": "Use this offline installer to install Ramses components on computers which can’t access the internet. [Read the doc](http://ramses.rxlab.guide) for installation instructions.",
+            "hosts": [ ],
+            "os": [ {"name": "mac", "title": "macOS"} ],
+            "urls": [
+                {"title": "Pre release access", "url": "http://memberships.rxlab.io"},
+                {"title": "Documentation", "url": "http://ramses.rxlab.guide"}
+            ]
+        },
+        {
+            "nameRegEx": "Ramses_Online-Installer$",
+            "name": "Ramses Installer (Linux)",
+            "description": "This is the recommended way to install, update or remove all Ramses Components. This installer will download only the needed components during the installation process. [Read the doc](http://ramses.rxlab.guide) for installation instructions.",
+            "hosts": [ ],
+            "os": [ {"name": "linux", "title": "Linux"} ],
+            "urls": [
+                {"title": "Pre release access", "url": "http://memberships.rxlab.io"},
+                {"title": "Documentation", "url": "http://ramses.rxlab.guide"}
+            ]
+        },
+        {
+            "nameRegEx": "Ramses_Offline-Installer$",
+            "name": "Ramses Offline Installer (Linux)",
+            "description": "Use this offline installer to install Ramses components on computers which can’t access the internet. [Read the doc](http://ramses.rxlab.guide) for installation instructions.",
+            "hosts": [ ],
+            "os": [ {"name": "linux", "title": "Linux"} ],
+            "urls": [
+                {"title": "Pre release access", "url": "http://memberships.rxlab.io"},
+                {"title": "Documentation", "url": "http://ramses.rxlab.guide"}
+            ]
+        }
+    ],
     "userGuide": "http://ramses.rxlab.guide",
     "description": "Complete framework to help you, your team, your studio, track the production of your films."
 }
