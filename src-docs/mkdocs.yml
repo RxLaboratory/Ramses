@@ -82,6 +82,7 @@ nav:
             - Install from source: components/server/install-src.md
             - Docker (MySQL): components/server/install-docker-mysql.md
             - Docker (SQLite): components/server/install-docker-sqlite.md
+            - Synology NAS: components/server/install-synology.md
             - Configuration: components/server/config.md
             - Update: components/server/update.md
             - Administration: components/server/admin.md

@@ -52,11 +52,13 @@ There are several workarounds:
 
 ## Features
 
-All features of the *Ramses add-on* are available through the new shelf. They are also registered as *Mel* and *Python* *Maya* commands. All these features are detailed in the next sections.
+All features of the *Ramses add-on* are available through the new shelf and a marking menu tied to `[Ctrl] + [Alt] + [Middle Click]`. They are also registered as *Mel* and *Python* *Maya* commands. All these features are detailed in the next sections.
 
 To handle all file naming and sorting, *Ramses* includes commands to replace all the default *Save*, *Save As* and *Open* functions. Using (almost) only the *Ramses* commands ensures your files will always be correctly named and in the right location. It also helps *Ramses* track the production.
 
 ![](../../img/maya/shelf-details.svg)
+
+![](../../img/maya/markingmenu.png)
 
 | Feature | *Maya* Command | Description |
 | --- | --- | --- |

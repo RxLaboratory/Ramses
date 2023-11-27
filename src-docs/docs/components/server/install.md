@@ -39,4 +39,6 @@ Once you've made your choice, follow these guides according to your environement
 
 ▹ **[Docker (SQLite)](install-docker-sqlite.md)**
 
+▹ **[Synology NAS](install-synology.md)**
+
 You can [adjust the server configuration](config.md) by editing `config/config.php` and `config/config_logs.php`.
