@@ -70,6 +70,8 @@ When publishing a shader library, *Ramses* keeps the list of nodes the shaders a
 - Use the **handles** control to add some time before and after the scene's time range.
 - You can change the **frame step** to make the exported file lighter or more detailed (e.g. for precise motion blur).
 - You can automatically **filter Euler rotations**.
+- You can automatically add all custom attributes.
+- You can set a list of attributes to include, using their exact names, or a prefix.
 
 ## Arnold Scene Source
 
