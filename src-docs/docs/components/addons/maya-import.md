@@ -2,11 +2,7 @@
 
 # Importing assets
 
-When importing or replacing assets, there are a few options. The same way publish settings can use presets or be set directly in the *Ramses Client Application*, *Ramses* will look for presets and default settings when importing the assets.
-
-![](../../img/maya/importsettings_preset.png)
-
-In the first tab, you can optionally select an existing preset.
+<!--When importing or replacing assets, there are a few options. The same way publish settings can use presets or be set directly in the *Ramses Client Application*, *Ramses* will look for presets and default settings when importing the assets.
 
 Presets are stored in a folder inside the Maya module folder. You can save or load a preset with `Edit ► Save preset...` and `Edit ► Load preset...`. When a preset is saved in the default folder, it is listed in the box in this tab.
 
@@ -18,20 +14,21 @@ Presets are stored in a folder inside the Maya module folder. You can save or lo
 - `Maya - Reference` references a Maya file.
 - `Maya` simply imports a Maya file.
 
-You can safely delete these presets from the preset folder if you don't need them.
+You can safely delete these presets from the preset folder if you don't need them.-->
 
 ## Format settings
 
-For each format to import, you can set some settings.
+<!--For each format to import, you can set some settings.-->
 
 ![](../../img/maya/importsettings_format.png)
 
 The text on the right can be copied to any [pipe type](../../components/client/pipetypes.md) in the *Ramses Client Application*. When importing an asset, *Ramses* will first look for these settings, and if they're found, it won't show the settings dialog unless the user checked the box `Edit import options` when importing the asset.
 
 - Files can be imported as **references**.
+- When files are imported as reference, you can force a reload of the reference after it's been imported with the **Auto-reload reference** option. This will fix some import issues encountered in complex files in rare cases, where some connexions may break when programmatically referencing a maya file. But it makes the import process a bit longer (the time it takes to reload the reference).
 - **All transformations** of all nodes can be *locked*.
 - By default, a **namespace** is created to store the imported objects. This can be deactivated. Use with caution as name conflicts can generate errors on import/update!
-- Imported objects are grouped in a transform node. By default, a **shape** (a square around the objects as a *nurbsCurve*) is created to easily manipulate them in the viewport.
+- Imported objects are grouped in a transform node. By default, a **shape** (a square around the objects as a *nurbsCurve*) is created to easily manipulate them in the viewport. Note that in some rare cases, some connexions between the imported nodes may break if this shape is added to this group node. This seems to be a bug in Maya, and in this case preventing the addition of this shape by checking this option is an easy workaround.
 - When importing a shader library, **shaders can automatically be applied** on the selected nodes.
   *Ramses* will use the node names to apply the shaders: the selected nodes must have the *exact same name* as the nodes in the scene used to publish the shaders.
 
@@ -51,6 +48,7 @@ These are all the available settings:
 format: '*' # The file format these settings apply to. Either a wildcard '*' or the file extension (without the leading ".")
 apply_shaders: true
 as_reference: false
+autoreload_reference: False
 lock_transformations: true
 create_namespace: true
 no_root_shape: false
