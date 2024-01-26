@@ -369,7 +369,10 @@ Use the Update command to update (or downgrade) the assets included in the scene
 
 For each asset, you can select which version to use in the scene and automatically replace it. The update command is able to update to a newer or downgrade to a previous version.
 
-The *Mel* and *Python* corresponding command is: `ramUpdate`.
+The *Mel* and *Python* corresponding command is: `ramUpdate`. It can take two parameters:
+
+- `updateAll` or `-a`: boolean. When `True`, the dialog isn't shown, and all items are automatically updated.
+- `updateSelection` or `-s`: boolean. When `True`, the dialog isn't shown, and the selected items are automatically updated.
 
 ```py
 # Python
@@ -377,6 +380,12 @@ import maya.cmds as cmds
 
 # Shows the update dialog
 cmds.ramUpdate()
+
+# Updates all the items in the current scene
+cmds.ramUpdate( a=True )
+
+# Updates the selected items in the current scene
+cmds.ramUpdate( s=True )
 ```
 
 ## ![](../../img/icons/restoreversion.svg){ style="width:32px"} Retrieve Version

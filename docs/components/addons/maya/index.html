@@ -409,6 +409,12 @@
         
             
 <li >
+    <a href="../../server/install-synology/">Synology NAS</a>
+</li>
+
+        
+            
+<li >
     <a href="../../server/config/">Configuration</a>
 </li>
 
@@ -1069,6 +1075,10 @@
                                 
                                     
                                     <li class="third-level "><a href="../../server/install-docker-sqlite/">Docker (SQLite)</a></li>
+                                    
+                                
+                                    
+                                    <li class="third-level "><a href="../../server/install-synology/">Synology NAS</a></li>
                                     
                                 
                                     
@@ -1787,12 +1797,22 @@ cmds.ramOpen(r=true)
 <p>Use the Update command to update (or downgrade) the assets included in the scene.</p>
 <p><img alt="" src="/img/maya/update.png" /></p>
 <p>For each asset, you can select which version to use in the scene and automatically replace it. The update command is able to update to a newer or downgrade to a previous version.</p>
-<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramUpdate</code>.</p>
+<p>The <em>Mel</em> and <em>Python</em> corresponding command is: <code>ramUpdate</code>. It can take two parameters:</p>
+<ul>
+<li><code>updateAll</code> or <code>-a</code>: boolean. When <code>True</code>, the dialog isn&rsquo;t shown, and all items are automatically updated.</li>
+<li><code>updateSelection</code> or <code>-s</code>: boolean. When <code>True</code>, the dialog isn&rsquo;t shown, and the selected items are automatically updated.</li>
+</ul>
 <pre><code class="language-py"># Python
 import maya.cmds as cmds
 
 # Shows the update dialog
 cmds.ramUpdate()
+
+# Updates all the items in the current scene
+cmds.ramUpdate( a=True )
+
+# Updates the selected items in the current scene
+cmds.ramUpdate( s=True )
 </code></pre>
 <h2 id="retrieve-version"><img alt="" src="../../../img/icons/restoreversion.svg" style="width:32px" /> Retrieve Version</h2>
 <p>The <em>Retrieve version</em> command can be used to check and restore a previous version of the current scene.</p>
