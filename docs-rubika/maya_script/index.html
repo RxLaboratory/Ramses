@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ramses user guide for Rubika Students">
+    <meta name="author" content="Nicolas Dufresne and contributors">
+    <link rel="canonical" href="https://ramses.rxlab.guide/rubika/maya_script/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Scripting and automation - Ramses | Rubika Supinfocom</title>
+    
+
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <link rel="stylesheet" href="../css/fontawesome-v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/zenburn.min.css">
+        
+    
+    <link href="../style.css" rel="stylesheet">
+    <link href="../video.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">Ramses | Rubika Supinfocom</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../install/">Install / Update</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../login/">Connection / Log-in</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maya <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../maya/">Maya</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Scripting and automation</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="https://qa.rxlaboratory.org">F.A.Q.</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../maya/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/RxLaboratory/Ramses/edit/master/src-docs-rubika/docs/maya_script.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div id="side-menu">
+    <div class="bs-sidebar hidden-print  affix well collapsible" role="complementary">
+        <!-- Main navigation -->
+        <ul class="nav bs-sidenav">
+        
+        
+            <li >
+                <a href="..">Home</a>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button ">Install</button>
+                <ul class="collapsible-content ">
+                    
+                        
+                        <li class="second-level "><a href="../install/">Install / Update</a></li>
+                        
+                    
+                        
+                        <li class="second-level "><a href="../login/">Connection / Log-in</a></li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li class="first-level">
+                <button  type="button" class="collapse-button active-collapse-button">Maya</button>
+                <ul class="collapsible-content collapsible-content-active">
+                    
+                        
+                        <li class="second-level "><a href="../maya/">Maya</a></li>
+                        
+                    
+                        
+                        <li class="second-level active"><a href="./">Scripting and automation</a></li>
+                        
+                    
+                </ul>
+            </li>
+        
+        
+        
+            <li >
+                <a href="https://qa.rxlaboratory.org">F.A.Q.</a>
+            </li>
+        
+        
+        </ul>
+    </div>
+    <div class="bs-sidebar hidden-print affix well" role="complementary">
+        <ul class="nav bs-sidenav">
+            <li class="first-level active"><a href="#maya-scripting-and-automation-with-ramses">Maya scripting and automation with Ramses</a></li>
+                <li class="second-level"><a href="#examples">Examples</a></li>
+                    
+                    <li class="third-level"><a href="#show-an-alert-when-the-user-opens-a-scene-with-ramses">Show an alert when the user opens a scene with Ramses</a></li>
+                    <li class="third-level"><a href="#update-all-assets">Update all assets</a></li>
+        </ul>
+    </div>
+    <div class="footer-meta"></div>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="maya-scripting-and-automation-with-ramses">Maya scripting and automation with Ramses</h1>
+<p>Ramses makes it easy to automate some work in Maya, using Python.</p>
+<p>You can write some scripts to automate tasks, and you can also connect scripts to Rames <em>events</em> to automatically run scripts during these events, for example each time a scene is opened in Maya.</p>
+<p>Here are a few examples.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="show-an-alert-when-the-user-opens-a-scene-with-ramses">Show an alert when the user opens a scene with Ramses</h3>
+<p>This script will be run each time a scene is opened with Ramses; the condition at the beginning of the functions makes sure the alert is shown only if it&rsquo;s a rendering or lighting step.</p>
+<pre><code class="language-py"># Affiche un message à l'ouverture d'une scène de render ou de lighting
+from maya import cmds
+
+def on_open(file_path, item, step):
+
+    step_id = step.shortName()
+
+    if step_id in (&quot;Render&quot;, &quot;Light&quot;):
+        cmds.confirmDialog(
+            title=&quot;Attention&quot;,
+            message=&quot;Les render layers FX et Végétaux sont en 4K parce qu'on est des fous.\nN'oublie pas de les désactiver si tu n'en as pas besoin !&quot;,
+            button=[&quot;OK&quot;],
+            icon=&quot;warning&quot;
+            )
+</code></pre>
+<h3 id="update-all-assets">Update all assets</h3>
+<p>This is a script which will update all the assets in all the scenes of a given step. It can just be run from Maya as any other script (if the Ramses add-on is correctly installed of course).</p>
+<pre><code class="language-py">&quot;&quot;&quot;
+    Automatically updates ALL items in ALL the scenes of a given step
+    This is given as an example and SHOULD NOT be used in production,
+    Unless you really know what you're doing.
+&quot;&quot;&quot;
+
+from maya import cmds # pylint: disable=import-error
+import ramses as ram # pylint: disable=import-error
+
+# Set a log file
+log_file = &quot;D:/Ramses_auto_update_log.txt&quot;
+
+# Get the Ramses instance
+RAMSES = ram.Ramses.instance()
+
+# A simple function to log stuff
+def log( msg ):
+    &quot;&quot;&quot;Log to log_file and the console&quot;&quot;&quot;
+    ram.log(&quot;Auto-update: &quot; + msg)
+    with open(log_file,&quot;a&quot;, encoding='utf8') as f:
+        f.write(msg + &quot;\n&quot;)
+
+# Everything in a function makes it easier to manipulate
+def auto_update( step_id = 'layout' ):
+    &quot;&quot;&quot;The main auto update function.&quot;&quot;&quot;
+
+    # Get the current project
+    project = RAMSES.currentProject()
+
+    # Reinit the log
+    with open(log_file, 'w', encoding='utf8') as f:
+        f.write(&quot;Starting auto-update...\n&quot;)
+
+    # If there's no project, can't do nothing!
+    if not project:
+        log(&quot;No current project&quot;)
+        return
+
+    # Get the step
+    step = project.step(step_id)
+
+    # If the step doesn't exist, can't do nothing!
+    if not step:
+        log(&quot;Invalid step (&quot; + step_id + &quot;)&quot;)
+        return
+
+    # List all the items
+    items = []
+    if step.stepType() == ram.StepType.SHOT_PRODUCTION:
+        items = project.shots()
+    elif step.stepType() == ram.StepType.ASSET_PRODUCTION:
+        items = project.assets()
+
+    # Nothing to update
+    if len(items) == 0:
+        log(&quot;Empty step, or unsupported step type (pre or post production)&quot;)
+        return
+
+    # For all items
+    # A counter
+    i = 0
+    for ram_item in items:
+
+        # Open scene (try both ma and mb)
+        path = ram_item.stepFilePath(extension=&quot;mb&quot;,step=step_id)
+        if path == &quot;&quot;:
+            path = ram_item.stepFilePath(extension=&quot;ma&quot;,step=step_id)
+        if path == &quot;&quot;:
+            continue
+
+        i = i+1
+        log(&quot;Opening &quot; + str(ram_item))
+        log(&quot;File: &quot; + path)
+
+        # Maya open command
+        cmds.file( path, open=True )
+        log(&quot;Scene loaded&quot;)
+
+        # Use the ramses command to update all imported items
+        cmds.ramUpdate( updateAll=True )
+        log(&quot;Updated!&quot;)
+
+        # Save as a new version
+        cmds.ramSaveVersion( updateStatus=False )
+        log(&quot;Saved scene!\n&quot;)
+
+    # Finished!
+    log(&quot;Updated &quot; + str(i) + &quot; scenes.&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    # Run the function
+    # Just change the step id if you wish
+    auto_update('Rig')
+
+</code></pre></div>
+        
+            <div class="nav-footer">
+            <ul>
+                <li class="nav-footer-prev">
+                    <a rel="prev" href="../maya/">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled nav-footer-next">
+                    <a rel="next" >
+                        Next <i class="fas fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+            </div>
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+<div></div>
+
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../video.js"></script>
+    <script src="../meta.js"></script>
+    <script src="../collapser.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

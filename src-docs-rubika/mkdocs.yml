@@ -1,0 +1,39 @@
+site_name: Ramses | Rubika Supinfocom
+site_url: https://ramses.rxlab.guide/rubika
+repo_url: https://github.com/RxLaboratory/Ramses/
+edit_uri: edit/master/src-docs-rubika/docs/
+site_description: The Ramses user guide for Rubika Students
+site_author: Nicolas Dufresne and contributors
+copyright: 'Copyright © 2024 <a href="https://rxlaboratory.org">RxLaboratory</a> and <a href="https://duduf.com">Nicolas Dufresne</a>'
+theme:
+    name: null
+    custom_dir: 'cinder'
+    colorscheme: zenburn
+extra:
+    collapse_toc: true
+markdown_extensions:
+    - smarty
+    - footnotes
+    - tables
+    - admonition
+    - fenced_code
+    - toc
+    - attr_list
+extra_css:
+    - style.css
+    - video.css
+extra_javascript:
+    - video.js
+    - meta.js
+    - collapser.js
+site_dir: ../docs-rubika/
+dev_addr: '127.0.0.1:8001'
+nav:
+    - Home: index.md
+    - Install:
+        - Install / Update: install.md
+        - Connection / Log-in: login.md
+    - Maya:
+        - Maya: maya.md
+        - Scripting and automation: maya_script.md
+    - F.A.Q.: https://qa.rxlaboratory.org

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 8.4666666 8.4666666"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="save-file-incremental-copy-duplicate_sl.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="15.999999"
+     inkscape:cx="-2.4062502"
+     inkscape:cy="16.093751"
+     inkscape:document-units="mm"
+     inkscape:current-layer="svg8"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="1"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-nodes="false">
+    <sodipodi:guide
+       position="8.4666666,0"
+       orientation="-32,0"
+       id="guide854"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="8.4666666,8.4666666"
+       orientation="0,-32"
+       id="guide856"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,8.4666814"
+       orientation="32,0"
+       id="guide858"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     id="path861"
+     style="fill:#8ad891;fill-opacity:1;stroke-width:0.047616"
+     d="M 1.1425781 0 C 0.5092869 0 2.9605947e-16 0.50925039 0 1.1425781 L 0 23.236328 C 0 23.869656 0.5092869 24.378906 1.1425781 24.378906 L 6.0820312 24.378906 L 6.0820312 8.7597656 C 6.0820312 7.306433 7.3044832 6.0839844 8.7578125 6.0839844 L 18.283203 6.0839844 L 18.283203 5.8046875 C 18.283203 5.5048651 18.165445 5.2122743 17.951172 4.9980469 L 13.289062 0.33398438 C 13.07479 0.11975682 12.78521 0 12.480469 0 L 1.1425781 0 z M 8.7617188 7.6191406 C 8.1284275 7.6191406 7.6191406 8.1284381 7.6191406 8.7617188 L 7.6191406 30.855469 C 7.6191406 31.488797 8.1284275 31.998047 8.7617188 31.998047 L 24.759766 31.998047 C 25.393056 31.998047 25.902344 31.488797 25.902344 30.855469 L 25.902344 24.746094 L 21.28125 29.367188 C 20.128901 30.519355 18.218854 30.519796 17.066406 29.367188 L 10.400391 22.701172 C 9.2478747 21.548716 9.2480123 19.638787 10.400391 18.486328 A 1.9572543 1.9572543 0 0 1 10.400391 18.478516 L 11.855469 17.03125 L 11.855469 17.039062 C 12.999405 15.895055 14.918564 15.895047 16.0625 17.039062 L 19.177734 20.140625 L 25.902344 13.421875 L 25.902344 13.419922 C 25.901833 13.12065 25.784116 12.830948 25.570312 12.617188 L 20.908203 7.9511719 C 20.69393 7.7369445 20.402396 7.6191406 20.097656 7.6191406 L 8.7617188 7.6191406 z M 29.521484 12.986328 C 29.258921 12.986328 28.997191 13.086776 28.796875 13.287109 L 19.177734 22.910156 L 14.683594 18.416016 C 14.282966 18.01536 13.633053 18.01536 13.232422 18.416016 L 11.783203 19.869141 C 11.382575 20.269797 11.382575 20.917753 11.783203 21.318359 L 18.449219 27.988281 C 18.849846 28.388965 19.501671 28.388891 19.902344 27.988281 L 31.699219 16.1875 C 32.099846 15.786844 32.099846 15.138912 31.699219 14.738281 L 30.25 13.287109 C 30.049685 13.086779 29.784047 12.986329 29.521484 12.986328 z "
+     transform="scale(0.26458333)" />
+</svg>
