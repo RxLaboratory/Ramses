@@ -8,7 +8,7 @@ It provides a standard *http(s) REST API*. If you're developping your own client
 
 **Queries must be a *POST* request**; the body must be *JSON* encoded, the `Content-Type` being `application/json`.
 
-Only one attribute must be set directly in the *URL* (like a *GET* request), the name of the query itself.
+Only one attribute must be set directly in the *URL* as a query parameter, the name of the query itself.
 
 For now, the server only supports the **UTF-8** charset, so it is not mandatory to add the charset in the *Content-Type*, and any value other than `utf-8` will be ignored. This may change in future versions.
 
@@ -73,7 +73,9 @@ The `debug` value of the reply is an array containing these objects:
 This is the process to sync data with the server.
 
 1. `ping` to check if the server is available and check its version. This is mandatory to initiate the session before being able to log in.
-2. `login` to authenticate yourself.
+2. `login` to authenticate yourself.  
+    You can optionnaly get the list of projects you're assigned to with `getProjects`,  
+    then set the current project with `setCurrentProject`
 3. `sync` starts the sync session.
 4. `push` to push modified items (or an empty list to download all table data).
 5. `fetch` to get some information, including the number of tables and rows available to pull.
@@ -83,6 +85,8 @@ For the examples in this documentation, we assume the ramses server is available
 
 !!! note
     For the sake of readability, the *JSON* replies are pretty formatted with indentation and new lines in this documentation, but the server actually uses one-line replies.
+
+## API reference
 
 ### ping
 
@@ -161,6 +165,133 @@ The server replies with:
 - `username`: the user name of the user.
 - `uuid`: the uuid of the user.
 - `token`: a token which must be associated with `sync` queries later.
+
+### getProjects
+
+Query: `https://ramses.rxlab.io/example/?getProjects`
+
+Returns the list of the projects assigned to the current user (or all if the user is an administrator).
+
+#### Request body
+
+```json
+{
+    "version": "0.6.0"
+}
+```
+
+- `version`: version of the client.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "Got the list of projects for the current user.",
+    "query": "getProjects",
+    "content": [
+        {
+            "uuid": "123456",
+            "data": "{some data}",
+            "modified": "2022-07-15 15:44:23",
+            "removed": 0
+        },
+        {
+            "uuid": "789123",
+            "data": "{some other data}",
+            "modified": "2022-08-24 15:44:23",
+            "removed": 0
+        }
+    ],
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
+
+### setCurrentProject
+
+Query: `https://ramses.rxlab.io/example/?setCurrentProject`
+
+Sets the project we're working on; it will be used for qll subsequent sync sessions if not explicitely set.
+
+#### Request body
+
+```json
+{
+    "version": "0.6.0",
+    "project": "1234"
+}
+```
+
+- `version`: version of the client.
+- `project`: the project UUID.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "Current project set to 1234.",
+    "query": "setCurrentProject",
+    "content": "1234",
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
+
+### getUsers
+
+Query: `https://ramses.rxlab.io/example/?getUsers`
+
+Gets the list of users assigned to a project.
+You can list only users for projects you're assigned to if you're not an administrator.
+
+#### Request body
+
+```json
+{
+    "version": "0.6.0",
+    "project": "1234"
+}
+```
+
+- `version`: version of the client.
+- `project`: the project UUID. Opotionnal if and only if the project has been previously set with `setCurrentProject`.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "Got the list of users for project 1234.",
+    "query": "getUsers",
+    "content": [
+        {
+            "uuid": "123456",
+            "data": "{some data}",
+            "modified": "2022-07-15 15:44:23",
+            "removed": 0
+        },
+        {
+            "uuid": "789123",
+            "data": "{some other data}",
+            "modified": "2022-08-24 15:44:23",
+            "removed": 0
+        }
+    ],
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
 
 ### sync
 
@@ -498,3 +629,75 @@ The server will check if the connected user is an administrator, and accept the 
 - If the connected user is not the same as the new password, the request will be accepted if and only if the connected user has the *administrator* role. In this case, the current password is not mandatory.
 
 That means if there's only one administrator, who has forgotten its current password, only the server provider - someone who has an actual access to the server files (via *FTP* for example) - can set a new password, using *Ramses Server* development tools.
+
+### assignUser
+
+Query: `https://ramses.rxlab.io/example/?assignUser`
+
+Assigns a user to a project. You need to be an administrator.
+
+#### Request body
+
+```json
+{
+    "version": "0.6.0",
+    "project": "1234",
+    "user": "4567"
+}
+```
+
+- `version`: version of the client.
+- `project`: the project UUID.
+- `user`: the user UUID.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "User assigned!",
+    "query": "assignUser",
+    "content": "",
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
+
+### unassignUser
+
+Query: `https://ramses.rxlab.io/example/?unassignUser`
+
+Unassigns a user from a project. You need to be an administrator.
+
+#### Request body
+
+```json
+{
+    "version": "0.6.0",
+    "project": "1234",
+    "user": "4567"
+}
+```
+
+- `version`: version of the client.
+- `project`: the project UUID.
+- `user`: the user UUID.
+
+#### Reply
+
+The server replies with:
+
+```json
+{
+    "accepted": true,
+    "success": true,
+    "message": "User unassigned!",
+    "query": "unassignUser",
+    "content": "",
+    "serverUuid": "unique-uid",
+    "debug": []
+}
+```
